@@ -1,0 +1,49 @@
+name: Bug report
+description: Report a reproducible problem with claude-voice.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping improve claude-voice. Remove keys, tokens, private transcripts, and private paths from logs before sharing them.
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Output from `claude-voice --version` or the commit SHA.
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - macOS
+        - Linux
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: terminal
+    attributes:
+      label: Terminal and audio device
+      placeholder: Ghostty with built-in speakers
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Give the smallest sequence that reproduces the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior and sanitized diagnostics
+      description: Include relevant `claude-voice doctor` output or daemon log lines, with secrets and private text removed.
+    validations:
+      required: true

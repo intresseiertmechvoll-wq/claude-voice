@@ -21,6 +21,7 @@ You talk to Claude with `/voice`. Now Claude talks back — with real-time karao
 - [How It Works](#how-it-works)
 - [Daemon mode](#daemon-mode)
 - [Multi-terminal routing](#multi-terminal-routing)
+- [Private history and playback controls](#private-history-and-playback-controls)
 - [Highlight-and-speak hotkey](#highlight-and-speak-hotkey)
 - [Current Pain Points](#current-pain-points)
 - [End Goals](#end-goals--where-this-is-headed)
@@ -49,6 +50,7 @@ So I built a Claude Code **Stop hook**. After every response, the hook fires, st
 - **Multi-terminal routing** — run Claude Code in five terminals at once and only the one you typed in speaks
 - **Per-terminal mute** — `claude-voice mute` silences the current terminal only
 - **Highlight-and-speak hotkey** — select any text in any app, press a key, and the daemon reads it back (Hammerspoon snippet included)
+- **Opt-in private history** — save up to 200 spoken responses locally, replay them, and seek or pause the latest synthesized audio
 - **Smart filtering** — skips code-heavy responses, strips markdown/URLs/tables, fixes dev pronunciations for local engines
 - **Interrupt on keypress** — press any key to stop immediately
 - **Themes** — aurora, ember, violet, mint, mono
@@ -113,6 +115,8 @@ Cloud providers that return MP3 need `ffmpeg` on PATH (`brew install ffmpeg`).
 /voice voice eve           switch voice
 /voice speed 1.3           faster
 /voice theme violet        restyle the karaoke UI
+/voice announce on         prefix hook speech with the project folder
+/voice history on          opt in to private local response history
 /voice voices              list voices for the current provider
 ```
 
@@ -135,7 +139,13 @@ claude-voice key <prov> <key>   # store an API key (no args: show key status)
 claude-voice speed 1.2          # playback speed
 claude-voice volume 80%         # volume
 claude-voice theme ember        # UI theme
+claude-voice announce on | off  # identify the project before hook speech
 claude-voice clip               # speak the clipboard (bind to a hotkey)
+claude-voice history on | off   # opt in/out of private response history
+claude-voice history [count]    # list saved responses (newest first)
+claude-voice replay [n]         # replay one (1 = latest, without duplicating it)
+claude-voice seek <seconds>     # seek within the latest synthesized audio
+claude-voice playpause          # pause or resume the latest synthesized audio
 claude-voice daemon-status      # warm-daemon state
 claude-voice daemon-stop        # stop the daemon
 claude-voice demo               # polished demo (for screen recording)
@@ -171,6 +181,8 @@ claude-voice --no-daemon "text" # bypass the daemon; speak in-process
   "volume": 1.0,
   "theme": "aurora",
   "chime": true,
+  "announce_project": false,
+  "history_enabled": false,
   "use_daemon": true,
   "min_chars": 30,
   "max_chars": 1500,
@@ -209,6 +221,22 @@ Run Claude Code in five terminals and only the one you're typing in speaks:
 
 ---
 
+## Private history and playback controls
+
+Response history is off by default because spoken messages can contain private project context. Opt in explicitly:
+
+```bash
+claude-voice history on
+```
+
+Entries are stored in `~/.cache/claude-voice/history.jsonl`, limited to the newest 200 messages, and forced to file mode `0600` inside a mode `0700` runtime directory. `history off` stops new entries without deleting existing ones. Replaying an entry does not create a duplicate.
+
+The optional [`integrations/hammerspoon-panel.lua`](integrations/hammerspoon-panel.lua) adds a floating macOS control panel with on/off, stop, speed and volume sliders, replay history, and play/pause and seek controls. Set `CLAUDE_VOICE_BIN` in the file, run `claude-voice history on`, then load it from Hammerspoon.
+
+Seek and pause currently control audio only. Karaoke rendering intentionally stops when playback is scrubbed because it does not yet resynchronize word highlighting.
+
+---
+
 ## Hotkeys
 
 [`integrations/raycast/`](integrations/raycast/) ships three Raycast script commands:
@@ -221,7 +249,7 @@ Run Claude Code in five terminals and only the one you're typing in speaks:
 
 Setup: Raycast → Settings → Extensions → **+** → *Add Script Directory* → pick `integrations/raycast/`, then record a hotkey on each command. ⌘⌃ combos are chosen to stay clear of terminal multiplexers (tmux/herdr use plain ctrl/alt) and standard macOS shortcuts.
 
-Prefer Hammerspoon? [`integrations/hammerspoon-snippet.lua`](integrations/hammerspoon-snippet.lua) binds highlight-and-speak (select text in any app, press the key, hear it via `claude-voice clip`).
+Prefer Hammerspoon? [`integrations/hammerspoon-snippet.lua`](integrations/hammerspoon-snippet.lua) binds highlight-and-speak. The full [`integrations/hammerspoon-panel.lua`](integrations/hammerspoon-panel.lua) adds playback controls and opt-in replay history.
 
 ---
 
@@ -244,7 +272,7 @@ Prefer Hammerspoon? [`integrations/hammerspoon-snippet.lua`](integrations/hammer
 ### Medium Term
 - **Integration with agent ecosystem** — when Deep Video Watcher generates a comprehension report, claude-voice can read it aloud; when Blackreach finishes research, it can narrate findings
 - **Voice profiles per project** — coding voice (fast, clear) vs reading voice (warm, expressive) vs research voice (neutral, precise)
-- **Pause/resume across sessions** — interrupt a long narration, come back later and resume from where you left off
+- **Persistent playback position** — restore the latest narration position after the daemon or machine restarts
 
 ### Long Term
 - **Real-time conversation** — full duplex: I speak, Claude thinks, Claude speaks back, I interrupt, Claude adapts. True voice mode.
