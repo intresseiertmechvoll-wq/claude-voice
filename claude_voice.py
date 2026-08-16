@@ -26,6 +26,11 @@ Commands:
     claude-voice volume <x>         Volume 0.0 - 1.0
     claude-voice theme <name>       UI theme (aurora/ember/violet/mint/mono)
     claude-voice clip               Speak the clipboard (bind to a hotkey)
+    claude-voice history on | off   Opt in/out of private response history
+    claude-voice history [count]    List recent saved responses
+    claude-voice replay [n]         Replay a saved response (1 = latest)
+    claude-voice seek <seconds>     Seek within the latest synthesized audio
+    claude-voice playpause          Pause or resume latest synthesized audio
     claude-voice daemon-status      Show warm-daemon state
     claude-voice daemon-stop        Stop the daemon
     claude-voice demo               Run a polished demo
@@ -36,8 +41,10 @@ Commands:
 """
 import argparse
 import base64
+import fcntl
 import io
 import json
+import math
 import os
 import re
 import select
@@ -66,7 +73,7 @@ except ImportError:
     np = None
     sd = None
 
-VERSION = "0.2.0"
+VERSION = "0.3.0"
 
 # ── defaults ──
 SAMPLE_RATE = 24000
@@ -86,6 +93,7 @@ SOCK_PATH = os.path.join(RUNTIME_DIR, "daemon.sock")
 PID_PATH = os.path.join(RUNTIME_DIR, "daemon.pid")
 LOG_PATH = os.path.join(RUNTIME_DIR, "daemon.log")
 HISTORY_PATH = os.path.join(RUNTIME_DIR, "history.jsonl")
+HISTORY_MAX_ENTRIES = 200
 DAEMON_IDLE_TIMEOUT = 1800            # seconds before idle daemon exits
 DAEMON_SPAWN_WAIT = 15                # max seconds to wait for cold-spawned daemon
 ACTIVE_TTY_STALE = 600                # claim auto-expires after 10 min
@@ -288,6 +296,19 @@ def _require_audio():
 
 # ── config ──
 
+def _harden_history_storage() -> None:
+    """Repair permissions left by early history prototypes, if present."""
+    try:
+        if os.path.isdir(RUNTIME_DIR):
+            os.chmod(RUNTIME_DIR, 0o700)
+        if os.path.exists(HISTORY_PATH):
+            os.chmod(HISTORY_PATH, 0o600)
+    except OSError:
+        # A later history read/write will surface a usable diagnostic without
+        # making every status/config command fail on an inaccessible cache.
+        pass
+
+
 def default_config() -> dict:
     return {
         "enabled": True,
@@ -305,6 +326,9 @@ def default_config() -> dict:
         "theme": "aurora",
         "chime": True,
         "announce_project": False,
+        # Spoken responses may contain private project context. Persistence is
+        # intentionally opt-in, even though the file is local and mode 0600.
+        "history_enabled": False,
         "use_daemon": True,
         "min_chars": MIN_CHARS,
         "max_chars": MAX_CHARS,
@@ -322,6 +346,7 @@ def load_config() -> dict:
     global _config
     if _config is not None:
         return _config
+    _harden_history_storage()
     cfg = default_config()
     if os.path.exists(CONFIG_PATH):
         try:
@@ -796,7 +821,7 @@ def _eleven_word_timings(alignment: dict) -> list[tuple[float, float]] | None:
     ends = alignment.get("character_end_times_seconds") or []
     if not chars or len(chars) != len(starts) or len(chars) != len(ends):
         return None
-    timings, w_start, in_word = [], 0.0, False
+    timings, w_start, prev_end, in_word = [], 0.0, 0.0, False
     for ch, s, e in zip(chars, starts, ends):
         if ch.isspace():
             if in_word:
@@ -979,20 +1004,27 @@ def mini_bar(current: int, total: int, width: int = 22) -> str:
 # ── core speak loop ──
 
 def _log_history(text: str, provider: str, voice: str) -> None:
-    """Append a spoken message to the history log (newest last)."""
+    """Append one spoken message to the private, bounded history log."""
     try:
-        os.makedirs(RUNTIME_DIR, exist_ok=True)
-        with open(HISTORY_PATH, "a") as f:
+        os.makedirs(RUNTIME_DIR, mode=0o700, exist_ok=True)
+        os.chmod(RUNTIME_DIR, 0o700)
+        fd = os.open(HISTORY_PATH, os.O_RDWR | os.O_APPEND | os.O_CREAT, 0o600)
+        with os.fdopen(fd, "r+", encoding="utf-8") as f:
+            os.fchmod(f.fileno(), 0o600)
+            fcntl.flock(f.fileno(), fcntl.LOCK_EX)
+            f.seek(0, os.SEEK_END)
             f.write(json.dumps({"ts": time.time(), "text": text,
                                 "provider": provider, "voice": voice}) + "\n")
-        # keep the file from growing forever
-        with open(HISTORY_PATH) as f:
+            f.flush()
+            f.seek(0)
             lines = f.readlines()
-        if len(lines) > 400:
-            with open(HISTORY_PATH, "w") as f:
-                f.writelines(lines[-200:])
-    except OSError:
-        pass
+            if len(lines) > HISTORY_MAX_ENTRIES:
+                f.seek(0)
+                f.truncate()
+                f.writelines(lines[-HISTORY_MAX_ENTRIES:])
+                f.flush()
+    except OSError as e:
+        _daemon_log(f"history write failed: {e}")
 
 
 def _read_history() -> list[dict]:
@@ -1002,7 +1034,9 @@ def _read_history() -> list[dict]:
         with open(HISTORY_PATH) as f:
             for line in f:
                 try:
-                    entries.append(json.loads(line))
+                    entry = json.loads(line)
+                    if isinstance(entry, dict) and isinstance(entry.get("text"), str):
+                        entries.append(entry)
                 except json.JSONDecodeError:
                     continue
     except OSError:
@@ -1012,7 +1046,8 @@ def _read_history() -> list[dict]:
 
 
 def speak_and_highlight(text: str, provider: str | None = None, voice: str | None = None,
-                        show_stats: bool = False, tty_path: str = "/dev/tty") -> dict:
+                        show_stats: bool = False, tty_path: str = "/dev/tty",
+                        record_history: bool = True) -> dict:
     global _interrupted, _play_audio, _play_rate, _play_duration, \
         _play_offset, _play_t0, _play_paused
     cfg = load_config()
@@ -1042,7 +1077,8 @@ def speak_and_highlight(text: str, provider: str | None = None, voice: str | Non
         return {}
     spinner.stop()
 
-    _log_history(text, provider, voice)
+    if record_history and cfg.get("history_enabled", False):
+        _log_history(text, provider, voice)
 
     gen_time = time.monotonic() - t0
     audio_duration = len(audio) / rate
@@ -1356,7 +1392,10 @@ def _handle_client(conn: socket.socket) -> None:
             if _play_audio is None:
                 conn.sendall(json.dumps({"error": "nothing to seek"}).encode() + b"\n")
                 return
-            pos = max(0.0, min(float(req.get("pos", 0.0)), _play_duration))
+            pos = float(req.get("pos", 0.0))
+            if not math.isfinite(pos):
+                raise ValueError("seek position must be finite")
+            pos = max(0.0, min(pos, _play_duration))
             _interrupted = True
             if sd is not None:
                 sd.stop()
@@ -1428,6 +1467,7 @@ def _handle_client(conn: socket.socket) -> None:
         voice = req.get("voice") or current_voice(cfg, provider)
         tty_path = req.get("tty_path") or "/dev/tty"
         override = bool(req.get("override"))
+        record_history = bool(req.get("record_history", True))
 
         if not text.strip():
             conn.sendall(json.dumps({"error": "empty"}).encode() + b"\n")
@@ -1466,7 +1506,8 @@ def _handle_client(conn: socket.socket) -> None:
         with _playback_lock:
             _interrupted = False
             try:
-                speak_and_highlight(text, provider=provider, voice=voice, tty_path=tty_path)
+                speak_and_highlight(text, provider=provider, voice=voice,
+                                    tty_path=tty_path, record_history=record_history)
             except Exception as e:
                 # The audio output device (e.g. Bluetooth headphones) likely
                 # changed under us — PortAudio holds a stale handle to it.
@@ -1477,7 +1518,8 @@ def _handle_client(conn: socket.socket) -> None:
                         sd._terminate()
                         sd._initialize()
                     _interrupted = False
-                    speak_and_highlight(text, provider=provider, voice=voice, tty_path=tty_path)
+                    speak_and_highlight(text, provider=provider, voice=voice,
+                                        tty_path=tty_path, record_history=False)
                 except Exception as e2:
                     _daemon_log(f"retry failed: {e2}")
     except (json.JSONDecodeError, OSError, ValueError) as e:
@@ -1574,7 +1616,7 @@ def _invoker() -> str:
 
 
 SLASH_TEMPLATE = """---
-description: "Control voice output — on, off, mute, status, provider <name>, voice <name>, speed <x>, volume <x>, theme <name>, voices"
+description: "Control voice output: on, off, mute, status, provider <name>, voice <name>, speed <x>, volume <x>, theme <name>, history on|off, voices"
 allowed-tools: "Bash({invoker} slash:*)"
 ---
 
@@ -1583,7 +1625,7 @@ allowed-tools: "Bash({invoker} slash:*)"
 !`{invoker} slash $ARGUMENTS`
 
 Relay the result above to the user in one short line. It already reflects the
-outcome — do not run any other commands. If it shows an error, briefly say how
+outcome. Do not run any other commands. If it shows an error, briefly say how
 to fix it.
 """
 
@@ -1723,6 +1765,8 @@ def cmd_status(args=None):
     print(f"  {LABEL}voice{RESET}      {current_voice(cfg, provider) or 'system default'}")
     print(f"  {LABEL}speed{RESET}      {cfg.get('speed', 1.0)}×   {LABEL}volume{RESET} {int(cfg.get('volume', 1.0) * 100)}%")
     print(f"  {LABEL}theme{RESET}      {cfg.get('theme', 'aurora')}")
+    history_state = f"{GREEN}on{RESET}" if cfg.get("history_enabled", False) else f"{DIM}off{RESET}"
+    print(f"  {LABEL}history{RESET}    {history_state}  {DIM}(private, opt-in){RESET}")
     print(f"  {LABEL}daemon{RESET}     {daemon_line}")
     print(f"  {LABEL}hook{RESET}       {'installed' if _hook_installed() else RED + 'not installed — run claude-voice setup' + RESET}")
     print(f"  {LABEL}/voice{RESET}     {'installed' if os.path.exists(COMMAND_PATH) else RED + 'not installed — run claude-voice setup' + RESET}")
@@ -2017,17 +2061,31 @@ def cmd_clip(args=None) -> None:
 
 
 def cmd_history(args=None) -> None:
-    """List recently spoken messages, newest first."""
+    """Enable, disable, or list private spoken-message history."""
+    cfg = load_config()
+    if args and args[0].lower() in ("on", "off", "status"):
+        action = args[0].lower()
+        if action in ("on", "off"):
+            cfg["history_enabled"] = action == "on"
+            save_config(cfg)
+        state = "on" if cfg.get("history_enabled", False) else "off"
+        print(f"  history: {CYAN}{state}{RESET}  {DIM}({HISTORY_PATH}, private mode 0600){RESET}")
+        if action == "off" and os.path.exists(HISTORY_PATH):
+            print(f"  {DIM}existing history is kept; disabling only stops new entries{RESET}")
+        return
+
     entries = _read_history()
     if not entries:
-        print(f"  {DIM}no spoken messages yet{RESET}")
+        state = "enabled" if cfg.get("history_enabled", False) else "disabled"
+        print(f"  {DIM}no spoken messages yet (history is {state}){RESET}")
         return
     n = 20
     if args:
         try:
-            n = max(1, int(args[0]))
+            n = max(1, min(HISTORY_MAX_ENTRIES, int(args[0])))
         except ValueError:
-            pass
+            print(f"  {RED}✗{RESET} usage: claude-voice history [on|off|status|count]")
+            return
     for i, e in enumerate(entries[:n], 1):
         when = time.strftime("%H:%M", time.localtime(e.get("ts", 0)))
         snippet = e.get("text", "").replace("\n", " ")
@@ -2059,7 +2117,7 @@ def cmd_replay(args=None) -> None:
     cfg = load_config()
     if not _ensure_daemon():
         try:
-            speak_and_highlight(text, tty_path=_resolve_tty())
+            speak_and_highlight(text, tty_path=_resolve_tty(), record_history=False)
         except Exception:
             pass
         return
@@ -2069,6 +2127,7 @@ def cmd_replay(args=None) -> None:
         "provider": cfg.get("provider", "kokoro"),
         "tty_path": _resolve_tty(),
         "override": True,
+        "record_history": False,
     }, timeout=3.0)
     if resp is None:
         print(f"  {RED}✗{RESET} daemon unreachable")
@@ -2136,7 +2195,7 @@ def cmd_daemon_stop(args=None) -> None:
         print(f"  {DIM}daemon not running{RESET}")
         return
     _send_to_daemon({"op": "shutdown"}, timeout=1.0)
-    print(f"  daemon stopped")
+    print("  daemon stopped")
 
 
 def cmd_demo(args=None):
@@ -2244,7 +2303,8 @@ def cmd_slash(args):
         state = "ON" if cfg.get("enabled", True) else "OFF"
         return (f"voice is {state} · provider: {provider} · voice: "
                 f"{current_voice(cfg, provider) or 'default'} · speed: {cfg.get('speed', 1.0)}x "
-                f"· volume: {int(cfg.get('volume', 1.0) * 100)}% · theme: {cfg.get('theme', 'aurora')}")
+                f"· volume: {int(cfg.get('volume', 1.0) * 100)}% · theme: {cfg.get('theme', 'aurora')} "
+                f"· history: {'ON' if cfg.get('history_enabled', False) else 'OFF'}")
 
     if not args or args[0] in ("status", "state"):
         print(plain_status())
@@ -2292,6 +2352,10 @@ def cmd_slash(args):
             cfg["announce_project"] = rest[0].lower() == "on"
             save_config(cfg)
             print(f"announce project set to {rest[0].lower()}")
+        elif action == "history" and rest and rest[0].lower() in ("on", "off"):
+            cfg["history_enabled"] = rest[0].lower() == "on"
+            save_config(cfg)
+            print(f"private response history set to {rest[0].lower()}")
         elif action == "voices":
             target = cfg.get("provider", "kokoro")
             names = {"kokoro": list(KOKORO_VOICES), "openai": list(OPENAI_VOICES),
@@ -2302,7 +2366,7 @@ def cmd_slash(args):
             print("providers: " + ", ".join(f"{p} ({PROVIDERS[p]['blurb']})" for p in PROVIDERS))
         else:
             print("usage: /voice [on|off|toggle|mute|unmute|status|provider <name>|voice <name>|"
-                  "speed <x>|volume <x>|theme <name>|announce on|off|voices|providers]")
+                  "speed <x>|volume <x>|theme <name>|announce on|off|history on|off|voices|providers]")
     except (ProviderError, ValueError) as e:
         print(f"error: {e}")
 

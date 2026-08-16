@@ -128,6 +128,16 @@ class DaemonProtocolTests(unittest.TestCase):
         self.assertIsInstance(resp.get("pid"), int)
         self.assertIsInstance(resp.get("idle_s"), (int, float))
 
+    def test_playback_controls_report_no_audio_before_first_synthesis(self):
+        info = _send(self.sock_path, {"op": "playinfo"})
+        seek = _send(self.sock_path, {"op": "seek", "pos": 1.0})
+        playpause = _send(self.sock_path, {"op": "playpause"})
+
+        self.assertEqual(info.get("duration"), 0.0)
+        self.assertFalse(info.get("playing"))
+        self.assertEqual(seek.get("error"), "nothing to seek")
+        self.assertEqual(playpause.get("error"), "nothing to play")
+
     def test_speak_empty_text_is_rejected(self):
         resp = _send(self.sock_path, {"op": "speak", "text": "  ", "tty_path": "/dev/null"})
         self.assertIsNotNone(resp)

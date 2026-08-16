@@ -7,7 +7,7 @@
 --     back to any point of the speech)
 --   * clickable history of past spoken messages (click any to replay)
 --
--- Requires claude-voice >= 0.2 with the history/replay/seek/playpause
+-- Requires claude-voice >= 0.3 with the history/replay/seek/playpause
 -- commands (this repo). The panel shells out to the CLI for everything.
 --
 -- Install
@@ -16,11 +16,13 @@
 --    Accessibility permissions in System Settings -> Privacy & Security.
 -- 2. Paste this file into ~/.hammerspoon/init.lua (or `require` it).
 -- 3. Edit CLAUDE_VOICE_BIN below to point at your install.
--- 4. Open Hammerspoon and click "Reload Config" (menu bar icon).
+-- 4. Opt in to local response history: `claude-voice history on`.
+-- 5. Open Hammerspoon and click "Reload Config" (menu bar icon).
 
 local CLAUDE_VOICE_BIN = os.getenv("HOME") .. "/.local/bin/claude-voice"
 local CV_CONFIG  = os.getenv("HOME") .. "/.config/claude-voice/config.json"
-local CV_HISTORY = os.getenv("HOME") .. "/.cache/claude-voice/history.jsonl"
+local CV_CACHE   = os.getenv("HOME") .. "/.cache/claude-voice"
+local CV_HISTORY = CV_CACHE .. "/history.jsonl"
 local KOKORO_VOICES = {
     "af_heart", "af_nova", "af_alloy", "af_sky",
     "am_adam", "am_fenrir", "am_michael", "am_onyx",
@@ -68,21 +70,29 @@ local function cvBuildHtml()
     local voice    = (cfg.voices or {})[provider] or ""
 
     local voiceOpts = {}
-    for _, v in ipairs(KOKORO_VOICES) do
-        table.insert(voiceOpts, string.format('<option value="%s"%s>%s</option>',
-            v, v == voice and " selected" or "", v))
+    if provider == "kokoro" then
+        for _, v in ipairs(KOKORO_VOICES) do
+            table.insert(voiceOpts, string.format('<option value="%s"%s>%s</option>',
+                v, v == voice and " selected" or "", v))
+        end
+    else
+        local safeVoice = htmlEscape(voice ~= "" and voice or "system default")
+        table.insert(voiceOpts, string.format('<option value="">%s (%s)</option>',
+            safeVoice, htmlEscape(provider)))
     end
 
     local histRows = {}
     for i, e in ipairs(cvReadHistory(20)) do
-        local when = os.date("%H:%M", math.floor(e.ts or 0))
-        local snippet = htmlEscape((e.text or ""):gsub("\n", " "))
+        local when = os.date("%H:%M", math.floor(tonumber(e.ts) or 0))
+        local snippet = htmlEscape(tostring(e.text or ""):gsub("\n", " "))
         if #snippet > 120 then snippet = snippet:sub(1, 120) .. "…" end
         table.insert(histRows, string.format(
             '<div class="msg" onclick="send({action:\'replay\',index:\'%d\'})">' ..
             '<span class="t">%s</span>%s</div>', i, when, snippet))
     end
-    if #histRows == 0 then
+    if cfg.history_enabled ~= true then
+        histRows = { '<div class="empty">history is off; run claude-voice history on to enable it</div>' }
+    elseif #histRows == 0 then
         histRows = { '<div class="empty">no spoken messages yet</div>' }
     end
 
@@ -255,7 +265,9 @@ local cvBridge = hs.webview.usercontent.new("cv"):setCallback(function(msg)
     elseif m.action == "volume" then
         cvRun({ "volume", tostring(m.value) })
     elseif m.action == "voice" then
-        cvRun({ "voice", tostring(m.value) })
+        if m.value and tostring(m.value) ~= "" then
+            cvRun({ "voice", tostring(m.value) })
+        end
     elseif m.action == "replay" then
         cvRun({ "replay", tostring(m.index) })
     elseif m.action == "seek" then
@@ -268,8 +280,15 @@ local cvBridge = hs.webview.usercontent.new("cv"):setCallback(function(msg)
 end)
 
 -- Auto-refresh the open panel when a new message lands in the history file.
+local function ensureDir(path)
+    if hs.fs.attributes(path) then return end
+    local parent = path:match("(.+)/[^/]+$")
+    if parent then ensureDir(parent) end
+    hs.fs.mkdir(path)
+end
+ensureDir(CV_CACHE)
 local cvRefreshPending = nil
-local cvWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.cache/claude-voice/",
+local cvWatcher = hs.pathwatcher.new(CV_CACHE,
     function(files)
         for _, f in ipairs(files) do
             if f:find("history%.jsonl$") then
