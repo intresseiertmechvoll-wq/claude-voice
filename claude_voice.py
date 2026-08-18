@@ -545,8 +545,9 @@ def _chime(f0: float, f1: float, amp: float):
     tone = np.sin(2 * np.pi * freq * t) * amp
     fade = np.minimum(t / 0.02, 1.0) * np.minimum((0.08 - t) / 0.02, 1.0)
     tone *= fade
-    sd.play(tone.astype(np.float32), samplerate=sr)
-    sd.wait()
+    stereo = np.column_stack([tone, tone]).astype(np.float32)
+    sd.play(stereo, samplerate=sr)
+    time.sleep(0.08)
 
 
 def play_chime_start():
@@ -943,6 +944,40 @@ def synthesize(provider: str, text: str, voice: str, speed: float, cfg: dict):
     volume = float(cfg.get("volume", 1.0))
     if volume != 1.0:
         audio = np.clip(audio * volume, -1.0, 1.0)
+
+    # Some PortAudio/PulseAudio backends (e.g. WSLg) don't correctly
+    # resample a stream that doesn't match the output device's native
+    # rate, causing sped-up/pitched playback. Resample here so sd.play()
+    # always gets audio at the device's actual rate.
+    try:
+        device_rate = int(sd.query_devices(sd.default.device[1])["default_samplerate"])
+    except Exception:
+        device_rate = rate
+    if device_rate and device_rate != rate and len(audio) > 1:
+        n_out = int(round(len(audio) * device_rate / rate))
+        x_old = np.linspace(0.0, 1.0, len(audio))
+        x_new = np.linspace(0.0, 1.0, n_out)
+        audio = np.interp(x_new, x_old, audio).astype(np.float32)
+        rate = device_rate
+
+    # Pad with silence at both ends. On backends where the output sink
+    # suspends between requests (e.g. WSLg), the wake-up from suspended to
+    # running clips whatever plays first — padding means that clips silence,
+    # not speech. Shift timings to match so karaoke display still lines up.
+    lead_in, tail = 0.3, 0.3
+    if len(audio) > 0:
+        pad_lead = np.zeros(int(rate * lead_in), dtype=np.float32)
+        pad_tail = np.zeros(int(rate * tail), dtype=np.float32)
+        audio = np.concatenate([pad_lead, audio, pad_tail])
+        if timings:
+            timings = [(s + lead_in, e + lead_in) for s, e in timings]
+
+    # Some backends don't duplicate a mono stream across both output
+    # channels, leaving one side of stereo headphones/speakers silent.
+    # Explicitly duplicate to stereo so playback is centered.
+    if audio.ndim == 1:
+        audio = np.column_stack([audio, audio])
+
     return audio, rate, timings
 
 
@@ -1049,7 +1084,7 @@ def _read_history() -> list[dict]:
 
 def speak_and_highlight(text: str, provider: str | None = None, voice: str | None = None,
                         show_stats: bool = False, tty_path: str = "/dev/tty",
-                        record_history: bool = True) -> dict:
+                        record_history: bool = True, enable_keypress_skip: bool = True) -> dict:
     global _interrupted, _play_audio, _play_rate, _play_duration, \
         _play_offset, _play_t0, _play_paused
     cfg = load_config()
@@ -1094,7 +1129,14 @@ def speak_and_highlight(text: str, provider: str | None = None, voice: str | Non
     if chime:
         play_chime_start()
 
-    _start_keypress_listener(tty_path)
+    if enable_keypress_skip:
+        # Daemon requests skip this: the daemon is session-detached (never
+        # the client tty's foreground process group), so tty.setraw() on the
+        # client's terminal would either hang (SIGTTOU, default disposition)
+        # or, if SIGTTOU were ignored, succeed and steal keystrokes from the
+        # client's actual live shell. Neither is acceptable, so daemon-served
+        # speech just skips the interactive "any key skips" feature.
+        _start_keypress_listener(tty_path)
 
     width = term_width(out)
     out.write(f"{render_header(provider, voice, 0, audio_duration)}\n\n")
@@ -1119,6 +1161,18 @@ def speak_and_highlight(text: str, provider: str | None = None, voice: str | Non
         bar = mini_bar(word_idx + 1, total_words)
         out.write(f"\r\033[2A\033[K{header}\n\033[K  {karaoke}\n\033[K  {bar}")
         out.flush()
+
+    if not _interrupted:
+        # The loop above only paces up to each word's *start* time, so the
+        # final word's tail (and any trailing silence) hasn't played yet —
+        # wait for the audio to actually finish before stopping the stream.
+        # The extra margin covers output-device buffering latency (e.g. the
+        # WSLg RDP audio bridge), which otherwise makes the tail sound
+        # clipped even once the nominal duration has elapsed.
+        elapsed = time.monotonic() - playback_start
+        target = audio_duration + 0.4
+        if elapsed < target:
+            time.sleep(target - elapsed)
 
     sd.stop()
     _restore_terminal()
@@ -1509,7 +1563,8 @@ def _handle_client(conn: socket.socket) -> None:
             _interrupted = False
             try:
                 speak_and_highlight(text, provider=provider, voice=voice,
-                                    tty_path=tty_path, record_history=record_history)
+                                    tty_path=tty_path, record_history=record_history,
+                                    enable_keypress_skip=False)
             except Exception as e:
                 # The audio output device (e.g. Bluetooth headphones) likely
                 # changed under us — PortAudio holds a stale handle to it.
@@ -1521,7 +1576,8 @@ def _handle_client(conn: socket.socket) -> None:
                         sd._initialize()
                     _interrupted = False
                     speak_and_highlight(text, provider=provider, voice=voice,
-                                        tty_path=tty_path, record_history=False)
+                                        tty_path=tty_path, record_history=False,
+                                        enable_keypress_skip=False)
                 except Exception as e2:
                     _daemon_log(f"retry failed: {e2}")
     except (json.JSONDecodeError, OSError, ValueError) as e:
