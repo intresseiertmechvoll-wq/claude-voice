@@ -330,5 +330,40 @@
     "parking": "Parking extérieur × {n}",
     "cave": "Cave",
     "terrasse": "Balcon / terrasse ({n} m²)"
+  },
+  "analysis": {
+    "title": "Analyse de votre bien en cours",
+    "done": "Analyse terminée",
+    "steps": {
+      "gather": {
+        "title": "Rassemblement des informations sur votre bien",
+        "detail": "{type} de {surface} m² à {commune} · {n} réponses prises en compte"
+      },
+      "data": {
+        "title": "Recherche des données de {commune}",
+        "detail": "Ventes notariées, prix annoncés et loyers de l’Observatoire de l’Habitat",
+        "found": "{ventes} ventes notariées et {offres} annonces trouvées à {commune}",
+        "canton": "Peu de ventes publiées ici : ventes du canton et {offres} annonces de {commune}",
+        "foundHouse": "{offres} annonces de maisons trouvées à {commune}",
+        "none": "Pas assez de données publiques pour {commune}"
+      },
+      "compare": {
+        "title": "Comparaison des critères et des méthodes",
+        "appartement": "Ventes réelles, annonces corrigées et rendement locatif",
+        "maison": "Prix annoncés corrigés de l’écart habituel avec les prix de vente"
+      },
+      "adjust": {
+        "title": "Ajustement du prix",
+        "appartement": "État, gros postes, énergie, étage et annexes",
+        "maison": "État, gros postes, énergie, terrain et annexes",
+        "count": "{n} ajustements appliqués à votre bien",
+        "count1": "1 ajustement appliqué à votre bien",
+        "none": "Votre bien correspond à la moyenne : aucun ajustement"
+      },
+      "final": {
+        "title": "Calcul du prix final et de la fourchette",
+        "detail": "Valeur de marché, basse et haute, arrondies à 5 000 €"
+      }
+    }
   }
 }

@@ -435,3 +435,41 @@ input[type='text']:focus, input[type='email']:focus, input[type='tel']:focus, se
 
 ::placeholder { color: #667386; opacity: 1; font-weight: 400; font-style: italic; }
 .stepper input::placeholder { font-style: normal; }
+
+/* ---------- Écran « Analyse de votre bien » ---------- */
+.card-analysis { padding: 28px 18px 26px; }
+@media (min-width: 560px) { .card-analysis { padding: 36px 36px 32px; } }
+.analysis { text-align: center; }
+.house { display: inline-flex; flex-direction: column; align-items: center; margin-bottom: 6px; }
+.house svg { display: block; overflow: visible; }
+.house-bg { fill: var(--beige); }
+.house-water { fill: var(--navy); }
+.house-line { fill: var(--gold); }
+.house-fill { will-change: transform; }
+.house-outline { fill: none; stroke: var(--navy); stroke-width: 3; stroke-linejoin: round; }
+.house-door, .house-win { fill: none; stroke: var(--gold); stroke-width: 2.5; stroke-linejoin: round; }
+.analysis-pct { margin: 6px 0 0; font-family: var(--font-title); font-weight: 600; font-size: 1.75rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.analysis .step-title { margin-top: 10px; }
+.analysis-meta { margin: 4px 0 14px; color: var(--muted); font-weight: 600; font-size: 0.875rem; }
+.analysis-bar { height: 6px; border-radius: 3px; background: var(--beige); overflow: hidden; margin: 0 auto 20px; max-width: 420px; }
+.analysis-bar span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--navy), var(--navy-3)); border-radius: 3px; }
+.analysis-steps { list-style: none; margin: 0 auto; padding: 0; max-width: 460px; text-align: left; display: grid; gap: 4px; }
+.astep { display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border-radius: 14px; color: var(--muted); transition: color 0.35s, background 0.35s; }
+.astep:not(.is-active):not(.is-done) .astep-title { font-weight: 500; }
+.astep.is-active { color: var(--navy); background: var(--beige); }
+.astep.is-done { color: var(--navy); }
+.astep.is-skipped { display: none; }
+.astep-ico { position: relative; display: grid; place-items: center; width: 36px; height: 36px; flex: none; border-radius: 50%; background: var(--offwhite); color: var(--muted); border: 1.5px dashed var(--line-soft); }
+.astep.is-active .astep-ico, .astep.is-done .astep-ico { border: 0; color: var(--navy); }
+.astep.is-active .astep-ico { background: var(--white); box-shadow: 0 0 0 2px var(--gold); }
+.astep.is-done .astep-ico { background: var(--navy); color: var(--gold); }
+.astep-ico > span { position: absolute; display: none; }
+.astep .astep-num { display: grid; }
+.astep.is-active .astep-num, .astep.is-done .astep-num { display: none; }
+.astep.is-active .spinner { display: block; }
+.astep.is-done .astep-done { display: grid; animation: pop 0.35s var(--ease); }
+.spinner-dark { width: 20px; height: 20px; border: 3px solid var(--line-soft); border-top-color: var(--navy); border-radius: 50%; animation: spin 0.8s linear infinite; }
+.astep-text p { margin: 0; }
+.astep-title { font-weight: 600; line-height: 1.35; padding-top: 6px; }
+.astep-detail { font-size: 0.8125rem; color: var(--muted); line-height: 1.4; max-height: 0; overflow: hidden; transition: max-height 0.35s var(--ease); }
+.astep.is-active .astep-detail, .astep.is-done .astep-detail { max-height: 60px; margin-top: 2px; }

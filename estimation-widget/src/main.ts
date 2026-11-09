@@ -4,7 +4,8 @@ import './styles.css';
 import config from '../config.json';
 import { deCanton, loadLang, pickLang, translator } from './i18n';
 import { COMMUNES } from './shared/communes';
-import type { PublicResult } from './shared/types';
+import type { PropertyType, PublicResult } from './shared/types';
+import { analysisPlan, renderAnalysis, stepTexts } from './ui/analysis';
 import { checkFields, stepFields, type Errors } from './shared/validation';
 import { setupCombobox } from './ui/combobox';
 import { esc } from './ui/html';
@@ -196,7 +197,7 @@ function after(focus: boolean) {
   const firstError = Object.keys(state.errors)[0];
   const target =
     (firstError && (app.querySelector<HTMLElement>(`[name="${firstError}"]`) ?? app.querySelector<HTMLElement>(`#${firstError}`))) ||
-    app.querySelector<HTMLElement>('#step-title, #result-title');
+    app.querySelector<HTMLElement>('#step-title, #result-title, #analysis-title');
   target?.focus({ preventScroll: true });
   post({ type: 'scroll' });
 }
@@ -369,10 +370,22 @@ app.addEventListener('submit', (e) => {
   void send();
 });
 
-/* ---------- Envoi ---------- */
+/* ---------- Envoi + écran « Analyse de votre bien » ---------- */
+type ApiJson = { ok?: boolean; result?: PublicResult; error?: string; errors?: Errors };
+type Outcome = { res: Response; json: ApiJson } | { network: true };
+const isSuccess = (o: Outcome | null): o is { res: Response; json: ApiJson & { result: PublicResult } } => !!o && !('network' in o) && o.res.ok && !!o.json.ok && !!o.json.result;
+const wait = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
+
+/** Réponses données aux étapes 1 à 5 (pour « N réponses prises en compte ») */
+function answeredCount(): number {
+  let n = 0;
+  for (let s = 1; s <= 5; s++) for (const f of stepFields(s, state.values.type)) if (state.values[f] !== undefined && state.values[f] !== '') n++;
+  return n;
+}
+
 async function send() {
   state.sending = true;
-  render(false);
+  state.serverError = null;
   const contactFields = stepFields(6, state.values.type);
   const answers: Values = {};
   const contact: Values = {};
@@ -382,32 +395,109 @@ async function send() {
   // Champ anti-robot : invisible, vide pour un humain
   const website = String(state.values.website ?? '');
 
-  try {
-    const res = await fetch('/api/estimate', {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ lang, page, website, answers, contact }),
+  // La demande part tout de suite ; l'écran d'analyse avance en parallèle
+  let outcome: Outcome | null = null;
+  const request: Promise<Outcome> = fetch('/api/estimate', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ lang, page, website, answers, contact }),
+  })
+    .then(async (res) => ({ res, json: (await res.json().catch(() => ({}))) as ApiJson }))
+    .catch(() => ({ network: true as const }));
+  void request.then((o) => (outcome = o));
+  const failed = new Promise<void>((r) => void request.then((o) => !isSuccess(o) && r()));
+
+  const type = (state.values.type as PropertyType) ?? 'appartement';
+  const actx = { type, commune: String(state.values.commune ?? ''), surface: String(state.values.surface ?? ''), answers: answeredCount() };
+  const plan = analysisPlan(config.analysis?.totalMs ?? 5600);
+  const meta = `${t(`fields.typeOptions.${type}`)} · ${actx.surface} m² · ${actx.commune}`;
+  app.innerHTML = `<div class="card card-analysis anim-in">${renderAnalysis(plan, t, meta)}</div>`;
+  const items = [...app.querySelectorAll<HTMLElement>('.astep')];
+  const live = app.querySelector<HTMLElement>('#analysis-live')!;
+  const fill = app.querySelector<SVGGElement>('#house-fill')!;
+  const pctEl = app.querySelector<HTMLElement>('#analysis-pct')!;
+  const bar = app.querySelector<HTMLElement>('#analysis-bar')!;
+  const barFill = app.querySelector<HTMLElement>('#analysis-bar-fill')!;
+  let result: PublicResult | null = null;
+  const writeTexts = () =>
+    plan.forEach((st, i) => {
+      const { title, detail } = stepTexts(st.key, t, actx, result);
+      items[i].querySelector('.astep-title')!.textContent = title;
+      items[i].querySelector('.astep-detail')!.textContent = detail;
     });
-    const json = (await res.json().catch(() => ({}))) as { ok?: boolean; result?: PublicResult; error?: string; errors?: Errors };
-    state.sending = false;
-    if (res.ok && json.ok && json.result) {
-      state.result = json.result;
-      return render();
+  writeTexts();
+  // Dès que le serveur répond, les vrais chiffres remplacent les textes généraux
+  void request.then((o) => {
+    if (isSuccess(o) && state.sending) {
+      result = o.json.result;
+      writeTexts();
+      sendHeight();
     }
-    if (json.error === 'validation' && json.errors) {
-      state.errors = json.errors;
-      for (let s = 1; s <= TOTAL; s++) {
-        if (stepFields(s, state.values.type).some((f) => f in json.errors!)) {
-          state.step = s;
-          break;
-        }
+  });
+  fill.style.transform = 'translateY(112px)';
+  after(true);
+
+  // Progression : la maison se remplit depuis le bas
+  let shown = 0;
+  const progress = (to: number, ms: number) => {
+    fill.style.transition = `transform ${reducedMotion ? 0 : ms}ms ease-in-out`;
+    fill.style.transform = `translateY(${(1 - to / 100) * 112}px)`;
+    barFill.style.transition = `width ${reducedMotion ? 0 : ms}ms ease-in-out`;
+    barFill.style.width = `${to}%`;
+    bar.setAttribute('aria-valuenow', String(Math.round(to)));
+    const from = shown;
+    const t0 = performance.now();
+    const tick = (now: number) => {
+      const k = ms ? Math.min(1, (now - t0) / ms) : 1;
+      shown = from + (to - from) * k;
+      pctEl.textContent = String(Math.round(shown));
+      if (k < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  for (let i = 0; i < plan.length; i++) {
+    items[i].classList.add('is-active');
+    live.textContent = items[i].querySelector('.astep-title')!.textContent ?? '';
+    sendHeight();
+    progress(((i + 1) / plan.length) * 100, plan[i].ms);
+    await Promise.race([wait(plan[i].ms), failed]);
+    if (outcome && !isSuccess(outcome)) return stopAnalysis(outcome);
+    if (plan[i].key === 'data') {
+      // Les chiffres réels de la commune s'affichent dès que le serveur a répondu
+      const o = await request;
+      if (!isSuccess(o)) return stopAnalysis(o);
+      result = o.json.result;
+      if (result.status !== 'ok') {
+        items[i].classList.replace('is-active', 'is-done');
+        items.slice(i + 1).forEach((el) => el.classList.add('is-skipped'));
+        progress(100, 300);
+        break;
       }
-      return render();
     }
-    state.serverError = t(res.status === 429 ? 'errors.rate_limit' : 'errors.server');
-  } catch {
-    state.sending = false;
-    state.serverError = t('errors.network');
+    items[i].classList.replace('is-active', 'is-done');
+  }
+  app.querySelector('#analysis-title')!.textContent = t('analysis.done');
+  live.textContent = t('analysis.done');
+  await wait(reducedMotion ? 150 : 450);
+  state.sending = false;
+  state.result = result ?? (isSuccess(outcome) ? (outcome as { json: { result: PublicResult } }).json.result : null);
+  render();
+}
+
+/** Erreur : l'écran d'analyse s'arrête aussitôt (pas de fausse progression) */
+function stopAnalysis(o: Outcome) {
+  state.sending = false;
+  if (!('network' in o) && o.json.error === 'validation' && o.json.errors) {
+    state.errors = o.json.errors;
+    for (let s = 1; s <= TOTAL; s++) {
+      if (stepFields(s, state.values.type).some((f) => f in o.json.errors!)) {
+        state.step = s;
+        break;
+      }
+    }
+  } else {
+    state.serverError = 'network' in o ? t('errors.network') : t(o.res.status === 429 ? 'errors.rate_limit' : 'errors.server');
   }
   render();
 }

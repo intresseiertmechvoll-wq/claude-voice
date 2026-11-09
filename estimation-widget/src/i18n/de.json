@@ -330,5 +330,40 @@
     "parking": "Außenstellplatz × {n}",
     "cave": "Keller",
     "terrasse": "Balkon / Terrasse ({n} m²)"
+  },
+  "analysis": {
+    "title": "Ihre Immobilie wird analysiert",
+    "done": "Analyse abgeschlossen",
+    "steps": {
+      "gather": {
+        "title": "Angaben zu Ihrer Immobilie werden zusammengestellt",
+        "detail": "{type}, {surface} m², {commune} · {n} Antworten berücksichtigt"
+      },
+      "data": {
+        "title": "Daten für {commune} werden gesucht",
+        "detail": "Notarielle Verkäufe, Angebotspreise und Mieten des Observatoire de l’Habitat",
+        "found": "{ventes} notarielle Verkäufe und {offres} Angebote in {commune} gefunden",
+        "canton": "Wenige Verkäufe hier: Verkäufe im Kanton und {offres} Angebote in {commune}",
+        "foundHouse": "{offres} Hausangebote in {commune} gefunden",
+        "none": "Nicht genug öffentliche Daten für {commune}"
+      },
+      "compare": {
+        "title": "Kriterien und Methoden werden verglichen",
+        "appartement": "Echte Verkäufe, korrigierte Angebote und Mietrendite",
+        "maison": "Angebotspreise, korrigiert um den üblichen Abstand zum Verkaufspreis"
+      },
+      "adjust": {
+        "title": "Der Preis wird angepasst",
+        "appartement": "Zustand, Bauteile, Energie, Etage und Extras",
+        "maison": "Zustand, Bauteile, Energie, Grundstück und Extras",
+        "count": "{n} Anpassungen für Ihre Immobilie",
+        "count1": "1 Anpassung für Ihre Immobilie",
+        "none": "Ihre Immobilie entspricht dem Durchschnitt: keine Anpassung"
+      },
+      "final": {
+        "title": "Endpreis und Preisspanne werden berechnet",
+        "detail": "Marktwert, unterer und oberer Wert, gerundet auf 5.000 €"
+      }
+    }
   }
 }

@@ -24,6 +24,7 @@ Pas de base de données, pas de cookie, pas de traceur. Les polices sont incluse
 - **Un parcours visuel** : cartes illustrées (appartement / maison, type de maison, état, projet, délai), boutons − / + pour les chambres, salles de bain, garages et parkings, curseurs pour les surfaces, étiquette énergie en couleurs (A+ à I), notes des gros postes avec un bouton « Tout mettre sur Bon », interrupteurs pour la cave et le jardin.
 - **Rapide** : raccourcis vers les communes proches de Dudelange (réglables), recherche de commune tolérante aux accents, canton affiché dès le choix, résumé du bien qui se construit en haut de l'écran.
 - **Rassurant** : progression avec icônes, erreurs expliquées et effacées dès que le champ est correct, récapitulatif modifiable avant l'envoi, engagements clairs (gratuit, sans engagement, pas de cookie).
+- **Un écran « Analyse de votre bien »** après l'envoi (environ 6 secondes) : une maison qui se remplit depuis le bas, un pourcentage et 5 étapes cochées une à une — rassemblement des réponses, recherche des données de la commune (avec les vrais chiffres, par ex. « 130 ventes notariées et 508 annonces trouvées à Dudelange »), comparaison des méthodes, ajustement du prix, calcul du prix final. Voir « Écran d'analyse » plus bas.
 - **Un résultat utile pour lui** : valeur de marché en grand et prix au m², fourchette basse / haute, position de son bien parmi les ventes réelles de sa commune (appartements), chiffres de la commune, ce qui fait monter ou baisser son prix, fiabilité des données, explication du calcul, prochaines étapes, impression / PDF.
 - **Accessible et léger** : 0 erreur axe-core (WCAG 2.1 AA) sur tous les écrans capturés, utilisable au clavier, animations coupées si le visiteur le demande à son système. Lighthouse mobile (en local) : performance 100, accessibilité 100, bonnes pratiques 100, 77 Ko au total.
 
@@ -264,6 +265,17 @@ Autres réglages, dans `config.json` :
 - `quickCommunes` : les raccourcis de l'étape 1 ;
 - adresse des leads par défaut, nombre d'envois par heure.
 
+## Écran d'analyse
+
+Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'analyse ».
+
+- **Pourquoi** : l'étude « The Labor Illusion » (Buell & Norton, *Management Science*, 2011) montre que des personnes préfèrent un service plus lent qui montre le travail effectué à un résultat instantané identique. L'effet vient de la **transparence** : voir ce qui est fait.
+- **Ce qui est vrai** : chaque étape décrit une opération que le calcul fait réellement. Les chiffres affichés (nombre de réponses, ventes et annonces de la commune, nombre d'ajustements) sont ceux du calcul, affichés dès que le serveur a répondu. Rien n'est inventé.
+- **Ce qui est mis en scène** : le rythme. Le calcul prend moins d'une seconde ; l'écran dure environ 6 secondes.
+- **En cas de problème** : si le serveur refuse (trop d'envois, erreur, pas de réseau), l'écran s'arrête aussitôt et le message s'affiche (mesuré : 61 ms). Pour une commune sans assez de données, l'analyse s'arrête honnêtement après la recherche des données.
+- **Réglage** : `config.json` → `analysis.totalMs` (5600 par défaut ; 0 = résultat immédiat).
+- **Accessibilité** : barre de progression lue par les lecteurs d'écran, chaque étape annoncée ; animations coupées si le visiteur le demande à son système (la durée reste la même).
+
 ## Sécurité et données personnelles
 
 - Vérification de tous les champs sur le serveur (le navigateur ne fait qu'aider à la saisie).
@@ -276,7 +288,7 @@ Autres réglages, dans `config.json` :
 
 ## Tests
 
-`npm test` lance 32 tests, dont ceux demandés :
+`npm test` lance 37 tests, dont ceux demandés :
 
 | Test | Fichier |
 | --- | --- |
@@ -287,5 +299,6 @@ Autres réglages, dans `config.json` :
 | Sans case RGPD → refusé ; honeypot → bloqué | `tests/api.test.ts` |
 | Jamais de résultat sans coordonnées valides | `tests/api.test.ts` |
 | Résultat enrichi (position dans la commune, facteurs, fiabilité, allemand) | `tests/result-view.test.ts` |
+| Écran d'analyse : 5 étapes, durée réglable, vrais chiffres seulement après la réponse du serveur | `tests/analysis.test.ts` |
 
 `npm run screenshots` (serveur local lancé) parcourt tout le questionnaire comme un visiteur, prend les captures et lance un audit d'accessibilité axe-core (WCAG 2.1 AA) sur chaque écran.

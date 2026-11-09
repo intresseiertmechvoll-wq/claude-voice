@@ -15,7 +15,7 @@ const OUT = new URL('../screenshots/', import.meta.url).pathname;
 mkdirSync(OUT, { recursive: true });
 
 const browser = await chromium.launch();
-const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, locale: 'fr-LU', bypassCSP: true, reducedMotion: 'reduce' });
+const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, locale: 'fr-LU', bypassCSP: true });
 const page = await ctx.newPage();
 const problems = [];
 
@@ -93,9 +93,12 @@ await shot('6a-coordonnees-sans-case-rgpd-refuse');
 await page.locator('label.check', { hasText: 'J’accepte' }).click();
 await shot('6b-les-coordonnees');
 await page.getByRole('button', { name: 'Voir mon estimation' }).click();
-await page.locator('#result-title').waitFor();
+await page.locator('#analysis-title').waitFor();
+await page.waitForTimeout(2600);
+await shot('7-analyse-en-cours');
+await page.locator('#result-title').waitFor({ timeout: 15000 });
 await page.waitForTimeout(1200);
-await shot('7a-resultat-appartement');
+await shot('8a-resultat-appartement');
 
 // ---------- Maison à Dudelange ----------
 await step1('Maison', 'Dudelange', true);
@@ -125,9 +128,9 @@ await page.locator('#email').fill('paul.weber@example.lu');
 await page.locator('#numero').fill('691 234 567');
 await page.locator('label.check', { hasText: 'J’accepte' }).click();
 await page.getByRole('button', { name: 'Voir mon estimation' }).click();
-await page.locator('#result-title').waitFor();
+await page.locator('#result-title').waitFor({ timeout: 15000 });
 await page.waitForTimeout(1200);
-await shot('7b-resultat-maison');
+await shot('8b-resultat-maison');
 
 // ---------- Intégration dans une page (embed.js) ----------
 await page.goto(`${BASE}/demo.html`);
@@ -136,7 +139,7 @@ await frame.locator('#step-title').waitFor();
 await page.waitForTimeout(600);
 const h = await page.locator('iframe[data-immobuild-frame]').evaluate((f) => f.style.height);
 console.log('Hauteur de l’iframe réglée par postMessage :', h);
-await page.screenshot({ path: `${OUT}8-integration-embed.png`, fullPage: true });
+await page.screenshot({ path: `${OUT}9-integration-embed.png`, fullPage: true });
 
 await browser.close();
 console.log(problems.length ? `\n✖ Accessibilité (axe-core, WCAG 2.1 AA) :\n${problems.join('\n')}` : '\n✔ Accessibilité : aucune erreur axe-core (WCAG 2.1 AA) sur les écrans capturés');

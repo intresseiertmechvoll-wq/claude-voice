@@ -330,5 +330,40 @@
     "parking": "Outdoor parking × {n}",
     "cave": "Cellar",
     "terrasse": "Balcony / terrace ({n} m²)"
+  },
+  "analysis": {
+    "title": "Analysing your property",
+    "done": "Analysis complete",
+    "steps": {
+      "gather": {
+        "title": "Gathering the details of your property",
+        "detail": "{type}, {surface} m², {commune} · {n} answers taken into account"
+      },
+      "data": {
+        "title": "Looking up data for {commune}",
+        "detail": "Notarial sales, asking prices and rents from the Observatoire de l’Habitat",
+        "found": "{ventes} notarial sales and {offres} listings found in {commune}",
+        "canton": "Few sales published here: canton sales and {offres} listings in {commune}",
+        "foundHouse": "{offres} house listings found in {commune}",
+        "none": "Not enough public data for {commune}"
+      },
+      "compare": {
+        "title": "Comparing criteria and methods",
+        "appartement": "Actual sales, corrected listings and rental yield",
+        "maison": "Asking prices corrected for the usual gap with sale prices"
+      },
+      "adjust": {
+        "title": "Fine-tuning the price",
+        "appartement": "Condition, main elements, energy, floor and extras",
+        "maison": "Condition, main elements, energy, plot and extras",
+        "count": "{n} adjustments applied to your property",
+        "count1": "1 adjustment applied to your property",
+        "none": "Your property matches the average: no adjustment"
+      },
+      "final": {
+        "title": "Calculating the final price and range",
+        "detail": "Market, low and high value, rounded to €5,000"
+      }
+    }
   }
 }
