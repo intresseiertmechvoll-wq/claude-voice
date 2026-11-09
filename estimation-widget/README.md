@@ -301,7 +301,7 @@ Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'a
 
 ## Tests
 
-`npm test` lance 45 tests, dont ceux demandés :
+`npm test` lance 49 tests, dont ceux demandés :
 
 | Test | Fichier |
 | --- | --- |
@@ -313,6 +313,7 @@ Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'a
 | Jamais de résultat sans coordonnées valides | `tests/api.test.ts` |
 | Résultat enrichi (position dans la commune, facteurs, fiabilité, allemand) | `tests/result-view.test.ts` |
 | Écran d'analyse : 5 étapes, durée réglable, vrais chiffres seulement après la réponse du serveur | `tests/analysis.test.ts` |
+| Textes essentiels protégés (jardin et cave privatifs, ares, bornes de la jauge, ventes notariées, destination des données) | `tests/texts-essentiels.test.ts` |
 | Simulateur : ticket signé obligatoire, valeurs interdites refusées, aucun e-mail par essai, un seul e-mail de complément recalculé côté serveur | `tests/simulate.test.ts` |
 
 `npm run screenshots` (serveur local lancé) parcourt tout le questionnaire comme un visiteur, prend les captures et lance un audit d'accessibilité axe-core (WCAG 2.1 AA) sur chaque écran.

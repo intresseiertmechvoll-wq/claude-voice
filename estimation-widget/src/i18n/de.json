@@ -88,7 +88,7 @@
     },
     "ascenseur": "Aufzug",
     "terrain": "Grundstücksfläche (m²)",
-    "terrainHelp": "1 Ar = 100 m².",
+    "terrainHelp": "1 Ar = 100 m²",
     "maisonType": "Haustyp",
     "maisonTypeOptions": {
       "mitoyenne": "Reihenhaus",
@@ -226,14 +226,14 @@
     "noDataTitle": "Danke, Ihre Anfrage wurde gesendet",
     "noDataText": "Für Ihre Gemeinde gibt es nicht genug öffentliche Daten. Ich melde mich mit einer persönlichen Bewertung bei Ihnen.",
     "sent": "Anfrage erhalten",
-    "sourceAppartement": "Observatoire de l’Habitat (data.public.lu)",
-    "sourceMaison": "Observatoire de l’Habitat (data.public.lu)",
+    "sourceAppartement": "Observatoire de l’Habitat (notarielle Verkäufe, Angebote, Mieten)",
+    "sourceMaison": "Observatoire de l’Habitat (Hausangebote)",
     "sourceLink": "Zu den Daten",
     "ready": "Hier ist Ihre Bewertung!",
     "perM2": "also {value} pro m²",
     "rangeTitle": "Ihre Preisspanne",
     "gaugeTitle": "Ihre Immobilie im Vergleich zu den Verkäufen in {commune}",
-    "gaugeText": "Wohnungsverkäufe vom {debut} bis {fin}.",
+    "gaugeText": "Wohnungsverkäufe vom {debut} bis {fin}, ohne die 5 % Extremwerte auf jeder Seite.",
     "gaugeYou": "Ihre Immobilie",
     "gaugeAvg": "Durchschnitt",
     "factorsTitle": "Was Ihren Preis beeinflusst",
@@ -278,7 +278,7 @@
     "methodLine": "{name}: {m2} pro m² ({weight} der Berechnung)",
     "nextTitle": "Wie geht es weiter?",
     "next1": "Ich erhalte Ihre Anfrage und melde mich bei Ihnen.",
-    "next2": "Vor Ort verfeinere ich, was Zahlen nicht sehen.",
+    "next2": "Vor Ort verfeinere ich, was Zahlen nicht sehen: Aussicht, Licht, Ausstattung.",
     "print": "Drucken oder als PDF speichern",
     "restart": "Neue Bewertung starten"
   },
@@ -313,7 +313,8 @@
     "free": "Kostenlos und unverbindlich",
     "data": "Ihre Daten gehen nur an ImmoBuild Kohn",
     "cookies": "Keine Cookies, keine Werbung",
-    "line": "Kostenlos · unverbindlich · ohne Cookies"
+    "line": "Kostenlos · unverbindlich · ohne Cookies",
+    "where": "Ihre Antworten gehen per E-Mail an ImmoBuild Kohn, ohne Datenbank."
   },
   "factors": {
     "etat_neuf": "Neubau",

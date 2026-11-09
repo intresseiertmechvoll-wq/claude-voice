@@ -88,7 +88,7 @@
     },
     "ascenseur": "Lift",
     "terrain": "Plot size (m²)",
-    "terrainHelp": "1 are = 100 m².",
+    "terrainHelp": "1 are = 100 m²",
     "maisonType": "House type",
     "maisonTypeOptions": {
       "mitoyenne": "Terraced",
@@ -226,14 +226,14 @@
     "noDataTitle": "Thank you, your request has been sent",
     "noDataText": "There is not enough public data for your municipality. I will get back to you with a personalised valuation.",
     "sent": "Request received",
-    "sourceAppartement": "Observatoire de l’Habitat (data.public.lu)",
-    "sourceMaison": "Observatoire de l’Habitat (data.public.lu)",
+    "sourceAppartement": "Observatoire de l’Habitat (notarial sales, listings, rents)",
+    "sourceMaison": "Observatoire de l’Habitat (house listings)",
     "sourceLink": "See the data",
     "ready": "Here is your valuation!",
     "perM2": "that is {value} per m²",
     "rangeTitle": "Your price range",
     "gaugeTitle": "Your property among sales in {commune}",
-    "gaugeText": "Apartment sales from {debut} to {fin}.",
+    "gaugeText": "Apartment sales from {debut} to {fin}, excluding the 5% extremes on each side.",
     "gaugeYou": "Your property",
     "gaugeAvg": "Average",
     "factorsTitle": "What affects your price",
@@ -278,7 +278,7 @@
     "methodLine": "{name}: {m2} per m² ({weight} of the calculation)",
     "nextTitle": "What happens next?",
     "next1": "I receive your request and get back to you.",
-    "next2": "On site, I refine what figures can’t see.",
+    "next2": "On site, I refine what figures can’t see: view, light, finishes.",
     "print": "Print or save as PDF",
     "restart": "Start a new valuation"
   },
@@ -313,7 +313,8 @@
     "free": "Free, no commitment",
     "data": "Your details only go to ImmoBuild Kohn",
     "cookies": "No cookies, no advertising",
-    "line": "Free · no commitment · no cookies"
+    "line": "Free · no commitment · no cookies",
+    "where": "Your answers go by email to ImmoBuild Kohn, with no database."
   },
   "factors": {
     "etat_neuf": "New property",

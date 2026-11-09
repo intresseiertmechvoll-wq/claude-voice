@@ -262,7 +262,7 @@ ${energyScale(ctx)}
 ${
   house
     ? `${choices(ctx, 'maisonType', t('fields.maisonType'), opts(t, 'fields.maisonTypeOptions', MAISON_TYPES, { mitoyenne: 'mitoyenne', jumelee: 'jumelee', isolee: 'isolee' }), 'tiles')}
-${slider(ctx, 'terrain', t('fields.terrain'), t('fields.terrainSlider'), { min: 0, max: 2000, step: 10, ico: 'jardin' })}`
+${slider(ctx, 'terrain', t('fields.terrain'), t('fields.terrainSlider'), { min: 0, max: 2000, step: 10, help: t('fields.terrainHelp'), ico: 'jardin' })}`
     : `${choices(ctx, 'etage', t('fields.etage'), ['0', '1', '2', '3', '4', '5'].map((value) => ({ value, label: t(`fields.etageChips.${value}`) })), 'chips', 'escalier')}
 ${choices(ctx, 'ascenseur', t('fields.ascenseur'), [{ value: 'oui', label: t('yes') }, { value: 'non', label: t('no') }], 'chips', 'ascenseur')}`
 }`;
@@ -301,8 +301,8 @@ function step4(ctx: Ctx): string {
   ${stepper(ctx, 'parkings', t('fields.parkings'), LIMITS.parkings, 'parking')}
 </div>
 <div class="toggles">
-  ${toggle(ctx, 'cave', t('fields.cave'), '', 'cave')}
-  ${toggle(ctx, 'jardin', t('fields.jardin'), '', 'jardin')}
+  ${toggle(ctx, 'cave', t('fields.cave'), t('fields.caveHint'), 'cave')}
+  ${toggle(ctx, 'jardin', t('fields.jardin'), t('fields.jardinHint'), 'jardin')}
 </div>
 ${slider(ctx, 'terrasse', t('fields.terrasse'), t('fields.terrasseSlider'), { min: 0, max: v.type === 'maison' ? 150 : 60, step: 1, ico: 'terrasse' })}`;
 }
@@ -359,7 +359,7 @@ ${input(ctx, 'email', t('fields.email'), { type: 'email', autocomplete: 'email',
   </label>
   ${errorMessage(ctx, 'rgpd')}
 </div>
-<p class="trust">${icon('bouclier', 'ico ico-sm')}<span>${esc(t('trust.line'))}</span></p>`;
+<p class="trust">${icon('bouclier', 'ico ico-sm')}<span>${esc(t('trust.line'))}<br>${esc(t('trust.where'))}</span></p>`;
 }
 
 const STEPS = [step1, step2, step3, step4, step5, step6];

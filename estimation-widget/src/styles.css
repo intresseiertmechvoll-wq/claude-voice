@@ -528,7 +528,7 @@ details.recap summary::-webkit-details-marker { display: none; }
 details.recap summary::after { content: '+'; margin-left: auto; font-size: 1.25rem; font-weight: 400; }
 details.recap[open] summary::after { content: '−'; }
 details.recap ul { padding: 0 14px 10px; }
-p.trust { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 4px 0 0; font-size: 0.8125rem; color: var(--muted); font-weight: 500; }
+p.trust { display: flex; align-items: flex-start; justify-content: center; gap: 8px; text-align: center; margin: 4px 0 0; font-size: 0.8125rem; color: var(--muted); font-weight: 500; }
 p.trust .ico { color: var(--up); }
 
 /* ---------- Sceau doré qui se dessine (à la place de confettis) ---------- */
