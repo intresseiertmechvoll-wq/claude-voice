@@ -664,6 +664,9 @@ async function send() {
   live.textContent = t('analysis.done');
   await wait(reducedMotion ? 150 : 450);
   state.sending = false;
+  // Nouveau bien : les essais du simulateur repartent de zéro (le résumé du bien précédent est déjà parti)
+  scenarios.clear();
+  summarySent = false;
   state.result = result ?? (isSuccess(outcome) ? (outcome as { json: { result: PublicResult } }).json.result : null);
   render();
 }

@@ -32,7 +32,7 @@
     f.setAttribute('loading', 'lazy'); // ne charge l'outil que lorsqu'il approche de l'écran
     // Hauteur de départ proche de la vraie hauteur de l'étape 1 : évite que la page « saute » au chargement
     var w = el.clientWidth || window.innerWidth;
-    var h0 = w < 400 ? 1300 : w < 460 ? 1190 : 1110;
+    var h0 = w < 400 ? 1190 : w < 460 ? 1120 : 1080;
     f.style.cssText = 'display:block;width:100%;height:' + h0 + 'px;border:0;overflow:hidden;background:#f8f8f6;border-radius:22px;';
     el.appendChild(f);
   }

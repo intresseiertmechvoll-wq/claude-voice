@@ -187,7 +187,7 @@ function recapCard(ctx: Ctx): string {
   ]);
   line(5, [t(`fields.objectifOptions.${v.objectif}`), t(`fields.delaiOptions.${v.delai}`)]);
   return `<details class="recap">
-  <summary>${icon(v.type === 'maison' ? 'maison' : 'appartement')}<span>${esc(t('recap.title'))}</span></summary>
+  <summary>${icon(v.type === 'maison' ? 'maison' : 'appartement')}<span><strong>${esc(t('recap.title'))}</strong><br><span class="recap-short">${esc([t(`fields.typeOptions.${v.type}`), t('recap.surface', { n: String(v.surface) }), String(v.commune ?? '')].join(' · '))}</span></span></summary>
   <ul>
     ${rows
       .map(

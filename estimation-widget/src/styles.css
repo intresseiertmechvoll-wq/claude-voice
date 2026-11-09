@@ -540,3 +540,6 @@ p.trust .ico { color: var(--up); }
 .result-hero::after { background-size: 200% 100%; animation: goldline 1.6s var(--ease) 0.3s both; }
 @keyframes goldline { from { background-position: 100% 0; opacity: 0.3; } to { background-position: 0 0; opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .seal-ring, .seal-check { stroke-dashoffset: 0; animation: none; } }
+
+.recap-short { font-weight: 500; font-size: 0.875rem; color: var(--muted); }
+details.recap summary { min-height: 56px; padding-top: 8px; padding-bottom: 8px; }
