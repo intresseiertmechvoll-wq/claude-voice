@@ -1,0 +1,16 @@
+{
+  "_note": "Liens affichés dans l'outil. À VÉRIFIER PAR JAY : remplacer par les vraies adresses de tes pages.",
+  "contactUrl": {
+    "fr": "https://immobuild.lu/contact/",
+    "de": "https://immobuild.lu/contact/",
+    "en": "https://immobuild.lu/contact/"
+  },
+  "privacyUrl": {
+    "fr": "https://immobuild.lu/politique-de-confidentialite/",
+    "de": "https://immobuild.lu/politique-de-confidentialite/",
+    "en": "https://immobuild.lu/politique-de-confidentialite/"
+  },
+  "defaultLeadEmail": "contact@immobuild.lu",
+  "defaultFromEmail": "ImmoBuild Estimation <estimation@immobuild.lu>",
+  "rateLimitPerHour": 5
+}

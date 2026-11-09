@@ -1,0 +1,104 @@
+{
+  "_statut": "TOUTES CES VALEURS SONT À VALIDER PAR JAY. Valeurs de départ simples et prudentes, propres à ImmoBuild Kohn (aucune grille d'Estimator Pro ni de Propteo). Explications : README, partie « Paramètres ».",
+  "version": "2026-11-09",
+
+  "arrondi": 5000,
+
+  "appartement": {
+    "poids": { "notarie": 0.5, "annonces": 0.3, "capitalisation": 0.2 },
+    "ecart_fourchette": 0.06
+  },
+  "maison": {
+    "ecart_fourchette": 0.12
+  },
+
+  "donnees": {
+    "ventes_min_commune": 10,
+    "ecart_max_methode": 0.20
+  },
+
+  "decote_annonce_vente": {
+    "min": 0,
+    "max": 0.20,
+    "communes_min_par_canton": 2
+  },
+
+  "capitalisation": {
+    "charges_non_recuperables": 0.10,
+    "taux": 0.045
+  },
+
+  "coefficients": {
+    "etat": {
+      "neuf": 0.08,
+      "renove": 0.04,
+      "bon": 0,
+      "rafraichir": -0.05,
+      "renover": -0.15
+    },
+    "gros_postes": {
+      "mauvais": -0.02,
+      "moyen": -0.01,
+      "bon": 0,
+      "neuf": 0.01,
+      "inconnu": 0,
+      "total_min": -0.08,
+      "total_max": 0.04
+    },
+    "energie": {
+      "A+": 0.04,
+      "A": 0.04,
+      "B": 0.03,
+      "C": 0.02,
+      "D": 0.01,
+      "E": 0,
+      "F": -0.02,
+      "G": -0.04,
+      "H": -0.06,
+      "I": -0.08,
+      "inconnu": 0
+    },
+    "etage_appartement": {
+      "rez_de_chaussee": -0.03,
+      "sans_ascenseur_a_partir_de_l_etage": 3,
+      "sans_ascenseur": -0.05
+    },
+    "jardin_appartement": 0.03,
+    "type_maison": {
+      "mitoyenne": -0.05,
+      "jumelee": 0,
+      "isolee": 0.05
+    },
+    "terrain_maison": {
+      "surface_reference_m2": { "mitoyenne": 250, "jumelee": 400, "isolee": 600 },
+      "petit_si_moins_de": 0.6,
+      "petit": -0.03,
+      "grand_si_plus_de": 1.5,
+      "grand": 0.04
+    },
+    "total_min": -0.30,
+    "total_max": 0.20
+  },
+
+  "annexes": {
+    "appartement": {
+      "garage": 25000,
+      "parking_exterieur": 10000,
+      "cave": 5000,
+      "terrasse_ponderation": 0.25,
+      "terrasse_m2_max": 30
+    },
+    "maison": {
+      "garage": 20000,
+      "parking_exterieur": 5000,
+      "cave": 0,
+      "terrasse_ponderation": 0,
+      "terrasse_m2_max": 0
+    },
+    "ajustement_commune": {
+      "prix_reference_m2": 7000,
+      "min": 0.7,
+      "max": 1.3
+    }
+  }
+}
