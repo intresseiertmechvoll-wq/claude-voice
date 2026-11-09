@@ -43,6 +43,13 @@ Base légale proposée : le **consentement** (case à cocher obligatoire, non co
 
 **Cloudflare** : traite les requêtes (dont l'adresse IP) pour faire fonctionner et protéger le service. Cloudflare propose aussi un DPA, accepté avec ses conditions d'utilisation. **À vérifier** dans ton compte Cloudflare.
 
+## 3 bis. Simulateur « Et si… ? » (après le résultat)
+
+- Le visiteur peut tester l'effet de travaux (classe énergétique, état, cuisine, salle de bain…). Chaque essai est recalculé par le serveur Cloudflare, sans être enregistré ni envoyé par e-mail.
+- Pour cela, le résultat contient un **ticket signé** valable 2 heures. Il contient les réponses sur le bien et le prénom, le nom, l'e-mail et le téléphone du visiteur. Il reste dans la page ouverte du visiteur (pas de cookie, pas de stockage dans le navigateur) et disparaît quand il la ferme.
+- Quand le visiteur quitte la page (ou clique sur « Prendre rendez-vous »), **un seul e-mail de complément** part à ImmoBuild Kohn, par Resend, avec la liste de ses essais et les valeurs recalculées.
+- Base légale proposée : la même que la demande (le visiteur vient d'accepter d'être recontacté au sujet de son bien). **À valider.**
+
 ## 4. Adresse IP et limite d'envois
 
 - Pour bloquer les abus, l'outil compte les envois par adresse IP : au plus 5 par heure.
@@ -63,6 +70,6 @@ Accès, rectification, effacement, opposition, retrait du consentement : par e-m
 ## 7. Texte proposé pour ta politique de confidentialité
 
 > **Outil « Estimation gratuite »**
-> Quand vous utilisez notre outil d'estimation en ligne, nous recueillons la description de votre bien, votre projet et vos coordonnées (prénom, nom, e-mail, téléphone, message facultatif). Ces informations servent à calculer une estimation indicative et à vous recontacter au sujet de votre bien, avec votre accord. Elles nous sont transmises par e-mail et ne sont pas enregistrées dans une base de données.
+> Quand vous utilisez notre outil d'estimation en ligne, nous recueillons la description de votre bien, votre projet, vos coordonnées (prénom, nom, e-mail, téléphone, message facultatif) et, si vous utilisez le simulateur « Et si… ? », les travaux que vous avez testés. Ces informations servent à calculer une estimation indicative et à vous recontacter au sujet de votre bien, avec votre accord. Elles nous sont transmises par e-mail et ne sont pas enregistrées dans une base de données.
 > L'outil est hébergé par Cloudflare, Inc. L'e-mail est envoyé par Resend (Plus Five Five, Inc.), dont les serveurs sont situés aux États-Unis ; ce transfert est encadré par les clauses contractuelles types de la Commission européenne. Pour limiter les abus, une empreinte non réversible de votre adresse IP peut être conservée une heure au maximum.
 > L'outil n'utilise ni cookie ni traceur. Nous conservons votre demande pendant **[durée à compléter]**. Vous pouvez à tout moment demander l'accès, la rectification ou l'effacement de vos données, ou retirer votre accord, en écrivant à contact@immobuild.lu. Vous pouvez aussi adresser une réclamation à la CNPD.

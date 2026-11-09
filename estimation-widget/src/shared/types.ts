@@ -127,6 +127,8 @@ export interface PublicResult {
   factorsCapped?: boolean;
   methods?: { key: 'notarie' | 'annonces' | 'capitalisation' | 'annonces_maison'; m2: number; weight: number }[];
   reliability?: Reliability | null;
+  /** ticket signé pour le simulateur « Et si… ? » */
+  simToken?: string;
   communeStats?: {
     canton: string;
     notarieM2: number | null;

@@ -365,5 +365,27 @@
         "detail": "Market, low and high value, rounded to €5,000"
       }
     }
+  },
+  "whatif": {
+    "title": "What if…?",
+    "text": "See how works would affect your price. Your original valuation does not change.",
+    "energy": "Energy class after works",
+    "etat": "Overall condition",
+    "works": "Works",
+    "worksItems": {
+      "chassis": "New windows",
+      "chauffage": "New heating",
+      "electricite": "New electrics",
+      "cuisine": "New kitchen",
+      "sanitaires": "New bathroom",
+      "toiture": "New roof"
+    },
+    "idle": "Your current market value. Change a criterion to see the effect.",
+    "newValue": "New market value",
+    "same": "No effect on the price",
+    "loading": "Calculating…",
+    "error": "The calculation failed. Please try again.",
+    "reset": "Back to my property",
+    "note": "Indicative, not counting the cost of the works."
   }
 }

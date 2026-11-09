@@ -4,7 +4,7 @@ import './styles.css';
 import config from '../config.json';
 import { deCanton, loadLang, pickLang, translator } from './i18n';
 import { COMMUNES } from './shared/communes';
-import type { PropertyType, PublicResult } from './shared/types';
+import { POSTES_APPARTEMENT, POSTES_MAISON, type PropertyType, type PublicResult } from './shared/types';
 import { analysisPlan, renderAnalysis, stepTexts } from './ui/analysis';
 import { checkFields, stepFields, type Errors } from './shared/validation';
 import { setupCombobox } from './ui/combobox';
@@ -63,6 +63,23 @@ window.addEventListener('load', () => {
 });
 
 /* ---------- Rendu ---------- */
+/**
+ * Remplissage de la barre : avance au fil des réponses de l'étape en cours (effet de gradient d'objectif)
+ * et part avec une petite avance à l'étape 1 (« endowed progress », Nunes & Drèze 2006).
+ */
+const HEAD_START = 0.25;
+function fillPercent(): number {
+  const s = state.step;
+  const fields = stepFields(s, state.values.type);
+  const missing = Object.keys(checkFields(state.values, fields).errors).length;
+  let frac = fields.length ? 1 - missing / fields.length : 0;
+  if (s === 1) frac = Math.max(frac, HEAD_START);
+  return Math.round(Math.min(1, (s - 1 + frac * 0.92) / (TOTAL - 1)) * 100);
+}
+function updateFill() {
+  app.querySelector<HTMLElement>('.pbar-fill')?.style.setProperty('--w', `${fillPercent()}%`);
+}
+
 function progress(): string {
   const s = state.step;
   const dots = STEP_ICONS.map((ic, i) => {
@@ -73,7 +90,7 @@ function progress(): string {
   return `<nav class="progress" aria-label="${esc(t('progress', { n: s, total: TOTAL }))}">
   <p class="progress-label"><span>${esc(t('progress', { n: s, total: TOTAL }))}</span><span class="progress-name">${esc(t(`stepsShort.${s}`))}</span></p>
   <ol class="pdots">${dots}</ol>
-  <div class="pbar" aria-hidden="true"><span class="pbar-fill" data-width="${Math.round(((s - 1) / (TOTAL - 1)) * 100)}"></span></div>
+  <div class="pbar" aria-hidden="true"><span class="pbar-fill" data-width="${fillPercent()}"></span></div>
 </nav>`;
 }
 
@@ -86,7 +103,7 @@ function recapBar(): string {
 
 function render(focus = true) {
   if (state.result) {
-    app.innerHTML = `<div class="card card-result anim-in">${renderResult(state.result, t, lang, { contactUrl, agent: config.agent, phone: config.phone })}</div>`;
+    app.innerHTML = `<div class="card card-result anim-in">${renderResult(state.result, t, lang, { contactUrl, agent: config.agent, phone: config.phone, whatIf: whatIfBase() })}</div>`;
     hydrate();
     countUp();
     after(focus);
@@ -251,6 +268,8 @@ app.addEventListener('input', onInput);
 app.addEventListener('change', onInput);
 function onInput(e: Event) {
   const el = e.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+  if (el.closest('.whatif')) return onWhatIf();
+  queueMicrotask(updateFill);
   if (el instanceof HTMLInputElement && el.type === 'range' && el.dataset.sync) {
     const name = el.dataset.sync;
     state.values[name] = el.value;
@@ -284,6 +303,7 @@ function onInput(e: Event) {
 
 app.addEventListener('click', (e) => {
   const target = e.target as HTMLElement;
+  queueMicrotask(updateFill);
 
   const stepBtn = target.closest<HTMLButtonElement>('[data-stepper]');
   if (stepBtn) {
@@ -338,7 +358,10 @@ app.addEventListener('click', (e) => {
   } else if (action === 'print') {
     app.querySelectorAll('details').forEach((d) => (d.open = true));
     window.print();
+  } else if (action === 'whatif-reset') {
+    resetWhatIf();
   } else if (action === 'restart') {
+    sendSummary();
     // On garde les coordonnées (en mémoire seulement) pour ne pas les retaper
     const keep = Object.fromEntries(CONTACT_KEYS.map((k) => [k, state.values[k]]));
     state.values = { ...DEFAULTS, ...keep };
@@ -347,6 +370,103 @@ app.addEventListener('click', (e) => {
     state.direction = 'next';
     render();
   }
+});
+
+/* ---------- Simulateur « Et si… ? » ---------- */
+function whatIfBase() {
+  const type = (state.values.type as PropertyType) ?? 'appartement';
+  const postes: Record<string, string> = {};
+  for (const p of type === 'maison' ? POSTES_MAISON : POSTES_APPARTEMENT) postes[p] = String(state.values[`poste_${p}`] ?? 'inconnu');
+  return { type, etat: String(state.values.etat), energie: String(state.values.energie), postes };
+}
+
+const scenarios = new Map<string, Record<string, unknown>>();
+let summarySent = false;
+let simTimer: ReturnType<typeof setTimeout> | undefined;
+let simAbort: AbortController | null = null;
+
+function currentChanges(): Record<string, unknown> {
+  const base = whatIfBase();
+  const changes: Record<string, unknown> = {};
+  const energie = app.querySelector<HTMLInputElement>('input[name="wi_energie"]:checked')?.value;
+  const etat = app.querySelector<HTMLInputElement>('input[name="wi_etat"]:checked')?.value;
+  if (energie && energie !== base.energie) changes.energie = energie;
+  if (etat && etat !== base.etat) changes.etat = etat;
+  const works = [...app.querySelectorAll<HTMLInputElement>('input[name="wi_work"]:checked')].map((i) => i.value);
+  if (works.length) changes.postes = Object.fromEntries(works.map((w) => [w, 'neuf']));
+  return changes;
+}
+
+function showWhatIf(label: string, value: string, delta: number | null) {
+  const l = app.querySelector('#wo-label');
+  const v = app.querySelector('#wo-value');
+  const d = app.querySelector<HTMLElement>('#wo-delta');
+  if (!l || !v || !d) return;
+  l.textContent = label;
+  v.textContent = value;
+  d.className = 'wo-delta' + (delta === null || delta === 0 ? '' : delta > 0 ? ' up' : ' down');
+  d.textContent = delta === null || delta === 0 ? '' : `${delta > 0 ? '+' : '−'}${formatEuro(Math.abs(delta), lang)}`;
+  const out = app.querySelector<HTMLElement>('.whatif-out');
+  out?.classList.remove('flash');
+  void out?.offsetWidth;
+  out?.classList.add('flash');
+}
+
+function onWhatIf() {
+  const r = state.result;
+  if (!r?.simToken || r.market === null) return;
+  const changes = currentChanges();
+  clearTimeout(simTimer);
+  simAbort?.abort();
+  if (!Object.keys(changes).length) return showWhatIf(t('whatif.idle'), formatEuro(r.market, lang), null);
+  app.querySelector('#wo-label')!.textContent = t('whatif.loading');
+  simTimer = setTimeout(async () => {
+    simAbort = new AbortController();
+    try {
+      const res = await fetch('/api/simulate', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ token: r.simToken, changes }),
+        signal: simAbort.signal,
+      });
+      const j = (await res.json()) as { ok?: boolean; market?: number; delta?: number };
+      if (!res.ok || !j.ok || j.market === undefined) throw new Error('simulation');
+      showWhatIf(j.delta ? t('whatif.newValue') : t('whatif.same'), formatEuro(j.market, lang), j.delta ?? 0);
+      const key = JSON.stringify(changes);
+      scenarios.delete(key);
+      scenarios.set(key, changes);
+      while (scenarios.size > 10) scenarios.delete(scenarios.keys().next().value!);
+    } catch (err) {
+      if ((err as Error).name !== 'AbortError') showWhatIf(t('whatif.error'), formatEuro(r.market!, lang), null);
+    }
+  }, 250);
+}
+
+function resetWhatIf() {
+  const base = whatIfBase();
+  app.querySelectorAll<HTMLInputElement>('.whatif input').forEach((i) => {
+    if (i.name === 'wi_energie') i.checked = i.value === base.energie;
+    else if (i.name === 'wi_etat') i.checked = i.value === base.etat;
+    else i.checked = false;
+  });
+  onWhatIf();
+}
+
+/** Un seul e-mail de complément à Jay avec les essais, quand le visiteur quitte la page ou passe à la suite */
+function sendSummary() {
+  const token = state.result?.simToken;
+  if (summarySent || !token || !scenarios.size) return;
+  summarySent = true;
+  const payload = JSON.stringify({ token, scenarios: [...scenarios.values()] });
+  const blob = new Blob([payload], { type: 'application/json' });
+  if (!navigator.sendBeacon?.('/api/simulation-summary', blob)) {
+    void fetch('/api/simulation-summary', { method: 'POST', headers: { 'content-type': 'application/json' }, body: payload, keepalive: true }).catch(() => {});
+  }
+}
+document.addEventListener('visibilitychange', () => document.visibilityState === 'hidden' && sendSummary());
+window.addEventListener('pagehide', sendSummary);
+app.addEventListener('click', (e) => {
+  if ((e.target as HTMLElement).closest('a.btn-primary, a.btn-secondary')) sendSummary();
 });
 
 app.addEventListener('focusout', (e) => {

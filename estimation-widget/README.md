@@ -25,6 +25,8 @@ Pas de base de données, pas de cookie, pas de traceur. Les polices sont incluse
 - **Rapide** : raccourcis vers les communes proches de Dudelange (réglables), recherche de commune tolérante aux accents, canton affiché dès le choix, résumé du bien qui se construit en haut de l'écran.
 - **Rassurant** : progression avec icônes, erreurs expliquées et effacées dès que le champ est correct, récapitulatif modifiable avant l'envoi, engagements clairs (gratuit, sans engagement, pas de cookie).
 - **Un écran « Analyse de votre bien »** après l'envoi (environ 6 secondes) : une maison qui se remplit depuis le bas, un pourcentage et 5 étapes cochées une à une — rassemblement des réponses, recherche des données de la commune (avec les vrais chiffres, par ex. « 130 ventes notariées et 508 annonces trouvées à Dudelange »), comparaison des méthodes, ajustement du prix, calcul du prix final. Voir « Écran d'analyse » plus bas.
+- **Un simulateur « Et si… ? »** sous le résultat : le visiteur teste une autre classe énergétique, un autre état ou des travaux (cuisine, salle de bain, châssis…) et voit aussitôt la nouvelle valeur et l'écart. Tu reçois **un seul** e-mail de complément avec ses essais quand il quitte la page : utile pour préparer le rendez-vous. Voir « Simulateur » plus bas.
+- **Une barre de progression qui avance à chaque réponse**, avec une petite avance au départ.
 - **Un résultat utile pour lui** : valeur de marché en grand et prix au m², fourchette basse / haute, position de son bien parmi les ventes réelles de sa commune (appartements), chiffres de la commune, ce qui fait monter ou baisser son prix, fiabilité des données, explication du calcul, prochaines étapes, impression / PDF.
 - **Accessible et léger** : 0 erreur axe-core (WCAG 2.1 AA) sur tous les écrans capturés, utilisable au clavier, animations coupées si le visiteur le demande à son système. Lighthouse mobile (en local) : performance 100, accessibilité 100, bonnes pratiques 100, 77 Ko au total.
 
@@ -98,6 +100,7 @@ Chaque commande te demande la valeur :
 | Variable | Valeur | Obligatoire |
 | --- | --- | --- |
 | `RESEND_API_KEY` | ta clé Resend (`re_…`, voir 3.3) | oui |
+| `SIMULATION_SECRET` | une longue phrase au hasard (secret des tickets du simulateur) | non, conseillé |
 | `LEAD_EMAIL` | l'adresse qui reçoit les leads, par défaut `contact@immobuild.lu` | non |
 | `FROM_EMAIL` | l'expéditeur, sur ton domaine validé chez Resend, par ex. `ImmoBuild Estimation <estimation@immobuild.lu>` | oui, sauf si c'est exactement cette adresse |
 
@@ -276,6 +279,14 @@ Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'a
 - **Réglage** : `config.json` → `analysis.totalMs` (5600 par défaut ; 0 = résultat immédiat).
 - **Accessibilité** : barre de progression lue par les lecteurs d'écran, chaque étape annoncée ; animations coupées si le visiteur le demande à son système (la durée reste la même).
 
+## Simulateur « Et si… ? » et barre de progression
+
+- **Pourquoi** : les gens font davantage confiance à un calcul quand ils peuvent l'ajuster un peu (Dietvorst, Simmons & Massey, *Management Science*, 2018). Une avance visible au départ pousse à aller au bout (Nunes & Drèze, *Journal of Consumer Research*, 2006).
+- **Sécurité** : le simulateur ne marche qu'avec le ticket signé remis avec le résultat (impossible d'obtenir un prix sans avoir laissé ses coordonnées). Seuls l'état, la classe énergétique et les gros postes peuvent changer ; la surface et la commune non. Au plus 120 calculs par heure et par IP, 3 e-mails de complément par heure et par IP.
+- **E-mail de complément** : les valeurs sont recalculées par le serveur, jamais reprises du navigateur. Il part au moment où le visiteur quitte la page ou clique sur « Prendre rendez-vous » ; si le navigateur est fermé brutalement, il peut ne pas partir (le lead principal, lui, est déjà envoyé).
+- **Secret du ticket** : variable facultative `SIMULATION_SECRET` (une longue phrase au hasard). Sans elle, la clé Resend sert de secret. Si tu changes l'une ou l'autre, les tickets en cours (2 heures) ne marchent plus, rien de grave.
+- **Honnêteté** : le simulateur affiche « sans compter le coût des travaux ».
+
 ## Sécurité et données personnelles
 
 - Vérification de tous les champs sur le serveur (le navigateur ne fait qu'aider à la saisie).
@@ -288,7 +299,7 @@ Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'a
 
 ## Tests
 
-`npm test` lance 37 tests, dont ceux demandés :
+`npm test` lance 45 tests, dont ceux demandés :
 
 | Test | Fichier |
 | --- | --- |
@@ -300,5 +311,6 @@ Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'a
 | Jamais de résultat sans coordonnées valides | `tests/api.test.ts` |
 | Résultat enrichi (position dans la commune, facteurs, fiabilité, allemand) | `tests/result-view.test.ts` |
 | Écran d'analyse : 5 étapes, durée réglable, vrais chiffres seulement après la réponse du serveur | `tests/analysis.test.ts` |
+| Simulateur : ticket signé obligatoire, valeurs interdites refusées, aucun e-mail par essai, un seul e-mail de complément recalculé côté serveur | `tests/simulate.test.ts` |
 
 `npm run screenshots` (serveur local lancé) parcourt tout le questionnaire comme un visiteur, prend les captures et lance un audit d'accessibilité axe-core (WCAG 2.1 AA) sur chaque écran.

@@ -365,5 +365,27 @@
         "detail": "Valeur de marché, basse et haute, arrondies à 5 000 €"
       }
     }
+  },
+  "whatif": {
+    "title": "Et si… ?",
+    "text": "Testez l’effet de travaux sur votre prix. Votre estimation de départ ne change pas.",
+    "energy": "Classe énergétique après travaux",
+    "etat": "État général",
+    "works": "Travaux",
+    "worksItems": {
+      "chassis": "Nouveaux châssis",
+      "chauffage": "Nouveau chauffage",
+      "electricite": "Électricité refaite",
+      "cuisine": "Cuisine neuve",
+      "sanitaires": "Salle de bain neuve",
+      "toiture": "Toiture refaite"
+    },
+    "idle": "Votre valeur de marché actuelle. Changez un critère pour voir l’effet.",
+    "newValue": "Nouvelle valeur de marché",
+    "same": "Pas d’effet sur le prix",
+    "loading": "Calcul…",
+    "error": "Le calcul n’a pas abouti. Réessayez.",
+    "reset": "Revenir à mon bien",
+    "note": "Indicatif, sans compter le coût des travaux."
   }
 }

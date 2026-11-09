@@ -3,11 +3,14 @@ import { deCanton, LOCALES, type T } from '../i18n';
 import type { Lang, PublicFactor, PublicResult } from '../shared/types';
 import { esc } from './html';
 import { icon } from './icons';
+import { renderWhatIf, type WhatIfBase } from './whatif';
 
 export interface ResultOptions {
   contactUrl: string;
   agent?: { name: string; role: string; photo?: string };
   phone?: string;
+  /** réponses de départ, pour le simulateur « Et si… ? » */
+  whatIf?: WhatIfBase;
 }
 
 export function formatEuro(v: number, lang: Lang): string {
@@ -165,6 +168,7 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
   ${gauge}
   ${stats}
   ${factorsHtml}
+  ${r.simToken && o.whatIf ? renderWhatIf(t, o.whatIf, formatEuro(r.market, lang)) : ''}
   ${how}
   <section class="panel next" aria-labelledby="next-title">
     <h3 id="next-title">${icon('drapeau', 'ico ico-sm')}<span>${esc(t('result.nextTitle'))}</span></h3>

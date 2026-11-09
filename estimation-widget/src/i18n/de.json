@@ -365,5 +365,27 @@
         "detail": "Marktwert, unterer und oberer Wert, gerundet auf 5.000 €"
       }
     }
+  },
+  "whatif": {
+    "title": "Was wäre, wenn…?",
+    "text": "Testen Sie, wie Arbeiten Ihren Preis beeinflussen. Ihre ursprüngliche Bewertung bleibt unverändert.",
+    "energy": "Energieklasse nach den Arbeiten",
+    "etat": "Allgemeiner Zustand",
+    "works": "Arbeiten",
+    "worksItems": {
+      "chassis": "Neue Fenster",
+      "chauffage": "Neue Heizung",
+      "electricite": "Neue Elektrik",
+      "cuisine": "Neue Küche",
+      "sanitaires": "Neues Bad",
+      "toiture": "Neues Dach"
+    },
+    "idle": "Ihr aktueller Marktwert. Ändern Sie ein Kriterium, um die Wirkung zu sehen.",
+    "newValue": "Neuer Marktwert",
+    "same": "Keine Auswirkung auf den Preis",
+    "loading": "Berechnung…",
+    "error": "Die Berechnung hat nicht geklappt. Bitte erneut versuchen.",
+    "reset": "Zurück zu meiner Immobilie",
+    "note": "Unverbindlich, ohne die Kosten der Arbeiten."
   }
 }

@@ -82,3 +82,17 @@ describe('Résultat enrichi pour le visiteur', () => {
     expect(html).toContain('Marktwert');
   });
 });
+
+describe('Simulateur « Et si… ? » à l’écran', () => {
+  it('S’affiche seulement avec un ticket, et ne propose pas les travaux déjà neufs', () => {
+    const r = estimate(apartment({ postes: { chassis: 'neuf', chauffage: 'bon', electricite: 'bon', cuisine: 'moyen', sanitaires: 'bon' } }), DATA, PARAMS).result;
+    const base = { type: 'appartement' as const, etat: 'bon', energie: 'E', postes: { chassis: 'neuf', chauffage: 'bon', electricite: 'bon', cuisine: 'moyen', sanitaires: 'bon' } };
+    expect(renderResult(r, translator('fr'), 'fr', { contactUrl: '#', whatIf: base })).not.toContain('whatif-title');
+    const html = renderResult({ ...r, simToken: 'x.y' }, translator('fr'), 'fr', { contactUrl: '#', whatIf: base });
+    expect(html).toContain('Et si…');
+    expect(html).toContain('Cuisine neuve');
+    expect(html).not.toContain('Nouveaux châssis');
+    expect(html).toContain('sans compter le coût des travaux');
+    expect(html).toMatch(/name="wi_energie" value="E" checked/);
+  });
+});
