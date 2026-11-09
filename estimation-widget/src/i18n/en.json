@@ -386,6 +386,7 @@
     "loading": "Calculating…",
     "error": "The calculation failed. Please try again.",
     "reset": "Back to my property",
-    "note": "Indicative, not counting the cost of the works."
+    "note": "Indicative, not counting the cost of the works.",
+    "teaser": "What if you did some works? See the effect on your price"
   }
 }

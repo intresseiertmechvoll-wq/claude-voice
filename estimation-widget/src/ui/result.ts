@@ -1,5 +1,8 @@
 /** Écran de résultat (fonction pure : renvoie du HTML, testée) */
 import { deCanton, LOCALES, type T } from '../i18n';
+import { formatEuro } from './format';
+
+export { formatEuro };
 import type { Lang, PublicFactor, PublicResult } from '../shared/types';
 import { esc } from './html';
 import { icon } from './icons';
@@ -11,10 +14,6 @@ export interface ResultOptions {
   phone?: string;
   /** réponses de départ, pour le simulateur « Et si… ? » */
   whatIf?: WhatIfBase;
-}
-
-export function formatEuro(v: number, lang: Lang): string {
-  return new Intl.NumberFormat(LOCALES[lang], { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(v);
 }
 
 function formatDate(iso: string, lang: Lang): string {
@@ -165,6 +164,7 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
   <p class="source">${esc(t('result.source', { source, periode }))} <a href="${esc(r.sourceUrl)}" target="_blank" rel="noopener">${esc(t('result.sourceLink'))}</a></p>
   <p class="disclaimer">${esc(t('result.disclaimer'))}</p>
   ${cta}${call}
+  ${r.simToken && o.whatIf ? `<button type="button" class="teaser" data-action="goto-whatif">${icon('neuf', 'ico ico-sm')}<span>${esc(t('whatif.teaser'))}</span><span class="teaser-arrow">${icon('fleche', 'ico ico-sm')}</span></button>` : ''}
   ${gauge}
   ${stats}
   ${factorsHtml}

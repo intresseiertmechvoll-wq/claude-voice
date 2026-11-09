@@ -56,6 +56,9 @@
       if (f.contentWindow !== e.source) continue;
       if (e.data.type === 'height' && typeof e.data.height === 'number' && e.data.height > 0 && e.data.height < 20000) {
         f.style.height = Math.ceil(e.data.height) + 2 + 'px';
+      } else if (e.data.type === 'scrollTo' && typeof e.data.offset === 'number') {
+        var y = window.scrollY + f.getBoundingClientRect().top + Math.max(0, Math.min(e.data.offset, 20000));
+        window.scrollTo({ top: y, behavior: 'smooth' });
       } else if (e.data.type === 'scroll') {
         var top = f.getBoundingClientRect().top;
         if (top < 0 || top > window.innerHeight * 0.6) f.scrollIntoView({ behavior: 'smooth', block: 'start' });

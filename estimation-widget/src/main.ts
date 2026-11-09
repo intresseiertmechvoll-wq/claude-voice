@@ -5,12 +5,11 @@ import config from '../config.json';
 import { deCanton, loadLang, pickLang, translator } from './i18n';
 import { COMMUNES } from './shared/communes';
 import { POSTES_APPARTEMENT, POSTES_MAISON, type PropertyType, type PublicResult } from './shared/types';
-import { analysisPlan, renderAnalysis, stepTexts } from './ui/analysis';
 import { checkFields, stepFields, type Errors } from './shared/validation';
 import { setupCombobox } from './ui/combobox';
 import { esc } from './ui/html';
 import { icon } from './ui/icons';
-import { formatEuro, renderResult } from './ui/result';
+import { formatEuro } from './ui/format';
 import { recapItems, renderStep, STEP_ICONS, type Values } from './ui/steps';
 
 const TOTAL = 6;
@@ -43,6 +42,21 @@ const state: {
 } = { step: 1, values: { ...DEFAULTS }, errors: {}, sending: false, serverError: null, result: null, direction: 'next' };
 
 const app = document.getElementById('app')!;
+
+/* ---------- Code de fin de parcours, chargé en arrière-plan ---------- */
+type Late = typeof import('./ui/late');
+let late: Late | null = null;
+let lateLoading: Promise<Late> | null = null;
+function loadLate(): Promise<Late> {
+  lateLoading ??= import('./ui/late').then((m) => (late = m));
+  return lateLoading;
+}
+function prefetchLate() {
+  if (late || lateLoading) return;
+  const go = () => void loadLate().catch(() => (lateLoading = null));
+  if ('requestIdleCallback' in window) requestIdleCallback(go, { timeout: 3000 });
+  else setTimeout(go, 500);
+}
 
 /* ---------- Hauteur automatique dans l'iframe ---------- */
 function post(msg: Record<string, unknown>) {
@@ -103,13 +117,15 @@ function recapBar(): string {
 
 function render(focus = true) {
   if (state.result) {
-    app.innerHTML = `<div class="card card-result anim-in">${renderResult(state.result, t, lang, { contactUrl, agent: config.agent, phone: config.phone, whatIf: whatIfBase() })}</div>`;
+    app.innerHTML = `<div class="card card-result anim-in">${late!.renderResult(state.result, t, lang, { contactUrl, agent: config.agent, phone: config.phone, whatIf: whatIfBase() })}</div>`;
     hydrate();
     countUp();
     after(focus);
     return;
   }
   const s = state.step;
+  // Dès l'étape 4, on prépare en arrière-plan le code de l'analyse et du résultat
+  if (s >= 4) prefetchLate();
   const errorCount = Object.keys(state.errors).length;
   const summary = state.serverError
     ? `<div class="alert" role="alert">${icon('info', 'ico ico-sm')}<span>${esc(state.serverError)}</span></div>`
@@ -358,6 +374,15 @@ app.addEventListener('click', (e) => {
   } else if (action === 'print') {
     app.querySelectorAll('details').forEach((d) => (d.open = true));
     window.print();
+  } else if (action === 'goto-whatif') {
+    const box = app.querySelector<HTMLElement>('.whatif');
+    if (box) {
+      const top = box.getBoundingClientRect().top + window.scrollY - 8;
+      // Dans l'iframe, c'est la page du site qui défile ; seule, la page de l'outil défile
+      if (window.parent !== window) post({ type: 'scrollTo', offset: Math.round(top) });
+      else window.scrollTo({ top, behavior: reducedMotion ? 'auto' : 'smooth' });
+      box.querySelector<HTMLInputElement>('input:checked, input')?.focus({ preventScroll: true });
+    }
   } else if (action === 'whatif-reset') {
     resetWhatIf();
   } else if (action === 'restart') {
@@ -529,6 +554,12 @@ async function send() {
 
   const type = (state.values.type as PropertyType) ?? 'appartement';
   const actx = { type, commune: String(state.values.commune ?? ''), surface: String(state.values.surface ?? ''), answers: answeredCount() };
+  try {
+    await loadLate();
+  } catch {
+    return stopAnalysis({ network: true });
+  }
+  const { analysisPlan, renderAnalysis, stepTexts } = late!;
   const plan = analysisPlan(config.analysis?.totalMs ?? 5600);
   const meta = `${t(`fields.typeOptions.${type}`)} · ${actx.surface} m² · ${actx.commune}`;
   app.innerHTML = `<div class="card card-analysis anim-in">${renderAnalysis(plan, t, meta)}</div>`;

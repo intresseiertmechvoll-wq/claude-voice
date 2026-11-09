@@ -386,6 +386,7 @@
     "loading": "Calcul…",
     "error": "Le calcul n’a pas abouti. Réessayez.",
     "reset": "Revenir à mon bien",
-    "note": "Indicatif, sans compter le coût des travaux."
+    "note": "Indicatif, sans compter le coût des travaux.",
+    "teaser": "Et si vous faisiez des travaux ? Testez l’effet sur votre prix"
   }
 }
