@@ -1,0 +1,69 @@
+À : contact@immobuild.lu
+Répondre à : marie.muller@example.lu
+Objet : Nouveau lead estimation – Dudelange – Appartement – Dans les 3 mois
+
+== Coordonnées ==
+Prénom : Marie
+Nom : Muller
+E-mail : marie.muller@example.lu
+Téléphone : +352621123456
+Message : Bonjour, je pense vendre au printemps. Merci de me rappeler en fin de journée.
+
+== Résultat affiché au visiteur ==
+Valeur basse (vente rapide) : 550.000 €
+Valeur de marché : 585.000 €
+Valeur haute (coup de cœur) : 620.000 €
+Fourchette : ± 6 %
+
+== Le bien ==
+Type : Appartement
+Commune : Dudelange (canton Esch-sur-Alzette)
+Rue : Rue de la Libération
+Surface habitable nette : 80 m²
+Chambres : 2
+Salles de bain : 1
+Année de construction : 1995
+État général : Bon état
+Classe énergétique : D
+Étage : 2e
+Ascenseur : Oui
+
+== Gros postes ==
+Châssis : Bon
+Chauffage : Moyen
+Électricité : Bon
+Cuisine : Neuf
+Sanitaires : Je ne sais pas
+
+== Annexes ==
+Garages : 1
+Parkings extérieurs : 0
+Cave : Oui
+Balcon / terrasse : 8 m²
+Jardin : Non
+
+== Le projet ==
+Propriétaire : Oui
+Objectif : Vendre
+Délai : Dans les 3 mois
+
+== Détail du calcul ==
+Ventes notariées (poids 50 %) : 6512 €/m² – utilisée – 6512,33 €/m², 130 ventes dans la commune
+Annonces corrigées (poids 30 %) : 6760 €/m² – utilisée – 7048,27 €/m² annoncé × (1 − 4,1 %)
+Capitalisation (loyers) (poids 20 %) : 7289 €/m² – utilisée – 30,37 €/m²/mois × 12 × (1 − 10,0 %) ÷ 4,5 %
+Décote annonce → vente : -4,1 % (médiane du canton, 12 communes)
+Prix de base retenu : 6742 €/m²
+Coefficient – Classe énergétique D : +1,0 %
+Total des coefficients : +1,0 %
+Valeur du logement : 6742 €/m² × 80 m² × (1 + 1,0 %) = 544.759 €
+Annexe : garage × 1 : 24.079 €
+Annexe : cave : 4.816 €
+Annexe : balcon/terrasse 8 m² × 25 % : 13.484 €
+Ajustement des annexes selon le prix de la commune : × 0,96
+Valeur de marché avant arrondi : 587.138 €
+
+== Contexte ==
+Langue : Français
+Date : lundi 9 novembre 2026 à 15:30
+Page d’origine : https://immobuild.lu/estimation/
+Données : Observatoire de l’Habitat (Ministère du Logement), ventes notariées, prix et loyers annoncés des appartements – data.public.lu, licence CC0, période 1er juillet 2025 – 30 juin 2026

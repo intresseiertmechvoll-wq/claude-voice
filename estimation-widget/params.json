@@ -20,7 +20,7 @@
   "decote_annonce_vente": {
     "min": 0,
     "max": 0.20,
-    "communes_min_par_canton": 2
+    "communes_min_par_canton": 3
   },
 
   "capitalisation": {
