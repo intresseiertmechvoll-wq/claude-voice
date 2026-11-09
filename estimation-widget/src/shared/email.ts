@@ -33,12 +33,28 @@ function coefLabel(key: string): string {
   return key;
 }
 
+function annexLabel(key: string, qty: number): string {
+  if (key === 'garage') return `garage × ${qty}`;
+  if (key === 'parking') return `parking extérieur × ${qty}`;
+  if (key === 'terrasse') return `balcon/terrasse ${qty} m² (pondéré)`;
+  return key;
+}
+
 const eur = (v: number | null) => (v === null ? '—' : new Intl.NumberFormat('fr-LU', { maximumFractionDigits: 0 }).format(v).replace(/ | /g, ' ') + ' €');
 const pct = (v: number) => `${v > 0 ? '+' : ''}${(v * 100).toFixed(1).replace('.', ',')} %`;
 const yn = (v: boolean | null) => (v === null ? '—' : v ? 'Oui' : 'Non');
 
 export function escapeHtml(s: string): string {
   return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+}
+
+/** Priorité du lead, règle simple (à valider par Jay) */
+export function leadPriority(s: Submission): { level: 'chaud' | 'tiède' | 'froid'; why: string } {
+  const a = s.answers;
+  const soon = a.delai === 'asap' || a.delai === '3mois';
+  if (a.proprietaire && a.objectif === 'vendre' && soon) return { level: 'chaud', why: 'propriétaire, veut vendre, dans les 3 mois' };
+  if (a.proprietaire && a.objectif !== 'renseigne') return { level: 'tiède', why: `propriétaire, veut ${a.objectif === 'vendre' ? 'vendre' : 'louer'}, ${L.delai[a.delai].toLowerCase()}` };
+  return { level: 'froid', why: a.proprietaire ? 'propriétaire qui se renseigne' : 'pas propriétaire' };
 }
 
 export function leadSubject(s: Submission): string {
@@ -56,7 +72,17 @@ export function leadSections(s: Submission, e: Estimate, date: Date): Section[] 
   const d = e.detail;
   const postes = a.type === 'maison' ? POSTES_MAISON : POSTES_APPARTEMENT;
 
+  const prio = leadPriority(s);
   const sections: Section[] = [
+    {
+      title: 'En un coup d’œil',
+      rows: [
+        ['Priorité', `${prio.level === 'chaud' ? '🔥 ' : ''}${prio.level.charAt(0).toUpperCase() + prio.level.slice(1)} – ${prio.why}`],
+        ['Bien', `${L.type[a.type]} de ${a.surface} m² à ${a.commune}`],
+        ['Valeur de marché affichée', r.status === 'ok' ? eur(r.market) : 'aucune (pas assez de données)'],
+        ['Rappeler', `${c.prenom} ${c.nom} – ${c.telephone}`],
+      ],
+    },
     {
       title: 'Coordonnées',
       rows: [
@@ -139,7 +165,7 @@ export function leadSections(s: Submission, e: Estimate, date: Date): Section[] 
         ...d.coefficients.map((x) => [`Coefficient – ${coefLabel(x.key)}`, pct(x.value)] as [string, string]),
         ['Total des coefficients', `${pct(d.coefSum)}${d.coefApplied !== d.coefSum ? ` (plafonné à ${pct(d.coefApplied)})` : ''}`],
         ['Valeur du logement', `${Math.round(d.baseM2)} €/m² × ${d.surface} m² × (1 ${d.coefApplied < 0 ? '−' : '+'} ${Math.abs(d.coefApplied * 100).toFixed(1).replace('.', ',')} %) = ${eur(d.buildingValue)}`],
-        ...d.annexes.map((x) => [`Annexe : ${x.key}`, eur(x.amount)] as [string, string]),
+        ...d.annexes.map((x) => [`Annexe : ${annexLabel(x.key, x.qty)}`, eur(x.amount)] as [string, string]),
         ...(d.annexes.length ? ([['Ajustement des annexes selon le prix de la commune', `× ${d.communeScale.toFixed(2).replace('.', ',')}`]] as [string, string][]) : []),
         ['Valeur de marché avant arrondi', eur(d.rawMarket)],
       ],

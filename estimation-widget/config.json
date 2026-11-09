@@ -1,5 +1,5 @@
 {
-  "_note": "Liens affichés dans l'outil. À VÉRIFIER PAR JAY : remplacer par les vraies adresses de tes pages.",
+  "_note": "Liens et réglages affichés dans l'outil. À VÉRIFIER PAR JAY : contactUrl et privacyUrl (vraies adresses de tes pages), agent.photo (chemin d'une photo dans public/, ex. /jay.jpg, sinon l'initiale s'affiche), phone (laisser vide pour ne pas afficher de numéro), quickCommunes (raccourcis de l'étape 1).",
   "contactUrl": {
     "fr": "https://immobuild.lu/contact/",
     "de": "https://immobuild.lu/contact/",
@@ -12,5 +12,19 @@
   },
   "defaultLeadEmail": "contact@immobuild.lu",
   "defaultFromEmail": "ImmoBuild Estimation <estimation@immobuild.lu>",
-  "rateLimitPerHour": 5
+  "rateLimitPerHour": 5,
+  "agent": {
+    "name": "Jay",
+    "role": "ImmoBuild Kohn · Dudelange",
+    "photo": ""
+  },
+  "phone": "",
+  "quickCommunes": [
+    "Dudelange",
+    "Bettembourg",
+    "Kayl",
+    "Rumelange",
+    "Esch-sur-Alzette",
+    "Schifflange"
+  ]
 }

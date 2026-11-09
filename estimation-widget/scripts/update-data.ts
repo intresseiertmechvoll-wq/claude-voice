@@ -103,6 +103,14 @@ function num(v: unknown): number | null {
   fail(`valeur inattendue : ${JSON.stringify(v)}`);
 }
 
+/** « 4534 € - 8901 € » → [4534, 8901] ; « * » → [null, null] */
+function range(v: unknown): [number | null, number | null] {
+  if (v === '*' || v === null || v === undefined || v === '') return [null, null];
+  const m = String(v).replace(/\s/g, '').match(/^(\d+)€-(\d+)€$/);
+  if (!m) fail(`fourchette inattendue : ${JSON.stringify(v)}`);
+  return [Number(m[1]), Number(m[2])];
+}
+
 function round(v: number | null, d = 2): number | null {
   return v === null ? null : Math.round(v * 10 ** d) / 10 ** d;
 }
@@ -181,6 +189,7 @@ async function main() {
       if (src.key === 'notarie') {
         row.notarie_existant_ventes = num(r[1]);
         row.notarie_existant_m2 = round(num(r[2]));
+        [row.notarie_existant_min_m2, row.notarie_existant_max_m2] = range(r[3]);
         row.notarie_vefa_ventes = num(r[4]);
         row.notarie_vefa_m2 = round(num(r[5]));
       } else {

@@ -3,8 +3,15 @@
     "title": "Free valuation – ImmoBuild Kohn"
   },
   "intro": {
-    "title": "Free valuation of your property",
-    "text": "Six short steps. You see a price range as soon as you finish."
+    "title": "What is your property worth?",
+    "text": "Answer a few simple questions. Your price range appears as soon as you finish.",
+    "kicker": "Free valuation · ImmoBuild Kohn",
+    "badges": {
+      "free": "Free",
+      "commitment": "No commitment",
+      "official": "Official data",
+      "instant": "Instant result"
+    }
   },
   "progress": "Step {n} of {total}",
   "nav": {
@@ -18,8 +25,8 @@
   "no": "No",
   "steps": {
     "1": {
-      "title": "Your property",
-      "text": "Let’s start with the basics."
+      "title": "Let’s talk about your property",
+      "text": "Apartment or house, and where is it?"
     },
     "2": {
       "title": "Key details",
@@ -27,19 +34,19 @@
     },
     "3": {
       "title": "Condition of the main elements",
-      "text": "Rate each element. If you don’t know, choose “I don’t know”."
+      "text": "One rating per element. Not sure? Choose “?”."
     },
     "4": {
-      "title": "Extras",
-      "text": "Enter 0 if your property has none."
+      "title": "The little extras",
+      "text": "Garages, parking, cellar, outdoor space: they count too."
     },
     "5": {
       "title": "Your plans",
       "text": "This helps me get back to you at the right time."
     },
     "6": {
-      "title": "Your contact details",
-      "text": "Your valuation appears right after you send the form."
+      "title": "Last step!",
+      "text": "Check your summary, then tell me where to send the answer."
     }
   },
   "fields": {
@@ -133,7 +140,57 @@
     "rgpd": "I agree that ImmoBuild Kohn may use this information to contact me about my property, as explained in the {link}.",
     "rgpdLink": "privacy policy",
     "privacyNote": "Your answers and contact details are sent by email to ImmoBuild Kohn. They are not stored in any database.",
-    "honeypot": "Do not fill in this field"
+    "honeypot": "Do not fill in this field",
+    "typeHints": {
+      "appartement": "Studio, duplex, penthouse…",
+      "maison": "Terraced, semi-detached or detached"
+    },
+    "communeQuick": "Nearby municipalities:",
+    "communeSelected": "Canton of {deCanton}",
+    "surfaceSlider": "Living area (slider)",
+    "terrainSlider": "Plot size (slider)",
+    "terrasseSlider": "Balcony or terrace (slider)",
+    "decrease": "Remove 1 – {label}",
+    "increase": "Add 1 – {label}",
+    "etatHints": {
+      "neuf": "Never lived in, or under 5 years old",
+      "renove": "Major work done recently",
+      "bon": "Well kept, ready to live in",
+      "rafraichir": "Paint, floors, small jobs",
+      "renover": "Major work needed"
+    },
+    "energieLegend": "Energy class",
+    "energieUnknownShort": "I don’t know",
+    "etageChips": {
+      "0": "GF",
+      "1": "1st",
+      "2": "2nd",
+      "3": "3rd",
+      "4": "4th",
+      "5": "5th +"
+    },
+    "allGood": "Set everything to “Good”",
+    "posteShort": {
+      "mauvais": "Poor",
+      "moyen": "Average",
+      "bon": "Good",
+      "neuf": "New",
+      "inconnu": "?"
+    },
+    "posteUnknownLabel": "I don’t know",
+    "caveHint": "Private",
+    "jardinHint": "Private or for your sole use",
+    "terrasseHelp": "0 if you have none.",
+    "proprietaireOptions": {
+      "oui": "Yes, it’s mine",
+      "non": "No"
+    },
+    "objectifHints": {
+      "vendre": "I’m thinking of selling",
+      "louer": "I’m thinking of renting it out",
+      "renseigne": "I just want to know its value"
+    },
+    "anneePlaceholder": "e.g. 1990"
   },
   "errors": {
     "required": "This field is required.",
@@ -167,6 +224,108 @@
     "sent": "Thank you, I have received your request.",
     "sourceAppartement": "Observatoire de l’Habitat (Ministry of Housing): notarial sale prices, asking prices and asking rents for apartments – data.public.lu, CC0 licence",
     "sourceMaison": "Observatoire de l’Habitat (Ministry of Housing): asking prices for houses – data.public.lu, CC0 licence",
-    "sourceLink": "See the data"
+    "sourceLink": "See the data",
+    "ready": "Your valuation is ready!",
+    "perM2": "that is {value} per m²",
+    "rangeTitle": "Your price range",
+    "gaugeTitle": "Your property among sales in {commune}",
+    "gaugeText": "Price per m² of apartments sold from {debut} to {fin}, excluding the cheapest 5% and the most expensive 5%.",
+    "gaugeYou": "Your property",
+    "gaugeAvg": "Average",
+    "factorsTitle": "What affects your price",
+    "factorsNone": "Your property matches the local average: no adjustment.",
+    "factorsCapped": "To stay cautious, the total of the adjustments is capped.",
+    "reliabilityTitle": "Data reliability",
+    "reliability": {
+      "high": "Good",
+      "medium": "Fair",
+      "low": "Limited"
+    },
+    "reliabilityText": {
+      "appartement": {
+        "high": "Many recent sales in your municipality, and 3 methods that agree.",
+        "medium": "There are real sales in your municipality, but fewer of them.",
+        "low": "Few published sales in your municipality: the calculation relies on your canton."
+      },
+      "maison": {
+        "high": "",
+        "medium": "Based on many house listings in your municipality.",
+        "low": "Few house listings in your municipality: treat this result with caution."
+      }
+    },
+    "communeTitle": "{commune} in figures",
+    "statNotarie": "Average sale price",
+    "statNotarieSub": "{n} apartment sales",
+    "statAnnonceAppartement": "Average asking price",
+    "statAnnonceMaison": "Average asking price (houses)",
+    "statAnnonceSub": "{n} listings",
+    "statYou": "Your valuation",
+    "statYouSub": "for {n} m²",
+    "statCanton": "Fewer than 10 published sales in your municipality: the median of the canton of {deCanton} is used.",
+    "howTitle": "How this price is calculated",
+    "howAppartement": "Three methods are combined: actual sales registered with notaries, asking prices corrected for the usual gap between asking and sale price, and rental yield. Then your living area, condition, energy class and extras adjust the price.",
+    "howMaison": "There are no public sale prices for houses. The calculation starts from the average asking price of houses in your municipality, corrected for the usual gap between asking and sale price. Then your living area, condition, energy class, plot and extras adjust the price.",
+    "methods": {
+      "notarie": "Notarial sales",
+      "annonces": "Corrected listings",
+      "capitalisation": "Rental yield",
+      "annonces_maison": "Corrected house listings"
+    },
+    "methodLine": "{name}: {m2} per m² ({weight} of the calculation)",
+    "nextTitle": "What happens next?",
+    "next1": "I receive your request and get back to you.",
+    "next2": "On site, I refine the price with what figures can’t see: view, light, finishes, surroundings.",
+    "print": "Print or save as PDF",
+    "restart": "Start a new valuation"
+  },
+  "stepsShort": {
+    "1": "Property",
+    "2": "Details",
+    "3": "Condition",
+    "4": "Extras",
+    "5": "Plans",
+    "6": "Contact"
+  },
+  "recap": {
+    "title": "Your property at a glance",
+    "edit": "Edit",
+    "editStep": "Edit: {step}",
+    "surface": "{n} m²",
+    "chambres": "{n} bed.",
+    "sdb": "{n} bath.",
+    "annee": "built {n}",
+    "energie": "class {c}",
+    "terrain": "plot {n} m²",
+    "garages": "{n} garage(s)",
+    "parkings": "{n} parking space(s)",
+    "terrasse": "outdoor {n} m²"
+  },
+  "agent": {
+    "title": "I’ll handle your request",
+    "text": "I receive your request personally and will get back to you to talk it through."
+  },
+  "trust": {
+    "free": "Free, no commitment",
+    "data": "Your details only go to ImmoBuild Kohn",
+    "cookies": "No cookies, no advertising"
+  },
+  "factors": {
+    "etat_neuf": "New property",
+    "etat_renove": "Recently renovated",
+    "etat_rafraichir": "Needs refreshing",
+    "etat_renover": "Needs renovation",
+    "gros_postes": "Condition of main elements",
+    "energie": "Energy class {c}",
+    "rez_de_chaussee": "Ground floor",
+    "etage_sans_ascenseur": "High floor without a lift",
+    "jardin_appartement": "Garden",
+    "maison_mitoyenne": "Terraced house",
+    "maison_isolee": "Detached house",
+    "petit_terrain": "Smaller plot than usual",
+    "grand_terrain": "Large plot",
+    "garage": "Garage × {n}",
+    "parking": "Outdoor parking × {n}",
+    "cave": "Cellar",
+    "terrasse": "Balcony / terrace ({n} m²)"
   }
 }

@@ -23,6 +23,11 @@
     "communes_min_par_canton": 3
   },
 
+  "fiabilite": {
+    "appartement_ventes_bonne": 50,
+    "maison_offres_moyenne": 100
+  },
+
   "capitalisation": {
     "charges_non_recuperables": 0.10,
     "taux": 0.045

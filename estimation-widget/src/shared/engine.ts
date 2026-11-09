@@ -9,7 +9,7 @@
  * Maison : prix annoncé maison de la commune × (1 − décote du canton)
  * Puis, pour les deux : × (1 + somme des coefficients) + annexes.
  */
-import type { Answers, CommuneData, Dataset, PublicResult } from './types';
+import type { Answers, CommuneData, Dataset, PublicResult, Reliability } from './types';
 import { POSTES_APPARTEMENT, POSTES_MAISON } from './types';
 
 export type Params = typeof import('../../params.json');
@@ -33,7 +33,7 @@ export interface Detail {
   coefApplied: number;
   surface: number;
   buildingValue: number;
-  annexes: { key: string; amount: number }[];
+  annexes: Annex[];
   annexesTotal: number;
   communeScale: number;
   rawMarket: number;
@@ -130,19 +130,39 @@ function coefficients(a: Answers, params: Params): { key: string; value: number 
   return out.filter((x) => x.value !== 0);
 }
 
-function annexes(a: Answers, baseM2: number, params: Params) {
+export type AnnexKey = 'garage' | 'parking' | 'cave' | 'terrasse';
+export interface Annex {
+  key: AnnexKey;
+  qty: number;
+  amount: number;
+}
+
+function annexes(a: Answers, baseM2: number, params: Params): { list: Annex[]; scale: number; terrassePonderation: number } {
   const p = params.annexes[a.type];
   const adj = params.annexes.ajustement_commune;
   const scale = clamp(baseM2 / adj.prix_reference_m2, adj.min, adj.max);
-  const list: { key: string; amount: number }[] = [];
-  if (a.garages) list.push({ key: `garage × ${a.garages}`, amount: a.garages * p.garage * scale });
-  if (a.parkings) list.push({ key: `parking extérieur × ${a.parkings}`, amount: a.parkings * p.parking_exterieur * scale });
-  if (a.cave && p.cave) list.push({ key: 'cave', amount: p.cave * scale });
+  const list: Annex[] = [];
+  if (a.garages) list.push({ key: 'garage', qty: a.garages, amount: a.garages * p.garage * scale });
+  if (a.parkings) list.push({ key: 'parking', qty: a.parkings, amount: a.parkings * p.parking_exterieur * scale });
+  if (a.cave && p.cave) list.push({ key: 'cave', qty: 1, amount: p.cave * scale });
   const terrasseM2 = Math.min(a.terrasse, p.terrasse_m2_max);
   if (terrasseM2 > 0 && p.terrasse_ponderation > 0) {
-    list.push({ key: `balcon/terrasse ${terrasseM2} m² × ${p.terrasse_ponderation * 100} %`, amount: terrasseM2 * p.terrasse_ponderation * baseM2 });
+    list.push({ key: 'terrasse', qty: terrasseM2, amount: terrasseM2 * p.terrasse_ponderation * baseM2 });
   }
-  return { list: list.filter((x) => x.amount > 0), scale };
+  return { list: list.filter((x) => x.amount > 0), scale, terrassePonderation: p.terrasse_ponderation };
+}
+
+/**
+ * Fiabilité affichée au visiteur (règle simple et visible, à valider par Jay) :
+ * - appartement : « bonne » si ventes notariées de la commune ≥ seuil et 3 méthodes gardées,
+ *   « moyenne » si ventes notariées propres à la commune, sinon « limitée » ;
+ * - maison : « moyenne » si au moins N annonces de maisons dans la commune, sinon « limitée ».
+ */
+export function reliability(type: Answers['type'], c: CommuneData, methodsUsed: number, ownNotarial: boolean, params: Params): Reliability {
+  const f = params.fiabilite;
+  if (type === 'maison') return (c.annonce_maison_offres ?? 0) >= f.maison_offres_moyenne ? 'medium' : 'low';
+  if (ownNotarial && (c.notarie_existant_ventes ?? 0) >= f.appartement_ventes_bonne && methodsUsed >= 3) return 'high';
+  return ownNotarial ? 'medium' : 'low';
 }
 
 const OBSERVATOIRE_URL = 'https://data.public.lu/fr/organizations/ministere-du-logement-et-de-lamenagement-du-territoire-observatoire-de-lhabitat/';
@@ -174,11 +194,11 @@ export function estimate(a: Answers, data: Dataset, params: Params): Estimate {
 
   const decote = cantonDecote(data, c.canton, params);
   const methods: Method[] = [];
+  const ownNotarial = c.notarie_existant_m2 !== null && (c.notarie_existant_ventes ?? 0) >= params.donnees.ventes_min_commune;
   let notarieOrigin: Detail['notarieOrigin'] = 'absent';
 
   if (a.type === 'appartement') {
     const w = params.appartement.poids;
-    const ownNotarial = c.notarie_existant_m2 !== null && (c.notarie_existant_ventes ?? 0) >= params.donnees.ventes_min_commune;
     // Il faut au moins une donnée propre à la commune (ventes ou annonces), sinon pas de prix.
     if (!ownNotarial && c.annonce_appartement_m2 === null) return empty('pas de ventes notariées ni de prix annoncés pour les appartements dans la commune');
 
@@ -239,6 +259,7 @@ export function estimate(a: Answers, data: Dataset, params: Params): Estimate {
   const annexesTotal = ax.list.reduce((s, x) => s + x.amount, 0);
   const rawMarket = buildingValue + annexesTotal;
   const step = params.arrondi;
+  const market = roundTo(rawMarket, step);
 
   return {
     result: {
@@ -246,7 +267,7 @@ export function estimate(a: Answers, data: Dataset, params: Params): Estimate {
       type: a.type,
       commune: a.commune,
       low: roundTo(rawMarket * (1 - spread), step),
-      market: roundTo(rawMarket, step),
+      market,
       high: roundTo(rawMarket * (1 + spread), step),
       spread,
       indicative: a.type === 'maison',
@@ -255,6 +276,26 @@ export function estimate(a: Answers, data: Dataset, params: Params): Estimate {
       periodeFin: data.periode_fin,
       source,
       sourceUrl: url,
+      surface: a.surface,
+      pricePerM2: Math.round(market / a.surface),
+      factors: [
+        ...coefs.map((x) => ({ key: x.key, kind: 'pct' as const, value: x.value })),
+        ...ax.list.map((x) => ({ key: x.key, kind: 'eur' as const, value: roundTo(x.amount, 500), qty: x.qty })),
+      ],
+      factorsCapped: coefApplied !== coefSum,
+      methods: used.map((m) => ({ key: m.key, m2: Math.round(m.m2!), weight: m.weight / totalWeight })),
+      reliability: reliability(a.type, c, used.length, ownNotarial, params),
+      communeStats: {
+        canton: c.canton,
+        // Les ventes notariées ne concernent que les appartements : on ne les montre pas pour une maison
+        notarieM2: ownNotarial && a.type === 'appartement' ? Math.round(c.notarie_existant_m2!) : null,
+        notarieMinM2: ownNotarial && a.type === 'appartement' ? (c.notarie_existant_min_m2 ?? null) : null,
+        notarieMaxM2: ownNotarial && a.type === 'appartement' ? (c.notarie_existant_max_m2 ?? null) : null,
+        ventes: c.notarie_existant_ventes,
+        notarieFromCanton: a.type === 'appartement' && !ownNotarial,
+        annonceM2: a.type === 'maison' ? (c.annonce_maison_m2 === null ? null : Math.round(c.annonce_maison_m2)) : c.annonce_appartement_m2 === null ? null : Math.round(c.annonce_appartement_m2),
+        offres: a.type === 'maison' ? c.annonce_maison_offres : c.annonce_appartement_offres,
+      },
     },
     detail: {
       canton: c.canton,

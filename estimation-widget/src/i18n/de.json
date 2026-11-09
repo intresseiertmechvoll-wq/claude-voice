@@ -3,8 +3,15 @@
     "title": "Kostenlose Bewertung – ImmoBuild Kohn"
   },
   "intro": {
-    "title": "Kostenlose Bewertung Ihrer Immobilie",
-    "text": "Sechs kurze Schritte. Am Ende des Fragebogens sehen Sie direkt eine Preisspanne."
+    "title": "Was ist Ihre Immobilie wert?",
+    "text": "Beantworten Sie ein paar einfache Fragen. Ihre Preisspanne erscheint direkt am Ende.",
+    "kicker": "Kostenlose Bewertung · ImmoBuild Kohn",
+    "badges": {
+      "free": "Kostenlos",
+      "commitment": "Unverbindlich",
+      "official": "Offizielle Daten",
+      "instant": "Sofortiges Ergebnis"
+    }
   },
   "progress": "Schritt {n} von {total}",
   "nav": {
@@ -18,8 +25,8 @@
   "no": "Nein",
   "steps": {
     "1": {
-      "title": "Ihre Immobilie",
-      "text": "Beginnen wir mit dem Wichtigsten."
+      "title": "Sprechen wir über Ihre Immobilie",
+      "text": "Wohnung oder Haus, und wo liegt sie?"
     },
     "2": {
       "title": "Die Eckdaten",
@@ -27,19 +34,19 @@
     },
     "3": {
       "title": "Zustand der wichtigsten Bauteile",
-      "text": "Bewerten Sie jeden Punkt. Wenn Sie es nicht wissen, wählen Sie „Weiß nicht“."
+      "text": "Eine Note pro Bauteil. Nicht sicher? Wählen Sie „?“."
     },
     "4": {
-      "title": "Nebenflächen",
-      "text": "Geben Sie 0 an, wenn nicht vorhanden."
+      "title": "Die kleinen Extras",
+      "text": "Garagen, Stellplätze, Keller, Außenflächen: Sie zählen mit."
     },
     "5": {
       "title": "Ihr Vorhaben",
       "text": "So kann ich Ihnen zum richtigen Zeitpunkt antworten."
     },
     "6": {
-      "title": "Ihre Kontaktdaten",
-      "text": "Ihre Bewertung erscheint direkt nach dem Absenden."
+      "title": "Letzter Schritt!",
+      "text": "Prüfen Sie Ihre Zusammenfassung und sagen Sie mir, wohin ich die Antwort schicken soll."
     }
   },
   "fields": {
@@ -133,7 +140,57 @@
     "rgpd": "Ich bin einverstanden, dass ImmoBuild Kohn diese Angaben nutzt, um mich wegen meiner Immobilie zu kontaktieren, wie in der {link} beschrieben.",
     "rgpdLink": "Datenschutzerklärung",
     "privacyNote": "Ihre Antworten und Kontaktdaten werden per E-Mail an ImmoBuild Kohn gesendet. Sie werden in keiner Datenbank gespeichert.",
-    "honeypot": "Dieses Feld nicht ausfüllen"
+    "honeypot": "Dieses Feld nicht ausfüllen",
+    "typeHints": {
+      "appartement": "Studio, Maisonette, Penthouse…",
+      "maison": "Reihenhaus, Doppelhaushälfte oder freistehend"
+    },
+    "communeQuick": "Gemeinden in der Nähe:",
+    "communeSelected": "Kanton {deCanton}",
+    "surfaceSlider": "Fläche (Schieberegler)",
+    "terrainSlider": "Grundstücksfläche (Schieberegler)",
+    "terrasseSlider": "Balkon oder Terrasse (Schieberegler)",
+    "decrease": "1 weniger – {label}",
+    "increase": "1 mehr – {label}",
+    "etatHints": {
+      "neuf": "Erstbezug oder jünger als 5 Jahre",
+      "renove": "Große Arbeiten vor Kurzem erledigt",
+      "bon": "Gepflegt, sofort bewohnbar",
+      "rafraichir": "Anstrich, Böden, kleine Arbeiten",
+      "renover": "Größere Arbeiten nötig"
+    },
+    "energieLegend": "Energieklasse",
+    "energieUnknownShort": "Weiß nicht",
+    "etageChips": {
+      "0": "EG",
+      "1": "1.",
+      "2": "2.",
+      "3": "3.",
+      "4": "4.",
+      "5": "5.+"
+    },
+    "allGood": "Alles auf „Gut“ setzen",
+    "posteShort": {
+      "mauvais": "Schlecht",
+      "moyen": "Mittel",
+      "bon": "Gut",
+      "neuf": "Neu",
+      "inconnu": "?"
+    },
+    "posteUnknownLabel": "Weiß nicht",
+    "caveHint": "Privat",
+    "jardinHint": "Privat oder zur alleinigen Nutzung",
+    "terrasseHelp": "0, wenn nicht vorhanden.",
+    "proprietaireOptions": {
+      "oui": "Ja, sie gehört mir",
+      "non": "Nein"
+    },
+    "objectifHints": {
+      "vendre": "Ich denke an einen Verkauf",
+      "louer": "Ich denke an eine Vermietung",
+      "renseigne": "Ich möchte nur den Wert kennen"
+    },
+    "anneePlaceholder": "z. B. 1990"
   },
   "errors": {
     "required": "Dieses Feld ist erforderlich.",
@@ -167,6 +224,108 @@
     "sent": "Danke, Ihre Anfrage ist bei mir angekommen.",
     "sourceAppartement": "Observatoire de l’Habitat (Wohnungsbauministerium): notarielle Verkaufspreise, Angebotspreise und Angebotsmieten von Wohnungen – data.public.lu, Lizenz CC0",
     "sourceMaison": "Observatoire de l’Habitat (Wohnungsbauministerium): Angebotspreise von Häusern – data.public.lu, Lizenz CC0",
-    "sourceLink": "Zu den Daten"
+    "sourceLink": "Zu den Daten",
+    "ready": "Ihre Bewertung ist fertig!",
+    "perM2": "also {value} pro m²",
+    "rangeTitle": "Ihre Preisspanne",
+    "gaugeTitle": "Ihre Immobilie im Vergleich zu den Verkäufen in {commune}",
+    "gaugeText": "Quadratmeterpreise der vom {debut} bis {fin} verkauften Wohnungen, ohne die günstigsten und teuersten 5 %.",
+    "gaugeYou": "Ihre Immobilie",
+    "gaugeAvg": "Durchschnitt",
+    "factorsTitle": "Was Ihren Preis beeinflusst",
+    "factorsNone": "Ihre Immobilie entspricht dem Durchschnitt der Gemeinde: keine Anpassung.",
+    "factorsCapped": "Um vorsichtig zu bleiben, ist die Summe der Anpassungen begrenzt.",
+    "reliabilityTitle": "Verlässlichkeit der Daten",
+    "reliability": {
+      "high": "Gut",
+      "medium": "Mittel",
+      "low": "Begrenzt"
+    },
+    "reliabilityText": {
+      "appartement": {
+        "high": "Viele aktuelle Verkäufe in Ihrer Gemeinde und 3 übereinstimmende Methoden.",
+        "medium": "In Ihrer Gemeinde gibt es echte Verkäufe, aber weniger.",
+        "low": "Wenige veröffentlichte Verkäufe in Ihrer Gemeinde: Die Berechnung stützt sich auf Ihren Kanton."
+      },
+      "maison": {
+        "high": "",
+        "medium": "Berechnung auf Basis vieler Hausangebote in Ihrer Gemeinde.",
+        "low": "Wenige Hausangebote in Ihrer Gemeinde: Ergebnis mit Vorsicht betrachten."
+      }
+    },
+    "communeTitle": "{commune} in Zahlen",
+    "statNotarie": "Durchschnittlicher Verkaufspreis",
+    "statNotarieSub": "{n} Wohnungsverkäufe",
+    "statAnnonceAppartement": "Durchschnittlicher Angebotspreis",
+    "statAnnonceMaison": "Durchschnittlicher Angebotspreis (Häuser)",
+    "statAnnonceSub": "{n} Angebote",
+    "statYou": "Ihre Bewertung",
+    "statYouSub": "für {n} m²",
+    "statCanton": "Weniger als 10 veröffentlichte Verkäufe in Ihrer Gemeinde: Es wird der Median des Kantons {deCanton} verwendet.",
+    "howTitle": "So wird der Preis berechnet",
+    "howAppartement": "Drei Methoden werden kombiniert: die beim Notar registrierten Verkäufe, die Angebotspreise korrigiert um den üblichen Abstand zwischen Angebot und Verkauf, und die Mietrendite. Danach passen Fläche, Zustand, Energie und Extras den Preis an.",
+    "howMaison": "Für Häuser gibt es keine öffentlichen Verkaufspreise. Die Berechnung geht vom durchschnittlichen Angebotspreis der Häuser in Ihrer Gemeinde aus, korrigiert um den üblichen Abstand zwischen Angebot und Verkauf. Danach passen Fläche, Zustand, Energie, Grundstück und Extras den Preis an.",
+    "methods": {
+      "notarie": "Notarielle Verkäufe",
+      "annonces": "Korrigierte Angebote",
+      "capitalisation": "Mietrendite",
+      "annonces_maison": "Korrigierte Hausangebote"
+    },
+    "methodLine": "{name}: {m2} pro m² ({weight} der Berechnung)",
+    "nextTitle": "Wie geht es weiter?",
+    "next1": "Ich erhalte Ihre Anfrage und melde mich bei Ihnen.",
+    "next2": "Vor Ort verfeinere ich den Preis mit dem, was Zahlen nicht sehen: Aussicht, Licht, Ausstattung, Umgebung.",
+    "print": "Drucken oder als PDF speichern",
+    "restart": "Neue Bewertung starten"
+  },
+  "stepsShort": {
+    "1": "Immobilie",
+    "2": "Eckdaten",
+    "3": "Bauteile",
+    "4": "Extras",
+    "5": "Vorhaben",
+    "6": "Kontakt"
+  },
+  "recap": {
+    "title": "Ihre Immobilie in Kürze",
+    "edit": "Ändern",
+    "editStep": "Ändern: {step}",
+    "surface": "{n} m²",
+    "chambres": "{n} Schlafz.",
+    "sdb": "{n} Bad",
+    "annee": "Baujahr {n}",
+    "energie": "Klasse {c}",
+    "terrain": "Grundstück {n} m²",
+    "garages": "{n} Garage(n)",
+    "parkings": "{n} Stellplatz/-plätze",
+    "terrasse": "Außenfläche {n} m²"
+  },
+  "agent": {
+    "title": "Ich kümmere mich um Ihre Anfrage",
+    "text": "Ich erhalte Ihre Anfrage persönlich und melde mich bei Ihnen, um darüber zu sprechen."
+  },
+  "trust": {
+    "free": "Kostenlos und unverbindlich",
+    "data": "Ihre Daten gehen nur an ImmoBuild Kohn",
+    "cookies": "Keine Cookies, keine Werbung"
+  },
+  "factors": {
+    "etat_neuf": "Neubau",
+    "etat_renove": "Kürzlich renoviert",
+    "etat_rafraichir": "Auffrischungsbedürftig",
+    "etat_renover": "Renovierungsbedürftig",
+    "gros_postes": "Zustand der Bauteile",
+    "energie": "Energieklasse {c}",
+    "rez_de_chaussee": "Erdgeschoss",
+    "etage_sans_ascenseur": "Hohe Etage ohne Aufzug",
+    "jardin_appartement": "Garten",
+    "maison_mitoyenne": "Reihenhaus",
+    "maison_isolee": "Freistehendes Haus",
+    "petit_terrain": "Kleineres Grundstück als üblich",
+    "grand_terrain": "Großes Grundstück",
+    "garage": "Garage × {n}",
+    "parking": "Außenstellplatz × {n}",
+    "cave": "Keller",
+    "terrasse": "Balkon / Terrasse ({n} m²)"
   }
 }

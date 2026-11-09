@@ -3,8 +3,15 @@
     "title": "Estimation gratuite – ImmoBuild Kohn"
   },
   "intro": {
-    "title": "Estimation gratuite de votre bien",
-    "text": "Six étapes courtes. Vous voyez une fourchette de prix dès la fin du questionnaire."
+    "kicker": "Estimation gratuite · ImmoBuild Kohn",
+    "title": "Combien vaut votre bien ?",
+    "text": "Répondez à quelques questions simples. Votre fourchette de prix s’affiche dès la fin.",
+    "badges": {
+      "free": "Gratuit",
+      "commitment": "Sans engagement",
+      "official": "Données officielles",
+      "instant": "Résultat immédiat"
+    }
   },
   "progress": "Étape {n} sur {total}",
   "nav": {
@@ -18,8 +25,8 @@
   "no": "Non",
   "steps": {
     "1": {
-      "title": "Votre bien",
-      "text": "Commençons par l’essentiel."
+      "title": "Parlons de votre bien",
+      "text": "Appartement ou maison, et où se trouve-t-il ?"
     },
     "2": {
       "title": "Ses caractéristiques",
@@ -27,19 +34,19 @@
     },
     "3": {
       "title": "L’état des gros postes",
-      "text": "Donnez une note à chaque poste. Si vous ne savez pas, choisissez « Je ne sais pas »."
+      "text": "Une note par poste. Pas sûr ? Choisissez « ? »."
     },
     "4": {
-      "title": "Les annexes",
-      "text": "Indiquez 0 si votre bien n’en a pas."
+      "title": "Les petits plus",
+      "text": "Garages, parkings, cave, extérieurs : ils comptent aussi."
     },
     "5": {
       "title": "Votre projet",
       "text": "Cela m’aide à vous répondre au bon moment."
     },
     "6": {
-      "title": "Vos coordonnées",
-      "text": "Votre estimation s’affiche juste après l’envoi."
+      "title": "Dernière étape !",
+      "text": "Vérifiez votre résumé, puis indiquez où vous envoyer la réponse."
     }
   },
   "fields": {
@@ -108,14 +115,14 @@
     "cave": "Cave",
     "terrasse": "Balcon ou terrasse (m²)",
     "jardin": "Jardin",
-    "proprietaire": "Êtes-vous propriétaire de ce bien ?",
+    "proprietaire": "Êtes-vous propriétaire de ce bien ?",
     "objectif": "Votre objectif",
     "objectifOptions": {
       "vendre": "Vendre",
       "louer": "Louer",
       "renseigne": "Je me renseigne"
     },
-    "delai": "Dans quel délai ?",
+    "delai": "Dans quel délai ?",
     "delaiOptions": {
       "asap": "Dès que possible",
       "3mois": "Dans les 3 mois",
@@ -128,19 +135,69 @@
     "telephone": "Téléphone",
     "indicatif": "Indicatif",
     "numero": "Numéro",
-    "numeroHelp": "Exemple : 621 123 456",
+    "numeroHelp": "Exemple : 621 123 456",
     "message": "Message",
     "rgpd": "J’accepte qu’ImmoBuild Kohn utilise ces informations pour me recontacter au sujet de mon bien, comme expliqué dans la {link}.",
     "rgpdLink": "politique de confidentialité",
     "privacyNote": "Vos réponses et vos coordonnées sont envoyées par e-mail à ImmoBuild Kohn. Elles ne sont pas enregistrées dans une base de données.",
-    "honeypot": "Ne pas remplir ce champ"
+    "honeypot": "Ne pas remplir ce champ",
+    "typeHints": {
+      "appartement": "Studio, duplex, penthouse…",
+      "maison": "Mitoyenne, jumelée ou isolée"
+    },
+    "communeQuick": "Communes proches :",
+    "communeSelected": "Canton {deCanton}",
+    "surfaceSlider": "Surface (curseur)",
+    "terrainSlider": "Surface du terrain (curseur)",
+    "terrasseSlider": "Balcon ou terrasse (curseur)",
+    "decrease": "Retirer 1 – {label}",
+    "increase": "Ajouter 1 – {label}",
+    "etatHints": {
+      "neuf": "Jamais habité ou moins de 5 ans",
+      "renove": "Gros travaux faits récemment",
+      "bon": "Bien entretenu, habitable tel quel",
+      "rafraichir": "Peintures, sols, petits travaux",
+      "renover": "Travaux importants à prévoir"
+    },
+    "energieLegend": "Classe énergétique",
+    "energieUnknownShort": "Je ne sais pas",
+    "etageChips": {
+      "0": "RDC",
+      "1": "1er",
+      "2": "2e",
+      "3": "3e",
+      "4": "4e",
+      "5": "5e +"
+    },
+    "allGood": "Tout mettre sur « Bon »",
+    "posteShort": {
+      "mauvais": "Mauvais",
+      "moyen": "Moyen",
+      "bon": "Bon",
+      "neuf": "Neuf",
+      "inconnu": "?"
+    },
+    "posteUnknownLabel": "Je ne sais pas",
+    "caveHint": "Privative",
+    "jardinHint": "Privatif ou à usage exclusif",
+    "terrasseHelp": "0 si vous n’en avez pas.",
+    "proprietaireOptions": {
+      "oui": "Oui, c’est mon bien",
+      "non": "Non"
+    },
+    "objectifHints": {
+      "vendre": "Je pense mettre en vente",
+      "louer": "Je pense mettre en location",
+      "renseigne": "Je veux juste connaître sa valeur"
+    },
+    "anneePlaceholder": "ex. 1990"
   },
   "errors": {
     "required": "Ce champ est obligatoire.",
     "invalid": "Cette valeur n’est pas valide.",
     "range": "Cette valeur est hors limites.",
     "email": "Cette adresse e-mail n’est pas valide.",
-    "phone": "Ce numéro n’est pas valide. Exemple : 621 123 456.",
+    "phone": "Ce numéro n’est pas valide. Exemple : 621 123 456.",
     "rgpd": "Merci de cocher cette case pour voir votre estimation.",
     "commune": "Choisissez une commune dans la liste.",
     "summary": "Merci de corriger les champs signalés.",
@@ -159,14 +216,116 @@
     "highText": "Avec un acheteur coup de cœur",
     "indicativeTitle": "Estimation indicative",
     "indicativeHouse": "Il n’existe pas de prix de vente publics pour les maisons au Luxembourg. Ce calcul part des prix annoncés dans votre commune. La fourchette est donc plus large.",
-    "source": "Source : {source}. Période : {periode}.",
+    "source": "Source : {source}. Période : {periode}.",
     "disclaimer": "Estimation indicative basée sur des statistiques publiques. Elle ne remplace pas une estimation sur place.",
     "cta": "Prendre rendez-vous pour une estimation précise",
     "noDataTitle": "Merci, votre demande est bien envoyée",
     "noDataText": "Il n’y a pas assez de données publiques pour votre commune. Je vous recontacte avec une estimation personnalisée.",
     "sent": "Merci, votre demande m’a bien été envoyée.",
-    "sourceAppartement": "Observatoire de l’Habitat (Ministère du Logement) : ventes notariées, prix et loyers annoncés des appartements – data.public.lu, licence CC0",
-    "sourceMaison": "Observatoire de l’Habitat (Ministère du Logement) : prix annoncés des maisons – data.public.lu, licence CC0",
-    "sourceLink": "Voir les données"
+    "sourceAppartement": "Observatoire de l’Habitat (Ministère du Logement) : ventes notariées, prix et loyers annoncés des appartements – data.public.lu, licence CC0",
+    "sourceMaison": "Observatoire de l’Habitat (Ministère du Logement) : prix annoncés des maisons – data.public.lu, licence CC0",
+    "sourceLink": "Voir les données",
+    "ready": "Votre estimation est prête !",
+    "perM2": "soit {value} par m²",
+    "rangeTitle": "Votre fourchette de prix",
+    "gaugeTitle": "Votre bien parmi les ventes à {commune}",
+    "gaugeText": "Prix au m² des appartements vendus du {debut} au {fin}, sans les 5 % les moins chers ni les 5 % les plus chers.",
+    "gaugeYou": "Votre bien",
+    "gaugeAvg": "Moyenne",
+    "factorsTitle": "Ce qui joue sur votre prix",
+    "factorsNone": "Votre bien correspond à la moyenne de la commune : pas d’ajustement.",
+    "factorsCapped": "Pour rester prudent, le total des ajustements est plafonné.",
+    "reliabilityTitle": "Fiabilité des données",
+    "reliability": {
+      "high": "Bonne",
+      "medium": "Moyenne",
+      "low": "Limitée"
+    },
+    "reliabilityText": {
+      "appartement": {
+        "high": "Beaucoup de ventes récentes dans votre commune, et 3 méthodes qui concordent.",
+        "medium": "Des ventes réelles existent dans votre commune, mais elles sont moins nombreuses.",
+        "low": "Peu de ventes publiées dans votre commune : le calcul s’appuie sur votre canton."
+      },
+      "maison": {
+        "high": "",
+        "medium": "Calcul basé sur de nombreuses annonces de maisons dans votre commune.",
+        "low": "Peu d’annonces de maisons dans votre commune : prenez ce résultat avec prudence."
+      }
+    },
+    "communeTitle": "{commune} en chiffres",
+    "statNotarie": "Prix moyen de vente",
+    "statNotarieSub": "{n} ventes d’appartements",
+    "statAnnonceAppartement": "Prix moyen annoncé",
+    "statAnnonceMaison": "Prix moyen annoncé (maisons)",
+    "statAnnonceSub": "{n} annonces",
+    "statYou": "Votre estimation",
+    "statYouSub": "pour {n} m²",
+    "statCanton": "Moins de 10 ventes publiées dans votre commune : la médiane du canton {deCanton} est utilisée.",
+    "howTitle": "Comment ce prix est calculé",
+    "howAppartement": "Trois méthodes sont combinées : les ventes réelles enregistrées chez le notaire, les prix annoncés corrigés de l’écart habituel entre annonce et vente, et le rendement locatif. Ensuite, votre surface, l’état, l’énergie et les annexes ajustent le prix.",
+    "howMaison": "Il n’existe pas de prix de vente publics pour les maisons. Le calcul part du prix annoncé moyen des maisons dans votre commune, corrigé de l’écart habituel entre annonce et vente. Ensuite, votre surface, l’état, l’énergie, le terrain et les annexes ajustent le prix.",
+    "methods": {
+      "notarie": "Ventes notariées",
+      "annonces": "Annonces corrigées",
+      "capitalisation": "Rendement locatif",
+      "annonces_maison": "Annonces de maisons corrigées"
+    },
+    "methodLine": "{name} : {m2} par m² ({weight} du calcul)",
+    "nextTitle": "Et maintenant ?",
+    "next1": "Je reçois votre demande et je vous recontacte.",
+    "next2": "Sur place, j’affine le prix avec ce que les chiffres ne voient pas : vue, lumière, finitions, environnement.",
+    "print": "Imprimer ou enregistrer en PDF",
+    "restart": "Faire une autre estimation"
+  },
+  "stepsShort": {
+    "1": "Le bien",
+    "2": "Les données",
+    "3": "Les gros postes",
+    "4": "Les annexes",
+    "5": "Le projet",
+    "6": "Coordonnées"
+  },
+  "recap": {
+    "title": "Votre bien en résumé",
+    "edit": "Modifier",
+    "editStep": "Modifier : {step}",
+    "surface": "{n} m²",
+    "chambres": "{n} ch.",
+    "sdb": "{n} sdb",
+    "annee": "construit en {n}",
+    "energie": "classe {c}",
+    "terrain": "terrain {n} m²",
+    "garages": "{n} garage(s)",
+    "parkings": "{n} parking(s)",
+    "terrasse": "extérieur {n} m²"
+  },
+  "agent": {
+    "title": "Je m’occupe de votre demande",
+    "text": "Je reçois votre demande personnellement et je vous recontacte pour en parler."
+  },
+  "trust": {
+    "free": "Gratuit et sans engagement",
+    "data": "Vos données ne sont envoyées qu’à ImmoBuild Kohn",
+    "cookies": "Pas de cookie, pas de publicité"
+  },
+  "factors": {
+    "etat_neuf": "Bien neuf",
+    "etat_renove": "Rénové récemment",
+    "etat_rafraichir": "À rafraîchir",
+    "etat_renover": "À rénover",
+    "gros_postes": "État des gros postes",
+    "energie": "Classe énergétique {c}",
+    "rez_de_chaussee": "Rez-de-chaussée",
+    "etage_sans_ascenseur": "Étage élevé sans ascenseur",
+    "jardin_appartement": "Jardin",
+    "maison_mitoyenne": "Maison mitoyenne",
+    "maison_isolee": "Maison isolée",
+    "petit_terrain": "Terrain plus petit que la moyenne",
+    "grand_terrain": "Grand terrain",
+    "garage": "Garage × {n}",
+    "parking": "Parking extérieur × {n}",
+    "cave": "Cave",
+    "terrasse": "Balcon / terrasse ({n} m²)"
   }
 }

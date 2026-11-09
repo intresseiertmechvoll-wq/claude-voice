@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { translator } from '../src/i18n';
+import { loadLang, translator } from '../src/i18n';
 import { estimate } from '../src/shared/engine';
 import { renderResult } from '../src/ui/result';
 import { apartment, DATA, house, PARAMS } from './helpers';
@@ -42,5 +42,43 @@ describe('Écran de résultat', () => {
       const other = (await import(`../src/i18n/${lang}.json`)).default;
       expect(keys(other).sort()).toEqual(keys(fr).sort());
     }
+  });
+});
+
+describe('Résultat enrichi pour le visiteur', () => {
+  it('Appartement : explications, position dans la commune et fiabilité', () => {
+    const r = estimate(apartment({ energie: 'B', garages: 1 }), DATA, PARAMS).result;
+    expect(r.reliability).toBe('high'); // 130 ventes, 3 méthodes gardées
+    expect(r.pricePerM2).toBe(Math.round(r.market! / 80));
+    expect(r.factors).toEqual(expect.arrayContaining([expect.objectContaining({ key: 'energie_B', kind: 'pct', value: 0.03 }), expect.objectContaining({ key: 'garage', kind: 'eur', qty: 1 })]));
+    expect(r.communeStats).toMatchObject({ notarieM2: 6512, notarieMinM2: 4534, notarieMaxM2: 8901, ventes: 130 });
+    const html = renderResult(r, translator('fr'), 'fr', '#');
+    expect(html).toContain('Votre bien parmi les ventes à Dudelange');
+    expect(html).toContain('Classe énergétique B');
+    expect(html).toContain('Fiabilité des données');
+  });
+
+  it('Maison : pas de comparaison avec les ventes d’appartements, fiabilité affichée', () => {
+    const r = estimate(house(), DATA, PARAMS).result;
+    expect(r.communeStats?.notarieM2).toBeNull();
+    expect(r.reliability).toBe('medium'); // 356 annonces de maisons à Dudelange
+    const html = renderResult(r, translator('fr'), 'fr', '#');
+    expect(html).not.toContain('Votre bien parmi les ventes');
+    expect(html).not.toContain('ventes d’appartements');
+  });
+
+  it('Commune sur la médiane du canton : fiabilité « limitée » et explication', () => {
+    const r = estimate(apartment({ commune: 'Leudelange' }), DATA, PARAMS).result;
+    expect(r.reliability).toBe('low');
+    const html = renderResult(r, translator('fr'), 'fr', '#');
+    expect(html).toContain('la médiane du canton d’Esch-sur-Alzette est utilisée');
+  });
+
+  it('Textes en allemand chargés à la demande', async () => {
+    await loadLang('de');
+    const r = estimate(house(), DATA, PARAMS).result;
+    const html = renderResult(r, translator('de'), 'de', '#');
+    expect(html).toContain('Unverbindliche Schätzung');
+    expect(html).toContain('Marktwert');
   });
 });

@@ -29,7 +29,7 @@
     f.title = LANGS[lang];
     f.setAttribute('data-immobuild-frame', '');
     f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
-    f.style.cssText = 'display:block;width:100%;height:640px;border:0;overflow:hidden;background:transparent;';
+    f.style.cssText = 'display:block;width:100%;height:720px;border:0;overflow:hidden;background:#f8f8f6;border-radius:22px;';
     el.appendChild(f);
   }
 

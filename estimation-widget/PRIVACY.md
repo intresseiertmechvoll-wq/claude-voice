@@ -21,7 +21,7 @@ Ce document décrit ce que fait l'outil, pour t'aider à mettre à jour ta polit
 | Langue de l'outil, page du site d'où vient la demande (adresse sans paramètres), date et heure | automatique | navigateur / serveur |
 | Adresse IP | automatique | technique, voir point 4 |
 
-L'estimation calculée (3 valeurs et détail du calcul) est ajoutée à l'e-mail.
+L'estimation calculée (3 valeurs et détail du calcul) est ajoutée à l'e-mail. Le résultat affiché au visiteur (chiffres de sa commune, facteurs, fiabilité) ne contient que des statistiques publiques et ses propres réponses. Le bouton « Imprimer ou enregistrer en PDF » fonctionne dans son navigateur : rien n'est envoyé.
 
 ## 2. Pourquoi (finalités)
 

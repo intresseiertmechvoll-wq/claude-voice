@@ -66,6 +66,9 @@ export interface CommuneData {
   canton: string;
   notarie_existant_ventes: number | null;
   notarie_existant_m2: number | null;
+  /** fourchette publiée : 5 % des ventes les moins chères et 5 % les plus chères exclues */
+  notarie_existant_min_m2?: number | null;
+  notarie_existant_max_m2?: number | null;
   notarie_vefa_ventes: number | null;
   notarie_vefa_m2: number | null;
   annonce_appartement_offres: number | null;
@@ -87,7 +90,20 @@ export interface Dataset {
   communes: CommuneData[];
 }
 
-/** Résultat envoyé au navigateur (sans le détail du calcul) */
+export type FactorKey = string;
+
+/** Un élément qui fait monter ou baisser l'estimation, montré au visiteur */
+export interface PublicFactor {
+  key: FactorKey;
+  /** pct : coefficient (0.02 = +2 %) ; eur : montant d'une annexe */
+  kind: 'pct' | 'eur';
+  value: number;
+  qty?: number;
+}
+
+export type Reliability = 'high' | 'medium' | 'low';
+
+/** Résultat envoyé au navigateur, seulement après des coordonnées valides */
 export interface PublicResult {
   status: 'ok' | 'insufficient_data';
   type: PropertyType;
@@ -103,4 +119,22 @@ export interface PublicResult {
   periodeFin: string;
   source: string;
   sourceUrl: string;
+  surface?: number;
+  /** valeur de marché ÷ surface */
+  pricePerM2?: number | null;
+  factors?: PublicFactor[];
+  /** vrai si la somme des coefficients a été plafonnée */
+  factorsCapped?: boolean;
+  methods?: { key: 'notarie' | 'annonces' | 'capitalisation' | 'annonces_maison'; m2: number; weight: number }[];
+  reliability?: Reliability | null;
+  communeStats?: {
+    canton: string;
+    notarieM2: number | null;
+    notarieMinM2: number | null;
+    notarieMaxM2: number | null;
+    ventes: number | null;
+    notarieFromCanton: boolean;
+    annonceM2: number | null;
+    offres: number | null;
+  };
 }

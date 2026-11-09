@@ -19,6 +19,14 @@ L'outil est indépendant de tes sites : il s'affiche dans une iframe, sur WordPr
 
 Pas de base de données, pas de cookie, pas de traceur. Les polices sont incluses dans l'outil (pas de Google Fonts).
 
+### Ce que vit le visiteur
+
+- **Un parcours visuel** : cartes illustrées (appartement / maison, type de maison, état, projet, délai), boutons − / + pour les chambres, salles de bain, garages et parkings, curseurs pour les surfaces, étiquette énergie en couleurs (A+ à I), notes des gros postes avec un bouton « Tout mettre sur Bon », interrupteurs pour la cave et le jardin.
+- **Rapide** : raccourcis vers les communes proches de Dudelange (réglables), recherche de commune tolérante aux accents, canton affiché dès le choix, résumé du bien qui se construit en haut de l'écran.
+- **Rassurant** : progression avec icônes, erreurs expliquées et effacées dès que le champ est correct, récapitulatif modifiable avant l'envoi, engagements clairs (gratuit, sans engagement, pas de cookie).
+- **Un résultat utile pour lui** : valeur de marché en grand et prix au m², fourchette basse / haute, position de son bien parmi les ventes réelles de sa commune (appartements), chiffres de la commune, ce qui fait monter ou baisser son prix, fiabilité des données, explication du calcul, prochaines étapes, impression / PDF.
+- **Accessible et léger** : 0 erreur axe-core (WCAG 2.1 AA) sur tous les écrans capturés, utilisable au clavier, animations coupées si le visiteur le demande à son système. Lighthouse mobile (en local) : performance 100, accessibilité 100, bonnes pratiques 100, 77 Ko au total.
+
 ---
 
 ## 1. Installer
@@ -53,7 +61,7 @@ Puis ouvre :
 
 En local, `.dev.vars` contient `EMAIL_MODE=log` : **aucun e-mail ne part**. Le contenu de l'e-mail du lead s'affiche dans le terminal.
 
-Captures d'écran mobiles de chaque étape (serveur local lancé, Playwright installé avec `npm i -D playwright && npx playwright install chromium`) :
+Captures d'écran mobiles de chaque étape et audit d'accessibilité (serveur local lancé, Playwright installé avec `npm i -D playwright && npx playwright install chromium`) :
 
 ```bash
 npm run screenshots   # → dossier screenshots/
@@ -243,10 +251,18 @@ Valeurs de départ simples et prudentes, choisies pour cet outil. Aucune grille 
 | Annexes maison | garage 20 000 €, parking extérieur 5 000 €, cave 0, terrasse 0 | La cave et la terrasse sont courantes dans les maisons, donc déjà dans le prix annoncé. |
 | Ajustement des annexes | × (prix de base ÷ 7 000 €/m²), borné entre 0,7 et 1,3 | Un garage vaut plus à Luxembourg-Ville qu'à Wiltz. |
 | Arrondi | 5 000 € | Ta consigne. |
+| Fiabilité affichée au visiteur | appartement : « bonne » si ≥ 50 ventes dans la commune et 3 méthodes gardées, « moyenne » si ventes propres à la commune, sinon « limitée » ; maison : « moyenne » si ≥ 100 annonces de maisons, sinon « limitée » | Règle simple et visible (idée V2 de l'audit). |
+| Priorité du lead (e-mail) | chaud : propriétaire + vendre + dans les 3 mois ; tiède : propriétaire qui veut vendre ou louer plus tard ; froid : le reste | Pour savoir qui rappeler en premier. Règle dans `src/shared/email.ts`. |
 
 Non utilisés dans le calcul (mais présents dans l'e-mail) : année de construction, chambres, salles de bain, rue, prix VEFA.
 
-Autres réglages, dans `config.json` : lien de la page contact et de la politique de confidentialité (**à vérifier : je ne connais pas tes vraies adresses**), adresse des leads par défaut, nombre d'envois par heure.
+Autres réglages, dans `config.json` :
+
+- lien de la page contact et de la politique de confidentialité (**à vérifier : je ne connais pas tes vraies adresses**) ;
+- `agent` : ton prénom et ta ligne de présentation ; `photo` : chemin d'une photo placée dans `public/` (ex. `/jay.jpg`), sinon l'initiale s'affiche ;
+- `phone` : ton numéro, affiché comme bouton « appeler » sous le résultat (vide = pas de bouton) ;
+- `quickCommunes` : les raccourcis de l'étape 1 ;
+- adresse des leads par défaut, nombre d'envois par heure.
 
 ## Sécurité et données personnelles
 
@@ -260,7 +276,7 @@ Autres réglages, dans `config.json` : lien de la page contact et de la politiqu
 
 ## Tests
 
-`npm test` lance 28 tests, dont ceux demandés :
+`npm test` lance 32 tests, dont ceux demandés :
 
 | Test | Fichier |
 | --- | --- |
@@ -270,3 +286,6 @@ Autres réglages, dans `config.json` : lien de la page contact et de la politiqu
 | Changer seulement la classe énergétique change le prix | `tests/engine.test.ts` |
 | Sans case RGPD → refusé ; honeypot → bloqué | `tests/api.test.ts` |
 | Jamais de résultat sans coordonnées valides | `tests/api.test.ts` |
+| Résultat enrichi (position dans la commune, facteurs, fiabilité, allemand) | `tests/result-view.test.ts` |
+
+`npm run screenshots` (serveur local lancé) parcourt tout le questionnaire comme un visiteur, prend les captures et lance un audit d'accessibilité axe-core (WCAG 2.1 AA) sur chaque écran.
