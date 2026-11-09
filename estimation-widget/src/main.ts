@@ -144,7 +144,6 @@ function render(focus = true) {
       <li>${icon('cadeau', 'ico ico-xs')}${esc(t('intro.badges.free'))}</li>
       <li>${icon('check', 'ico ico-xs')}${esc(t('intro.badges.commitment'))}</li>
       <li>${icon('donnees', 'ico ico-xs')}${esc(t('intro.badges.official'))}</li>
-      <li>${icon('asap', 'ico ico-xs')}${esc(t('intro.badges.instant'))}</li>
     </ul>
   </header>`
       : ''
@@ -158,13 +157,13 @@ function render(focus = true) {
         <span class="step-ico">${icon(STEP_ICONS[s - 1])}</span>
         <div>
           <h2 class="step-title" id="step-title" tabindex="-1">${esc(t(`steps.${s}.title`))}</h2>
-          <p class="step-text">${esc(t(`steps.${s}.text`))}</p>
+
         </div>
       </div>
+      ${coachHtml()}
       ${summary}
       ${renderStep(s, { t, lang, v: state.values, e: state.errors, privacyUrl, quickCommunes: config.quickCommunes })}
     </div>
-    ${s === TOTAL && config.agent?.name ? `<div class="agent-inline"><span class="avatar" aria-hidden="true">${esc(config.agent.name.charAt(0))}</span><p><strong>${esc(t('agent.title'))}</strong><br>${esc(t('agent.text'))}</p></div>` : ''}
     <div class="actions">
       ${
         s === TOTAL
@@ -237,6 +236,7 @@ function after(focus: boolean) {
 
 function setCommune(name: string) {
   state.values.commune = name;
+  coachSay('coach.commune', { commune: name });
   clearError('commune');
   const canton = COMMUNES.find((c) => c.name === name)?.canton;
   const out = app.querySelector('#commune-canton');
@@ -279,6 +279,35 @@ function checkOne(name: string, showNew: boolean) {
   else if (showNew || state.errors[name]) setFieldError(name, errors[name]);
 }
 
+/* ---------- Bulle de Jay : un mot par étape, et des réactions aux réponses ---------- */
+let coachText = '';
+function coachHtml(): string {
+  coachText = t(state.step === 1 ? 'coach.start' : `coach.step${state.step}`);
+  const name = config.agent?.name ?? '';
+  const avatar = config.agent?.photo ? `<img class="avatar avatar-sm" src="${esc(config.agent.photo)}" alt="" width="40" height="40">` : `<span class="avatar avatar-sm" aria-hidden="true">${esc(name.charAt(0))}</span>`;
+  return `<div class="coach">${avatar}<p class="coach-bubble" id="coach" aria-live="polite">${esc(coachText)}</p></div>`;
+}
+function coachSay(key: string, vars?: Record<string, string>) {
+  const el = app.querySelector<HTMLElement>('#coach');
+  const text = t(key, vars);
+  if (!el || text === coachText) return;
+  coachText = text;
+  el.textContent = text;
+  el.classList.remove('pop');
+  void el.offsetWidth;
+  el.classList.add('pop');
+}
+function coachReact(name: string, value: unknown) {
+  const v = String(value);
+  if (name === 'type') return coachSay(`coach.${v}`);
+  if (name === 'energie') return coachSay(['A+', 'A', 'B'].includes(v) ? 'coach.energieGood' : ['G', 'H', 'I'].includes(v) ? 'coach.energieBad' : v === 'inconnu' ? 'coach.energieUnknown' : `coach.step2`);
+  if (name.startsWith('poste_') && v === 'mauvais') return coachSay('coach.bad');
+  if ((name === 'jardin' || name === 'cave') && value === true) return coachSay(`coach.${name}`);
+  if (name === 'garages' && Number(v) > 0) return coachSay('coach.garage');
+  if (name === 'objectif') return coachSay(`coach.${v}`);
+  if (name === 'proprietaire' && v === 'non') return coachSay('coach.nonProprio');
+}
+
 /* ---------- Saisie ---------- */
 app.addEventListener('input', onInput);
 app.addEventListener('change', onInput);
@@ -300,6 +329,7 @@ function onInput(e: Event) {
   else if (el instanceof HTMLInputElement && el.type === 'radio') {
     if (el.checked) state.values[el.name] = el.value;
   } else state.values[el.name] = el.value;
+  if (e.type === 'change') coachReact(el.name, state.values[el.name]);
 
   // Curseur lié à un champ numérique
   const range = app.querySelector<HTMLInputElement>(`input[type="range"][data-sync="${el.name}"]`);
@@ -333,6 +363,7 @@ app.addEventListener('click', (e) => {
     void input.offsetWidth;
     input.classList.add('bump');
     checkOne(name, false);
+    coachReact(name, next);
     return;
   }
 
@@ -352,6 +383,7 @@ app.addEventListener('click', (e) => {
       state.values[r.name] = val;
       clearError(r.name);
     });
+    coachSay('coach.allGood');
     return;
   }
 

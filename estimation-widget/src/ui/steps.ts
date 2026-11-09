@@ -133,7 +133,7 @@ function toggle(ctx: Ctx, name: string, label: string, hint: string, ico: string
   <input type="checkbox" id="${name}" name="${name}"${ctx.v[name] === true ? ' checked' : ''}>
   <span class="toggle-box">
     <span class="option-icon">${icon(ico)}</span>
-    <span class="option-text"><span class="option-label">${esc(label)}</span><span class="option-hint">${esc(hint)}</span></span>
+    <span class="option-text"><span class="option-label">${esc(label)}</span>${hint ? `<span class="option-hint">${esc(hint)}</span>` : ''}</span>
     <span class="switch" aria-hidden="true"></span>
   </span>
 </label>`;
@@ -186,8 +186,8 @@ function recapCard(ctx: Ctx): string {
     v.jardin === true && t('fields.jardin'),
   ]);
   line(5, [t(`fields.objectifOptions.${v.objectif}`), t(`fields.delaiOptions.${v.delai}`)]);
-  return `<section class="recap" aria-labelledby="recap-title">
-  <h3 id="recap-title">${icon(v.type === 'maison' ? 'maison' : 'appartement')}<span>${esc(t('recap.title'))}</span></h3>
+  return `<details class="recap">
+  <summary>${icon(v.type === 'maison' ? 'maison' : 'appartement')}<span>${esc(t('recap.title'))}</span></summary>
   <ul>
     ${rows
       .map(
@@ -195,7 +195,7 @@ function recapCard(ctx: Ctx): string {
       )
       .join('')}
   </ul>
-</section>`;
+</details>`;
 }
 
 /* ---------- Étapes ---------- */
@@ -203,12 +203,11 @@ function recapCard(ctx: Ctx): string {
 function step1(ctx: Ctx): string {
   const { t, v } = ctx;
   const canton = COMMUNES.find((c) => c.name === v.commune)?.canton;
-  return `${choices(ctx, 'type', t('fields.type'), opts(t, 'fields.typeOptions', ['appartement', 'maison'], { appartement: 'appartement', maison: 'maison' }, 'fields.typeHints'), 'tiles')}
+  return `${choices(ctx, 'type', t('fields.type'), opts(t, 'fields.typeOptions', ['appartement', 'maison'], { appartement: 'appartement', maison: 'maison' }), 'tiles')}
 <div class="field combobox${hasErr(ctx, 'commune')}" data-field="commune">
   <label for="commune" id="commune-label">${icon('epingle', 'ico ico-label')}<span>${esc(t('fields.commune'))}</span></label>
-  <p class="help" id="commune-help">${esc(t('fields.communeHelp'))}</p>
   <div class="combo">
-    <input type="text" id="commune" name="commune" value="${esc(v.commune ?? '')}" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="commune-list" autocomplete="off" spellcheck="false" aria-required="true"${invalid(ctx, 'commune')}${describedBy(ctx, 'commune', true)}>
+    <input type="text" id="commune" name="commune" value="${esc(v.commune ?? '')}" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="commune-list" autocomplete="off" spellcheck="false" placeholder="${esc(t('fields.communePlaceholder'))}" aria-required="true"${invalid(ctx, 'commune')}${describedBy(ctx, 'commune', false)}>
     <ul id="commune-list" role="listbox" aria-labelledby="commune-label" hidden></ul>
   </div>
   <p class="commune-canton" id="commune-canton" aria-live="polite">${canton ? `${icon('check', 'ico ico-xs')}${esc(t('fields.communeSelected', { deCanton: deCanton(canton, ctx.lang) }))}` : ''}</p>
@@ -257,13 +256,13 @@ function step2(ctx: Ctx): string {
   ${stepper(ctx, 'chambres', t('fields.chambres'), LIMITS.chambres)}
   ${stepper(ctx, 'sdb', t('fields.sdb'), { min: 0, max: LIMITS.sdb.max })}
 </div>
-${input(ctx, 'annee', t('fields.annee'), { help: t('fields.anneeHelp'), inputmode: 'numeric', placeholder: t('fields.anneePlaceholder'), maxlength: 4 })}
-${choices(ctx, 'etat', t('fields.etat'), opts(t, 'fields.etatOptions', ETATS, ETAT_ICONS, 'fields.etatHints'), 'list')}
+${input(ctx, 'annee', t('fields.annee'), { inputmode: 'numeric', placeholder: t('fields.anneePlaceholder'), maxlength: 4 })}
+${choices(ctx, 'etat', t('fields.etat'), opts(t, 'fields.etatOptions', ETATS, ETAT_ICONS), 'list')}
 ${energyScale(ctx)}
 ${
   house
     ? `${choices(ctx, 'maisonType', t('fields.maisonType'), opts(t, 'fields.maisonTypeOptions', MAISON_TYPES, { mitoyenne: 'mitoyenne', jumelee: 'jumelee', isolee: 'isolee' }), 'tiles')}
-${slider(ctx, 'terrain', t('fields.terrain'), t('fields.terrainSlider'), { min: 0, max: 2000, step: 10, help: t('fields.terrainHelp'), ico: 'jardin' })}`
+${slider(ctx, 'terrain', t('fields.terrain'), t('fields.terrainSlider'), { min: 0, max: 2000, step: 10, ico: 'jardin' })}`
     : `${choices(ctx, 'etage', t('fields.etage'), ['0', '1', '2', '3', '4', '5'].map((value) => ({ value, label: t(`fields.etageChips.${value}`) })), 'chips', 'escalier')}
 ${choices(ctx, 'ascenseur', t('fields.ascenseur'), [{ value: 'oui', label: t('yes') }, { value: 'non', label: t('no') }], 'chips', 'ascenseur')}`
 }`;
@@ -302,10 +301,10 @@ function step4(ctx: Ctx): string {
   ${stepper(ctx, 'parkings', t('fields.parkings'), LIMITS.parkings, 'parking')}
 </div>
 <div class="toggles">
-  ${toggle(ctx, 'cave', t('fields.cave'), t('fields.caveHint'), 'cave')}
-  ${toggle(ctx, 'jardin', t('fields.jardin'), t('fields.jardinHint'), 'jardin')}
+  ${toggle(ctx, 'cave', t('fields.cave'), '', 'cave')}
+  ${toggle(ctx, 'jardin', t('fields.jardin'), '', 'jardin')}
 </div>
-${slider(ctx, 'terrasse', t('fields.terrasse'), t('fields.terrasseSlider'), { min: 0, max: v.type === 'maison' ? 150 : 60, step: 1, help: t('fields.terrasseHelp'), ico: 'terrasse' })}`;
+${slider(ctx, 'terrasse', t('fields.terrasse'), t('fields.terrasseSlider'), { min: 0, max: v.type === 'maison' ? 150 : 60, step: 1, ico: 'terrasse' })}`;
 }
 
 function step5(ctx: Ctx): string {
@@ -314,7 +313,7 @@ function step5(ctx: Ctx): string {
     { value: 'oui', label: t('fields.proprietaireOptions.oui'), icon: 'cle' },
     { value: 'non', label: t('fields.proprietaireOptions.non'), icon: 'personne' },
   ], 'tiles')}
-${choices(ctx, 'objectif', t('fields.objectif'), opts(t, 'fields.objectifOptions', OBJECTIFS, OBJECTIF_ICONS, 'fields.objectifHints'), 'list')}
+${choices(ctx, 'objectif', t('fields.objectif'), opts(t, 'fields.objectifOptions', OBJECTIFS, OBJECTIF_ICONS), 'tiles')}
 ${choices(ctx, 'delai', t('fields.delai'), opts(t, 'fields.delaiOptions', DELAIS, DELAI_ICONS), 'tiles')}`;
 }
 
@@ -330,7 +329,6 @@ function step6(ctx: Ctx): string {
 ${input(ctx, 'email', t('fields.email'), { type: 'email', autocomplete: 'email', inputmode: 'email', maxlength: 254 })}
 <fieldset class="field phone${phoneErr ? ' has-error' : ''}" data-field="numero">
   <legend><span>${esc(t('fields.telephone'))}</span></legend>
-  <p class="help" id="numero-help">${esc(t('fields.numeroHelp'))}</p>
   <div class="phone-row">
     <div class="phone-code">
       <label for="indicatif" class="sr-only">${esc(t('fields.indicatif'))}</label>
@@ -340,7 +338,7 @@ ${input(ctx, 'email', t('fields.email'), { type: 'email', autocomplete: 'email',
     </div>
     <div class="phone-number">
       <label for="numero" class="sr-only">${esc(t('fields.numero'))}</label>
-      <input type="tel" id="numero" name="numero" value="${esc(ctx.v.numero ?? '')}" autocomplete="tel-national" inputmode="tel" maxlength="20" aria-required="true"${invalid(ctx, 'numero')}${describedBy(ctx, 'numero', true)}>
+      <input type="tel" id="numero" name="numero" value="${esc(ctx.v.numero ?? '')}" autocomplete="tel-national" inputmode="tel" maxlength="20" placeholder="${esc(t('fields.numeroPlaceholder'))}" aria-required="true"${invalid(ctx, 'numero')}${describedBy(ctx, 'numero', false)}>
     </div>
   </div>
   ${errorMessage(ctx, 'numero')}
@@ -361,11 +359,7 @@ ${input(ctx, 'email', t('fields.email'), { type: 'email', autocomplete: 'email',
   </label>
   ${errorMessage(ctx, 'rgpd')}
 </div>
-<ul class="trust">
-  <li>${icon('cadeau', 'ico ico-sm')}<span>${esc(t('trust.free'))}</span></li>
-  <li>${icon('bouclier', 'ico ico-sm')}<span>${esc(t('trust.data'))}</span></li>
-  <li>${icon('check', 'ico ico-sm')}<span>${esc(t('trust.cookies'))}</span></li>
-</ul>`;
+<p class="trust">${icon('bouclier', 'ico ico-sm')}<span>${esc(t('trust.line'))}</span></p>`;
 }
 
 const STEPS = [step1, step2, step3, step4, step5, step6];

@@ -4,8 +4,8 @@
   },
   "intro": {
     "kicker": "Estimation gratuite · ImmoBuild Kohn",
-    "title": "Combien vaut votre bien ?",
-    "text": "Répondez à quelques questions simples. Votre fourchette de prix s’affiche dès la fin.",
+    "title": "Combien vaut votre chez-vous ?",
+    "text": "Quelques clics, et vous savez.",
     "badges": {
       "free": "Gratuit",
       "commitment": "Sans engagement",
@@ -25,28 +25,28 @@
   "no": "Non",
   "steps": {
     "1": {
-      "title": "Parlons de votre bien",
-      "text": "Appartement ou maison, et où se trouve-t-il ?"
+      "title": "Votre chez-vous",
+      "text": ""
     },
     "2": {
-      "title": "Ses caractéristiques",
-      "text": "Une valeur approximative suffit si vous n’êtes pas sûr."
+      "title": "Racontez-le-moi",
+      "text": ""
     },
     "3": {
-      "title": "L’état des gros postes",
-      "text": "Une note par poste. Pas sûr ? Choisissez « ? »."
+      "title": "Comment se porte-t-il ?",
+      "text": ""
     },
     "4": {
       "title": "Les petits plus",
-      "text": "Garages, parkings, cave, extérieurs : ils comptent aussi."
+      "text": ""
     },
     "5": {
-      "title": "Votre projet",
-      "text": "Cela m’aide à vous répondre au bon moment."
+      "title": "Et votre projet ?",
+      "text": ""
     },
     "6": {
-      "title": "Dernière étape !",
-      "text": "Vérifiez votre résumé, puis indiquez où vous envoyer la réponse."
+      "title": "Presque fini !",
+      "text": ""
     }
   },
   "fields": {
@@ -74,7 +74,7 @@
       "renover": "À rénover"
     },
     "energie": "Classe énergétique",
-    "energieHelp": "Elle figure sur le certificat de performance énergétique (passeport énergétique).",
+    "energieHelp": "Voir le passeport énergétique.",
     "energieUnknown": "Je ne sais pas",
     "choose": "Choisir…",
     "etage": "Étage",
@@ -192,7 +192,9 @@
     },
     "anneePlaceholder": "ex. 1990",
     "energieLow": "Économe",
-    "energieHigh": "Énergivore"
+    "energieHigh": "Énergivore",
+    "communePlaceholder": "Ex. Dudelange",
+    "numeroPlaceholder": "621 123 456"
   },
   "errors": {
     "required": "Ce champ est obligatoire.",
@@ -217,21 +219,21 @@
     "high": "Valeur haute",
     "highText": "Avec un acheteur coup de cœur",
     "indicativeTitle": "Estimation indicative",
-    "indicativeHouse": "Il n’existe pas de prix de vente publics pour les maisons au Luxembourg. Ce calcul part des prix annoncés dans votre commune. La fourchette est donc plus large.",
+    "indicativeHouse": "Pas de prix de vente publics pour les maisons : calcul à partir des annonces, fourchette plus large.",
     "source": "Source : {source}. Période : {periode}.",
     "disclaimer": "Estimation indicative basée sur des statistiques publiques. Elle ne remplace pas une estimation sur place.",
     "cta": "Prendre rendez-vous pour une estimation précise",
     "noDataTitle": "Merci, votre demande est bien envoyée",
     "noDataText": "Il n’y a pas assez de données publiques pour votre commune. Je vous recontacte avec une estimation personnalisée.",
-    "sent": "Merci, votre demande m’a bien été envoyée.",
-    "sourceAppartement": "Observatoire de l’Habitat (Ministère du Logement) : ventes notariées, prix et loyers annoncés des appartements – data.public.lu, licence CC0",
-    "sourceMaison": "Observatoire de l’Habitat (Ministère du Logement) : prix annoncés des maisons – data.public.lu, licence CC0",
+    "sent": "Demande bien reçue",
+    "sourceAppartement": "Observatoire de l’Habitat (data.public.lu)",
+    "sourceMaison": "Observatoire de l’Habitat (data.public.lu)",
     "sourceLink": "Voir les données",
-    "ready": "Votre estimation est prête !",
+    "ready": "Voilà votre estimation !",
     "perM2": "soit {value} par m²",
     "rangeTitle": "Votre fourchette de prix",
     "gaugeTitle": "Votre bien parmi les ventes à {commune}",
-    "gaugeText": "Prix au m² des appartements vendus du {debut} au {fin}, sans les 5 % les moins chers ni les 5 % les plus chers.",
+    "gaugeText": "Ventes d’appartements du {debut} au {fin}.",
     "gaugeYou": "Votre bien",
     "gaugeAvg": "Moyenne",
     "factorsTitle": "Ce qui joue sur votre prix",
@@ -245,14 +247,14 @@
     },
     "reliabilityText": {
       "appartement": {
-        "high": "Beaucoup de ventes récentes dans votre commune, et 3 méthodes qui concordent.",
-        "medium": "Des ventes réelles existent dans votre commune, mais elles sont moins nombreuses.",
-        "low": "Peu de ventes publiées dans votre commune : le calcul s’appuie sur votre canton."
+        "high": "Beaucoup de ventes récentes dans votre commune.",
+        "medium": "Des ventes réelles, mais moins nombreuses.",
+        "low": "Peu de ventes : calcul appuyé sur le canton."
       },
       "maison": {
         "high": "",
-        "medium": "Calcul basé sur de nombreuses annonces de maisons dans votre commune.",
-        "low": "Peu d’annonces de maisons dans votre commune : prenez ce résultat avec prudence."
+        "medium": "Basé sur de nombreuses annonces de maisons.",
+        "low": "Peu d’annonces : à prendre avec prudence."
       }
     },
     "communeTitle": "{commune} en chiffres",
@@ -276,7 +278,7 @@
     "methodLine": "{name} : {m2} par m² ({weight} du calcul)",
     "nextTitle": "Et maintenant ?",
     "next1": "Je reçois votre demande et je vous recontacte.",
-    "next2": "Sur place, j’affine le prix avec ce que les chiffres ne voient pas : vue, lumière, finitions, environnement.",
+    "next2": "Sur place, j’affine avec ce que les chiffres ne voient pas.",
     "print": "Imprimer ou enregistrer en PDF",
     "restart": "Faire une autre estimation"
   },
@@ -310,7 +312,8 @@
   "trust": {
     "free": "Gratuit et sans engagement",
     "data": "Vos données ne sont envoyées qu’à ImmoBuild Kohn",
-    "cookies": "Pas de cookie, pas de publicité"
+    "cookies": "Pas de cookie, pas de publicité",
+    "line": "Gratuit · sans engagement · sans cookie"
   },
   "factors": {
     "etat_neuf": "Bien neuf",
@@ -368,7 +371,7 @@
   },
   "whatif": {
     "title": "Et si… ?",
-    "text": "Testez l’effet de travaux sur votre prix. Votre estimation de départ ne change pas.",
+    "text": "Testez l’effet de travaux. Votre estimation ne change pas.",
     "energy": "Classe énergétique après travaux",
     "etat": "État général",
     "works": "Travaux",
@@ -387,6 +390,29 @@
     "error": "Le calcul n’a pas abouti. Réessayez.",
     "reset": "Revenir à mon bien",
     "note": "Indicatif, sans compter le coût des travaux.",
-    "teaser": "Et si vous faisiez des travaux ? Testez l’effet sur votre prix"
+    "teaser": "Et si vous faisiez des travaux ?"
+  },
+  "coach": {
+    "start": "Bonjour ! Je suis Jay. Quelques clics et je vous donne une fourchette.",
+    "step2": "Une valeur approximative suffit.",
+    "step3": "Pas sûr ? Choisissez « ? ».",
+    "step4": "Ça compte aussi dans le prix !",
+    "step5": "Ça m’aide à vous répondre au bon moment.",
+    "step6": "Dernière étape, ensuite je calcule tout !",
+    "appartement": "Un appartement, parfait !",
+    "maison": "Une maison, j’adore !",
+    "commune": "{commune}, c’est noté !",
+    "energieGood": "Bravo, très bonne classe énergétique !",
+    "energieBad": "Pas de souci, j’en tiens compte.",
+    "energieUnknown": "Pas grave, on fait sans.",
+    "allGood": "Bien entretenu, top !",
+    "bad": "Merci pour votre franchise.",
+    "garage": "Un garage, ça compte !",
+    "jardin": "Un jardin, c’est un vrai plus !",
+    "cave": "Une cave, toujours pratique.",
+    "vendre": "Vendre ? Je suis là pour ça.",
+    "louer": "Louer, bonne idée aussi.",
+    "renseigne": "Bonne idée de vous renseigner d’abord.",
+    "nonProprio": "Pas de souci, l’estimation reste possible."
   }
 }

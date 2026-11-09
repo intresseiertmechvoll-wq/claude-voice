@@ -3,8 +3,8 @@
     "title": "Kostenlose Bewertung – ImmoBuild Kohn"
   },
   "intro": {
-    "title": "Was ist Ihre Immobilie wert?",
-    "text": "Beantworten Sie ein paar einfache Fragen. Ihre Preisspanne erscheint direkt am Ende.",
+    "title": "Was ist Ihr Zuhause wert?",
+    "text": "Ein paar Klicks, und Sie wissen es.",
     "kicker": "Kostenlose Bewertung · ImmoBuild Kohn",
     "badges": {
       "free": "Kostenlos",
@@ -25,28 +25,28 @@
   "no": "Nein",
   "steps": {
     "1": {
-      "title": "Sprechen wir über Ihre Immobilie",
-      "text": "Wohnung oder Haus, und wo liegt sie?"
+      "title": "Ihr Zuhause",
+      "text": ""
     },
     "2": {
-      "title": "Die Eckdaten",
-      "text": "Ein ungefährer Wert reicht, wenn Sie nicht sicher sind."
+      "title": "Erzählen Sie mir davon",
+      "text": ""
     },
     "3": {
-      "title": "Zustand der wichtigsten Bauteile",
-      "text": "Eine Note pro Bauteil. Nicht sicher? Wählen Sie „?“."
+      "title": "Wie gut ist der Zustand?",
+      "text": ""
     },
     "4": {
       "title": "Die kleinen Extras",
-      "text": "Garagen, Stellplätze, Keller, Außenflächen: Sie zählen mit."
+      "text": ""
     },
     "5": {
-      "title": "Ihr Vorhaben",
-      "text": "So kann ich Ihnen zum richtigen Zeitpunkt antworten."
+      "title": "Und Ihr Vorhaben?",
+      "text": ""
     },
     "6": {
-      "title": "Letzter Schritt!",
-      "text": "Prüfen Sie Ihre Zusammenfassung und sagen Sie mir, wohin ich die Antwort schicken soll."
+      "title": "Fast geschafft!",
+      "text": ""
     }
   },
   "fields": {
@@ -74,7 +74,7 @@
       "renover": "Renovierungsbedürftig"
     },
     "energie": "Energieklasse",
-    "energieHelp": "Sie steht auf dem Energiepass.",
+    "energieHelp": "Siehe Energiepass.",
     "energieUnknown": "Weiß nicht",
     "choose": "Bitte wählen…",
     "etage": "Etage",
@@ -192,7 +192,9 @@
     },
     "anneePlaceholder": "z. B. 1990",
     "energieLow": "Sparsam",
-    "energieHigh": "Hoher Verbrauch"
+    "energieHigh": "Hoher Verbrauch",
+    "communePlaceholder": "z. B. Düdelingen / Dudelange",
+    "numeroPlaceholder": "621 123 456"
   },
   "errors": {
     "required": "Dieses Feld ist erforderlich.",
@@ -217,21 +219,21 @@
     "high": "Oberer Wert",
     "highText": "Mit einem Käufer, der sich verliebt",
     "indicativeTitle": "Unverbindliche Schätzung",
-    "indicativeHouse": "In Luxemburg gibt es keine öffentlichen Verkaufspreise für Häuser. Diese Berechnung geht von den Angebotspreisen in Ihrer Gemeinde aus. Die Spanne ist deshalb breiter.",
+    "indicativeHouse": "Keine öffentlichen Verkaufspreise für Häuser: Berechnung aus Angeboten, breitere Spanne.",
     "source": "Quelle: {source}. Zeitraum: {periode}.",
     "disclaimer": "Unverbindliche Schätzung auf Basis öffentlicher Statistiken. Sie ersetzt keine Bewertung vor Ort.",
     "cta": "Termin für eine genaue Bewertung vereinbaren",
     "noDataTitle": "Danke, Ihre Anfrage wurde gesendet",
     "noDataText": "Für Ihre Gemeinde gibt es nicht genug öffentliche Daten. Ich melde mich mit einer persönlichen Bewertung bei Ihnen.",
-    "sent": "Danke, Ihre Anfrage ist bei mir angekommen.",
-    "sourceAppartement": "Observatoire de l’Habitat (Wohnungsbauministerium): notarielle Verkaufspreise, Angebotspreise und Angebotsmieten von Wohnungen – data.public.lu, Lizenz CC0",
-    "sourceMaison": "Observatoire de l’Habitat (Wohnungsbauministerium): Angebotspreise von Häusern – data.public.lu, Lizenz CC0",
+    "sent": "Anfrage erhalten",
+    "sourceAppartement": "Observatoire de l’Habitat (data.public.lu)",
+    "sourceMaison": "Observatoire de l’Habitat (data.public.lu)",
     "sourceLink": "Zu den Daten",
-    "ready": "Ihre Bewertung ist fertig!",
+    "ready": "Hier ist Ihre Bewertung!",
     "perM2": "also {value} pro m²",
     "rangeTitle": "Ihre Preisspanne",
     "gaugeTitle": "Ihre Immobilie im Vergleich zu den Verkäufen in {commune}",
-    "gaugeText": "Quadratmeterpreise der vom {debut} bis {fin} verkauften Wohnungen, ohne die günstigsten und teuersten 5 %.",
+    "gaugeText": "Wohnungsverkäufe vom {debut} bis {fin}.",
     "gaugeYou": "Ihre Immobilie",
     "gaugeAvg": "Durchschnitt",
     "factorsTitle": "Was Ihren Preis beeinflusst",
@@ -245,14 +247,14 @@
     },
     "reliabilityText": {
       "appartement": {
-        "high": "Viele aktuelle Verkäufe in Ihrer Gemeinde und 3 übereinstimmende Methoden.",
-        "medium": "In Ihrer Gemeinde gibt es echte Verkäufe, aber weniger.",
-        "low": "Wenige veröffentlichte Verkäufe in Ihrer Gemeinde: Die Berechnung stützt sich auf Ihren Kanton."
+        "high": "Viele aktuelle Verkäufe in Ihrer Gemeinde.",
+        "medium": "Echte Verkäufe, aber weniger.",
+        "low": "Wenige Verkäufe: Berechnung stützt sich auf den Kanton."
       },
       "maison": {
         "high": "",
-        "medium": "Berechnung auf Basis vieler Hausangebote in Ihrer Gemeinde.",
-        "low": "Wenige Hausangebote in Ihrer Gemeinde: Ergebnis mit Vorsicht betrachten."
+        "medium": "Basiert auf vielen Hausangeboten.",
+        "low": "Wenige Angebote: mit Vorsicht betrachten."
       }
     },
     "communeTitle": "{commune} in Zahlen",
@@ -276,7 +278,7 @@
     "methodLine": "{name}: {m2} pro m² ({weight} der Berechnung)",
     "nextTitle": "Wie geht es weiter?",
     "next1": "Ich erhalte Ihre Anfrage und melde mich bei Ihnen.",
-    "next2": "Vor Ort verfeinere ich den Preis mit dem, was Zahlen nicht sehen: Aussicht, Licht, Ausstattung, Umgebung.",
+    "next2": "Vor Ort verfeinere ich, was Zahlen nicht sehen.",
     "print": "Drucken oder als PDF speichern",
     "restart": "Neue Bewertung starten"
   },
@@ -310,7 +312,8 @@
   "trust": {
     "free": "Kostenlos und unverbindlich",
     "data": "Ihre Daten gehen nur an ImmoBuild Kohn",
-    "cookies": "Keine Cookies, keine Werbung"
+    "cookies": "Keine Cookies, keine Werbung",
+    "line": "Kostenlos · unverbindlich · ohne Cookies"
   },
   "factors": {
     "etat_neuf": "Neubau",
@@ -368,7 +371,7 @@
   },
   "whatif": {
     "title": "Was wäre, wenn…?",
-    "text": "Testen Sie, wie Arbeiten Ihren Preis beeinflussen. Ihre ursprüngliche Bewertung bleibt unverändert.",
+    "text": "Testen Sie die Wirkung von Arbeiten. Ihre Bewertung bleibt gleich.",
     "energy": "Energieklasse nach den Arbeiten",
     "etat": "Allgemeiner Zustand",
     "works": "Arbeiten",
@@ -387,6 +390,29 @@
     "error": "Die Berechnung hat nicht geklappt. Bitte erneut versuchen.",
     "reset": "Zurück zu meiner Immobilie",
     "note": "Unverbindlich, ohne die Kosten der Arbeiten.",
-    "teaser": "Und wenn Sie renovieren? Testen Sie die Wirkung auf Ihren Preis"
+    "teaser": "Und wenn Sie renovieren?"
+  },
+  "coach": {
+    "start": "Hallo! Ich bin Jay. Ein paar Klicks, und Sie erhalten eine Preisspanne.",
+    "step2": "Ein ungefährer Wert reicht.",
+    "step3": "Nicht sicher? Wählen Sie „?“.",
+    "step4": "Auch das zählt beim Preis!",
+    "step5": "So kann ich Ihnen zum richtigen Zeitpunkt antworten.",
+    "step6": "Letzter Schritt, dann rechne ich alles aus!",
+    "appartement": "Eine Wohnung, perfekt!",
+    "maison": "Ein Haus, wunderbar!",
+    "commune": "{commune}, notiert!",
+    "energieGood": "Bravo, sehr gute Energieklasse!",
+    "energieBad": "Kein Problem, das berücksichtige ich.",
+    "energieUnknown": "Nicht schlimm, es geht auch ohne.",
+    "allGood": "Gut gepflegt, super!",
+    "bad": "Danke für Ihre Offenheit.",
+    "garage": "Eine Garage zählt!",
+    "jardin": "Ein Garten ist ein echtes Plus!",
+    "cave": "Ein Keller, immer praktisch.",
+    "vendre": "Verkaufen? Dafür bin ich da.",
+    "louer": "Vermieten, auch eine gute Idee.",
+    "renseigne": "Gute Idee, sich zuerst zu informieren.",
+    "nonProprio": "Kein Problem, die Bewertung ist trotzdem möglich."
   }
 }

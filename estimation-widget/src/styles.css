@@ -347,7 +347,7 @@ input[type='text']:focus, input[type='email']:focus, input[type='tel']:focus, se
 @media (min-width: 560px) { .value-amount { font-size: 1.5rem; } }
 .value-text { color: var(--muted); font-size: 0.8125rem; line-height: 1.35; }
 
-.reliability { display: flex; gap: 10px; align-items: flex-start; margin-top: 10px !important; padding: 8px 12px; border-radius: var(--radius); background: var(--offwhite); font-size: 0.8125rem; line-height: 1.4; }
+.reliability { display: flex; gap: 10px; align-items: center; margin-top: 10px !important; padding: 8px 12px; border-radius: var(--radius); background: var(--offwhite); font-size: 0.8125rem; line-height: 1.4; }
 .reliability p { margin: 0; color: var(--muted); }
 .reliability strong { color: var(--navy); }
 .rel-bars { display: flex; gap: 3px; align-items: flex-end; height: 22px; margin-top: 2px; }
@@ -512,3 +512,55 @@ input[type='text']:focus, input[type='email']:focus, input[type='tel']:focus, se
 .teaser .ico:first-child { color: var(--gold); }
 .teaser .teaser-arrow { margin-left: auto; transform: rotate(-90deg); }
 @media print { .teaser { display: none; } }
+
+/* ---------- Bulle de Jay ---------- */
+.step-head { margin-bottom: 12px; }
+.coach { display: flex; align-items: flex-end; gap: 10px; margin: 0 0 18px; }
+.avatar-sm { width: 40px; height: 40px; font-size: 1.0625rem; box-shadow: 0 0 0 2px var(--gold-soft); }
+.coach-bubble { position: relative; margin: 0; padding: 10px 14px; border-radius: 16px 16px 16px 4px; background: var(--beige); font-weight: 600; font-size: 0.9375rem; line-height: 1.4; }
+.coach-bubble.pop { animation: bubble 0.45s var(--ease); }
+@keyframes bubble { 0% { transform: scale(0.92) translateY(4px); opacity: 0.4; } 60% { transform: scale(1.03); opacity: 1; } 100% { transform: none; } }
+
+/* Récapitulatif replié */
+details.recap { padding: 0; }
+details.recap summary { display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 14px; font-weight: 600; cursor: pointer; list-style: none; }
+details.recap summary::-webkit-details-marker { display: none; }
+details.recap summary::after { content: '+'; margin-left: auto; font-size: 1.25rem; font-weight: 400; }
+details.recap[open] summary::after { content: '−'; }
+details.recap ul { padding: 0 14px 10px; }
+p.trust { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 4px 0 0; font-size: 0.8125rem; color: var(--muted); font-weight: 500; }
+p.trust .ico { color: var(--up); }
+
+/* ---------- Confettis dorés sur le résultat ---------- */
+.result-hero { overflow: hidden; }
+.confetti { position: absolute; inset: 0; pointer-events: none; }
+.confetti i { position: absolute; top: -12px; width: 8px; height: 12px; border-radius: 2px; background: var(--gold); opacity: 0; animation: confetti 2.4s cubic-bezier(0.25, 0.6, 0.4, 1) forwards; }
+.confetti i:nth-child(3n) { background: #e3cfa6; width: 6px; height: 10px; }
+.confetti i:nth-child(4n) { background: #ffffff; width: 5px; height: 8px; border-radius: 50%; }
+.confetti i:nth-child(1) { left: 6%; animation-delay: 0.05s; }
+.confetti i:nth-child(2) { left: 13%; animation-delay: 0.3s; }
+.confetti i:nth-child(3) { left: 20%; animation-delay: 0.15s; }
+.confetti i:nth-child(4) { left: 27%; animation-delay: 0.45s; }
+.confetti i:nth-child(5) { left: 33%; animation-delay: 0s; }
+.confetti i:nth-child(6) { left: 40%; animation-delay: 0.35s; }
+.confetti i:nth-child(7) { left: 46%; animation-delay: 0.1s; }
+.confetti i:nth-child(8) { left: 52%; animation-delay: 0.5s; }
+.confetti i:nth-child(9) { left: 58%; animation-delay: 0.2s; }
+.confetti i:nth-child(10) { left: 64%; animation-delay: 0.4s; }
+.confetti i:nth-child(11) { left: 70%; animation-delay: 0.05s; }
+.confetti i:nth-child(12) { left: 76%; animation-delay: 0.3s; }
+.confetti i:nth-child(13) { left: 82%; animation-delay: 0.15s; }
+.confetti i:nth-child(14) { left: 88%; animation-delay: 0.45s; }
+.confetti i:nth-child(15) { left: 94%; animation-delay: 0.25s; }
+.confetti i:nth-child(16) { left: 10%; animation-delay: 0.6s; }
+.confetti i:nth-child(17) { left: 50%; animation-delay: 0.7s; }
+.confetti i:nth-child(18) { left: 90%; animation-delay: 0.65s; }
+.confetti i:nth-child(odd) { --drift: 24px; --spin: 540deg; }
+.confetti i:nth-child(even) { --drift: -20px; --spin: -420deg; }
+@keyframes confetti {
+  0% { opacity: 0; transform: translate(0, 0) rotate(0); }
+  10% { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--drift), 260px) rotate(var(--spin)); }
+}
+@media (prefers-reduced-motion: reduce) { .confetti { display: none; } }
+@media print { .confetti { display: none; } }

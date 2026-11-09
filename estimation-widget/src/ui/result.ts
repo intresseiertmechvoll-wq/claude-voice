@@ -119,13 +119,14 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
   const reliability = rel
     ? `<div class="reliability rel-${rel}">
     <span class="rel-bars" aria-hidden="true"><i></i><i></i><i></i></span>
-    <p><strong>${esc(t('result.reliabilityTitle'))} : ${esc(t(`result.reliability.${rel}`))}</strong><br>${esc(relText)}</p>
+    <p><strong>${esc(t('result.reliabilityTitle'))} : ${esc(t(`result.reliability.${rel}`))}</strong></p>
   </div>`
     : '';
 
   const how = `<details class="how">
     <summary>${icon('info', 'ico ico-sm')}<span>${esc(t('result.howTitle'))}</span></summary>
     <p>${esc(t(r.type === 'maison' ? 'result.howMaison' : 'result.howAppartement'))}</p>
+    ${relText ? `<p><strong>${esc(t('result.reliabilityTitle'))} : ${esc(t(`result.reliability.${rel}`))}.</strong> ${esc(relText)}</p>` : ''}
     ${
       r.methods?.length
         ? `<ul>${r.methods
@@ -137,6 +138,7 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
 
   return `<section class="result" aria-labelledby="result-title">
   <div class="result-hero">
+    <div class="confetti" aria-hidden="true">${'<i></i>'.repeat(18)}</div>
     <p class="sent-note">${icon('check', 'ico ico-xs')}<span>${esc(t('result.sent'))}</span></p>
     <h2 id="result-title" class="step-title" tabindex="-1">${esc(t('result.ready'))}</h2>
     <p class="hero-meta">${esc(t('result.subtitle', { type: typeLabel, commune: r.commune }))}${r.surface ? ` · ${r.surface} m²` : ''}</p>
