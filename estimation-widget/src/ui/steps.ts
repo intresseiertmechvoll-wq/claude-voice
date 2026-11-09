@@ -257,7 +257,7 @@ function step2(ctx: Ctx): string {
   ${stepper(ctx, 'sdb', t('fields.sdb'), { min: 0, max: LIMITS.sdb.max })}
 </div>
 ${input(ctx, 'annee', t('fields.annee'), { inputmode: 'numeric', placeholder: t('fields.anneePlaceholder'), maxlength: 4 })}
-${choices(ctx, 'etat', t('fields.etat'), opts(t, 'fields.etatOptions', ETATS, ETAT_ICONS), 'list')}
+${choices(ctx, 'etat', t('fields.etat'), opts(t, 'fields.etatOptions', ETATS, ETAT_ICONS, 'fields.etatHints'), 'list')}
 ${energyScale(ctx)}
 ${
   house

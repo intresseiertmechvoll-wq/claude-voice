@@ -531,36 +531,12 @@ details.recap ul { padding: 0 14px 10px; }
 p.trust { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 4px 0 0; font-size: 0.8125rem; color: var(--muted); font-weight: 500; }
 p.trust .ico { color: var(--up); }
 
-/* ---------- Confettis dorés sur le résultat ---------- */
-.result-hero { overflow: hidden; }
-.confetti { position: absolute; inset: 0; pointer-events: none; }
-.confetti i { position: absolute; top: -12px; width: 8px; height: 12px; border-radius: 2px; background: var(--gold); opacity: 0; animation: confetti 2.4s cubic-bezier(0.25, 0.6, 0.4, 1) forwards; }
-.confetti i:nth-child(3n) { background: #e3cfa6; width: 6px; height: 10px; }
-.confetti i:nth-child(4n) { background: #ffffff; width: 5px; height: 8px; border-radius: 50%; }
-.confetti i:nth-child(1) { left: 6%; animation-delay: 0.05s; }
-.confetti i:nth-child(2) { left: 13%; animation-delay: 0.3s; }
-.confetti i:nth-child(3) { left: 20%; animation-delay: 0.15s; }
-.confetti i:nth-child(4) { left: 27%; animation-delay: 0.45s; }
-.confetti i:nth-child(5) { left: 33%; animation-delay: 0s; }
-.confetti i:nth-child(6) { left: 40%; animation-delay: 0.35s; }
-.confetti i:nth-child(7) { left: 46%; animation-delay: 0.1s; }
-.confetti i:nth-child(8) { left: 52%; animation-delay: 0.5s; }
-.confetti i:nth-child(9) { left: 58%; animation-delay: 0.2s; }
-.confetti i:nth-child(10) { left: 64%; animation-delay: 0.4s; }
-.confetti i:nth-child(11) { left: 70%; animation-delay: 0.05s; }
-.confetti i:nth-child(12) { left: 76%; animation-delay: 0.3s; }
-.confetti i:nth-child(13) { left: 82%; animation-delay: 0.15s; }
-.confetti i:nth-child(14) { left: 88%; animation-delay: 0.45s; }
-.confetti i:nth-child(15) { left: 94%; animation-delay: 0.25s; }
-.confetti i:nth-child(16) { left: 10%; animation-delay: 0.6s; }
-.confetti i:nth-child(17) { left: 50%; animation-delay: 0.7s; }
-.confetti i:nth-child(18) { left: 90%; animation-delay: 0.65s; }
-.confetti i:nth-child(odd) { --drift: 24px; --spin: 540deg; }
-.confetti i:nth-child(even) { --drift: -20px; --spin: -420deg; }
-@keyframes confetti {
-  0% { opacity: 0; transform: translate(0, 0) rotate(0); }
-  10% { opacity: 1; }
-  100% { opacity: 0; transform: translate(var(--drift), 260px) rotate(var(--spin)); }
-}
-@media (prefers-reduced-motion: reduce) { .confetti { display: none; } }
-@media print { .confetti { display: none; } }
+/* ---------- Sceau doré qui se dessine (à la place de confettis) ---------- */
+.sent-note .seal { width: 22px; height: 22px; flex: none; }
+.seal-ring, .seal-check { fill: none; stroke: var(--gold); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+.seal-ring { stroke-dasharray: 126; stroke-dashoffset: 126; transform: rotate(-90deg); transform-origin: 24px 24px; animation: draw 0.7s var(--ease) 0.15s forwards; }
+.seal-check { stroke-dasharray: 30; stroke-dashoffset: 30; animation: draw 0.4s var(--ease) 0.8s forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.result-hero::after { background-size: 200% 100%; animation: goldline 1.6s var(--ease) 0.3s both; }
+@keyframes goldline { from { background-position: 100% 0; opacity: 0.3; } to { background-position: 0 0; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .seal-ring, .seal-check { stroke-dashoffset: 0; animation: none; } }

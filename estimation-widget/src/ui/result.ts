@@ -138,8 +138,7 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
 
   return `<section class="result" aria-labelledby="result-title">
   <div class="result-hero">
-    <div class="confetti" aria-hidden="true">${'<i></i>'.repeat(18)}</div>
-    <p class="sent-note">${icon('check', 'ico ico-xs')}<span>${esc(t('result.sent'))}</span></p>
+    <p class="sent-note"><svg class="seal" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle class="seal-ring" cx="24" cy="24" r="20"/><path class="seal-check" d="M15 24.5l6 6L33 18"/></svg><span>${esc(t('result.sent'))}</span></p>
     <h2 id="result-title" class="step-title" tabindex="-1">${esc(t('result.ready'))}</h2>
     <p class="hero-meta">${esc(t('result.subtitle', { type: typeLabel, commune: r.commune }))}${r.surface ? ` · ${r.surface} m²` : ''}</p>
     <p class="hero-label">${esc(t('result.market'))}</p>
