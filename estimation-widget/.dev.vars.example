@@ -1,0 +1,7 @@
+# Copier ce fichier en .dev.vars pour tester en local (.dev.vars n'est jamais envoyé sur git)
+# EMAIL_MODE=log : l'e-mail du lead est affiché dans le terminal au lieu d'être envoyé
+EMAIL_MODE=log
+LEAD_EMAIL=contact@immobuild.lu
+# Pour tester un vrai envoi en local, retirer EMAIL_MODE et ajouter :
+# RESEND_API_KEY=re_xxxxxxxx
+# FROM_EMAIL=ImmoBuild Estimation <estimation@immobuild.lu>

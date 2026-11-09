@@ -1,7 +1,9 @@
 {
-  "genere_le": "2026-11-09T13:57:04.058Z",
+  "genere_le": "2026-11-09T14:03:43.866Z",
   "licence": "CC0 (data.public.lu)",
   "periode": "1er juillet 2025 – 30 juin 2026",
+  "periode_debut": "2025-07-01",
+  "periode_fin": "2026-06-30",
   "sources": {
     "notarie": {
       "titre": "Prix de vente des appartements par commune sur les 12 derniers mois",

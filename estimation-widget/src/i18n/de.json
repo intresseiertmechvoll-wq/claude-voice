@@ -1,0 +1,172 @@
+{
+  "meta": {
+    "title": "Kostenlose Bewertung – ImmoBuild Kohn"
+  },
+  "intro": {
+    "title": "Kostenlose Bewertung Ihrer Immobilie",
+    "text": "Sechs kurze Schritte. Am Ende des Fragebogens sehen Sie direkt eine Preisspanne."
+  },
+  "progress": "Schritt {n} von {total}",
+  "nav": {
+    "next": "Weiter",
+    "back": "Zurück",
+    "submit": "Meine Bewertung anzeigen",
+    "sending": "Wird gesendet…"
+  },
+  "optional": "optional",
+  "yes": "Ja",
+  "no": "Nein",
+  "steps": {
+    "1": {
+      "title": "Ihre Immobilie",
+      "text": "Beginnen wir mit dem Wichtigsten."
+    },
+    "2": {
+      "title": "Die Eckdaten",
+      "text": "Ein ungefährer Wert reicht, wenn Sie nicht sicher sind."
+    },
+    "3": {
+      "title": "Zustand der wichtigsten Bauteile",
+      "text": "Bewerten Sie jeden Punkt. Wenn Sie es nicht wissen, wählen Sie „Weiß nicht“."
+    },
+    "4": {
+      "title": "Nebenflächen",
+      "text": "Geben Sie 0 an, wenn nicht vorhanden."
+    },
+    "5": {
+      "title": "Ihr Vorhaben",
+      "text": "So kann ich Ihnen zum richtigen Zeitpunkt antworten."
+    },
+    "6": {
+      "title": "Ihre Kontaktdaten",
+      "text": "Ihre Bewertung erscheint direkt nach dem Absenden."
+    }
+  },
+  "fields": {
+    "type": "Art der Immobilie",
+    "typeOptions": {
+      "appartement": "Wohnung",
+      "maison": "Haus"
+    },
+    "commune": "Gemeinde",
+    "communeHelp": "Tippen Sie die ersten Buchstaben und wählen Sie dann aus der Liste.",
+    "communeEmpty": "Keine Gemeinde gefunden.",
+    "rue": "Straße",
+    "surface": "Netto-Wohnfläche (m²)",
+    "surfaceHelp": "Netto = ohne die Mauerstärke.",
+    "chambres": "Anzahl Schlafzimmer",
+    "sdb": "Anzahl Badezimmer",
+    "annee": "Baujahr",
+    "anneeHelp": "Ein ungefähres Jahr reicht.",
+    "etat": "Allgemeiner Zustand",
+    "etatOptions": {
+      "neuf": "Neu",
+      "renove": "Kürzlich renoviert",
+      "bon": "Guter Zustand",
+      "rafraichir": "Auffrischungsbedürftig",
+      "renover": "Renovierungsbedürftig"
+    },
+    "energie": "Energieklasse",
+    "energieHelp": "Sie steht auf dem Energiepass.",
+    "energieUnknown": "Weiß nicht",
+    "choose": "Bitte wählen…",
+    "etage": "Etage",
+    "etageOptions": {
+      "0": "Erdgeschoss",
+      "1": "1. Etage",
+      "2": "2. Etage",
+      "3": "3. Etage",
+      "4": "4. Etage",
+      "5": "5. Etage oder höher"
+    },
+    "ascenseur": "Aufzug",
+    "terrain": "Grundstücksfläche (m²)",
+    "terrainHelp": "1 Ar = 100 m².",
+    "maisonType": "Haustyp",
+    "maisonTypeOptions": {
+      "mitoyenne": "Reihenhaus",
+      "jumelee": "Doppelhaushälfte",
+      "isolee": "Freistehend"
+    },
+    "postes": {
+      "chassis": "Fenster",
+      "chauffage": "Heizung",
+      "electricite": "Elektrik",
+      "cuisine": "Küche",
+      "sanitaires": "Sanitär",
+      "toiture": "Dach"
+    },
+    "posteOptions": {
+      "mauvais": "Schlecht",
+      "moyen": "Mittel",
+      "bon": "Gut",
+      "neuf": "Neu",
+      "inconnu": "Weiß nicht"
+    },
+    "garages": "Garagen",
+    "parkings": "Außenstellplätze",
+    "cave": "Keller",
+    "terrasse": "Balkon oder Terrasse (m²)",
+    "jardin": "Garten",
+    "proprietaire": "Sind Sie Eigentümer dieser Immobilie?",
+    "objectif": "Ihr Ziel",
+    "objectifOptions": {
+      "vendre": "Verkaufen",
+      "louer": "Vermieten",
+      "renseigne": "Ich informiere mich"
+    },
+    "delai": "In welchem Zeitraum?",
+    "delaiOptions": {
+      "asap": "So bald wie möglich",
+      "3mois": "Innerhalb von 3 Monaten",
+      "3a6mois": "In 3 bis 6 Monaten",
+      "plus_tard": "Später"
+    },
+    "prenom": "Vorname",
+    "nom": "Nachname",
+    "email": "E-Mail",
+    "telephone": "Telefon",
+    "indicatif": "Vorwahl",
+    "numero": "Nummer",
+    "numeroHelp": "Beispiel: 621 123 456",
+    "message": "Nachricht",
+    "rgpd": "Ich bin einverstanden, dass ImmoBuild Kohn diese Angaben nutzt, um mich wegen meiner Immobilie zu kontaktieren, wie in der {link} beschrieben.",
+    "rgpdLink": "Datenschutzerklärung",
+    "privacyNote": "Ihre Antworten und Kontaktdaten werden per E-Mail an ImmoBuild Kohn gesendet. Sie werden in keiner Datenbank gespeichert.",
+    "honeypot": "Dieses Feld nicht ausfüllen"
+  },
+  "errors": {
+    "required": "Dieses Feld ist erforderlich.",
+    "invalid": "Dieser Wert ist ungültig.",
+    "range": "Dieser Wert liegt außerhalb des zulässigen Bereichs.",
+    "email": "Diese E-Mail-Adresse ist ungültig.",
+    "phone": "Diese Nummer ist ungültig. Beispiel: 621 123 456.",
+    "rgpd": "Bitte kreuzen Sie dieses Feld an, um Ihre Bewertung zu sehen.",
+    "commune": "Bitte wählen Sie eine Gemeinde aus der Liste.",
+    "summary": "Bitte korrigieren Sie die markierten Felder.",
+    "rate_limit": "Zu viele Anfragen von dieser Verbindung. Versuchen Sie es in einer Stunde erneut oder kontaktieren Sie mich direkt.",
+    "network": "Das Senden hat nicht geklappt. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
+    "server": "Das Senden hat nicht geklappt. Versuchen Sie es in ein paar Minuten erneut oder kontaktieren Sie mich direkt."
+  },
+  "result": {
+    "title": "Ihre Bewertung",
+    "subtitle": "{type} in {commune}",
+    "low": "Unterer Wert",
+    "lowText": "Preis für einen schnellen Verkauf",
+    "market": "Marktwert",
+    "marketText": "Preis vergleichbarer Immobilien in Ihrer Gemeinde",
+    "high": "Oberer Wert",
+    "highText": "Mit einem Käufer, der sich verliebt",
+    "indicativeTitle": "Unverbindliche Schätzung",
+    "indicativeHouse": "In Luxemburg gibt es keine öffentlichen Verkaufspreise für Häuser. Diese Berechnung geht von den Angebotspreisen in Ihrer Gemeinde aus. Die Spanne ist deshalb breiter.",
+    "source": "Quelle: {source}. Zeitraum: {periode}.",
+    "disclaimer": "Unverbindliche Schätzung auf Basis öffentlicher Statistiken. Sie ersetzt keine Bewertung vor Ort.",
+    "cta": "Termin für eine genaue Bewertung vereinbaren",
+    "noDataTitle": "Danke, Ihre Anfrage wurde gesendet",
+    "noDataText": "Für Ihre Gemeinde gibt es nicht genug öffentliche Daten. Ich melde mich mit einer persönlichen Bewertung bei Ihnen.",
+    "sent": "Danke, Ihre Anfrage ist bei mir angekommen.",
+    "sourceAppartement": "Observatoire de l’Habitat (Wohnungsbauministerium): notarielle Verkaufspreise, Angebotspreise und Angebotsmieten von Wohnungen – data.public.lu, Lizenz CC0",
+    "sourceMaison": "Observatoire de l’Habitat (Wohnungsbauministerium): Angebotspreise von Häusern – data.public.lu, Lizenz CC0",
+    "sourceLink": "Zu den Daten"
+  }
+}

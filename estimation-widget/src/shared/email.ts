@@ -15,6 +15,24 @@ const L = {
   lang: { fr: 'Français', de: 'Allemand', en: 'Anglais' },
 } as const;
 
+const COEF_LABELS: Record<string, string> = {
+  gros_postes: 'Gros postes (total, plafonné)',
+  rez_de_chaussee: 'Rez-de-chaussée',
+  etage_sans_ascenseur: 'Étage élevé sans ascenseur',
+  jardin_appartement: 'Jardin (appartement)',
+  petit_terrain: 'Petit terrain pour ce type de maison',
+  grand_terrain: 'Grand terrain pour ce type de maison',
+};
+
+function coefLabel(key: string): string {
+  if (COEF_LABELS[key]) return COEF_LABELS[key];
+  const [kind, value] = [key.slice(0, key.indexOf('_')), key.slice(key.indexOf('_') + 1)];
+  if (kind === 'etat') return `État général : ${L.etat[value as keyof typeof L.etat] ?? value}`;
+  if (kind === 'energie') return `Classe énergétique ${value === 'inconnu' ? 'inconnue' : value}`;
+  if (kind === 'maison') return `Maison ${(L.maisonType[value as keyof typeof L.maisonType] ?? value).toLowerCase()}`;
+  return key;
+}
+
 const eur = (v: number | null) => (v === null ? '—' : new Intl.NumberFormat('fr-LU', { maximumFractionDigits: 0 }).format(v).replace(/ | /g, ' ') + ' €');
 const pct = (v: number) => `${v > 0 ? '+' : ''}${(v * 100).toFixed(1).replace('.', ',')} %`;
 const yn = (v: boolean | null) => (v === null ? '—' : v ? 'Oui' : 'Non');
@@ -118,11 +136,11 @@ export function leadSections(s: Submission, e: Estimate, date: Date): Section[] 
         ),
         ['Décote annonce → vente', `${pct(-d.decote.value)} (${d.decote.origin === 'canton' ? `médiane du canton, ${d.decote.communes} communes` : `médiane nationale, ${d.decote.communes} communes`})`],
         ['Prix de base retenu', `${Math.round(d.baseM2)} €/m²`],
-        ...d.coefficients.map((x) => [`Coefficient ${x.key}`, pct(x.value)] as [string, string]),
+        ...d.coefficients.map((x) => [`Coefficient – ${coefLabel(x.key)}`, pct(x.value)] as [string, string]),
         ['Total des coefficients', `${pct(d.coefSum)}${d.coefApplied !== d.coefSum ? ` (plafonné à ${pct(d.coefApplied)})` : ''}`],
-        ['Valeur du logement', `${Math.round(d.baseM2)} €/m² × ${d.surface} m² × (1 ${d.coefApplied < 0 ? '−' : '+'} ${Math.abs(d.coefApplied * 100).toFixed(1)} %) = ${eur(d.buildingValue)}`],
+        ['Valeur du logement', `${Math.round(d.baseM2)} €/m² × ${d.surface} m² × (1 ${d.coefApplied < 0 ? '−' : '+'} ${Math.abs(d.coefApplied * 100).toFixed(1).replace('.', ',')} %) = ${eur(d.buildingValue)}`],
         ...d.annexes.map((x) => [`Annexe : ${x.key}`, eur(x.amount)] as [string, string]),
-        ['Ajustement des annexes selon la commune', `× ${d.communeScale.toFixed(2)}`],
+        ...(d.annexes.length ? ([['Ajustement des annexes selon le prix de la commune', `× ${d.communeScale.toFixed(2).replace('.', ',')}`]] as [string, string][]) : []),
         ['Valeur de marché avant arrondi', eur(d.rawMarket)],
       ],
     });

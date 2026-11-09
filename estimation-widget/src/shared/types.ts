@@ -81,6 +81,8 @@ export interface CommuneData {
 export interface Dataset {
   genere_le: string;
   periode: string;
+  periode_debut: string;
+  periode_fin: string;
   sources: Record<string, { titre: string; jeu_de_donnees: string; periode: string; source: string; fichier: string; mis_a_jour: string }>;
   communes: CommuneData[];
 }
@@ -96,6 +98,9 @@ export interface PublicResult {
   spread: number | null;
   indicative: boolean;
   periode: string;
+  /** dates ISO, pour afficher la période dans la langue du visiteur */
+  periodeDebut: string;
+  periodeFin: string;
   source: string;
   sourceUrl: string;
 }

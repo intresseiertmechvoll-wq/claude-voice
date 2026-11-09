@@ -115,6 +115,16 @@ function period(rows: Rows): string {
   return `${m[1].toLowerCase()} – ${m[2].toLowerCase()}`;
 }
 
+const MOIS = ['janvier', 'fevrier', 'mars', 'avril', 'mai', 'juin', 'juillet', 'aout', 'septembre', 'octobre', 'novembre', 'decembre'];
+
+/** « 1er juillet 2025 » → « 2025-07-01 » */
+function isoDate(text: string): string {
+  const m = norm(text).match(/^(\d{1,2})(?:er)?\s+(\p{L}+)\s+(\d{4})$/u);
+  const month = m ? MOIS.indexOf(m[2]) + 1 : 0;
+  if (!m || month === 0) fail(`date illisible : « ${text} »`);
+  return `${m[3]}-${String(month).padStart(2, '0')}-${m[1].padStart(2, '0')}`;
+}
+
 function headerIndex(rows: Rows): number {
   const i = rows.findIndex((r) => String(r[0] ?? '').trim() === 'Commune');
   if (i < 0) fail('ligne d’en-tête « Commune » introuvable');
@@ -200,10 +210,13 @@ async function main() {
     c.source = 'Observatoire de l’Habitat (Ministère du Logement), data.public.lu, licence CC0';
   }
 
+  const [debut, fin] = periodeNotarie.split(' – ');
   const result = {
     genere_le: new Date().toISOString(),
     licence: 'CC0 (data.public.lu)',
     periode: periodeNotarie,
+    periode_debut: isoDate(debut),
+    periode_fin: isoDate(fin),
     sources: meta,
     communes,
   };

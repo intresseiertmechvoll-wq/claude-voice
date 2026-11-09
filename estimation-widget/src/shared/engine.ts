@@ -52,6 +52,10 @@ export function median(values: number[]): number | null {
   return a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2;
 }
 
+/** 0.0408 → « 4,1 % » */
+const pc = (v: number) => `${(v * 100).toFixed(1).replace('.', ',')} %`;
+const fr = (v: number) => String(v).replace('.', ',');
+
 const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
 export const roundTo = (v: number, step: number) => Math.round(v / step) * step;
 
@@ -94,7 +98,7 @@ export function excludeOutlier(methods: Method[], maxGap: number): void {
   }
   if (worst && worst.gap > maxGap) {
     worst.m.used = false;
-    worst.m.note = `exclue : écart de ${(worst.gap * 100).toFixed(1)} % avec la moyenne des autres méthodes`;
+    worst.m.note = `exclue : écart de ${pc(worst.gap)} avec la moyenne des autres méthodes`;
   }
 }
 
@@ -162,7 +166,7 @@ export function estimate(a: Answers, data: Dataset, params: Params): Estimate {
   const { source, url } = sourceText(data, a.type);
   const spread = a.type === 'maison' ? params.maison.ecart_fourchette : params.appartement.ecart_fourchette;
   const empty = (reason: string): Estimate => ({
-    result: { status: 'insufficient_data', type: a.type, commune: a.commune, low: null, market: null, high: null, spread: null, indicative: true, periode: data.periode, source, sourceUrl: url },
+    result: { status: 'insufficient_data', type: a.type, commune: a.commune, low: null, market: null, high: null, spread: null, indicative: true, periode: data.periode, periodeDebut: data.periode_debut, periodeFin: data.periode_fin, source, sourceUrl: url },
     detail: null,
     reason,
   });
@@ -183,7 +187,7 @@ export function estimate(a: Answers, data: Dataset, params: Params): Estimate {
     if (ownNotarial) {
       notarial = c.notarie_existant_m2;
       notarieOrigin = 'commune';
-      note = `${c.notarie_existant_ventes} ventes dans la commune`;
+      note = `${fr(c.notarie_existant_m2!)} €/m², ${c.notarie_existant_ventes} ventes dans la commune`;
     } else {
       notarial = cantonNotarialMedian(data, c.canton, params);
       notarieOrigin = notarial === null ? 'absent' : 'mediane_canton';
@@ -197,7 +201,7 @@ export function estimate(a: Answers, data: Dataset, params: Params): Estimate {
       m2: ann,
       weight: w.annonces,
       used: ann !== null,
-      note: ann === null ? 'pas assez d’annonces dans la commune' : `${c.annonce_appartement_m2} €/m² annoncé × (1 − ${(decote.value * 100).toFixed(1)} %)`,
+      note: ann === null ? 'pas assez d’annonces dans la commune' : `${fr(c.annonce_appartement_m2!)} €/m² annoncé × (1 − ${pc(decote.value)})`,
     });
 
     const cp = params.capitalisation;
@@ -207,7 +211,7 @@ export function estimate(a: Answers, data: Dataset, params: Params): Estimate {
       m2: cap,
       weight: w.capitalisation,
       used: cap !== null,
-      note: cap === null ? 'pas assez de loyers annoncés dans la commune' : `${c.loyer_appartement_m2} €/m²/mois × 12 × (1 − ${cp.charges_non_recuperables * 100} %) ÷ ${(cp.taux * 100).toFixed(1)} %`,
+      note: cap === null ? 'pas assez de loyers annoncés dans la commune' : `${fr(c.loyer_appartement_m2!)} €/m²/mois × 12 × (1 − ${pc(cp.charges_non_recuperables)}) ÷ ${pc(cp.taux)}`,
     });
 
     excludeOutlier(methods, params.donnees.ecart_max_methode);
@@ -218,7 +222,7 @@ export function estimate(a: Answers, data: Dataset, params: Params): Estimate {
       m2: c.annonce_maison_m2 * (1 - decote.value),
       weight: 1,
       used: true,
-      note: `${c.annonce_maison_m2} €/m² annoncé (maisons) × (1 − ${(decote.value * 100).toFixed(1)} %)`,
+      note: `${fr(c.annonce_maison_m2)} €/m² annoncé (maisons) × (1 − ${pc(decote.value)})`,
     });
   }
 
@@ -247,6 +251,8 @@ export function estimate(a: Answers, data: Dataset, params: Params): Estimate {
       spread,
       indicative: a.type === 'maison',
       periode: data.periode,
+      periodeDebut: data.periode_debut,
+      periodeFin: data.periode_fin,
       source,
       sourceUrl: url,
     },

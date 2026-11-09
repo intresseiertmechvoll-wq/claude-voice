@@ -27,13 +27,20 @@ export const LIMITS = {
   surface: { min: 10, max: 1000 },
   chambres: { min: 0, max: 20 },
   sdb: { min: 0, max: 10 },
-  annee: { min: 1700, max: new Date().getFullYear() + 5 },
+  // L'année maximale est calculée à chaque vérification (voir maxYear) : sur Cloudflare,
+  // new Date() au chargement du module renvoie 1970.
+  annee: { min: 1700, max: 0 },
   terrain: { min: 0, max: 100000 },
   garages: { min: 0, max: 20 },
   parkings: { min: 0, max: 20 },
   terrasse: { min: 0, max: 1000 },
   etage: { min: 0, max: 5 },
 };
+
+/** Année de construction maximale : année en cours + 5 (projets en VEFA) */
+export function maxYear(): number {
+  return new Date().getFullYear() + 5;
+}
 
 export const PHONE_CODES = ['+352', '+33', '+32', '+49', '+41', '+31', '+351', '+39', '+34', '+44'];
 
@@ -148,7 +155,7 @@ const CHECKS: Record<string, FieldCheck> = {
   surface: (r) => numIn(r.surface, LIMITS.surface),
   chambres: (r) => intIn(r.chambres, LIMITS.chambres),
   sdb: (r) => intIn(r.sdb, LIMITS.sdb),
-  annee: (r) => intIn(r.annee, LIMITS.annee),
+  annee: (r) => intIn(r.annee, { min: LIMITS.annee.min, max: maxYear() }),
   etat: (r) => oneOf(r.etat, ETATS),
   energie: (r) => oneOf(r.energie, ENERGIES),
   etage: (r) => intIn(r.etage, LIMITS.etage),

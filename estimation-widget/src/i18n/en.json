@@ -1,0 +1,172 @@
+{
+  "meta": {
+    "title": "Free valuation – ImmoBuild Kohn"
+  },
+  "intro": {
+    "title": "Free valuation of your property",
+    "text": "Six short steps. You see a price range as soon as you finish."
+  },
+  "progress": "Step {n} of {total}",
+  "nav": {
+    "next": "Continue",
+    "back": "Back",
+    "submit": "See my valuation",
+    "sending": "Sending…"
+  },
+  "optional": "optional",
+  "yes": "Yes",
+  "no": "No",
+  "steps": {
+    "1": {
+      "title": "Your property",
+      "text": "Let’s start with the basics."
+    },
+    "2": {
+      "title": "Key details",
+      "text": "A rough figure is fine if you are not sure."
+    },
+    "3": {
+      "title": "Condition of the main elements",
+      "text": "Rate each element. If you don’t know, choose “I don’t know”."
+    },
+    "4": {
+      "title": "Extras",
+      "text": "Enter 0 if your property has none."
+    },
+    "5": {
+      "title": "Your plans",
+      "text": "This helps me get back to you at the right time."
+    },
+    "6": {
+      "title": "Your contact details",
+      "text": "Your valuation appears right after you send the form."
+    }
+  },
+  "fields": {
+    "type": "Property type",
+    "typeOptions": {
+      "appartement": "Apartment",
+      "maison": "House"
+    },
+    "commune": "Municipality",
+    "communeHelp": "Type the first letters, then pick from the list.",
+    "communeEmpty": "No municipality found.",
+    "rue": "Street",
+    "surface": "Net living area (m²)",
+    "surfaceHelp": "Net = without the thickness of the walls.",
+    "chambres": "Number of bedrooms",
+    "sdb": "Number of bathrooms",
+    "annee": "Year of construction",
+    "anneeHelp": "An approximate year is fine.",
+    "etat": "Overall condition",
+    "etatOptions": {
+      "neuf": "New",
+      "renove": "Recently renovated",
+      "bon": "Good condition",
+      "rafraichir": "Needs refreshing",
+      "renover": "Needs renovation"
+    },
+    "energie": "Energy class",
+    "energieHelp": "You will find it on the energy performance certificate.",
+    "energieUnknown": "I don’t know",
+    "choose": "Choose…",
+    "etage": "Floor",
+    "etageOptions": {
+      "0": "Ground floor",
+      "1": "1st floor",
+      "2": "2nd floor",
+      "3": "3rd floor",
+      "4": "4th floor",
+      "5": "5th floor or higher"
+    },
+    "ascenseur": "Lift",
+    "terrain": "Plot size (m²)",
+    "terrainHelp": "1 are = 100 m².",
+    "maisonType": "House type",
+    "maisonTypeOptions": {
+      "mitoyenne": "Terraced",
+      "jumelee": "Semi-detached",
+      "isolee": "Detached"
+    },
+    "postes": {
+      "chassis": "Windows",
+      "chauffage": "Heating",
+      "electricite": "Electrics",
+      "cuisine": "Kitchen",
+      "sanitaires": "Bathrooms and plumbing",
+      "toiture": "Roof"
+    },
+    "posteOptions": {
+      "mauvais": "Poor",
+      "moyen": "Average",
+      "bon": "Good",
+      "neuf": "New",
+      "inconnu": "I don’t know"
+    },
+    "garages": "Garages",
+    "parkings": "Outdoor parking spaces",
+    "cave": "Cellar",
+    "terrasse": "Balcony or terrace (m²)",
+    "jardin": "Garden",
+    "proprietaire": "Do you own this property?",
+    "objectif": "Your goal",
+    "objectifOptions": {
+      "vendre": "Sell",
+      "louer": "Rent out",
+      "renseigne": "Just looking for information"
+    },
+    "delai": "When?",
+    "delaiOptions": {
+      "asap": "As soon as possible",
+      "3mois": "Within 3 months",
+      "3a6mois": "In 3 to 6 months",
+      "plus_tard": "Later"
+    },
+    "prenom": "First name",
+    "nom": "Last name",
+    "email": "Email",
+    "telephone": "Phone",
+    "indicatif": "Country code",
+    "numero": "Number",
+    "numeroHelp": "Example: 621 123 456",
+    "message": "Message",
+    "rgpd": "I agree that ImmoBuild Kohn may use this information to contact me about my property, as explained in the {link}.",
+    "rgpdLink": "privacy policy",
+    "privacyNote": "Your answers and contact details are sent by email to ImmoBuild Kohn. They are not stored in any database.",
+    "honeypot": "Do not fill in this field"
+  },
+  "errors": {
+    "required": "This field is required.",
+    "invalid": "This value is not valid.",
+    "range": "This value is out of range.",
+    "email": "This email address is not valid.",
+    "phone": "This number is not valid. Example: 621 123 456.",
+    "rgpd": "Please tick this box to see your valuation.",
+    "commune": "Please choose a municipality from the list.",
+    "summary": "Please correct the highlighted fields.",
+    "rate_limit": "Too many requests from this connection. Try again in an hour, or contact me directly.",
+    "network": "Sending failed. Check your connection and try again.",
+    "server": "Sending failed. Try again in a few minutes, or contact me directly."
+  },
+  "result": {
+    "title": "Your valuation",
+    "subtitle": "{type} in {commune}",
+    "low": "Low value",
+    "lowText": "Price for a quick sale",
+    "market": "Market value",
+    "marketText": "Price of comparable properties in your municipality",
+    "high": "High value",
+    "highText": "With a buyer who falls in love with it",
+    "indicativeTitle": "Indicative estimate",
+    "indicativeHouse": "There are no public sale prices for houses in Luxembourg. This calculation starts from asking prices in your municipality, so the range is wider.",
+    "source": "Source: {source}. Period: {periode}.",
+    "disclaimer": "Indicative estimate based on public statistics. It does not replace an on-site valuation.",
+    "cta": "Book an appointment for a precise valuation",
+    "noDataTitle": "Thank you, your request has been sent",
+    "noDataText": "There is not enough public data for your municipality. I will get back to you with a personalised valuation.",
+    "sent": "Thank you, I have received your request.",
+    "sourceAppartement": "Observatoire de l’Habitat (Ministry of Housing): notarial sale prices, asking prices and asking rents for apartments – data.public.lu, CC0 licence",
+    "sourceMaison": "Observatoire de l’Habitat (Ministry of Housing): asking prices for houses – data.public.lu, CC0 licence",
+    "sourceLink": "See the data"
+  }
+}

@@ -5,13 +5,13 @@
   "description": "Outil « Estimation gratuite » ImmoBuild Kohn : widget autonome (iframe) + Cloudflare Pages Functions",
   "type": "module",
   "scripts": {
-    "dev": "npm run build && wrangler pages dev dist --port 8788",
+    "dev": "npm run build && wrangler pages dev dist --port 8788 --compatibility-date=2026-11-01",
     "build": "vite build",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "update-data": "tsx scripts/update-data.ts",
     "screenshots": "node scripts/screenshots.mjs",
-    "deploy": "npm run build && wrangler pages deploy dist --project-name estimation-widget"
+    "deploy": "npm run build && wrangler pages deploy dist --project-name estimation-widget --branch main"
   },
   "license": "UNLICENSED",
   "devDependencies": {

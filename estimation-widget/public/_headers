@@ -1,0 +1,14 @@
+# En-têtes de sécurité (Cloudflare Pages)
+# frame-ancestors : les sites autorisés à afficher l'outil. Ajouter ici l'adresse du nouveau site Next.js si elle n'est pas sur immobuild.lu.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'self'; frame-ancestors 'self' https://immobuild.lu https://*.immobuild.lu http://localhost:*
+
+/embed.js
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=600
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

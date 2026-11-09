@@ -123,3 +123,22 @@ describe('API /api/estimate', () => {
     expect(res.status).toBe(502);
   });
 });
+
+describe('Vérification des réponses', () => {
+  it('Année de construction : acceptée jusqu’à l’année en cours + 5, refusée au-delà', async () => {
+    const { checkFields, maxYear } = await import('../src/shared/validation');
+    expect(maxYear()).toBeGreaterThanOrEqual(2031);
+    expect(checkFields({ annee: '1995' }, ['annee']).errors).toEqual({});
+    expect(checkFields({ annee: String(maxYear()) }, ['annee']).errors).toEqual({});
+    expect(checkFields({ annee: String(maxYear() + 1) }, ['annee']).errors).toEqual({ annee: 'range' });
+  });
+
+  it('Téléphone : +352 par défaut, mobile et fixe luxembourgeois, et numéros étrangers', async () => {
+    const { normalizePhone } = await import('../src/shared/validation');
+    expect(normalizePhone('+352', '621 123 456')).toBe('+352621123456');
+    expect(normalizePhone('+352', '52 12 34')).toBe('+352521234');
+    expect(normalizePhone('+352', '721 123 456')).toBe('phone');
+    expect(normalizePhone('+33', '06 12 34 56 78')).toBe('+33612345678');
+    expect(normalizePhone('+352', '12')).toBe('phone');
+  });
+});
