@@ -56,7 +56,7 @@
       "maison": "Haus"
     },
     "commune": "Gemeinde",
-    "communeHelp": "Tippen Sie die ersten Buchstaben und wählen Sie dann aus der Liste.",
+    "communeHelp": "Tippen Sie die ersten Buchstaben oder wählen Sie unten.",
     "communeEmpty": "Keine Gemeinde gefunden.",
     "rue": "Straße",
     "surface": "Netto-Wohnfläche (m²)",
@@ -190,7 +190,9 @@
       "louer": "Ich denke an eine Vermietung",
       "renseigne": "Ich möchte nur den Wert kennen"
     },
-    "anneePlaceholder": "z. B. 1990"
+    "anneePlaceholder": "z. B. 1990",
+    "energieLow": "Sparsam",
+    "energieHigh": "Hoher Verbrauch"
   },
   "errors": {
     "required": "Dieses Feld ist erforderlich.",
@@ -298,7 +300,8 @@
     "terrain": "Grundstück {n} m²",
     "garages": "{n} Garage(n)",
     "parkings": "{n} Stellplatz/-plätze",
-    "terrasse": "Außenfläche {n} m²"
+    "terrasse": "Außenfläche {n} m²",
+    "allGood": "Bauteile: alle in gutem Zustand"
   },
   "agent": {
     "title": "Ich kümmere mich um Ihre Anfrage",

@@ -56,7 +56,7 @@
       "maison": "House"
     },
     "commune": "Municipality",
-    "communeHelp": "Type the first letters, then pick from the list.",
+    "communeHelp": "Type the first letters or pick below.",
     "communeEmpty": "No municipality found.",
     "rue": "Street",
     "surface": "Net living area (m²)",
@@ -190,7 +190,9 @@
       "louer": "I’m thinking of renting it out",
       "renseigne": "I just want to know its value"
     },
-    "anneePlaceholder": "e.g. 1990"
+    "anneePlaceholder": "e.g. 1990",
+    "energieLow": "Efficient",
+    "energieHigh": "Inefficient"
   },
   "errors": {
     "required": "This field is required.",
@@ -298,7 +300,8 @@
     "terrain": "plot {n} m²",
     "garages": "{n} garage(s)",
     "parkings": "{n} parking space(s)",
-    "terrasse": "outdoor {n} m²"
+    "terrasse": "outdoor {n} m²",
+    "allGood": "Main elements: all in good condition"
   },
   "agent": {
     "title": "I’ll handle your request",

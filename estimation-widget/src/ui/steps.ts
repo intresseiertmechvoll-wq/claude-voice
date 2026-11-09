@@ -176,7 +176,8 @@ function recapCard(ctx: Ctx): string {
     v.type === 'maison' ? t(`fields.maisonTypeOptions.${v.maisonType}`) : t(`fields.etageOptions.${v.etage}`),
   ]);
   const postes = v.type === 'maison' ? POSTES_MAISON : POSTES_APPARTEMENT;
-  line(3, postes.map((p) => `${t(`fields.postes.${p}`)} : ${t(`fields.posteOptions.${v[`poste_${p}`]}`)}`));
+  const notGood = postes.filter((p) => v[`poste_${p}`] !== 'bon');
+  line(3, notGood.length ? notGood.map((p) => `${t(`fields.postes.${p}`)} : ${t(`fields.posteShort.${v[`poste_${p}`]}`)}`) : [t('recap.allGood')]);
   line(4, [
     Number(v.garages) > 0 && t('recap.garages', { n: String(v.garages) }),
     Number(v.parkings) > 0 && t('recap.parkings', { n: String(v.parkings) }),
@@ -230,6 +231,7 @@ function energyScale(ctx: Ctx): string {
   <legend>${icon('feuille', 'ico ico-legend')}<span>${esc(t('fields.energieLegend'))}</span></legend>
   <p class="help" id="energie-help">${esc(t('fields.energieHelp'))}</p>
   ${errorMessage(ctx, name)}
+  <div class="energy-scale-ends" aria-hidden="true"><span>${esc(t('fields.energieLow'))}</span><span>${esc(t('fields.energieHigh'))}</span></div>
   <div class="energy-bars">
     ${letters
       .map(
@@ -345,7 +347,7 @@ ${input(ctx, 'email', t('fields.email'), { type: 'email', autocomplete: 'email',
 </fieldset>
 <div class="field${hasErr(ctx, 'message')}" data-field="message">
   <label for="message">${labelText(ctx, t('fields.message'), true)}</label>
-  <textarea id="message" name="message" rows="3" maxlength="2000"${describedBy(ctx, 'message', false)}>${esc(ctx.v.message ?? '')}</textarea>
+  <textarea id="message" name="message" rows="2" maxlength="2000"${describedBy(ctx, 'message', false)}>${esc(ctx.v.message ?? '')}</textarea>
   ${errorMessage(ctx, 'message')}
 </div>
 <div class="hp" aria-hidden="true">

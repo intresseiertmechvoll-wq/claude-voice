@@ -56,7 +56,7 @@
       "maison": "Maison"
     },
     "commune": "Commune",
-    "communeHelp": "Tapez les premières lettres, puis choisissez dans la liste.",
+    "communeHelp": "Tapez les premières lettres ou choisissez ci-dessous.",
     "communeEmpty": "Aucune commune trouvée.",
     "rue": "Rue",
     "surface": "Surface habitable nette (m²)",
@@ -190,7 +190,9 @@
       "louer": "Je pense mettre en location",
       "renseigne": "Je veux juste connaître sa valeur"
     },
-    "anneePlaceholder": "ex. 1990"
+    "anneePlaceholder": "ex. 1990",
+    "energieLow": "Économe",
+    "energieHigh": "Énergivore"
   },
   "errors": {
     "required": "Ce champ est obligatoire.",
@@ -298,7 +300,8 @@
     "terrain": "terrain {n} m²",
     "garages": "{n} garage(s)",
     "parkings": "{n} parking(s)",
-    "terrasse": "extérieur {n} m²"
+    "terrasse": "extérieur {n} m²",
+    "allGood": "Gros postes : tous en bon état"
   },
   "agent": {
     "title": "Je m’occupe de votre demande",
