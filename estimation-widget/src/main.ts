@@ -110,7 +110,7 @@ function progress(): string {
 
 function recapBar(): string {
   if (state.step < 2) return '';
-  const items = recapItems(t, state.values).slice(0, 4);
+  const items = recapItems(t, state.values).slice(0, 2);
   if (!items.length) return '';
   return `<ul class="recap-bar" aria-label="${esc(t('recap.title'))}">${items.map((i) => `<li>${icon(i.icon, 'ico ico-xs')}<span>${esc(i.text)}</span></li>`).join('')}</ul>`;
 }
@@ -154,7 +154,6 @@ function render(focus = true) {
   <form id="form" novalidate>
     <div class="step-body anim-${state.direction}">
       <div class="step-head">
-        <span class="step-ico">${icon(STEP_ICONS[s - 1])}</span>
         <div>
           <h2 class="step-title" id="step-title" tabindex="-1">${esc(t(`steps.${s}.title`))}</h2>
 
@@ -167,7 +166,7 @@ function render(focus = true) {
     <div class="actions">
       ${
         s === TOTAL
-          ? `<button type="submit" class="btn btn-primary btn-block btn-go" ${state.sending ? 'disabled aria-busy="true"' : ''}>${state.sending ? `<span class="spinner" aria-hidden="true"></span>${esc(t('nav.sending'))}` : `${esc(t('nav.submit'))}${icon('neuf')}`}</button>`
+          ? `<button type="submit" class="btn btn-primary btn-block btn-go" ${state.sending ? 'disabled aria-busy="true"' : ''}>${state.sending ? `<span class="spinner" aria-hidden="true"></span>${esc(t('nav.sending'))}` : `${esc(t('nav.submit'))}<span class="arrow">${icon('fleche')}</span>`}</button>`
           : `<button type="submit" class="btn btn-primary btn-block btn-go">${esc(t('nav.next'))}<span class="arrow">${icon('fleche')}</span></button>`
       }
       ${s > 1 ? `<button type="button" class="btn btn-ghost" data-action="back" ${state.sending ? 'disabled' : ''}>${icon('fleche')}<span>${esc(t('nav.back'))}</span></button>` : ''}

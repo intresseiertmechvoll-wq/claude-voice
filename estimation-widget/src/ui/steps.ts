@@ -78,7 +78,7 @@ type Opt = { value: string; label: string; icon?: string; hint?: string };
 function choices(ctx: Ctx, name: string, legend: string, options: Opt[], variant: 'cards' | 'tiles' | 'chips' | 'list' = 'cards', legendIcon?: string): string {
   const err = ctx.e[name] ? ` aria-describedby="${name}-error"` : '';
   return `<fieldset class="field choices choices-${variant} n${options.length}${hasErr(ctx, name)}" id="${name}" data-field="${name}"${err}>
-  <legend>${legendIcon ? icon(legendIcon, 'ico ico-legend') : ''}<span>${esc(legend)}</span></legend>
+  <legend><span>${esc(legend)}</span></legend>
   ${errorMessage(ctx, name)}
   <div class="options">
     ${options
@@ -101,7 +101,7 @@ function choices(ctx: Ctx, name: string, legend: string, options: Opt[], variant
 function stepper(ctx: Ctx, name: string, label: string, lim: { min: number; max: number }, ico?: string): string {
   const val = String(ctx.v[name] ?? '');
   return `<div class="field stepper-field${hasErr(ctx, name)}" data-field="${name}">
-  <label for="${name}">${ico ? icon(ico, 'ico ico-label') : ''}<span>${esc(label)}</span></label>
+  <label for="${name}"><span>${esc(label)}</span></label>
   <div class="stepper">
     <button type="button" class="stepper-btn" data-stepper="${name}" data-delta="-1" data-min="${lim.min}" data-max="${lim.max}" aria-label="${esc(ctx.t('fields.decrease', { label }))}">${icon('moins')}</button>
     <input type="text" id="${name}" name="${name}" value="${esc(val)}" inputmode="numeric" autocomplete="off" placeholder="–" maxlength="3" aria-required="true"${invalid(ctx, name)}${describedBy(ctx, name, false)}>
@@ -117,7 +117,7 @@ function slider(ctx: Ctx, name: string, label: string, sliderLabel: string, o: {
   const n = Number(raw.replace(',', '.'));
   const pos = raw !== '' && Number.isFinite(n) ? Math.min(o.max, Math.max(o.min, n)) : o.min;
   return `<div class="field slider-field${hasErr(ctx, name)}" data-field="${name}">
-  <label for="${name}">${o.ico ? icon(o.ico, 'ico ico-label') : ''}<span>${labelText(ctx, label, o.optional)}</span></label>
+  <label for="${name}"><span>${labelText(ctx, label, o.optional)}</span></label>
   ${o.help ? `<p class="help" id="${name}-help">${esc(o.help)}</p>` : ''}
   <div class="slider-row">
     <div class="input-wrap has-suffix slider-number"><input type="text" id="${name}" name="${name}" value="${esc(raw)}" inputmode="decimal" autocomplete="off" maxlength="6" aria-required="true"${invalid(ctx, name)}${describedBy(ctx, name, !!o.help)}><span class="suffix" aria-hidden="true">m²</span></div>
@@ -205,7 +205,7 @@ function step1(ctx: Ctx): string {
   const canton = COMMUNES.find((c) => c.name === v.commune)?.canton;
   return `${choices(ctx, 'type', t('fields.type'), opts(t, 'fields.typeOptions', ['appartement', 'maison'], { appartement: 'appartement', maison: 'maison' }), 'tiles')}
 <div class="field combobox${hasErr(ctx, 'commune')}" data-field="commune">
-  <label for="commune" id="commune-label">${icon('epingle', 'ico ico-label')}<span>${esc(t('fields.commune'))}</span></label>
+  <label for="commune" id="commune-label"><span>${esc(t('fields.commune'))}</span></label>
   <div class="combo">
     <input type="text" id="commune" name="commune" value="${esc(v.commune ?? '')}" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="commune-list" autocomplete="off" spellcheck="false" placeholder="${esc(t('fields.communePlaceholder'))}" aria-required="true"${invalid(ctx, 'commune')}${describedBy(ctx, 'commune', false)}>
     <ul id="commune-list" role="listbox" aria-labelledby="commune-label" hidden></ul>
@@ -227,7 +227,7 @@ function energyScale(ctx: Ctx): string {
   const err = ctx.e[name] ? ` aria-describedby="${name}-error energie-help"` : ' aria-describedby="energie-help"';
   const letters = ENERGIES.filter((e) => e !== 'inconnu');
   return `<fieldset class="field energy${hasErr(ctx, name)}" id="${name}" data-field="${name}"${err}>
-  <legend>${icon('feuille', 'ico ico-legend')}<span>${esc(t('fields.energieLegend'))}</span></legend>
+  <legend><span>${esc(t('fields.energieLegend'))}</span></legend>
   <p class="help" id="energie-help">${esc(t('fields.energieHelp'))}</p>
   ${errorMessage(ctx, name)}
   <div class="energy-scale-ends" aria-hidden="true"><span>${esc(t('fields.energieLow'))}</span><span>${esc(t('fields.energieHigh'))}</span></div>
