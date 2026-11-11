@@ -283,7 +283,7 @@ let coachText = '';
 function coachHtml(): string {
   coachText = t(state.step === 1 ? 'coach.start' : `coach.step${state.step}`);
   const name = config.agent?.name ?? '';
-  const avatar = config.agent?.photo ? `<img class="avatar avatar-sm" src="${esc(config.agent.photo)}" alt="" width="40" height="40">` : `<span class="avatar avatar-sm" aria-hidden="true">${esc(name.charAt(0))}</span>`;
+  const avatar = config.agent?.photo ? `<img class="avatar avatar-sm" src="${esc(config.agent.photo)}" alt="" width="48" height="48">` : `<span class="avatar avatar-sm" aria-hidden="true">${esc(name.charAt(0))}</span>`;
   return `<div class="coach">${avatar}<p class="coach-bubble" id="coach" aria-live="polite">${esc(coachText)}</p></div>`;
 }
 function coachSay(key: string, vars?: Record<string, string>) {
