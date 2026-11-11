@@ -7,7 +7,7 @@ import data from '../../data/communes.json';
 import params from '../../params.json';
 import { estimate, type Params } from '../shared/engine';
 import { leadEmail } from '../shared/email';
-import { allowSubmission, type KVLike } from '../shared/ratelimit';
+import { allowSubmission, refundSubmission, type KVLike } from '../shared/ratelimit';
 import type { Dataset } from '../shared/types';
 import { validateSubmission } from '../shared/validation';
 import { signTicket, ticketSecret, TICKET_TTL_S } from './token';
@@ -67,11 +67,18 @@ export async function sendMail(env: Env, d: Deps, mail: Mail): Promise<'config' 
     d.log('RESEND_API_KEY manquante : impossible d’envoyer l’e-mail');
     return 'config';
   }
-  const res = await d.fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from, to: [to], reply_to: mail.replyTo, subject: mail.subject, html: mail.html, text: mail.text }),
-  });
+  let res: Response;
+  try {
+    res = await d.fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ from, to: [to], reply_to: mail.replyTo, subject: mail.subject, html: mail.html, text: mail.text }),
+      signal: AbortSignal.timeout(10_000),
+    });
+  } catch (err) {
+    d.log('Resend injoignable :', (err as Error).message);
+    return 'send';
+  }
   if (!res.ok) {
     d.log('Resend a refusé l’envoi :', res.status, await res.text().catch(() => ''));
     return 'send';
@@ -84,7 +91,8 @@ export async function readJson(request: Request, maxBody = MAX_BODY): Promise<{ 
   if (request.method !== 'POST') return { error: json({ ok: false, error: 'method' }, 405) };
   const origin = request.headers.get('origin');
   if (origin && origin !== new URL(request.url).origin) return { error: json({ ok: false, error: 'origin' }, 403) };
-  if (!(request.headers.get('content-type') ?? '').includes('application/json')) return { error: json({ ok: false, error: 'content-type' }, 415) };
+  const mediaType = (request.headers.get('content-type') ?? '').split(';')[0].trim().toLowerCase();
+  if (mediaType !== 'application/json') return { error: json({ ok: false, error: 'content-type' }, 415) };
   const text = await request.text();
   if (text.length > maxBody) return { error: json({ ok: false, error: 'too_large' }, 413) };
   try {
@@ -116,7 +124,11 @@ export async function handleEstimate(request: Request, env: Env, deps: Partial<D
   const est = estimate(v.value.answers, d.data, d.params);
   const mail = leadEmail(v.value, est, d.now());
   const err = await sendMail(env, d, { ...mail, replyTo: v.value.contact.email });
-  if (err) return json({ ok: false, error: err }, err === 'config' ? 500 : 502);
+  if (err) {
+    // Rien n'est parti : l'essai ne compte pas dans la limite, le visiteur peut réessayer
+    await refundSubmission(ip, env.RATE_LIMIT, env.RATE_LIMIT_SALT);
+    return json({ ok: false, error: err }, err === 'config' ? 500 : 502);
+  }
 
   // Ticket pour le simulateur « Et si… ? » (seulement si un prix a été calculé)
   const secret = ticketSecret(env);

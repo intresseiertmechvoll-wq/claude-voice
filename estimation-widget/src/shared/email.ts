@@ -11,16 +11,16 @@ const L = {
   maisonType: { mitoyenne: 'Mitoyenne', jumelee: 'Jumelée', isolee: 'Isolée' },
   objectif: { vendre: 'Vendre', louer: 'Louer', renseigne: 'Je me renseigne' },
   delai: { asap: 'Dès que possible', '3mois': 'Dans les 3 mois', '3a6mois': '3 à 6 mois', plus_tard: 'Plus tard' },
-  methode: { notarie: 'Ventes notariées', annonces: 'Annonces corrigées', capitalisation: 'Capitalisation (loyers)', annonces_maison: 'Annonces maisons corrigées' },
+  methode: { notarie: 'Ventes notariées', annonces: 'Annonces corrigées', capitalisation: 'Rendement locatif (capitalisation)', annonces_maison: 'Annonces maisons corrigées' },
   lang: { fr: 'Français', de: 'Allemand', en: 'Anglais' },
 } as const;
 
 const COEF_LABELS: Record<string, string> = {
-  gros_postes: 'Gros postes (total, plafonné)',
+  gros_postes: 'Gros postes (total)',
   rez_de_chaussee: 'Rez-de-chaussée',
   etage_sans_ascenseur: 'Étage élevé sans ascenseur',
   jardin_appartement: 'Jardin (appartement)',
-  petit_terrain: 'Petit terrain pour ce type de maison',
+  petit_terrain: 'Terrain plus petit que la moyenne',
   grand_terrain: 'Grand terrain pour ce type de maison',
 };
 
@@ -43,6 +43,13 @@ function annexLabel(key: string, qty: number): string {
 const eur = (v: number | null) => (v === null ? '—' : new Intl.NumberFormat('fr-LU', { maximumFractionDigits: 0 }).format(v).replace(/ | /g, ' ') + ' €');
 const pct = (v: number) => `${v > 0 ? '+' : ''}${(v * 100).toFixed(1).replace('.', ',')} %`;
 const yn = (v: boolean | null) => (v === null ? '—' : v ? 'Oui' : 'Non');
+
+/** « +352621123456 » → « +352 621 123 456 » */
+export function formatPhone(p: string): string {
+  const m = p.match(/^(\+352|\+\d{2})(\d+)$/);
+  if (!m) return p;
+  return `${m[1]} ${m[2].replace(/(\d{3})(?=\d{2,})/g, '$1 ')}`;
+}
 
 export function escapeHtml(s: string): string {
   return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
@@ -80,7 +87,11 @@ export function leadSections(s: Submission, e: Estimate, date: Date): Section[] 
         ['Priorité', `${prio.level === 'chaud' ? '🔥 ' : ''}${prio.level.charAt(0).toUpperCase() + prio.level.slice(1)} – ${prio.why}`],
         ['Bien', `${L.type[a.type]} de ${a.surface} m² à ${a.commune}`],
         ['Valeur de marché affichée', r.status === 'ok' ? eur(r.market) : 'aucune (pas assez de données)'],
-        ['Rappeler', `${c.prenom} ${c.nom} – ${c.telephone}`],
+        ...(r.status !== 'ok' ? ([['À faire', 'estimation personnalisée promise au visiteur']] as [string, string][]) : []),
+        ['Rappeler', `${c.prenom} ${c.nom} – ${formatPhone(c.telephone)}`],
+        ['E-mail', c.email],
+        ['Langue', L.lang[s.lang]],
+        ...(c.message ? ([['Message', c.message]] as [string, string][]) : []),
       ],
     },
     {
@@ -89,7 +100,7 @@ export function leadSections(s: Submission, e: Estimate, date: Date): Section[] 
         ['Prénom', c.prenom],
         ['Nom', c.nom],
         ['E-mail', c.email],
-        ['Téléphone', c.telephone],
+        ['Téléphone', formatPhone(c.telephone)],
         ['Message', c.message || '—'],
       ],
     },
@@ -119,7 +130,7 @@ export function leadSections(s: Submission, e: Estimate, date: Date): Section[] 
         ['Classe énergétique', a.energie === 'inconnu' ? 'Je ne sais pas' : a.energie],
         ...(a.type === 'appartement'
           ? ([
-              ['Étage', a.etage === 0 ? 'Rez-de-chaussée' : a.etage === 5 ? '5e et plus' : `${a.etage}e`],
+              ['Étage', a.etage === 0 ? 'Rez-de-chaussée' : a.etage === 1 ? '1er' : a.etage === 5 ? '5e et plus' : `${a.etage}e`],
               ['Ascenseur', yn(a.ascenseur)],
             ] as [string, string][])
           : ([
@@ -150,24 +161,26 @@ export function leadSections(s: Submission, e: Estimate, date: Date): Section[] 
   ];
 
   if (d) {
+    const usedWeight = d.methods.filter((m) => m.used && m.m2 !== null).reduce((sum, m) => sum + m.weight, 0) || 1;
     sections.push({
       title: 'Détail du calcul',
       rows: [
         ...d.methods.map(
           (m) =>
             [
-              `${L.methode[m.key]} (poids ${Math.round(m.weight * 100)} %)`,
+              `${L.methode[m.key]} (poids ${m.used ? `${Math.round((m.weight / usedWeight) * 100)} %` : '0 %'})`,
               `${m.m2 === null ? '—' : `${Math.round(m.m2)} €/m²`} – ${m.used ? 'utilisée' : 'non utilisée'} – ${m.note}`,
             ] as [string, string],
         ),
         ['Décote annonce → vente', `${pct(-d.decote.value)} (${d.decote.origin === 'canton' ? `médiane du canton, ${d.decote.communes} communes` : `médiane nationale, ${d.decote.communes} communes`})`],
         ['Prix de base retenu', `${Math.round(d.baseM2)} €/m²`],
-        ...d.coefficients.map((x) => [`Coefficient – ${coefLabel(x.key)}`, pct(x.value)] as [string, string]),
+        ...d.coefficients.map((x) => [`Coefficient – ${coefLabel(x.key)}${x.capped ? ' (plafonné)' : ''}`, pct(x.value)] as [string, string]),
         ['Total des coefficients', `${pct(d.coefSum)}${d.coefApplied !== d.coefSum ? ` (plafonné à ${pct(d.coefApplied)})` : ''}`],
         ['Valeur du logement', `${Math.round(d.baseM2)} €/m² × ${d.surface} m² × (1 ${d.coefApplied < 0 ? '−' : '+'} ${Math.abs(d.coefApplied * 100).toFixed(1).replace('.', ',')} %) = ${eur(d.buildingValue)}`],
         ...d.annexes.map((x) => [`Annexe : ${annexLabel(x.key, x.qty)}`, eur(x.amount)] as [string, string]),
-        ...(d.annexes.length ? ([['Ajustement des annexes selon le prix de la commune', `× ${d.communeScale.toFixed(2).replace('.', ',')}`]] as [string, string][]) : []),
+        ...(d.annexes.some((x) => x.key !== 'terrasse') ? ([['Montants garage / parking / cave', `déjà ajustés au prix de la commune (× ${d.communeScale.toFixed(2).replace('.', ',')})`]] as [string, string][]) : []),
         ['Valeur de marché avant arrondi', eur(d.rawMarket)],
+        ['Arrondi', 'à 5 000 € près ; basse et haute = valeur avant arrondi ± écart, arrondies, au moins 5 000 € d’écart'],
       ],
     });
   }
@@ -187,7 +200,7 @@ export function leadSections(s: Submission, e: Estimate, date: Date): Section[] 
 export function leadEmail(s: Submission, e: Estimate, date = new Date()): { subject: string; html: string; text: string } {
   const sections = leadSections(s, e, date);
   const text = sections
-    .map((sec) => `== ${sec.title} ==\n` + sec.rows.map(([k, v]) => `${k} : ${v}`).join('\n'))
+    .map((sec) => `== ${sec.title} ==\n` + sec.rows.map(([k, v]) => `${k} : ${v.replace(/\n/g, '\n    | ')}`).join('\n'))
     .join('\n\n');
   const html = `<!doctype html><html lang="fr"><body style="margin:0;padding:24px;background:#F8F8F6;font-family:Arial,Helvetica,sans-serif;color:#0A2342">
 <div style="max-width:640px;margin:0 auto;background:#ffffff;border-top:4px solid #C5A46D;padding:24px">
@@ -200,7 +213,7 @@ ${sections
       .join('')}</table>`,
   )
   .join('\n')}
-<p style="font-size:12px;color:#4a5a70;margin-top:24px">Répondre à cet e-mail écrit directement au visiteur. Aucune autre copie de ces données n’est conservée par l’outil.</p>
+<p style="font-size:12px;color:#4a5a70;margin-top:24px">Si vous répondez à cet e-mail, la réponse part directement chez le visiteur. L’outil ne garde aucune copie (Resend conserve un journal d’envoi).</p>
 </div></body></html>`;
   return { subject: leadSubject(s), html, text };
 }

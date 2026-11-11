@@ -46,6 +46,22 @@ export async function allowSubmission(ip: string, limit: number, kv?: KVLike, sa
   return true;
 }
 
+/** Rend la place d'un envoi qui n'a pas abouti (ex. Resend injoignable) : il ne doit pas compter dans la limite */
+export async function refundSubmission(ip: string, kv?: KVLike, salt = 'immobuild-estimation'): Promise<void> {
+  const key = 'rl:' + (await sha256(salt + '|' + ip));
+  if (kv) {
+    const raw = await kv.get(key);
+    if (!raw) return;
+    const e = JSON.parse(raw) as { count: number; start: number };
+    e.count = Math.max(0, e.count - 1);
+    const ttl = Math.max(60, WINDOW_S - (Math.floor(Date.now() / 1000) - e.start));
+    await kv.put(key, JSON.stringify(e), { expirationTtl: ttl });
+  } else {
+    const e = memory.get(key);
+    if (e) e.count = Math.max(0, e.count - 1);
+  }
+}
+
 /** Pour les tests */
 export function resetMemoryLimiter(): void {
   memory.clear();

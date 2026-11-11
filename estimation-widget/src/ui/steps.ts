@@ -4,6 +4,7 @@ import type { Lang } from '../shared/types';
 import { COMMUNES } from '../shared/communes';
 import { DELAIS, ENERGIES, ETATS, MAISON_TYPES, OBJECTIFS, POSTES_APPARTEMENT, POSTES_MAISON, POSTE_NOTES } from '../shared/types';
 import { LIMITS, PHONE_CODES, type Errors } from '../shared/validation';
+import sansDonnees from '../../data/sans-donnees.json';
 import { esc } from './html';
 import { icon } from './icons';
 
@@ -26,10 +27,24 @@ const OBJECTIF_ICONS: Record<string, string> = { vendre: 'vendre', louer: 'louer
 
 /* ---------- Briques ---------- */
 
+/** Message d'erreur adapté au champ */
+export function errorKey(name: string, code: string): string {
+  if (code === 'required') return 'errors.required';
+  if (name === 'commune') return 'errors.commune';
+  if (name === 'annee') return 'errors.annee';
+  return `errors.${code}`;
+}
+
+/** Commune sans assez de données publiques pour ce type de bien : on le dit dès l'étape 1 */
+export function noDataNote(t: T, type: unknown, commune: unknown): string {
+  const list = (sansDonnees as Record<string, unknown>)[String(type)];
+  return Array.isArray(list) && list.includes(commune) ? `${icon('info', 'ico ico-xs')}<span>${esc(t('fields.communeNoData', { commune: String(commune) }))}</span>` : '';
+}
+
 function errorMessage(ctx: Ctx, name: string): string {
   const code = ctx.e[name];
   if (!code) return `<p class="field-error" id="${name}-error" hidden></p>`;
-  const key = name === 'commune' && code !== 'required' ? 'errors.commune' : `errors.${code}`;
+  const key = errorKey(name, code);
   return `<p class="field-error" id="${name}-error">${icon('info', 'ico ico-xs')}<span>${esc(ctx.t(key))}</span></p>`;
 }
 
@@ -177,7 +192,7 @@ function recapCard(ctx: Ctx): string {
   ]);
   const postes = v.type === 'maison' ? POSTES_MAISON : POSTES_APPARTEMENT;
   const notGood = postes.filter((p) => v[`poste_${p}`] !== 'bon');
-  line(3, notGood.length ? notGood.map((p) => `${t(`fields.postes.${p}`)} : ${t(`fields.posteShort.${v[`poste_${p}`]}`)}`) : [t('recap.allGood')]);
+  line(3, notGood.length ? notGood.map((p) => `${t(`fields.postes.${p}`)}${ctx.lang === 'fr' ? '\u00a0: ' : ': '}${t(`fields.posteOptions.${v[`poste_${p}`]}`).toLowerCase()}`) : [t('recap.allGood')]);
   line(4, [
     Number(v.garages) > 0 && t('recap.garages', { n: String(v.garages) }),
     Number(v.parkings) > 0 && t('recap.parkings', { n: String(v.parkings) }),
@@ -210,13 +225,14 @@ function step1(ctx: Ctx): string {
     <input type="text" id="commune" name="commune" value="${esc(v.commune ?? '')}" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="commune-list" autocomplete="off" spellcheck="false" placeholder="${esc(t('fields.communePlaceholder'))}" aria-required="true"${invalid(ctx, 'commune')}${describedBy(ctx, 'commune', false)}>
     <ul id="commune-list" role="listbox" aria-labelledby="commune-label" hidden></ul>
   </div>
+  ${errorMessage(ctx, 'commune')}
   <p class="commune-canton" id="commune-canton" aria-live="polite">${canton ? `${icon('check', 'ico ico-xs')}${esc(t('fields.communeSelected', { deCanton: deCanton(canton, ctx.lang) }))}` : ''}</p>
+  <p class="commune-nodata" id="commune-nodata" aria-live="polite">${noDataNote(t, v.type, v.commune)}</p>
   <div class="quick" role="group" aria-label="${esc(t('fields.communeQuick'))}">
     <span class="quick-label" aria-hidden="true">${esc(t('fields.communeQuick'))}</span>
     ${ctx.quickCommunes.map((c) => `<button type="button" class="pill${v.commune === c ? ' is-active' : ''}" data-commune="${esc(c)}" aria-pressed="${v.commune === c}">${esc(c)}</button>`).join('')}
   </div>
   <p class="sr-only" id="commune-status" role="status" aria-live="polite"></p>
-  ${errorMessage(ctx, 'commune')}
 </div>
 ${input(ctx, 'rue', t('fields.rue'), { optional: true, autocomplete: 'address-line1', maxlength: 120 })}`;
 }
@@ -329,6 +345,7 @@ function step6(ctx: Ctx): string {
 ${input(ctx, 'email', t('fields.email'), { type: 'email', autocomplete: 'email', inputmode: 'email', maxlength: 254 })}
 <fieldset class="field phone${phoneErr ? ' has-error' : ''}" data-field="numero">
   <legend><span>${esc(t('fields.telephone'))}</span></legend>
+  <p class="help" id="numero-help">${esc(t('fields.numeroWhy'))}</p>
   <div class="phone-row">
     <div class="phone-code">
       <label for="indicatif" class="sr-only">${esc(t('fields.indicatif'))}</label>
@@ -338,7 +355,7 @@ ${input(ctx, 'email', t('fields.email'), { type: 'email', autocomplete: 'email',
     </div>
     <div class="phone-number">
       <label for="numero" class="sr-only">${esc(t('fields.numero'))}</label>
-      <input type="tel" id="numero" name="numero" value="${esc(ctx.v.numero ?? '')}" autocomplete="tel-national" inputmode="tel" maxlength="20" placeholder="${esc(t('fields.numeroPlaceholder'))}" aria-required="true"${invalid(ctx, 'numero')}${describedBy(ctx, 'numero', false)}>
+      <input type="tel" id="numero" name="numero" value="${esc(ctx.v.numero ?? '')}" autocomplete="tel-national" inputmode="tel" maxlength="20" placeholder="${esc(t('fields.numeroPlaceholder'))}" aria-required="true"${invalid(ctx, 'numero')}${describedBy(ctx, 'numero', true)}>
     </div>
   </div>
   ${errorMessage(ctx, 'numero')}

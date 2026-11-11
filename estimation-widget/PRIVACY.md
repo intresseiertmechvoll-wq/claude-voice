@@ -47,7 +47,7 @@ Base légale proposée : le **consentement** (case à cocher obligatoire, non co
 
 - Le visiteur peut tester l'effet de travaux (classe énergétique, état, cuisine, salle de bain…). Chaque essai est recalculé par le serveur Cloudflare, sans être enregistré ni envoyé par e-mail.
 - Pour cela, le résultat contient un **ticket signé** valable 2 heures. Il contient les réponses sur le bien et le prénom, le nom, l'e-mail et le téléphone du visiteur. Il reste dans la page ouverte du visiteur (pas de cookie, pas de stockage dans le navigateur) et disparaît quand il la ferme.
-- Quand le visiteur quitte la page (ou clique sur « Prendre rendez-vous »), **un seul e-mail de complément** part à ImmoBuild Kohn, par Resend, avec la liste de ses essais et les valeurs recalculées.
+- Le visiteur en est informé dans le simulateur (« Je reçois vos essais pour en parler avec vous »). Quand il quitte la page (ou clique sur « Prendre rendez-vous »), un e-mail de complément part à ImmoBuild Kohn, par Resend, avec ses nouveaux essais et les valeurs recalculées : au plus 3 par résultat.
 - Base légale proposée : la même que la demande (le visiteur vient d'accepter d'être recontacté au sujet de son bien). **À valider.**
 
 ## 4. Adresse IP et limite d'envois

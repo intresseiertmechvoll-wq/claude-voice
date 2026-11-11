@@ -382,7 +382,8 @@ input[type='text']:focus, input[type='email']:focus, input[type='tel']:focus, se
 .gauge-mark.edge-right span { transform: translateX(calc(-100% + 12px)); }
 .gauge-ends { display: flex; justify-content: space-between; font-size: 0.875rem; color: var(--muted); font-weight: 600; margin-top: 4px; }
 
-.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr)); gap: 10px; }
+.stat-label { hyphens: auto; overflow-wrap: break-word; }
 .stat { padding: 12px; border-radius: 12px; background: var(--offwhite); }
 .stat p { margin: 0; }
 .stat-label { font-size: 0.875rem; font-weight: 600; color: var(--muted); }
@@ -548,3 +549,89 @@ details.recap summary { min-height: 56px; padding-top: 8px; padding-bottom: 8px;
 .field > label.check { font-weight: 400; align-items: flex-start; }
 p.trust { flex-wrap: nowrap; }
 p.trust .ico { margin-top: 2px; flex: none; }
+
+/* ================= Revue multi-agents (11/11/2026) ================= */
+/* Texte : suit la taille choisie par le visiteur dans son navigateur */
+body { font-size: 1rem; }
+.step-title, .btn, .intro h1 { text-wrap: balance; }
+.option-hint, .help, .small, .coach-bubble { text-wrap: pretty; }
+.option-label { hyphens: auto; -webkit-hyphens: auto; overflow-wrap: anywhere; }
+
+/* Petits écrans (320–360 px) : colonnes égales, compteurs lisibles */
+.choices-tiles .options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.choices-tiles.n3 .options { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.values { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.works { grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); }
+.work-box > span:not([class]) { min-width: 0; overflow-wrap: break-word; hyphens: auto; }
+.rating { grid-template-columns: repeat(4, minmax(0, 1fr)) 36px; }
+@media (min-width: 420px) { .rating { grid-template-columns: repeat(4, minmax(0, 1fr)) 52px; } }
+.stepper { gap: 6px; justify-content: flex-start; }
+.stepper input { flex: 1 1 0; width: auto; min-width: 40px; max-width: 64px; }
+.stepper-btn { width: 44px; height: 44px; }
+/* Deux champs côte à côte seulement s'il y a la place ; sinon l'un sous l'autre (rien ne déborde) */
+.row { grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr)); }
+@media (max-width: 359px) {
+  .rate-box { font-size: 0.75rem; }
+  .value-amount { font-size: 1.0625rem; }
+  .pdot-ico { width: 34px; height: 34px; }
+  .choices-tiles.n3 .option-label { font-size: 0.8125rem; }
+}
+.recap-bar { flex-wrap: wrap; }
+
+/* Poids : seuls 400 et 600 sont chargés */
+.indicative-title { font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.06em; }
+.next li::before, .wo-delta { font-weight: 600; }
+.combo li, .factor-label, .recap-short { font-weight: 400; }
+
+/* Contrastes des éléments non textuels (WCAG 1.4.11) */
+.switch { background: #8a95a5; }
+.pill { border-color: var(--line); }
+
+/* Commune : erreur et avertissement juste sous le champ */
+.combobox .field-error { margin-top: 8px; }
+.commune-nodata { display: flex; gap: 6px; align-items: flex-start; margin: 8px 0 0; padding: 8px 10px; border-radius: 10px; background: var(--beige); font-size: 0.875rem; }
+.commune-nodata:empty { display: none; }
+.suggest { margin: 8px 0 0; font-size: 0.875rem; color: var(--navy); }
+
+/* Focus : un seul anneau net */
+input[type='text']:focus-visible, input[type='email']:focus-visible, input[type='tel']:focus-visible, select:focus-visible, textarea:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--navy); }
+.has-error input[type='text']:focus-visible, .has-error input[type='email']:focus-visible, .has-error input[type='tel']:focus-visible { box-shadow: 0 0 0 3px var(--error); }
+
+/* Énergie : « Je ne sais pas » détaché, coche plus petite */
+.energy-unknown { margin-top: 8px; }
+.energy-bar .option-check { width: 16px; height: 16px; margin-left: -8px; top: 3px; }
+
+/* Résultat : en-tête plus aéré, mention en poids normal, raccourci sobre */
+.result-hero { padding: 22px 20px 24px; }
+.disclaimer { font-weight: 400; margin-top: 6px !important; }
+.teaser { width: auto; border: 1.5px solid var(--line-soft); background: var(--beige); }
+.result > .agent { margin-bottom: 20px; }
+.hero-nodata ~ .agent { justify-content: center; margin-top: 20px; }
+.result-actions { flex-wrap: nowrap; justify-content: center; gap: 4px; }
+.result-actions .btn-ghost { font-size: 0.9375rem; min-height: 44px; padding: 10px 12px; }
+.panel h3 { align-items: flex-start; }
+.panel h3 .ico { margin-top: 3px; }
+.next li::before { box-shadow: 0 0 0 1.5px var(--gold); background: var(--white); }
+.stat-gap { margin-top: 2px !important; }
+.analysis-pct { font-size: 1.25rem; }
+
+/* Simulateur : états en grille régulière */
+.whatif #wi_etat .options { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); }
+
+/* Bureau : des colonnes plutôt qu'un téléphone étiré */
+@media (min-width: 640px) {
+  .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .stats .stat-you:nth-child(3), .stats .stat-you:nth-child(1) { grid-column: auto; }
+  .works { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Intégré dans un site : pas de fond gris autour de la carte */
+html.is-embedded body { background: transparent; }
+html.is-embedded #app { padding: 4px 2px 24px; }
+
+/* Contrôle visuel 320–1280 px (11/11/2026) */
+@media (max-width: 419px) {
+  .result-actions { flex-direction: column; align-items: stretch; gap: 4px; }
+  .result-actions > * { justify-content: center; white-space: normal; }
+}
+.nowrap { white-space: nowrap; }

@@ -4,12 +4,12 @@
   },
   "intro": {
     "title": "Was ist Ihr Zuhause wert?",
-    "text": "Ein paar Klicks, und Sie wissen es.",
+    "text": "Ein paar Fragen zu Ihrer Immobilie, Ihre Kontaktdaten, dann Ihre Preisspanne.",
     "kicker": "Kostenlose Bewertung · ImmoBuild Kohn",
     "badges": {
       "free": "Kostenlos",
       "commitment": "Unverbindlich",
-      "official": "Offizielle Daten",
+      "official": "Öffentliche Daten",
       "instant": "Sofortiges Ergebnis"
     }
   },
@@ -18,7 +18,9 @@
     "next": "Weiter",
     "back": "Zurück",
     "submit": "Meine Bewertung anzeigen",
-    "sending": "Wird gesendet…"
+    "sending": "Wird gesendet…",
+    "reload": "Neu laden",
+    "toSummary": "Zurück zur Zusammenfassung"
   },
   "optional": "optional",
   "yes": "Ja",
@@ -60,7 +62,7 @@
     "communeEmpty": "Keine Gemeinde gefunden.",
     "rue": "Straße",
     "surface": "Netto-Wohnfläche (m²)",
-    "surfaceHelp": "Netto = ohne die Mauerstärke.",
+    "surfaceHelp": "Netto = ohne Wandstärke.",
     "chambres": "Anzahl Schlafzimmer",
     "sdb": "Anzahl Badezimmer",
     "annee": "Baujahr",
@@ -115,7 +117,7 @@
     "cave": "Keller",
     "terrasse": "Balkon oder Terrasse (m²)",
     "jardin": "Garten",
-    "proprietaire": "Sind Sie Eigentümer dieser Immobilie?",
+    "proprietaire": "Gehört Ihnen diese Immobilie?",
     "objectif": "Ihr Ziel",
     "objectifOptions": {
       "vendre": "Verkaufen",
@@ -133,7 +135,7 @@
     "nom": "Nachname",
     "email": "E-Mail",
     "telephone": "Telefon",
-    "indicatif": "Vorwahl",
+    "indicatif": "Ländervorwahl",
     "numero": "Nummer",
     "numeroHelp": "Beispiel: 621 123 456",
     "message": "Nachricht",
@@ -145,7 +147,7 @@
       "appartement": "Studio, Maisonette, Penthouse…",
       "maison": "Reihenhaus, Doppelhaushälfte oder freistehend"
     },
-    "communeQuick": "Gemeinden in der Nähe:",
+    "communeQuick": "Zum Beispiel:",
     "communeSelected": "Kanton {deCanton}",
     "surfaceSlider": "Fläche (Schieberegler)",
     "terrainSlider": "Grundstücksfläche (Schieberegler)",
@@ -154,7 +156,7 @@
     "increase": "1 mehr – {label}",
     "etatHints": {
       "neuf": "Erstbezug oder jünger als 5 Jahre",
-      "renove": "Große Arbeiten vor Kurzem erledigt",
+      "renove": "Vor Kurzem umfassend renoviert",
       "bon": "Gepflegt, sofort bewohnbar",
       "rafraichir": "Anstrich, Böden, kleine Arbeiten",
       "renover": "Größere Arbeiten nötig"
@@ -193,8 +195,12 @@
     "anneePlaceholder": "z. B. 1990",
     "energieLow": "Sparsam",
     "energieHigh": "Hoher Verbrauch",
-    "communePlaceholder": "z. B. Düdelingen / Dudelange",
-    "numeroPlaceholder": "621 123 456"
+    "communePlaceholder": "z. B. Dudelange",
+    "numeroPlaceholder": "621 123 456",
+    "communeNoData": "Wenig öffentliche Daten für {commune}: Ich mache Ihnen eine persönliche Bewertung.",
+    "numeroWhy": "Nur, um Sie zu Ihrer Immobilie zu kontaktieren.",
+    "emailTypo": "Meinten Sie",
+    "terrainAres": "In Ar? {a} a = {m2} m². Bitte die Fläche in m² angeben."
   },
   "errors": {
     "required": "Dieses Feld ist erforderlich.",
@@ -202,12 +208,14 @@
     "range": "Dieser Wert liegt außerhalb des zulässigen Bereichs.",
     "email": "Diese E-Mail-Adresse ist ungültig.",
     "phone": "Diese Nummer ist ungültig. Beispiel: 621 123 456.",
-    "rgpd": "Bitte kreuzen Sie dieses Feld an, um Ihre Bewertung zu sehen.",
+    "rgpd": "Bitte setzen Sie hier ein Häkchen, um Ihre Bewertung zu sehen.",
     "commune": "Bitte wählen Sie eine Gemeinde aus der Liste.",
     "summary": "Bitte korrigieren Sie die markierten Felder.",
-    "rate_limit": "Zu viele Anfragen von dieser Verbindung. Versuchen Sie es in einer Stunde erneut oder kontaktieren Sie mich direkt.",
-    "network": "Das Senden hat nicht geklappt. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
-    "server": "Das Senden hat nicht geklappt. Versuchen Sie es in ein paar Minuten erneut oder kontaktieren Sie mich direkt."
+    "rate_limit": "Zu viele Anfragen von dieser Verbindung. Versuchen Sie es in einer Stunde erneut oder schreiben Sie mir an {contact}.",
+    "network": "Das Senden ist fehlgeschlagen. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
+    "server": "Das Senden ist fehlgeschlagen. Versuchen Sie es in ein paar Minuten erneut oder schreiben Sie mir an {contact}.",
+    "annee": "Bitte das Jahr vierstellig angeben, z. B. 1995.",
+    "reload": "Das Tool wurde gerade aktualisiert. Bitte laden Sie die Seite neu."
   },
   "result": {
     "title": "Ihre Bewertung",
@@ -217,23 +225,23 @@
     "market": "Marktwert",
     "marketText": "Preis vergleichbarer Immobilien in Ihrer Gemeinde",
     "high": "Oberer Wert",
-    "highText": "Mit einem Käufer, der sich verliebt",
-    "indicativeTitle": "Unverbindliche Schätzung",
-    "indicativeHouse": "Keine öffentlichen Verkaufspreise für Häuser: Berechnung aus Angeboten, breitere Spanne.",
+    "highText": "Wenn sich ein Käufer in die Immobilie verliebt",
+    "indicativeTitle": "Richtwert",
+    "indicativeHouse": "Für Häuser gibt es keine öffentlichen Verkaufspreise. Die Berechnung geht von Anzeigen aus, deshalb ist die Spanne breiter.",
     "source": "Quelle: {source}. Zeitraum: {periode}.",
-    "disclaimer": "Unverbindliche Schätzung auf Basis öffentlicher Statistiken. Sie ersetzt keine Bewertung vor Ort.",
+    "disclaimer": "Richtwert auf Basis öffentlicher Statistiken. Er ersetzt keine Bewertung vor Ort.",
     "cta": "Termin für eine genaue Bewertung vereinbaren",
     "noDataTitle": "Danke, Ihre Anfrage wurde gesendet",
     "noDataText": "Für Ihre Gemeinde gibt es nicht genug öffentliche Daten. Ich melde mich mit einer persönlichen Bewertung bei Ihnen.",
     "sent": "Anfrage erhalten",
-    "sourceAppartement": "Observatoire de l’Habitat (notarielle Verkäufe, Angebote, Mieten)",
+    "sourceAppartement": "Observatoire de l’Habitat (notarielle Verkäufe, Angebotspreise, Mieten)",
     "sourceMaison": "Observatoire de l’Habitat (Hausangebote)",
     "sourceLink": "Zu den Daten",
     "ready": "Hier ist Ihre Bewertung!",
-    "perM2": "also {value} pro m²",
+    "perM2": "das sind {value}\u00a0pro\u00a0m²",
     "rangeTitle": "Ihre Preisspanne",
     "gaugeTitle": "Ihre Immobilie im Vergleich zu den Verkäufen in {commune}",
-    "gaugeText": "Wohnungsverkäufe vom {debut} bis {fin}, ohne die 5 % Extremwerte auf jeder Seite.",
+    "gaugeText": "Verkäufe bestehender Wohnungen vom {debut} bis zum {fin}, ohne die 5 % niedrigsten und 5 % höchsten Preise.",
     "gaugeYou": "Ihre Immobilie",
     "gaugeAvg": "Durchschnitt",
     "factorsTitle": "Was Ihren Preis beeinflusst",
@@ -248,7 +256,7 @@
     "reliabilityText": {
       "appartement": {
         "high": "Viele aktuelle Verkäufe in Ihrer Gemeinde.",
-        "medium": "Echte Verkäufe, aber weniger.",
+        "medium": "Echte Verkäufe, aber nicht so viele.",
         "low": "Wenige Verkäufe: Berechnung stützt sich auf den Kanton."
       },
       "maison": {
@@ -262,33 +270,34 @@
     "statNotarieSub": "{n} Wohnungsverkäufe",
     "statAnnonceAppartement": "Durchschnittlicher Angebotspreis",
     "statAnnonceMaison": "Durchschnittlicher Angebotspreis (Häuser)",
-    "statAnnonceSub": "{n} Angebote",
+    "statAnnonceSub": "{n} Anzeigen",
     "statYou": "Ihre Bewertung",
     "statYouSub": "für {n} m²",
     "statCanton": "Weniger als 10 veröffentlichte Verkäufe in Ihrer Gemeinde: Es wird der Median des Kantons {deCanton} verwendet.",
     "howTitle": "So wird der Preis berechnet",
-    "howAppartement": "Drei Methoden werden kombiniert: die beim Notar registrierten Verkäufe, die Angebotspreise korrigiert um den üblichen Abstand zwischen Angebot und Verkauf, und die Mietrendite. Danach passen Fläche, Zustand, Energie und Extras den Preis an.",
+    "howAppartement": "Bis zu drei Methoden werden kombiniert: die beim Notar registrierten Verkäufe, die Angebotspreise bereinigt um den üblichen Abschlag zwischen Angebots- und Verkaufspreis, und die Mietrendite. Danach passen Fläche, Zustand, Energie und Extras den Preis an.",
     "howMaison": "Für Häuser gibt es keine öffentlichen Verkaufspreise. Die Berechnung geht vom durchschnittlichen Angebotspreis der Häuser in Ihrer Gemeinde aus, korrigiert um den üblichen Abstand zwischen Angebot und Verkauf. Danach passen Fläche, Zustand, Energie, Grundstück und Extras den Preis an.",
     "methods": {
       "notarie": "Notarielle Verkäufe",
-      "annonces": "Korrigierte Angebote",
+      "annonces": "Bereinigte Angebotspreise",
       "capitalisation": "Mietrendite",
-      "annonces_maison": "Korrigierte Hausangebote"
+      "annonces_maison": "Bereinigte Angebotspreise (Häuser)"
     },
-    "methodLine": "{name}: {m2} pro m² ({weight} der Berechnung)",
+    "methodLine": "{name}: {m2}\u00a0pro\u00a0m² ({weight} der Berechnung)",
     "nextTitle": "Wie geht es weiter?",
     "next1": "Ich erhalte Ihre Anfrage und melde mich bei Ihnen.",
-    "next2": "Vor Ort verfeinere ich, was Zahlen nicht sehen: Aussicht, Licht, Ausstattung.",
+    "next2": "Vor Ort berücksichtige ich, was Zahlen nicht zeigen: Aussicht, Licht, Ausstattung.",
     "print": "Drucken oder als PDF speichern",
-    "restart": "Neue Bewertung starten"
+    "restart": "Neue Bewertung starten",
+    "statGap": "Tatsächliche Verkäufe liegen im Schnitt {p} unter den Anzeigen."
   },
   "stepsShort": {
     "1": "Immobilie",
-    "2": "Eckdaten",
+    "2": "Details",
     "3": "Bauteile",
     "4": "Extras",
     "5": "Vorhaben",
-    "6": "Kontakt"
+    "6": "Ihre Kontaktdaten"
   },
   "recap": {
     "title": "Ihre Immobilie in Kürze",
@@ -314,10 +323,10 @@
     "data": "Ihre Daten gehen nur an ImmoBuild Kohn",
     "cookies": "Keine Cookies, keine Werbung",
     "line": "Kostenlos · unverbindlich · ohne Cookies",
-    "where": "Ihre Antworten gehen per E-Mail an ImmoBuild Kohn, ohne Datenbank."
+    "where": "Ihre Antworten gehen nur an ImmoBuild Kohn, per E-Mail."
   },
   "factors": {
-    "etat_neuf": "Neubau",
+    "etat_neuf": "Neuwertig",
     "etat_renove": "Kürzlich renoviert",
     "etat_rafraichir": "Auffrischungsbedürftig",
     "etat_renover": "Renovierungsbedürftig",
@@ -345,14 +354,14 @@
       },
       "data": {
         "title": "Daten für {commune} werden gesucht",
-        "detail": "Notarielle Verkäufe, Angebotspreise und Mieten des Observatoire de l’Habitat",
-        "found": "{ventes} notarielle Verkäufe und {offres} Angebote in {commune} gefunden",
+        "detail": "Öffentliche Daten des Observatoire de l’Habitat",
+        "found": "{ventes} notarielle Verkäufe und {offres} Anzeigen in {commune} gefunden",
         "canton": "Wenige Verkäufe hier: Verkäufe im Kanton und {offres} Angebote in {commune}",
-        "foundHouse": "{offres} Hausangebote in {commune} gefunden",
+        "foundHouse": "{offres} Hausanzeigen in {commune} gefunden",
         "none": "Nicht genug öffentliche Daten für {commune}"
       },
       "compare": {
-        "title": "Kriterien und Methoden werden verglichen",
+        "title": "Berechnungsmethoden werden angewendet",
         "appartement": "Echte Verkäufe, korrigierte Angebote und Mietrendite",
         "maison": "Angebotspreise, korrigiert um den üblichen Abstand zum Verkaufspreis"
       },
@@ -372,10 +381,10 @@
   },
   "whatif": {
     "title": "Was wäre, wenn…?",
-    "text": "Testen Sie die Wirkung von Arbeiten. Ihre Bewertung bleibt gleich.",
-    "energy": "Energieklasse nach den Arbeiten",
+    "text": "Testen Sie, wie sich Renovierungen auf den Preis auswirken. Ihre ursprüngliche Bewertung bleibt gleich. Ich erhalte Ihre Versuche, um mit Ihnen darüber zu sprechen.",
+    "energy": "Energieklasse nach der Renovierung",
     "etat": "Allgemeiner Zustand",
-    "works": "Arbeiten",
+    "works": "Renovierungen",
     "worksItems": {
       "chassis": "Neue Fenster",
       "chauffage": "Neue Heizung",
@@ -388,32 +397,33 @@
     "newValue": "Neuer Marktwert",
     "same": "Keine Auswirkung auf den Preis",
     "loading": "Berechnung…",
-    "error": "Die Berechnung hat nicht geklappt. Bitte erneut versuchen.",
+    "error": "Die Berechnung ist fehlgeschlagen. Bitte erneut versuchen.",
     "reset": "Zurück zu meiner Immobilie",
-    "note": "Unverbindlich, ohne die Kosten der Arbeiten.",
+    "note": "Richtwert, ohne die Kosten der Arbeiten.",
     "teaser": "Und wenn Sie renovieren?"
   },
   "coach": {
-    "start": "Hallo! Ich bin Jay. Ein paar Klicks, und Sie erhalten eine Preisspanne.",
+    "start": "Guten Tag! Ich bin Jay. Ein paar Klicks, und Sie erhalten eine Preisspanne.",
     "step2": "Ein ungefährer Wert reicht.",
     "step3": "Nicht sicher? Wählen Sie „?“.",
     "step4": "Auch das zählt beim Preis!",
     "step5": "So kann ich Ihnen zum richtigen Zeitpunkt antworten.",
-    "step6": "Letzter Schritt, dann rechne ich alles aus!",
-    "appartement": "Eine Wohnung, perfekt!",
-    "maison": "Ein Haus, wunderbar!",
-    "commune": "{commune}, notiert!",
+    "step6": "Ihre Nummer dient nur dazu, über Ihre Immobilie zu sprechen.",
+    "appartement": "Eine Wohnung, sehr gut!",
+    "maison": "Ein Haus, sehr gut!",
+    "commune": "{commune} – ist notiert!",
     "energieGood": "Bravo, sehr gute Energieklasse!",
     "energieBad": "Kein Problem, das berücksichtige ich.",
     "energieUnknown": "Nicht schlimm, es geht auch ohne.",
-    "allGood": "Gut gepflegt, super!",
+    "allGood": "Gut gepflegt, das ist ein Plus!",
     "bad": "Danke für Ihre Offenheit.",
-    "garage": "Eine Garage zählt!",
+    "garage": "Garagen zählen beim Preis mit.",
     "jardin": "Ein Garten ist ein echtes Plus!",
     "cave": "Ein Keller, immer praktisch.",
-    "vendre": "Verkaufen? Dafür bin ich da.",
-    "louer": "Vermieten, auch eine gute Idee.",
+    "vendre": "Verkaufen? Ich begleite Sie gern.",
+    "louer": "Vermieten, notiert.",
     "renseigne": "Gute Idee, sich zuerst zu informieren.",
-    "nonProprio": "Kein Problem, die Bewertung ist trotzdem möglich."
+    "nonProprio": "Kein Problem, die Bewertung ist trotzdem möglich.",
+    "energieMid": "Klasse {c}, notiert."
   }
 }

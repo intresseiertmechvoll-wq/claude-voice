@@ -24,7 +24,7 @@ const SHARES: [StepKey, string, number][] = [
   ['data', 'donnees', 0.24],
   ['compare', 'regle', 0.24],
   ['adjust', 'outils', 0.2],
-  ['final', 'check', 0.16],
+  ['final', 'drapeau', 0.16],
 ];
 
 /** Les 5 étapes et leur durée (la somme vaut totalMs) */

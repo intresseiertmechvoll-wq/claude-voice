@@ -28,7 +28,7 @@ export interface Detail {
   decote: { value: number; origin: 'canton' | 'national'; communes: number };
   methods: Method[];
   baseM2: number;
-  coefficients: { key: string; value: number }[];
+  coefficients: { key: string; value: number; capped?: boolean }[];
   coefSum: number;
   coefApplied: number;
   surface: number;
@@ -102,15 +102,15 @@ export function excludeOutlier(methods: Method[], maxGap: number): void {
   }
 }
 
-function coefficients(a: Answers, params: Params): { key: string; value: number }[] {
+function coefficients(a: Answers, params: Params): { key: string; value: number; capped?: boolean }[] {
   const c = params.coefficients;
-  const out: { key: string; value: number }[] = [];
+  const out: { key: string; value: number; capped?: boolean }[] = [];
   out.push({ key: `etat_${a.etat}`, value: c.etat[a.etat] });
 
   const postes = a.type === 'maison' ? POSTES_MAISON : POSTES_APPARTEMENT;
   const g = c.gros_postes;
   const raw = postes.reduce((s, p) => s + g[a.postes[p] ?? 'inconnu'], 0);
-  out.push({ key: 'gros_postes', value: clamp(raw, g.total_min, g.total_max) });
+  out.push({ key: 'gros_postes', value: clamp(raw, g.total_min, g.total_max), capped: raw < g.total_min || raw > g.total_max });
 
   out.push({ key: `energie_${a.energie}`, value: c.energie[a.energie] });
 
@@ -142,8 +142,11 @@ function annexes(a: Answers, baseM2: number, params: Params): { list: Annex[]; s
   const adj = params.annexes.ajustement_commune;
   const scale = clamp(baseM2 / adj.prix_reference_m2, adj.min, adj.max);
   const list: Annex[] = [];
-  if (a.garages) list.push({ key: 'garage', qty: a.garages, amount: a.garages * p.garage * scale });
-  if (a.parkings) list.push({ key: 'parking', qty: a.parkings, amount: a.parkings * p.parking_exterieur * scale });
+  const maxN = params.annexes.nombre_max_valorise;
+  const g = Math.min(a.garages, maxN.garages);
+  const k = Math.min(a.parkings, maxN.parkings);
+  if (g) list.push({ key: 'garage', qty: g, amount: g * p.garage * scale });
+  if (k) list.push({ key: 'parking', qty: k, amount: k * p.parking_exterieur * scale });
   if (a.cave && p.cave) list.push({ key: 'cave', qty: 1, amount: p.cave * scale });
   const terrasseM2 = Math.min(a.terrasse, p.terrasse_m2_max);
   if (terrasseM2 > 0 && p.terrasse_ponderation > 0) {
@@ -266,9 +269,9 @@ export function estimate(a: Answers, data: Dataset, params: Params): Estimate {
       status: 'ok',
       type: a.type,
       commune: a.commune,
-      low: roundTo(rawMarket * (1 - spread), step),
+      low: Math.min(roundTo(rawMarket * (1 - spread), step), market - step),
       market,
-      high: roundTo(rawMarket * (1 + spread), step),
+      high: Math.max(roundTo(rawMarket * (1 + spread), step), market + step),
       spread,
       indicative: a.type === 'maison',
       periode: data.periode,
@@ -278,6 +281,8 @@ export function estimate(a: Answers, data: Dataset, params: Params): Estimate {
       sourceUrl: url,
       surface: a.surface,
       pricePerM2: Math.round(market / a.surface),
+      // Même base que le prix affiché (arrondi), annexes retirées : sans annexes, identique à pricePerM2
+      buildingPerM2: Math.round((market - annexesTotal) / a.surface),
       factors: [
         ...coefs.map((x) => ({ key: x.key, kind: 'pct' as const, value: x.value })),
         ...ax.list.map((x) => ({ key: x.key, kind: 'eur' as const, value: roundTo(x.amount, 500), qty: x.qty })),
@@ -295,6 +300,7 @@ export function estimate(a: Answers, data: Dataset, params: Params): Estimate {
         notarieFromCanton: a.type === 'appartement' && !ownNotarial,
         annonceM2: a.type === 'maison' ? (c.annonce_maison_m2 === null ? null : Math.round(c.annonce_maison_m2)) : c.annonce_appartement_m2 === null ? null : Math.round(c.annonce_appartement_m2),
         offres: a.type === 'maison' ? c.annonce_maison_offres : c.annonce_appartement_offres,
+        decote: decote.value,
       },
     },
     detail: {

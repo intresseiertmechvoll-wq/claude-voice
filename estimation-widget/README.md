@@ -22,15 +22,16 @@ Pas de base de données, pas de cookie, pas de traceur. Les polices sont incluse
 ### Ce que vit le visiteur
 
 - **Un parcours visuel** : cartes illustrées (appartement / maison, type de maison, état, projet, délai), boutons − / + pour les chambres, salles de bain, garages et parkings, curseurs pour les surfaces, étiquette énergie en couleurs (A+ à I), notes des gros postes avec un bouton « Tout mettre sur Bon », interrupteurs pour la cave et le jardin.
-- **Rapide** : raccourcis vers les communes proches de Dudelange (réglables), recherche de commune tolérante aux accents, canton affiché dès le choix, résumé du bien qui se construit en haut de l'écran.
+- **Rapide** : raccourcis vers les communes proches de Dudelange (réglables), recherche de commune tolérante aux accents et aux autres noms (quartiers de Luxembourg comme Kirchberg ou Bonnevoie, noms allemands ou luxembourgeois comme Düdelingen ou Diddeleng : liste dans `src/shared/aliases.ts`), canton affiché dès le choix, avertissement immédiat si la commune n'a pas assez de données publiques, résumé du bien qui se construit en haut de l'écran.
+- **Indulgent** : « 80m2 », « 1 200 », l'indicatif « +352 » recopié dans le numéro, une année sur 2 chiffres, un terrain donné en ares ou une faute dans l'e-mail (« gmial.com ») sont reconnus et corrigés ou expliqués, sans laisser passer de mauvaises données.
 - **Rassurant** : progression avec icônes, erreurs expliquées et effacées dès que le champ est correct, récapitulatif modifiable avant l'envoi, engagements clairs (gratuit, sans engagement, pas de cookie).
 - **Un écran « Analyse de votre bien »** après l'envoi (environ 6 secondes) : une maison qui se remplit depuis le bas, un pourcentage et 5 étapes cochées une à une — rassemblement des réponses, recherche des données de la commune (avec les vrais chiffres, par ex. « 130 ventes notariées et 508 annonces trouvées à Dudelange »), comparaison des méthodes, ajustement du prix, calcul du prix final. Voir « Écran d'analyse » plus bas.
-- **Un simulateur « Et si… ? »** sous le résultat : le visiteur teste une autre classe énergétique, un autre état ou des travaux (cuisine, salle de bain, châssis…) et voit aussitôt la nouvelle valeur et l'écart. Tu reçois **un seul** e-mail de complément avec ses essais quand il quitte la page : utile pour préparer le rendez-vous. Voir « Simulateur » plus bas.
+- **Un simulateur « Et si… ? »** sous le résultat : le visiteur teste une autre classe énergétique, un autre état ou des travaux (cuisine, salle de bain, châssis…) et voit aussitôt la nouvelle valeur et l'écart. Le visiteur est prévenu que tu reçois ses essais. Tu reçois un e-mail de complément quand il quitte la page (au plus 3 par résultat, chacun avec les seuls essais nouveaux) : utile pour préparer le rendez-vous. Voir « Simulateur » plus bas.
 - **Une barre de progression qui avance à chaque réponse**, avec une petite avance au départ.
 - **Une présence humaine** : une bulle de Jay sous chaque titre, qui réagit à certaines réponses (« Un garage, ça compte ! »). Les phrases sont dans `src/i18n/fr.json` → `coach`, à adapter à ta voix. Ta photo : `config.json` → `agent.photo`.
 - **Un résultat sobre** : un sceau doré qui se dessine (pas de confettis : une estimation peut décevoir).
 - **Un résultat utile pour lui** : valeur de marché en grand et prix au m², fourchette basse / haute, position de son bien parmi les ventes réelles de sa commune (appartements), chiffres de la commune, ce qui fait monter ou baisser son prix, fiabilité des données, explication du calcul, prochaines étapes, impression / PDF.
-- **Accessible et léger** : 0 erreur axe-core (WCAG 2.1 AA) sur tous les écrans capturés, utilisable au clavier, animations coupées si le visiteur le demande à son système. Lighthouse mobile (en local) : performance 100, accessibilité 100, bonnes pratiques 100, 77 Ko au total.
+- **Accessible et léger** : 0 erreur axe-core (WCAG 2.1 AA) sur tous les écrans capturés, utilisable au clavier, animations coupées si le visiteur le demande à son système. Lighthouse mobile (en local, 11/11/2026) : performance 100, accessibilité 100, bonnes pratiques 100, 89 Ko au total (photo comprise).
 
 ---
 
@@ -145,7 +146,7 @@ L'Observatoire de l'Habitat publie de nouveaux fichiers chaque trimestre (derni�
 npm run update-data && npm test && npm run deploy
 ```
 
-- `update-data` télécharge les derniers fichiers par l'API de data.public.lu et réécrit `data/communes.json`.
+- `update-data` télécharge les derniers fichiers par l'API de data.public.lu et réécrit `data/communes.json`, ainsi que `data/sans-donnees.json` (la liste des communes sans assez de données, qui sert à prévenir le visiteur dès l'étape 1).
 - Si un fichier n'a pas le format attendu (colonnes, nombre de communes, nom de commune inconnu), le script **s'arrête sans rien modifier** et dit pourquoi. Ne force pas : regarde le fichier, ou demande de l'aide.
 - Les tests utilisent une copie figée des données (`tests/fixtures/`), donc le calcul à la main du test Dudelange reste valable après une mise à jour.
 - Derrière un proxy d'entreprise, lance `NODE_USE_ENV_PROXY=1 npm run update-data`.
@@ -165,6 +166,14 @@ Ajoute un widget **HTML** sur la page, et colle **une ligne** :
 ```
 
 Pour les pages en allemand ou en anglais : `data-lang="de"` ou `data-lang="en"`.
+
+Options utiles :
+
+- **En-tête fixe** sur le site (menu qui reste en haut) : ajoute sa hauteur, ex. `data-offset="90"` sur le `<div>`, pour que le haut de l'outil ne passe pas dessous quand il fait défiler la page.
+- **Extension WordPress qui recopie les scripts** (cache, optimisation) : ajoute `data-src="https://estimation-widget.pages.dev/embed.js"` sur le `<script>`.
+- **Largeur** : prévois au moins 320 px pour la colonne qui contient l'outil (testé de 320 à 1280 px, rien ne déborde).
+- **Si l'outil ne s'affiche pas** (adresse du site non autorisée, panne), un bouton « Ouvrir l'estimation gratuite » le remplace après 15 secondes, et la console du navigateur explique pourquoi.
+- **Si ton site a une règle CSP** : autorise l'adresse de l'outil dans `frame-src`.
 
 ### Next.js (dépôt immobuild-website)
 
@@ -234,6 +243,8 @@ Pas de prix affiché, mais le message « Je vous recontacte avec une estimation 
 - **Appartement** : la commune n'a ni 10 ventes ni 30 annonces d'appartements (36 communes, surtout rurales : Beaufort, Tandel, Wincrange…).
 - **Maison** : la commune a moins de 30 annonces de maisons (17 communes : Bech, Berdorf, Bourscheid, Erpeldange-sur-Sûre, Fischbach, Goesdorf, Kiischpelt, Larochette, Manternach, Nommern, Putscheid, Saeul, Schieren, Tandel, Waldbillig, Weiswampach, Winseler).
 
+Le visiteur en est prévenu dès l'étape 1, sous la commune, avant de remplir le reste.
+
 ## Paramètres (`params.json`) — tout est à valider par Jay
 
 Valeurs de départ simples et prudentes, choisies pour cet outil. Aucune grille d'Estimator Pro ni de Propteo n'a été reprise. Les coefficients s'additionnent, puis le total est borné entre −30 % et +20 %.
@@ -255,6 +266,7 @@ Valeurs de départ simples et prudentes, choisies pour cet outil. Aucune grille 
 | Terrain (maison) | surface de référence : 250 m² mitoyenne, 400 m² jumelée, 600 m² isolée ; moins de 60 % de la référence −3 %, plus de 150 % +4 % | |
 | Annexes appartement | garage 25 000 €, parking extérieur 10 000 €, cave 5 000 €, balcon/terrasse 25 % du prix au m² (30 m² max.) | Le prix notarié moyen inclut déjà une partie des annexes, d'où des montants modestes. |
 | Annexes maison | garage 20 000 €, parking extérieur 5 000 €, cave 0, terrasse 0 | La cave et la terrasse sont courantes dans les maisons, donc déjà dans le prix annoncé. |
+| Nombre maximal valorisé | 4 garages et 4 parkings | Au-delà, ce n'est plus un logement avec garage (garages à louer, immeuble) : l'estimation automatique n'a pas de sens. Les chiffres saisis restent dans l'e-mail. |
 | Ajustement des annexes | × (prix de base ÷ 7 000 €/m²), borné entre 0,7 et 1,3 | Un garage vaut plus à Luxembourg-Ville qu'à Wiltz. |
 | Arrondi | 5 000 € | Ta consigne. |
 | Fiabilité affichée au visiteur | appartement : « bonne » si ≥ 50 ventes dans la commune et 3 méthodes gardées, « moyenne » si ventes propres à la commune, sinon « limitée » ; maison : « moyenne » si ≥ 100 annonces de maisons, sinon « limitée » | Règle simple et visible (idée V2 de l'audit). |
@@ -268,6 +280,7 @@ Autres réglages, dans `config.json` :
 - `agent` : ton prénom et ta ligne de présentation ; `photo` : chemin d'une photo placée dans `public/` (ex. `/jay.jpg`), sinon l'initiale s'affiche ;
 - `phone` : ton numéro, affiché comme bouton « appeler » sous le résultat (vide = pas de bouton) ;
 - `quickCommunes` : les raccourcis de l'étape 1 ;
+- `publicEmail` : l'adresse montrée au visiteur si l'envoi échoue ou s'il a atteint la limite (« écrivez-nous à … ») ;
 - adresse des leads par défaut, nombre d'envois par heure.
 
 ## Écran d'analyse
@@ -284,8 +297,8 @@ Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'a
 ## Simulateur « Et si… ? » et barre de progression
 
 - **Pourquoi** : les gens font davantage confiance à un calcul quand ils peuvent l'ajuster un peu (Dietvorst, Simmons & Massey, *Management Science*, 2018). Une avance visible au départ pousse à aller au bout (Nunes & Drèze, *Journal of Consumer Research*, 2006).
-- **Sécurité** : le simulateur ne marche qu'avec le ticket signé remis avec le résultat (impossible d'obtenir un prix sans avoir laissé ses coordonnées). Seuls l'état, la classe énergétique et les gros postes peuvent changer ; la surface et la commune non. Au plus 120 calculs par heure et par IP, 3 e-mails de complément par heure et par IP.
-- **E-mail de complément** : les valeurs sont recalculées par le serveur, jamais reprises du navigateur. Il part au moment où le visiteur quitte la page ou clique sur « Prendre rendez-vous » ; si le navigateur est fermé brutalement, il peut ne pas partir (le lead principal, lui, est déjà envoyé).
+- **Sécurité** : le simulateur ne marche qu'avec le ticket signé remis avec le résultat (impossible d'obtenir un prix sans avoir laissé ses coordonnées). Seuls l'état, la classe énergétique et les gros postes peuvent changer ; la surface et la commune non. Au plus 120 calculs par heure et par IP ; e-mails de complément : 3 par heure et par IP, et 3 par ticket (avec KV activé, cette 2e limite tient aussi d'un serveur à l'autre).
+- **E-mail de complément** : les valeurs sont recalculées par le serveur, jamais reprises du navigateur. Il part au moment où le visiteur quitte la page ou clique sur « Prendre rendez-vous », avec seulement les essais pas encore envoyés (les essais identiques sont fusionnés) ; si le navigateur est fermé brutalement, il peut ne pas partir (le lead principal, lui, est déjà envoyé).
 - **Secret du ticket** : variable facultative `SIMULATION_SECRET` (une longue phrase au hasard). Sans elle, la clé Resend sert de secret. Si tu changes l'une ou l'autre, les tickets en cours (2 heures) ne marchent plus, rien de grave.
 - **Honnêteté** : le simulateur affiche « sans compter le coût des travaux ».
 
@@ -295,13 +308,14 @@ Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'a
 - Champ caché anti-robot (honeypot) : s'il est rempli, rien n'est calculé ni envoyé.
 - Au plus 5 envois par heure pour une même IP (3.4).
 - Le formulaire n'est accepté que depuis la page de l'outil elle-même (contrôle de l'en-tête `Origin`).
-- Le résultat n'est renvoyé qu'après des coordonnées valides **et** l'envoi réussi de l'e-mail. Si Resend échoue, le visiteur voit un message d'erreur et peut réessayer : le lead n'est jamais perdu en silence.
+- Le résultat n'est renvoyé qu'après des coordonnées valides **et** l'envoi réussi de l'e-mail. Si Resend échoue ou ne répond pas en 10 secondes, le visiteur voit un message d'erreur avec ton adresse e-mail et peut réessayer (l'essai raté ne compte pas dans la limite de 5) : le lead n'est jamais perdu en silence.
+- La rue, le nom et les autres champs d'une ligne ne peuvent pas contenir de retour à la ligne ni de caractères invisibles : impossible d'imiter une rubrique de l'e-mail. Le message libre est mis en retrait.
 - Aucune donnée n'est stockée ailleurs que dans l'e-mail (et, si KV est activé, une empreinte d'IP effacée après 1 heure).
 - Détails pour ta politique de confidentialité : `PRIVACY.md`.
 
 ## Tests
 
-`npm test` lance 49 tests, dont ceux demandés :
+`npm test` lance 63 tests, dont ceux demandés :
 
 | Test | Fichier |
 | --- | --- |
@@ -314,6 +328,7 @@ Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'a
 | Résultat enrichi (position dans la commune, facteurs, fiabilité, allemand) | `tests/result-view.test.ts` |
 | Écran d'analyse : 5 étapes, durée réglable, vrais chiffres seulement après la réponse du serveur | `tests/analysis.test.ts` |
 | Textes essentiels protégés (jardin et cave privatifs, ares, bornes de la jauge, ventes notariées, destination des données) | `tests/texts-essentiels.test.ts` |
-| Simulateur : ticket signé obligatoire, valeurs interdites refusées, aucun e-mail par essai, un seul e-mail de complément recalculé côté serveur | `tests/simulate.test.ts` |
+| Simulateur : ticket signé obligatoire, valeurs interdites refusées, aucun e-mail par essai, e-mail de complément recalculé côté serveur | `tests/simulate.test.ts` |
+| Revue par 6 agents (11/11/2026) : un test par bug confirmé (Resend en panne, rejeu du ticket, saisie tolérante, autres noms de communes, fourchette des petits logements, garages plafonnés, prix au m² cohérent, poids réels dans l'e-mail) | `tests/revue-agents.test.ts` |
 
 `npm run screenshots` (serveur local lancé) parcourt tout le questionnaire comme un visiteur, prend les captures et lance un audit d'accessibilité axe-core (WCAG 2.1 AA) sur chaque écran.

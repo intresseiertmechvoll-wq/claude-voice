@@ -12,6 +12,9 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as XLSX from 'xlsx';
+import params from '../params.json';
+import { estimate, type Params } from '../src/shared/engine';
+import type { Answers, Dataset } from '../src/shared/types';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const API = 'https://data.public.lu/api/1/datasets/';
@@ -230,6 +233,14 @@ async function main() {
     communes,
   };
   writeFileSync(join(ROOT, 'data/communes.json'), JSON.stringify(result, null, 2) + '\n');
+
+  // Liste des communes sans assez de données (noms seulement) : l'outil prévient le visiteur dès l'étape 1
+  const base = { rue: '', surface: 80, chambres: 2, sdb: 1, annee: 1990, etat: 'bon', energie: 'E', etage: 1, ascenseur: true, terrain: 400, maisonType: 'jumelee', postes: {}, garages: 0, parkings: 0, cave: false, terrasse: 0, jardin: false, proprietaire: true, objectif: 'vendre', delai: '3mois' } as unknown as Answers;
+  const sans: Record<string, string[]> = { appartement: [], maison: [] };
+  for (const c of communes) for (const type of ['appartement', 'maison'] as const) {
+    if (estimate({ ...base, type, commune: c.commune }, result as unknown as Dataset, params as Params).result.status !== 'ok') sans[type].push(c.commune);
+  }
+  writeFileSync(join(ROOT, 'data/sans-donnees.json'), JSON.stringify({ _note: 'Généré par scripts/update-data.ts : communes sans assez de données publiques (noms seulement, aucun prix).', ...sans }, null, 2) + '\n');
   console.log(`\n✔ data/communes.json : ${communes.length} communes, période ${periodeNotarie}`);
   console.log(`  ventes notariées publiées : ${communes.filter((c) => c.notarie_existant_m2 !== null).length} communes`);
   console.log(`  prix annoncés appartements : ${communes.filter((c) => c.annonce_appartement_m2 !== null).length} communes`);

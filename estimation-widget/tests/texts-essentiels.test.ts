@@ -29,14 +29,14 @@ describe('Textes essentiels (exactitude des réponses et confiance)', () => {
 
   it('Coordonnées : où partent les données', () => {
     const html = renderStep(6, ctx({ type: 'appartement', commune: 'Dudelange', surface: '80', postes: {} }));
-    expect(html).toContain('Vos réponses partent par e-mail à ImmoBuild Kohn');
+    expect(html).toContain('Vos réponses sont envoyées uniquement à ImmoBuild Kohn');
     expect(html).toContain('politique de confidentialité');
   });
 
   it('Résultat : ventes notariées citées, bornes de la jauge expliquées, raisons de la visite', () => {
     const html = renderResult(estimate(apartment(), DATA, PARAMS).result, t, 'fr', '#');
     expect(html).toContain('ventes notariées');
-    expect(html).toContain('hors 5');
+    expect(html).toContain('sans les 5');
     expect(html).toContain('vue, lumière, finitions');
   });
 });

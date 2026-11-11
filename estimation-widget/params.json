@@ -100,6 +100,7 @@
       "terrasse_ponderation": 0,
       "terrasse_m2_max": 0
     },
+    "nombre_max_valorise": { "garages": 4, "parkings": 4 },
     "ajustement_commune": {
       "prix_reference_m2": 7000,
       "min": 0.7,

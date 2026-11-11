@@ -14,7 +14,7 @@ describe('Écran de résultat', () => {
     expect(html).toContain('Estimation indicative basée sur des statistiques publiques. Elle ne remplace pas une estimation sur place.');
     expect(html).toContain('Prendre rendez-vous pour une estimation précise');
     expect(html).toContain('href="https://immobuild.lu/contact/"');
-    expect(html).toContain('1 juillet 2025');
+    expect(html).toContain('1er juillet 2025');
   });
 
   it('Appartement : pas d’encadré « indicative » spécifique aux maisons, mais la phrase de prudence', () => {
@@ -78,7 +78,7 @@ describe('Résultat enrichi pour le visiteur', () => {
     await loadLang('de');
     const r = estimate(house(), DATA, PARAMS).result;
     const html = renderResult(r, translator('de'), 'de', '#');
-    expect(html).toContain('Unverbindliche Schätzung');
+    expect(html).toContain('Richtwert');
     expect(html).toContain('Marktwert');
   });
 });

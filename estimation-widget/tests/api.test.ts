@@ -37,7 +37,7 @@ describe('API /api/estimate', () => {
     expect(sent.to).toEqual(['contact@immobuild.lu']);
     expect(sent.reply_to).toBe('marie.muller@example.lu');
     expect(sent.subject).toBe('Nouveau lead estimation – Dudelange – Appartement – Dans les 3 mois');
-    expect(sent.text).toContain('+352621123456');
+    expect(sent.text).toContain('+352 621 123 456');
     expect(sent.text).toContain('Détail du calcul');
   });
 

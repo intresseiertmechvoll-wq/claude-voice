@@ -5,7 +5,7 @@
  * Les deux exigent le ticket signé remis avec le résultat : impossible d'obtenir un prix sans avoir laissé ses coordonnées.
  */
 import { estimate } from '../shared/engine';
-import { escapeHtml } from '../shared/email';
+import { escapeHtml, formatPhone } from '../shared/email';
 import { allowSubmission } from '../shared/ratelimit';
 import { ENERGIES, ETATS, POSTES_APPARTEMENT, POSTES_MAISON, POSTE_NOTES, type Answers, type Energie, type Etat, type Poste, type PosteKey } from '../shared/types';
 import { defaultDeps, json, readJson, sendMail, type Deps, type Env } from './handler';
@@ -19,6 +19,8 @@ export interface Changes {
 
 const SIM_PER_HOUR = 120;
 const SUMMARY_PER_HOUR = 3;
+/** e-mails de complément au plus par ticket (le visiteur peut revenir sur la page et tester encore) */
+const SUMMARY_PER_TICKET = 3;
 const MAX_SCENARIOS = 10;
 
 /** Vérifie les modifications demandées ; null si une valeur n'est pas autorisée */
@@ -107,13 +109,21 @@ export async function handleSimulationSummary(request: Request, env: Env, deps: 
   const raw = (r.body as { scenarios?: unknown }).scenarios;
   if (!Array.isArray(raw) || raw.length === 0 || raw.length > MAX_SCENARIOS) return json({ ok: false, error: 'validation' }, 400);
   const scenarios: Changes[] = [];
+  const seen = new Set<string>();
   for (const s of raw) {
     const c = parseChanges(s, ticket.a.type);
     if (!c) return json({ ok: false, error: 'validation' }, 400);
-    scenarios.push(c);
+    const key = JSON.stringify(c);
+    if (!seen.has(key)) {
+      seen.add(key);
+      scenarios.push(c);
+    }
   }
   const ip = request.headers.get('cf-connecting-ip') ?? 'unknown';
   if (!(await allowSubmission(ip, SUMMARY_PER_HOUR, undefined, 'simulation-summary'))) return json({ ok: false, error: 'rate_limit' }, 429);
+  // Un même ticket ne peut pas déclencher plus de quelques e-mails (rejeu impossible au-delà)
+  const tokenId = String((r.body as { token: string }).token).split('.')[1] ?? '';
+  if (!(await allowSubmission(tokenId, SUMMARY_PER_TICKET, env.RATE_LIMIT, 'summary-ticket'))) return json({ ok: false, error: 'rate_limit' }, 429);
 
   // Les valeurs sont recalculées ici : on ne fait jamais confiance aux chiffres envoyés par le navigateur
   const a = ticket.a;
@@ -126,10 +136,10 @@ export async function handleSimulationSummary(request: Request, env: Env, deps: 
 
   const c = ticket.c;
   const subject = `Complément lead estimation – ${a.commune} – ${c.prenom} ${c.nom} a testé des travaux`.replace(/[\r\n]+/g, ' ');
-  const intro = `${c.prenom} ${c.nom} (${c.email}, ${c.telephone}) a utilisé le simulateur « Et si… ? » après son estimation.`;
+  const intro = `${c.prenom} ${c.nom} (${c.email}, ${formatPhone(c.telephone)}) a utilisé le simulateur « Et si… ? » après son estimation.`;
   const text = `${intro}\n\nBien : ${a.type === 'maison' ? 'Maison' : 'Appartement'} de ${a.surface} m² à ${a.commune}\nValeur de marché affichée : ${eur(base.market!)}\n\nEssais :\n${rows
     .map((x, i) => `${i + 1}. ${x.what} → ${eur(x.market)} (${signed(x.delta)})`)
-    .join('\n')}\n\nÀ creuser au rendez-vous : projet de travaux avant la vente ?\nLes montants ne tiennent pas compte du coût des travaux.`;
+    .join('\n')}\n\nÀ creuser : des travaux sont-ils prévus avant la vente ou la location ?\nLes montants ne tiennent pas compte du coût des travaux.`;
   const html = `<!doctype html><html lang="fr"><body style="margin:0;padding:24px;background:#F8F8F6;font-family:Arial,Helvetica,sans-serif;color:#0A2342">
 <div style="max-width:640px;margin:0 auto;background:#ffffff;border-top:4px solid #C5A46D;padding:24px">
 <h1 style="font-size:20px;margin:0 0 12px">${escapeHtml(subject)}</h1>
@@ -141,7 +151,7 @@ export async function handleSimulationSummary(request: Request, env: Env, deps: 
         `<tr><td style="padding:6px 12px 6px 0;border-top:1px solid #F2EFEA">${escapeHtml(x.what)}</td><td style="padding:6px 0;border-top:1px solid #F2EFEA;white-space:nowrap;text-align:right"><strong>${escapeHtml(eur(x.market))}</strong><br>${escapeHtml(signed(x.delta))}</td></tr>`,
     )
     .join('')}</table>
-<p style="font-size:13px;color:#46566C;margin-top:16px">À creuser au rendez-vous : projet de travaux avant la vente ? Les montants ne tiennent pas compte du coût des travaux.</p>
+<p style="font-size:13px;color:#46566C;margin-top:16px">À creuser : des travaux sont-ils prévus avant la vente ou la location ? Les montants ne tiennent pas compte du coût des travaux.</p>
 </div></body></html>`;
   const err = await sendMail(env, d, { subject, html, text, replyTo: c.email });
   if (err) return json({ ok: false, error: err }, err === 'config' ? 500 : 502);

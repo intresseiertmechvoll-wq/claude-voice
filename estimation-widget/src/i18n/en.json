@@ -4,12 +4,12 @@
   },
   "intro": {
     "title": "What is your home worth?",
-    "text": "A few clicks and you'll know.",
+    "text": "A few questions about your property, your contact details, then your price range.",
     "kicker": "Free valuation · ImmoBuild Kohn",
     "badges": {
       "free": "Free",
       "commitment": "No commitment",
-      "official": "Official data",
+      "official": "Public data",
       "instant": "Instant result"
     }
   },
@@ -18,7 +18,9 @@
     "next": "Continue",
     "back": "Back",
     "submit": "See my valuation",
-    "sending": "Sending…"
+    "sending": "Sending…",
+    "reload": "Reload",
+    "toSummary": "Back to the summary"
   },
   "optional": "optional",
   "yes": "Yes",
@@ -29,7 +31,7 @@
       "text": ""
     },
     "2": {
-      "title": "Tell me about it",
+      "title": "Tell me more",
       "text": ""
     },
     "3": {
@@ -60,7 +62,7 @@
     "communeEmpty": "No municipality found.",
     "rue": "Street",
     "surface": "Net living area (m²)",
-    "surfaceHelp": "Net = without the thickness of the walls.",
+    "surfaceHelp": "Net = excluding wall thickness.",
     "chambres": "Number of bedrooms",
     "sdb": "Number of bathrooms",
     "annee": "Year of construction",
@@ -74,7 +76,7 @@
       "renover": "Needs renovation"
     },
     "energie": "Energy class",
-    "energieHelp": "See the energy certificate.",
+    "energieHelp": "See the energy performance certificate (energy pass).",
     "energieUnknown": "I don’t know",
     "choose": "Choose…",
     "etage": "Floor",
@@ -145,7 +147,7 @@
       "appartement": "Studio, duplex, penthouse…",
       "maison": "Terraced, semi-detached or detached"
     },
-    "communeQuick": "Nearby municipalities:",
+    "communeQuick": "For example:",
     "communeSelected": "Canton of {deCanton}",
     "surfaceSlider": "Living area (slider)",
     "terrainSlider": "Plot size (slider)",
@@ -194,7 +196,11 @@
     "energieLow": "Efficient",
     "energieHigh": "Inefficient",
     "communePlaceholder": "e.g. Dudelange",
-    "numeroPlaceholder": "621 123 456"
+    "numeroPlaceholder": "621 123 456",
+    "communeNoData": "Little public data for {commune}: I will prepare a personal valuation for you.",
+    "numeroWhy": "Only to contact you about your property.",
+    "emailTypo": "Did you mean",
+    "terrainAres": "In ares? {a} a = {m2} m². Please enter the area in m²."
   },
   "errors": {
     "required": "This field is required.",
@@ -205,9 +211,11 @@
     "rgpd": "Please tick this box to see your valuation.",
     "commune": "Please choose a municipality from the list.",
     "summary": "Please correct the highlighted fields.",
-    "rate_limit": "Too many requests from this connection. Try again in an hour, or contact me directly.",
+    "rate_limit": "Too many requests from this connection. Try again in an hour, or email me at {contact}.",
     "network": "Sending failed. Check your connection and try again.",
-    "server": "Sending failed. Try again in a few minutes, or contact me directly."
+    "server": "Sending failed. Try again in a few minutes, or email me at {contact}.",
+    "annee": "Please enter a 4-digit year, e.g. 1995.",
+    "reload": "The tool has just been updated. Please reload the page to continue."
   },
   "result": {
     "title": "Your valuation",
@@ -219,7 +227,7 @@
     "high": "High value",
     "highText": "With a buyer who falls in love with it",
     "indicativeTitle": "Indicative estimate",
-    "indicativeHouse": "No public sale prices for houses: calculated from listings, wider range.",
+    "indicativeHouse": "There are no public sale prices for houses. The calculation uses listings, so the range is wider.",
     "source": "Source: {source}. Period: {periode}.",
     "disclaimer": "Indicative estimate based on public statistics. It does not replace an on-site valuation.",
     "cta": "Book an appointment for a precise valuation",
@@ -230,10 +238,10 @@
     "sourceMaison": "Observatoire de l’Habitat (house listings)",
     "sourceLink": "See the data",
     "ready": "Here is your valuation!",
-    "perM2": "that is {value} per m²",
+    "perM2": "or {value}\u00a0per\u00a0m²",
     "rangeTitle": "Your price range",
-    "gaugeTitle": "Your property among sales in {commune}",
-    "gaugeText": "Apartment sales from {debut} to {fin}, excluding the 5% extremes on each side.",
+    "gaugeTitle": "How your property compares with sales in {commune}",
+    "gaugeText": "Sales of existing apartments from {debut} to {fin}, excluding the lowest 5% and the highest 5% of prices.",
     "gaugeYou": "Your property",
     "gaugeAvg": "Average",
     "factorsTitle": "What affects your price",
@@ -267,7 +275,7 @@
     "statYouSub": "for {n} m²",
     "statCanton": "Fewer than 10 published sales in your municipality: the median of the canton of {deCanton} is used.",
     "howTitle": "How this price is calculated",
-    "howAppartement": "Three methods are combined: actual sales registered with notaries, asking prices corrected for the usual gap between asking and sale price, and rental yield. Then your living area, condition, energy class and extras adjust the price.",
+    "howAppartement": "Up to three methods are combined: actual sales registered with notaries, asking prices corrected for the usual gap between asking and sale price, and rental yield. Then your living area, condition, energy class and extras adjust the price.",
     "howMaison": "There are no public sale prices for houses. The calculation starts from the average asking price of houses in your municipality, corrected for the usual gap between asking and sale price. Then your living area, condition, energy class, plot and extras adjust the price.",
     "methods": {
       "notarie": "Notarial sales",
@@ -275,12 +283,13 @@
       "capitalisation": "Rental yield",
       "annonces_maison": "Corrected house listings"
     },
-    "methodLine": "{name}: {m2} per m² ({weight} of the calculation)",
+    "methodLine": "{name}: {m2}\u00a0per\u00a0m² ({weight} of the calculation)",
     "nextTitle": "What happens next?",
-    "next1": "I receive your request and get back to you.",
-    "next2": "On site, I refine what figures can’t see: view, light, finishes.",
+    "next1": "Your request comes straight to me, and I’ll get back to you.",
+    "next2": "On site, I fine-tune it with what figures can’t show: view, light, finishes.",
     "print": "Print or save as PDF",
-    "restart": "Start a new valuation"
+    "restart": "Start a new valuation",
+    "statGap": "Actual sales are on average {p} below listings."
   },
   "stepsShort": {
     "1": "Property",
@@ -288,7 +297,7 @@
     "3": "Condition",
     "4": "Extras",
     "5": "Plans",
-    "6": "Contact"
+    "6": "Your details"
   },
   "recap": {
     "title": "Your property at a glance",
@@ -297,13 +306,13 @@
     "surface": "{n} m²",
     "chambres": "{n} bed.",
     "sdb": "{n} bath.",
-    "annee": "built {n}",
-    "energie": "class {c}",
+    "annee": "built in {n}",
+    "energie": "energy class {c}",
     "terrain": "plot {n} m²",
     "garages": "{n} garage(s)",
     "parkings": "{n} parking space(s)",
     "terrasse": "outdoor {n} m²",
-    "allGood": "Main elements: all in good condition"
+    "allGood": "Key components: all in good condition"
   },
   "agent": {
     "title": "I’ll handle your request",
@@ -314,14 +323,14 @@
     "data": "Your details only go to ImmoBuild Kohn",
     "cookies": "No cookies, no advertising",
     "line": "Free · no commitment · no cookies",
-    "where": "Your answers go by email to ImmoBuild Kohn, with no database."
+    "where": "Your answers are sent only to ImmoBuild Kohn, by email."
   },
   "factors": {
     "etat_neuf": "New property",
     "etat_renove": "Recently renovated",
     "etat_rafraichir": "Needs refreshing",
     "etat_renover": "Needs renovation",
-    "gros_postes": "Condition of main elements",
+    "gros_postes": "Condition of key components",
     "energie": "Energy class {c}",
     "rez_de_chaussee": "Ground floor",
     "etage_sans_ascenseur": "High floor without a lift",
@@ -345,14 +354,14 @@
       },
       "data": {
         "title": "Looking up data for {commune}",
-        "detail": "Notarial sales, asking prices and rents from the Observatoire de l’Habitat",
+        "detail": "Public data from the Observatoire de l’Habitat",
         "found": "{ventes} notarial sales and {offres} listings found in {commune}",
         "canton": "Few sales published here: canton sales and {offres} listings in {commune}",
         "foundHouse": "{offres} house listings found in {commune}",
         "none": "Not enough public data for {commune}"
       },
       "compare": {
-        "title": "Comparing criteria and methods",
+        "title": "Applying the calculation methods",
         "appartement": "Actual sales, corrected listings and rental yield",
         "maison": "Asking prices corrected for the usual gap with sale prices"
       },
@@ -366,16 +375,16 @@
       },
       "final": {
         "title": "Calculating the final price and range",
-        "detail": "Market, low and high value, rounded to €5,000"
+        "detail": "Market, low and high values, rounded to the nearest €5,000"
       }
     }
   },
   "whatif": {
     "title": "What if…?",
-    "text": "Test the effect of works. Your valuation stays the same.",
-    "energy": "Energy class after works",
+    "text": "See how renovation work would change the price. Your original valuation stays the same. I receive your tries so we can talk about them.",
+    "energy": "Energy class after renovation",
     "etat": "Overall condition",
-    "works": "Works",
+    "works": "Renovation work",
     "worksItems": {
       "chassis": "New windows",
       "chauffage": "New heating",
@@ -390,30 +399,31 @@
     "loading": "Calculating…",
     "error": "The calculation failed. Please try again.",
     "reset": "Back to my property",
-    "note": "Indicative, not counting the cost of the works.",
-    "teaser": "What if you did some works?"
+    "note": "Indicative, not counting the cost of the work.",
+    "teaser": "What if you renovated?"
   },
   "coach": {
-    "start": "Hello! I'm Jay. A few clicks and I'll give you a price range.",
+    "start": "Hello! I’m Jay. A few clicks and I’ll give you a price range.",
     "step2": "A rough figure is fine.",
     "step3": "Not sure? Pick “?”.",
     "step4": "These count in the price too!",
     "step5": "This helps me get back to you at the right time.",
-    "step6": "Last step, then I'll work it all out!",
+    "step6": "Your number is only used to talk about your property.",
     "appartement": "An apartment, perfect!",
     "maison": "A house, lovely!",
     "commune": "{commune}, got it!",
     "energieGood": "Well done, a very good energy class!",
-    "energieBad": "No problem, I'll take it into account.",
-    "energieUnknown": "Never mind, we'll do without.",
+    "energieBad": "No problem, I’ll take it into account.",
+    "energieUnknown": "Never mind, we’ll do without.",
     "allGood": "Well kept, great!",
     "bad": "Thanks for being honest.",
-    "garage": "A garage counts!",
+    "garage": "Garages count in the price.",
     "jardin": "A garden is a real plus!",
     "cave": "A cellar, always handy.",
-    "vendre": "Selling? That's what I'm here for.",
-    "louer": "Renting out, a good idea too.",
+    "vendre": "Selling? I can help you with that.",
+    "louer": "Renting out, noted.",
     "renseigne": "Good idea to look into it first.",
-    "nonProprio": "No problem, the valuation still works."
+    "nonProprio": "No problem, you can still get a valuation.",
+    "energieMid": "Class {c}, noted."
   }
 }

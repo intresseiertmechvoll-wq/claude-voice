@@ -122,6 +122,8 @@ export interface PublicResult {
   surface?: number;
   /** valeur de marché ÷ surface */
   pricePerM2?: number | null;
+  /** logement seul (sans annexes), pour comparer aux prix de la commune */
+  buildingPerM2?: number | null;
   factors?: PublicFactor[];
   /** vrai si la somme des coefficients a été plafonnée */
   factorsCapped?: boolean;
@@ -138,5 +140,7 @@ export interface PublicResult {
     notarieFromCanton: boolean;
     annonceM2: number | null;
     offres: number | null;
+    /** écart habituel annonce → vente appliqué (0,041 = 4,1 %) */
+    decote: number;
   };
 }

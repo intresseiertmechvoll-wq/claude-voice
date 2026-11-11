@@ -80,7 +80,8 @@ function intIn(v: unknown, lim: { min: number; max: number }): number | ErrorCod
 }
 
 function numIn(v: unknown, lim: { min: number; max: number }): number | ErrorCode {
-  const s = str(v).replace(',', '.');
+  // Tolérant : « 80m2 », « 80 m² », « 1 200 », « 80,5 »
+  const s = str(v).replace(/\s*m(?:2|²)$/i, '').replace(/[\s\u00a0\u202f]/g, '').replace(',', '.');
   if (s === '') return 'required';
   if (!/^\d+(\.\d+)?$/.test(s)) return 'invalid';
   const n = Number(s);
@@ -106,13 +107,18 @@ function flag(v: unknown): boolean | ErrorCode {
   return 'invalid';
 }
 
-function optText(v: unknown, max: number): string | ErrorCode {
+const BIDI_CTRL = /[\u200e\u200f\u202a-\u202e\u2066-\u2069]/g;
+
+function optText(v: unknown, max: number, multiline = false): string | ErrorCode {
   if (v !== undefined && v !== null && typeof v !== 'string') return 'invalid';
-  const s = str(v);
+  let s = str(v).replace(BIDI_CTRL, '');
+  s = multiline
+    ? s.replace(/\r\n?/g, '\n').replace(/[\u0000-\u0009\u000b-\u001f\u007f]/g, ' ').replace(/\n{3,}/g, '\n\n')
+    : s.replace(/[\u0000-\u001f\u007f]+/g, ' ').trim();
   return s.length > max ? 'range' : s;
 }
 
-const NAME_RE = /^[\p{L}][\p{L}\p{M}' .-]*$/u;
+const NAME_RE = /^[\p{L}][\p{L}\p{M}'’ʼ .-]*$/u;
 const EMAIL_RE = /^[^\s@<>()[\]\\,;:"]+@[^\s@<>()[\]\\,;:"]+\.[A-Za-z]{2,}$/;
 
 function nameField(v: unknown, max: number): string | ErrorCode {
@@ -125,21 +131,29 @@ function nameField(v: unknown, max: number): string | ErrorCode {
 /** Vérifie un numéro : chiffres seulement (espaces, points et tirets acceptés) */
 export function normalizePhone(code: unknown, number: unknown): string | ErrorCode {
   const c = str(code);
-  const n = str(number).replace(/[\s.\-/()]/g, '');
-  if (n === '') return 'required';
+  let digits = str(number).replace(/[\s.\-/()\u00a0]/g, '');
+  if (digits === '') return 'required';
   if (!/^\+[1-9]\d{0,3}$/.test(c)) return 'phone';
-  let digits = n;
-  if (digits.startsWith('00')) return 'phone';
-  if (digits.startsWith('+')) return 'phone';
-  if (c !== '+352' && digits.startsWith('0')) digits = digits.slice(1); // 06… en France, 04… en Belgique, 01… en Allemagne
+  const cc = c.slice(1);
+  // Indicatif recopié dans le numéro (« +352 621… », « 00352 621… », « 352621… ») : on le retire
+  if (digits.startsWith('+')) {
+    if (!digits.startsWith('+' + cc)) return 'phone';
+    digits = digits.slice(1 + cc.length);
+  } else if (digits.startsWith('00')) {
+    if (!digits.startsWith('00' + cc)) return 'phone';
+    digits = digits.slice(2 + cc.length);
+  } else if (c === '+352' && digits.startsWith('352') && digits.length >= 9) {
+    digits = digits.slice(3);
+  }
   if (!/^\d+$/.test(digits)) return 'phone';
   if (c === '+352') {
-    // Luxembourg : fixes de 6 à 8 chiffres, mobiles de 9 chiffres commençant par 6
-    if (!(digits.length >= 6 && digits.length <= 8) && !/^6\d{8}$/.test(digits)) return 'phone';
-  } else if (digits.length < 6 || digits.length > 13) {
-    return 'phone';
+    // Luxembourg : pas de 0 initial ; mobiles = 9 chiffres commençant par 6 ; fixes = 6 à 8 chiffres
+    if (digits.startsWith('0')) return 'phone';
+    if (digits.startsWith('6')) return /^6\d{8}$/.test(digits) ? c + digits : 'phone';
+    return digits.length >= 6 && digits.length <= 8 ? c + digits : 'phone';
   }
-  return c + digits;
+  if (digits.startsWith('0')) digits = digits.slice(1); // 06… en France, 04… en Belgique, 01… en Allemagne
+  return digits.length >= 6 && digits.length <= 13 ? c + digits : 'phone';
 }
 
 type FieldCheck = (raw: Raw) => unknown;
@@ -179,7 +193,7 @@ const CHECKS: Record<string, FieldCheck> = {
   },
   indicatif: (r) => (/^\+[1-9]\d{0,3}$/.test(str(r.indicatif)) ? str(r.indicatif) : 'phone'),
   numero: (r) => normalizePhone(r.indicatif, r.numero),
-  message: (r) => optText(r.message, TEXT_MAX.message),
+  message: (r) => optText(r.message, TEXT_MAX.message, true),
   rgpd: (r) => (r.rgpd === true || r.rgpd === 'on' ? true : 'rgpd'),
 };
 for (const p of POSTES_MAISON) CHECKS[`poste_${p}`] = (r) => oneOf(r[`poste_${p}`], POSTE_NOTES);
@@ -210,7 +224,8 @@ export function validateSubmission(body: unknown): ValidationResult {
   if (!body || typeof body !== 'object' || Array.isArray(body)) return { ok: false, errors: { form: 'invalid' } };
   const b = body as Raw;
   // Honeypot : champ invisible pour un humain. S'il est rempli, c'est un robot.
-  if (str(b.website) !== '') return { ok: false, errors: { form: 'invalid' }, bot: true };
+  const hp = b.website;
+  if (hp !== undefined && hp !== null && !(typeof hp === 'string' && hp.trim() === '')) return { ok: false, errors: { form: 'invalid' }, bot: true };
 
   const raw: Raw = { ...(b.answers as Raw), ...(b.contact as Raw) };
   if (typeof b.answers !== 'object' || typeof b.contact !== 'object') return { ok: false, errors: { form: 'invalid' } };

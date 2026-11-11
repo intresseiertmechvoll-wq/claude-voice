@@ -6,16 +6,17 @@ import { deCanton, loadLang, pickLang, translator } from './i18n';
 import { COMMUNES } from './shared/communes';
 import { POSTES_APPARTEMENT, POSTES_MAISON, type PropertyType, type PublicResult } from './shared/types';
 import { checkFields, stepFields, type Errors } from './shared/validation';
-import { setupCombobox } from './ui/combobox';
+import { resolveCommune, setupCombobox } from './ui/combobox';
 import { esc } from './ui/html';
 import { icon } from './ui/icons';
 import { formatEuro } from './ui/format';
-import { recapItems, renderStep, STEP_ICONS, type Values } from './ui/steps';
+import { errorKey, noDataNote, recapItems, renderStep, STEP_ICONS, type Values } from './ui/steps';
 
 const TOTAL = 6;
 const params = new URLSearchParams(location.search);
 const lang = pickLang(params.get('lang'));
-await loadLang(lang);
+await loadLang(lang).catch(() => {}); // en cas d'échec, les textes restent en français
+if (window.parent !== window) document.documentElement.classList.add('is-embedded');
 const t = translator(lang);
 const page = (() => {
   const src = params.get('src') ?? '';
@@ -39,7 +40,9 @@ const state: {
   serverError: string | null;
   result: PublicResult | null;
   direction: 'next' | 'back';
-} = { step: 1, values: { ...DEFAULTS }, errors: {}, sending: false, serverError: null, result: null, direction: 'next' };
+  /** après « Modifier » depuis le résumé : bouton pour y revenir directement */
+  returnTo: number | null;
+} = { step: 1, values: { ...DEFAULTS }, errors: {}, sending: false, serverError: null, result: null, direction: 'next', returnTo: null };
 
 const app = document.getElementById('app')!;
 
@@ -128,7 +131,7 @@ function render(focus = true) {
   if (s >= 4) prefetchLate();
   const errorCount = Object.keys(state.errors).length;
   const summary = state.serverError
-    ? `<div class="alert" role="alert">${icon('info', 'ico ico-sm')}<span>${esc(state.serverError)}</span></div>`
+    ? `<div class="alert" role="alert">${icon('info', 'ico ico-sm')}<span>${esc(state.serverError)}${state.serverError === t('errors.reload') ? ` <button type="button" class="link-btn" data-action="reload">${esc(t('nav.reload'))}</button>` : ''}</span></div>`
     : errorCount
       ? `<div class="alert" role="alert">${icon('info', 'ico ico-sm')}<span>${esc(t('errors.summary'))}</span></div>`
       : '';
@@ -137,7 +140,7 @@ function render(focus = true) {
   ${
     s === 1
       ? `<header class="intro">
-    <p class="kicker">${esc(t('intro.kicker'))}</p>
+    <p class="kicker">${esc(t('intro.kicker')).replace(/ImmoBuild Kohn/g, '<span class="nowrap">ImmoBuild Kohn</span>')}</p>
     <h1>${esc(t('intro.title'))}</h1>
     <p>${esc(t('intro.text'))}</p>
     <ul class="badges">
@@ -169,6 +172,7 @@ function render(focus = true) {
           ? `<button type="submit" class="btn btn-primary btn-block btn-go" ${state.sending ? 'disabled aria-busy="true"' : ''}>${state.sending ? `<span class="spinner" aria-hidden="true"></span>${esc(t('nav.sending'))}` : `${esc(t('nav.submit'))}<span class="arrow">${icon('fleche')}</span>`}</button>`
           : `<button type="submit" class="btn btn-primary btn-block btn-go">${esc(t('nav.next'))}<span class="arrow">${icon('fleche')}</span></button>`
       }
+      ${state.returnTo && s < state.returnTo ? `<button type="button" class="btn btn-secondary" data-action="to-summary">${esc(t('nav.toSummary'))}</button>` : ''}
       ${s > 1 ? `<button type="button" class="btn btn-ghost" data-action="back" ${state.sending ? 'disabled' : ''}>${icon('fleche')}<span>${esc(t('nav.back'))}</span></button>` : ''}
     </div>
   </form>
@@ -230,11 +234,27 @@ function after(focus: boolean) {
     (firstError && (app.querySelector<HTMLElement>(`[name="${firstError}"]`) ?? app.querySelector<HTMLElement>(`#${firstError}`))) ||
     app.querySelector<HTMLElement>('#step-title, #result-title, #analysis-title');
   target?.focus({ preventScroll: true });
-  post({ type: 'scroll' });
+  const errorField = firstError ? target : null;
+  if (window.parent !== window) {
+    if (errorField) post({ type: 'scrollTo', offset: Math.max(0, Math.round(errorField.getBoundingClientRect().top + window.scrollY - 90)) });
+    else post({ type: 'scroll' });
+  } else if (errorField) {
+    errorField.scrollIntoView({ block: 'center', behavior: reducedMotion ? 'auto' : 'smooth' });
+  } else {
+    const card = app.querySelector<HTMLElement>('.card');
+    if (card && card.getBoundingClientRect().top < 0) card.scrollIntoView({ block: 'start', behavior: reducedMotion ? 'auto' : 'smooth' });
+  }
+}
+
+function updateNoData() {
+  const el = app.querySelector('#commune-nodata');
+  if (el) el.innerHTML = noDataNote(t, state.values.type, state.values.commune);
+  sendHeight();
 }
 
 function setCommune(name: string) {
   state.values.commune = name;
+  queueMicrotask(updateNoData);
   coachSay('coach.commune', { commune: name });
   clearError('commune');
   const canton = COMMUNES.find((c) => c.name === name)?.canton;
@@ -256,7 +276,7 @@ function setFieldError(name: string, code: string | undefined) {
   if (code) {
     state.errors[name] = code as Errors[string];
     wrap.classList.add('has-error');
-    const key = name === 'commune' && code !== 'required' ? 'errors.commune' : `errors.${code}`;
+    const key = errorKey(name, code);
     msg.innerHTML = `${icon('info', 'ico ico-xs')}<span>${esc(t(key))}</span>`;
     msg.hidden = false;
     inputs.forEach((i) => i.setAttribute('aria-invalid', 'true'));
@@ -296,15 +316,29 @@ function coachSay(key: string, vars?: Record<string, string>) {
   void el.offsetWidth;
   el.classList.add('pop');
 }
+let energyTimer: ReturnType<typeof setTimeout> | undefined;
+function coachDefault() {
+  coachSay(state.step === 1 ? 'coach.start' : `coach.step${state.step}`);
+}
 function coachReact(name: string, value: unknown) {
   const v = String(value);
   if (name === 'type') return coachSay(`coach.${v}`);
-  if (name === 'energie') return coachSay(['A+', 'A', 'B'].includes(v) ? 'coach.energieGood' : ['G', 'H', 'I'].includes(v) ? 'coach.energieBad' : v === 'inconnu' ? 'coach.energieUnknown' : `coach.step2`);
-  if (name.startsWith('poste_') && v === 'mauvais') return coachSay('coach.bad');
-  if ((name === 'jardin' || name === 'cave') && value === true) return coachSay(`coach.${name}`);
-  if (name === 'garages' && Number(v) > 0) return coachSay('coach.garage');
+  if (name === 'energie') {
+    // Avec les flèches du clavier, on attend que le choix soit posé avant de réagir
+    clearTimeout(energyTimer);
+    energyTimer = setTimeout(() => {
+      if (['A+', 'A', 'B'].includes(v)) coachSay('coach.energieGood');
+      else if (['G', 'H', 'I'].includes(v)) coachSay('coach.energieBad');
+      else if (v === 'inconnu') coachSay('coach.energieUnknown');
+      else coachSay('coach.energieMid', { c: v });
+    }, 600);
+    return;
+  }
+  if (name.startsWith('poste_')) return v === 'mauvais' ? coachSay('coach.bad') : coachDefault();
+  if (name === 'jardin' || name === 'cave') return value === true ? coachSay(`coach.${name}`) : coachDefault();
+  if (name === 'garages') return Number(v) > 0 ? coachSay('coach.garage') : coachDefault();
   if (name === 'objectif') return coachSay(`coach.${v}`);
-  if (name === 'proprietaire' && v === 'non') return coachSay('coach.nonProprio');
+  if (name === 'proprietaire') return v === 'non' ? coachSay('coach.nonProprio') : coachDefault();
 }
 
 /* ---------- Saisie ---------- */
@@ -339,6 +373,8 @@ function onInput(e: Event) {
       paintRange(range);
     }
   }
+  if (el.name === 'terrain') aresHint();
+  if (el.name === 'type') updateNoData();
   if (el.name === 'indicatif') return checkOne('numero', false);
   if (el.name === 'commune') return; // géré par la liste
   // Choix (radio, case) : vérification immédiate ; texte : à la sortie du champ
@@ -388,6 +424,7 @@ app.addEventListener('click', (e) => {
 
   const goto = target.closest<HTMLButtonElement>('[data-goto]');
   if (goto) {
+    state.returnTo = TOTAL;
     state.step = Number(goto.dataset.goto);
     state.direction = 'back';
     state.errors = {};
@@ -396,7 +433,24 @@ app.addEventListener('click', (e) => {
   }
 
   const action = target.closest<HTMLElement>('[data-action]')?.dataset.action;
-  if (action === 'back' && !state.sending) {
+  if (action === 'to-summary' && state.returnTo) {
+    const { errors } = checkFields(state.values, stepFields(state.step, state.values.type));
+    state.errors = errors;
+    if (Object.keys(errors).length) return render();
+    state.step = state.returnTo;
+    state.returnTo = null;
+    state.direction = 'next';
+    return render();
+  } else if (action === 'reload') {
+    location.reload();
+  } else if (action === 'fix-email') {
+    const v = (target.closest<HTMLElement>('[data-value]')!).dataset.value!;
+    state.values.email = v;
+    const input = app.querySelector<HTMLInputElement>('#email');
+    if (input) input.value = v;
+    app.querySelector('#email-suggest')?.remove();
+    clearError('email');
+  } else if (action === 'back' && !state.sending) {
     state.step = Math.max(1, state.step - 1);
     state.direction = 'back';
     state.errors = {};
@@ -412,7 +466,7 @@ app.addEventListener('click', (e) => {
       // Dans l'iframe, c'est la page du site qui défile ; seule, la page de l'outil défile
       if (window.parent !== window) post({ type: 'scrollTo', offset: Math.round(top) });
       else window.scrollTo({ top, behavior: reducedMotion ? 'auto' : 'smooth' });
-      box.querySelector<HTMLInputElement>('input:checked, input')?.focus({ preventScroll: true });
+      (box.querySelector<HTMLInputElement>('input:checked') ?? box.querySelector<HTMLInputElement>('input'))?.focus({ preventScroll: true });
     }
   } else if (action === 'whatif-reset') {
     resetWhatIf();
@@ -437,7 +491,8 @@ function whatIfBase() {
 }
 
 const scenarios = new Map<string, Record<string, unknown>>();
-let summarySent = false;
+/** essais déjà envoyés à Jay (pour n'envoyer que les nouveaux) */
+const sentScenarios = new Set<string>();
 let simTimer: ReturnType<typeof setTimeout> | undefined;
 let simAbort: AbortController | null = null;
 
@@ -511,9 +566,10 @@ function resetWhatIf() {
 /** Un seul e-mail de complément à Jay avec les essais, quand le visiteur quitte la page ou passe à la suite */
 function sendSummary() {
   const token = state.result?.simToken;
-  if (summarySent || !token || !scenarios.size) return;
-  summarySent = true;
-  const payload = JSON.stringify({ token, scenarios: [...scenarios.values()] });
+  const fresh = [...scenarios.entries()].filter(([k]) => !sentScenarios.has(k));
+  if (!token || !fresh.length) return;
+  fresh.forEach(([k]) => sentScenarios.add(k));
+  const payload = JSON.stringify({ token, scenarios: fresh.map(([, v]) => v) });
   const blob = new Blob([payload], { type: 'application/json' });
   if (!navigator.sendBeacon?.('/api/simulation-summary', blob)) {
     void fetch('/api/simulation-summary', { method: 'POST', headers: { 'content-type': 'application/json' }, body: payload, keepalive: true }).catch(() => {});
@@ -525,8 +581,32 @@ app.addEventListener('click', (e) => {
   if ((e.target as HTMLElement).closest('a.btn-primary, a.btn-secondary')) sendSummary();
 });
 
+const EMAIL_TYPOS: Record<string, string> = {
+  'gmial.com': 'gmail.com', 'gmal.com': 'gmail.com', 'gnail.com': 'gmail.com', 'gmail.co': 'gmail.com', 'gmail.fr': 'gmail.com', 'gamil.com': 'gmail.com', 'gmaill.com': 'gmail.com',
+  'hotmal.com': 'hotmail.com', 'hotmial.com': 'hotmail.com', 'hotmail.co': 'hotmail.com', 'hotmai.com': 'hotmail.com',
+  'yahooo.com': 'yahoo.com', 'yaho.com': 'yahoo.com', 'outlok.com': 'outlook.com', 'outloo.com': 'outlook.com', 'pt.l': 'pt.lu', 'pt.lux': 'pt.lu',
+};
+function emailSuggest(value: string) {
+  app.querySelector('#email-suggest')?.remove();
+  const at = value.lastIndexOf('@');
+  const fix = at > 0 ? EMAIL_TYPOS[value.slice(at + 1).toLowerCase()] : undefined;
+  if (!fix) return;
+  const suggestion = value.slice(0, at + 1) + fix;
+  app.querySelector('[data-field="email"]')?.insertAdjacentHTML('beforeend', `<p class="suggest" id="email-suggest">${esc(t('fields.emailTypo'))} <button type="button" class="link-btn" data-action="fix-email" data-value="${esc(suggestion)}">${esc(suggestion)}</button> ?</p>`);
+  sendHeight();
+}
+function aresHint() {
+  const field = app.querySelector('[data-field="terrain"]');
+  if (!field) return;
+  field.querySelector('.ares-hint')?.remove();
+  const n = Number(String(state.values.terrain ?? '').replace(',', '.'));
+  if (n > 0 && n < 50) field.insertAdjacentHTML('beforeend', `<p class="suggest ares-hint">${esc(t('fields.terrainAres', { a: String(state.values.terrain), m2: String(Math.round(n * 100)) }))}</p>`);
+  sendHeight();
+}
+
 app.addEventListener('focusout', (e) => {
   const el = e.target as HTMLInputElement;
+  if (el.name === 'email') emailSuggest(el.value.trim());
   if (!el.name || el.type === 'radio' || el.type === 'checkbox' || el.name === 'commune' || el.name === 'website') return;
   if (String(el.value).trim() !== '') checkOne(el.name === 'indicatif' ? 'numero' : el.name, true);
 });
@@ -535,9 +615,15 @@ app.addEventListener('submit', (e) => {
   e.preventDefault();
   if (state.sending) return;
   state.serverError = null;
+  if (state.step === 1) {
+    const typed = app.querySelector<HTMLInputElement>('#commune')?.value ?? String(state.values.commune ?? '');
+    const resolved = resolveCommune(typed, COMMUNES.map((c) => c.name));
+    if (resolved) state.values.commune = resolved;
+  }
   const { errors } = checkFields(state.values, stepFields(state.step, state.values.type));
   state.errors = errors;
   if (Object.keys(errors).length) return render();
+  if (state.returnTo === state.step + 1) state.returnTo = null;
   if (state.step < TOTAL) {
     state.step += 1;
     state.direction = 'next';
@@ -562,6 +648,16 @@ function answeredCount(): number {
 async function send() {
   state.sending = true;
   state.serverError = null;
+  render(false); // bouton « Envoi en cours… » tout de suite
+  try {
+    await loadLate();
+  } catch {
+    // Chunk introuvable (ex. nouvelle version mise en ligne) : rien n'a été envoyé, on propose de recharger
+    lateLoading = null;
+    state.sending = false;
+    state.serverError = t('errors.reload');
+    return render();
+  }
   const contactFields = stepFields(6, state.values.type);
   const answers: Values = {};
   const contact: Values = {};
@@ -577,6 +673,7 @@ async function send() {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({ lang, page, website, answers, contact }),
+    signal: AbortSignal.timeout(20_000),
   })
     .then(async (res) => ({ res, json: (await res.json().catch(() => ({}))) as ApiJson }))
     .catch(() => ({ network: true as const }));
@@ -585,11 +682,6 @@ async function send() {
 
   const type = (state.values.type as PropertyType) ?? 'appartement';
   const actx = { type, commune: String(state.values.commune ?? ''), surface: String(state.values.surface ?? ''), answers: answeredCount() };
-  try {
-    await loadLate();
-  } catch {
-    return stopAnalysis({ network: true });
-  }
   const { analysisPlan, renderAnalysis, stepTexts } = late!;
   const plan = analysisPlan(config.analysis?.totalMs ?? 5600);
   const meta = `${t(`fields.typeOptions.${type}`)} · ${actx.surface} m² · ${actx.commune}`;
@@ -665,7 +757,7 @@ async function send() {
   state.sending = false;
   // Nouveau bien : les essais du simulateur repartent de zéro (le résumé du bien précédent est déjà parti)
   scenarios.clear();
-  summarySent = false;
+  sentScenarios.clear();
   state.result = result ?? (isSuccess(outcome) ? (outcome as { json: { result: PublicResult } }).json.result : null);
   render();
 }
@@ -682,9 +774,10 @@ function stopAnalysis(o: Outcome) {
       }
     }
   } else {
-    state.serverError = 'network' in o ? t('errors.network') : t(o.res.status === 429 ? 'errors.rate_limit' : 'errors.server');
+    state.serverError = 'network' in o ? t('errors.network') : t(o.res.status === 429 ? 'errors.rate_limit' : 'errors.server', { contact: config.publicEmail });
   }
   render();
 }
 
 render(false);
+post({ type: 'ready' });

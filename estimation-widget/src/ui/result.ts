@@ -18,12 +18,23 @@ export interface ResultOptions {
 
 function formatDate(iso: string, lang: Lang): string {
   const d = new Date(iso + 'T12:00:00Z');
-  return Number.isNaN(d.getTime()) ? iso : new Intl.DateTimeFormat(LOCALES[lang], { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(d);
+  if (Number.isNaN(d.getTime())) return iso;
+  const out = new Intl.DateTimeFormat(LOCALES[lang], { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(d);
+  return lang === 'fr' ? out.replace(/^1 /, '1er ') : out;
+}
+
+/** « 4\u202f% » en français et en allemand, « 4% » en anglais */
+export function percent(n: string | number, lang: Lang): string {
+  return lang === 'en' ? `${n}%` : `${n}\u202f%`;
+}
+/** « Titre\u00a0: » en français, « Title: » ailleurs */
+export function colon(lang: Lang): string {
+  return lang === 'fr' ? '\u00a0: ' : ': ';
 }
 
 function pct(v: number, lang: Lang): string {
   const n = new Intl.NumberFormat(LOCALES[lang], { maximumFractionDigits: 1 }).format(Math.abs(v * 100));
-  return `${v > 0 ? '+' : '−'}${n} %`;
+  return `${v > 0 ? '+' : '−'}${percent(n, lang)}`;
 }
 
 function factorLabel(f: PublicFactor, t: T): string {
@@ -57,7 +68,9 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
   </div>
   ${agentCard(t, o)}
   ${cta}${call}
-  ${actions}
+  <div class="result-actions">
+    <button type="button" class="btn btn-ghost" data-action="restart">${icon('recommencer')}<span>${esc(t('result.restart'))}</span></button>
+  </div>
 </section>`;
   }
 
@@ -66,21 +79,23 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
   const typeLabel = t(`fields.typeOptions.${r.type}`);
   const eur = (v: number) => esc(formatEuro(v, lang));
   const perM2 = r.pricePerM2 ? formatEuro(r.pricePerM2, lang) : null;
+  const ownM2 = r.buildingPerM2 ?? r.pricePerM2 ?? null;
+  const ownPerM2 = ownM2 ? formatEuro(ownM2, lang) : null;
 
   /* Position du bien parmi les ventes de la commune (appartements avec fourchette publiée) */
   const s = r.communeStats;
   let gauge = '';
-  if (s && r.type === 'appartement' && s.notarieMinM2 && s.notarieMaxM2 && s.notarieM2 && r.pricePerM2) {
+  if (s && r.type === 'appartement' && s.notarieMinM2 && s.notarieMaxM2 && s.notarieM2 && ownM2) {
     const span = s.notarieMaxM2 - s.notarieMinM2;
     const pos = (v: number) => Math.round(Math.min(100, Math.max(0, ((v - s.notarieMinM2!) / span) * 100)));
     gauge = `<section class="panel" aria-labelledby="gauge-title">
     <h3 id="gauge-title">${icon('donnees', 'ico ico-sm')}<span>${esc(t('result.gaugeTitle', { commune: r.commune }))}</span></h3>
-    <div class="gauge" role="img" aria-label="${esc(`${t('result.gaugeYou')} : ${perM2} / m² · ${t('result.gaugeAvg')} : ${formatEuro(s.notarieM2, lang)} / m² · ${formatEuro(s.notarieMinM2, lang)} – ${formatEuro(s.notarieMaxM2, lang)}`)}">
+    <div class="gauge" role="img" aria-label="${esc(`${t('result.gaugeYou')}${colon(lang)}${ownPerM2} / m² · ${t('result.gaugeAvg')}${colon(lang)}${formatEuro(s.notarieM2, lang)} / m² · ${formatEuro(s.notarieMinM2, lang)} – ${formatEuro(s.notarieMaxM2, lang)}`)}">
       <div class="gauge-track"></div>
-      <div class="gauge-mark mark-avg" data-pos="${pos(s.notarieM2)}"><span>${esc(t('result.gaugeAvg'))}<br><strong>${eur(s.notarieM2)}</strong></span></div>
-      <div class="gauge-mark mark-you" data-pos="${pos(r.pricePerM2)}"><span>${esc(t('result.gaugeYou'))}<br><strong>${esc(perM2!)}</strong></span></div>
+      <div class="gauge-mark mark-avg" data-pos="${pos(s.notarieM2)}"><span>${esc(t('result.gaugeAvg'))}<br><strong>${eur(s.notarieM2)}\u00a0/\u00a0m²</strong></span></div>
+      <div class="gauge-mark mark-you" data-pos="${pos(ownM2)}"><span>${esc(t('result.gaugeYou'))}<br><strong>${esc(ownPerM2!)}\u00a0/\u00a0m²</strong></span></div>
     </div>
-    <div class="gauge-ends"><span>${eur(s.notarieMinM2)} / m²</span><span>${eur(s.notarieMaxM2)} / m²</span></div>
+    <div class="gauge-ends"><span>${eur(s.notarieMinM2)}\u00a0/\u00a0m²</span><span>${eur(s.notarieMaxM2)}\u00a0/\u00a0m²</span></div>
     <p class="small">${esc(t('result.gaugeText', { debut: formatDate(r.periodeDebut, lang), fin: formatDate(r.periodeFin, lang) }))}</p>
   </section>`;
   }
@@ -90,9 +105,9 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
       ? `<section class="panel" aria-labelledby="stats-title">
     <h3 id="stats-title">${icon('epingle', 'ico ico-sm')}<span>${esc(t('result.communeTitle', { commune: r.commune }))}</span></h3>
     <div class="stats">
-      ${s.notarieM2 ? `<div class="stat"><p class="stat-label">${esc(t('result.statNotarie'))}</p><p class="stat-value">${eur(s.notarieM2)}<small> / m²</small></p><p class="stat-sub">${esc(t('result.statNotarieSub', { n: String(s.ventes) }))}</p></div>` : ''}
-      ${s.annonceM2 ? `<div class="stat"><p class="stat-label">${esc(t(r.type === 'maison' ? 'result.statAnnonceMaison' : 'result.statAnnonceAppartement'))}</p><p class="stat-value">${eur(s.annonceM2)}<small> / m²</small></p><p class="stat-sub">${esc(t('result.statAnnonceSub', { n: String(s.offres) }))}</p></div>` : ''}
-      <div class="stat stat-you"><p class="stat-label">${esc(t('result.statYou'))}</p><p class="stat-value">${esc(perM2!)}<small> / m²</small></p><p class="stat-sub">${esc(t('result.statYouSub', { n: String(r.surface) }))}</p></div>
+      ${s.notarieM2 ? `<div class="stat"><p class="stat-label">${esc(t('result.statNotarie'))}</p><p class="stat-value">${eur(s.notarieM2)}<small>\u00a0/\u00a0m²</small></p><p class="stat-sub">${esc(t('result.statNotarieSub', { n: String(s.ventes) }))}</p></div>` : ''}
+      ${s.annonceM2 ? `<div class="stat"><p class="stat-label">${esc(t(r.type === 'maison' ? 'result.statAnnonceMaison' : 'result.statAnnonceAppartement'))}</p><p class="stat-value">${eur(s.annonceM2)}<small>\u00a0/\u00a0m²</small></p><p class="stat-sub">${esc(t('result.statAnnonceSub', { n: String(s.offres) }))}</p>${s.decote > 0.001 ? `<p class="stat-sub stat-gap">${esc(t('result.statGap', { p: percent(new Intl.NumberFormat(LOCALES[lang], { maximumFractionDigits: 0 }).format(s.decote * 100), lang) }))}</p>` : ''}</div>` : ''}
+      <div class="stat stat-you"><p class="stat-label">${esc(t('result.statYou'))}</p><p class="stat-value">${esc(ownPerM2!)}<small>\u00a0/\u00a0m²</small></p><p class="stat-sub">${esc(t('result.statYouSub', { n: String(r.surface) }))}</p></div>
     </div>
     ${s.notarieFromCanton ? `<p class="small">${esc(t('result.statCanton', { deCanton: deCanton(s.canton, lang) }))}</p>` : ''}
   </section>`
@@ -119,18 +134,18 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
   const reliability = rel
     ? `<div class="reliability rel-${rel}">
     <span class="rel-bars" aria-hidden="true"><i></i><i></i><i></i></span>
-    <p><strong>${esc(t('result.reliabilityTitle'))} : ${esc(t(`result.reliability.${rel}`))}</strong></p>
+    <p><strong>${esc(t('result.reliabilityTitle'))}${colon(lang)}${esc(t(`result.reliability.${rel}`))}</strong></p>
   </div>`
     : '';
 
   const how = `<details class="how">
     <summary>${icon('info', 'ico ico-sm')}<span>${esc(t('result.howTitle'))}</span></summary>
     <p>${esc(t(r.type === 'maison' ? 'result.howMaison' : 'result.howAppartement'))}</p>
-    ${relText ? `<p><strong>${esc(t('result.reliabilityTitle'))} : ${esc(t(`result.reliability.${rel}`))}.</strong> ${esc(relText)}</p>` : ''}
+    ${relText ? `<p><strong>${esc(t('result.reliabilityTitle'))}${colon(lang)}${esc(t(`result.reliability.${rel}`))}.</strong> ${esc(relText)}</p>` : ''}
     ${
       r.methods?.length
         ? `<ul>${r.methods
-            .map((m) => `<li>${esc(t('result.methodLine', { name: t(`result.methods.${m.key}`), m2: formatEuro(m.m2, lang), weight: `${Math.round(m.weight * 100)} %` }))}</li>`)
+            .map((m) => `<li>${esc(t('result.methodLine', { name: t(`result.methods.${m.key}`), m2: formatEuro(m.m2, lang), weight: percent(Math.round(m.weight * 100), lang) }))}</li>`)
             .join('')}</ul>`
         : ''
     }
@@ -140,7 +155,7 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
   <div class="result-hero">
     <p class="sent-note"><svg class="seal" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle class="seal-ring" cx="24" cy="24" r="20"/><path class="seal-check" d="M15 24.5l6 6L33 18"/></svg><span>${esc(t('result.sent'))}</span></p>
     <h2 id="result-title" class="step-title" tabindex="-1">${esc(t('result.ready'))}</h2>
-    <p class="hero-meta">${esc(t('result.subtitle', { type: typeLabel, commune: r.commune }))}${r.surface ? ` · ${r.surface} m²` : ''}</p>
+    <p class="hero-meta">${esc(t('result.subtitle', { type: typeLabel, commune: r.commune }))}${r.surface ? ` · ${r.surface}\u00a0m²` : ''}</p>
     <p class="hero-label">${esc(t('result.market'))}</p>
     <p class="hero-amount"><span class="sr-only">${eur(r.market)}</span><span aria-hidden="true" data-countup="${r.market}">${eur(r.market)}</span></p>
     <p class="hero-sub">${esc(t('result.marketText'))}${perM2 ? ` · ${esc(t('result.perM2', { value: perM2 }))}` : ''}</p>
