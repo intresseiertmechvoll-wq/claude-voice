@@ -1,6 +1,7 @@
 # En-têtes de sécurité (Cloudflare Pages)
 # frame-ancestors : les sites autorisés à afficher l'outil. Ajouter ici l'adresse du nouveau site Next.js si elle n'est pas sur immobuild.lu.
 /*
+  Strict-Transport-Security: max-age=31536000
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()

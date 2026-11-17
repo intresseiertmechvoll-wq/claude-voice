@@ -320,7 +320,8 @@ Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'a
 - Vérification de tous les champs sur le serveur (le navigateur ne fait qu'aider à la saisie).
 - Champ caché anti-robot (honeypot) : s'il est rempli, rien n'est calculé ni envoyé.
 - Au plus 20 envois par heure pour une même IP (3.4, réglable dans `config.json` → `rateLimitPerHour`). Pourquoi 20 et pas moins : sur les réseaux mobiles, beaucoup de clients peuvent partager la même adresse IP ; mieux vaut quelques e-mails de robot en plus qu'un vrai lead bloqué. La vraie protection contre les robots, ce sont le champ caché et le contrôle d'origine.
-- Le formulaire n'est accepté que depuis la page de l'outil elle-même (contrôle de l'en-tête `Origin`).
+- Le formulaire n'est accepté que depuis la page de l'outil elle-même : l'en-tête `Origin` est obligatoire et doit être celui de l'outil (une requête sans `Origin` est refusée). Limite honnête : un robot peut imiter cet en-tête ; le contrôle bloque surtout les envois depuis d'autres sites et les scripts simples.
+- HTTPS imposé au navigateur (en-tête `Strict-Transport-Security`, 1 an) ; `www.estimatioun.lu` redirige vers `estimatioun.lu`.
 - Le résultat n'est renvoyé qu'après des coordonnées valides **et** l'envoi réussi de l'e-mail. Si Resend échoue ou ne répond pas en 10 secondes, le visiteur voit un message d'erreur avec ton adresse e-mail et peut réessayer (l'essai raté ne compte pas dans la limite) : le lead n'est jamais perdu en silence.
 - La rue, le nom et les autres champs d'une ligne ne peuvent pas contenir de retour à la ligne ni de caractères invisibles : impossible d'imiter une rubrique de l'e-mail. Le message libre est mis en retrait.
 - Aucune donnée n'est stockée ailleurs que dans l'e-mail (et, si KV est activé, une empreinte d'IP effacée après 1 heure).

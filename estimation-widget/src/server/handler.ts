@@ -89,8 +89,9 @@ export async function sendMail(env: Env, d: Deps, mail: Mail): Promise<'config' 
 /** Contrôles communs : POST, même origine, JSON, taille. Renvoie le corps ou une réponse d'erreur. */
 export async function readJson(request: Request, maxBody = MAX_BODY): Promise<{ body: unknown } | { error: Response }> {
   if (request.method !== 'POST') return { error: json({ ok: false, error: 'method' }, 405) };
+  // Les navigateurs envoient toujours Origin sur un POST fetch : une requête sans Origin ne vient pas de l'outil
   const origin = request.headers.get('origin');
-  if (origin && origin !== new URL(request.url).origin) return { error: json({ ok: false, error: 'origin' }, 403) };
+  if (!origin || origin !== new URL(request.url).origin) return { error: json({ ok: false, error: 'origin' }, 403) };
   const mediaType = (request.headers.get('content-type') ?? '').split(';')[0].trim().toLowerCase();
   if (mediaType !== 'application/json') return { error: json({ ok: false, error: 'content-type' }, 415) };
   const text = await request.text();

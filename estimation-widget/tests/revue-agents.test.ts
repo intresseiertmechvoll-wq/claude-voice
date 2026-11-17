@@ -77,6 +77,13 @@ describe('Envoi et limites', () => {
     expect((await handleEstimate(post('/api/estimate', body()), env, deps(okFetch()))).status).toBe(200);
   });
 
+  it('Requête sans en-tête Origin (script, outil en ligne de commande) : refusée, aucun e-mail', async () => {
+    const f = okFetch();
+    const noOrigin = new Request(BASE + '/api/estimate', { method: 'POST', headers: { 'content-type': 'application/json', 'cf-connecting-ip': '203.0.113.78' }, body: JSON.stringify(body()) });
+    expect((await handleEstimate(noOrigin, env, deps(f))).status).toBe(403);
+    expect(f).not.toHaveBeenCalled();
+  });
+
   it('Content-Type : majuscules acceptées, faux type refusé', async () => {
     expect((await handleEstimate(post('/api/estimate', body(), { 'content-type': 'Application/JSON; charset=utf-8' }), env, deps(okFetch()))).status).toBe(200);
     expect((await handleEstimate(post('/api/estimate', body(), { 'content-type': 'text/plain; charset=application/json' }), env, deps(okFetch()))).status).toBe(415);
