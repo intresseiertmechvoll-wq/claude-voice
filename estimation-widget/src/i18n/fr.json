@@ -231,6 +231,7 @@
     "source": "Source : {source}. Période : {periode}.",
     "disclaimer": "Estimation indicative basée sur des statistiques publiques. Elle ne remplace pas une estimation sur place.",
     "cta": "Prendre rendez-vous pour une estimation précise",
+    "call": "Appeler {name}",
     "noDataTitle": "Merci, votre demande a bien été envoyée",
     "noDataText": "Il n’y a pas assez de données publiques pour votre commune. Je vous recontacte avec une estimation personnalisée.",
     "sent": "Demande bien reçue",

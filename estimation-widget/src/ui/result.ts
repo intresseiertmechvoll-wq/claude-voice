@@ -53,7 +53,7 @@ function agentCard(t: T, o: ResultOptions): string {
 export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOptions | string): string {
   const o: ResultOptions = typeof opts === 'string' ? { contactUrl: opts } : opts;
   const cta = `<a class="btn btn-primary btn-block" href="${esc(o.contactUrl)}" target="_top" rel="noopener">${icon('rdv')}<span>${esc(t('result.cta'))}</span></a>`;
-  const call = o.phone ? `<a class="btn btn-secondary btn-block" href="tel:${esc(o.phone.replace(/\s/g, ''))}" target="_top">${esc(o.phone)}</a>` : '';
+  const call = o.phone ? `<a class="btn btn-secondary btn-block" href="tel:${esc(o.phone.replace(/\s/g, ''))}" target="_top">${icon('telephone')}<span class="call-text"><span>${esc(t('result.call', { name: o.agent?.name ?? '' }).trim())}</span><span class="call-num">${esc(o.phone)}</span></span></a>` : '';
   const actions = `<div class="result-actions">
     <button type="button" class="btn btn-ghost" data-action="print">${icon('imprimer')}<span>${esc(t('result.print'))}</span></button>
     <button type="button" class="btn btn-ghost" data-action="restart">${icon('recommencer')}<span>${esc(t('result.restart'))}</span></button>

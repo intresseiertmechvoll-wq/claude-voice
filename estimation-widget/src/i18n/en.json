@@ -231,6 +231,7 @@
     "source": "Source: {source}. Period: {periode}.",
     "disclaimer": "Indicative estimate based on public statistics. It does not replace an on-site valuation.",
     "cta": "Book an appointment for a precise valuation",
+    "call": "Call {name}",
     "noDataTitle": "Thank you, your request has been sent",
     "noDataText": "There is not enough public data for your municipality. I will get back to you with a personalised valuation.",
     "sent": "Request received",

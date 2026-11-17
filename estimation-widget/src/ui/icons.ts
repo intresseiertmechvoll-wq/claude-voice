@@ -48,6 +48,7 @@ const P: Record<string, string> = {
   imprimer: '<path d="M6.5 9V3h11v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6.5 14h11v7h-11z"/>',
   recommencer: '<path d="M3.5 12a8.5 8.5 0 1 0 2.5-6"/><path d="M3.5 3.5V8H8"/>',
   rdv: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="m8.5 15.2 2.3 2.3 4.7-4.7"/>',
+  telephone: '<path d="M5.5 3.5h3.2l1.6 4.2-2.1 1.3a11.5 11.5 0 0 0 6.8 6.8l1.3-2.1 4.2 1.6v3.2a2 2 0 0 1-2.2 2A17.5 17.5 0 0 1 3.5 5.7a2 2 0 0 1 2-2.2z"/>',
   info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.5v.5"/>',
   fleche: '<path d="M19 12H5M11 6l-6 6 6 6"/>',
   inconnu: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17v.5"/>',

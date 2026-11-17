@@ -231,6 +231,7 @@
     "source": "Quelle: {source}. Zeitraum: {periode}.",
     "disclaimer": "Richtwert auf Basis öffentlicher Statistiken. Er ersetzt keine Bewertung vor Ort.",
     "cta": "Termin für eine genaue Bewertung vereinbaren",
+    "call": "{name} anrufen",
     "noDataTitle": "Danke, Ihre Anfrage wurde gesendet",
     "noDataText": "Für Ihre Gemeinde gibt es nicht genug öffentliche Daten. Ich melde mich mit einer persönlichen Bewertung bei Ihnen.",
     "sent": "Anfrage erhalten",
