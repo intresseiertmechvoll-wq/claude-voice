@@ -15,7 +15,7 @@ L'outil est indépendant de tes sites : il s'affiche dans une iframe, sur WordPr
 | Serveur | `functions/api/estimate.ts`, `src/server/` | Cloudflare Pages Functions : vérifie, calcule, envoie l'e-mail. |
 | Calcul | `src/shared/engine.ts` | Le moteur (logique du moteur V1, voir plus bas). |
 | Données | `data/communes.json` | Observatoire de l'Habitat, data.public.lu, licence CC0. |
-| Réglages | `params.json`, `config.json` | Coefficients (à valider par Jay), liens, adresse e-mail. |
+| Réglages | `params.json`, `config.json` | Coefficients (à valider par Jason), liens, adresse e-mail. |
 
 Pas de base de données, pas de cookie, pas de traceur. Les polices sont incluses dans l'outil (pas de Google Fonts).
 
@@ -28,7 +28,7 @@ Pas de base de données, pas de cookie, pas de traceur. Les polices sont incluse
 - **Un écran « Analyse de votre bien »** après l'envoi (environ 6 secondes) : une maison qui se remplit depuis le bas, un pourcentage et 5 étapes cochées une à une — rassemblement des réponses, recherche des données de la commune (avec les vrais chiffres, par ex. « 130 ventes notariées et 508 annonces trouvées à Dudelange »), comparaison des méthodes, ajustement du prix, calcul du prix final. Voir « Écran d'analyse » plus bas.
 - **Un simulateur « Et si… ? »** sous le résultat : le visiteur teste une autre classe énergétique, un autre état ou des travaux (cuisine, salle de bain, châssis…) et voit aussitôt la nouvelle valeur et l'écart. Le visiteur est prévenu que tu reçois ses essais. Tu reçois un e-mail de complément quand il quitte la page (au plus 3 par résultat, chacun avec les seuls essais nouveaux) : utile pour préparer le rendez-vous. Voir « Simulateur » plus bas.
 - **Une barre de progression qui avance à chaque réponse**, avec une petite avance au départ.
-- **Une présence humaine** : une bulle de Jay sous chaque titre, qui réagit à certaines réponses (« Un garage, ça compte ! »). Les phrases sont dans `src/i18n/fr.json` → `coach`, à adapter à ta voix. Ta photo : `config.json` → `agent.photo`.
+- **Une présence humaine** : une bulle de Jason sous chaque titre, qui réagit à certaines réponses (« Un garage, ça compte ! »). Les phrases sont dans `src/i18n/fr.json` → `coach`, à adapter à ta voix. Ta photo : `config.json` → `agent.photo`.
 - **Un résultat sobre** : un sceau doré qui se dessine (pas de confettis : une estimation peut décevoir).
 - **Un résultat utile pour lui** : valeur de marché en grand et prix au m², fourchette basse / haute, position de son bien parmi les ventes réelles de sa commune (appartements), chiffres de la commune, ce qui fait monter ou baisser son prix, fiabilité des données, explication du calcul, prochaines étapes, impression / PDF.
 - **Accessible et léger** : 0 erreur axe-core (WCAG 2.1 AA) sur tous les écrans capturés, utilisable au clavier, animations coupées si le visiteur le demande à son système. Lighthouse mobile (en local, 11/11/2026) : performance 100, accessibilité 100, bonnes pratiques 100, 89 Ko au total (photo comprise).
@@ -116,7 +116,7 @@ Les valeurs sont chiffrées chez Cloudflare. La clé n'est jamais dans le code. 
 3. API Keys → Create API key → droits « Sending access » → copie la clé dans `RESEND_API_KEY` (3.2).
 4. L'adresse `FROM_EMAIL` doit être sur le domaine validé.
 
-### 3.4 La limite de 5 envois par heure et par IP (gratuit)
+### 3.4 La limite de 20 envois par heure et par IP (gratuit)
 
 Sans réglage, la limite fonctionne déjà, mais en mémoire : chaque serveur Cloudflare compte de son côté, et le compteur repart à zéro quand le serveur redémarre. Pour un compteur fiable et partagé, active Cloudflare KV (gratuit : 100 000 lectures et 1 000 écritures par jour, largement assez ici) :
 
@@ -258,7 +258,7 @@ Pas de prix affiché, mais le message « Je vous recontacte avec une estimation 
 
 Le visiteur en est prévenu dès l'étape 1, sous la commune, avant de remplir le reste.
 
-## Paramètres (`params.json`) — tout est à valider par Jay
+## Paramètres (`params.json`) — tout est à valider par Jason
 
 Valeurs de départ simples et prudentes, choisies pour cet outil. Aucune grille d'Estimator Pro ni de Propteo n'a été reprise. Les coefficients s'additionnent, puis le total est borné entre −30 % et +20 %.
 
@@ -319,9 +319,9 @@ Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'a
 
 - Vérification de tous les champs sur le serveur (le navigateur ne fait qu'aider à la saisie).
 - Champ caché anti-robot (honeypot) : s'il est rempli, rien n'est calculé ni envoyé.
-- Au plus 5 envois par heure pour une même IP (3.4).
+- Au plus 20 envois par heure pour une même IP (3.4, réglable dans `config.json` → `rateLimitPerHour`). Pourquoi 20 et pas moins : sur les réseaux mobiles, beaucoup de clients peuvent partager la même adresse IP ; mieux vaut quelques e-mails de robot en plus qu'un vrai lead bloqué. La vraie protection contre les robots, ce sont le champ caché et le contrôle d'origine.
 - Le formulaire n'est accepté que depuis la page de l'outil elle-même (contrôle de l'en-tête `Origin`).
-- Le résultat n'est renvoyé qu'après des coordonnées valides **et** l'envoi réussi de l'e-mail. Si Resend échoue ou ne répond pas en 10 secondes, le visiteur voit un message d'erreur avec ton adresse e-mail et peut réessayer (l'essai raté ne compte pas dans la limite de 5) : le lead n'est jamais perdu en silence.
+- Le résultat n'est renvoyé qu'après des coordonnées valides **et** l'envoi réussi de l'e-mail. Si Resend échoue ou ne répond pas en 10 secondes, le visiteur voit un message d'erreur avec ton adresse e-mail et peut réessayer (l'essai raté ne compte pas dans la limite) : le lead n'est jamais perdu en silence.
 - La rue, le nom et les autres champs d'une ligne ne peuvent pas contenir de retour à la ligne ni de caractères invisibles : impossible d'imiter une rubrique de l'e-mail. Le message libre est mis en retrait.
 - Aucune donnée n'est stockée ailleurs que dans l'e-mail (et, si KV est activé, une empreinte d'IP effacée après 1 heure).
 - Détails pour ta politique de confidentialité : `PRIVACY.md`.

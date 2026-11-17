@@ -55,7 +55,7 @@ export function escapeHtml(s: string): string {
   return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
 }
 
-/** Priorité du lead, règle simple (à valider par Jay) */
+/** Priorité du lead, règle simple (à valider par Jason) */
 export function leadPriority(s: Submission): { level: 'chaud' | 'tiède' | 'froid'; why: string } {
   const a = s.answers;
   const soon = a.delai === 'asap' || a.delai === '3mois';

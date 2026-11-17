@@ -514,7 +514,7 @@ input[type='text']:focus, input[type='email']:focus, input[type='tel']:focus, se
 .teaser .teaser-arrow { margin-left: auto; transform: rotate(-90deg); }
 @media print { .teaser { display: none; } }
 
-/* ---------- Bulle de Jay ---------- */
+/* ---------- Bulle de Jason ---------- */
 .step-head { margin-bottom: 12px; }
 .coach { display: flex; align-items: flex-end; gap: 10px; margin: 0 0 18px; }
 .avatar-sm { width: 48px; height: 48px; font-size: 1.0625rem; box-shadow: 0 0 0 2px var(--gold-soft); }
