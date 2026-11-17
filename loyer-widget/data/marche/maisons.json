@@ -1,0 +1,2970 @@
+{
+ "_note": "Généré par scripts/marche-maisons.ts. Une fiche par annonce de maison à louer au Luxembourg (atHome, wortimmo). Ne pas modifier à la main.",
+ "releves": [
+  {
+   "date": "2026-11-17",
+   "lues": {
+    "athome": 463,
+    "wortimmo": 42
+   },
+   "luxembourg": 123,
+   "nouvelles": 123,
+   "disparues": 0,
+   "avertissements": []
+  }
+ ],
+ "fiches": {
+  "athome:9378787": {
+   "cle": "athome:9378787",
+   "source": "athome",
+   "id": "9378787",
+   "url": "https://www.athome.lu/location/maison/clervaux/id-9378787.html",
+   "localite": "Clervaux",
+   "commune": "Clervaux",
+   "type": "Maison",
+   "surface": 123,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2800
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9419183": {
+   "cle": "athome:9419183",
+   "source": "athome",
+   "id": "9419183",
+   "url": "https://www.athome.lu/location/maison/bascharage/id-9419183.html",
+   "localite": "Bascharage",
+   "commune": "Käerjeng",
+   "type": "Maison",
+   "surface": 400,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "surface ≥ 400 m² (terrain compté ?)"
+  },
+  "athome:9396135": {
+   "cle": "athome:9396135",
+   "source": "athome",
+   "id": "9396135",
+   "url": "https://www.athome.lu/location/maison/senningen/id-9396135.html",
+   "localite": "Senningen",
+   "commune": "Niederanven",
+   "type": "Maison individuelle",
+   "surface": 158,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3600
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9434046": {
+   "cle": "athome:9434046",
+   "source": "athome",
+   "id": "9434046",
+   "url": "https://www.athome.lu/location/maison/wasserbillig/id-9434046.html",
+   "localite": "Wasserbillig",
+   "commune": "Mertert",
+   "type": "Maison individuelle",
+   "surface": 183,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2950
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9424609": {
+   "cle": "athome:9424609",
+   "source": "athome",
+   "id": "9424609",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-9424609.html",
+   "localite": "Luxembourg-Gasperich - Cloche d'or",
+   "commune": "Luxembourg",
+   "type": "Maison",
+   "surface": 180,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 4300
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9387556": {
+   "cle": "athome:9387556",
+   "source": "athome",
+   "id": "9387556",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-9387556.html",
+   "localite": "Luxembourg-Belair",
+   "commune": "Luxembourg",
+   "type": "Maison",
+   "surface": 270,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 7200
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9425946": {
+   "cle": "athome:9425946",
+   "source": "athome",
+   "id": "9425946",
+   "url": "https://www.athome.lu/location/maison/ernzen/id-9425946.html",
+   "localite": "Ernzen",
+   "commune": "Larochette",
+   "type": "Maison mitoyenne",
+   "surface": 238,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9327833": {
+   "cle": "athome:9327833",
+   "source": "athome",
+   "id": "9327833",
+   "url": "https://www.athome.lu/location/maison/esch-sur-alzette/id-9327833.html",
+   "localite": "Esch-sur-Alzette",
+   "commune": "Esch-sur-Alzette",
+   "type": "Maison mitoyenne",
+   "surface": 140,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9304827": {
+   "cle": "athome:9304827",
+   "source": "athome",
+   "id": "9304827",
+   "url": "https://www.athome.lu/location/maison/bertrange/id-9304827.html",
+   "localite": "Bertrange",
+   "commune": "Bertrange",
+   "type": "Maison individuelle",
+   "surface": 308,
+   "chambres": 8,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 5000
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9335780": {
+   "cle": "athome:9335780",
+   "source": "athome",
+   "id": "9335780",
+   "url": "https://www.athome.lu/location/maison/moesdorf/id-9335780.html",
+   "localite": "Moesdorf",
+   "commune": "Mersch",
+   "type": "Maison mitoyenne",
+   "surface": 106,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2600
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9217046": {
+   "cle": "athome:9217046",
+   "source": "athome",
+   "id": "9217046",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-9217046.html",
+   "localite": "Luxembourg-Centre ville",
+   "commune": "Luxembourg",
+   "type": "Maison",
+   "surface": null,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 6000
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "sans surface"
+  },
+  "athome:9423383": {
+   "cle": "athome:9423383",
+   "source": "athome",
+   "id": "9423383",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-9423383.html",
+   "localite": "Luxembourg-Cents",
+   "commune": "Luxembourg",
+   "type": "Bungalow",
+   "surface": 125,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3200
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:8514436": {
+   "cle": "athome:8514436",
+   "source": "athome",
+   "id": "8514436",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-8514436.html",
+   "localite": "Luxembourg-Belair",
+   "commune": "Luxembourg",
+   "type": "Maison de maître",
+   "surface": 300,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 5700
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9406678": {
+   "cle": "athome:9406678",
+   "source": "athome",
+   "id": "9406678",
+   "url": "https://www.athome.lu/location/maison/ettelbruck/id-9406678.html",
+   "localite": "Ettelbruck",
+   "commune": "Ettelbruck",
+   "type": "Maison individuelle",
+   "surface": 202,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2800
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9405350": {
+   "cle": "athome:9405350",
+   "source": "athome",
+   "id": "9405350",
+   "url": "https://www.athome.lu/location/maison/eselborn/id-9405350.html",
+   "localite": "Eselborn",
+   "commune": "Clervaux",
+   "type": "Maison individuelle",
+   "surface": 180,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2200
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9350571": {
+   "cle": "athome:9350571",
+   "source": "athome",
+   "id": "9350571",
+   "url": "https://www.athome.lu/location/maison/alscheid/id-9350571.html",
+   "localite": "Alscheid",
+   "commune": "Kiischpelt",
+   "type": "Maison individuelle",
+   "surface": 80,
+   "chambres": 2,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 1250
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9306271": {
+   "cle": "athome:9306271",
+   "source": "athome",
+   "id": "9306271",
+   "url": "https://www.athome.lu/location/maison/doncols/id-9306271.html",
+   "localite": "Doncols",
+   "commune": "Winseler",
+   "type": "Maison",
+   "surface": 140,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2400
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9188561": {
+   "cle": "athome:9188561",
+   "source": "athome",
+   "id": "9188561",
+   "url": "https://www.athome.lu/location/maison/mamer/id-9188561.html",
+   "localite": "Mamer",
+   "commune": "Mamer",
+   "type": "Maison",
+   "surface": 110,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2800
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9441767": {
+   "cle": "athome:9441767",
+   "source": "athome",
+   "id": "9441767",
+   "url": "https://www.athome.lu/location/maison/senningerberg/id-9441767.html",
+   "localite": "Senningerberg",
+   "commune": "Niederanven",
+   "type": "Maison",
+   "surface": 270,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9313559": {
+   "cle": "athome:9313559",
+   "source": "athome",
+   "id": "9313559",
+   "url": "https://www.athome.lu/location/maison/differdange/id-9313559.html",
+   "localite": "Differdange",
+   "commune": "Differdange",
+   "type": "Maison",
+   "surface": 220,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3650
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9406676": {
+   "cle": "athome:9406676",
+   "source": "athome",
+   "id": "9406676",
+   "url": "https://www.athome.lu/location/maison/leudelange/id-9406676.html",
+   "localite": "Leudelange",
+   "commune": "Leudelange",
+   "type": "Maison",
+   "surface": 340,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 5400
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9337197": {
+   "cle": "athome:9337197",
+   "source": "athome",
+   "id": "9337197",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-9337197.html",
+   "localite": "Luxembourg-Belair",
+   "commune": "Luxembourg",
+   "type": "Villa",
+   "surface": 314,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 8900
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:8890224": {
+   "cle": "athome:8890224",
+   "source": "athome",
+   "id": "8890224",
+   "url": "https://www.athome.lu/location/maison/hesperange/id-8890224.html",
+   "localite": "Hesperange",
+   "commune": "Hesperange",
+   "type": "Maison",
+   "surface": 500,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 7000
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "surface ≥ 400 m² (terrain compté ?)"
+  },
+  "athome:9443224": {
+   "cle": "athome:9443224",
+   "source": "athome",
+   "id": "9443224",
+   "url": "https://www.athome.lu/location/maison/grass/id-9443224.html",
+   "localite": "Grass",
+   "commune": "Steinfort",
+   "type": "Maison",
+   "surface": 156,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3200
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9388110": {
+   "cle": "athome:9388110",
+   "source": "athome",
+   "id": "9388110",
+   "url": "https://www.athome.lu/location/maison/dippach/id-9388110.html",
+   "localite": "Dippach",
+   "commune": "Dippach",
+   "type": "Maison",
+   "surface": 372,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 4400
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9326151": {
+   "cle": "athome:9326151",
+   "source": "athome",
+   "id": "9326151",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-9326151.html",
+   "localite": "Luxembourg-Bonnevoie",
+   "commune": "Luxembourg",
+   "type": "Maison",
+   "surface": 196,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3950
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9340374": {
+   "cle": "athome:9340374",
+   "source": "athome",
+   "id": "9340374",
+   "url": "https://www.athome.lu/location/maison/mertert/id-9340374.html",
+   "localite": "Mertert",
+   "commune": "Mertert",
+   "type": "Villa",
+   "surface": 355,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 5500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9369558": {
+   "cle": "athome:9369558",
+   "source": "athome",
+   "id": "9369558",
+   "url": "https://www.athome.lu/location/maison/niederanven/id-9369558.html",
+   "localite": "Niederanven",
+   "commune": "Niederanven",
+   "type": "Maison jumelée",
+   "surface": 155,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3950
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9361862": {
+   "cle": "athome:9361862",
+   "source": "athome",
+   "id": "9361862",
+   "url": "https://www.athome.lu/location/maison/wahlhausen/id-9361862.html",
+   "localite": "Wahlhausen",
+   "commune": "Parc Hosingen",
+   "type": "Maison individuelle",
+   "surface": 205,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2750
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9385318": {
+   "cle": "athome:9385318",
+   "source": "athome",
+   "id": "9385318",
+   "url": "https://www.athome.lu/location/maison/mondorf-les-bains/id-9385318.html",
+   "localite": "Mondorf-Les-Bains",
+   "commune": "Mondorf-les-Bains",
+   "type": "",
+   "surface": null,
+   "chambres": null,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3650
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "sans surface"
+  },
+  "athome:8642164": {
+   "cle": "athome:8642164",
+   "source": "athome",
+   "id": "8642164",
+   "url": "https://www.athome.lu/location/maison/mondercange/id-8642164.html",
+   "localite": "Mondercange",
+   "commune": "Mondercange",
+   "type": "",
+   "surface": 364,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 10000
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9442088": {
+   "cle": "athome:9442088",
+   "source": "athome",
+   "id": "9442088",
+   "url": "https://www.athome.lu/location/maison/esch-sur-alzette/id-9442088.html",
+   "localite": "Esch-sur-Alzette",
+   "commune": "Esch-sur-Alzette",
+   "type": "Maison mitoyenne",
+   "surface": 145,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9127945": {
+   "cle": "athome:9127945",
+   "source": "athome",
+   "id": "9127945",
+   "url": "https://www.athome.lu/location/maison/hollenfels/id-9127945.html",
+   "localite": "Hollenfels",
+   "commune": "Helperknapp",
+   "type": "Maison mitoyenne",
+   "surface": 122,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2900
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9180897": {
+   "cle": "athome:9180897",
+   "source": "athome",
+   "id": "9180897",
+   "url": "https://www.athome.lu/location/maison/bettembourg/id-9180897.html",
+   "localite": "Bettembourg",
+   "commune": "Bettembourg",
+   "type": "Maison mitoyenne",
+   "surface": 140,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3000
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9394489": {
+   "cle": "athome:9394489",
+   "source": "athome",
+   "id": "9394489",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-9394489.html",
+   "localite": "Luxembourg-Belair",
+   "commune": "Luxembourg",
+   "type": "",
+   "surface": 195,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 4500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9217045": {
+   "cle": "athome:9217045",
+   "source": "athome",
+   "id": "9217045",
+   "url": "https://www.athome.lu/location/maison/sandweiler/id-9217045.html",
+   "localite": "Sandweiler",
+   "commune": "Sandweiler",
+   "type": "Maison individuelle",
+   "surface": 250,
+   "chambres": 6,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 4500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:8993872": {
+   "cle": "athome:8993872",
+   "source": "athome",
+   "id": "8993872",
+   "url": "https://www.athome.lu/location/maison/bereldange/id-8993872.html",
+   "localite": "Bereldange",
+   "commune": "Walferdange",
+   "type": "Maison mitoyenne",
+   "surface": 135,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2950
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9393600": {
+   "cle": "athome:9393600",
+   "source": "athome",
+   "id": "9393600",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-9393600.html",
+   "localite": "Luxembourg-Weimershof",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 186,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 4500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9377358": {
+   "cle": "athome:9377358",
+   "source": "athome",
+   "id": "9377358",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-9377358.html",
+   "localite": "Luxembourg-Limpertsberg",
+   "commune": "Luxembourg",
+   "type": "Maison mitoyenne",
+   "surface": 210,
+   "chambres": 6,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 5500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9095282": {
+   "cle": "athome:9095282",
+   "source": "athome",
+   "id": "9095282",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-9095282.html",
+   "localite": "Luxembourg-Centre ville",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 200,
+   "chambres": 2,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3600
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9383190": {
+   "cle": "athome:9383190",
+   "source": "athome",
+   "id": "9383190",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-9383190.html",
+   "localite": "Luxembourg-Merl",
+   "commune": "Luxembourg",
+   "type": "Maison jumelée",
+   "surface": 300,
+   "chambres": 6,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 5000
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9424692": {
+   "cle": "athome:9424692",
+   "source": "athome",
+   "id": "9424692",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-9424692.html",
+   "localite": "Luxembourg-Gasperich - Cloche d'or",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 180,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 4300
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9393903": {
+   "cle": "athome:9393903",
+   "source": "athome",
+   "id": "9393903",
+   "url": "https://www.athome.lu/location/maison/niederanven/id-9393903.html",
+   "localite": "Niederanven",
+   "commune": "Niederanven",
+   "type": "Maison individuelle",
+   "surface": 369,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 4800
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9304508": {
+   "cle": "athome:9304508",
+   "source": "athome",
+   "id": "9304508",
+   "url": "https://www.athome.lu/location/maison/holzem/id-9304508.html",
+   "localite": "Holzem",
+   "commune": "Mamer",
+   "type": "Maison individuelle",
+   "surface": 180,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9255052": {
+   "cle": "athome:9255052",
+   "source": "athome",
+   "id": "9255052",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-9255052.html",
+   "localite": "Luxembourg-Merl",
+   "commune": "Luxembourg",
+   "type": "Maison",
+   "surface": 251,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 5900
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9255013": {
+   "cle": "athome:9255013",
+   "source": "athome",
+   "id": "9255013",
+   "url": "https://www.athome.lu/location/maison/mamer/id-9255013.html",
+   "localite": "Mamer",
+   "commune": "Mamer",
+   "type": "Maison",
+   "surface": 140,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3900
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9193044": {
+   "cle": "athome:9193044",
+   "source": "athome",
+   "id": "9193044",
+   "url": "https://www.athome.lu/location/maison/howald/id-9193044.html",
+   "localite": "Howald",
+   "commune": "Hesperange",
+   "type": "Maison",
+   "surface": 150,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3800
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9398852": {
+   "cle": "athome:9398852",
+   "source": "athome",
+   "id": "9398852",
+   "url": "https://www.athome.lu/location/maison/erpeldange-sur-sure/id-9398852.html",
+   "localite": "Erpeldange-sur-Sûre",
+   "commune": "Erpeldange-sur-Sûre",
+   "type": "Maison individuelle",
+   "surface": 191,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2600
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9340674": {
+   "cle": "athome:9340674",
+   "source": "athome",
+   "id": "9340674",
+   "url": "https://www.athome.lu/location/maison/bourglinster/id-9340674.html",
+   "localite": "Bourglinster",
+   "commune": "Junglinster",
+   "type": "Maison individuelle",
+   "surface": 225,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3200
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9279509": {
+   "cle": "athome:9279509",
+   "source": "athome",
+   "id": "9279509",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-9279509.html",
+   "localite": "Luxembourg-Weimerskirch",
+   "commune": "Luxembourg",
+   "type": "Maison de maître",
+   "surface": 280,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 5500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9425904": {
+   "cle": "athome:9425904",
+   "source": "athome",
+   "id": "9425904",
+   "url": "https://www.athome.lu/location/maison/sandweiler/id-9425904.html",
+   "localite": "Sandweiler",
+   "commune": "Sandweiler",
+   "type": "Maison",
+   "surface": 120,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9393882": {
+   "cle": "athome:9393882",
+   "source": "athome",
+   "id": "9393882",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-9393882.html",
+   "localite": "Luxembourg-Beggen",
+   "commune": "Luxembourg",
+   "type": "Maison",
+   "surface": 135,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3800
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:7026060": {
+   "cle": "athome:7026060",
+   "source": "athome",
+   "id": "7026060",
+   "url": "https://www.athome.lu/location/maison/esch-sur-alzette/id-7026060.html",
+   "localite": "Esch-sur-Alzette",
+   "commune": "Esch-sur-Alzette",
+   "type": "Maison",
+   "surface": 328,
+   "chambres": 6,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 4500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9389728": {
+   "cle": "athome:9389728",
+   "source": "athome",
+   "id": "9389728",
+   "url": "https://www.athome.lu/location/maison/mamer/id-9389728.html",
+   "localite": "Mamer",
+   "commune": "Mamer",
+   "type": "Maison",
+   "surface": 165,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 5250
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9431664": {
+   "cle": "athome:9431664",
+   "source": "athome",
+   "id": "9431664",
+   "url": "https://www.athome.lu/location/maison/lorentzweiler/id-9431664.html",
+   "localite": "Lorentzweiler",
+   "commune": "Lorentzweiler",
+   "type": "Maison",
+   "surface": 126,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 4000
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9409262": {
+   "cle": "athome:9409262",
+   "source": "athome",
+   "id": "9409262",
+   "url": "https://www.athome.lu/location/maison/remich/id-9409262.html",
+   "localite": "Remich",
+   "commune": "Remich",
+   "type": "Maison mitoyenne",
+   "surface": 170,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2800
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9431184": {
+   "cle": "athome:9431184",
+   "source": "athome",
+   "id": "9431184",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-9431184.html",
+   "localite": "Luxembourg-Gasperich - Cloche d'or",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 160,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 4500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9396489": {
+   "cle": "athome:9396489",
+   "source": "athome",
+   "id": "9396489",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-9396489.html",
+   "localite": "Luxembourg-Beggen",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 113,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2900
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9394875": {
+   "cle": "athome:9394875",
+   "source": "athome",
+   "id": "9394875",
+   "url": "https://www.athome.lu/location/maison/koerich/id-9394875.html",
+   "localite": "Koerich",
+   "commune": "Koerich",
+   "type": "Maison individuelle",
+   "surface": 275,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 4250
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9406630": {
+   "cle": "athome:9406630",
+   "source": "athome",
+   "id": "9406630",
+   "url": "https://www.athome.lu/location/maison/bettembourg/id-9406630.html",
+   "localite": "Bettembourg",
+   "commune": "Bettembourg",
+   "type": "Maison jumelée",
+   "surface": 17,
+   "chambres": null,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 730
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "surface < 30 m² (garage ou erreur)"
+  },
+  "athome:9362604": {
+   "cle": "athome:9362604",
+   "source": "athome",
+   "id": "9362604",
+   "url": "https://www.athome.lu/location/maison/esch-sur-alzette/id-9362604.html",
+   "localite": "Esch-sur-Alzette",
+   "commune": "Esch-sur-Alzette",
+   "type": "Maison mitoyenne",
+   "surface": 150,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9271065": {
+   "cle": "athome:9271065",
+   "source": "athome",
+   "id": "9271065",
+   "url": "https://www.athome.lu/location/maison/hobscheid/id-9271065.html",
+   "localite": "Hobscheid",
+   "commune": "Habscht",
+   "type": "Maison jumelée",
+   "surface": 180,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3250
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9365381": {
+   "cle": "athome:9365381",
+   "source": "athome",
+   "id": "9365381",
+   "url": "https://www.athome.lu/location/maison/herborn/id-9365381.html",
+   "localite": "Herborn",
+   "commune": "Rosport-Mompach",
+   "type": "Maison",
+   "surface": 165,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 1050
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "moins de 10 €/m² (à vérifier)"
+  },
+  "athome:9405190": {
+   "cle": "athome:9405190",
+   "source": "athome",
+   "id": "9405190",
+   "url": "https://www.athome.lu/location/maison/itzig/id-9405190.html",
+   "localite": "Itzig",
+   "commune": "Hesperange",
+   "type": "Maison individuelle",
+   "surface": 600,
+   "chambres": 20,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 20000
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "surface ≥ 400 m² (terrain compté ?)"
+  },
+  "athome:9399660": {
+   "cle": "athome:9399660",
+   "source": "athome",
+   "id": "9399660",
+   "url": "https://www.athome.lu/location/maison/senningerberg/id-9399660.html",
+   "localite": "Senningerberg",
+   "commune": "Niederanven",
+   "type": "Maison jumelée",
+   "surface": 200,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9383734": {
+   "cle": "athome:9383734",
+   "source": "athome",
+   "id": "9383734",
+   "url": "https://www.athome.lu/location/maison/bascharage/id-9383734.html",
+   "localite": "Bascharage",
+   "commune": "Käerjeng",
+   "type": "Maison",
+   "surface": 150,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2990
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9299415": {
+   "cle": "athome:9299415",
+   "source": "athome",
+   "id": "9299415",
+   "url": "https://www.athome.lu/location/maison/nospelt/id-9299415.html",
+   "localite": "Nospelt",
+   "commune": "Kehlen",
+   "type": "Maison jumelée",
+   "surface": 180,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3600
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9407537": {
+   "cle": "athome:9407537",
+   "source": "athome",
+   "id": "9407537",
+   "url": "https://www.athome.lu/location/maison/mamer/id-9407537.html",
+   "localite": "Mamer",
+   "commune": "Mamer",
+   "type": "Maison mitoyenne",
+   "surface": 200,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 4200
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9328404": {
+   "cle": "athome:9328404",
+   "source": "athome",
+   "id": "9328404",
+   "url": "https://www.athome.lu/location/maison/dalheim/id-9328404.html",
+   "localite": "Dalheim",
+   "commune": "Dalheim",
+   "type": "Maison jumelée",
+   "surface": 160,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3550
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:3002167": {
+   "cle": "athome:3002167",
+   "source": "athome",
+   "id": "3002167",
+   "url": "https://www.athome.lu/location/maison/lintgen/id-3002167.html",
+   "localite": "Lintgen",
+   "commune": "Lintgen",
+   "type": "Maison",
+   "surface": 165,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3200
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9418516": {
+   "cle": "athome:9418516",
+   "source": "athome",
+   "id": "9418516",
+   "url": "https://www.athome.lu/location/maison/petange/id-9418516.html",
+   "localite": "Pétange",
+   "commune": "Pétange",
+   "type": "Maison mitoyenne",
+   "surface": 139,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9297017": {
+   "cle": "athome:9297017",
+   "source": "athome",
+   "id": "9297017",
+   "url": "https://www.athome.lu/location/maison/grosbous/id-9297017.html",
+   "localite": "Grosbous",
+   "commune": "Groussbus-Wal",
+   "type": "Maison jumelée",
+   "surface": 150,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2950
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9134861": {
+   "cle": "athome:9134861",
+   "source": "athome",
+   "id": "9134861",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-9134861.html",
+   "localite": "Luxembourg-Cents",
+   "commune": "Luxembourg",
+   "type": "Maison mitoyenne",
+   "surface": 120,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3100
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9399604": {
+   "cle": "athome:9399604",
+   "source": "athome",
+   "id": "9399604",
+   "url": "https://www.athome.lu/location/maison/soleuvre/id-9399604.html",
+   "localite": "Soleuvre",
+   "commune": "Sanem",
+   "type": "Maison mitoyenne",
+   "surface": 180,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3350
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:8078509": {
+   "cle": "athome:8078509",
+   "source": "athome",
+   "id": "8078509",
+   "url": "https://www.athome.lu/location/maison/grevenmacher/id-8078509.html",
+   "localite": "Grevenmacher",
+   "commune": "Grevenmacher",
+   "type": "Maison individuelle",
+   "surface": 182,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3150
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9442898": {
+   "cle": "athome:9442898",
+   "source": "athome",
+   "id": "9442898",
+   "url": "https://www.athome.lu/location/maison/leudelange/id-9442898.html",
+   "localite": "Leudelange",
+   "commune": "Leudelange",
+   "type": "Maison individuelle",
+   "surface": 126,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2900
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:6087868": {
+   "cle": "athome:6087868",
+   "source": "athome",
+   "id": "6087868",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-6087868.html",
+   "localite": "Luxembourg-Centre ville",
+   "commune": "Luxembourg",
+   "type": "Maison",
+   "surface": 260,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 6200
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9383268": {
+   "cle": "athome:9383268",
+   "source": "athome",
+   "id": "9383268",
+   "url": "https://www.athome.lu/location/maison/beringen-mersch/id-9383268.html",
+   "localite": "Beringen (Mersch)",
+   "commune": "Mersch",
+   "type": "Maison individuelle",
+   "surface": 250,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 5000
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:8580147": {
+   "cle": "athome:8580147",
+   "source": "athome",
+   "id": "8580147",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-8580147.html",
+   "localite": "Luxembourg-Limpertsberg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 218,
+   "chambres": null,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 6900
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9319011": {
+   "cle": "athome:9319011",
+   "source": "athome",
+   "id": "9319011",
+   "url": "https://www.athome.lu/location/maison/rippig/id-9319011.html",
+   "localite": "Rippig",
+   "commune": "Bech",
+   "type": "Maison individuelle",
+   "surface": 135,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2800
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:7615298": {
+   "cle": "athome:7615298",
+   "source": "athome",
+   "id": "7615298",
+   "url": "https://www.athome.lu/location/maison/wilwerwiltz/id-7615298.html",
+   "localite": "Wilwerwiltz",
+   "commune": "Kiischpelt",
+   "type": "Maison individuelle",
+   "surface": 105,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 1900
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9426755": {
+   "cle": "athome:9426755",
+   "source": "athome",
+   "id": "9426755",
+   "url": "https://www.athome.lu/location/maison/strassen/id-9426755.html",
+   "localite": "Strassen",
+   "commune": "Strassen",
+   "type": "Maison individuelle",
+   "surface": 240,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 5200
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9349364": {
+   "cle": "athome:9349364",
+   "source": "athome",
+   "id": "9349364",
+   "url": "https://www.athome.lu/location/maison/niederanven/id-9349364.html",
+   "localite": "Niederanven",
+   "commune": "Niederanven",
+   "type": "Maison individuelle",
+   "surface": 166,
+   "chambres": null,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 4000
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9384740": {
+   "cle": "athome:9384740",
+   "source": "athome",
+   "id": "9384740",
+   "url": "https://www.athome.lu/location/maison/heisdorf/id-9384740.html",
+   "localite": "Heisdorf",
+   "commune": "Steinsel",
+   "type": "Maison individuelle",
+   "surface": 208,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 4500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9388211": {
+   "cle": "athome:9388211",
+   "source": "athome",
+   "id": "9388211",
+   "url": "https://www.athome.lu/location/maison/koedange/id-9388211.html",
+   "localite": "Koedange",
+   "commune": null,
+   "type": "Maison",
+   "surface": 259,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 4500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:591338": {
+   "cle": "wortimmo:591338",
+   "source": "wortimmo",
+   "id": "591338",
+   "url": "https://www.wortimmo.lu/fr/location-maison-ouest-grass-id_591338",
+   "localite": "Grass",
+   "commune": "Steinfort",
+   "type": "",
+   "surface": 156,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3200
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:564372": {
+   "cle": "wortimmo:564372",
+   "source": "wortimmo",
+   "id": "564372",
+   "url": "https://www.wortimmo.lu/fr/location-maison-sud-leudelange-id_564372",
+   "localite": "Leudelange",
+   "commune": "Leudelange",
+   "type": "",
+   "surface": 200,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3250
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:42409": {
+   "cle": "wortimmo:42409",
+   "source": "wortimmo",
+   "id": "42409",
+   "url": "https://www.wortimmo.lu/fr/location-maison-centre-lintgen-id_42409",
+   "localite": "Lintgen",
+   "commune": "Lintgen",
+   "type": "",
+   "surface": 165,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3200
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:587045": {
+   "cle": "wortimmo:587045",
+   "source": "wortimmo",
+   "id": "587045",
+   "url": "https://www.wortimmo.lu/fr/location-maison-individuelle-centre-strassen-id_587045",
+   "localite": "Strassen",
+   "commune": "Strassen",
+   "type": "",
+   "surface": 240,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 5200
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:589125": {
+   "cle": "wortimmo:589125",
+   "source": "wortimmo",
+   "id": "589125",
+   "url": "https://www.wortimmo.lu/fr/location-maison-de-maitre-est-schengen-id_589125",
+   "localite": "Schengen",
+   "commune": "Schengen",
+   "type": "",
+   "surface": 200,
+   "chambres": null,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:579687": {
+   "cle": "wortimmo:579687",
+   "source": "wortimmo",
+   "id": "579687",
+   "url": "https://www.wortimmo.lu/fr/location-maison-ouest-vichten-id_579687",
+   "localite": "Vichten",
+   "commune": "Vichten",
+   "type": "",
+   "surface": 100,
+   "chambres": 2,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 1700
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:579686": {
+   "cle": "wortimmo:579686",
+   "source": "wortimmo",
+   "id": "579686",
+   "url": "https://www.wortimmo.lu/fr/location-maison-ouest-vichten-id_579686",
+   "localite": "Vichten",
+   "commune": "Vichten",
+   "type": "",
+   "surface": 80,
+   "chambres": 2,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 1400
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:587910": {
+   "cle": "wortimmo:587910",
+   "source": "wortimmo",
+   "id": "587910",
+   "url": "https://www.wortimmo.lu/fr/location-maison-centre-lorentzweiler-id_587910",
+   "localite": "Lorentzweiler",
+   "commune": "Lorentzweiler",
+   "type": "",
+   "surface": 126,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 4000
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:575140": {
+   "cle": "wortimmo:575140",
+   "source": "wortimmo",
+   "id": "575140",
+   "url": "https://www.wortimmo.lu/fr/location-maison-jumelee-centre-niederanven-id_575140",
+   "localite": "Niederanven",
+   "commune": "Niederanven",
+   "type": "",
+   "surface": 155,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3950
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:586966": {
+   "cle": "wortimmo:586966",
+   "source": "wortimmo",
+   "id": "586966",
+   "url": "https://www.wortimmo.lu/fr/location-maison-centre-sandweiler-id_586966",
+   "localite": "Sandweiler",
+   "commune": "Sandweiler",
+   "type": "",
+   "surface": 120,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:586752": {
+   "cle": "wortimmo:586752",
+   "source": "wortimmo",
+   "id": "586752",
+   "url": "https://www.wortimmo.lu/fr/location-maison-sud-differdange-id_586752",
+   "localite": "Differdange",
+   "commune": "Differdange",
+   "type": "",
+   "surface": 230,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3650
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:110620": {
+   "cle": "wortimmo:110620",
+   "source": "wortimmo",
+   "id": "110620",
+   "url": "https://www.wortimmo.lu/fr/location-maison-centre-luxembourg-centre-id_110620",
+   "localite": "Luxembourg-Centre",
+   "commune": "Luxembourg",
+   "type": "",
+   "surface": 260,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 6200
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:583763": {
+   "cle": "wortimmo:583763",
+   "source": "wortimmo",
+   "id": "583763",
+   "url": "https://www.wortimmo.lu/fr/location-maison-individuelle-nord-ettelbruck-id_583763",
+   "localite": "Ettelbruck",
+   "commune": "Ettelbruck",
+   "type": "",
+   "surface": 202,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2800
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:567494": {
+   "cle": "wortimmo:567494",
+   "source": "wortimmo",
+   "id": "567494",
+   "url": "https://www.wortimmo.lu/fr/location-maison-est-roodt-sur-syre-id_567494",
+   "localite": "Roodt-sur-Syre",
+   "commune": "Betzdorf",
+   "type": "",
+   "surface": 150,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2600
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:583352": {
+   "cle": "wortimmo:583352",
+   "source": "wortimmo",
+   "id": "583352",
+   "url": "https://www.wortimmo.lu/fr/location-maison-nord-eselborn-id_583352",
+   "localite": "Eselborn",
+   "commune": "Clervaux",
+   "type": "",
+   "surface": 180,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2200
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:580732": {
+   "cle": "wortimmo:580732",
+   "source": "wortimmo",
+   "id": "580732",
+   "url": "https://www.wortimmo.lu/fr/location-maison-centre-niederanven-id_580732",
+   "localite": "Niederanven",
+   "commune": "Niederanven",
+   "type": "",
+   "surface": 369,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 4800
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:580425": {
+   "cle": "wortimmo:580425",
+   "source": "wortimmo",
+   "id": "580425",
+   "url": "https://www.wortimmo.lu/fr/location-maison-ouest-mamer-id_580425",
+   "localite": "Mamer",
+   "commune": "Mamer",
+   "type": "",
+   "surface": 165,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 5250
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:579952": {
+   "cle": "wortimmo:579952",
+   "source": "wortimmo",
+   "id": "579952",
+   "url": "https://www.wortimmo.lu/fr/location-maison-individuelle-ouest-dippach-id_579952",
+   "localite": "Dippach",
+   "commune": "Dippach",
+   "type": "",
+   "surface": 372,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 4400
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:579091": {
+   "cle": "wortimmo:579091",
+   "source": "wortimmo",
+   "id": "579091",
+   "url": "https://www.wortimmo.lu/fr/location-maison-est-mondorf-les-bains-id_579091",
+   "localite": "Mondorf-les-Bains",
+   "commune": "Mondorf-les-Bains",
+   "type": "",
+   "surface": null,
+   "chambres": null,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3650
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "sans surface"
+  },
+  "wortimmo:577815": {
+   "cle": "wortimmo:577815",
+   "source": "wortimmo",
+   "id": "577815",
+   "url": "https://www.wortimmo.lu/fr/location-maison-nord-clervaux-id_577815",
+   "localite": "Clervaux",
+   "commune": "Clervaux",
+   "type": "",
+   "surface": 123,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2800
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:568795": {
+   "cle": "wortimmo:568795",
+   "source": "wortimmo",
+   "id": "568795",
+   "url": "https://www.wortimmo.lu/fr/location-maison-centre-moesdorf-id_568795",
+   "localite": "Moesdorf",
+   "commune": "Mersch",
+   "type": "",
+   "surface": 106,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2600
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:564365": {
+   "cle": "wortimmo:564365",
+   "source": "wortimmo",
+   "id": "564365",
+   "url": "https://www.wortimmo.lu/fr/location-maison-sud-differdange-id_564365",
+   "localite": "Differdange",
+   "commune": "Differdange",
+   "type": "",
+   "surface": 220,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3650
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:572524": {
+   "cle": "wortimmo:572524",
+   "source": "wortimmo",
+   "id": "572524",
+   "url": "https://www.wortimmo.lu/fr/location-maison-nord-alscheid-id_572524",
+   "localite": "Alscheid",
+   "commune": "Kiischpelt",
+   "type": "",
+   "surface": 80,
+   "chambres": 2,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 1250
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:570295": {
+   "cle": "wortimmo:570295",
+   "source": "wortimmo",
+   "id": "570295",
+   "url": "https://www.wortimmo.lu/fr/location-villa-est-mertert-id_570295",
+   "localite": "Mertert",
+   "commune": "Mertert",
+   "type": "",
+   "surface": 355,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 5500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:563036": {
+   "cle": "wortimmo:563036",
+   "source": "wortimmo",
+   "id": "563036",
+   "url": "https://www.wortimmo.lu/fr/location-maison-centre-bertrange-id_563036",
+   "localite": "Bertrange",
+   "commune": "Bertrange",
+   "type": "",
+   "surface": 308,
+   "chambres": 8,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 5000
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:485079": {
+   "cle": "wortimmo:485079",
+   "source": "wortimmo",
+   "id": "485079",
+   "url": "https://www.wortimmo.lu/fr/location-maison-centre-hesperange-id_485079",
+   "localite": "Hesperange",
+   "commune": "Hesperange",
+   "type": "",
+   "surface": 500,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 7000
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "surface ≥ 400 m² (terrain compté ?)"
+  },
+  "wortimmo:565380": {
+   "cle": "wortimmo:565380",
+   "source": "wortimmo",
+   "id": "565380",
+   "url": "https://www.wortimmo.lu/fr/location-maison-est-rippig-id_565380",
+   "localite": "Rippig",
+   "commune": "Bech",
+   "type": "",
+   "surface": 135,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2800
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:567828": {
+   "cle": "wortimmo:567828",
+   "source": "wortimmo",
+   "id": "567828",
+   "url": "https://www.wortimmo.lu/fr/location-maison-jumelee-est-dalheim-id_567828",
+   "localite": "Dalheim",
+   "commune": "Dalheim",
+   "type": "",
+   "surface": 160,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3550
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:329259": {
+   "cle": "wortimmo:329259",
+   "source": "wortimmo",
+   "id": "329259",
+   "url": "https://www.wortimmo.lu/fr/location-maison-est-grevenmacher-id_329259",
+   "localite": "Grevenmacher",
+   "commune": "Grevenmacher",
+   "type": "",
+   "surface": 182,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3150
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:566905": {
+   "cle": "wortimmo:566905",
+   "source": "wortimmo",
+   "id": "566905",
+   "url": "https://www.wortimmo.lu/fr/location-maison-jumelee-centre-luxembourg-bonnevoie-id_566905",
+   "localite": "Luxembourg-Bonnevoie",
+   "commune": "Luxembourg",
+   "type": "",
+   "surface": 196,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3950
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:569384": {
+   "cle": "wortimmo:569384",
+   "source": "wortimmo",
+   "id": "569384",
+   "url": "https://www.wortimmo.lu/fr/location-villa-centre-luxembourg-belair-id_569384",
+   "localite": "Luxembourg-Belair",
+   "commune": "Luxembourg",
+   "type": "",
+   "surface": 314,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 8900
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:563617": {
+   "cle": "wortimmo:563617",
+   "source": "wortimmo",
+   "id": "563617",
+   "url": "https://www.wortimmo.lu/fr/location-maison-jumelee-nord-doncols-id_563617",
+   "localite": "Doncols",
+   "commune": "Winseler",
+   "type": "",
+   "surface": 140,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2400
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:562291": {
+   "cle": "wortimmo:562291",
+   "source": "wortimmo",
+   "id": "562291",
+   "url": "https://www.wortimmo.lu/fr/location-maison-de-maitre-centre-luxembourg-weimerskirch-id_562291",
+   "localite": "Luxembourg-Weimerskirch",
+   "commune": "Luxembourg",
+   "type": "",
+   "surface": 280,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 5500
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:561989": {
+   "cle": "wortimmo:561989",
+   "source": "wortimmo",
+   "id": "561989",
+   "url": "https://www.wortimmo.lu/fr/location-maison-jumelee-ouest-nospelt-id_561989",
+   "localite": "Nospelt",
+   "commune": "Kehlen",
+   "type": "",
+   "surface": 180,
+   "chambres": 2,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 3600
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:555516": {
+   "cle": "wortimmo:555516",
+   "source": "wortimmo",
+   "id": "555516",
+   "url": "https://www.wortimmo.lu/fr/location-maison-ouest-bridel-id_555516",
+   "localite": "Bridel",
+   "commune": "Kopstal",
+   "type": "",
+   "surface": 266,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 5800
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:543341": {
+   "cle": "wortimmo:543341",
+   "source": "wortimmo",
+   "id": "543341",
+   "url": "https://www.wortimmo.lu/fr/location-maison-centre-luxembourg-id_543341",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "",
+   "surface": null,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 6000
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "sans surface"
+  },
+  "wortimmo:443835": {
+   "cle": "wortimmo:443835",
+   "source": "wortimmo",
+   "id": "443835",
+   "url": "https://www.wortimmo.lu/fr/location-maison-sud-mondercange-id_443835",
+   "localite": "Mondercange",
+   "commune": "Mondercange",
+   "type": "",
+   "surface": 364,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 10000
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:505877": {
+   "cle": "wortimmo:505877",
+   "source": "wortimmo",
+   "id": "505877",
+   "url": "https://www.wortimmo.lu/fr/location-maison-mitoyenne-centre-bereldange-id_505877",
+   "localite": "Bereldange",
+   "commune": "Walferdange",
+   "type": "",
+   "surface": 135,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-17",
+     "loyer": 2950
+    }
+   ],
+   "premier_vu": "2026-11-17",
+   "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  }
+ }
+}

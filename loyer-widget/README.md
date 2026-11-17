@@ -146,9 +146,21 @@ npm run update-data && npm test && npm run deploy
 
 L'indice met à jour le niveau des loyers. Les tests utilisent une copie figée (`tests/fixtures/`) : le calcul à la main reste valable.
 
+### Chaque mois, automatiquement : suivi des maisons à louer
+
+Une session Claude planifiée relève une fois par mois toutes les maisons à louer sur atHome et wortimmo (loyer, surface, chambres, localité, lien ; jamais de nom d'agent), puis :
+
+- met à jour la base `data/marche/maisons.json` : une fiche par maison, avec ses prix successifs ; une annonce qui n'est plus en ligne est marquée « disparue » (probablement louée, ou retirée) ;
+- compare chaque commune au modèle de l'outil : `docs/marche/rapport-maisons-AAAA-MM-JJ.md` et `data/marche/communes-maisons.json` ;
+- enregistre le tout dans git.
+
+Procédure complète (aussi pour la faire à la main) : `docs/marche/PROCEDURE.md`. À la main : `npm run marche -- import --date AAAA-MM-JJ --athome athome.csv --wortimmo wortimmo.csv`.
+
+Le modèle de l'outil n'est **pas** modifié automatiquement : quand une commune s'écarte durablement de son modèle (assez de maisons, plusieurs mois), c'est toi qui décides d'un ajustement. Risque lié aux conditions d'utilisation des portails : accepté par le propriétaire du projet le 17/11/2026.
+
 ### Deux fois par an, à la main
 
-- **Relevé d'annonces** (maisons et facteur « annonce ÷ bail ») : refaire le relevé décrit dans `docs/controle-annonces.md` (atHome, wortimmo), relancer `docs/analyse-maisons.py` et `docs/analyse-appartements.py`, reporter les chiffres dans `data/references.json` (`maisons`, `calibration`, `stationnement`). L'outil ne collecte rien automatiquement sur les portails : leurs conditions d'utilisation ne le permettent probablement pas.
+- **Relevé d'annonces d'appartements** (facteur « annonce ÷ bail ») et **réestimation du modèle maisons** à partir de la base mensuelle : relancer `docs/analyse-appartements.py` et `docs/analyse-maisons.py`, reporter les chiffres dans `data/references.json` (`maisons`, `calibration`, `stationnement`). Le site lui-même ne collecte rien sur les portails.
 - **Nouveau rapport de l'Observatoire** sur le cadastre des loyers (une grille de loyers de référence est annoncée) : mettre à jour `data/references.json` → `cadastre`, ou remplacer la méthode si la grille officielle est publiée.
 
 ## 5. Intégrer l'outil

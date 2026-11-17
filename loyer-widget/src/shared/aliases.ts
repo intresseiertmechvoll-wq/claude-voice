@@ -34,6 +34,17 @@ export const ALIASES: Record<string, string> = {
   Nidderaanwen: 'Niederanven', Schëtter: 'Schuttrange', Munsbach: 'Schuttrange', Conter: 'Contern', Mamer: 'Mamer', Capellen: 'Mamer',
   Stengefort: 'Steinfort', Kielen: 'Kehlen', Koplescht: 'Kopstal', Bridel: 'Kopstal', Lëntzweiler: 'Lorentzweiler', Lëntgen: 'Lintgen',
   Miersch: 'Mersch', 'Colmer-Bierg': 'Colmar-Berg', Jonglënster: 'Junglinster',
+  // Localités vues dans les annonces (relevé du 17/11/2026) → commune
+  Wasserbillig: 'Mertert', Ernzen: 'Larochette', Moesdorf: 'Mersch', Beringen: 'Mersch', Rollingen: 'Mersch',
+  Eselborn: 'Clervaux', Marnach: 'Clervaux', Binsfeld: 'Clervaux', Wilwerdange: 'Troisvierges',
+  Alscheid: 'Kiischpelt', Wilwerwiltz: 'Kiischpelt', Doncols: 'Winseler', Wahlhausen: 'Parc Hosingen',
+  'Erpeldange (Wiltz)': 'Wiltz', Heiderscheid: 'Esch-sur-Sûre', Grosbous: 'Groussbus-Wal',
+  Grass: 'Steinfort', Kleinbettingen: 'Steinfort', Hollenfels: 'Helperknapp', 'Boevange-sur-Attert': 'Helperknapp',
+  Holzem: 'Mamer', Nospelt: 'Kehlen', Hobscheid: 'Habscht', Gosseldange: 'Lintgen',
+  Bereldange: 'Walferdange', Helmsange: 'Walferdange', Heisdorf: 'Steinsel', Rameldange: 'Niederanven',
+  Bourglinster: 'Junglinster', Altlinster: 'Junglinster', 'Roodt-sur-Syre': 'Betzdorf', Rippig: 'Bech',
+  Herborn: 'Rosport-Mompach', 'Bollendorf-Pont': 'Berdorf', 'Bech-Kleinmacher': 'Schengen',
+  Belval: 'Esch-sur-Alzette', Bergem: 'Mondercange',
   // Est et nord
   'Bad Mondorf': 'Mondorf-les-Bains', Mondorf: 'Mondorf-les-Bains', Munneref: 'Mondorf-les-Bains', Remerschen: 'Schengen',
   Réimech: 'Remich', Gréiwemaacher: 'Grevenmacher', Iechternach: 'Echternach',
