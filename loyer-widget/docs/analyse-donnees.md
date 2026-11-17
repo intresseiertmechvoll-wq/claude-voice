@@ -137,7 +137,7 @@ Limite : le nombre de réponses par canton n'est pas publié. Pour les petits ca
 - Rapport n°24 : 750 maisons, mais seulement une répartition des loyers mensuels (30 % au-dessus de 2 500 €, 15 % sous 1 000 €). **Aucun loyer au m² par zone ou par surface.**
 - Logement en chiffres n°20 : l'indice des maisons est « plus volatil », –3,1 % sur un an.
 
-**Proposition : pas de chiffre pour les maisons dans la V1.** Le visiteur décrit sa maison, Jason donne une estimation personnelle (comme les communes « sans données » dans l'outil d'estimation).
+~~Proposition initiale : pas de chiffre pour les maisons dans la V1.~~ **Remplacée le 17/11/2026** : un modèle construit sur 84 annonces de maisons au Luxembourg donne un chiffre cohérent avec les données de l'Observatoire (voir `controle-annonces.md`, partie « Maisons »).
 
 ---
 
