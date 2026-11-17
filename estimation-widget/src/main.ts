@@ -12,6 +12,14 @@ import { icon } from './ui/icons';
 import { formatEuro } from './ui/format';
 import { errorKey, noDataNote, recapItems, renderStep, STEP_ICONS, type Values } from './ui/steps';
 
+/** Délai maximal d'une requête. AbortSignal.timeout n'existe qu'à partir de Safari 16 : repli pour les iPhone plus anciens. */
+function timeoutSignal(ms: number): AbortSignal {
+  if (typeof AbortSignal.timeout === 'function') return AbortSignal.timeout(ms);
+  const c = new AbortController();
+  setTimeout(() => c.abort(), ms);
+  return c.signal;
+}
+
 const TOTAL = 6;
 const params = new URLSearchParams(location.search);
 const lang = pickLang(params.get('lang'));
@@ -629,7 +637,12 @@ app.addEventListener('submit', (e) => {
     state.direction = 'next';
     return render();
   }
-  void send();
+  // Filet de sécurité : une erreur imprévue (vieux navigateur…) affiche un message au lieu d'un chargement sans fin
+  send().catch(() => {
+    state.sending = false;
+    state.serverError = t('errors.server', { contact: config.publicEmail });
+    render();
+  });
 });
 
 /* ---------- Envoi + écran « Analyse de votre bien » ---------- */
@@ -673,7 +686,7 @@ async function send() {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({ lang, page, website, answers, contact }),
-    signal: AbortSignal.timeout(20_000),
+    signal: timeoutSignal(20_000),
   })
     .then(async (res) => ({ res, json: (await res.json().catch(() => ({}))) as ApiJson }))
     .catch(() => ({ network: true as const }));
