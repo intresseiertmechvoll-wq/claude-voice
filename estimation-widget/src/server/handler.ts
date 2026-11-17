@@ -119,7 +119,9 @@ export async function handleEstimate(request: Request, env: Env, deps: Partial<D
   }
 
   const ip = request.headers.get('cf-connecting-ip') ?? 'unknown';
-  const allowed = await allowSubmission(ip, config.rateLimitPerHour, env.RATE_LIMIT, env.RATE_LIMIT_SALT);
+  // Clé secrète de l'empreinte d'IP : sans elle (valeur par défaut publique), une empreinte d'IPv4 se retrouve par essais
+  const salt = env.RATE_LIMIT_SALT || env.SIMULATION_SECRET || env.RESEND_API_KEY;
+  const allowed = await allowSubmission(ip, config.rateLimitPerHour, env.RATE_LIMIT, salt);
   if (!allowed) return json({ ok: false, error: 'rate_limit' }, 429);
 
   const est = estimate(v.value.answers, d.data, d.params);
@@ -127,7 +129,7 @@ export async function handleEstimate(request: Request, env: Env, deps: Partial<D
   const err = await sendMail(env, d, { ...mail, replyTo: v.value.contact.email });
   if (err) {
     // Rien n'est parti : l'essai ne compte pas dans la limite, le visiteur peut réessayer
-    await refundSubmission(ip, env.RATE_LIMIT, env.RATE_LIMIT_SALT);
+    await refundSubmission(ip, env.RATE_LIMIT, salt);
     return json({ ok: false, error: err }, err === 'config' ? 500 : 502);
   }
 

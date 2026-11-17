@@ -53,7 +53,7 @@ Base légale proposée : le **consentement** (case à cocher obligatoire, non co
 ## 4. Adresse IP et limite d'envois
 
 - Pour bloquer les abus, l'outil compte les envois par adresse IP : au plus 20 par heure.
-- Si Cloudflare KV est activé (README, 3.4) : l'outil enregistre une **empreinte** de l'adresse IP (SHA-256, l'adresse elle-même n'est pas écrite) et un compteur. Ils s'effacent automatiquement après **1 heure**.
+- Si Cloudflare KV est activé (README, 3.4) : l'outil enregistre une **empreinte** de l'adresse IP (SHA-256 avec une clé secrète : `RATE_LIMIT_SALT`, sinon `SIMULATION_SECRET` ; l'adresse elle-même n'est pas écrite) et un compteur. Sans clé secrète, une empreinte d'adresse IPv4 pourrait être retrouvée par essais : la clé est donc indispensable. Ils s'effacent automatiquement après **1 heure**.
 - Sans KV : le compteur reste en mémoire sur le serveur Cloudflare, sans écriture.
 - L'adresse IP ne figure pas dans l'e-mail du lead.
 
@@ -67,9 +67,8 @@ Base légale proposée : le **consentement** (case à cocher obligatoire, non co
 
 Accès, rectification, effacement, opposition, retrait du consentement : par e-mail à `contact@immobuild.lu`. Réclamation possible auprès de la CNPD (Commission nationale pour la protection des données, Luxembourg).
 
-## 7. Texte proposé pour ta politique de confidentialité
+## 7. Texte pour ta politique de confidentialité
 
-> **Outil « Estimation gratuite »**
-> Quand vous utilisez notre outil d'estimation en ligne, nous recueillons la description de votre bien, votre projet, vos coordonnées (prénom, nom, e-mail, téléphone, message facultatif) et, si vous utilisez le simulateur « Et si… ? », les travaux que vous avez testés. Ces informations servent à calculer une estimation indicative et à vous recontacter au sujet de votre bien, avec votre accord. Elles nous sont transmises par e-mail et ne sont pas enregistrées dans une base de données.
-> L'outil est hébergé par Cloudflare, Inc. L'e-mail est envoyé par Resend (Plus Five Five, Inc.), dont les serveurs sont situés aux États-Unis ; ce transfert est encadré par les clauses contractuelles types de la Commission européenne. Pour limiter les abus, une empreinte non réversible de votre adresse IP peut être conservée une heure au maximum.
-> L'outil n'utilise ni cookie ni traceur. Nous conservons votre demande pendant **[durée à compléter]**. Vous pouvez à tout moment demander l'accès, la rectification ou l'effacement de vos données, ou retirer votre accord, en écrivant à contact@immobuild.lu. Vous pouvez aussi adresser une réclamation à la CNPD.
+Version complète, prête à coller (avec responsable, base légale, destinataires et droits) : [`docs/texte-politique-confidentialite.md`](docs/texte-politique-confidentialite.md). Deux passages sont à compléter : la durée de conservation de tes demandes et celle des journaux Resend.
+
+**Important :** la phrase « ni cookie, ni traceur, ni outil de statistiques » n'est vraie que si *Web Analytics* de Cloudflare est désactivé pour `estimatioun.lu` (Cloudflare l'a ajouté automatiquement ; la règle de sécurité CSP de l'outil le bloque, mais il faut le couper dans le tableau de bord).

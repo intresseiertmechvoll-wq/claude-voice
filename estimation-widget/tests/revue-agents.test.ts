@@ -84,6 +84,16 @@ describe('Envoi et limites', () => {
     expect(f).not.toHaveBeenCalled();
   });
 
+  it('Empreinte d’IP dans KV : calculée avec une clé secrète, jamais avec la valeur par défaut publique', async () => {
+    const keys: string[] = [];
+    const kv = { get: async () => null, put: async (k: string) => void keys.push(k), delete: async () => {} };
+    await handleEstimate(post('/api/estimate', body()), { ...env, SIMULATION_SECRET: 'secret-de-test', RATE_LIMIT: kv } as never, deps(okFetch()));
+    const digest = async (t: string) => Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)))).map((b) => b.toString(16).padStart(2, '0')).join('');
+    expect(keys.length).toBeGreaterThan(0);
+    expect(keys[0]).not.toContain(await digest('immobuild-estimation|203.0.113.77'));
+    expect(keys[0]).toContain(await digest('secret-de-test|203.0.113.77'));
+  });
+
   it('Content-Type : majuscules acceptées, faux type refusé', async () => {
     expect((await handleEstimate(post('/api/estimate', body(), { 'content-type': 'Application/JSON; charset=utf-8' }), env, deps(okFetch()))).status).toBe(200);
     expect((await handleEstimate(post('/api/estimate', body(), { 'content-type': 'text/plain; charset=application/json' }), env, deps(okFetch()))).status).toBe(415);
