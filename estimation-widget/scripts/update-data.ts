@@ -214,7 +214,7 @@ async function main() {
   const communes = Object.values(out).sort((a, b) => a.commune.localeCompare(b.commune, 'fr'));
   if (communes.length !== 100) fail(`${communes.length} communes au total au lieu de 100`);
   const houses = communes.filter((c) => c.annonce_maison_m2 !== null).length;
-  if (houses === 0) fail('aucun prix annoncé pour les maisons : arrêt, à vérifier avec Jay');
+  if (houses === 0) fail('aucun prix annoncé pour les maisons : arrêt, à vérifier avec Jason');
 
   const periodeNotarie = meta.notarie.periode;
   for (const c of communes) {

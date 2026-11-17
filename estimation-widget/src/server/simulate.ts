@@ -1,7 +1,7 @@
 /**
  * Simulateur « Et si… ? » (après le résultat)
  * - /api/simulate : recalcule le prix avec quelques réponses modifiées (état, énergie, gros postes). Aucun e-mail.
- * - /api/simulation-summary : un seul e-mail de complément à Jay avec les essais du visiteur.
+ * - /api/simulation-summary : un seul e-mail de complément à Jason avec les essais du visiteur.
  * Les deux exigent le ticket signé remis avec le résultat : impossible d'obtenir un prix sans avoir laissé ses coordonnées.
  */
 import { estimate } from '../shared/engine';

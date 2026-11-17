@@ -15,7 +15,7 @@ L'outil est indépendant de tes sites : il s'affiche dans une iframe, sur WordPr
 | Serveur | `functions/api/estimate.ts`, `src/server/` | Cloudflare Pages Functions : vérifie, calcule, envoie l'e-mail. |
 | Calcul | `src/shared/engine.ts` | Le moteur (logique du moteur V1, voir plus bas). |
 | Données | `data/communes.json` | Observatoire de l'Habitat, data.public.lu, licence CC0. |
-| Réglages | `params.json`, `config.json` | Coefficients (à valider par Jay), liens, adresse e-mail. |
+| Réglages | `params.json`, `config.json` | Coefficients (à valider par Jason), liens, adresse e-mail. |
 
 Pas de base de données, pas de cookie, pas de traceur. Les polices sont incluses dans l'outil (pas de Google Fonts).
 
@@ -28,7 +28,7 @@ Pas de base de données, pas de cookie, pas de traceur. Les polices sont incluse
 - **Un écran « Analyse de votre bien »** après l'envoi (environ 6 secondes) : une maison qui se remplit depuis le bas, un pourcentage et 5 étapes cochées une à une — rassemblement des réponses, recherche des données de la commune (avec les vrais chiffres, par ex. « 130 ventes notariées et 508 annonces trouvées à Dudelange »), comparaison des méthodes, ajustement du prix, calcul du prix final. Voir « Écran d'analyse » plus bas.
 - **Un simulateur « Et si… ? »** sous le résultat : le visiteur teste une autre classe énergétique, un autre état ou des travaux (cuisine, salle de bain, châssis…) et voit aussitôt la nouvelle valeur et l'écart. Le visiteur est prévenu que tu reçois ses essais. Tu reçois un e-mail de complément quand il quitte la page (au plus 3 par résultat, chacun avec les seuls essais nouveaux) : utile pour préparer le rendez-vous. Voir « Simulateur » plus bas.
 - **Une barre de progression qui avance à chaque réponse**, avec une petite avance au départ.
-- **Une présence humaine** : une bulle de Jay sous chaque titre, qui réagit à certaines réponses (« Un garage, ça compte ! »). Les phrases sont dans `src/i18n/fr.json` → `coach`, à adapter à ta voix. Ta photo : `config.json` → `agent.photo`.
+- **Une présence humaine** : une bulle de Jason sous chaque titre, qui réagit à certaines réponses (« Un garage, ça compte ! »). Les phrases sont dans `src/i18n/fr.json` → `coach`, à adapter à ta voix. Ta photo : `config.json` → `agent.photo`.
 - **Un résultat sobre** : un sceau doré qui se dessine (pas de confettis : une estimation peut décevoir).
 - **Un résultat utile pour lui** : valeur de marché en grand et prix au m², fourchette basse / haute, position de son bien parmi les ventes réelles de sa commune (appartements), chiffres de la commune, ce qui fait monter ou baisser son prix, fiabilité des données, explication du calcul, prochaines étapes, impression / PDF.
 - **Accessible et léger** : 0 erreur axe-core (WCAG 2.1 AA) sur tous les écrans capturés, utilisable au clavier, animations coupées si le visiteur le demande à son système. Lighthouse mobile (en local, 11/11/2026) : performance 100, accessibilité 100, bonnes pratiques 100, 89 Ko au total (photo comprise).
@@ -258,7 +258,7 @@ Pas de prix affiché, mais le message « Je vous recontacte avec une estimation 
 
 Le visiteur en est prévenu dès l'étape 1, sous la commune, avant de remplir le reste.
 
-## Paramètres (`params.json`) — tout est à valider par Jay
+## Paramètres (`params.json`) — tout est à valider par Jason
 
 Valeurs de départ simples et prudentes, choisies pour cet outil. Aucune grille d'Estimator Pro ni de Propteo n'a été reprise. Les coefficients s'additionnent, puis le total est borné entre −30 % et +20 %.
 

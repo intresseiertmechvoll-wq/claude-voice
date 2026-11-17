@@ -14,7 +14,7 @@
   "defaultFromEmail": "ImmoBuild Estimation <estimation@immobuild.lu>",
   "rateLimitPerHour": 20,
   "agent": {
-    "name": "Jay",
+    "name": "Jason",
     "role": "ImmoBuild Kohn · Dudelange",
     "photo": "/jay.webp"
   },

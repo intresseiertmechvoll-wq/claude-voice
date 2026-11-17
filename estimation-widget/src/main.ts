@@ -298,7 +298,7 @@ function checkOne(name: string, showNew: boolean) {
   else if (showNew || state.errors[name]) setFieldError(name, errors[name]);
 }
 
-/* ---------- Bulle de Jay : un mot par étape, et des réactions aux réponses ---------- */
+/* ---------- Bulle de Jason : un mot par étape, et des réactions aux réponses ---------- */
 let coachText = '';
 function coachHtml(): string {
   coachText = t(state.step === 1 ? 'coach.start' : `coach.step${state.step}`);
@@ -491,7 +491,7 @@ function whatIfBase() {
 }
 
 const scenarios = new Map<string, Record<string, unknown>>();
-/** essais déjà envoyés à Jay (pour n'envoyer que les nouveaux) */
+/** essais déjà envoyés à Jason (pour n'envoyer que les nouveaux) */
 const sentScenarios = new Set<string>();
 let simTimer: ReturnType<typeof setTimeout> | undefined;
 let simAbort: AbortController | null = null;
@@ -563,7 +563,7 @@ function resetWhatIf() {
   onWhatIf();
 }
 
-/** Un seul e-mail de complément à Jay avec les essais, quand le visiteur quitte la page ou passe à la suite */
+/** Un seul e-mail de complément à Jason avec les essais, quand le visiteur quitte la page ou passe à la suite */
 function sendSummary() {
   const token = state.result?.simToken;
   const fresh = [...scenarios.entries()].filter(([k]) => !sentScenarios.has(k));

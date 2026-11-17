@@ -156,7 +156,7 @@ function annexes(a: Answers, baseM2: number, params: Params): { list: Annex[]; s
 }
 
 /**
- * Fiabilité affichée au visiteur (règle simple et visible, à valider par Jay) :
+ * Fiabilité affichée au visiteur (règle simple et visible, à valider par Jason) :
  * - appartement : « bonne » si ventes notariées de la commune ≥ seuil et 3 méthodes gardées,
  *   « moyenne » si ventes notariées propres à la commune, sinon « limitée » ;
  * - maison : « moyenne » si au moins N annonces de maisons dans la commune, sinon « limitée ».
