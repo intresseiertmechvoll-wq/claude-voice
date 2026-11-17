@@ -1,0 +1,464 @@
+source,page,rent_eur,surface_m2,bedrooms,type,locality,country,url,flag
+athome,1,2800,123,3,Maison,Clervaux,LU,https://www.athome.lu/location/maison/clervaux/id-9378787.html,
+athome,1,3500,400,4,Maison,Bascharage,LU,https://www.athome.lu/location/maison/bascharage/id-9419183.html,
+athome,1,3600,158,4,Maison individuelle,Senningen,LU,https://www.athome.lu/location/maison/senningen/id-9396135.html,
+athome,1,2950,183,4,Maison individuelle,Wasserbillig,LU,https://www.athome.lu/location/maison/wasserbillig/id-9434046.html,
+athome,1,4300,180,4,Maison,Luxembourg-Gasperich - Cloche d'or,LU,https://www.athome.lu/location/maison/luxembourg/id-9424609.html,
+athome,1,7200,270,5,Maison,Luxembourg-Belair,LU,https://www.athome.lu/location/maison/luxembourg/id-9387556.html,
+athome,1,3500,238,5,Maison mitoyenne,Ernzen,LU,https://www.athome.lu/location/maison/ernzen/id-9425946.html,
+athome,1,3500,140,4,Maison mitoyenne,Esch-sur-Alzette,LU,https://www.athome.lu/location/maison/esch-sur-alzette/id-9327833.html,
+athome,1,5000,308,8,Maison individuelle,Bertrange,LU,https://www.athome.lu/location/maison/bertrange/id-9304827.html,
+athome,1,2600,106,3,Maison mitoyenne,Moesdorf,LU,https://www.athome.lu/location/maison/moesdorf/id-9335780.html,
+athome,1,930,75,,Maison,Amanvillers (FR),FR,https://www.athome.lu/location/maison/amanvillers/id-9404042.html,rooms_not_bedrooms=5
+athome,1,1250,62,,Maison,Thionville (FR),FR,https://www.athome.lu/location/maison/thionville/id-9398415.html,rooms_not_bedrooms=3
+athome,1,1290,159,,Maison,Freistroff (FR),FR,https://www.athome.lu/location/maison/freistroff/id-9376209.html,rooms_not_bedrooms=6
+athome,1,1750,250,,Maison,Saint-Privat-la-Montagne (FR),FR,https://www.athome.lu/location/maison/saint-privat-la-montagne/id-9123728.html,rooms_not_bedrooms=8
+athome,1,6000,,4,Maison,Luxembourg-Centre ville,LU,https://www.athome.lu/location/maison/luxembourg/id-9217046.html,
+athome,1,3200,125,4,Bungalow,Luxembourg-Cents,LU,https://www.athome.lu/location/maison/luxembourg/id-9423383.html,
+athome,1,5700,300,5,Maison de maître,Luxembourg-Belair,LU,https://www.athome.lu/location/maison/luxembourg/id-8514436.html,
+athome,1,2800,202,4,Maison individuelle,Ettelbruck,LU,https://www.athome.lu/location/maison/ettelbruck/id-9406678.html,
+athome,1,2200,180,3,Maison individuelle,Eselborn,LU,https://www.athome.lu/location/maison/eselborn/id-9405350.html,
+athome,1,1250,80,2,Maison individuelle,Alscheid,LU,https://www.athome.lu/location/maison/alscheid/id-9350571.html,
+athome,2,2400,140,3,Maison,Doncols,LU,https://www.athome.lu/location/maison/doncols/id-9306271.html,
+athome,2,1200,95,,Maison,Villerupt (FR),FR,https://www.athome.lu/location/maison/villerupt/id-9424680.html,rooms_not_bedrooms=4
+athome,2,500,160,,Maison,Audun-le-Tiche (FR),FR,https://www.athome.lu/location/maison/audun-le-tiche/id-8733812.html,rooms_not_bedrooms=8;eur_m2_lt_3.5_maybe_per_room
+athome,2,1200,206,,Maison,Longwy (FR),FR,https://www.athome.lu/location/maison/longwy/id-3488677.html,rooms_not_bedrooms=7
+athome,2,2800,110,3,Maison,Mamer,LU,https://www.athome.lu/location/maison/mamer/id-9188561.html,
+athome,2,3500,270,4,Maison,Senningerberg,LU,https://www.athome.lu/location/maison/senningerberg/id-9441767.html,
+athome,2,3650,220,4,Maison,Differdange,LU,https://www.athome.lu/location/maison/differdange/id-9313559.html,
+athome,2,1250,180,,Maison,Beuvillers (FR),FR,https://www.athome.lu/location/maison/beuvillers/id-9207523.html,rooms_not_bedrooms=7
+athome,2,920,97,,Maison,Friauville (FR),FR,https://www.athome.lu/location/maison/friauville/id-8579240.html,rooms_not_bedrooms=4
+athome,2,760,90,,Maison,Briey (FR),FR,https://www.athome.lu/location/maison/briey/id-8029012.html,rooms_not_bedrooms=4
+athome,2,5400,340,5,Maison,Leudelange,LU,https://www.athome.lu/location/maison/leudelange/id-9406676.html,
+athome,2,1800,150,,Maison,Yutz (FR),FR,https://www.athome.lu/location/maison/yutz/id-9433442.html,rooms_not_bedrooms=6
+athome,2,8900,314,5,Villa,Luxembourg-Belair,LU,https://www.athome.lu/location/maison/luxembourg/id-9337197.html,
+athome,2,7000,500,3,Maison,Hesperange,LU,https://www.athome.lu/location/maison/hesperange/id-8890224.html,
+athome,2,3200,156,3,Maison,Grass,LU,https://www.athome.lu/location/maison/grass/id-9443224.html,
+athome,2,4400,372,4,Maison,Dippach,LU,https://www.athome.lu/location/maison/dippach/id-9388110.html,
+athome,2,3950,196,3,Maison,Luxembourg-Bonnevoie,LU,https://www.athome.lu/location/maison/luxembourg/id-9326151.html,
+athome,2,5500,355,4,Villa,Mertert,LU,https://www.athome.lu/location/maison/mertert/id-9340374.html,
+athome,2,1200,,3,Maison,Fauvillers (BE),BE,https://www.athome.lu/location/maison/fauvillers/id-9423614.html,
+athome,2,50000,165,3,Maison,Vielsalm (BE),BE,https://www.athome.lu/location/maison/vielsalm/id-9342840.html,rent_out_of_range
+athome,3,1900,142,,,Thionville (FR),FR,https://www.athome.lu/location/maison/thionville/id-9229984.html,rooms_not_bedrooms=6
+athome,3,1950,150,4,,Attert (BE),BE,https://www.athome.lu/location/maison/attert/id-9384943.html,
+athome,3,3950,155,3,Maison jumelée,Niederanven,LU,https://www.athome.lu/location/maison/niederanven/id-9369558.html,
+athome,3,1600,193,,Maison individuelle,Arlon (BE),BE,https://www.athome.lu/location/maison/arlon/id-9432117.html,rooms_not_bedrooms=15
+athome,3,2750,205,4,Maison individuelle,Wahlhausen,LU,https://www.athome.lu/location/maison/wahlhausen/id-9361862.html,
+athome,3,1600,142,,,Serrig (DE),DE,https://www.athome.lu/location/maison/serrig/id-9424648.html,rooms_not_bedrooms=2
+athome,3,3650,,,,Mondorf-Les-Bains,LU,https://www.athome.lu/location/maison/mondorf-les-bains/id-9385318.html,
+athome,3,10000,364,4,,Mondercange,LU,https://www.athome.lu/location/maison/mondercange/id-8642164.html,
+athome,3,1700,116,3,,Habay (BE),BE,https://www.athome.lu/location/maison/habay/id-9353608.html,
+athome,3,970,120,,Maison individuelle,Musson (BE),BE,https://www.athome.lu/location/maison/musson/id-9432337.html,rooms_not_bedrooms=10
+athome,3,1100,110,,Maison mitoyenne,Baslieux (FR),FR,https://www.athome.lu/location/maison/baslieux/id-9424307.html,rooms_not_bedrooms=4
+athome,3,1200,133,,,Dombasle-sur-Meurthe (FR),FR,https://www.athome.lu/location/maison/dombasle-sur-meurthe/id-9425165.html,rooms_not_bedrooms=5
+athome,3,850,95,,,Lachambre (FR),FR,https://www.athome.lu/location/maison/lachambre/id-9410321.html,rooms_not_bedrooms=4
+athome,3,690,198,,,Blâmont (FR),FR,https://www.athome.lu/location/maison/blamont/id-9376942.html,rooms_not_bedrooms=6;eur_m2_lt_3.5_maybe_per_room
+athome,3,2500,145,3,Maison mitoyenne,Esch-sur-Alzette,LU,https://www.athome.lu/location/maison/esch-sur-alzette/id-9442088.html,
+athome,3,2900,122,3,Maison mitoyenne,Hollenfels,LU,https://www.athome.lu/location/maison/hollenfels/id-9127945.html,
+athome,3,3000,140,3,Maison mitoyenne,Bettembourg,LU,https://www.athome.lu/location/maison/bettembourg/id-9180897.html,
+athome,3,4500,195,5,,Luxembourg-Belair,LU,https://www.athome.lu/location/maison/luxembourg/id-9394489.html,
+athome,3,660,105,,,Louppy-le-Château (FR),FR,https://www.athome.lu/location/maison/louppy-le-chateau/id-9437112.html,rooms_not_bedrooms=4
+athome,3,4500,250,6,Maison individuelle,Sandweiler,LU,https://www.athome.lu/location/maison/sandweiler/id-9217045.html,
+athome,4,2950,135,4,Maison mitoyenne,Bereldange,LU,https://www.athome.lu/location/maison/bereldange/id-8993872.html,
+athome,4,660,85,,Maison,Gondrecourt-le-Château (FR),FR,https://www.athome.lu/location/maison/gondrecourt-le-chateau/id-9408555.html,rooms_not_bedrooms=4
+athome,4,4500,186,3,Maison individuelle,Luxembourg-Weimershof,LU,https://www.athome.lu/location/maison/luxembourg/id-9393600.html,
+athome,4,5500,210,6,Maison mitoyenne,Luxembourg-Limpertsberg,LU,https://www.athome.lu/location/maison/luxembourg/id-9377358.html,
+athome,4,780,138,,Maison,Le Bouchon-sur-Saulx (FR),FR,https://www.athome.lu/location/maison/le-bouchon-sur-saulx/id-9165379.html,rooms_not_bedrooms=5
+athome,4,400,49,,Maison,Ligny-en-Barrois (FR),FR,https://www.athome.lu/location/maison/ligny-en-barrois/id-9134533.html,rooms_not_bedrooms=2
+athome,4,450,53,,Maison,Baudignécourt (FR),FR,https://www.athome.lu/location/maison/baudignecourt/id-9073576.html,rooms_not_bedrooms=2
+athome,4,580,112,,Maison,Gondrecourt-le-Château (FR),FR,https://www.athome.lu/location/maison/gondrecourt-le-chateau/id-8973148.html,rooms_not_bedrooms=4
+athome,4,300,34,,Maison,Ligny-en-Barrois (FR),FR,https://www.athome.lu/location/maison/ligny-en-barrois/id-7557219.html,rooms_not_bedrooms=2
+athome,4,3600,200,2,Maison individuelle,Luxembourg-Centre ville,LU,https://www.athome.lu/location/maison/luxembourg/id-9095282.html,
+athome,4,5000,300,6,Maison jumelée,Luxembourg-Merl,LU,https://www.athome.lu/location/maison/luxembourg/id-9383190.html,
+athome,4,4300,180,4,Maison individuelle,Luxembourg-Gasperich - Cloche d'or,LU,https://www.athome.lu/location/maison/luxembourg/id-9424692.html,
+athome,4,850,121,,Maison,Ancemont (FR),FR,https://www.athome.lu/location/maison/ancemont/id-9425810.html,rooms_not_bedrooms=4
+athome,4,1800,206,,Maison,Sancy (FR),FR,https://www.athome.lu/location/maison/sancy/id-9408715.html,rooms_not_bedrooms=5
+athome,4,4800,369,5,Maison individuelle,Niederanven,LU,https://www.athome.lu/location/maison/niederanven/id-9393903.html,
+athome,4,620,61,,Maison,Bouligny (FR),FR,https://www.athome.lu/location/maison/bouligny/id-9385834.html,rooms_not_bedrooms=4
+athome,4,3500,180,4,Maison individuelle,Holzem,LU,https://www.athome.lu/location/maison/holzem/id-9304508.html,
+athome,4,560,64,,Maison,Val-d'Ornain (FR),FR,https://www.athome.lu/location/maison/val-d-ornain/id-9289343.html,rooms_not_bedrooms=2
+athome,4,5900,251,4,Maison,Luxembourg-Merl,LU,https://www.athome.lu/location/maison/luxembourg/id-9255052.html,
+athome,4,3900,140,3,Maison,Mamer,LU,https://www.athome.lu/location/maison/mamer/id-9255013.html,
+athome,5,3800,150,3,Maison,Howald,LU,https://www.athome.lu/location/maison/howald/id-9193044.html,
+athome,5,930,152,,Maison,Saint-Mihiel (FR),FR,https://www.athome.lu/location/maison/saint-mihiel/id-8314784.html,rooms_not_bedrooms=5
+athome,5,1575,176,,Maison,Coin-sur-Seille (FR),FR,https://www.athome.lu/location/maison/coin-sur-seille/id-7552338.html,rooms_not_bedrooms=6
+athome,5,2600,191,4,Maison individuelle,Erpeldange-sur-Sûre,LU,https://www.athome.lu/location/maison/erpeldange-sur-sure/id-9398852.html,
+athome,5,1010,116,,Maison individuelle,Saulcy-sur-Meurthe (FR),FR,https://www.athome.lu/location/maison/saulcy-sur-meurthe/id-9209170.html,rooms_not_bedrooms=5
+athome,5,3200,225,4,Maison individuelle,Bourglinster,LU,https://www.athome.lu/location/maison/bourglinster/id-9340674.html,
+athome,5,5500,280,5,Maison de maître,Luxembourg-Weimerskirch,LU,https://www.athome.lu/location/maison/luxembourg/id-9279509.html,
+athome,5,3500,120,3,Maison,Sandweiler,LU,https://www.athome.lu/location/maison/sandweiler/id-9425904.html,
+athome,5,3800,135,3,Maison,Luxembourg-Beggen,LU,https://www.athome.lu/location/maison/luxembourg/id-9393882.html,
+athome,5,4500,328,6,Maison,Esch-sur-Alzette,LU,https://www.athome.lu/location/maison/esch-sur-alzette/id-7026060.html,
+athome,5,5250,165,4,Maison,Mamer,LU,https://www.athome.lu/location/maison/mamer/id-9389728.html,
+athome,5,4000,126,4,Maison,Lorentzweiler,LU,https://www.athome.lu/location/maison/lorentzweiler/id-9431664.html,
+athome,5,2800,170,5,Maison mitoyenne,Remich,LU,https://www.athome.lu/location/maison/remich/id-9409262.html,
+athome,5,1080,80,,Maison,Marange-Silvange (FR),FR,https://www.athome.lu/location/maison/marange-silvange/id-9399510.html,rooms_not_bedrooms=4
+athome,5,1190,108,,Maison,Boulay-Moselle (FR),FR,https://www.athome.lu/location/maison/boulay-moselle/id-9385309.html,rooms_not_bedrooms=5
+athome,5,1000,77,,Maison mitoyenne,Apach (FR),FR,https://www.athome.lu/location/maison/apach/id-9376488.html,rooms_not_bedrooms=4
+athome,5,2200,149,,Maison jumelée,Saarburg (DE),DE,https://www.athome.lu/location/maison/saarburg/id-9363885.html,rooms_not_bedrooms=4
+athome,5,718,63,,Maison mitoyenne,Zimming (FR),FR,https://www.athome.lu/location/maison/zimming/id-9029406.html,rooms_not_bedrooms=4
+athome,5,490,240,,Maison,Hussigny-Godbrange (FR),FR,https://www.athome.lu/location/maison/hussigny-godbrange/id-9004384.html,rooms_not_bedrooms=7;eur_m2_lt_3.5_maybe_per_room
+athome,5,2050,195,,Maison,Amanvillers (FR),FR,https://www.athome.lu/location/maison/amanvillers/id-8302984.html,rooms_not_bedrooms=7
+athome,6,1530,139,,Maison,Metzeresche (FR),FR,https://www.athome.lu/location/maison/metzeresche/id-7138675.html,rooms_not_bedrooms=6
+athome,6,820,110,,Maison,Bouxières-sous-Froidmont (FR),FR,https://www.athome.lu/location/maison/bouxieres-sous-froidmont/id-4695534.html,rooms_not_bedrooms=4
+athome,6,1150,116,2,Maison,Aubange (BE),BE,https://www.athome.lu/location/maison/aubange/id-9435254.html,
+athome,6,4500,160,4,Maison individuelle,Luxembourg-Gasperich - Cloche d'or,LU,https://www.athome.lu/location/maison/luxembourg/id-9431184.html,
+athome,6,1070,70,,Maison,Corny-sur-Moselle (FR),FR,https://www.athome.lu/location/maison/corny-sur-moselle/id-9419753.html,rooms_not_bedrooms=3
+athome,6,2900,113,3,Maison individuelle,Luxembourg-Beggen,LU,https://www.athome.lu/location/maison/luxembourg/id-9396489.html,
+athome,6,2350,148,,Maison mitoyenne,Saarburg (DE),DE,https://www.athome.lu/location/maison/saarburg/id-9370817.html,rooms_not_bedrooms=4
+athome,6,1000,171,,Maison,Saint-Avold (FR),FR,https://www.athome.lu/location/maison/saint-avold/id-9329737.html,rooms_not_bedrooms=4
+athome,6,1600,178,,Maison,Mont-Saint-Martin (FR),FR,https://www.athome.lu/location/maison/mont-saint-martin/id-9218724.html,rooms_not_bedrooms=7
+athome,6,765,94,,Maison,Meisenthal (FR),FR,https://www.athome.lu/location/maison/meisenthal/id-9195945.html,rooms_not_bedrooms=5
+athome,6,1250,100,,Maison,Lorry-lès-Metz (FR),FR,https://www.athome.lu/location/maison/lorry-les-metz/id-9113125.html,rooms_not_bedrooms=4
+athome,6,1700,175,,Maison individuelle,Irrel (DE),DE,https://www.athome.lu/location/maison/irrel/id-8849054.html,rooms_not_bedrooms=7
+athome,6,1050,88,,Maison,Metz (FR),FR,https://www.athome.lu/location/maison/metz/id-8506977.html,rooms_not_bedrooms=3
+athome,6,1565,137,,Maison,Corny-sur-Moselle (FR),FR,https://www.athome.lu/location/maison/corny-sur-moselle/id-8107300.html,rooms_not_bedrooms=6
+athome,6,892,102,,Maison,Guessling-Hémering (FR),FR,https://www.athome.lu/location/maison/guessling-hemering/id-7996847.html,rooms_not_bedrooms=5
+athome,6,1260,120,,Maison,Remiremont (FR),FR,https://www.athome.lu/location/maison/remiremont/id-7874762.html,
+athome,6,4250,275,5,Maison individuelle,Koerich,LU,https://www.athome.lu/location/maison/koerich/id-9394875.html,
+athome,6,1750,105,,Maison individuelle,Yutz (FR),FR,https://www.athome.lu/location/maison/yutz/id-9349778.html,rooms_not_bedrooms=6
+athome,6,1200,170,,Maison mitoyenne,Preist (DE),DE,https://www.athome.lu/location/maison/preist/id-9441791.html,rooms_not_bedrooms=7
+athome,6,730,17,,Maison jumelée,Bettembourg,LU,https://www.athome.lu/location/maison/bettembourg/id-9406630.html,surface_lt_30m2
+athome,7,700,85,,Maison,Remiremont (FR),FR,https://www.athome.lu/location/maison/remiremont/id-8827616.html,rooms_not_bedrooms=4
+athome,7,800,125,,Maison mitoyenne,Rehlingen-Siersburg (DE),DE,https://www.athome.lu/location/maison/rehlingen-siersburg/id-9395234.html,rooms_not_bedrooms=6
+athome,7,1250,160,,Maison,Diebling (FR),FR,https://www.athome.lu/location/maison/diebling/id-9425156.html,rooms_not_bedrooms=6
+athome,7,1900,250,,Maison individuelle,Attert (BE),BE,https://www.athome.lu/location/maison/attert/id-8435707.html,rooms_not_bedrooms=8
+athome,7,3500,150,5,Maison mitoyenne,Esch-sur-Alzette,LU,https://www.athome.lu/location/maison/esch-sur-alzette/id-9362604.html,
+athome,7,3250,180,3,Maison jumelée,Hobscheid,LU,https://www.athome.lu/location/maison/hobscheid/id-9271065.html,
+athome,7,1050,165,3,Maison,Herborn,LU,https://www.athome.lu/location/maison/herborn/id-9365381.html,
+athome,7,20000,600,20,Maison individuelle,Itzig,LU,https://www.athome.lu/location/maison/itzig/id-9405190.html,rent_very_high_check
+athome,7,3500,200,4,Maison jumelée,Senningerberg,LU,https://www.athome.lu/location/maison/senningerberg/id-9399660.html,
+athome,7,2990,150,3,Maison,Bascharage,LU,https://www.athome.lu/location/maison/bascharage/id-9383734.html,
+athome,7,3600,180,3,Maison jumelée,Nospelt,LU,https://www.athome.lu/location/maison/nospelt/id-9299415.html,
+athome,7,1400,85,,Maison individuelle,Sierck-les-Bains (FR),FR,https://www.athome.lu/location/maison/sierck-les-bains/id-8218334.html,rooms_not_bedrooms=5
+athome,7,4200,200,4,Maison mitoyenne,Mamer,LU,https://www.athome.lu/location/maison/mamer/id-9407537.html,
+athome,7,1430,134,,Maison mitoyenne,Knutange (FR),FR,https://www.athome.lu/location/maison/knutange/id-9398304.html,rooms_not_bedrooms=6
+athome,7,3550,160,4,Maison jumelée,Dalheim,LU,https://www.athome.lu/location/maison/dalheim/id-9328404.html,
+athome,7,3200,165,4,Maison,Lintgen,LU,https://www.athome.lu/location/maison/lintgen/id-3002167.html,
+athome,7,3500,139,4,Maison mitoyenne,Pétange,LU,https://www.athome.lu/location/maison/petange/id-9418516.html,
+athome,7,2950,150,4,Maison jumelée,Grosbous,LU,https://www.athome.lu/location/maison/grosbous/id-9297017.html,
+athome,7,750,151,,Maison jumelée,Royaumeix (FR),FR,https://www.athome.lu/location/maison/royaumeix/id-9144923.html,rooms_not_bedrooms=4
+athome,7,3100,120,3,Maison mitoyenne,Luxembourg-Cents,LU,https://www.athome.lu/location/maison/luxembourg/id-9134861.html,
+athome,8,3350,180,3,Maison mitoyenne,Soleuvre,LU,https://www.athome.lu/location/maison/soleuvre/id-9399604.html,
+athome,8,3150,182,5,Maison individuelle,Grevenmacher,LU,https://www.athome.lu/location/maison/grevenmacher/id-8078509.html,
+athome,8,2900,126,3,Maison individuelle,Leudelange,LU,https://www.athome.lu/location/maison/leudelange/id-9442898.html,
+athome,8,1240,120,,Maison,Moyeuvre-Grande (FR),FR,https://www.athome.lu/location/maison/moyeuvre-grande/id-9432766.html,rooms_not_bedrooms=5
+athome,8,6200,260,4,Maison,Luxembourg-Centre ville,LU,https://www.athome.lu/location/maison/luxembourg/id-6087868.html,
+athome,8,1500,182,,Maison jumelée,Dillingen (DE),DE,https://www.athome.lu/location/maison/dillingen/id-9403921.html,rooms_not_bedrooms=5
+athome,8,5000,250,4,Maison individuelle,Beringen (Mersch),LU,https://www.athome.lu/location/maison/beringen-mersch/id-9383268.html,
+athome,8,6900,218,,Maison individuelle,Luxembourg-Limpertsberg,LU,https://www.athome.lu/location/maison/luxembourg/id-8580147.html,
+athome,8,2250,143,,Maison,Leiwen (DE),DE,https://www.athome.lu/location/maison/leiwen/id-9323834.html,rooms_not_bedrooms=5
+athome,8,2800,135,4,Maison individuelle,Rippig,LU,https://www.athome.lu/location/maison/rippig/id-9319011.html,
+athome,8,2000,270,,Maison,Leiwen (DE),DE,https://www.athome.lu/location/maison/leiwen/id-9083028.html,rooms_not_bedrooms=8
+athome,8,3590,341,,Maison jumelée,Bitburg (DE),DE,https://www.athome.lu/location/maison/bitburg/id-8852222.html,rooms_not_bedrooms=18
+athome,8,715,71,,Maison,Bruyères (FR),FR,https://www.athome.lu/location/maison/bruyeres/id-8720007.html,rooms_not_bedrooms=5
+athome,8,1900,105,3,Maison individuelle,Wilwerwiltz,LU,https://www.athome.lu/location/maison/wilwerwiltz/id-7615298.html,
+athome,8,745,137,,Maison,Toul (FR),FR,https://www.athome.lu/location/maison/toul/id-7104825.html,rooms_not_bedrooms=5
+athome,8,955,354,,Maison,Saint-Nicolas-de-Port (FR),FR,https://www.athome.lu/location/maison/saint-nicolas-de-port/id-4327840.html,rooms_not_bedrooms=10;eur_m2_lt_3.5_maybe_per_room
+athome,8,5200,240,4,Maison individuelle,Strassen,LU,https://www.athome.lu/location/maison/strassen/id-9426755.html,
+athome,8,850,127,,Maison,Thiéfosse (FR),FR,https://www.athome.lu/location/maison/thiefosse/id-9426518.html,rooms_not_bedrooms=4
+athome,8,840,201,,Maison,Rainville (FR),FR,https://www.athome.lu/location/maison/rainville/id-9425723.html,rooms_not_bedrooms=7
+athome,8,950,55,,Maison mitoyenne,Fameck (FR),FR,https://www.athome.lu/location/maison/fameck/id-8891283.html,rooms_not_bedrooms=4
+athome,9,790,82,,Maison,Vagney (FR),FR,https://www.athome.lu/location/maison/vagney/id-9419748.html,rooms_not_bedrooms=4
+athome,9,1400,110,3,Maison,Musson (BE),BE,https://www.athome.lu/location/maison/musson/id-9418484.html,
+athome,9,830,130,,Maison,Lunéville (FR),FR,https://www.athome.lu/location/maison/luneville/id-9408217.html,rooms_not_bedrooms=4
+athome,9,1590,178,,Maison individuelle,Sinspelt (DE),DE,https://www.athome.lu/location/maison/sinspelt/id-9407596.html,rooms_not_bedrooms=7
+athome,9,550,47,,Maison,Vittel (FR),FR,https://www.athome.lu/location/maison/vittel/id-9405236.html,rooms_not_bedrooms=3
+athome,9,1200,185,4,Maison,Virton (BE),BE,https://www.athome.lu/location/maison/virton/id-9404260.html,
+athome,9,1000,123,2,Maison,Aubange (BE),BE,https://www.athome.lu/location/maison/aubange/id-9395236.html,
+athome,9,850,135,,Maison,Vittel (FR),FR,https://www.athome.lu/location/maison/vittel/id-9388829.html,rooms_not_bedrooms=5
+athome,9,670,122,,Maison,Vic-sur-Seille (FR),FR,https://www.athome.lu/location/maison/vic-sur-seille/id-9388651.html,rooms_not_bedrooms=4
+athome,9,850,74,,Maison,Xonrupt-Longemer (FR),FR,https://www.athome.lu/location/maison/xonrupt-longemer/id-9382954.html,rooms_not_bedrooms=3
+athome,9,1590,183,,Maison individuelle,Dudeldorf (DE),DE,https://www.athome.lu/location/maison/dudeldorf/id-9363814.html,rooms_not_bedrooms=5
+athome,9,1050,95,,Maison individuelle,Niederstedem (DE),DE,https://www.athome.lu/location/maison/niederstedem/id-9363550.html,rooms_not_bedrooms=3
+athome,9,960,160,3,Maison,Rouvroy (BE),BE,https://www.athome.lu/location/maison/rouvroy/id-9359029.html,
+athome,9,4000,166,,Maison individuelle,Niederanven,LU,https://www.athome.lu/location/maison/niederanven/id-9349364.html,
+athome,9,670,170,,Maison mitoyenne,Ansauville (FR),FR,https://www.athome.lu/location/maison/ansauville/id-9339986.html,rooms_not_bedrooms=6
+athome,9,550,109,,Maison,La Neuveville-sous-Châtenois (FR),FR,https://www.athome.lu/location/maison/la-neuveville-sous-chatenois/id-9315443.html,rooms_not_bedrooms=5
+athome,9,600,107,,Maison,Les Vallois (FR),FR,https://www.athome.lu/location/maison/les-vallois/id-9315442.html,rooms_not_bedrooms=5
+athome,9,950,153,2,Maison,Virton (BE),BE,https://www.athome.lu/location/maison/virton/id-9299493.html,
+athome,9,680,75,,Maison,Vittel (FR),FR,https://www.athome.lu/location/maison/vittel/id-9290617.html,rooms_not_bedrooms=4
+athome,9,730,107,,Maison mitoyenne,Crézilles (FR),FR,https://www.athome.lu/location/maison/crezilles/id-9266853.html,rooms_not_bedrooms=4
+athome,10,1790,160,,Maison,Trier (DE),DE,https://www.athome.lu/location/maison/trier/id-9255547.html,rooms_not_bedrooms=6
+athome,10,650,143,,Maison,Martigny-les-Bains (FR),FR,https://www.athome.lu/location/maison/martigny-les-bains/id-9250693.html,rooms_not_bedrooms=8
+athome,10,780,103,,Maison,Vittel (FR),FR,https://www.athome.lu/location/maison/vittel/id-9245638.html,rooms_not_bedrooms=5
+athome,10,2900,180,,Maison,Scy-Chazelles (FR),FR,https://www.athome.lu/location/maison/scy-chazelles/id-9180244.html,rooms_not_bedrooms=6
+athome,10,2000,158,,Maison,Scy-Chazelles (FR),FR,https://www.athome.lu/location/maison/scy-chazelles/id-9180243.html,rooms_not_bedrooms=6
+athome,10,420,42,,Maison,Kédange-sur-Canner (FR),FR,https://www.athome.lu/location/maison/kedange-sur-canner/id-9165922.html,rooms_not_bedrooms=2
+athome,10,800,172,,Maison,Dombrot-le-Sec (FR),FR,https://www.athome.lu/location/maison/dombrot-le-sec/id-9165505.html,rooms_not_bedrooms=6
+athome,10,1050,177,5,Maison,Rouvroy (BE),BE,https://www.athome.lu/location/maison/rouvroy/id-9133135.html,
+athome,10,1100,135,4,Maison,Virton (BE),BE,https://www.athome.lu/location/maison/virton/id-9124213.html,
+athome,10,800,90,,Maison,Bulgnéville (FR),FR,https://www.athome.lu/location/maison/bulgneville/id-9085398.html,rooms_not_bedrooms=6
+athome,10,438,92,,Maison,Lamarche (FR),FR,https://www.athome.lu/location/maison/lamarche/id-9073246.html,rooms_not_bedrooms=5
+athome,10,1000,141,,Maison,Vittel (FR),FR,https://www.athome.lu/location/maison/vittel/id-9066994.html,rooms_not_bedrooms=7
+athome,10,800,124,,Maison,Diarville (FR),FR,https://www.athome.lu/location/maison/diarville/id-9065948.html,rooms_not_bedrooms=5
+athome,10,400,85,,Maison,La Vacheresse-et-la-Rouillie (FR),FR,https://www.athome.lu/location/maison/la-vacheresse-et-la-rouillie/id-9062352.html,rooms_not_bedrooms=3
+athome,10,700,125,,Maison,La Vacheresse-et-la-Rouillie (FR),FR,https://www.athome.lu/location/maison/la-vacheresse-et-la-rouillie/id-9062351.html,rooms_not_bedrooms=5
+athome,10,414,83,,Maison,Remoncourt (FR),FR,https://www.athome.lu/location/maison/remoncourt/id-9015802.html,rooms_not_bedrooms=5
+athome,10,550,47,,Maison,Vittel (FR),FR,https://www.athome.lu/location/maison/vittel/id-9015801.html,rooms_not_bedrooms=3
+athome,10,480,57,,Maison,Remoncourt (FR),FR,https://www.athome.lu/location/maison/remoncourt/id-8981613.html,rooms_not_bedrooms=4
+athome,10,750,130,,Maison mitoyenne,Royaumeix (FR),FR,https://www.athome.lu/location/maison/royaumeix/id-8813824.html,rooms_not_bedrooms=6
+athome,10,495,40,,Maison,Rochesson (FR),FR,https://www.athome.lu/location/maison/rochesson/id-7139858.html,rooms_not_bedrooms=3
+athome,11,650,65,,Maison,Rochesson (FR),FR,https://www.athome.lu/location/maison/rochesson/id-6698257.html,rooms_not_bedrooms=4
+athome,11,795,127,,Maison mitoyenne,Toul (FR),FR,https://www.athome.lu/location/maison/toul/id-6005964.html,rooms_not_bedrooms=6
+athome,11,430,53,,Maison mitoyenne,Foug (FR),FR,https://www.athome.lu/location/maison/foug/id-5491731.html,rooms_not_bedrooms=3
+athome,11,390,,,Maison,Stenay (FR),FR,https://www.athome.lu/location/maison/stenay/id-5397331.html,rooms_not_bedrooms=2
+athome,11,660,71,,Maison,La Bresse (FR),FR,https://www.athome.lu/location/maison/la-bresse/id-5035656.html,rooms_not_bedrooms=3
+athome,11,4500,208,4,Maison individuelle,Heisdorf,LU,https://www.athome.lu/location/maison/heisdorf/id-9384740.html,
+athome,11,4500,500,7,Maison individuelle,Arlon (BE),BE,https://www.athome.lu/location/maison/arlon/id-8850873.html,
+athome,11,815,200,,Maison,Jussarupt (FR),FR,https://www.athome.lu/location/maison/jussarupt/id-9442283.html,rooms_not_bedrooms=6
+athome,11,4500,259,5,Maison,Koedange,LU,https://www.athome.lu/location/maison/koedange/id-9388211.html,
+athome,11,2450,125,1,Maison,Mertesdorf (DE),DE,https://www.athome.lu/location/maison/mertesdorf/id-9114677.html,
+athome,11,790,138,,Maison,Les Hauts-de-Chée (FR),FR,https://www.athome.lu/location/maison/les-hauts-de-chee/id-8021099.html,rooms_not_bedrooms=6
+athome,11,430,51,,Maison,Bar-le-Duc (FR),FR,https://www.athome.lu/location/maison/bar-le-duc/id-7736229.html,rooms_not_bedrooms=3
+athome,11,2000,650,,Maison,Bar-le-Duc (FR),FR,https://www.athome.lu/location/maison/bar-le-duc/id-6942246.html,rooms_not_bedrooms=1;eur_m2_lt_3.5_maybe_per_room
+athome,11,900,97,,Maison,Saint-Max (FR),FR,https://www.athome.lu/location/maison/saint-max/id-5945499.html,rooms_not_bedrooms=3
+athome,11,1400,180,4,Maison,Pont-à-Celles (BE),BE,https://www.athome.lu/location/maison/pont-a-celles/id-9438078.html,
+athome,11,750,65,2,Maison,Beloeil (BE),BE,https://www.athome.lu/location/maison/beloeil/id-9437749.html,
+athome,11,1200,100,3,Maison,Liège (BE),BE,https://www.athome.lu/location/maison/liege/id-9437723.html,
+athome,11,1350,238,4,Maison,La Louvière (BE),BE,https://www.athome.lu/location/maison/la-louviere/id-9437587.html,
+athome,11,820,162,4,Maison,Bernissart (BE),BE,https://www.athome.lu/location/maison/bernissart/id-9437578.html,
+athome,11,790,107,2,Maison,Juprelle (BE),BE,https://www.athome.lu/location/maison/juprelle/id-9437567.html,
+athome,12,850,130,2,Maison,Libin (BE),BE,https://www.athome.lu/location/maison/libin/id-9437442.html,
+athome,12,1050,195,3,Maison,Herve (BE),BE,https://www.athome.lu/location/maison/herve/id-9437438.html,
+athome,12,950,110,2,Maison,Péruwelz (BE),BE,https://www.athome.lu/location/maison/peruwelz/id-9436939.html,
+athome,12,1825,195,4,Maison,Ottignies-Louvain-la-Neuve (BE),BE,https://www.athome.lu/location/maison/ottignies-louvain-la-neuve/id-9436892.html,
+athome,12,850,101,3,Maison,Frameries (BE),BE,https://www.athome.lu/location/maison/frameries/id-9436879.html,
+athome,12,1150,120,3,Maison,Durbuy (BE),BE,https://www.athome.lu/location/maison/durbuy/id-9436861.html,
+athome,12,925,190,3,Maison,Hensies (BE),BE,https://www.athome.lu/location/maison/hensies/id-9436762.html,
+athome,12,950,143,3,Maison,Mont-sur-Marchienne (BE),BE,https://www.athome.lu/location/maison/mont-sur-marchienne/id-9436741.html,
+athome,12,1100,125,3,Maison,Châtelet (BE),BE,https://www.athome.lu/location/maison/chatelet/id-9436696.html,
+athome,12,950,144,3,Maison,Lierneux (BE),BE,https://www.athome.lu/location/maison/lierneux/id-9436660.html,
+athome,12,600,80,2,Maison,Morlanwelz (BE),BE,https://www.athome.lu/location/maison/morlanwelz/id-9436598.html,
+athome,12,850,101,1,Maison,Verviers (BE),BE,https://www.athome.lu/location/maison/verviers/id-9435323.html,
+athome,12,725,,2,Maison,Bernissart (BE),BE,https://www.athome.lu/location/maison/bernissart/id-9434497.html,
+athome,12,675,105,2,Maison,Antoing (BE),BE,https://www.athome.lu/location/maison/antoing/id-9434493.html,
+athome,12,1300,165,3,Maison,Quaregnon (BE),BE,https://www.athome.lu/location/maison/quaregnon/id-9434491.html,
+athome,12,1250,111,3,Maison,Ath (BE),BE,https://www.athome.lu/location/maison/ath/id-9434490.html,
+athome,12,1150,230,3,Maison,Aywaille (BE),BE,https://www.athome.lu/location/maison/aywaille/id-9434425.html,
+athome,12,950,150,2,Maison,Modave (BE),BE,https://www.athome.lu/location/maison/modave/id-9434366.html,
+athome,12,850,201,4,Maison,Sivry-Rance (BE),BE,https://www.athome.lu/location/maison/sivry-rance/id-9434307.html,
+athome,12,700,,2,Maison,Leuze-en-Hainaut (BE),BE,https://www.athome.lu/location/maison/leuze-en-hainaut/id-9433103.html,
+athome,13,1650,170,4,Maison,Orp-Jauche (BE),BE,https://www.athome.lu/location/maison/orp-jauche/id-9433069.html,
+athome,13,1400,188,3,Maison,Mons (BE),BE,https://www.athome.lu/location/maison/mons/id-9433065.html,
+athome,13,1100,127,4,Maison,Mouscron (BE),BE,https://www.athome.lu/location/maison/mouscron/id-9433037.html,
+athome,13,1350,140,3,Maison,Liège (BE),BE,https://www.athome.lu/location/maison/liege/id-9432963.html,
+athome,13,2050,224,3,Maison,Ham-sur-Heure-Nalinnes (BE),BE,https://www.athome.lu/location/maison/ham-sur-heure-nalinnes/id-9432907.html,
+athome,13,1650,145,3,Maison,Lasne (BE),BE,https://www.athome.lu/location/maison/lasne/id-9432881.html,
+athome,13,1485,,3,Maison,Walhain (BE),BE,https://www.athome.lu/location/maison/walhain/id-9431742.html,
+athome,13,1400,120,3,Maison,Orp-Jauche (BE),BE,https://www.athome.lu/location/maison/orp-jauche/id-9427583.html,
+athome,13,1100,150,,Maison,Binche (BE),BE,https://www.athome.lu/location/maison/binche/id-9427563.html,
+athome,13,340,144,4,Maison,Ransart (BE),BE,https://www.athome.lu/location/maison/ransart/id-9426793.html,eur_m2_lt_3.5_maybe_per_room
+athome,13,650,,2,Maison,Couvin (BE),BE,https://www.athome.lu/location/maison/couvin/id-9426490.html,
+athome,13,900,112,2,Maison,La Louvière (BE),BE,https://www.athome.lu/location/maison/la-louviere/id-9426311.html,
+athome,13,850,104,3,Maison,Mouscron (BE),BE,https://www.athome.lu/location/maison/mouscron/id-9426305.html,
+athome,13,1150,150,3,Maison,Perwez (BE),BE,https://www.athome.lu/location/maison/perwez/id-9426303.html,
+athome,13,2100,130,5,Maison,Waterloo (BE),BE,https://www.athome.lu/location/maison/waterloo/id-9425077.html,
+athome,13,600,115,2,Maison,Herbeumont (BE),BE,https://www.athome.lu/location/maison/herbeumont/id-9425013.html,
+athome,13,850,95,2,Maison,Jumet (BE),BE,https://www.athome.lu/location/maison/jumet/id-9424985.html,
+athome,13,725,85,3,Maison,Péruwelz (BE),BE,https://www.athome.lu/location/maison/peruwelz/id-9424969.html,
+athome,13,830,125,3,Maison,Bernissart (BE),BE,https://www.athome.lu/location/maison/bernissart/id-9424968.html,
+athome,13,1250,140,3,Maison,Andenne (BE),BE,https://www.athome.lu/location/maison/andenne/id-9424966.html,
+athome,14,900,,3,Maison,Courcelles (BE),BE,https://www.athome.lu/location/maison/courcelles/id-9424269.html,
+athome,14,980,91,2,Maison,Ans (BE),BE,https://www.athome.lu/location/maison/ans/id-9419685.html,
+athome,14,1375,180,4,Maison,Fernelmont (BE),BE,https://www.athome.lu/location/maison/fernelmont/id-9419637.html,
+athome,14,1100,177,4,Maison,Le Roeulx (BE),BE,https://www.athome.lu/location/maison/le-roeulx/id-9419562.html,
+athome,14,750,65,2,Maison,Chaudfontaine (BE),BE,https://www.athome.lu/location/maison/chaudfontaine/id-9419461.html,
+athome,14,1250,128,3,Maison,Gembloux (BE),BE,https://www.athome.lu/location/maison/gembloux/id-9410259.html,
+athome,14,825,140,3,Maison,Tournai (BE),BE,https://www.athome.lu/location/maison/tournai/id-9409759.html,
+athome,14,1200,100,3,Maison,Soignies (BE),BE,https://www.athome.lu/location/maison/soignies/id-9409650.html,
+athome,14,1250,85,3,Maison,Andenne (BE),BE,https://www.athome.lu/location/maison/andenne/id-9409462.html,
+athome,14,850,,2,Maison,Wanze (BE),BE,https://www.athome.lu/location/maison/wanze/id-9408130.html,
+athome,14,1290,,2,Maison,Aubel (BE),BE,https://www.athome.lu/location/maison/aubel/id-9407995.html,
+athome,14,1150,140,3,Maison,Ath (BE),BE,https://www.athome.lu/location/maison/ath/id-9407205.html,
+athome,14,3000,433,5,Maison,Rixensart (BE),BE,https://www.athome.lu/location/maison/rixensart/id-9407165.html,
+athome,14,950,111,3,Maison,Stavelot (BE),BE,https://www.athome.lu/location/maison/stavelot/id-9407152.html,
+athome,14,925,,3,Maison,La Louvière (BE),BE,https://www.athome.lu/location/maison/la-louviere/id-9407126.html,
+athome,14,975,110,3,Maison,Péruwelz (BE),BE,https://www.athome.lu/location/maison/peruwelz/id-9407012.html,
+athome,14,1100,153,4,Maison,Mons (BE),BE,https://www.athome.lu/location/maison/mons/id-9406941.html,
+athome,14,850,80,3,Maison,Mouscron (BE),BE,https://www.athome.lu/location/maison/mouscron/id-9405896.html,
+athome,14,1100,130,2,Maison,Liège (BE),BE,https://www.athome.lu/location/maison/liege/id-9405829.html,
+athome,14,1250,200,2,Maison,Wasseiges (BE),BE,https://www.athome.lu/location/maison/wasseiges/id-9405812.html,
+athome,15,750,109,2,Maison,Tellin (BE),BE,https://www.athome.lu/location/maison/tellin/id-9404539.html,
+athome,15,1450,113,3,Maison,Wanze (BE),BE,https://www.athome.lu/location/maison/wanze/id-9404509.html,
+athome,15,1050,178,3,Maison,Tournai (BE),BE,https://www.athome.lu/location/maison/tournai/id-9404508.html,
+athome,15,1400,179,3,Maison,Mons (BE),BE,https://www.athome.lu/location/maison/mons/id-9399951.html,
+athome,15,1950,186,4,Maison,Grez-Doiceau (BE),BE,https://www.athome.lu/location/maison/grez-doiceau/id-9399804.html,
+athome,15,1500,143,4,Maison,Namur (BE),BE,https://www.athome.lu/location/maison/namur/id-9399731.html,
+athome,15,960,171,3,Maison,Tournai (BE),BE,https://www.athome.lu/location/maison/tournai/id-9399395.html,
+athome,15,1250,96,2,Maison,Andenne (BE),BE,https://www.athome.lu/location/maison/andenne/id-9397936.html,
+athome,15,1500,273,3,Maison,QuEvy (BE),BE,https://www.athome.lu/location/maison/quevy/id-9397808.html,
+athome,15,2150,200,3,Maison,Waterloo (BE),BE,https://www.athome.lu/location/maison/waterloo/id-9397795.html,
+athome,15,900,144,3,Maison,Couillet (BE),BE,https://www.athome.lu/location/maison/couillet/id-9397792.html,
+athome,15,800,120,3,Maison,Péruwelz (BE),BE,https://www.athome.lu/location/maison/peruwelz/id-9397777.html,
+athome,15,475,110,4,Maison,Charleroi (BE),BE,https://www.athome.lu/location/maison/charleroi/id-9397723.html,
+athome,15,750,80,2,Maison,Pepinster (BE),BE,https://www.athome.lu/location/maison/pepinster/id-9397644.html,
+athome,15,700,156,3,Maison,Brugelette (BE),BE,https://www.athome.lu/location/maison/brugelette/id-9396796.html,
+athome,15,1600,168,4,Maison,Seneffe (BE),BE,https://www.athome.lu/location/maison/seneffe/id-9396748.html,
+athome,15,990,111,3,Maison,Pecq (BE),BE,https://www.athome.lu/location/maison/pecq/id-9395612.html,
+athome,15,865,70,2,Maison,Tournai (BE),BE,https://www.athome.lu/location/maison/tournai/id-9395592.html,
+athome,15,1250,120,3,Maison,Ath (BE),BE,https://www.athome.lu/location/maison/ath/id-9395505.html,
+athome,15,1800,318,4,Maison,Lobbes (BE),BE,https://www.athome.lu/location/maison/lobbes/id-9395494.html,
+athome,16,3500,330,5,Maison,Waterloo (BE),BE,https://www.athome.lu/location/maison/waterloo/id-9389780.html,
+athome,16,800,82,3,Maison,Walcourt (BE),BE,https://www.athome.lu/location/maison/walcourt/id-9389126.html,
+athome,16,1800,172,4,Maison,Lasne (BE),BE,https://www.athome.lu/location/maison/lasne/id-9388506.html,
+athome,16,1200,160,3,Maison,Antoing (BE),BE,https://www.athome.lu/location/maison/antoing/id-9388408.html,
+athome,16,740,103,2,Maison,Dalhem (BE),BE,https://www.athome.lu/location/maison/dalhem/id-9387274.html,
+athome,16,875,119,3,Maison,Mouscron (BE),BE,https://www.athome.lu/location/maison/mouscron/id-9386756.html,
+athome,16,1950,150,4,Maison,Attert (BE),BE,https://www.athome.lu/location/maison/attert/id-9386755.html,
+athome,16,970,,3,Maison,Mons (BE),BE,https://www.athome.lu/location/maison/mons/id-9385553.html,
+athome,16,1150,,3,Maison,Chimay (BE),BE,https://www.athome.lu/location/maison/chimay/id-9384396.html,
+athome,16,1350,134,3,Maison,QuEvy (BE),BE,https://www.athome.lu/location/maison/quevy/id-9384394.html,
+athome,16,1300,125,3,Maison,Marchin (BE),BE,https://www.athome.lu/location/maison/marchin/id-9384305.html,
+athome,16,770,61,1,Maison,La Louvière (BE),BE,https://www.athome.lu/location/maison/la-louviere/id-9384252.html,
+athome,16,600,200,1,Maison,Jumet (BE),BE,https://www.athome.lu/location/maison/jumet/id-9384202.html,eur_m2_lt_3.5_maybe_per_room
+athome,16,600,200,1,Maison,Jumet (BE),BE,https://www.athome.lu/location/maison/jumet/id-9384199.html,eur_m2_lt_3.5_maybe_per_room
+athome,16,1100,,4,Maison,Namur (BE),BE,https://www.athome.lu/location/maison/namur/id-9384170.html,
+athome,16,1500,105,2,Maison,Thuin (BE),BE,https://www.athome.lu/location/maison/thuin/id-9377872.html,
+athome,16,1030,,,Maison,Binche (BE),BE,https://www.athome.lu/location/maison/binche/id-9377859.html,
+athome,16,750,140,2,Maison,Brunehaut (BE),BE,https://www.athome.lu/location/maison/brunehaut/id-9376901.html,
+athome,16,925,142,3,Maison,Manhay (BE),BE,https://www.athome.lu/location/maison/manhay/id-9376680.html,
+athome,16,1250,196,4,Maison,Nivelles (BE),BE,https://www.athome.lu/location/maison/nivelles/id-9376646.html,
+athome,17,450,176,4,Maison,Charleroi (BE),BE,https://www.athome.lu/location/maison/charleroi/id-9376627.html,eur_m2_lt_3.5_maybe_per_room
+athome,17,470,176,4,Maison,Charleroi (BE),BE,https://www.athome.lu/location/maison/charleroi/id-9376625.html,eur_m2_lt_3.5_maybe_per_room
+athome,17,520,176,4,Maison,Charleroi (BE),BE,https://www.athome.lu/location/maison/charleroi/id-9376624.html,eur_m2_lt_3.5_maybe_per_room
+athome,17,470,176,4,Maison,Charleroi (BE),BE,https://www.athome.lu/location/maison/charleroi/id-9376622.html,eur_m2_lt_3.5_maybe_per_room
+athome,17,3250,245,4,Maison,La Hulpe (BE),BE,https://www.athome.lu/location/maison/la-hulpe/id-9375368.html,
+athome,17,700,90,2,Maison,Couvin (BE),BE,https://www.athome.lu/location/maison/couvin/id-9375360.html,
+athome,17,790,140,3,Maison,Colfontaine (BE),BE,https://www.athome.lu/location/maison/colfontaine/id-9375350.html,
+athome,17,1800,155,3,Maison,Rixensart (BE),BE,https://www.athome.lu/location/maison/rixensart/id-9375293.html,
+athome,17,3950,300,4,Maison,Waterloo (BE),BE,https://www.athome.lu/location/maison/waterloo/id-9375092.html,
+athome,17,1650,233,5,Maison,Binche (BE),BE,https://www.athome.lu/location/maison/binche/id-9375048.html,
+athome,17,600,,2,Maison,Couvin (BE),BE,https://www.athome.lu/location/maison/couvin/id-9373919.html,
+athome,17,1350,135,3,Maison,Floreffe (BE),BE,https://www.athome.lu/location/maison/floreffe/id-9373875.html,
+athome,17,790,114,1,Maison,Péruwelz (BE),BE,https://www.athome.lu/location/maison/peruwelz/id-9373717.html,
+athome,17,650,100,3,Maison,Mons (BE),BE,https://www.athome.lu/location/maison/mons/id-9373700.html,
+athome,17,450,168,4,Maison,Marcinelle (BE),BE,https://www.athome.lu/location/maison/marcinelle/id-9373623.html,eur_m2_lt_3.5_maybe_per_room
+athome,17,925,186,2,Maison,Herstal (BE),BE,https://www.athome.lu/location/maison/herstal/id-9371880.html,
+athome,17,600,50,1,Maison,Malmedy (BE),BE,https://www.athome.lu/location/maison/malmedy/id-9371814.html,
+athome,17,1250,113,2,Maison,Liège (BE),BE,https://www.athome.lu/location/maison/liege/id-9371556.html,
+athome,17,950,162,3,Maison,Brunehaut (BE),BE,https://www.athome.lu/location/maison/brunehaut/id-9371551.html,
+athome,17,850,113,3,Maison,Binche (BE),BE,https://www.athome.lu/location/maison/binche/id-9370428.html,
+athome,18,850,150,2,Maison,Brunehaut (BE),BE,https://www.athome.lu/location/maison/brunehaut/id-9365247.html,
+athome,18,900,121,4,Maison,Frameries (BE),BE,https://www.athome.lu/location/maison/frameries/id-9365222.html,
+athome,18,1280,196,4,Maison,Ciney (BE),BE,https://www.athome.lu/location/maison/ciney/id-9365021.html,
+athome,18,990,165,3,Maison,Tournai (BE),BE,https://www.athome.lu/location/maison/tournai/id-9364464.html,
+athome,18,890,146,3,Maison,Tournai (BE),BE,https://www.athome.lu/location/maison/tournai/id-9361247.html,
+athome,18,625,84,1,Maison,Tournai (BE),BE,https://www.athome.lu/location/maison/tournai/id-9361246.html,
+athome,18,1700,187,4,Maison,Chaumont-Gistoux (BE),BE,https://www.athome.lu/location/maison/chaumont-gistoux/id-9359064.html,
+athome,18,900,127,3,Maison,Lobbes (BE),BE,https://www.athome.lu/location/maison/lobbes/id-9353722.html,
+athome,18,1600,220,4,Maison,Seneffe (BE),BE,https://www.athome.lu/location/maison/seneffe/id-9352969.html,
+athome,18,1950,100,3,Maison,Mons (BE),BE,https://www.athome.lu/location/maison/mons/id-9351457.html,
+athome,18,750,126,3,Maison,Momignies (BE),BE,https://www.athome.lu/location/maison/momignies/id-9351446.html,
+athome,18,1150,128,3,Maison,Ath (BE),BE,https://www.athome.lu/location/maison/ath/id-9351427.html,
+athome,18,900,62,2,Maison,Ferrières (BE),BE,https://www.athome.lu/location/maison/ferrieres/id-9351406.html,
+athome,18,1650,135,3,Maison,Chaudfontaine (BE),BE,https://www.athome.lu/location/maison/chaudfontaine/id-9350184.html,
+athome,18,1200,220,3,Maison,Celles (BE),BE,https://www.athome.lu/location/maison/celles/id-9341969.html,
+athome,18,1590,75,2,Maison,La Hulpe (BE),BE,https://www.athome.lu/location/maison/la-hulpe/id-9339788.html,
+athome,18,1250,192,3,Maison,Les Bons Villers (BE),BE,https://www.athome.lu/location/maison/les-bons-villers/id-9330598.html,
+athome,18,550,18,1,Maison,Couillet (BE),BE,https://www.athome.lu/location/maison/couillet/id-9328194.html,surface_lt_30m2
+athome,18,700,125,2,Maison,Walcourt (BE),BE,https://www.athome.lu/location/maison/walcourt/id-9328157.html,
+athome,18,1500,114,4,Maison,Ottignies-Louvain-la-Neuve (BE),BE,https://www.athome.lu/location/maison/ottignies-louvain-la-neuve/id-9326963.html,
+athome,19,990,134,2,Maison,Liège (BE),BE,https://www.athome.lu/location/maison/liege/id-9324537.html,
+athome,19,1950,152,3,Maison,Waterloo (BE),BE,https://www.athome.lu/location/maison/waterloo/id-9315796.html,
+athome,19,1250,113,3,Maison,Orp-Jauche (BE),BE,https://www.athome.lu/location/maison/orp-jauche/id-9315395.html,
+athome,19,1240,185,3,Maison,Tournai (BE),BE,https://www.athome.lu/location/maison/tournai/id-9306687.html,
+athome,19,1050,170,3,Maison,Couvin (BE),BE,https://www.athome.lu/location/maison/couvin/id-9299730.html,
+athome,19,1150,84,2,Maison,Lierneux (BE),BE,https://www.athome.lu/location/maison/lierneux/id-9280184.html,
+athome,19,1250,120,3,Maison,Tournai (BE),BE,https://www.athome.lu/location/maison/tournai/id-9278774.html,
+athome,19,1125,121,3,Maison,Brugelette (BE),BE,https://www.athome.lu/location/maison/brugelette/id-9268975.html,
+athome,19,750,,1,Maison,Waterloo (BE),BE,https://www.athome.lu/location/maison/waterloo/id-9246205.html,
+athome,19,925,,2,Maison,Liège (BE),BE,https://www.athome.lu/location/maison/liege/id-9235549.html,
+athome,19,975,89,2,Maison,Durbuy (BE),BE,https://www.athome.lu/location/maison/durbuy/id-9230401.html,
+athome,19,1400,232,4,Maison,Nivelles (BE),BE,https://www.athome.lu/location/maison/nivelles/id-9188431.html,
+athome,19,1400,180,3,Maison,Jurbise (BE),BE,https://www.athome.lu/location/maison/jurbise/id-9165904.html,
+athome,19,950,,,Maison,Estinnes (BE),BE,https://www.athome.lu/location/maison/estinnes/id-9157095.html,
+athome,19,600,83,2,Maison,Liège (BE),BE,https://www.athome.lu/location/maison/liege/id-9134174.html,
+athome,19,900,211,3,Maison,Beloeil (BE),BE,https://www.athome.lu/location/maison/beloeil/id-8994136.html,
+athome,19,995,119,2,Maison,Soignies (BE),BE,https://www.athome.lu/location/maison/soignies/id-8654110.html,
+athome,19,490,40,,Maison,La Barre-de-Monts (FR),FR,https://www.athome.lu/location/maison/la-barre-de-monts/id-6730837.html,rooms_not_bedrooms=3
+athome,19,1095,110,4,Maison,Florennes (BE),BE,https://www.athome.lu/location/maison/florennes/id-9442233.html,
+athome,19,850,116,2,Maison,Tournai (BE),BE,https://www.athome.lu/location/maison/tournai/id-9437740.html,
+athome,20,20000,1283,7,Maison,Grez-Doiceau (BE),BE,https://www.athome.lu/location/maison/grez-doiceau/id-9437525.html,rent_very_high_check
+athome,20,925,,2,Maison,Assesse (BE),BE,https://www.athome.lu/location/maison/assesse/id-9436687.html,
+athome,20,1850,185,4,Maison,Tubize (BE),BE,https://www.athome.lu/location/maison/tubize/id-9435352.html,
+athome,20,1250,122,2,Maison,Enghien (BE),BE,https://www.athome.lu/location/maison/enghien/id-9435329.html,
+athome,20,1200,110,3,Maison,Jalhay (BE),BE,https://www.athome.lu/location/maison/jalhay/id-9434179.html,
+athome,20,1100,120,3,Maison,Eupen (BE),BE,https://www.athome.lu/location/maison/eupen/id-9434121.html,
+athome,20,1250,122,3,Maison,Estaimpuis (BE),BE,https://www.athome.lu/location/maison/estaimpuis/id-9432981.html,
+athome,20,980,190,5,Maison,Mouscron (BE),BE,https://www.athome.lu/location/maison/mouscron/id-9432858.html,
+athome,20,1500,140,3,Maison,Eupen (BE),BE,https://www.athome.lu/location/maison/eupen/id-9432767.html,
+athome,20,1290,120,3,Maison,Binche (BE),BE,https://www.athome.lu/location/maison/binche/id-9432741.html,
+athome,20,1500,199,4,Maison,Vielsalm (BE),BE,https://www.athome.lu/location/maison/vielsalm/id-9432682.html,
+athome,20,1900,450,4,Maison,Tournai (BE),BE,https://www.athome.lu/location/maison/tournai/id-9427065.html,
+athome,20,1750,450,4,Maison,Tournai (BE),BE,https://www.athome.lu/location/maison/tournai/id-9427062.html,
+athome,20,2500,450,4,Maison,Tournai (BE),BE,https://www.athome.lu/location/maison/tournai/id-9427061.html,
+athome,20,1400,170,3,Maison,Tournai (BE),BE,https://www.athome.lu/location/maison/tournai/id-9427046.html,
+athome,20,1450,175,3,Maison,Assesse (BE),BE,https://www.athome.lu/location/maison/assesse/id-9426797.html,
+athome,20,1150,150,3,Maison,Ans (BE),BE,https://www.athome.lu/location/maison/ans/id-9426363.html,
+athome,20,1050,144,2,Maison,Hamois (BE),BE,https://www.athome.lu/location/maison/hamois/id-9424945.html,
+athome,20,955,149,3,Maison,Seraing (BE),BE,https://www.athome.lu/location/maison/seraing/id-9424225.html,
+athome,20,1295,145,3,Maison,Enghien (BE),BE,https://www.athome.lu/location/maison/enghien/id-9424168.html,
+athome,21,850,114,2,Maison,Beauraing (BE),BE,https://www.athome.lu/location/maison/beauraing/id-9424080.html,
+athome,21,950,105,3,Maison,Florennes (BE),BE,https://www.athome.lu/location/maison/florennes/id-9424056.html,
+athome,21,925,104,,Maison,Dour (BE),BE,https://www.athome.lu/location/maison/dour/id-9419725.html,
+athome,21,420,186,1,Maison,Tournai (BE),BE,https://www.athome.lu/location/maison/tournai/id-9419497.html,eur_m2_lt_3.5_maybe_per_room
+athome,21,1100,132,3,Maison,Vielsalm (BE),BE,https://www.athome.lu/location/maison/vielsalm/id-9419210.html,
+athome,21,1250,180,3,Maison,Ham-sur-Heure-Nalinnes (BE),BE,https://www.athome.lu/location/maison/ham-sur-heure-nalinnes/id-9410151.html,
+athome,21,700,,2,Maison,Frameries (BE),BE,https://www.athome.lu/location/maison/frameries/id-9410122.html,
+athome,21,775,142,2,Maison,Couvin (BE),BE,https://www.athome.lu/location/maison/couvin/id-9409749.html,
+athome,21,1250,210,,Maison,Nalbach (DE),DE,https://www.athome.lu/location/maison/nalbach/id-9408667.html,rooms_not_bedrooms=7
+athome,21,1880,150,3,Maison,La Hulpe (BE),BE,https://www.athome.lu/location/maison/la-hulpe/id-9408074.html,
+athome,21,1600,140,3,Maison,Wavre (BE),BE,https://www.athome.lu/location/maison/wavre/id-9407937.html,
+athome,21,875,,2,Maison,Estaimpuis (BE),BE,https://www.athome.lu/location/maison/estaimpuis/id-9405858.html,
+athome,21,1250,166,3,Maison,Tournai (BE),BE,https://www.athome.lu/location/maison/tournai/id-9399195.html,
+athome,21,2850,310,5,Maison,Waterloo (BE),BE,https://www.athome.lu/location/maison/waterloo/id-9397945.html,
+athome,21,3250,200,,Maison,Chièvres (BE),BE,https://www.athome.lu/location/maison/chievres/id-9397930.html,
+athome,21,1890,150,4,Maison,Welkenraedt (BE),BE,https://www.athome.lu/location/maison/welkenraedt/id-9397659.html,
+athome,21,4500,300,,Villa,St. Ingbert (DE),DE,https://www.athome.lu/location/maison/st-ingbert/id-9396494.html,rooms_not_bedrooms=5
+athome,21,1300,171,3,Maison,Tournai (BE),BE,https://www.athome.lu/location/maison/tournai/id-9395630.html,
+athome,21,3950,286,4,Maison,Waterloo (BE),BE,https://www.athome.lu/location/maison/waterloo/id-9394056.html,
+athome,21,4500,230,5,Maison,Braine-l'Alleud (BE),BE,https://www.athome.lu/location/maison/braine-l-alleud/id-9389341.html,
+athome,22,3200,230,4,Maison,Waterloo (BE),BE,https://www.athome.lu/location/maison/waterloo/id-9389340.html,
+athome,22,1800,271,5,Maison,Profondeville (BE),BE,https://www.athome.lu/location/maison/profondeville/id-9386779.html,
+athome,22,1100,137,3,Maison,Namur (BE),BE,https://www.athome.lu/location/maison/namur/id-9385458.html,
+athome,22,1100,,2,Maison,Jurbise (BE),BE,https://www.athome.lu/location/maison/jurbise/id-9385445.html,
+athome,22,1000,110,3,Maison,Tournai (BE),BE,https://www.athome.lu/location/maison/tournai/id-9374996.html,
+athome,22,970,137,2,Maison,Estaimpuis (BE),BE,https://www.athome.lu/location/maison/estaimpuis/id-9373907.html,
+athome,22,920,95,2,Maison,Plombières (BE),BE,https://www.athome.lu/location/maison/plombieres/id-9373825.html,
+athome,22,895,100,3,Maison,Estaimpuis (BE),BE,https://www.athome.lu/location/maison/estaimpuis/id-9365305.html,
+athome,22,825,110,2,Maison,Ecaussinnes (BE),BE,https://www.athome.lu/location/maison/ecaussinnes/id-9364545.html,
+athome,22,1700,116,3,Maison,Habay (BE),BE,https://www.athome.lu/location/maison/habay/id-9354481.html,
+athome,22,1650,300,3,Maison,Soignies (BE),BE,https://www.athome.lu/location/maison/soignies/id-9353117.html,
+athome,22,920,165,3,Maison,Doische (BE),BE,https://www.athome.lu/location/maison/doische/id-9353048.html,
+athome,22,1600,220,4,Maison,Nivelles (BE),BE,https://www.athome.lu/location/maison/nivelles/id-9352971.html,
+athome,22,1050,180,5,Maison,Montignies-sur-Sambre (BE),BE,https://www.athome.lu/location/maison/montignies-sur-sambre/id-9351511.html,
+athome,22,1100,176,3,Maison,Beaumont (BE),BE,https://www.athome.lu/location/maison/beaumont/id-9350192.html,
+athome,22,1650,180,3,Maison,Mont-Saint-Guibert (BE),BE,https://www.athome.lu/location/maison/mont-saint-guibert/id-9348892.html,
+athome,22,1690,175,3,Maison,Raeren (BE),BE,https://www.athome.lu/location/maison/raeren/id-9329557.html,
+athome,22,1275,140,3,Maison,Dinant (BE),BE,https://www.athome.lu/location/maison/dinant/id-9319438.html,
+athome,22,1250,,,Maison,Estinnes (BE),BE,https://www.athome.lu/location/maison/estinnes/id-9309026.html,
+athome,22,850,147,3,Maison,Philippeville (BE),BE,https://www.athome.lu/location/maison/philippeville/id-9308865.html,
+athome,23,1250,175,3,Maison,Gembloux (BE),BE,https://www.athome.lu/location/maison/gembloux/id-9298770.html,
+athome,23,950,102,1,Maison,Pecq (BE),BE,https://www.athome.lu/location/maison/pecq/id-9287788.html,
+athome,23,460,175,5,Maison,Liège (BE),BE,https://www.athome.lu/location/maison/liege/id-9276297.html,eur_m2_lt_3.5_maybe_per_room
+athome,23,460,175,5,Maison,Liège (BE),BE,https://www.athome.lu/location/maison/liege/id-9276296.html,eur_m2_lt_3.5_maybe_per_room
+athome,23,1160,120,3,Maison,Tournai (BE),BE,https://www.athome.lu/location/maison/tournai/id-9267846.html,
+athome,23,510,223,4,Maison,Tournai (BE),BE,https://www.athome.lu/location/maison/tournai/id-9206574.html,eur_m2_lt_3.5_maybe_per_room
+athome,23,1700,,3,Maison,Mouscron (BE),BE,https://www.athome.lu/location/maison/mouscron/id-8993996.html,
+athome,23,2100,150,3,Maison,Waterloo (BE),BE,https://www.athome.lu/location/maison/waterloo/id-8664450.html,
+athome,23,630,77,,Maison,La Barre-de-Monts (FR),FR,https://www.athome.lu/location/maison/la-barre-de-monts/id-6193981.html,rooms_not_bedrooms=4
+athome,23,1100,,3,Maison,Estaimpuis (BE),BE,https://www.athome.lu/location/maison/estaimpuis/id-9434389.html,
+athome,23,1450,145,3,Maison,Chaumont-Gistoux (BE),BE,https://www.athome.lu/location/maison/chaumont-gistoux/id-9434342.html,
+athome,23,3400,250,6,Maison,Waterloo (BE),BE,https://www.athome.lu/location/maison/waterloo/id-9427031.html,
+athome,23,1475,127,3,Maison,Hamois (BE),BE,https://www.athome.lu/location/maison/hamois/id-9426320.html,
+athome,23,1350,124,3,Maison,Lens (BE),BE,https://www.athome.lu/location/maison/lens/id-9425007.html,
+athome,23,1100,110,2,Maison,Eupen (BE),BE,https://www.athome.lu/location/maison/eupen/id-9419589.html,
+athome,23,3500,265,6,Maison,Waterloo (BE),BE,https://www.athome.lu/location/maison/waterloo/id-9409623.html,
+athome,23,3600,260,5,Maison,Waterloo (BE),BE,https://www.athome.lu/location/maison/waterloo/id-9407044.html,
+athome,23,3700,220,4,Maison,Waterloo (BE),BE,https://www.athome.lu/location/maison/waterloo/id-9395550.html,
+athome,23,700,70,2,Maison,Châtelet (BE),BE,https://www.athome.lu/location/maison/chatelet/id-9362999.html,
+athome,23,800,,,Maison,Morlanwelz (BE),BE,https://www.athome.lu/location/maison/morlanwelz/id-9339954.html,
+athome,24,350,,2,Maison,Montignies-sur-Sambre (BE),BE,https://www.athome.lu/location/maison/montignies-sur-sambre/id-9326826.html,
+athome,24,1011,55,1,Maison,Enghien (BE),BE,https://www.athome.lu/location/maison/enghien/id-8131615.html,
+athome,24,510,80,,Maison,Beauvoir-sur-Mer (FR),FR,https://www.athome.lu/location/maison/beauvoir-sur-mer/id-6193984.html,rooms_not_bedrooms=3

@@ -1,0 +1,85 @@
+source,loyer_eur,surface_m2,chambres,localite,commune,zone,type,url
+athome,2800,123,3,Clervaux,Clervaux,Nord,Maison,https://www.athome.lu/location/maison/clervaux/id-9378787.html
+athome,3600,158,4,Senningen,Niederanven,LC,Maison individuelle,https://www.athome.lu/location/maison/senningen/id-9396135.html
+athome,2950,183,4,Wasserbillig,Mertert,Est,Maison individuelle,https://www.athome.lu/location/maison/wasserbillig/id-9434046.html
+athome,4300,180,4,Luxembourg-Gasperich - Cloche d'or,Luxembourg,LV,Maison,https://www.athome.lu/location/maison/luxembourg/id-9424609.html
+athome,7200,270,5,Luxembourg-Belair,Luxembourg,LV,Maison,https://www.athome.lu/location/maison/luxembourg/id-9387556.html
+athome,3500,238,5,Ernzen,Larochette,Peri,Maison mitoyenne,https://www.athome.lu/location/maison/ernzen/id-9425946.html
+athome,3500,140,4,Esch-sur-Alzette,Esch-sur-Alzette,Sud,Maison mitoyenne,https://www.athome.lu/location/maison/esch-sur-alzette/id-9327833.html
+athome,5000,308,8,Bertrange,Bertrange,LC,Maison individuelle,https://www.athome.lu/location/maison/bertrange/id-9304827.html
+athome,2600,106,3,Moesdorf,Mersch,Peri,Maison mitoyenne,https://www.athome.lu/location/maison/moesdorf/id-9335780.html
+athome,3200,125,4,Luxembourg-Cents,Luxembourg,LV,Bungalow,https://www.athome.lu/location/maison/luxembourg/id-9423383.html
+athome,5700,300,5,Luxembourg-Belair,Luxembourg,LV,Maison de maître,https://www.athome.lu/location/maison/luxembourg/id-8514436.html
+athome,2800,202,4,Ettelbruck,Ettelbruck,Nord,Maison individuelle,https://www.athome.lu/location/maison/ettelbruck/id-9406678.html
+athome,2200,180,3,Eselborn,Clervaux,Nord,Maison individuelle,https://www.athome.lu/location/maison/eselborn/id-9405350.html
+athome,1250,80,2,Alscheid,Kiischpelt,Nord,Maison individuelle,https://www.athome.lu/location/maison/alscheid/id-9350571.html
+athome,2400,140,3,Doncols,Winseler,Nord,Maison,https://www.athome.lu/location/maison/doncols/id-9306271.html
+athome,2800,110,3,Mamer,Mamer,Peri,Maison,https://www.athome.lu/location/maison/mamer/id-9188561.html
+athome,3500,270,4,Senningerberg,Niederanven,LC,Maison,https://www.athome.lu/location/maison/senningerberg/id-9441767.html
+athome,3650,220,4,Differdange,Differdange,Sud,Maison,https://www.athome.lu/location/maison/differdange/id-9313559.html
+athome,5400,340,5,Leudelange,Leudelange,Sud,Maison,https://www.athome.lu/location/maison/leudelange/id-9406676.html
+athome,8900,314,5,Luxembourg-Belair,Luxembourg,LV,Villa,https://www.athome.lu/location/maison/luxembourg/id-9337197.html
+athome,3200,156,3,Grass,Steinfort,Peri,Maison,https://www.athome.lu/location/maison/grass/id-9443224.html
+athome,4400,372,4,Dippach,Dippach,Peri,Maison,https://www.athome.lu/location/maison/dippach/id-9388110.html
+athome,3950,196,3,Luxembourg-Bonnevoie,Luxembourg,LV,Maison,https://www.athome.lu/location/maison/luxembourg/id-9326151.html
+athome,5500,355,4,Mertert,Mertert,Est,Villa,https://www.athome.lu/location/maison/mertert/id-9340374.html
+athome,3950,155,3,Niederanven,Niederanven,LC,Maison jumelée,https://www.athome.lu/location/maison/niederanven/id-9369558.html
+athome,2750,205,4,Wahlhausen,Parc Hosingen,Nord,Maison individuelle,https://www.athome.lu/location/maison/wahlhausen/id-9361862.html
+athome,10000,364,4,Mondercange,Mondercange,Sud,,https://www.athome.lu/location/maison/mondercange/id-8642164.html
+athome,2500,145,3,Esch-sur-Alzette,Esch-sur-Alzette,Sud,Maison mitoyenne,https://www.athome.lu/location/maison/esch-sur-alzette/id-9442088.html
+athome,2900,122,3,Hollenfels,Helperknapp,Peri,Maison mitoyenne,https://www.athome.lu/location/maison/hollenfels/id-9127945.html
+athome,3000,140,3,Bettembourg,Bettembourg,Sud,Maison mitoyenne,https://www.athome.lu/location/maison/bettembourg/id-9180897.html
+athome,4500,195,5,Luxembourg-Belair,Luxembourg,LV,,https://www.athome.lu/location/maison/luxembourg/id-9394489.html
+athome,4500,250,6,Sandweiler,Sandweiler,LC,Maison individuelle,https://www.athome.lu/location/maison/sandweiler/id-9217045.html
+athome,2950,135,4,Bereldange,Walferdange,LC,Maison mitoyenne,https://www.athome.lu/location/maison/bereldange/id-8993872.html
+athome,4500,186,3,Luxembourg-Weimershof,Luxembourg,LV,Maison individuelle,https://www.athome.lu/location/maison/luxembourg/id-9393600.html
+athome,5500,210,6,Luxembourg-Limpertsberg,Luxembourg,LV,Maison mitoyenne,https://www.athome.lu/location/maison/luxembourg/id-9377358.html
+athome,3600,200,2,Luxembourg-Centre ville,Luxembourg,LV,Maison individuelle,https://www.athome.lu/location/maison/luxembourg/id-9095282.html
+athome,5000,300,6,Luxembourg-Merl,Luxembourg,LV,Maison jumelée,https://www.athome.lu/location/maison/luxembourg/id-9383190.html
+athome,4800,369,5,Niederanven,Niederanven,LC,Maison individuelle,https://www.athome.lu/location/maison/niederanven/id-9393903.html
+athome,3500,180,4,Holzem,Mamer,Peri,Maison individuelle,https://www.athome.lu/location/maison/holzem/id-9304508.html
+athome,5900,251,4,Luxembourg-Merl,Luxembourg,LV,Maison,https://www.athome.lu/location/maison/luxembourg/id-9255052.html
+athome,3900,140,3,Mamer,Mamer,Peri,Maison,https://www.athome.lu/location/maison/mamer/id-9255013.html
+athome,3800,150,3,Howald,Hesperange,LC,Maison,https://www.athome.lu/location/maison/howald/id-9193044.html
+athome,2600,191,4,Erpeldange-sur-Sûre,Erpeldange-sur-Sûre,Nord,Maison individuelle,https://www.athome.lu/location/maison/erpeldange-sur-sure/id-9398852.html
+athome,3200,225,4,Bourglinster,Junglinster,Est,Maison individuelle,https://www.athome.lu/location/maison/bourglinster/id-9340674.html
+athome,5500,280,5,Luxembourg-Weimerskirch,Luxembourg,LV,Maison de maître,https://www.athome.lu/location/maison/luxembourg/id-9279509.html
+athome,3500,120,3,Sandweiler,Sandweiler,LC,Maison,https://www.athome.lu/location/maison/sandweiler/id-9425904.html
+athome,3800,135,3,Luxembourg-Beggen,Luxembourg,LV,Maison,https://www.athome.lu/location/maison/luxembourg/id-9393882.html
+athome,4500,328,6,Esch-sur-Alzette,Esch-sur-Alzette,Sud,Maison,https://www.athome.lu/location/maison/esch-sur-alzette/id-7026060.html
+athome,5250,165,4,Mamer,Mamer,Peri,Maison,https://www.athome.lu/location/maison/mamer/id-9389728.html
+athome,4000,126,4,Lorentzweiler,Lorentzweiler,Peri,Maison,https://www.athome.lu/location/maison/lorentzweiler/id-9431664.html
+athome,2800,170,5,Remich,Remich,Est,Maison mitoyenne,https://www.athome.lu/location/maison/remich/id-9409262.html
+athome,4500,160,4,Luxembourg-Gasperich - Cloche d'or,Luxembourg,LV,Maison individuelle,https://www.athome.lu/location/maison/luxembourg/id-9431184.html
+athome,2900,113,3,Luxembourg-Beggen,Luxembourg,LV,Maison individuelle,https://www.athome.lu/location/maison/luxembourg/id-9396489.html
+athome,4250,275,5,Koerich,Koerich,Peri,Maison individuelle,https://www.athome.lu/location/maison/koerich/id-9394875.html
+athome,3500,150,5,Esch-sur-Alzette,Esch-sur-Alzette,Sud,Maison mitoyenne,https://www.athome.lu/location/maison/esch-sur-alzette/id-9362604.html
+athome,3250,180,3,Hobscheid,Habscht,Peri,Maison jumelée,https://www.athome.lu/location/maison/hobscheid/id-9271065.html
+athome,3500,200,4,Senningerberg,Niederanven,LC,Maison jumelée,https://www.athome.lu/location/maison/senningerberg/id-9399660.html
+athome,2990,150,3,Bascharage,Käerjeng,Peri,Maison,https://www.athome.lu/location/maison/bascharage/id-9383734.html
+athome,3600,180,3,Nospelt,Kehlen,Peri,Maison jumelée,https://www.athome.lu/location/maison/nospelt/id-9299415.html
+athome,4200,200,4,Mamer,Mamer,Peri,Maison mitoyenne,https://www.athome.lu/location/maison/mamer/id-9407537.html
+athome,3550,160,4,Dalheim,Dalheim,Est,Maison jumelée,https://www.athome.lu/location/maison/dalheim/id-9328404.html
+athome,3200,165,4,Lintgen,Lintgen,Peri,Maison,https://www.athome.lu/location/maison/lintgen/id-3002167.html
+athome,3500,139,4,Pétange,Pétange,Sud,Maison mitoyenne,https://www.athome.lu/location/maison/petange/id-9418516.html
+athome,2950,150,4,Grosbous,Groussbus-Wal,Nord,Maison jumelée,https://www.athome.lu/location/maison/grosbous/id-9297017.html
+athome,3100,120,3,Luxembourg-Cents,Luxembourg,LV,Maison mitoyenne,https://www.athome.lu/location/maison/luxembourg/id-9134861.html
+athome,3350,180,3,Soleuvre,Sanem,Sud,Maison mitoyenne,https://www.athome.lu/location/maison/soleuvre/id-9399604.html
+athome,3150,182,5,Grevenmacher,Grevenmacher,Est,Maison individuelle,https://www.athome.lu/location/maison/grevenmacher/id-8078509.html
+athome,2900,126,3,Leudelange,Leudelange,Sud,Maison individuelle,https://www.athome.lu/location/maison/leudelange/id-9442898.html
+athome,6200,260,4,Luxembourg-Centre ville,Luxembourg,LV,Maison,https://www.athome.lu/location/maison/luxembourg/id-6087868.html
+athome,5000,250,4,Beringen (Mersch),Mersch,Peri,Maison individuelle,https://www.athome.lu/location/maison/beringen-mersch/id-9383268.html
+athome,6900,218,,Luxembourg-Limpertsberg,Luxembourg,LV,Maison individuelle,https://www.athome.lu/location/maison/luxembourg/id-8580147.html
+athome,2800,135,4,Rippig,Bech,Est,Maison individuelle,https://www.athome.lu/location/maison/rippig/id-9319011.html
+athome,1900,105,3,Wilwerwiltz,Kiischpelt,Nord,Maison individuelle,https://www.athome.lu/location/maison/wilwerwiltz/id-7615298.html
+athome,5200,240,4,Strassen,Strassen,LC,Maison individuelle,https://www.athome.lu/location/maison/strassen/id-9426755.html
+athome,4000,166,,Niederanven,Niederanven,LC,Maison individuelle,https://www.athome.lu/location/maison/niederanven/id-9349364.html
+athome,4500,208,4,Heisdorf,Steinsel,LC,Maison individuelle,https://www.athome.lu/location/maison/heisdorf/id-9384740.html
+athome,4500,259,5,Koedange,Junglinster,Est,Maison,https://www.athome.lu/location/maison/koedange/id-9388211.html
+wortimmo,3250,200,4,Leudelange,Leudelange,Sud,,https://www.wortimmo.lu/fr/location-maison-sud-leudelange-id_564372
+wortimmo,2500,200,,Schengen,Schengen,Est,,https://www.wortimmo.lu/fr/location-maison-de-maitre-est-schengen-id_589125
+wortimmo,1700,100,2,Vichten,Vichten,Nord,,https://www.wortimmo.lu/fr/location-maison-ouest-vichten-id_579687
+wortimmo,1400,80,2,Vichten,Vichten,Nord,,https://www.wortimmo.lu/fr/location-maison-ouest-vichten-id_579686
+wortimmo,3650,230,4,Differdange,Differdange,Sud,,https://www.wortimmo.lu/fr/location-maison-sud-differdange-id_586752
+wortimmo,2600,150,3,Roodt-sur-Syre,Betzdorf,Est,,https://www.wortimmo.lu/fr/location-maison-est-roodt-sur-syre-id_567494
+wortimmo,5800,266,4,Bridel,Kopstal,Peri,,https://www.wortimmo.lu/fr/location-maison-ouest-bridel-id_555516
