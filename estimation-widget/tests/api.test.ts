@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { handleEstimate } from '../src/server/handler';
 import { resetMemoryLimiter } from '../src/shared/ratelimit';
+import config from '../config.json';
 import { body, DATA, PARAMS } from './helpers';
 
 const URL_API = 'https://estimation.example.pages.dev/api/estimate';
@@ -93,12 +94,13 @@ describe('API /api/estimate', () => {
     expect(Object.keys(json.errors).sort()).toEqual(['commune', 'energie', 'surface']);
   });
 
-  it('Au plus 5 envois par heure pour une même IP', async () => {
+  it(`Au plus ${config.rateLimitPerHour} envois par heure pour une même IP`, async () => {
     const { fetchMock, env, deps } = setup();
-    for (let i = 0; i < 5; i++) expect((await handleEstimate(req(body()), env, deps)).status).toBe(200);
+    const max = config.rateLimitPerHour;
+    for (let i = 0; i < max; i++) expect((await handleEstimate(req(body()), env, deps)).status).toBe(200);
     expect((await handleEstimate(req(body()), env, deps)).status).toBe(429);
     expect((await handleEstimate(req(body(), '198.51.100.1'), env, deps)).status).toBe(200);
-    expect(fetchMock).toHaveBeenCalledTimes(6);
+    expect(fetchMock).toHaveBeenCalledTimes(max + 1);
   });
 
   it('Commune sans assez de données : pas de prix, mais le lead part quand même', async () => {

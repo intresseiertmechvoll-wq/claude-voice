@@ -11,6 +11,7 @@ import { estimate } from '../src/shared/engine';
 import { resetMemoryLimiter } from '../src/shared/ratelimit';
 import { checkFields, normalizePhone, validateSubmission } from '../src/shared/validation';
 import { resolveCommune, searchCommunes } from '../src/ui/combobox';
+import config from '../config.json';
 import { apartment, body, DATA, PARAMS } from './helpers';
 
 const BASE = 'https://estimation.example.pages.dev';
@@ -63,11 +64,11 @@ describe('Saisie plus tolérante, sans laisser passer de mauvaises données', ()
 });
 
 describe('Envoi et limites', () => {
-  it('Resend injoignable : réponse JSON 502, et l’essai ne compte pas dans la limite de 5 par heure', async () => {
+  it('Resend injoignable : réponse JSON 502, et l’essai ne compte pas dans la limite par heure', async () => {
     const down = vi.fn(async () => {
       throw new TypeError('failed to lookup address');
     });
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i <= config.rateLimitPerHour; i++) {
       const res = await handleEstimate(post('/api/estimate', body()), env, deps(down));
       expect(res.status).toBe(502);
       expect(((await res.json()) as { error: string }).error).toBe('send');

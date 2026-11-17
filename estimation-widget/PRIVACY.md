@@ -27,7 +27,7 @@ L'estimation calculée (3 valeurs et détail du calcul) est ajoutée à l'e-mail
 
 1. Calculer et afficher une estimation indicative du bien.
 2. Transmettre la demande à ImmoBuild Kohn pour recontacter la personne au sujet de son bien (estimation sur place, mise en vente ou en location).
-3. Protéger l'outil contre les abus (anti-robot, limite de 5 envois par heure et par adresse IP).
+3. Protéger l'outil contre les abus (anti-robot, limite de 20 envois par heure et par adresse IP).
 
 Base légale proposée : le **consentement** (case à cocher obligatoire, non cochée au départ) pour 1 et 2 ; l'**intérêt légitime** (sécurité) pour 3. **À valider** avec ta politique actuelle.
 
@@ -52,7 +52,7 @@ Base légale proposée : le **consentement** (case à cocher obligatoire, non co
 
 ## 4. Adresse IP et limite d'envois
 
-- Pour bloquer les abus, l'outil compte les envois par adresse IP : au plus 5 par heure.
+- Pour bloquer les abus, l'outil compte les envois par adresse IP : au plus 20 par heure.
 - Si Cloudflare KV est activé (README, 3.4) : l'outil enregistre une **empreinte** de l'adresse IP (SHA-256, l'adresse elle-même n'est pas écrite) et un compteur. Ils s'effacent automatiquement après **1 heure**.
 - Sans KV : le compteur reste en mémoire sur le serveur Cloudflare, sans écriture.
 - L'adresse IP ne figure pas dans l'e-mail du lead.

@@ -116,7 +116,7 @@ Les valeurs sont chiffrées chez Cloudflare. La clé n'est jamais dans le code. 
 3. API Keys → Create API key → droits « Sending access » → copie la clé dans `RESEND_API_KEY` (3.2).
 4. L'adresse `FROM_EMAIL` doit être sur le domaine validé.
 
-### 3.4 La limite de 5 envois par heure et par IP (gratuit)
+### 3.4 La limite de 20 envois par heure et par IP (gratuit)
 
 Sans réglage, la limite fonctionne déjà, mais en mémoire : chaque serveur Cloudflare compte de son côté, et le compteur repart à zéro quand le serveur redémarre. Pour un compteur fiable et partagé, active Cloudflare KV (gratuit : 100 000 lectures et 1 000 écritures par jour, largement assez ici) :
 
@@ -319,9 +319,9 @@ Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'a
 
 - Vérification de tous les champs sur le serveur (le navigateur ne fait qu'aider à la saisie).
 - Champ caché anti-robot (honeypot) : s'il est rempli, rien n'est calculé ni envoyé.
-- Au plus 5 envois par heure pour une même IP (3.4).
+- Au plus 20 envois par heure pour une même IP (3.4, réglable dans `config.json` → `rateLimitPerHour`). Pourquoi 20 et pas moins : sur les réseaux mobiles, beaucoup de clients peuvent partager la même adresse IP ; mieux vaut quelques e-mails de robot en plus qu'un vrai lead bloqué. La vraie protection contre les robots, ce sont le champ caché et le contrôle d'origine.
 - Le formulaire n'est accepté que depuis la page de l'outil elle-même (contrôle de l'en-tête `Origin`).
-- Le résultat n'est renvoyé qu'après des coordonnées valides **et** l'envoi réussi de l'e-mail. Si Resend échoue ou ne répond pas en 10 secondes, le visiteur voit un message d'erreur avec ton adresse e-mail et peut réessayer (l'essai raté ne compte pas dans la limite de 5) : le lead n'est jamais perdu en silence.
+- Le résultat n'est renvoyé qu'après des coordonnées valides **et** l'envoi réussi de l'e-mail. Si Resend échoue ou ne répond pas en 10 secondes, le visiteur voit un message d'erreur avec ton adresse e-mail et peut réessayer (l'essai raté ne compte pas dans la limite) : le lead n'est jamais perdu en silence.
 - La rue, le nom et les autres champs d'une ligne ne peuvent pas contenir de retour à la ligne ni de caractères invisibles : impossible d'imiter une rubrique de l'e-mail. Le message libre est mis en retrait.
 - Aucune donnée n'est stockée ailleurs que dans l'e-mail (et, si KV est activé, une empreinte d'IP effacée après 1 heure).
 - Détails pour ta politique de confidentialité : `PRIVACY.md`.
