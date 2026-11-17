@@ -66,7 +66,7 @@ Fiches détaillées lues (8 annonces du Sud) :
 | Schifflange, 47 m² | 1,01 | A | oui | ? | 2016, rez-de-chaussée |
 
 Ce que je constate : les annonces nettement au-dessus de la méthode sont **récentes (A/B) avec parking compris**, parfois meublées. L'ancien sans extras est au niveau de la méthode. Exception : Schifflange (A, 2016, parking compris, rez-de-chaussée) est lui aussi au niveau de la méthode.
-Ce que je suppose : le parking compris vaut environ 100 à 200 € par mois et par place dans le Sud ; la classe A/B, le neuf et le meublé ajoutent chacun quelques pour cent. Huit fiches ne suffisent pas pour chiffrer ces effets : ce seront des **propositions à valider par Jay**.
+Ce que je suppose : le parking compris vaut environ 100 à 200 € par mois et par place dans le Sud ; la classe A/B, le neuf et le meublé ajoutent chacun quelques pour cent. Huit fiches ne suffisent pas pour chiffrer ces effets : ce seront des **propositions à valider par Jason**.
 Ce que je ne sais pas : combien de ces loyers demandés seront effectivement signés. Le rapport n°24 donne 22,59 €/m² pour les baux signés en 2024-2025 dans le Sud ; l'écart avec le demandé n'est pas mesuré pour les appartements seuls.
 
 Studios : la méthode les sous-estime nettement (30 m² → 1,66 ; 28 m² → 1,22 à 1,50 ; 33 m² → 1,32). La classe « moins de 50 m² » du rapport mélange 30 et 49 m², et les studios sont souvent meublés. Proposition : fiabilité « limitée » sous 40 m², ou un supplément studio à valider.
@@ -80,9 +80,9 @@ Correction : on place chaque médiane au centre de sa classe (40, 60, 80, 100, 1
 ## 5. Ce que j'en conclus pour l'outil
 
 1. **La méthode de base tient** pour un appartement standard, ancien, sans parking : c'est le niveau des baux signés récemment, et les annonces simples tombent dessus.
-2. **Elle doit être complétée** par des ajustements chiffrés pour le parking (en €/mois par place), la classe énergétique, le meublé et le neuf. Sans eux, l'outil sous-estime les biens récents : 5 des 8 fiches détaillées (A/B avec parking) demandent 36 à 66 % de plus que la méthode. Ce n'est pas un détail : c'est le profil type des biens que Jay voudra gérer.
+2. **Elle doit être complétée** par des ajustements chiffrés pour le parking (en €/mois par place), la classe énergétique, le meublé et le neuf. Sans eux, l'outil sous-estime les biens récents : 5 des 8 fiches détaillées (A/B avec parking) demandent 36 à 66 % de plus que la méthode. Ce n'est pas un détail : c'est le profil type des biens que Jason voudra gérer.
 3. **La fourchette doit être plus large** : environ – 10 % / + 15 % autour du milieu, au lieu de ± 8 %. Même avec des ajustements, les loyers demandés pour des biens semblables varient beaucoup.
-4. **Choix à faire par Jay** : afficher le niveau « loyer signé » (prudent, ce que la méthode donne) ou le niveau « loyer demandé en annonce » (environ 15 à 20 % plus haut). Ma recommandation : milieu = loyer signé + ajustements, haut de fourchette = niveau des annonces, et le dire en une phrase dans le résultat.
+4. **Choix à faire par Jason** : afficher le niveau « loyer signé » (prudent, ce que la méthode donne) ou le niveau « loyer demandé en annonce » (environ 15 à 20 % plus haut). Ma recommandation : milieu = loyer signé + ajustements, haut de fourchette = niveau des annonces, et le dire en une phrase dans le résultat.
 
 ## 6. Repères immotop (à titre indicatif seulement)
 
@@ -169,7 +169,7 @@ Modèle des annonces de maisons : log(loyer) selon la zone et log(surface). Quan
 
 Limites : 10 à 19 maisons par zone ; ce sont des loyers **demandés** ; il n'existe pas de loyers signés de maisons par région (le rapport n°24 ne donne que la répartition nationale des loyers mensuels de 750 maisons).
 
-## Proposition de fourchette (à valider par Jay)
+## Proposition de fourchette (à valider par Jason)
 
 Même logique pour les deux types de biens :
 

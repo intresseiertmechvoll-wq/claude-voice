@@ -6,7 +6,7 @@ Date de l'analyse : 17/11/2026. Objectif : savoir si les données publiques perm
 
 - Appartements : oui, mais **pas** avec le loyer annoncé au m² par commune (biaisé, voir partie 2). Méthode proposée : loyers réels de l'enquête « cadastre des loyers » (canton × surface), mis à jour avec l'indice officiel des loyers annoncés (partie 5).
 - Maisons : les données officielles sont trop rares (4 communes publiées). **Mise à jour 17/11/2026 : chiffre possible** avec un modèle construit sur 84 annonces de maisons au Luxembourg (atHome + wortimmo), cohérent avec la moyenne nationale de l'Observatoire (20,0 contre 19,77 €/m²). Fourchette large (± 19 % d'écart typique). Détail dans `controle-annonces.md`.
-- Meublé, balcon, parking : aucune donnée officielle. Coefficients à proposer par Jay.
+- Meublé, balcon, parking : aucune donnée officielle. Coefficients à proposer par Jason.
 - **Contrôle sur 87 annonces réelles** (atHome, 17/11/2026, détail dans `controle-annonces.md`) : les loyers demandés sont en médiane 18 % au-dessus de la méthode de base. Les appartements anciens sans extras tombent dessus ; les biens récents A/B avec parking compris sont 35 à 65 % plus haut. Conséquences : facteur de surface interpolé, ajustements parking / énergie / meublé indispensables, fourchette plus large (– 10 % / + 15 %).
 - **Échantillon élargi à 350 appartements** (même jour) : les loyers demandés sont 17 % au-dessus de la méthode, de façon stable dans toutes les zones et toutes les surfaces. La méthode est donc bonne pour la structure (lieu, surface) ; le niveau « annonce » s'obtient avec un facteur 1,17. Proposition de fourchette commune appartements / maisons : `controle-annonces.md`, dernière partie.
 
@@ -137,7 +137,7 @@ Limite : le nombre de réponses par canton n'est pas publié. Pour les petits ca
 - Rapport n°24 : 750 maisons, mais seulement une répartition des loyers mensuels (30 % au-dessus de 2 500 €, 15 % sous 1 000 €). **Aucun loyer au m² par zone ou par surface.**
 - Logement en chiffres n°20 : l'indice des maisons est « plus volatil », –3,1 % sur un an.
 
-**Proposition : pas de chiffre pour les maisons dans la V1.** Le visiteur décrit sa maison, Jay donne une estimation personnelle (comme les communes « sans données » dans l'outil d'estimation).
+**Proposition : pas de chiffre pour les maisons dans la V1.** Le visiteur décrit sa maison, Jason donne une estimation personnelle (comme les communes « sans données » dans l'outil d'estimation).
 
 ---
 
@@ -151,7 +151,7 @@ loyer au m² = médiane du canton                                    (rapport n�
                                   les centres de classe 40, 60, 80, 100, 120, 145 m², voir controle-annonces.md partie 4)
             × facteur bail récent = baux 2024-2025 ÷ tous les baux, de la zone          (graphique 10)
             × mise à jour indice = dernier indice trimestriel ÷ moyenne 2024-2025      (data.public.lu, CC0)
-            × ajustements du bien (énergie, état, meublé, extérieur, parking)          (params.json, à valider par Jay)
+            × ajustements du bien (énergie, état, meublé, extérieur, parking)          (params.json, à valider par Jason)
 loyer mensuel = loyer au m² × surface, arrondi à 50 €
 fourchette : basse / milieu / haute autour de ce loyer (proposition après contrôle : – 10 % / + 15 %)
 ```
@@ -167,7 +167,7 @@ fourchette : basse / milieu / haute autour de ce loyer (proposition après contr
 
 Pour comparer : la méthode « €/m² annoncé de la commune » donnerait 2 430 €.
 
-Contrôle sur annonces (17/11/2026) : à Dudelange, un 60 m² ancien sans parking est demandé 1 400 € (méthode : 1 460 €), un 93 m² classe F avec 1 parking 1 950 € (méthode : 1 900 €), un 85 m² classe A meublé avec 2 parkings 2 500 € (méthode : 1 810 €). Détails dans `controle-annonces.md`. Vérification complémentaire utile : Jay saisit 3 à 5 biens qu'il a loués récemment.
+Contrôle sur annonces (17/11/2026) : à Dudelange, un 60 m² ancien sans parking est demandé 1 400 € (méthode : 1 460 €), un 93 m² classe F avec 1 parking 1 950 € (méthode : 1 900 €), un 85 m² classe A meublé avec 2 parkings 2 500 € (méthode : 1 810 €). Détails dans `controle-annonces.md`. Vérification complémentaire utile : Jason saisit 3 à 5 biens qu'il a loués récemment.
 
 ### Fiabilité affichée (proposition)
 
@@ -179,7 +179,7 @@ Contrôle sur annonces (17/11/2026) : à Dudelange, un 60 m² ancien sans parkin
 
 L'outil peut aussi afficher le **nombre d'annonces de location dans la commune** sur 12 mois (donnée publiée pour les 100 communes, même quand le prix est masqué) : utile pour parler de la demande sans afficher un prix biaisé.
 
-### Ce que la méthode ne couvre pas (à fixer par Jay, marqué « proposition »)
+### Ce que la méthode ne couvre pas (à fixer par Jason, marqué « proposition »)
 
 - **Meublé** : exclu de l'enquête ; aucune donnée officielle pour un appartement entier meublé.
 - **Balcon / terrasse, parking / garage, étage / ascenseur** : non publiés par zone. Le simulateur officiel les utilise, mais ses coefficients ne sont pas publics.
@@ -195,10 +195,10 @@ L'outil peut aussi afficher le **nombre d'annonces de location dans la commune**
 
 ## 6. Risques principaux
 
-1. **Précision au niveau du canton seulement.** Dans le canton d'Esch, Dudelange, Esch, Rumelange et Leudelange ont le même niveau de départ. Jay connaît mieux les écarts locaux ; il peut ajouter plus tard un petit ajustement par commune (à justifier).
+1. **Précision au niveau du canton seulement.** Dans le canton d'Esch, Dudelange, Esch, Rumelange et Leudelange ont le même niveau de départ. Jason connaît mieux les écarts locaux ; il peut ajouter plus tard un petit ajustement par commune (à justifier).
 2. **Combinaison de tableaux publiés séparément.** Les facteurs surface et bail récent sont multipliés comme s'ils étaient indépendants ; ce n'est qu'une approximation. Le rapport mélange aussi médianes (graphiques 5 et 7) et moyennes (graphique 10).
 3. **Données de fin 2025 mises à jour par un indice national.** Si les loyers évoluent différemment selon les régions, l'écart grandit avec le temps.
-4. **Ajustements non mesurés par une source officielle.** Le contrôle sur annonces montre qu'ils pèsent lourd (parking compris, A/B, meublé) ; les valeurs seront des propositions à valider par Jay.
+4. **Ajustements non mesurés par une source officielle.** Le contrôle sur annonces montre qu'ils pèsent lourd (parking compris, A/B, meublé) ; les valeurs seront des propositions à valider par Jason.
 
 ---
 
