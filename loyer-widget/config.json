@@ -1,0 +1,37 @@
+{
+  "_note": "Liens et réglages affichés dans l'outil. À VÉRIFIER PAR JASON : contactUrl (prise de rendez-vous), gestionUrl (page « gestion locative » de ton site), privacyUrl, agent.photo, phone (vide = pas de numéro affiché), quickCommunes (raccourcis de l'étape 1), publicEmail (adresse affichée dans les messages d'erreur).",
+  "contactUrl": {
+    "fr": "https://immobuild.lu/contact/",
+    "de": "https://immobuild.lu/contact/",
+    "en": "https://immobuild.lu/contact/"
+  },
+  "gestionUrl": {
+    "fr": "https://immobuild.lu/contact/",
+    "de": "https://immobuild.lu/contact/",
+    "en": "https://immobuild.lu/contact/"
+  },
+  "privacyUrl": {
+    "fr": "https://immobuild.lu/politique-de-confidentialite/",
+    "de": "https://immobuild.lu/politique-de-confidentialite/",
+    "en": "https://immobuild.lu/politique-de-confidentialite/"
+  },
+  "legalUrl": "https://legilux.public.lu/eli/etat/leg/loi/2006/09/21/n1/consolide/20261002",
+  "defaultLeadEmail": "contact@immobuild.lu",
+  "defaultFromEmail": "ImmoBuild Loyer <loyer@immobuild.lu>",
+  "rateLimitPerHour": 20,
+  "agent": {
+    "name": "Jason",
+    "role": "ImmoBuild Kohn · Dudelange",
+    "photo": "/jay.webp"
+  },
+  "phone": "",
+  "quickCommunes": [
+    "Dudelange",
+    "Bettembourg",
+    "Kayl",
+    "Rumelange",
+    "Esch-sur-Alzette",
+    "Schifflange"
+  ],
+  "publicEmail": "contact@immobuild.lu"
+}

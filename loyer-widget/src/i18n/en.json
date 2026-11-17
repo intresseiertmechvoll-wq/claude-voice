@@ -1,0 +1,303 @@
+{
+  "meta": {
+    "title": "What rent for your property? – ImmoBuild Kohn"
+  },
+  "intro": {
+    "kicker": "Rent estimate · ImmoBuild Kohn",
+    "title": "What rent for your property?",
+    "text": "Four short steps, then a realistic rent range based on public data.",
+    "badges": {
+      "free": "Free",
+      "commitment": "No obligation",
+      "official": "Public data"
+    }
+  },
+  "progress": "Step {n} of {total}",
+  "nav": {
+    "next": "Continue",
+    "back": "Back",
+    "submit": "See my rent",
+    "sending": "Calculating…",
+    "reload": "Reload",
+    "toSummary": "Back to summary"
+  },
+  "optional": "optional",
+  "yes": "Yes",
+  "no": "No",
+  "steps": {
+    "1": {
+      "title": "Your property"
+    },
+    "2": {
+      "title": "The details"
+    },
+    "3": {
+      "title": "Your plans"
+    },
+    "4": {
+      "title": "Almost done!"
+    }
+  },
+  "stepsShort": {
+    "1": "The property",
+    "2": "The details",
+    "3": "Your plans",
+    "4": "Your details"
+  },
+  "zones": {
+    "LV": "Luxembourg City",
+    "LC": "Luxembourg canton outside the city",
+    "Peri": "Capellen and Mersch cantons",
+    "Sud": "Esch-sur-Alzette canton",
+    "Est": "east of the country",
+    "Nord": "north of the country"
+  },
+  "fields": {
+    "type": "Property type",
+    "typeOptions": {
+      "appartement": "Apartment",
+      "maison": "House"
+    },
+    "commune": "Municipality",
+    "communeEmpty": "No municipality found.",
+    "communePlaceholder": "e.g. Dudelange",
+    "communeQuick": "For example:",
+    "communeSelected": "Canton of {deCanton}",
+    "communeFewData": "Few public listings in {commune}: the calculation is based on rents across the canton.",
+    "communeFewHouses": "Few houses for rent in your area: the range will be wide.",
+    "surface": "Living area (m²)",
+    "surfaceHelp": "An approximate value is fine.",
+    "surfaceSlider": "Living area (slider)",
+    "chambres": "Number of bedrooms",
+    "chambresHelp": "0 for a studio.",
+    "decrease": "Remove 1 – {label}",
+    "increase": "Add 1 – {label}",
+    "etat": "Overall condition",
+    "etatOptions": {
+      "neuf": "New",
+      "renove": "Recently renovated",
+      "bon": "Good condition",
+      "rafraichir": "Needs refreshing",
+      "renover": "Needs renovation"
+    },
+    "etatHints": {
+      "neuf": "Never lived in or under 5 years old",
+      "renove": "Major work done recently",
+      "bon": "Well kept, ready to live in",
+      "rafraichir": "Paint, floors, small jobs",
+      "renover": "Major work needed"
+    },
+    "energieLegend": "Energy class",
+    "energieHelp": "See the energy performance certificate.",
+    "energieLow": "Efficient",
+    "energieHigh": "Inefficient",
+    "energieUnknownShort": "I don’t know",
+    "meuble": "Let furnished?",
+    "meubleOptions": {
+      "non": "No, unfurnished",
+      "oui": "Yes, furnished"
+    },
+    "exterieur": "Private outdoor space",
+    "exterieurMaison": "Outdoor space",
+    "exterieurOptions": {
+      "aucun": "None",
+      "balcon": "Balcony",
+      "terrasse": "Terrace",
+      "jardin": "Garden"
+    },
+    "garages": "Garages / indoor spaces",
+    "parkings": "Outdoor parking spaces",
+    "etage": "Floor",
+    "etageOptions": {
+      "0": "Ground floor",
+      "1": "1st floor",
+      "2": "2nd floor",
+      "3": "3rd floor",
+      "4": "4th floor",
+      "5": "5th floor or higher"
+    },
+    "etageChips": {
+      "0": "Ground",
+      "1": "1st",
+      "2": "2nd",
+      "3": "3rd",
+      "4": "4th",
+      "5": "5th +"
+    },
+    "ascenseur": "Lift",
+    "proprietaire": "Do you own this property?",
+    "proprietaireOptions": {
+      "oui": "Yes, it’s mine",
+      "non": "No"
+    },
+    "dejaLoue": "Is it let at the moment?",
+    "dejaLoueOptions": {
+      "oui": "Yes, it is let",
+      "non": "No, it is vacant"
+    },
+    "gestion": "Would you like someone to manage the letting?",
+    "gestionOptions": {
+      "oui": "Yes",
+      "peut_etre": "Maybe",
+      "non": "No"
+    },
+    "gestionShort": {
+      "oui": "management: yes",
+      "peut_etre": "management: maybe",
+      "non": "management: no"
+    },
+    "disponibilite": "When is it available?",
+    "disponibiliteOptions": {
+      "libre": "Right now",
+      "3mois": "Within 3 months",
+      "3a6mois": "In 3 to 6 months",
+      "plus_tard": "Later / I don’t know"
+    },
+    "prenom": "First name",
+    "nom": "Last name",
+    "email": "Email",
+    "emailTypo": "Did you mean",
+    "telephone": "Phone",
+    "indicatif": "Country code",
+    "numero": "Number",
+    "numeroPlaceholder": "621 123 456",
+    "numeroWhy": "Only to contact you about your property.",
+    "message": "Message",
+    "rgpd": "I agree that ImmoBuild Kohn may use this information to contact me about my property, as explained in the {link}.",
+    "rgpdLink": "privacy policy",
+    "honeypot": "Do not fill in this field"
+  },
+  "errors": {
+    "required": "This field is required.",
+    "invalid": "This value is not valid.",
+    "range": "This value is out of range.",
+    "email": "This email address is not valid.",
+    "phone": "This number is not valid. Example: 621 123 456.",
+    "rgpd": "Please tick this box to see your rent.",
+    "commune": "Choose a municipality from the list.",
+    "summary": "Please correct the highlighted fields.",
+    "rate_limit": "Too many requests from this connection. Try again in an hour, or email me at {contact}.",
+    "network": "Sending failed. Check your connection and try again.",
+    "server": "Sending failed. Try again in a few minutes, or email me at {contact}.",
+    "reload": "The tool has just been updated. Reload the page to continue."
+  },
+  "recap": {
+    "title": "Your property at a glance",
+    "edit": "Edit",
+    "editStep": "Edit: {step}",
+    "surface": "{n} m²",
+    "chambres": "{n} bed.",
+    "studio": "studio",
+    "energie": "class {c}",
+    "meuble": "furnished",
+    "vide": "unfurnished",
+    "garages": "{n} garage(s)",
+    "parkings": "{n} parking space(s)"
+  },
+  "trust": {
+    "line": "Free · no obligation · no cookies",
+    "where": "Your answers are sent only to ImmoBuild Kohn, by email."
+  },
+  "result": {
+    "sent": "Request received",
+    "ready": "Your estimated rent",
+    "subtitle": "{type} in {commune}",
+    "mid": "Suggested rent",
+    "midText": "Per month, excluding service charges",
+    "perMonth": "per month",
+    "perMonthShort": "month",
+    "perM2": "or {value}",
+    "rangeTitle": "Your rent range",
+    "low": "Cautious rent",
+    "lowText": "Level of recently signed leases",
+    "high": "Advertised rent",
+    "highText": "Level of current listings",
+    "reliabilityTitle": "Data reliability",
+    "reliability": {
+      "high": "Good",
+      "medium": "Medium",
+      "low": "Limited"
+    },
+    "reliabilityText": {
+      "appartement": {
+        "high": "Many known rents for this type of home in your area.",
+        "medium": "Solid data, but less of it here.",
+        "low": "Little data for this property: treat with caution."
+      },
+      "maison": {
+        "high": "",
+        "medium": "Based on house listings in your area.",
+        "low": "Few comparable houses for rent: treat with caution."
+      }
+    },
+    "disclaimer": "Indicative estimate based on public statistics. It does not replace a visit.",
+    "ctaGestion": "Let ImmoBuild Kohn manage it",
+    "ctaRdv": "Book an appointment",
+    "legalTitle": "Legal cap",
+    "legalText": "Rent may not exceed a legal cap linked to the capital invested: 5% per year. I will check this with you.",
+    "legalLink": "Read the law",
+    "legalMeuble": "Furnished: furniture is charged separately, at most 1.5% per month of the furniture’s value (invoices under 10 years old). It is not included in this rent.",
+    "compareTitle": "For comparison",
+    "statOffres": "Apartments for rent in {commune}",
+    "statOffresMaison": "Houses for rent in {commune}",
+    "statOffresSub": "listings from {debut} to {fin}",
+    "statBaux": "Leases signed in 2024-2025",
+    "statBauxSub": "average rent per m², {zone}",
+    "statReleve": "Houses compared",
+    "statReleveSub": "listings collected, {zone}, on {date}",
+    "statYou": "Your suggested rent",
+    "statYouSub": "for {n} m²",
+    "compareNote": "The calculation starts from rents in the canton of {deCanton}, then adapts to your living area.",
+    "compareNoteMaison": "The calculation starts from house listings in your area, then adapts to your living area.",
+    "factorsTitle": "What affects your rent",
+    "factorsNone": "Your property matches the average: no adjustment.",
+    "factorsCapped": "To stay cautious, the total adjustment is capped.",
+    "howTitle": "How this rent is calculated",
+    "howAppartement": "Starting point: rents actually paid in the canton of {deCanton}, from the Observatoire de l’Habitat survey, for a home of your size. They are updated with the official rent trend, then adjusted for condition, energy class, floor, outdoor space and parking.",
+    "howMaison": "There are no detailed public rents for houses. The calculation starts from house listings collected in your area ({zone}), for a house of your size, then adjusts for condition and energy class.",
+    "howRange": "The bottom of the range matches recently signed leases, the top matches rents asked in today’s listings. Furnished rooms and flat-shares are not counted.",
+    "sourceAppartement": "Sources: Observatoire de l’Habitat, “cadastre des loyers” survey (2025) and advertised rent index ({trimestre}); listings collected on {date}.",
+    "sourceMaison": "Sources: house listings collected on {date}; Observatoire de l’Habitat, advertised rent index ({trimestre}).",
+    "sourceLink": "See the data",
+    "nextTitle": "What happens next?",
+    "next1": "I receive your request and get back to you.",
+    "next2": "Together we check the rent on site, the legal cap and what I can take care of for you.",
+    "print": "Print or save as PDF",
+    "restart": "New estimate"
+  },
+  "factors": {
+    "etat_neuf": "New property",
+    "etat_renove": "Recently renovated",
+    "etat_rafraichir": "Needs refreshing",
+    "etat_renover": "Needs renovation",
+    "energie": "Energy class {c}",
+    "exterieur_balcon": "Balcony",
+    "exterieur_terrasse": "Terrace",
+    "exterieur_jardin": "Private garden",
+    "rez_de_chaussee": "Ground floor",
+    "etage_sans_ascenseur": "High floor without lift",
+    "garage": "Garage × {n}",
+    "parking": "Outdoor parking × {n}"
+  },
+  "coach": {
+    "start": "Hello! I’m Jason. Four steps and you’ll get a rent range.",
+    "step2": "These details move the rent.",
+    "step3": "This helps me get back to you at the right time.",
+    "step4": "Your number is only used to talk about your property.",
+    "appartement": "An apartment, great!",
+    "maison": "A house, great!",
+    "commune": "{commune}, noted!",
+    "studio": "A studio, noted.",
+    "energieGood": "Well done, a very good energy class!",
+    "energieBad": "No problem, I’ll take it into account.",
+    "energieUnknown": "No problem, we’ll manage without.",
+    "energieMid": "Class {c}, noted.",
+    "meuble": "Furnished: I explain the furniture supplement in the result.",
+    "vide": "Unfurnished, noted.",
+    "garage": "Parking counts in the rent.",
+    "gestion_oui": "With pleasure, it’s my job.",
+    "gestion_peut_etre": "Let’s talk about it, no obligation.",
+    "gestion_non": "No problem, the estimate stays free.",
+    "nonProprio": "No problem, you can still get an estimate."
+  }
+}

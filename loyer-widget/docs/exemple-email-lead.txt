@@ -1,0 +1,67 @@
+=== E-MAIL (mode log, non envoyé) ===
+À : contact@immobuild.lu
+De : ImmoBuild Loyer <loyer@immobuild.lu>
+Répondre à : marie.muller@example.lu
+Objet : 🔥 Lead loyer – Dudelange – Appartement – gestion : oui
+
+== En un coup d’œil ==
+Priorité : 🔥 Chaud – propriétaire, veut la gestion, dans les 3 mois
+Bien : Appartement de 80 m² à Dudelange
+Loyer affiché : 1.950 € – 2.250 € par mois (milieu 2.100 €), hors charges
+Rappeler : Marie Muller – +352 621 123 456
+E-mail : marie.muller@example.lu
+Langue : Français
+
+== Le projet ==
+Propriétaire : Oui
+Déjà loué : Non
+Gestion locative souhaitée : Oui
+Disponible : Dans les 3 mois
+
+== Coordonnées ==
+Prénom : Marie
+Nom : Muller
+E-mail : marie.muller@example.lu
+Téléphone : +352 621 123 456
+Message : —
+
+== Le bien ==
+Type : Appartement
+Commune : Dudelange (canton Esch-sur-Alzette, zone Sud (canton d’Esch))
+Surface habitable : 80 m²
+Chambres : 2
+État : Bon état
+Classe énergétique : C
+Meublé : Non
+Extérieur : Balcon
+Garages / places intérieures : 1
+Parkings extérieurs : 0
+Étage : 2e
+Ascenseur : Oui
+
+== Résultat affiché au visiteur ==
+Loyer prudent (niveau des baux signés) : 1.950 €
+Loyer conseillé (milieu) : 2.100 €
+Loyer affiché en annonce : 2.250 €
+Au m² (milieu) : 26,3 €/m²
+Fiabilité affichée : Bonne
+
+== Détail du calcul ==
+Médiane du canton (baux en cours 2025) : 19,12 €/m²
+Facteur surface : 0,936 (17,90 €/m² pour 80 m² dans la zone)
+Facteur baux récents (2024-2025) : 1,165
+Mise à jour par l’indice : 1,0440 (2026T2)
+Loyer de référence « bail » : 1.742 € (21,77 €/m²)
+Loyer de référence « annonce » : 2.038 € (× 1,17)
+Coefficient – Classe énergétique C : +1,0 %
+Coefficient – Extérieur : balcon : +2,0 %
+Total des coefficients : +3,0 %
+Stationnement : garage × 1 : 140 € (140 € par place)
+Avant arrondi : bas 1.934 € · haut 2.239 €
+Arrondi : à 50 € près
+
+== Contexte ==
+Date : mardi 17 novembre 2026 à 18:48
+Page d’origine : https://immobuild.lu/gestion-locative/
+À vérifier en rendez-vous : plafond légal (5 % du capital investi), charges, supplément mobilier si meublé
+=== FIN ===

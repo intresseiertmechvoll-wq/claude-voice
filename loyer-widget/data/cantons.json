@@ -1,0 +1,15 @@
+{
+  "_note": "Répartition des 100 communes du Luxembourg par canton (situation depuis le 01/09/2023 : fusions Groussbus-Wal et Bous-Waldbredimus). Liste saisie à la main. Le script update-data vérifie qu'elle correspond exactement aux communes des fichiers de l'Observatoire de l'Habitat.",
+  "Capellen": ["Dippach", "Garnich", "Habscht", "Käerjeng", "Kehlen", "Koerich", "Kopstal", "Mamer", "Steinfort"],
+  "Clervaux": ["Clervaux", "Parc Hosingen", "Troisvierges", "Weiswampach", "Wincrange"],
+  "Diekirch": ["Bettendorf", "Bourscheid", "Diekirch", "Erpeldange-sur-Sûre", "Ettelbruck", "Feulen", "Mertzig", "Reisdorf", "Schieren", "Vallée de l'Ernz"],
+  "Echternach": ["Beaufort", "Bech", "Berdorf", "Consdorf", "Echternach", "Rosport-Mompach", "Waldbillig"],
+  "Esch-sur-Alzette": ["Bettembourg", "Differdange", "Dudelange", "Esch-sur-Alzette", "Frisange", "Kayl", "Leudelange", "Mondercange", "Pétange", "Reckange-sur-Mess", "Roeser", "Rumelange", "Sanem", "Schifflange"],
+  "Grevenmacher": ["Betzdorf", "Biwer", "Flaxweiler", "Grevenmacher", "Junglinster", "Manternach", "Mertert", "Wormeldange"],
+  "Luxembourg": ["Bertrange", "Contern", "Hesperange", "Luxembourg", "Niederanven", "Sandweiler", "Schuttrange", "Steinsel", "Strassen", "Walferdange", "Weiler-la-Tour"],
+  "Mersch": ["Bissen", "Colmar-Berg", "Fischbach", "Heffingen", "Helperknapp", "Larochette", "Lintgen", "Lorentzweiler", "Mersch", "Nommern"],
+  "Redange": ["Beckerich", "Ell", "Groussbus-Wal", "Préizerdaul", "Rambrouch", "Redange-sur-Attert", "Saeul", "Useldange", "Vichten"],
+  "Remich": ["Bous-Waldbredimus", "Dalheim", "Lenningen", "Mondorf-les-Bains", "Remich", "Schengen", "Stadtbredimus"],
+  "Vianden": ["Putscheid", "Tandel", "Vianden"],
+  "Wiltz": ["Boulaide", "Esch-sur-Sûre", "Goesdorf", "Kiischpelt", "Lac de la Haute-Sûre", "Wiltz", "Winseler"]
+}

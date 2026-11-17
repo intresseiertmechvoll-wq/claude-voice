@@ -1,0 +1,303 @@
+{
+  "meta": {
+    "title": "Welche Miete für Ihre Immobilie? – ImmoBuild Kohn"
+  },
+  "intro": {
+    "kicker": "Mietschätzung · ImmoBuild Kohn",
+    "title": "Welche Miete für Ihre Immobilie?",
+    "text": "Vier kurze Schritte, dann eine realistische Mietspanne, berechnet aus öffentlichen Daten.",
+    "badges": {
+      "free": "Kostenlos",
+      "commitment": "Unverbindlich",
+      "official": "Öffentliche Daten"
+    }
+  },
+  "progress": "Schritt {n} von {total}",
+  "nav": {
+    "next": "Weiter",
+    "back": "Zurück",
+    "submit": "Meine Miete anzeigen",
+    "sending": "Wird berechnet…",
+    "reload": "Neu laden",
+    "toSummary": "Zurück zur Übersicht"
+  },
+  "optional": "optional",
+  "yes": "Ja",
+  "no": "Nein",
+  "steps": {
+    "1": {
+      "title": "Ihre Immobilie"
+    },
+    "2": {
+      "title": "Die Details"
+    },
+    "3": {
+      "title": "Ihr Vorhaben"
+    },
+    "4": {
+      "title": "Fast geschafft!"
+    }
+  },
+  "stepsShort": {
+    "1": "Die Immobilie",
+    "2": "Die Details",
+    "3": "Das Vorhaben",
+    "4": "Ihre Kontaktdaten"
+  },
+  "zones": {
+    "LV": "Luxemburg-Stadt",
+    "LC": "Kanton Luxemburg ohne die Stadt",
+    "Peri": "Kantone Capellen und Mersch",
+    "Sud": "Kanton Esch-sur-Alzette",
+    "Est": "Osten des Landes",
+    "Nord": "Norden des Landes"
+  },
+  "fields": {
+    "type": "Art der Immobilie",
+    "typeOptions": {
+      "appartement": "Wohnung",
+      "maison": "Haus"
+    },
+    "commune": "Gemeinde",
+    "communeEmpty": "Keine Gemeinde gefunden.",
+    "communePlaceholder": "z. B. Düdelingen",
+    "communeQuick": "Zum Beispiel:",
+    "communeSelected": "Kanton {deCanton}",
+    "communeFewData": "Wenige öffentliche Inserate in {commune}: Die Berechnung stützt sich auf die Mieten des Kantons.",
+    "communeFewHouses": "In Ihrer Region werden wenige Häuser vermietet: Die Spanne wird breit.",
+    "surface": "Wohnfläche (m²)",
+    "surfaceHelp": "Ein ungefährer Wert genügt.",
+    "surfaceSlider": "Wohnfläche (Schieberegler)",
+    "chambres": "Anzahl Schlafzimmer",
+    "chambresHelp": "0 für ein Studio.",
+    "decrease": "1 weniger – {label}",
+    "increase": "1 mehr – {label}",
+    "etat": "Allgemeiner Zustand",
+    "etatOptions": {
+      "neuf": "Neu",
+      "renove": "Kürzlich renoviert",
+      "bon": "Guter Zustand",
+      "rafraichir": "Aufzufrischen",
+      "renover": "Zu renovieren"
+    },
+    "etatHints": {
+      "neuf": "Nie bewohnt oder jünger als 5 Jahre",
+      "renove": "Größere Arbeiten vor Kurzem",
+      "bon": "Gepflegt, sofort bewohnbar",
+      "rafraichir": "Anstrich, Böden, kleine Arbeiten",
+      "renover": "Größere Arbeiten nötig"
+    },
+    "energieLegend": "Energieklasse",
+    "energieHelp": "Siehe Energiepass.",
+    "energieLow": "Sparsam",
+    "energieHigh": "Hoher Verbrauch",
+    "energieUnknownShort": "Weiß ich nicht",
+    "meuble": "Möbliert vermietet?",
+    "meubleOptions": {
+      "non": "Nein, leer",
+      "oui": "Ja, möbliert"
+    },
+    "exterieur": "Eigener Außenbereich",
+    "exterieurMaison": "Außenbereich",
+    "exterieurOptions": {
+      "aucun": "Keiner",
+      "balcon": "Balkon",
+      "terrasse": "Terrasse",
+      "jardin": "Garten"
+    },
+    "garages": "Garagen / Innenstellplätze",
+    "parkings": "Außenstellplätze",
+    "etage": "Etage",
+    "etageOptions": {
+      "0": "Erdgeschoss",
+      "1": "1. Etage",
+      "2": "2. Etage",
+      "3": "3. Etage",
+      "4": "4. Etage",
+      "5": "5. Etage oder höher"
+    },
+    "etageChips": {
+      "0": "EG",
+      "1": "1.",
+      "2": "2.",
+      "3": "3.",
+      "4": "4.",
+      "5": "5. +"
+    },
+    "ascenseur": "Aufzug",
+    "proprietaire": "Sind Sie Eigentümer dieser Immobilie?",
+    "proprietaireOptions": {
+      "oui": "Ja, sie gehört mir",
+      "non": "Nein"
+    },
+    "dejaLoue": "Ist sie derzeit vermietet?",
+    "dejaLoueOptions": {
+      "oui": "Ja, sie ist vermietet",
+      "non": "Nein, sie ist frei"
+    },
+    "gestion": "Möchten Sie die Mietverwaltung abgeben?",
+    "gestionOptions": {
+      "oui": "Ja",
+      "peut_etre": "Vielleicht",
+      "non": "Nein"
+    },
+    "gestionShort": {
+      "oui": "Verwaltung: ja",
+      "peut_etre": "Verwaltung: vielleicht",
+      "non": "Verwaltung: nein"
+    },
+    "disponibilite": "Ab wann ist sie frei?",
+    "disponibiliteOptions": {
+      "libre": "Ab sofort",
+      "3mois": "In den nächsten 3 Monaten",
+      "3a6mois": "In 3 bis 6 Monaten",
+      "plus_tard": "Später / weiß ich nicht"
+    },
+    "prenom": "Vorname",
+    "nom": "Name",
+    "email": "E-Mail",
+    "emailTypo": "Meinten Sie",
+    "telephone": "Telefon",
+    "indicatif": "Vorwahl",
+    "numero": "Nummer",
+    "numeroPlaceholder": "621 123 456",
+    "numeroWhy": "Nur, um Sie wegen Ihrer Immobilie zu kontaktieren.",
+    "message": "Nachricht",
+    "rgpd": "Ich bin einverstanden, dass ImmoBuild Kohn diese Angaben nutzt, um mich wegen meiner Immobilie zu kontaktieren, wie in der {link} beschrieben.",
+    "rgpdLink": "Datenschutzerklärung",
+    "honeypot": "Dieses Feld nicht ausfüllen"
+  },
+  "errors": {
+    "required": "Dieses Feld ist erforderlich.",
+    "invalid": "Dieser Wert ist ungültig.",
+    "range": "Dieser Wert liegt außerhalb der Grenzen.",
+    "email": "Diese E-Mail-Adresse ist ungültig.",
+    "phone": "Diese Nummer ist ungültig. Beispiel: 621 123 456.",
+    "rgpd": "Bitte setzen Sie dieses Häkchen, um Ihre Miete zu sehen.",
+    "commune": "Wählen Sie eine Gemeinde aus der Liste.",
+    "summary": "Bitte korrigieren Sie die markierten Felder.",
+    "rate_limit": "Zu viele Anfragen von dieser Verbindung. Versuchen Sie es in einer Stunde erneut oder schreiben Sie mir an {contact}.",
+    "network": "Das Senden hat nicht geklappt. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
+    "server": "Das Senden hat nicht geklappt. Versuchen Sie es in ein paar Minuten erneut oder schreiben Sie mir an {contact}.",
+    "reload": "Das Tool wurde gerade aktualisiert. Laden Sie die Seite neu, um fortzufahren."
+  },
+  "recap": {
+    "title": "Ihre Immobilie im Überblick",
+    "edit": "Ändern",
+    "editStep": "Ändern: {step}",
+    "surface": "{n} m²",
+    "chambres": "{n} Schlafz.",
+    "studio": "Studio",
+    "energie": "Klasse {c}",
+    "meuble": "möbliert",
+    "vide": "leer",
+    "garages": "{n} Garage(n)",
+    "parkings": "{n} Stellplatz/-plätze"
+  },
+  "trust": {
+    "line": "Kostenlos · unverbindlich · ohne Cookies",
+    "where": "Ihre Antworten gehen nur per E-Mail an ImmoBuild Kohn."
+  },
+  "result": {
+    "sent": "Anfrage erhalten",
+    "ready": "Ihre geschätzte Miete",
+    "subtitle": "{type} in {commune}",
+    "mid": "Empfohlene Miete",
+    "midText": "Pro Monat, ohne Nebenkosten",
+    "perMonth": "pro Monat",
+    "perMonthShort": "Monat",
+    "perM2": "also {value}",
+    "rangeTitle": "Ihre Mietspanne",
+    "low": "Vorsichtige Miete",
+    "lowText": "Niveau kürzlich abgeschlossener Verträge",
+    "high": "Miete im Inserat",
+    "highText": "Niveau der aktuellen Inserate",
+    "reliabilityTitle": "Datenlage",
+    "reliability": {
+      "high": "Gut",
+      "medium": "Mittel",
+      "low": "Begrenzt"
+    },
+    "reliabilityText": {
+      "appartement": {
+        "high": "Viele bekannte Mieten für diese Art von Wohnung in Ihrer Region.",
+        "medium": "Solide Daten, hier aber weniger zahlreich.",
+        "low": "Wenige Daten für diese Immobilie: mit Vorsicht zu betrachten."
+      },
+      "maison": {
+        "high": "",
+        "medium": "Berechnet aus Hausinseraten Ihrer Region.",
+        "low": "Wenige vergleichbare Häuser zur Miete: mit Vorsicht zu betrachten."
+      }
+    },
+    "disclaimer": "Unverbindliche Schätzung auf Basis öffentlicher Statistiken. Sie ersetzt keine Besichtigung.",
+    "ctaGestion": "Die Verwaltung ImmoBuild Kohn anvertrauen",
+    "ctaRdv": "Termin vereinbaren",
+    "legalTitle": "Gesetzliche Obergrenze",
+    "legalText": "Die Miete darf eine gesetzliche Obergrenze nicht überschreiten: 5 % pro Jahr des investierten Kapitals. Ich prüfe das mit Ihnen.",
+    "legalLink": "Gesetz ansehen",
+    "legalMeuble": "Möbliert: Die Möbel werden getrennt bezahlt, höchstens 1,5 % pro Monat des Möbelwerts (Rechnungen jünger als 10 Jahre). Sie sind in dieser Miete nicht enthalten.",
+    "compareTitle": "Zum Vergleich",
+    "statOffres": "Wohnungen zur Miete in {commune}",
+    "statOffresMaison": "Häuser zur Miete in {commune}",
+    "statOffresSub": "Inserate vom {debut} bis {fin}",
+    "statBaux": "Verträge 2024-2025",
+    "statBauxSub": "Durchschnittsmiete pro m², {zone}",
+    "statReleve": "Verglichene Häuser",
+    "statReleveSub": "erfasste Inserate, {zone}, am {date}",
+    "statYou": "Ihre empfohlene Miete",
+    "statYouSub": "für {n} m²",
+    "compareNote": "Die Berechnung geht von den Mieten im Kanton {deCanton} aus und passt sie an Ihre Wohnfläche an.",
+    "compareNoteMaison": "Die Berechnung geht von Hausinseraten Ihrer Region aus und passt sie an Ihre Wohnfläche an.",
+    "factorsTitle": "Was Ihre Miete beeinflusst",
+    "factorsNone": "Ihre Immobilie entspricht dem Durchschnitt: keine Anpassung.",
+    "factorsCapped": "Um vorsichtig zu bleiben, ist die Summe der Anpassungen begrenzt.",
+    "howTitle": "So wird die Miete berechnet",
+    "howAppartement": "Ausgangspunkt sind die tatsächlich gezahlten Mieten im Kanton {deCanton} laut Erhebung des Observatoire de l’Habitat, für eine Wohnung Ihrer Größe. Sie werden mit der offiziellen Mietentwicklung fortgeschrieben und an Zustand, Energieklasse, Etage, Außenbereich und Stellplätze angepasst.",
+    "howMaison": "Für Häuser gibt es keine detaillierten öffentlichen Mieten. Die Berechnung geht von Hausinseraten in Ihrer Region aus ({zone}), für ein Haus Ihrer Größe, und passt sie an Zustand und Energieklasse an.",
+    "howRange": "Das untere Ende entspricht kürzlich abgeschlossenen Verträgen, das obere den heute in Inseraten verlangten Mieten. Möblierte Zimmer und Wohngemeinschaften zählen nicht mit.",
+    "sourceAppartement": "Quellen: Observatoire de l’Habitat, Erhebung „cadastre des loyers“ (2025) und Index der Angebotsmieten ({trimestre}); Inseratserhebung vom {date}.",
+    "sourceMaison": "Quellen: Erhebung von Hausinseraten vom {date}; Observatoire de l’Habitat, Index der Angebotsmieten ({trimestre}).",
+    "sourceLink": "Daten ansehen",
+    "nextTitle": "Wie geht es weiter?",
+    "next1": "Ich erhalte Ihre Anfrage und melde mich bei Ihnen.",
+    "next2": "Gemeinsam prüfen wir vor Ort die Miete, die gesetzliche Obergrenze und was ich für Sie übernehmen kann.",
+    "print": "Drucken oder als PDF speichern",
+    "restart": "Neue Schätzung"
+  },
+  "factors": {
+    "etat_neuf": "Neubau",
+    "etat_renove": "Kürzlich renoviert",
+    "etat_rafraichir": "Aufzufrischen",
+    "etat_renover": "Zu renovieren",
+    "energie": "Energieklasse {c}",
+    "exterieur_balcon": "Balkon",
+    "exterieur_terrasse": "Terrasse",
+    "exterieur_jardin": "Eigener Garten",
+    "rez_de_chaussee": "Erdgeschoss",
+    "etage_sans_ascenseur": "Hohe Etage ohne Aufzug",
+    "garage": "Garage × {n}",
+    "parking": "Außenstellplatz × {n}"
+  },
+  "coach": {
+    "start": "Hallo! Ich bin Jason. Vier Schritte, und Sie erhalten eine Mietspanne.",
+    "step2": "Diese Details beeinflussen die Miete.",
+    "step3": "So kann ich zum richtigen Zeitpunkt antworten.",
+    "step4": "Ihre Nummer dient nur dem Gespräch über Ihre Immobilie.",
+    "appartement": "Eine Wohnung, sehr gut!",
+    "maison": "Ein Haus, sehr gut!",
+    "commune": "{commune}, notiert!",
+    "studio": "Ein Studio, notiert.",
+    "energieGood": "Bravo, sehr gute Energieklasse!",
+    "energieBad": "Kein Problem, ich berücksichtige das.",
+    "energieUnknown": "Kein Problem, es geht auch so.",
+    "energieMid": "Klasse {c}, notiert.",
+    "meuble": "Möbliert: Den Möbelzuschlag erkläre ich im Ergebnis.",
+    "vide": "Leer vermietet, notiert.",
+    "garage": "Stellplätze zählen bei der Miete.",
+    "gestion_oui": "Gern, das ist mein Beruf.",
+    "gestion_peut_etre": "Wir sprechen unverbindlich darüber.",
+    "gestion_non": "Kein Problem, die Schätzung bleibt kostenlos.",
+    "nonProprio": "Kein Problem, die Schätzung ist trotzdem möglich."
+  }
+}

@@ -1,0 +1,753 @@
+{
+  "genere_le": "2026-11-17T17:31:29.634Z",
+  "licence": "CC0 (data.public.lu)",
+  "annonces": {
+    "periode": "1er juillet 2025 – 30 juin 2026",
+    "periode_debut": "2025-07-01",
+    "periode_fin": "2026-06-30",
+    "total_appartements": 9479,
+    "total_maisons": 712,
+    "maison_loyer_moyen_national": 3719.579,
+    "maison_loyer_m2_national": 19.77428
+  },
+  "indice": {
+    "serie": "Loyers annoncés d’appartements, euros courants, base 100 = T1 2005",
+    "base_trimestres": [
+      "2024T1",
+      "2024T2",
+      "2024T3",
+      "2024T4",
+      "2025T1",
+      "2025T2",
+      "2025T3",
+      "2025T4"
+    ],
+    "base_valeur": 197.794,
+    "dernier_trimestre": "2026T2",
+    "dernier_valeur": 206.49,
+    "releve_maisons_trimestre": "2026T2",
+    "releve_maisons_valeur": 206.49
+  },
+  "sources": {
+    "offres_appartements": {
+      "titre": "Loyers annoncés des appartements par commune sur les 12 derniers mois",
+      "jeu_de_donnees": "https://data.public.lu/fr/datasets/loyers-annonces-des-logements-par-commune/",
+      "fichier": "https://download.data.public.lu/resources/loyers-annonces-des-logements-par-commune/20260924-085311/location-appartement-2025-26.xls",
+      "mis_a_jour": "2026-09-24T08:53:24.180000+00:00"
+    },
+    "offres_maisons": {
+      "titre": "Loyers annoncés des maisons par commune sur les 12 derniers mois",
+      "jeu_de_donnees": "https://data.public.lu/fr/datasets/loyers-annonces-des-logements-par-commune/",
+      "fichier": "https://download.data.public.lu/resources/loyers-annonces-des-logements-par-commune/20260924-085334/location-maison-2025-26.xls",
+      "mis_a_jour": "2026-09-24T08:53:51.968000+00:00"
+    },
+    "indice": {
+      "titre": "Série de référence = Série rétrospective des loyers annoncés en EUROS COURANTS (statistiques issues des annonces immobilières)",
+      "jeu_de_donnees": "https://data.public.lu/fr/datasets/loyers-annonces-des-logements/",
+      "fichier": "https://download.data.public.lu/resources/loyers-annonces-des-logements/20260924-084924/serie-retrospective-euros-courants.xls",
+      "mis_a_jour": "2026-09-24T08:49:31.427000+00:00"
+    }
+  },
+  "communes": [
+    {
+      "commune": "Beaufort",
+      "canton": "Echternach",
+      "zone": "Est",
+      "offres_appartement": 6,
+      "offres_maison": null
+    },
+    {
+      "commune": "Bech",
+      "canton": "Echternach",
+      "zone": "Est",
+      "offres_appartement": 2,
+      "offres_maison": null
+    },
+    {
+      "commune": "Beckerich",
+      "canton": "Redange",
+      "zone": "Nord",
+      "offres_appartement": 3,
+      "offres_maison": null
+    },
+    {
+      "commune": "Berdorf",
+      "canton": "Echternach",
+      "zone": "Est",
+      "offres_appartement": 3,
+      "offres_maison": null
+    },
+    {
+      "commune": "Bertrange",
+      "canton": "Luxembourg",
+      "zone": "LC",
+      "offres_appartement": 190,
+      "offres_maison": null
+    },
+    {
+      "commune": "Bettembourg",
+      "canton": "Esch-sur-Alzette",
+      "zone": "Sud",
+      "offres_appartement": 39,
+      "offres_maison": null
+    },
+    {
+      "commune": "Bettendorf",
+      "canton": "Diekirch",
+      "zone": "Nord",
+      "offres_appartement": 2,
+      "offres_maison": null
+    },
+    {
+      "commune": "Betzdorf",
+      "canton": "Grevenmacher",
+      "zone": "Est",
+      "offres_appartement": 3,
+      "offres_maison": null
+    },
+    {
+      "commune": "Bissen",
+      "canton": "Mersch",
+      "zone": "Peri",
+      "offres_appartement": 11,
+      "offres_maison": null
+    },
+    {
+      "commune": "Biwer",
+      "canton": "Grevenmacher",
+      "zone": "Est",
+      "offres_appartement": 0,
+      "offres_maison": null
+    },
+    {
+      "commune": "Boulaide",
+      "canton": "Wiltz",
+      "zone": "Nord",
+      "offres_appartement": 2,
+      "offres_maison": null
+    },
+    {
+      "commune": "Bourscheid",
+      "canton": "Diekirch",
+      "zone": "Nord",
+      "offres_appartement": 1,
+      "offres_maison": null
+    },
+    {
+      "commune": "Bous-Waldbredimus",
+      "canton": "Remich",
+      "zone": "Est",
+      "offres_appartement": 3,
+      "offres_maison": null
+    },
+    {
+      "commune": "Clervaux",
+      "canton": "Clervaux",
+      "zone": "Nord",
+      "offres_appartement": 70,
+      "offres_maison": null
+    },
+    {
+      "commune": "Colmar-Berg",
+      "canton": "Mersch",
+      "zone": "Peri",
+      "offres_appartement": 7,
+      "offres_maison": null
+    },
+    {
+      "commune": "Consdorf",
+      "canton": "Echternach",
+      "zone": "Est",
+      "offres_appartement": 0,
+      "offres_maison": null
+    },
+    {
+      "commune": "Contern",
+      "canton": "Luxembourg",
+      "zone": "LC",
+      "offres_appartement": 30,
+      "offres_maison": null
+    },
+    {
+      "commune": "Dalheim",
+      "canton": "Remich",
+      "zone": "Est",
+      "offres_appartement": 5,
+      "offres_maison": null
+    },
+    {
+      "commune": "Diekirch",
+      "canton": "Diekirch",
+      "zone": "Nord",
+      "offres_appartement": 70,
+      "offres_maison": null
+    },
+    {
+      "commune": "Differdange",
+      "canton": "Esch-sur-Alzette",
+      "zone": "Sud",
+      "offres_appartement": 134,
+      "offres_maison": null
+    },
+    {
+      "commune": "Dippach",
+      "canton": "Capellen",
+      "zone": "Peri",
+      "offres_appartement": 16,
+      "offres_maison": null
+    },
+    {
+      "commune": "Dudelange",
+      "canton": "Esch-sur-Alzette",
+      "zone": "Sud",
+      "offres_appartement": 111,
+      "offres_maison": null
+    },
+    {
+      "commune": "Echternach",
+      "canton": "Echternach",
+      "zone": "Est",
+      "offres_appartement": 25,
+      "offres_maison": null
+    },
+    {
+      "commune": "Ell",
+      "canton": "Redange",
+      "zone": "Nord",
+      "offres_appartement": 2,
+      "offres_maison": null
+    },
+    {
+      "commune": "Erpeldange-sur-Sûre",
+      "canton": "Diekirch",
+      "zone": "Nord",
+      "offres_appartement": 2,
+      "offres_maison": null
+    },
+    {
+      "commune": "Esch-sur-Alzette",
+      "canton": "Esch-sur-Alzette",
+      "zone": "Sud",
+      "offres_appartement": 623,
+      "offres_maison": null
+    },
+    {
+      "commune": "Esch-sur-Sûre",
+      "canton": "Wiltz",
+      "zone": "Nord",
+      "offres_appartement": 2,
+      "offres_maison": null
+    },
+    {
+      "commune": "Ettelbruck",
+      "canton": "Diekirch",
+      "zone": "Nord",
+      "offres_appartement": 75,
+      "offres_maison": null
+    },
+    {
+      "commune": "Feulen",
+      "canton": "Diekirch",
+      "zone": "Nord",
+      "offres_appartement": 7,
+      "offres_maison": null
+    },
+    {
+      "commune": "Fischbach",
+      "canton": "Mersch",
+      "zone": "Peri",
+      "offres_appartement": 1,
+      "offres_maison": null
+    },
+    {
+      "commune": "Flaxweiler",
+      "canton": "Grevenmacher",
+      "zone": "Est",
+      "offres_appartement": 5,
+      "offres_maison": null
+    },
+    {
+      "commune": "Frisange",
+      "canton": "Esch-sur-Alzette",
+      "zone": "Sud",
+      "offres_appartement": 34,
+      "offres_maison": null
+    },
+    {
+      "commune": "Garnich",
+      "canton": "Capellen",
+      "zone": "Peri",
+      "offres_appartement": 15,
+      "offres_maison": null
+    },
+    {
+      "commune": "Goesdorf",
+      "canton": "Wiltz",
+      "zone": "Nord",
+      "offres_appartement": 2,
+      "offres_maison": null
+    },
+    {
+      "commune": "Grevenmacher",
+      "canton": "Grevenmacher",
+      "zone": "Est",
+      "offres_appartement": 18,
+      "offres_maison": null
+    },
+    {
+      "commune": "Groussbus-Wal",
+      "canton": "Redange",
+      "zone": "Nord",
+      "offres_appartement": 4,
+      "offres_maison": null
+    },
+    {
+      "commune": "Habscht",
+      "canton": "Capellen",
+      "zone": "Peri",
+      "offres_appartement": 27,
+      "offres_maison": null
+    },
+    {
+      "commune": "Heffingen",
+      "canton": "Mersch",
+      "zone": "Peri",
+      "offres_appartement": 5,
+      "offres_maison": null
+    },
+    {
+      "commune": "Helperknapp",
+      "canton": "Mersch",
+      "zone": "Peri",
+      "offres_appartement": 11,
+      "offres_maison": null
+    },
+    {
+      "commune": "Hesperange",
+      "canton": "Luxembourg",
+      "zone": "LC",
+      "offres_appartement": 158,
+      "offres_maison": null
+    },
+    {
+      "commune": "Junglinster",
+      "canton": "Grevenmacher",
+      "zone": "Est",
+      "offres_appartement": 48,
+      "offres_maison": null
+    },
+    {
+      "commune": "Käerjeng",
+      "canton": "Capellen",
+      "zone": "Peri",
+      "offres_appartement": 119,
+      "offres_maison": null
+    },
+    {
+      "commune": "Kayl",
+      "canton": "Esch-sur-Alzette",
+      "zone": "Sud",
+      "offres_appartement": 36,
+      "offres_maison": null
+    },
+    {
+      "commune": "Kehlen",
+      "canton": "Capellen",
+      "zone": "Peri",
+      "offres_appartement": 41,
+      "offres_maison": null
+    },
+    {
+      "commune": "Kiischpelt",
+      "canton": "Wiltz",
+      "zone": "Nord",
+      "offres_appartement": 2,
+      "offres_maison": null
+    },
+    {
+      "commune": "Koerich",
+      "canton": "Capellen",
+      "zone": "Peri",
+      "offres_appartement": 3,
+      "offres_maison": null
+    },
+    {
+      "commune": "Kopstal",
+      "canton": "Capellen",
+      "zone": "Peri",
+      "offres_appartement": 34,
+      "offres_maison": null
+    },
+    {
+      "commune": "Lac de la Haute-Sûre",
+      "canton": "Wiltz",
+      "zone": "Nord",
+      "offres_appartement": 5,
+      "offres_maison": null
+    },
+    {
+      "commune": "Larochette",
+      "canton": "Mersch",
+      "zone": "Peri",
+      "offres_appartement": 4,
+      "offres_maison": null
+    },
+    {
+      "commune": "Lenningen",
+      "canton": "Remich",
+      "zone": "Est",
+      "offres_appartement": 1,
+      "offres_maison": null
+    },
+    {
+      "commune": "Leudelange",
+      "canton": "Esch-sur-Alzette",
+      "zone": "Sud",
+      "offres_appartement": 80,
+      "offres_maison": null
+    },
+    {
+      "commune": "Lintgen",
+      "canton": "Mersch",
+      "zone": "Peri",
+      "offres_appartement": 16,
+      "offres_maison": null
+    },
+    {
+      "commune": "Lorentzweiler",
+      "canton": "Mersch",
+      "zone": "Peri",
+      "offres_appartement": 46,
+      "offres_maison": null
+    },
+    {
+      "commune": "Luxembourg",
+      "canton": "Luxembourg",
+      "zone": "LV",
+      "offres_appartement": 5655,
+      "offres_maison": 176
+    },
+    {
+      "commune": "Mamer",
+      "canton": "Capellen",
+      "zone": "Peri",
+      "offres_appartement": 229,
+      "offres_maison": 42
+    },
+    {
+      "commune": "Manternach",
+      "canton": "Grevenmacher",
+      "zone": "Est",
+      "offres_appartement": 7,
+      "offres_maison": null
+    },
+    {
+      "commune": "Mersch",
+      "canton": "Mersch",
+      "zone": "Peri",
+      "offres_appartement": 53,
+      "offres_maison": null
+    },
+    {
+      "commune": "Mertert",
+      "canton": "Grevenmacher",
+      "zone": "Est",
+      "offres_appartement": 39,
+      "offres_maison": null
+    },
+    {
+      "commune": "Mertzig",
+      "canton": "Diekirch",
+      "zone": "Nord",
+      "offres_appartement": 5,
+      "offres_maison": null
+    },
+    {
+      "commune": "Mondercange",
+      "canton": "Esch-sur-Alzette",
+      "zone": "Sud",
+      "offres_appartement": 59,
+      "offres_maison": null
+    },
+    {
+      "commune": "Mondorf-les-Bains",
+      "canton": "Remich",
+      "zone": "Est",
+      "offres_appartement": 49,
+      "offres_maison": null
+    },
+    {
+      "commune": "Niederanven",
+      "canton": "Luxembourg",
+      "zone": "LC",
+      "offres_appartement": 73,
+      "offres_maison": null
+    },
+    {
+      "commune": "Nommern",
+      "canton": "Mersch",
+      "zone": "Peri",
+      "offres_appartement": 1,
+      "offres_maison": null
+    },
+    {
+      "commune": "Parc Hosingen",
+      "canton": "Clervaux",
+      "zone": "Nord",
+      "offres_appartement": 8,
+      "offres_maison": null
+    },
+    {
+      "commune": "Pétange",
+      "canton": "Esch-sur-Alzette",
+      "zone": "Sud",
+      "offres_appartement": 95,
+      "offres_maison": 53
+    },
+    {
+      "commune": "Préizerdaul",
+      "canton": "Redange",
+      "zone": "Nord",
+      "offres_appartement": 0,
+      "offres_maison": null
+    },
+    {
+      "commune": "Putscheid",
+      "canton": "Vianden",
+      "zone": "Nord",
+      "offres_appartement": 1,
+      "offres_maison": null
+    },
+    {
+      "commune": "Rambrouch",
+      "canton": "Redange",
+      "zone": "Nord",
+      "offres_appartement": 23,
+      "offres_maison": null
+    },
+    {
+      "commune": "Reckange-sur-Mess",
+      "canton": "Esch-sur-Alzette",
+      "zone": "Sud",
+      "offres_appartement": 61,
+      "offres_maison": null
+    },
+    {
+      "commune": "Redange-sur-Attert",
+      "canton": "Redange",
+      "zone": "Nord",
+      "offres_appartement": 9,
+      "offres_maison": null
+    },
+    {
+      "commune": "Reisdorf",
+      "canton": "Diekirch",
+      "zone": "Nord",
+      "offres_appartement": 1,
+      "offres_maison": null
+    },
+    {
+      "commune": "Remich",
+      "canton": "Remich",
+      "zone": "Est",
+      "offres_appartement": 34,
+      "offres_maison": null
+    },
+    {
+      "commune": "Roeser",
+      "canton": "Esch-sur-Alzette",
+      "zone": "Sud",
+      "offres_appartement": 73,
+      "offres_maison": null
+    },
+    {
+      "commune": "Rosport-Mompach",
+      "canton": "Echternach",
+      "zone": "Est",
+      "offres_appartement": 4,
+      "offres_maison": null
+    },
+    {
+      "commune": "Rumelange",
+      "canton": "Esch-sur-Alzette",
+      "zone": "Sud",
+      "offres_appartement": 9,
+      "offres_maison": null
+    },
+    {
+      "commune": "Saeul",
+      "canton": "Redange",
+      "zone": "Nord",
+      "offres_appartement": 5,
+      "offres_maison": null
+    },
+    {
+      "commune": "Sandweiler",
+      "canton": "Luxembourg",
+      "zone": "LC",
+      "offres_appartement": 21,
+      "offres_maison": null
+    },
+    {
+      "commune": "Sanem",
+      "canton": "Esch-sur-Alzette",
+      "zone": "Sud",
+      "offres_appartement": 60,
+      "offres_maison": null
+    },
+    {
+      "commune": "Schengen",
+      "canton": "Remich",
+      "zone": "Est",
+      "offres_appartement": 24,
+      "offres_maison": null
+    },
+    {
+      "commune": "Schieren",
+      "canton": "Diekirch",
+      "zone": "Nord",
+      "offres_appartement": 11,
+      "offres_maison": null
+    },
+    {
+      "commune": "Schifflange",
+      "canton": "Esch-sur-Alzette",
+      "zone": "Sud",
+      "offres_appartement": 54,
+      "offres_maison": null
+    },
+    {
+      "commune": "Schuttrange",
+      "canton": "Luxembourg",
+      "zone": "LC",
+      "offres_appartement": 19,
+      "offres_maison": null
+    },
+    {
+      "commune": "Stadtbredimus",
+      "canton": "Remich",
+      "zone": "Est",
+      "offres_appartement": 3,
+      "offres_maison": null
+    },
+    {
+      "commune": "Steinfort",
+      "canton": "Capellen",
+      "zone": "Peri",
+      "offres_appartement": 31,
+      "offres_maison": null
+    },
+    {
+      "commune": "Steinsel",
+      "canton": "Luxembourg",
+      "zone": "LC",
+      "offres_appartement": 49,
+      "offres_maison": null
+    },
+    {
+      "commune": "Strassen",
+      "canton": "Luxembourg",
+      "zone": "LC",
+      "offres_appartement": 289,
+      "offres_maison": 36
+    },
+    {
+      "commune": "Tandel",
+      "canton": "Vianden",
+      "zone": "Nord",
+      "offres_appartement": 0,
+      "offres_maison": null
+    },
+    {
+      "commune": "Troisvierges",
+      "canton": "Clervaux",
+      "zone": "Nord",
+      "offres_appartement": 13,
+      "offres_maison": null
+    },
+    {
+      "commune": "Useldange",
+      "canton": "Redange",
+      "zone": "Nord",
+      "offres_appartement": 8,
+      "offres_maison": null
+    },
+    {
+      "commune": "Vallée de l'Ernz",
+      "canton": "Diekirch",
+      "zone": "Nord",
+      "offres_appartement": 2,
+      "offres_maison": null
+    },
+    {
+      "commune": "Vianden",
+      "canton": "Vianden",
+      "zone": "Nord",
+      "offres_appartement": 0,
+      "offres_maison": null
+    },
+    {
+      "commune": "Vichten",
+      "canton": "Redange",
+      "zone": "Nord",
+      "offres_appartement": 2,
+      "offres_maison": null
+    },
+    {
+      "commune": "Waldbillig",
+      "canton": "Echternach",
+      "zone": "Est",
+      "offres_appartement": 0,
+      "offres_maison": null
+    },
+    {
+      "commune": "Walferdange",
+      "canton": "Luxembourg",
+      "zone": "LC",
+      "offres_appartement": 142,
+      "offres_maison": null
+    },
+    {
+      "commune": "Weiler-la-Tour",
+      "canton": "Luxembourg",
+      "zone": "LC",
+      "offres_appartement": 12,
+      "offres_maison": null
+    },
+    {
+      "commune": "Weiswampach",
+      "canton": "Clervaux",
+      "zone": "Nord",
+      "offres_appartement": 41,
+      "offres_maison": null
+    },
+    {
+      "commune": "Wiltz",
+      "canton": "Wiltz",
+      "zone": "Nord",
+      "offres_appartement": 21,
+      "offres_maison": null
+    },
+    {
+      "commune": "Wincrange",
+      "canton": "Clervaux",
+      "zone": "Nord",
+      "offres_appartement": 3,
+      "offres_maison": null
+    },
+    {
+      "commune": "Winseler",
+      "canton": "Wiltz",
+      "zone": "Nord",
+      "offres_appartement": 13,
+      "offres_maison": null
+    },
+    {
+      "commune": "Wormeldange",
+      "canton": "Grevenmacher",
+      "zone": "Est",
+      "offres_appartement": 9,
+      "offres_maison": null
+    }
+  ]
+}

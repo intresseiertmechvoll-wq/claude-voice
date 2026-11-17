@@ -1,0 +1,61 @@
+{
+  "_statut": "TOUTES CES VALEURS SONT À VALIDER PAR JASON. Chaque valeur a une source ou est marquée « proposition ». Explications : README, partie « Paramètres à valider ».",
+  "version": "2026-11-17",
+
+  "arrondi": 50,
+  "ecart_min_eur": 100,
+
+  "niveaux": {
+    "_note": "bas = niveau des baux récents (rapport n°24) ; haut = niveau des annonces (relevé du 17/11/2026, facteur 1,17) ; milieu = moyenne des deux",
+    "annonce_sur_bail": 1.17
+  },
+
+  "surface": {
+    "_note": "En dessous du centre de la plus petite classe (40 m²), le loyer au m² continue la pente 60 → 40 m² (proposition) jusqu'à ce plancher",
+    "plancher_extrapolation_m2": 25
+  },
+
+  "coefficients": {
+    "etat": {
+      "_note": "proposition : pas de donnée publique sur l'état ; valeurs prudentes",
+      "neuf": 0.05,
+      "renove": 0.03,
+      "bon": 0,
+      "rafraichir": -0.05,
+      "renover": -0.12
+    },
+    "energie": {
+      "_note": "proposition : l'écart brut A / F–H du rapport n°24 est de 35 à 40 %, mais il mélange l'âge du bien et la date du bail (déjà comptés) ; on n'en garde qu'une petite partie",
+      "A+": 0.05, "A": 0.05, "B": 0.03, "C": 0.01, "D": 0, "E": 0, "F": -0.02, "G": -0.03, "H": -0.04, "I": -0.04, "inconnu": 0
+    },
+    "exterieur_appartement": {
+      "_note": "proposition (balcon, terrasse ou jardin privatif d'un appartement) ; sans effet pour une maison",
+      "aucun": 0, "balcon": 0.02, "terrasse": 0.04, "jardin": 0.05
+    },
+    "etage_appartement": {
+      "_note": "proposition, même logique que l'outil d'estimation",
+      "rez_de_chaussee": -0.03,
+      "sans_ascenseur_a_partir_de_l_etage": 3,
+      "sans_ascenseur": -0.05
+    },
+    "total_min": -0.20,
+    "total_max": 0.15
+  },
+
+  "stationnement": {
+    "_note": "montants par mois et par place dans data/references.json (annonces atHome du 17/11/2026 pour Luxembourg-Ville et le Sud, proposition ailleurs) ; maisons : stationnement supposé compris dans le loyer de référence",
+    "places_max": 2,
+    "maison": false
+  },
+
+  "fiabilite": {
+    "_note": "règle simple et visible",
+    "zones_bonnes_appartement": ["LV", "LC", "Sud"],
+    "cantons_limites": ["Vianden", "Redange", "Echternach", "Wiltz", "Clervaux"],
+    "appartement_surface_bonne": [40, 130],
+    "appartement_surface_limite": [30, 160],
+    "maison_annonces_min_zone": 13,
+    "maison_surface_moyenne": [100, 300],
+    "maison_surface_limite": [60, 400]
+  }
+}

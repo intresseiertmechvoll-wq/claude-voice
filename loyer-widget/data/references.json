@@ -1,0 +1,88 @@
+{
+  "_note": "Valeurs de référence saisies à la main depuis des publications (pas de fichier CC0 pour elles). Chaque bloc indique sa source. À revoir à chaque nouveau rapport de l'Observatoire de l'Habitat et à chaque nouveau relevé d'annonces (voir README, partie « Mettre à jour les données »).",
+  "zones": {
+    "_note": "Découpage du rapport n°24 : Luxembourg-Ville ; Luxembourg-Campagne = reste du canton de Luxembourg ; Périphérie = cantons de Capellen et Mersch ; Sud = canton d'Esch-sur-Alzette ; Est = cantons d'Echternach, Grevenmacher, Remich ; Nord = cantons de Clervaux, Diekirch, Redange, Vianden, Wiltz.",
+    "parCanton": {
+      "Luxembourg": "LC",
+      "Capellen": "Peri",
+      "Mersch": "Peri",
+      "Esch-sur-Alzette": "Sud",
+      "Echternach": "Est",
+      "Grevenmacher": "Est",
+      "Remich": "Est",
+      "Clervaux": "Nord",
+      "Diekirch": "Nord",
+      "Redange": "Nord",
+      "Vianden": "Nord",
+      "Wiltz": "Nord"
+    },
+    "communeVille": "Luxembourg"
+  },
+  "cadastre": {
+    "source": "Observatoire de l'Habitat (2026), Rapport d'analyse n°24 « Le cadastre des loyers – Premiers résultats », 05/06/2026",
+    "url": "https://logement.public.lu/fr/publications/observatoire/rapport-analyse-24.html",
+    "periode": "baux en cours en 2025 (enquête d'octobre–novembre 2025)",
+    "medianeCanton": {
+      "_source": "graphique 5 (loyer médian au m², appartements, hors charges)",
+      "LuxembourgVille": 25.56,
+      "Luxembourg": 22.22,
+      "Esch-sur-Alzette": 19.12,
+      "Vianden": 17.20,
+      "Capellen": 18.67,
+      "Remich": 17.86,
+      "Mersch": 17.50,
+      "Wiltz": 16.01,
+      "Grevenmacher": 16.27,
+      "Diekirch": 16.14,
+      "Clervaux": 15.56,
+      "Echternach": 13.59,
+      "Redange": 13.57
+    },
+    "medianeZone": {
+      "_source": "graphique 6",
+      "LV": 25.56, "LC": 22.22, "Peri": 18.05, "Sud": 19.12, "Est": 16.11, "Nord": 15.56
+    },
+    "surface": {
+      "_source": "graphique 7 : loyer médian au m² par classe de surface (< 50, 50–69, 70–89, 90–109, 110–129, ≥ 130 m²) ; valeurs placées au centre des classes",
+      "centres": [40, 60, 80, 100, 120, 145],
+      "LV": [35.0, 27.5, 22.8, 21.3, 22.0, 20.4],
+      "LC": [31.1, 25.4, 21.4, 19.0, 17.5, 17.2],
+      "Peri": [28.5, 19.5, 18.3, 17.4, 13.6, 15.0],
+      "Sud": [26.4, 20.0, 17.9, 16.2, 15.5, 12.6],
+      "Est": [21.2, 18.6, 16.5, 13.8, 13.8, 12.1],
+      "Nord": [20.0, 17.0, 15.1, 14.3, 12.8, 12.8]
+    },
+    "bauxRecents": {
+      "_source": "graphique 10 : loyer moyen au m², tous les baux / baux conclus en 2024 ou 2025",
+      "LV": { "tous": 26.47, "recents": 30.00 },
+      "LC": { "tous": 22.54, "recents": 25.38 },
+      "Peri": { "tous": 18.34, "recents": 21.50 },
+      "Sud": { "tous": 19.39, "recents": 22.59 },
+      "Est": { "tous": 16.82, "recents": 19.69 },
+      "Nord": { "tous": 15.99, "recents": 17.76 }
+    },
+    "indiceBase": {
+      "_source": "moyenne 2024-2025 de l'indice trimestriel des loyers annoncés d'appartements (base 100 = T1 2005), data.public.lu : période des baux « récents » du rapport",
+      "trimestres": ["2024T1", "2024T2", "2024T3", "2024T4", "2025T1", "2025T2", "2025T3", "2025T4"]
+    }
+  },
+  "maisons": {
+    "source": "Relevé d'annonces de maisons à louer au Luxembourg, atHome.lu et wortimmo.lu, 17/11/2026 (84 annonces retenues, docs/controle-annonces.md)",
+    "date": "2026-11-17",
+    "indiceAuReleve": "2026T2",
+    "_modele": "loyer annoncé = exp(constante de la zone + élasticité × ln(surface)) ; moindres carrés sur 84 annonces",
+    "elasticite": 0.62222,
+    "constante": { "LV": 5.17359, "LC": 5.00338, "Peri": 4.99537, "Sud": 4.96132, "Est": 4.80959, "Nord": 4.63402 },
+    "annonces": { "LV": 19, "LC": 13, "Peri": 18, "Sud": 13, "Est": 10, "Nord": 11 },
+    "ecartTypeLog": 0.17331
+  },
+  "calibration": {
+    "source": "Relevé de 350 annonces d'appartements au Luxembourg, atHome.lu, 17/11/2026 (docs/controle-annonces.md) : loyer demandé ÷ loyer des baux récents = 1,17 en médiane, stable par zone et par surface",
+    "annonceSurBail": 1.17
+  },
+  "stationnement": {
+    "source": "Annonces de garages et parkings à louer sur atHome.lu, 17/11/2026 : médiane 200 € à Luxembourg-Ville (20 annonces), 140 € dans le Sud (14 annonces). Autres zones et parkings extérieurs : proposition non mesurée.",
+    "garageParMois": { "LV": 200, "LC": 170, "Peri": 140, "Sud": 140, "Est": 120, "Nord": 100 },
+    "parkingExterieurParMois": { "LV": 120, "LC": 100, "Peri": 80, "Sud": 80, "Est": 70, "Nord": 60 }
+  }
+}
