@@ -1,0 +1,795 @@
+source,page,rent_eur,surface_m2,bedrooms,type,locality,country,url,flag
+athome,1,430,26,,Appartement,Metz-Centre-Ville (FR),FR,https://www.athome.lu/location/appartement/metz/id-4054637.html,pieces_not_bedrooms=1
+athome,1,1200,80,2,Appartement,Attert (BE),BE,https://www.athome.lu/location/appartement/attert/id-9248223.html,bedrooms_unverified
+athome,1,3000,108,2,Appartement,Luxembourg-Muhlenbach,LU,https://www.athome.lu/location/appartement/luxembourg/id-9408551.html,
+athome,1,2700,91,2,Appartement,Mondercange,LU,https://www.athome.lu/location/appartement/mondercange/id-9433520.html,
+athome,1,1700,42,1,Appartement,Luxembourg-Gare,LU,https://www.athome.lu/location/appartement/luxembourg/id-9372724.html,
+athome,1,1700,37,,Appartement,Luxembourg-Bonnevoie,LU,https://www.athome.lu/location/appartement/luxembourg/id-9397434.html,
+athome,1,2300,71,1,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9398719.html,
+athome,1,2350,60,1,Appartement,Luxembourg-Bonnevoie,LU,https://www.athome.lu/location/appartement/luxembourg/id-9436165.html,
+athome,1,2300,75,2,Appartement,Luxembourg-Hollerich,LU,https://www.athome.lu/location/appartement/luxembourg/id-9432318.html,
+athome,1,3000,100,3,Appartement,Luxembourg-Cents,LU,https://www.athome.lu/location/appartement/luxembourg/id-9441758.html,
+athome,1,2300,63,2,Appartement,Contern,LU,https://www.athome.lu/location/appartement/contern/id-8973054.html,
+athome,1,2200,141,1,Appartement,Luxembourg-Gare,LU,https://www.athome.lu/location/appartement/luxembourg/id-9048144.html,
+athome,1,1900,68,2,Appartement,Clemency,LU,https://www.athome.lu/location/appartement/clemency/id-9405259.html,
+athome,1,2100,60,1,Appartement,Luxembourg-Gasperich - Cloche d'or,LU,https://www.athome.lu/location/appartement/luxembourg/id-9431303.html,
+athome,1,4200,120,2,Appartement,Luxembourg-Clausen,LU,https://www.athome.lu/location/appartement/luxembourg/id-9377419.html,
+athome,1,2200,47,1,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-9394499.html,
+athome,1,2500,80,2,Appartement,Luxembourg-Hollerich,LU,https://www.athome.lu/location/appartement/luxembourg/id-8372428.html,
+athome,1,2800,96,2,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-8347314.html,
+athome,1,4200,115,3,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-9396266.html,
+athome,1,2800,92,2,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-9349462.html,
+athome,2,1750,45,1,Appartement,Luxembourg-Weimerskirch,LU,https://www.athome.lu/location/appartement/luxembourg/id-7386839.html,
+athome,2,2600,55,1,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-8008548.html,
+athome,2,3450,92,2,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-8053189.html,
+athome,2,1900,32,1,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-8534435.html,
+athome,2,2000,46,1,Appartement,Luxembourg-Cessange,LU,https://www.athome.lu/location/appartement/luxembourg/id-8555890.html,
+athome,2,3900,134,3,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-4261907.html,
+athome,2,2400,88,2,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-4297773.html,
+athome,2,2200,53,1,Appartement,Luxembourg-Cessange,LU,https://www.athome.lu/location/appartement/luxembourg/id-8352468.html,
+athome,2,2500,92,2,Appartement,Luxembourg-Beggen,LU,https://www.athome.lu/location/appartement/luxembourg/id-9442944.html,
+athome,2,1700,83,2,Appartement,Rollingen,LU,https://www.athome.lu/location/appartement/rollingen/id-9360516.html,
+athome,2,1400,47,1,Appartement,Schifflange,LU,https://www.athome.lu/location/appartement/schifflange/id-9407427.html,
+athome,2,790,52,,Appartement,Thionville (FR),FR,https://www.athome.lu/location/appartement/thionville/id-9436957.html,
+athome,2,4500,170,4,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-9340848.html,
+athome,2,600,70,,Appartement,Joeuf (FR),FR,https://www.athome.lu/location/appartement/joeuf/id-9425159.html,
+athome,2,690,87,,Appartement,Jarny (FR),FR,https://www.athome.lu/location/appartement/jarny/id-9424457.html,
+athome,2,2500,50,1,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-9418999.html,
+athome,2,560,55,,Appartement,Joeuf (FR),FR,https://www.athome.lu/location/appartement/joeuf/id-9385132.html,
+athome,2,650,70,,Appartement,Joeuf (FR),FR,https://www.athome.lu/location/appartement/joeuf/id-9383687.html,
+athome,2,1000,70,,Appartement,Hettange-Grande (FR),FR,https://www.athome.lu/location/appartement/hettange-grande/id-9305836.html,
+athome,2,600,116,,Appartement,Jarny (FR),FR,https://www.athome.lu/location/appartement/jarny/id-9239997.html,
+athome,3,860,92,,Appartement,Talange (FR),FR,https://www.athome.lu/location/appartement/talange/id-9194486.html,pieces_not_bedrooms=5
+athome,3,620,84,,Appartement,Auboué (FR),FR,https://www.athome.lu/location/appartement/auboue/id-9170801.html,pieces_not_bedrooms=3
+athome,3,370,33,,Appartement,Auboué (FR),FR,https://www.athome.lu/location/appartement/auboue/id-9029830.html,pieces_not_bedrooms=2
+athome,3,360,27,,Appartement,Homécourt (FR),FR,https://www.athome.lu/location/appartement/homecourt/id-8858947.html,pieces_not_bedrooms=1
+athome,3,860,59,,Appartement,Florange (FR),FR,https://www.athome.lu/location/appartement/florange/id-7933811.html,pieces_not_bedrooms=3
+athome,3,650,54,,Appartement,Lorry-lès-Metz (FR),FR,https://www.athome.lu/location/appartement/lorry-les-metz/id-7870707.html,pieces_not_bedrooms=3
+athome,3,550,74,,Appartement,Homécourt (FR),FR,https://www.athome.lu/location/appartement/homecourt/id-7118659.html,pieces_not_bedrooms=3
+athome,3,540,79,,Appartement,Homécourt (FR),FR,https://www.athome.lu/location/appartement/homecourt/id-7005207.html,pieces_not_bedrooms=3
+athome,3,2200,76,1,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-9431258.html,
+athome,3,950,105,,Appartement,Terville (FR),FR,https://www.athome.lu/location/appartement/terville/id-9436958.html,pieces_not_bedrooms=4
+athome,3,620,52,,Appartement,Dommary-Baroncourt (FR),FR,https://www.athome.lu/location/appartement/dommary-baroncourt/id-9435980.html,pieces_not_bedrooms=3
+athome,3,3000,94,2,Appartement,Luxembourg-Limpertsberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-9433805.html,
+athome,3,550,56,,Appartement,Homécourt (FR),FR,https://www.athome.lu/location/appartement/homecourt/id-9425158.html,pieces_not_bedrooms=2
+athome,3,1220,67,,Appartement,Aumetz (FR),FR,https://www.athome.lu/location/appartement/aumetz/id-9418631.html,pieces_not_bedrooms=3
+athome,3,760,46,,Appartement,Nilvange (FR),FR,https://www.athome.lu/location/appartement/nilvange/id-9387417.html,pieces_not_bedrooms=2
+athome,3,700,99,,Appartement,Joeuf (FR),FR,https://www.athome.lu/location/appartement/joeuf/id-9363777.html,pieces_not_bedrooms=4
+athome,3,2300,47,1,Appartement,Luxembourg-Cessange,LU,https://www.athome.lu/location/appartement/luxembourg/id-8373645.html,
+athome,3,1700,48,1,Appartement,Luxembourg-Gare,LU,https://www.athome.lu/location/appartement/luxembourg/id-8475926.html,
+athome,3,3000,122,3,Appartement,Contern,LU,https://www.athome.lu/location/appartement/contern/id-9396505.html,
+athome,3,2550,73,2,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-6295127.html,
+athome,4,2600,95,2,Appartement,Luxembourg-Limpertsberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-8770707.html,
+athome,4,4650,152,3,Appartement,Luxembourg-Pfaffenthal,LU,https://www.athome.lu/location/appartement/luxembourg/id-9423586.html,
+athome,4,2500,110,2,Appartement,Leudelange,LU,https://www.athome.lu/location/appartement/leudelange/id-9386338.html,
+athome,4,930,98,,Appartement,Le Ban Saint-Martin (FR),FR,https://www.athome.lu/location/appartement/le-ban-saint-martin/id-9364871.html,
+athome,4,770,63,,Appartement,Neufchef (FR),FR,https://www.athome.lu/location/appartement/neufchef/id-9195954.html,
+athome,4,2100,38,1,Appartement,Luxembourg-Bonnevoie,LU,https://www.athome.lu/location/appartement/luxembourg/id-8860638.html,
+athome,4,450,31,,Appartement,Flévy (FR),FR,https://www.athome.lu/location/appartement/flevy/id-9437102.html,
+athome,4,1550,60,1,Appartement,Bettembourg,LU,https://www.athome.lu/location/appartement/bettembourg/id-9395801.html,
+athome,4,4150,181,3,Appartement,Luxembourg-Gare,LU,https://www.athome.lu/location/appartement/luxembourg/id-6988319.html,
+athome,4,3200,158,1,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-7567207.html,
+athome,4,2650,76,2,Appartement,Luxembourg-Gare,LU,https://www.athome.lu/location/appartement/luxembourg/id-8086231.html,
+athome,4,2250,87,2,Appartement,Belval,LU,https://www.athome.lu/location/appartement/belval/id-8086238.html,
+athome,4,1800,57,1,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-8908943.html,
+athome,4,600,34,,Appartement,Metz-Gare (FR),FR,https://www.athome.lu/location/appartement/metz/id-9426620.html,
+athome,4,600,41,,Appartement,Hagondange (FR),FR,https://www.athome.lu/location/appartement/hagondange/id-9408436.html,
+athome,4,450,34,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9306183.html,
+athome,4,2850,84,2,Appartement,Alzingen,LU,https://www.athome.lu/location/appartement/alzingen/id-9407242.html,
+athome,4,2050,50,1,Appartement,Luxembourg-Limpertsberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-8940984.html,
+athome,4,2200,70,1,Appartement,Luxembourg-Gasperich - Cloche d'or,LU,https://www.athome.lu/location/appartement/luxembourg/id-9031111.html,
+athome,4,2150,60,1,Appartement,Luxembourg-Gasperich - Cloche d'or,LU,https://www.athome.lu/location/appartement/luxembourg/id-9265921.html,
+athome,5,1975,50,1,Appartement,Luxembourg-Gasperich - Cloche d'or,LU,https://www.athome.lu/location/appartement/luxembourg/id-9373345.html,
+athome,5,3300,90,2,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-7748807.html,
+athome,5,2150,60,1,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-7888225.html,
+athome,5,3300,90,2,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-7975172.html,
+athome,5,2150,55,1,Appartement,Luxembourg-Gasperich - Cloche d'or,LU,https://www.athome.lu/location/appartement/luxembourg/id-8238950.html,
+athome,5,2050,50,1,Appartement,Luxembourg-Limpertsberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-8249591.html,
+athome,5,2150,45,1,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-8289417.html,
+athome,5,2150,60,1,Appartement,Luxembourg-Gasperich - Cloche d'or,LU,https://www.athome.lu/location/appartement/luxembourg/id-8458385.html,
+athome,5,2890,60,1,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-8458435.html,
+athome,5,1950,60,1,Appartement,Strassen,LU,https://www.athome.lu/location/appartement/strassen/id-8462234.html,
+athome,5,3300,90,2,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-8113230.html,
+athome,5,1350,23,1,Appartement,Esch-sur-Alzette,LU,https://www.athome.lu/location/appartement/esch-sur-alzette/id-9432102.html,
+athome,5,1050,23,1,Appartement,Esch-sur-Alzette,LU,https://www.athome.lu/location/appartement/esch-sur-alzette/id-9432003.html,
+athome,5,1400,50,1,Appartement,Rameldange,LU,https://www.athome.lu/location/appartement/rameldange/id-9347371.html,
+athome,5,1900,64,1,Appartement,Luxembourg-Bonnevoie,LU,https://www.athome.lu/location/appartement/luxembourg/id-9127755.html,
+athome,5,2000,48,1,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9408661.html,
+athome,5,1900,52,1,Appartement,Luxembourg-Cents,LU,https://www.athome.lu/location/appartement/luxembourg/id-9404049.html,
+athome,5,5300,168,3,Appartement,Luxembourg-Dommeldange,LU,https://www.athome.lu/location/appartement/luxembourg/id-9227780.html,
+athome,5,2000,48,,Appartement,Luxembourg-Cents,LU,https://www.athome.lu/location/appartement/luxembourg/id-9435467.html,
+athome,6,1800,56,1,Appartement,Luxembourg-Gare,LU,https://www.athome.lu/location/appartement/luxembourg/id-9435173.html,
+athome,6,605,55,1,Appartement,Jucken (DE),DE,https://www.athome.lu/location/appartement/jucken/id-9405144.html,bedrooms_unverified
+athome,6,924,84,2,Appartement,Jucken (DE),DE,https://www.athome.lu/location/appartement/jucken/id-9405146.html,bedrooms_unverified
+athome,6,583,53,1,Appartement,Jucken (DE),DE,https://www.athome.lu/location/appartement/jucken/id-9405143.html,bedrooms_unverified
+athome,6,605,55,1,Appartement,Jucken (DE),DE,https://www.athome.lu/location/appartement/jucken/id-9405145.html,bedrooms_unverified
+athome,6,649,59,1,Appartement,Jucken (DE),DE,https://www.athome.lu/location/appartement/jucken/id-9405147.html,bedrooms_unverified
+athome,6,550,55,1,Appartement,Jucken (DE),DE,https://www.athome.lu/location/appartement/jucken/id-9405142.html,bedrooms_unverified
+athome,6,550,55,1,Appartement,Jucken (DE),DE,https://www.athome.lu/location/appartement/jucken/id-9405140.html,bedrooms_unverified
+athome,6,1800,56,1,Appartement,Luxembourg-Gare,LU,https://www.athome.lu/location/appartement/luxembourg/id-9404780.html,
+athome,6,3480,80,2,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-9386286.html,
+athome,6,2250,80,1,Appartement,Luxembourg-Centre Ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-8579306.html,
+athome,6,2660,90,2,Appartement,Luxembourg-Merl,LU,https://www.athome.lu/location/appartement/luxembourg/id-8620128.html,
+athome,6,2250,75,1,Appartement,Strassen,LU,https://www.athome.lu/location/appartement/strassen/id-8648150.html,
+athome,6,2450,50,1,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-8760092.html,
+athome,6,3630,111,2,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-8843578.html,
+athome,6,2200,70,1,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-8960048.html,
+athome,6,2250,70,1,Appartement,Luxembourg-Centre Ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9180076.html,
+athome,6,1900,45,1,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-8246602.html,
+athome,6,2600,60,1,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-8295184.html,
+athome,6,2450,50,1,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-8317544.html,
+athome,7,2200,70,1,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-9234403.html,
+athome,7,2400,75,2,Appartement,Luxembourg-Centre Ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9319237.html,
+athome,7,2400,80,2,Appartement,Luxembourg-Centre Ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9330512.html,
+athome,7,1950,68,1,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-9330513.html,
+athome,7,2450,75,1,Appartement,Luxembourg-Centre Ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-7860614.html,
+athome,7,2620,90,2,Appartement,Strassen,LU,https://www.athome.lu/location/appartement/strassen/id-7945890.html,
+athome,7,2420,70,1,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-8031372.html,
+athome,7,2450,50,1,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-8335581.html,
+athome,7,2450,50,1,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-8340789.html,
+athome,7,2800,90,2,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-8365019.html,
+athome,7,3300,90,2,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-8441257.html,
+athome,7,5670,200,3,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-8462245.html,
+athome,7,2250,80,1,Appartement,Luxembourg-Centre Ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-8586804.html,
+athome,7,2500,113,3,Appartement,Sanem,LU,https://www.athome.lu/location/appartement/sanem/id-9382408.html,
+athome,7,2500,80,2,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-9442146.html,
+athome,8,6600,197,4,Appartement,Bertrange,LU,https://www.athome.lu/location/appartement/bertrange/id-8681131.html,
+athome,8,6500,195,3,Appartement,Bertrange,LU,https://www.athome.lu/location/appartement/bertrange/id-8681133.html,
+athome,8,1750,65,1,Appartement,Itzig,LU,https://www.athome.lu/location/appartement/itzig/id-9432229.html,
+athome,8,325000,30,,Appartement,Belval,LU,https://www.athome.lu/location/appartement/belval/id-9215814.html,suspect_rent_gt_15000
+athome,8,2500,90,2,Appartement,Luxembourg-Centre Ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-8706333.html,
+athome,8,2660,90,2,Appartement,Luxembourg-Centre Ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9180063.html,
+athome,8,2200,90,1,Appartement,Strassen,LU,https://www.athome.lu/location/appartement/strassen/id-9186705.html,
+athome,8,2150,90,1,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-9210270.html,
+athome,8,3000,70,2,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-8173062.html,
+athome,8,2400,70,2,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-8221883.html,
+athome,8,2700,90,2,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-8230264.html,
+athome,8,2700,90,2,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-8392290.html,
+athome,8,1800,60,1,Appartement,Luxembourg-Centre Ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-8458376.html,
+athome,8,1900,65,1,Appartement,Luxembourg-Centre Ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-8640207.html,
+athome,8,1850,70,1,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-8700016.html,
+athome,8,2400,75,2,Appartement,Luxembourg-Centre Ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-8760087.html,
+athome,8,1850,70,1,Appartement,Esch-sur-Alzette,LU,https://www.athome.lu/location/appartement/esch-sur-alzette/id-9044845.html,
+athome,8,2600,80,2,Appartement,Luxembourg-Gare,LU,https://www.athome.lu/location/appartement/luxembourg/id-9103981.html,
+athome,8,2300,90,1,Appartement,Luxembourg-Centre Ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9127672.html,
+athome,8,2400,90,2,Appartement,Luxembourg-Rollingergrund,LU,https://www.athome.lu/location/appartement/luxembourg/id-9234395.html,
+athome,9,2000,60,2,Appartement,Luxembourg-Bonnevoie,LU,https://www.athome.lu/location/appartement/luxembourg/id-9234408.html,
+athome,9,2200,70,2,Appartement,Luxembourg-Limpertsberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-9235239.html,
+athome,9,2500,75,2,Appartement,Luxembourg-Centre Ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9265957.html,
+athome,9,2500,70,2,Appartement,Luxembourg-Centre Ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9308069.html,
+athome,9,2400,80,2,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-7744189.html,
+athome,9,2350,70,2,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-7853893.html,
+athome,9,3200,130,3,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-7881018.html,
+athome,9,2400,80,2,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-7980446.html,
+athome,9,2000,62,,Appartement,Helmsange,LU,https://www.athome.lu/location/appartement/helmsange/id-9433546.html,
+athome,9,2120,54,1,Appartement,Strassen,LU,https://www.athome.lu/location/appartement/strassen/id-9388046.html,
+athome,9,2000,51,1,Appartement,Luxembourg-Merl,LU,https://www.athome.lu/location/appartement/luxembourg/id-9279762.html,
+athome,9,2000,57,1,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-8778554.html,
+athome,9,1900,48,1,Appartement,Luxembourg-Gasperich - Cloche d'or,LU,https://www.athome.lu/location/appartement/luxembourg/id-8789157.html,
+athome,9,1050,93,,Appartement,Algrange (FR),FR,https://www.athome.lu/location/appartement/algrange/id-9435941.html,pieces_not_bedrooms=4
+athome,9,2000,100,2,Appartement,Marnach,LU,https://www.athome.lu/location/appartement/marnach/id-9432011.html,
+athome,9,1600,68,1,Appartement,Grevenmacher,LU,https://www.athome.lu/location/appartement/grevenmacher/id-9419220.html,
+athome,9,2150,75,1,Appartement,Luxembourg-Limpertsberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-9434044.html,
+athome,9,870,54,,Appartement,Thil (FR),FR,https://www.athome.lu/location/appartement/thil/id-9432300.html,pieces_not_bedrooms=1
+athome,9,2650,91,2,Appartement,Luxembourg-Bonnevoie,LU,https://www.athome.lu/location/appartement/luxembourg/id-9418023.html,
+athome,9,2100,45,1,Appartement,Luxembourg-Merl,LU,https://www.athome.lu/location/appartement/luxembourg/id-9409276.html,
+athome,10,2400,106,2,Appartement,Steinsel,LU,https://www.athome.lu/location/appartement/steinsel/id-9408526.html,
+athome,10,1500,46,1,Appartement,Esch-sur-Alzette,LU,https://www.athome.lu/location/appartement/esch-sur-alzette/id-9406347.html,
+athome,10,830,51,,Appartement,Thionville (FR),FR,https://www.athome.lu/location/appartement/thionville/id-9405783.html,pieces_not_bedrooms=3
+athome,10,530,17,,Appartement,Hussigny-Godbrange (FR),FR,https://www.athome.lu/location/appartement/hussigny-godbrange/id-9396174.html,pieces_not_bedrooms=1
+athome,10,555,23,,Appartement,Algrange (FR),FR,https://www.athome.lu/location/appartement/algrange/id-9382490.html,pieces_not_bedrooms=1
+athome,10,1105,99,,Appartement,Thionville (FR),FR,https://www.athome.lu/location/appartement/thionville/id-9376142.html,pieces_not_bedrooms=4
+athome,10,1410,107,,Appartement,Thionville (FR),FR,https://www.athome.lu/location/appartement/thionville/id-9347419.html,pieces_not_bedrooms=5
+athome,10,850,68,,Appartement,Illange (FR),FR,https://www.athome.lu/location/appartement/illange/id-9347418.html,pieces_not_bedrooms=3
+athome,10,510,51,,Appartement,Homécourt (FR),FR,https://www.athome.lu/location/appartement/homecourt/id-9326577.html,pieces_not_bedrooms=3
+athome,10,835,62,,Appartement,Thionville (FR),FR,https://www.athome.lu/location/appartement/thionville/id-9325666.html,pieces_not_bedrooms=3
+athome,10,570,16,,Appartement,Audun-le-Tiche (FR),FR,https://www.athome.lu/location/appartement/audun-le-tiche/id-9314520.html,pieces_not_bedrooms=1
+athome,10,2200,87,2,Appartement,Leudelange,LU,https://www.athome.lu/location/appartement/leudelange/id-9313844.html,
+athome,10,3450,79,1,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9307978.html,
+athome,10,455,55,,Appartement,Bousse (FR),FR,https://www.athome.lu/location/appartement/bousse/id-9215499.html,pieces_not_bedrooms=1
+athome,10,350,24,,Appartement,Bousse (FR),FR,https://www.athome.lu/location/appartement/bousse/id-9215498.html,pieces_not_bedrooms=1
+athome,10,550,9,,Appartement,Villerupt (FR),FR,https://www.athome.lu/location/appartement/villerupt/id-9073508.html,pieces_not_bedrooms=2;suspect_surface_lt_15
+athome,10,565,10,,Appartement,Villerupt (FR),FR,https://www.athome.lu/location/appartement/villerupt/id-9073506.html,pieces_not_bedrooms=2;suspect_surface_lt_15
+athome,10,495,11,,Appartement,Thionville (FR),FR,https://www.athome.lu/location/appartement/thionville/id-8930860.html,pieces_not_bedrooms=1;suspect_surface_lt_15
+athome,10,500,11,,Appartement,Thionville (FR),FR,https://www.athome.lu/location/appartement/thionville/id-8910160.html,pieces_not_bedrooms=1;suspect_surface_lt_15
+athome,10,670,26,,Appartement,Longwy (FR),FR,https://www.athome.lu/location/appartement/longwy/id-8909320.html,pieces_not_bedrooms=2
+athome,11,2250,64,1,Appartement,Luxembourg-Cessange,LU,https://www.athome.lu/location/appartement/luxembourg/id-8892212.html,
+athome,11,560,30,,Appartement,Thionville (FR),FR,https://www.athome.lu/location/appartement/thionville/id-8847483.html,pieces_not_bedrooms=1
+athome,11,797,70,,Appartement,Florange (FR),FR,https://www.athome.lu/location/appartement/florange/id-8761077.html,pieces_not_bedrooms=3
+athome,11,700,29,,Appartement,Knutange (FR),FR,https://www.athome.lu/location/appartement/knutange/id-8727910.html,pieces_not_bedrooms=2
+athome,11,430,34,,Appartement,Fameck (FR),FR,https://www.athome.lu/location/appartement/fameck/id-8485907.html,pieces_not_bedrooms=2
+athome,11,500,9,,Appartement,Russange (FR),FR,https://www.athome.lu/location/appartement/russange/id-8426505.html,pieces_not_bedrooms=1;suspect_surface_lt_15
+athome,11,2400,73,2,Appartement,Heisdorf,LU,https://www.athome.lu/location/appartement/heisdorf/id-8419340.html,
+athome,11,400,12,,Appartement,Longwy (FR),FR,https://www.athome.lu/location/appartement/longwy/id-8085034.html,pieces_not_bedrooms=2;suspect_surface_lt_15
+athome,11,720,47,,Appartement,Hettange-Grande (FR),FR,https://www.athome.lu/location/appartement/hettange-grande/id-8073744.html,pieces_not_bedrooms=2
+athome,11,1450,41,1,Appartement,Dudelange,LU,https://www.athome.lu/location/appartement/dudelange/id-9418285.html,
+athome,11,1400,73,2,Appartement,Binsfeld,LU,https://www.athome.lu/location/appartement/binsfeld/id-9436184.html,
+athome,11,1700,130,3,Appartement,Wilwerdange,LU,https://www.athome.lu/location/appartement/wilwerdange/id-9305180.html,
+athome,11,2200,125,2,Appartement,Wiltz,LU,https://www.athome.lu/location/appartement/wiltz/id-9382776.html,
+athome,11,1800,127,2,Appartement,Erpeldange (Wiltz),LU,https://www.athome.lu/location/appartement/erpeldange-wiltz/id-9385190.html,
+athome,11,2400,155,2,Appartement,Mamer,LU,https://www.athome.lu/location/appartement/mamer/id-9407395.html,
+athome,11,3000,183,3,Appartement,Lorentzweiler,LU,https://www.athome.lu/location/appartement/lorentzweiler/id-9423396.html,
+athome,11,640,80,,Appartement,Longuyon (FR),FR,https://www.athome.lu/location/appartement/longuyon/id-9376141.html,pieces_not_bedrooms=4
+athome,11,2300,60,1,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-9363298.html,
+athome,11,1420,129,,Appartement,Thionville (FR),FR,https://www.athome.lu/location/appartement/thionville/id-9307341.html,pieces_not_bedrooms=5
+athome,11,890,48,,Appartement,Mont-Saint-Martin (FR),FR,https://www.athome.lu/location/appartement/mont-saint-martin/id-8688031.html,pieces_not_bedrooms=2
+athome,12,490,47,,Appartement,Mont-Saint-Martin (FR),FR,https://www.athome.lu/location/appartement/mont-saint-martin/id-2641465.html,pieces_not_bedrooms=2
+athome,12,470,55,,Appartement,Longwy (FR),FR,https://www.athome.lu/location/appartement/longwy/id-1021649.html,pieces_not_bedrooms=2
+athome,12,510,32,,Appartement,Trieux (FR),FR,https://www.athome.lu/location/appartement/trieux/id-9442916.html,pieces_not_bedrooms=2
+athome,12,2100,38,1,Appartement,Luxembourg-Bonnevoie,LU,https://www.athome.lu/location/appartement/luxembourg/id-8821961.html,
+athome,12,1450,48,1,Appartement,Schifflange,LU,https://www.athome.lu/location/appartement/schifflange/id-9434790.html,
+athome,12,2400,96,2,Appartement,Differdange,LU,https://www.athome.lu/location/appartement/differdange/id-9125807.html,
+athome,12,2150,69,2,Appartement,Luxembourg-Bonnevoie,LU,https://www.athome.lu/location/appartement/luxembourg/id-9397515.html,
+athome,12,2150,65,1,Appartement,Luxembourg-Bonnevoie,LU,https://www.athome.lu/location/appartement/luxembourg/id-9433817.html,
+athome,12,3000,90,2,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-9407758.html,
+athome,12,2800,89,2,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9408567.html,
+athome,12,2750,124,3,Appartement,Gosseldange,LU,https://www.athome.lu/location/appartement/gosseldange/id-9432034.html,
+athome,12,630,85,,Appartement,Avril (FR),FR,https://www.athome.lu/location/appartement/avril/id-9432114.html,pieces_not_bedrooms=3
+athome,12,600,36,,Appartement,Audun-le-Roman (FR),FR,https://www.athome.lu/location/appartement/audun-le-roman/id-9432004.html,pieces_not_bedrooms=1
+athome,12,640,46,,Appartement,Audun-le-Roman (FR),FR,https://www.athome.lu/location/appartement/audun-le-roman/id-9432002.html,pieces_not_bedrooms=1
+athome,12,530,67,,Appartement,Joeuf (FR),FR,https://www.athome.lu/location/appartement/joeuf/id-9398727.html,pieces_not_bedrooms=3
+athome,12,540,64,,Appartement,Briey (FR),FR,https://www.athome.lu/location/appartement/briey/id-9398713.html,pieces_not_bedrooms=3
+athome,12,635,80,,Appartement,Moutiers (FR),FR,https://www.athome.lu/location/appartement/moutiers/id-9398698.html,pieces_not_bedrooms=3
+athome,12,2100,75,2,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9396471.html,
+athome,12,570,73,,Appartement,Mont-Bonvillers (FR),FR,https://www.athome.lu/location/appartement/mont-bonvillers/id-9374230.html,pieces_not_bedrooms=3
+athome,12,780,117,,Appartement,Briey (FR),FR,https://www.athome.lu/location/appartement/briey/id-9349382.html,pieces_not_bedrooms=3
+athome,13,2300,72,1,Appartement,Luxembourg-Limpertsberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-9324885.html,
+athome,13,665,69,,Appartement,Mercy-le-Bas (FR),FR,https://www.athome.lu/location/appartement/mercy-le-bas/id-9237238.html,pieces_not_bedrooms=3
+athome,13,570,55,,Appartement,Mont-Bonvillers (FR),FR,https://www.athome.lu/location/appartement/mont-bonvillers/id-8982092.html,pieces_not_bedrooms=3
+athome,13,480,52,,Appartement,Homécourt (FR),FR,https://www.athome.lu/location/appartement/homecourt/id-8974275.html,pieces_not_bedrooms=3
+athome,13,380,46,,Appartement,Mercy-le-Bas (FR),FR,https://www.athome.lu/location/appartement/mercy-le-bas/id-8898341.html,pieces_not_bedrooms=3
+athome,13,540,60,,Appartement,Mont-Bonvillers (FR),FR,https://www.athome.lu/location/appartement/mont-bonvillers/id-8681243.html,pieces_not_bedrooms=3
+athome,13,465,48,,Appartement,Jarny (FR),FR,https://www.athome.lu/location/appartement/jarny/id-8570705.html,pieces_not_bedrooms=3
+athome,13,2100,50,1,Appartement,Luxembourg-Beggen,LU,https://www.athome.lu/location/appartement/luxembourg/id-9443114.html,
+athome,13,2000,78,2,Appartement,Differdange,LU,https://www.athome.lu/location/appartement/differdange/id-9436261.html,
+athome,13,1850,40,1,Appartement,Bertrange,LU,https://www.athome.lu/location/appartement/bertrange/id-9435145.html,
+athome,13,2650,70,2,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9433560.html,
+athome,13,2300,58,1,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-9424754.html,
+athome,13,2200,70,2,Appartement,Luxembourg-Gare,LU,https://www.athome.lu/location/appartement/luxembourg/id-9219304.html,
+athome,13,3000,80,2,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9295453.html,
+athome,13,3128,85,2,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-8948890.html,
+athome,13,2500,60,1,Appartement,Luxembourg-Cessange,LU,https://www.athome.lu/location/appartement/luxembourg/id-9443087.html,
+athome,13,2550,65,1,Appartement,Luxembourg-Hollerich,LU,https://www.athome.lu/location/appartement/luxembourg/id-9432317.html,
+athome,13,872,68,,Appartement,Maxéville (FR),FR,https://www.athome.lu/location/appartement/maxeville/id-9442103.html,pieces_not_bedrooms=3
+athome,13,2800,96,2,Appartement,Luxembourg-Limpertsberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-9438043.html,
+athome,13,727,87,,Appartement,Faulquemont (FR),FR,https://www.athome.lu/location/appartement/faulquemont/id-9441642.html,pieces_not_bedrooms=4
+athome,14,580,90,,Appartement,Volmerange-lès-Boulay (FR),FR,https://www.athome.lu/location/appartement/volmerange-les-boulay/id-9436276.html,pieces_not_bedrooms=3
+athome,14,2400,75,2,Appartement,Alzingen,LU,https://www.athome.lu/location/appartement/alzingen/id-9393951.html,
+athome,14,2350,57,1,Appartement,Luxembourg-Merl,LU,https://www.athome.lu/location/appartement/luxembourg/id-9316407.html,
+athome,14,3000,86,2,Appartement,Strassen,LU,https://www.athome.lu/location/appartement/strassen/id-9405232.html,
+athome,14,2900,177,4,Appartement,Frisange,LU,https://www.athome.lu/location/appartement/frisange/id-9418976.html,
+athome,14,3800,140,3,Appartement,Howald,LU,https://www.athome.lu/location/appartement/howald/id-9432188.html,
+athome,14,2000,44,1,Appartement,Strassen,LU,https://www.athome.lu/location/appartement/strassen/id-9423488.html,
+athome,14,3200,116,3,Appartement,Luxembourg-Dommeldange,LU,https://www.athome.lu/location/appartement/luxembourg/id-9394505.html,
+athome,14,670,76,,Appartement,Créhange (FR),FR,https://www.athome.lu/location/appartement/crehange/id-9432434.html,pieces_not_bedrooms=4
+athome,14,1140,96,,Appartement,Maxéville (FR),FR,https://www.athome.lu/location/appartement/maxeville/id-9432360.html,pieces_not_bedrooms=4
+athome,14,674,47,,Appartement,Maxéville (FR),FR,https://www.athome.lu/location/appartement/maxeville/id-9432359.html,pieces_not_bedrooms=2
+athome,14,1400,87,,Appartement,Perl (DE),DE,https://www.athome.lu/location/appartement/perl/id-9304446.html,pieces_not_bedrooms=4
+athome,14,1100,80,,Appartement,Perl-Sinz (DE),DE,https://www.athome.lu/location/appartement/perl/id-9426752.html,pieces_not_bedrooms=2
+athome,14,1100,80,,Appartement,Perl-Sinz (DE),DE,https://www.athome.lu/location/appartement/perl/id-9426751.html,pieces_not_bedrooms=2
+athome,14,1200,85,,Appartement,Perl-Sinz (DE),DE,https://www.athome.lu/location/appartement/perl/id-9426748.html,pieces_not_bedrooms=3
+athome,14,960,37,,Appartement,Ottange (FR),FR,https://www.athome.lu/location/appartement/ottange/id-9426334.html,pieces_not_bedrooms=2
+athome,14,744,91,,Appartement,Ars-sur-Moselle (FR),FR,https://www.athome.lu/location/appartement/ars-sur-moselle/id-9425634.html,pieces_not_bedrooms=5
+athome,14,950,60,,Appartement,Ottange (FR),FR,https://www.athome.lu/location/appartement/ottange/id-8580910.html,pieces_not_bedrooms=4
+athome,14,950,60,,Appartement,Bréhain-la-Ville (FR),FR,https://www.athome.lu/location/appartement/brehain-la-ville/id-8580909.html,pieces_not_bedrooms=4
+athome,14,1400,124,,Appartement,Thionville (FR),FR,https://www.athome.lu/location/appartement/thionville/id-9423208.html,pieces_not_bedrooms=5
+athome,15,489,62,,Appartement,Pompey (FR),FR,https://www.athome.lu/location/appartement/pompey/id-9418994.html,pieces_not_bedrooms=3
+athome,15,507,60,,Appartement,Petite-Rosselle (FR),FR,https://www.athome.lu/location/appartement/petite-rosselle/id-9407508.html,pieces_not_bedrooms=2
+athome,15,990,138,,Appartement,Toul (FR),FR,https://www.athome.lu/location/appartement/toul/id-9407506.html,pieces_not_bedrooms=5
+athome,15,425,86,,Appartement,Puttelange-aux-Lacs (FR),FR,https://www.athome.lu/location/appartement/puttelange-aux-lacs/id-9406831.html,pieces_not_bedrooms=3
+athome,15,802,91,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9406375.html,pieces_not_bedrooms=3
+athome,15,560,67,,Appartement,Créhange (FR),FR,https://www.athome.lu/location/appartement/crehange/id-9405536.html,pieces_not_bedrooms=3
+athome,15,930,111,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9403808.html,pieces_not_bedrooms=4
+athome,15,680,77,,Appartement,Cocheren (FR),FR,https://www.athome.lu/location/appartement/cocheren/id-9398849.html,pieces_not_bedrooms=3
+athome,15,473,53,,Appartement,Petite-Rosselle (FR),FR,https://www.athome.lu/location/appartement/petite-rosselle/id-9397237.html,pieces_not_bedrooms=2
+athome,15,532,68,,Appartement,Stiring-Wendel (FR),FR,https://www.athome.lu/location/appartement/stiring-wendel/id-9397220.html,pieces_not_bedrooms=3
+athome,15,355,35,,Appartement,Freyming-Merlebach (FR),FR,https://www.athome.lu/location/appartement/freyming-merlebach/id-9393847.html,pieces_not_bedrooms=1
+athome,15,505,58,,Appartement,Stiring-Wendel (FR),FR,https://www.athome.lu/location/appartement/stiring-wendel/id-9387772.html,pieces_not_bedrooms=2
+athome,15,2300,85,2,Appartement,Luxembourg-Gasperich - Cloche d'or,LU,https://www.athome.lu/location/appartement/luxembourg/id-9363945.html,
+athome,15,2200,52,1,Appartement,Howald,LU,https://www.athome.lu/location/appartement/howald/id-9362088.html,
+athome,15,251,60,,Appartement,Stiring-Wendel (FR),FR,https://www.athome.lu/location/appartement/stiring-wendel/id-9361867.html,pieces_not_bedrooms=3;suspect_rent_lt_300
+athome,15,508,70,,Appartement,Stiring-Wendel (FR),FR,https://www.athome.lu/location/appartement/stiring-wendel/id-9349771.html,pieces_not_bedrooms=3
+athome,15,1063,108,,Appartement,Sainte-Marie-aux-Chênes (FR),FR,https://www.athome.lu/location/appartement/sainte-marie-aux-chenes/id-9342836.html,pieces_not_bedrooms=5
+athome,15,490,12,,Appartement,Ottange (FR),FR,https://www.athome.lu/location/appartement/ottange/id-9317666.html,pieces_not_bedrooms=1;suspect_surface_lt_15
+athome,15,403,63,,Appartement,Stiring-Wendel (FR),FR,https://www.athome.lu/location/appartement/stiring-wendel/id-9298383.html,pieces_not_bedrooms=3
+athome,15,611,64,,Appartement,Foug (FR),FR,https://www.athome.lu/location/appartement/foug/id-9265478.html,pieces_not_bedrooms=3
+athome,16,304,29,,Appartement,Forbach (FR),FR,https://www.athome.lu/location/appartement/forbach/id-9204753.html,pieces_not_bedrooms=1
+athome,16,556,76,,Appartement,Saint-Avold (FR),FR,https://www.athome.lu/location/appartement/saint-avold/id-9086953.html,pieces_not_bedrooms=3
+athome,16,901,88,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9011807.html,pieces_not_bedrooms=4
+athome,16,1100,74,,Appartement,Audun-le-Roman (FR),FR,https://www.athome.lu/location/appartement/audun-le-roman/id-8981509.html,pieces_not_bedrooms=3
+athome,16,462,63,,Appartement,Saint-Avold (FR),FR,https://www.athome.lu/location/appartement/saint-avold/id-8974454.html,pieces_not_bedrooms=3
+athome,16,556,71,,Appartement,Saint-Avold (FR),FR,https://www.athome.lu/location/appartement/saint-avold/id-8974453.html,pieces_not_bedrooms=4
+athome,16,450,25,,Appartement,Thionville (FR),FR,https://www.athome.lu/location/appartement/thionville/id-8936317.html,pieces_not_bedrooms=1
+athome,16,450,40,,Appartement,Mercy-le-Bas (FR),FR,https://www.athome.lu/location/appartement/mercy-le-bas/id-8898374.html,pieces_not_bedrooms=2
+athome,16,584,80,,Appartement,Valmont (FR),FR,https://www.athome.lu/location/appartement/valmont/id-8874984.html,pieces_not_bedrooms=4
+athome,16,524,79,,Appartement,Saint-Avold (FR),FR,https://www.athome.lu/location/appartement/saint-avold/id-8874980.html,pieces_not_bedrooms=3
+athome,16,690,41,,Appartement,Longwy (FR),FR,https://www.athome.lu/location/appartement/longwy/id-8551513.html,pieces_not_bedrooms=3
+athome,16,1840,67,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8488707.html,
+athome,16,470,29,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8479452.html,pieces_not_bedrooms=1
+athome,16,783,89,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8478488.html,pieces_not_bedrooms=4
+athome,16,720,62,,Appartement,Maxéville (FR),FR,https://www.athome.lu/location/appartement/maxeville/id-8472223.html,pieces_not_bedrooms=3
+athome,16,410,39,,Appartement,Jarny (FR),FR,https://www.athome.lu/location/appartement/jarny/id-8459262.html,pieces_not_bedrooms=2
+athome,16,480,67,,Appartement,Essey-lès-Nancy (FR),FR,https://www.athome.lu/location/appartement/essey-les-nancy/id-8442605.html,pieces_not_bedrooms=3
+athome,16,530,44,,Appartement,Essey-lès-Nancy (FR),FR,https://www.athome.lu/location/appartement/essey-les-nancy/id-8414052.html,pieces_not_bedrooms=2
+athome,16,450,34,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8373623.html,pieces_not_bedrooms=2
+athome,16,460,37,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8367487.html,pieces_not_bedrooms=1
+athome,17,450,33,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8353885.html,pieces_not_bedrooms=1
+athome,17,500,33,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8346161.html,pieces_not_bedrooms=2
+athome,17,370,28,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8325751.html,pieces_not_bedrooms=1
+athome,17,360,19,,Appartement,Vandoeuvre-lès-Nancy (FR),FR,https://www.athome.lu/location/appartement/vandoeuvre-les-nancy/id-8323302.html,pieces_not_bedrooms=1
+athome,17,380,18,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8320990.html,pieces_not_bedrooms=1
+athome,17,420,33,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8317152.html,pieces_not_bedrooms=1
+athome,17,540,64,,Appartement,Saint-Dié-des-Vosges (FR),FR,https://www.athome.lu/location/appartement/saint-die-des-vosges/id-8300361.html,pieces_not_bedrooms=2
+athome,17,420,28,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8295887.html,pieces_not_bedrooms=1
+athome,17,1100,89,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8289445.html,pieces_not_bedrooms=4
+athome,17,380,29,,Appartement,Longuyon (FR),FR,https://www.athome.lu/location/appartement/longuyon/id-8284584.html,pieces_not_bedrooms=1
+athome,17,690,41,,Appartement,Longwy (FR),FR,https://www.athome.lu/location/appartement/longwy/id-8278883.html,pieces_not_bedrooms=3
+athome,17,380,22,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8277479.html,pieces_not_bedrooms=1
+athome,17,385,49,,Appartement,Forbach (FR),FR,https://www.athome.lu/location/appartement/forbach/id-8276382.html,pieces_not_bedrooms=2
+athome,17,485,42,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8274196.html,pieces_not_bedrooms=2
+athome,17,440,36,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8269937.html,pieces_not_bedrooms=1
+athome,17,340,21,,Appartement,Vandoeuvre-lès-Nancy (FR),FR,https://www.athome.lu/location/appartement/vandoeuvre-les-nancy/id-8265099.html,pieces_not_bedrooms=1
+athome,17,1310,151,,Appartement,Laxou (FR),FR,https://www.athome.lu/location/appartement/laxou/id-8259034.html,pieces_not_bedrooms=6
+athome,17,700,76,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8258382.html,pieces_not_bedrooms=3
+athome,17,440,33,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8237174.html,pieces_not_bedrooms=1
+athome,17,1000,88,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8229576.html,pieces_not_bedrooms=5
+athome,18,367,48,,Appartement,Freyming-Merlebach (FR),FR,https://www.athome.lu/location/appartement/freyming-merlebach/id-8225843.html,pieces_not_bedrooms=2
+athome,18,390,30,,Appartement,Bouligny (FR),FR,https://www.athome.lu/location/appartement/bouligny/id-8209926.html,pieces_not_bedrooms=2
+athome,18,440,50,,Appartement,Creutzwald (FR),FR,https://www.athome.lu/location/appartement/creutzwald/id-8106501.html,pieces_not_bedrooms=2
+athome,18,350,21,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8098881.html,pieces_not_bedrooms=1
+athome,18,530,59,,Appartement,Morsbach (FR),FR,https://www.athome.lu/location/appartement/morsbach/id-8089300.html,pieces_not_bedrooms=3
+athome,18,580,46,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8064936.html,pieces_not_bedrooms=2
+athome,18,400,31,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8063900.html,pieces_not_bedrooms=1
+athome,18,390,25,,Appartement,Houdemont (FR),FR,https://www.athome.lu/location/appartement/houdemont/id-8057447.html,pieces_not_bedrooms=1
+athome,18,640,50,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8041960.html,pieces_not_bedrooms=2
+athome,18,410,22,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8037526.html,pieces_not_bedrooms=1
+athome,18,480,26,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7999919.html,pieces_not_bedrooms=2
+athome,18,390,26,,Appartement,Vandoeuvre-lès-Nancy (FR),FR,https://www.athome.lu/location/appartement/vandoeuvre-les-nancy/id-7982982.html,pieces_not_bedrooms=1
+athome,18,480,53,,Appartement,Vandoeuvre-lès-Nancy (FR),FR,https://www.athome.lu/location/appartement/vandoeuvre-les-nancy/id-7968728.html,pieces_not_bedrooms=3
+athome,18,590,57,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7967037.html,pieces_not_bedrooms=3
+athome,18,625,76,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7961049.html,pieces_not_bedrooms=2
+athome,18,810,67,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-7960228.html,pieces_not_bedrooms=3
+athome,18,315,22,,Appartement,Vandoeuvre-lès-Nancy (FR),FR,https://www.athome.lu/location/appartement/vandoeuvre-les-nancy/id-7938999.html,pieces_not_bedrooms=1
+athome,18,1000,99,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-7933688.html,pieces_not_bedrooms=4
+athome,18,496,36,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-7916164.html,pieces_not_bedrooms=1
+athome,18,413,29,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7907381.html,pieces_not_bedrooms=2
+athome,19,475,43,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7900854.html,pieces_not_bedrooms=2
+athome,19,530,63,,Appartement,Heillecourt (FR),FR,https://www.athome.lu/location/appartement/heillecourt/id-7851486.html,pieces_not_bedrooms=3
+athome,19,350,25,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7835227.html,pieces_not_bedrooms=1
+athome,19,335,25,,Appartement,Vandoeuvre-lès-Nancy (FR),FR,https://www.athome.lu/location/appartement/vandoeuvre-les-nancy/id-7814225.html,pieces_not_bedrooms=1
+athome,19,460,38,,Appartement,Villers-lès-Nancy (FR),FR,https://www.athome.lu/location/appartement/villers-les-nancy/id-7735610.html,pieces_not_bedrooms=3
+athome,19,470,46,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7685858.html,pieces_not_bedrooms=2
+athome,19,380,27,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7670797.html,pieces_not_bedrooms=1
+athome,19,635,38,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7642416.html,pieces_not_bedrooms=2
+athome,19,470,40,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7628772.html,pieces_not_bedrooms=2
+athome,19,315,23,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7627693.html,pieces_not_bedrooms=2
+athome,19,380,17,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7627666.html,pieces_not_bedrooms=1
+athome,19,430,28,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7623356.html,pieces_not_bedrooms=1
+athome,19,1230,110,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7614477.html,pieces_not_bedrooms=4
+athome,19,510,43,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7595106.html,pieces_not_bedrooms=2
+athome,19,408,32,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7582195.html,pieces_not_bedrooms=2
+athome,19,465,45,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7577480.html,pieces_not_bedrooms=2
+athome,19,730,62,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-7573768.html,pieces_not_bedrooms=3
+athome,19,300,21,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7570006.html,pieces_not_bedrooms=1
+athome,19,400,41,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7566353.html,pieces_not_bedrooms=2
+athome,19,1050,97,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7550514.html,pieces_not_bedrooms=4
+athome,20,370,22,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7550512.html,pieces_not_bedrooms=1
+athome,20,401,32,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7543472.html,pieces_not_bedrooms=2
+athome,20,370,33,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7516763.html,pieces_not_bedrooms=1
+athome,20,650,68,,Appartement,Laxou (FR),FR,https://www.athome.lu/location/appartement/laxou/id-7511283.html,pieces_not_bedrooms=4
+athome,20,470,48,,Appartement,Écrouves (FR),FR,https://www.athome.lu/location/appartement/ecrouves/id-7511279.html,pieces_not_bedrooms=2
+athome,20,380,24,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7473998.html,pieces_not_bedrooms=1
+athome,20,400,28,,Appartement,Villers-lès-Nancy (FR),FR,https://www.athome.lu/location/appartement/villers-les-nancy/id-7466879.html,pieces_not_bedrooms=1
+athome,20,420,28,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7436977.html,pieces_not_bedrooms=1
+athome,20,385,23,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7430902.html,pieces_not_bedrooms=1
+athome,20,320,17,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7410878.html,pieces_not_bedrooms=1
+athome,20,700,88,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7407391.html,pieces_not_bedrooms=3
+athome,20,450,33,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7407386.html,pieces_not_bedrooms=1
+athome,20,370,20,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7401556.html,pieces_not_bedrooms=1
+athome,20,445,52,,Appartement,Forbach (FR),FR,https://www.athome.lu/location/appartement/forbach/id-7401423.html,pieces_not_bedrooms=2
+athome,20,445,61,,Appartement,Forbach (FR),FR,https://www.athome.lu/location/appartement/forbach/id-7356396.html,pieces_not_bedrooms=3
+athome,20,458,48,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7350955.html,pieces_not_bedrooms=2
+athome,20,400,43,,Appartement,Morsbach (FR),FR,https://www.athome.lu/location/appartement/morsbach/id-7319116.html,pieces_not_bedrooms=2
+athome,20,750,180,,Appartement,Épinal (FR),FR,https://www.athome.lu/location/appartement/epinal/id-7076422.html,pieces_not_bedrooms=6
+athome,20,460,48,,Appartement,Toul (FR),FR,https://www.athome.lu/location/appartement/toul/id-6989736.html,pieces_not_bedrooms=2
+athome,20,535,27,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-6989000.html,pieces_not_bedrooms=2
+athome,21,450,45,,Appartement,Saint-Dié-des-Vosges (FR),FR,https://www.athome.lu/location/appartement/saint-die-des-vosges/id-6894309.html,pieces_not_bedrooms=2
+athome,21,510,54,,Appartement,Golbey (FR),FR,https://www.athome.lu/location/appartement/golbey/id-6820568.html,pieces_not_bedrooms=2
+athome,21,680,65,,Appartement,Tomblaine (FR),FR,https://www.athome.lu/location/appartement/tomblaine/id-6681461.html,pieces_not_bedrooms=3
+athome,21,530,53,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-6556186.html,pieces_not_bedrooms=2
+athome,21,470,71,,Appartement,Épinal (FR),FR,https://www.athome.lu/location/appartement/epinal/id-6471795.html,pieces_not_bedrooms=3
+athome,21,540,43,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-6466147.html,pieces_not_bedrooms=2
+athome,21,442,54,,Appartement,Forbach (FR),FR,https://www.athome.lu/location/appartement/forbach/id-6386031.html,pieces_not_bedrooms=2
+athome,21,515,54,,Appartement,Golbey (FR),FR,https://www.athome.lu/location/appartement/golbey/id-6345044.html,pieces_not_bedrooms=2
+athome,21,750,71,,Appartement,Saint-Max (FR),FR,https://www.athome.lu/location/appartement/saint-max/id-6314736.html,pieces_not_bedrooms=3
+athome,21,360,48,,Appartement,Folschviller (FR),FR,https://www.athome.lu/location/appartement/folschviller/id-6311939.html,pieces_not_bedrooms=2
+athome,21,430,47,,Appartement,Stiring-Wendel (FR),FR,https://www.athome.lu/location/appartement/stiring-wendel/id-6218365.html,pieces_not_bedrooms=2
+athome,21,380,46,,Appartement,Morsbach (FR),FR,https://www.athome.lu/location/appartement/morsbach/id-6155296.html,pieces_not_bedrooms=2
+athome,21,560,44,,Appartement,Longwy (FR),FR,https://www.athome.lu/location/appartement/longwy/id-6077741.html,pieces_not_bedrooms=2
+athome,21,580,43,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-6071828.html,pieces_not_bedrooms=2
+athome,21,480,45,,Appartement,Golbey (FR),FR,https://www.athome.lu/location/appartement/golbey/id-6007136.html,pieces_not_bedrooms=2
+athome,21,540,59,,Appartement,Morsbach (FR),FR,https://www.athome.lu/location/appartement/morsbach/id-5964888.html,pieces_not_bedrooms=3
+athome,21,500,57,,Appartement,Morsbach (FR),FR,https://www.athome.lu/location/appartement/morsbach/id-5952495.html,pieces_not_bedrooms=3
+athome,21,390,58,,Appartement,Saint-Avold (FR),FR,https://www.athome.lu/location/appartement/saint-avold/id-5869306.html,pieces_not_bedrooms=3
+athome,21,530,54,,Appartement,Lunéville (FR),FR,https://www.athome.lu/location/appartement/luneville/id-5850528.html,pieces_not_bedrooms=2
+athome,21,460,47,,Appartement,Épinal (FR),FR,https://www.athome.lu/location/appartement/epinal/id-5849167.html,pieces_not_bedrooms=2
+athome,22,330,48,,Appartement,Folschviller (FR),FR,https://www.athome.lu/location/appartement/folschviller/id-5849164.html,pieces_not_bedrooms=2
+athome,22,466,83,,Appartement,Saint-Avold (FR),FR,https://www.athome.lu/location/appartement/saint-avold/id-5836962.html,pieces_not_bedrooms=4
+athome,22,500,59,,Appartement,Morsbach (FR),FR,https://www.athome.lu/location/appartement/morsbach/id-5823691.html,pieces_not_bedrooms=3
+athome,22,500,51,,Appartement,Golbey (FR),FR,https://www.athome.lu/location/appartement/golbey/id-5823638.html,pieces_not_bedrooms=2
+athome,22,660,50,,Appartement,Réhon (FR),FR,https://www.athome.lu/location/appartement/rehon/id-5823637.html,pieces_not_bedrooms=2
+athome,22,500,43,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-5823635.html,pieces_not_bedrooms=2
+athome,22,520,55,,Appartement,Toul (FR),FR,https://www.athome.lu/location/appartement/toul/id-5823551.html,pieces_not_bedrooms=2
+athome,22,439,71,,Appartement,Saint-Avold (FR),FR,https://www.athome.lu/location/appartement/saint-avold/id-5672879.html,pieces_not_bedrooms=4
+athome,22,353,70,,Appartement,Valmont (FR),FR,https://www.athome.lu/location/appartement/valmont/id-5672374.html,pieces_not_bedrooms=4
+athome,22,361,57,,Appartement,Saint-Avold (FR),FR,https://www.athome.lu/location/appartement/saint-avold/id-5635303.html,pieces_not_bedrooms=3
+athome,22,343,69,,Appartement,Valmont (FR),FR,https://www.athome.lu/location/appartement/valmont/id-5559603.html,pieces_not_bedrooms=4
+athome,22,518,84,,Appartement,Saint-Avold (FR),FR,https://www.athome.lu/location/appartement/saint-avold/id-5417959.html,pieces_not_bedrooms=5
+athome,22,333,57,,Appartement,Saint-Avold (FR),FR,https://www.athome.lu/location/appartement/saint-avold/id-5416916.html,pieces_not_bedrooms=3
+athome,22,377,72,,Appartement,Folschviller (FR),FR,https://www.athome.lu/location/appartement/folschviller/id-5416828.html,pieces_not_bedrooms=4
+athome,22,463,78,,Appartement,Saint-Avold (FR),FR,https://www.athome.lu/location/appartement/saint-avold/id-5217100.html,pieces_not_bedrooms=5
+athome,22,350,57,,Appartement,Saint-Avold (FR),FR,https://www.athome.lu/location/appartement/saint-avold/id-5214383.html,pieces_not_bedrooms=3
+athome,22,377,69,,Appartement,Folschviller (FR),FR,https://www.athome.lu/location/appartement/folschviller/id-5214268.html,pieces_not_bedrooms=3
+athome,22,373,72,,Appartement,Folschviller (FR),FR,https://www.athome.lu/location/appartement/folschviller/id-5168373.html,pieces_not_bedrooms=4
+athome,22,361,57,,Appartement,Saint-Avold (FR),FR,https://www.athome.lu/location/appartement/saint-avold/id-5132252.html,pieces_not_bedrooms=3
+athome,22,674,102,,Appartement,Diesen (FR),FR,https://www.athome.lu/location/appartement/diesen/id-5066857.html,pieces_not_bedrooms=5
+athome,23,400,69,,Appartement,Saint-Avold (FR),FR,https://www.athome.lu/location/appartement/saint-avold/id-5033238.html,pieces_not_bedrooms=4
+athome,23,376,70,,Appartement,Faulquemont (FR),FR,https://www.athome.lu/location/appartement/faulquemont/id-5028140.html,pieces_not_bedrooms=4
+athome,23,252,48,,Appartement,Saint-Avold (FR),FR,https://www.athome.lu/location/appartement/saint-avold/id-5028060.html,pieces_not_bedrooms=2;suspect_rent_lt_300
+athome,23,391,70,,Appartement,Hombourg-Haut (FR),FR,https://www.athome.lu/location/appartement/hombourg-haut/id-4311929.html,pieces_not_bedrooms=4
+athome,23,1000,70,2,Appartement,Mondorff (FR),FR,https://www.athome.lu/location/appartement/mondorff/id-9442939.html,
+athome,23,950,25,,Appartement,Mondorff (FR),FR,https://www.athome.lu/location/appartement/mondorff/id-9442938.html,pieces_not_bedrooms=2
+athome,23,2600,91,2,Appartement,Bertrange,LU,https://www.athome.lu/location/appartement/bertrange/id-9442900.html,
+athome,23,474,57,,Appartement,Valmont (FR),FR,https://www.athome.lu/location/appartement/valmont/id-9436277.html,pieces_not_bedrooms=2
+athome,23,710,84,,Appartement,Valmont (FR),FR,https://www.athome.lu/location/appartement/valmont/id-9436164.html,pieces_not_bedrooms=4
+athome,23,1250,88,2,Appartement,Habay (BE),BE,https://www.athome.lu/location/appartement/habay/id-9435936.html,
+athome,23,1000,68,2,Appartement,Musson (BE),BE,https://www.athome.lu/location/appartement/musson/id-9435294.html,
+athome,23,850,68,2,Appartement,Musson (BE),BE,https://www.athome.lu/location/appartement/musson/id-9435293.html,
+athome,23,4200,125,2,Appartement,Luxembourg-Clausen,LU,https://www.athome.lu/location/appartement/luxembourg/id-9432453.html,
+athome,23,2800,94,2,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-9216213.html,
+athome,23,2300,103,2,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-9324924.html,
+athome,23,2400,147,3,Appartement,Nospelt,LU,https://www.athome.lu/location/appartement/nospelt/id-9362358.html,
+athome,23,2700,86,2,Appartement,Bettembourg,LU,https://www.athome.lu/location/appartement/bettembourg/id-9375704.html,
+athome,23,2550,70,2,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9434062.html,
+athome,23,1650,40,1,Appartement,Dudelange,LU,https://www.athome.lu/location/appartement/dudelange/id-9432456.html,
+athome,23,679,65,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9432436.html,pieces_not_bedrooms=3
+athome,24,1300,100,,Appartement,Rodemack (FR),FR,https://www.athome.lu/location/appartement/rodemack/id-7578969.html,pieces_not_bedrooms=5
+athome,24,503,74,,Appartement,Maizières (FR),FR,https://www.athome.lu/location/appartement/maizieres/id-9431652.html,pieces_not_bedrooms=3
+athome,24,2800,148,3,Appartement,Sanem,LU,https://www.athome.lu/location/appartement/sanem/id-9427700.html,
+athome,24,895,90,,Appartement,Maizières-lès-Metz (FR),FR,https://www.athome.lu/location/appartement/maizieres-les-metz/id-9426517.html,pieces_not_bedrooms=5
+athome,24,1200,88,2,Appartement,Habay (BE),BE,https://www.athome.lu/location/appartement/habay/id-9426189.html,
+athome,24,512,80,,Appartement,Valmont (FR),FR,https://www.athome.lu/location/appartement/valmont/id-9425954.html,pieces_not_bedrooms=4
+athome,24,681,46,,Appartement,Maizières-lès-Metz (FR),FR,https://www.athome.lu/location/appartement/maizieres-les-metz/id-9425757.html,pieces_not_bedrooms=2
+athome,24,600,54,1,Appartement,Bastogne (BE),BE,https://www.athome.lu/location/appartement/bastogne/id-9424670.html,
+athome,24,447,66,,Appartement,Pompey (FR),FR,https://www.athome.lu/location/appartement/pompey/id-9418993.html,pieces_not_bedrooms=3
+athome,24,1488,131,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9418992.html,pieces_not_bedrooms=5
+athome,24,1200,104,,Appartement,Basse-Ham (FR),FR,https://www.athome.lu/location/appartement/basse-ham/id-9418872.html,pieces_not_bedrooms=3
+athome,24,880,75,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-9418526.html,pieces_not_bedrooms=4
+athome,24,950,105,1,Appartement,Attert (BE),BE,https://www.athome.lu/location/appartement/attert/id-9409353.html,
+athome,24,950,111,2,Appartement,Attert (BE),BE,https://www.athome.lu/location/appartement/attert/id-9409352.html,
+athome,24,850,85,1,Appartement,Attert (BE),BE,https://www.athome.lu/location/appartement/attert/id-9409351.html,
+athome,24,3000,105,3,Appartement,Luxembourg-Hollerich,LU,https://www.athome.lu/location/appartement/luxembourg/id-8687480.html,
+athome,24,860,117,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9409222.html,pieces_not_bedrooms=5
+athome,24,850,45,1,Appartement,Arlon (BE),BE,https://www.athome.lu/location/appartement/arlon/id-9407870.html,
+athome,24,596,64,,Appartement,Lessy (FR),FR,https://www.athome.lu/location/appartement/lessy/id-9407845.html,pieces_not_bedrooms=3
+athome,24,1000,54,,Appartement,Thionville (FR),FR,https://www.athome.lu/location/appartement/thionville/id-9407330.html,pieces_not_bedrooms=3
+athome,25,2850,90,2,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-9406368.html,
+athome,25,1100,80,2,Appartement,Habay (BE),BE,https://www.athome.lu/location/appartement/habay/id-9397564.html,
+athome,25,2500,98,2,Appartement,Fentange,LU,https://www.athome.lu/location/appartement/fentange/id-9405249.html,
+athome,25,2600,86,2,Appartement,Mamer,LU,https://www.athome.lu/location/appartement/mamer/id-9398343.html,
+athome,25,4300,130,4,Appartement,Senningerberg,LU,https://www.athome.lu/location/appartement/senningerberg/id-9397519.html,
+athome,25,855,95,,Appartement,Florange (FR),FR,https://www.athome.lu/location/appartement/florange/id-9388653.html,pieces_not_bedrooms=5
+athome,25,713,91,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9384926.html,pieces_not_bedrooms=3
+athome,25,445,64,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9383455.html,pieces_not_bedrooms=3
+athome,25,551,61,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9383259.html,pieces_not_bedrooms=3
+athome,25,800,69,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9374675.html,pieces_not_bedrooms=3
+athome,25,3000,94,2,Appartement,Bertrange,LU,https://www.athome.lu/location/appartement/bertrange/id-9371344.html,
+athome,25,469,60,2,Appartement,Freyming-Merlebach (FR),FR,https://www.athome.lu/location/appartement/freyming-merlebach/id-9351038.html,
+athome,25,682,98,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9348241.html,pieces_not_bedrooms=3
+athome,25,657,62,,Appartement,Moulins-lès-Metz (FR),FR,https://www.athome.lu/location/appartement/moulins-les-metz/id-9314495.html,pieces_not_bedrooms=3
+athome,25,475,65,,Appartement,Petite-Rosselle (FR),FR,https://www.athome.lu/location/appartement/petite-rosselle/id-9298182.html,pieces_not_bedrooms=3
+athome,25,850,161,,Appartement,Montigny-lès-Metz (FR),FR,https://www.athome.lu/location/appartement/montigny-les-metz/id-9250550.html,pieces_not_bedrooms=5
+athome,25,968,74,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9218096.html,pieces_not_bedrooms=3
+athome,25,365,19,,Appartement,Saint-Avold (FR),FR,https://www.athome.lu/location/appartement/saint-avold/id-9192988.html,pieces_not_bedrooms=1
+athome,25,571,76,3,Appartement,L'Hôpital (FR),FR,https://www.athome.lu/location/appartement/l-hopital/id-9192987.html,
+athome,25,3300,155,3,Appartement,Junglinster,LU,https://www.athome.lu/location/appartement/junglinster/id-8981103.html,
+athome,26,770,74,,Appartement,Yutz (FR),FR,https://www.athome.lu/location/appartement/yutz/id-8849515.html,
+athome,26,530,52,,Appartement,Toul (FR),FR,https://www.athome.lu/location/appartement/toul/id-8488708.html,pieces_not_bedrooms=2
+athome,26,480,48,,Appartement,Épinal (FR),FR,https://www.athome.lu/location/appartement/epinal/id-8073769.html,pieces_not_bedrooms=2
+athome,26,3500,110,3,Appartement,Strassen,LU,https://www.athome.lu/location/appartement/strassen/id-7871341.html,
+athome,26,550,25,,Appartement,Yutz (FR),FR,https://www.athome.lu/location/appartement/yutz/id-8022783.html,pieces_not_bedrooms=1
+athome,26,817,74,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-7931505.html,pieces_not_bedrooms=3
+athome,26,380,29,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7345449.html,pieces_not_bedrooms=1
+athome,26,665,55,,Appartement,Malzéville (FR),FR,https://www.athome.lu/location/appartement/malzeville/id-7248502.html,pieces_not_bedrooms=2
+athome,26,560,52,,Appartement,Algrange (FR),FR,https://www.athome.lu/location/appartement/algrange/id-5975395.html,pieces_not_bedrooms=2
+athome,26,400,70,,Appartement,Freyming-Merlebach (FR),FR,https://www.athome.lu/location/appartement/freyming-merlebach/id-4278048.html,pieces_not_bedrooms=4
+athome,26,1090,62,,Appartement,Athus (BE),BE,https://www.athome.lu/location/appartement/athus/id-9383789.html,pieces_not_bedrooms=5
+athome,26,3200,105,2,Appartement,Luxembourg-Muhlenbach,LU,https://www.athome.lu/location/appartement/luxembourg/id-9193561.html,
+athome,26,2600,95,2,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9441661.html,
+athome,26,2300,88,1,Appartement,Luxembourg-Merl,LU,https://www.athome.lu/location/appartement/luxembourg/id-9436217.html,
+athome,26,2000,62,1,Appartement,Luxembourg-Gare,LU,https://www.athome.lu/location/appartement/luxembourg/id-9435192.html,
+athome,26,2000,92,2,Appartement,Bech-Kleinmacher,LU,https://www.athome.lu/location/appartement/bech-kleinmacher/id-9432668.html,
+athome,26,498,83,,Appartement,Sainte-Marie-aux-Chênes (FR),FR,https://www.athome.lu/location/appartement/sainte-marie-aux-chenes/id-9427512.html,pieces_not_bedrooms=3
+athome,26,587,67,,Appartement,Boulay-Moselle (FR),FR,https://www.athome.lu/location/appartement/boulay-moselle/id-9425955.html,pieces_not_bedrooms=3
+athome,26,1172,88,,Appartement,Maizières-lès-Metz (FR),FR,https://www.athome.lu/location/appartement/maizieres-les-metz/id-9425755.html,pieces_not_bedrooms=4
+athome,26,2400,83,2,Appartement,Luxembourg-Merl,LU,https://www.athome.lu/location/appartement/luxembourg/id-9410015.html,
+athome,27,3350,95,2,Appartement,Luxembourg-Gasperich - Cloche d'or,LU,https://www.athome.lu/location/appartement/luxembourg/id-9408773.html,
+athome,27,2700,85,2,Appartement,Luxembourg-Bonnevoie,LU,https://www.athome.lu/location/appartement/luxembourg/id-9405580.html,
+athome,27,350,23,,Appartement,Jury (FR),FR,https://www.athome.lu/location/appartement/jury/id-9397553.html,pieces_not_bedrooms=1
+athome,27,712,66,,Appartement,Jury (FR),FR,https://www.athome.lu/location/appartement/jury/id-9397552.html,pieces_not_bedrooms=3
+athome,27,600,73,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-9371300.html,pieces_not_bedrooms=3
+athome,27,2700,88,,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-8595865.html,
+athome,27,652,48,,Appartement,Hagondange (FR),FR,https://www.athome.lu/location/appartement/hagondange/id-9330533.html,pieces_not_bedrooms=2
+athome,27,511,58,,Appartement,Hagondange (FR),FR,https://www.athome.lu/location/appartement/hagondange/id-9270547.html,pieces_not_bedrooms=3
+athome,27,485,70,,Appartement,Behren-lès-Forbach (FR),FR,https://www.athome.lu/location/appartement/behren-les-forbach/id-9003241.html,pieces_not_bedrooms=3
+athome,27,1250,78,,Appartement,Arlon (BE),BE,https://www.athome.lu/location/appartement/arlon/id-9431379.html,pieces_not_bedrooms=7
+athome,27,1200,,,Appartement,Arlon (BE),BE,https://www.athome.lu/location/appartement/arlon/id-9425452.html,pieces_not_bedrooms=11
+athome,27,620,35,,Appartement,Martelange (BE),BE,https://www.athome.lu/location/appartement/martelange/id-9419208.html,pieces_not_bedrooms=4
+athome,27,490,16,,Appartement,Tintigny (BE),BE,https://www.athome.lu/location/appartement/tintigny/id-9334911.html,pieces_not_bedrooms=3
+athome,27,750,81,3,Appartement,Moyeuvre-Grande (FR),FR,https://www.athome.lu/location/appartement/moyeuvre-grande/id-9438047.html,
+athome,27,600,62,,Appartement,Rombas (FR),FR,https://www.athome.lu/location/appartement/rombas/id-9410915.html,pieces_not_bedrooms=3
+athome,27,580,62,,Appartement,Moyeuvre-Grande (FR),FR,https://www.athome.lu/location/appartement/moyeuvre-grande/id-9388933.html,pieces_not_bedrooms=3
+athome,27,807,44,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9182863.html,pieces_not_bedrooms=2
+athome,27,3360,110,2,Appartement,Mamer,LU,https://www.athome.lu/location/appartement/mamer/id-9425951.html,
+athome,27,490,59,,Appartement,Saint-Dié-des-Vosges (FR),FR,https://www.athome.lu/location/appartement/saint-die-des-vosges/id-9384625.html,pieces_not_bedrooms=3
+athome,27,850,55,,Appartement,Athus (BE),BE,https://www.athome.lu/location/appartement/athus/id-9375644.html,pieces_not_bedrooms=5
+athome,28,750,,1,Appartement,Athus (BE),BE,https://www.athome.lu/location/appartement/athus/id-9398640.html,
+athome,28,1700,40,,Appartement,Luxembourg-Merl,LU,https://www.athome.lu/location/appartement/luxembourg/id-9249463.html,
+athome,28,1800,59,1,Appartement,Luxembourg-Rollingergrund,LU,https://www.athome.lu/location/appartement/luxembourg/id-9400017.html,
+athome,28,1950,50,1,Appartement,Luxembourg-Gare,LU,https://www.athome.lu/location/appartement/luxembourg/id-9347346.html,
+athome,28,2400,62,1,Appartement,Alzingen,LU,https://www.athome.lu/location/appartement/alzingen/id-9088310.html,
+athome,28,825,59,2,Appartement,Kleinbettingen,LU,https://www.athome.lu/location/appartement/kleinbettingen/id-9082766.html,
+athome,28,1300,88,,Appartement,Trier (DE),DE,https://www.athome.lu/location/appartement/trier/id-7845465.html,pieces_not_bedrooms=3
+athome,28,830,60,1,Appartement,Bollendorf-Pont,LU,https://www.athome.lu/location/appartement/bollendorf-pont/id-8964198.html,
+athome,28,1520,120,,Appartement,Wincheringen (DE),DE,https://www.athome.lu/location/appartement/wincheringen/id-6006183.html,pieces_not_bedrooms=3
+athome,28,4200,114,2,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-8243894.html,
+athome,28,2600,93,2,Appartement,Luxembourg-Cents,LU,https://www.athome.lu/location/appartement/luxembourg/id-7366189.html,
+athome,28,1750,46,1,Appartement,Luxembourg-Cessange,LU,https://www.athome.lu/location/appartement/luxembourg/id-9442131.html,
+athome,28,850,65,,Appartement,Longwy (FR),FR,https://www.athome.lu/location/appartement/longwy/id-9431803.html,pieces_not_bedrooms=3
+athome,28,700,50,,Appartement,Longlaville (FR),FR,https://www.athome.lu/location/appartement/longlaville/id-9431802.html,pieces_not_bedrooms=2
+athome,28,650,65,,Appartement,Longwy (FR),FR,https://www.athome.lu/location/appartement/longwy/id-9431801.html,pieces_not_bedrooms=2
+athome,28,1350,150,,Appartement,Cosnes-et-Romain (FR),FR,https://www.athome.lu/location/appartement/cosnes-et-romain/id-9424306.html,pieces_not_bedrooms=4
+athome,28,1200,140,,Appartement,Mexy (FR),FR,https://www.athome.lu/location/appartement/mexy/id-9328304.html,pieces_not_bedrooms=6
+athome,28,700,67,,Appartement,Longuyon (FR),FR,https://www.athome.lu/location/appartement/longuyon/id-9318966.html,pieces_not_bedrooms=3
+athome,28,1550,45,1,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-9423547.html,
+athome,28,2920,104,2,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-9334836.html,
+athome,29,1750,60,1,Appartement,Remich,LU,https://www.athome.lu/location/appartement/remich/id-9244982.html,
+athome,29,2450,81,2,Appartement,Luxembourg-Merl,LU,https://www.athome.lu/location/appartement/luxembourg/id-8579133.html,
+athome,29,610,30,,Appartement,Longwy (FR),FR,https://www.athome.lu/location/appartement/longwy/id-9433119.html,pieces_not_bedrooms=2
+athome,29,1150,62,,Appartement,Audun-le-Tiche (FR),FR,https://www.athome.lu/location/appartement/audun-le-tiche/id-9427093.html,pieces_not_bedrooms=3
+athome,29,2500,82,2,Appartement,Luxembourg-Weimerskirch,LU,https://www.athome.lu/location/appartement/luxembourg/id-9442936.html,
+athome,29,1350,61,,Appartement,Thionville (FR),FR,https://www.athome.lu/location/appartement/thionville/id-9437792.html,pieces_not_bedrooms=3
+athome,29,570,27,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9437013.html,pieces_not_bedrooms=2
+athome,29,1200,81,,Appartement,Thionville (FR),FR,https://www.athome.lu/location/appartement/thionville/id-9437012.html,pieces_not_bedrooms=4
+athome,29,770,66,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-9437001.html,pieces_not_bedrooms=5
+athome,29,700,60,,Appartement,Fresnes-en-Woëvre (FR),FR,https://www.athome.lu/location/appartement/fresnes-en-woevre/id-9436987.html,pieces_not_bedrooms=2
+athome,29,2300,93,2,Appartement,Mamer,LU,https://www.athome.lu/location/appartement/mamer/id-9432133.html,
+athome,29,2500,80,2,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-6854149.html,
+athome,29,1600,66,1,Appartement,Rollingen,LU,https://www.athome.lu/location/appartement/rollingen/id-8495446.html,
+athome,29,2350,60,1,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9022216.html,
+athome,29,3500,71,2,Appartement,Luxembourg-Pfaffenthal,LU,https://www.athome.lu/location/appartement/luxembourg/id-9388179.html,
+athome,29,3100,73,2,Appartement,Luxembourg-Pfaffenthal,LU,https://www.athome.lu/location/appartement/luxembourg/id-9388180.html,
+athome,29,3500,96,2,Appartement,Luxembourg-Pfaffenthal,LU,https://www.athome.lu/location/appartement/luxembourg/id-9405246.html,
+athome,29,450,41,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-9425169.html,pieces_not_bedrooms=2
+athome,29,1020,52,,Appartement,Thil (FR),FR,https://www.athome.lu/location/appartement/thil/id-9425167.html,pieces_not_bedrooms=2
+athome,29,520,42,,Appartement,Ars-sur-Moselle (FR),FR,https://www.athome.lu/location/appartement/ars-sur-moselle/id-9410905.html,pieces_not_bedrooms=2
+athome,30,800,43,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9409802.html,pieces_not_bedrooms=2
+athome,30,650,41,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9409801.html,pieces_not_bedrooms=1
+athome,30,360,65,,Appartement,Plombières-les-Bains (FR),FR,https://www.athome.lu/location/appartement/plombieres-les-bains/id-9407253.html,pieces_not_bedrooms=3
+athome,30,365,26,,Appartement,Bar-le-Duc (FR),FR,https://www.athome.lu/location/appartement/bar-le-duc/id-9399471.html,pieces_not_bedrooms=1
+athome,30,300,21,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-9394115.html,pieces_not_bedrooms=5
+athome,30,2800,90,2,Appartement,Bereldange,LU,https://www.athome.lu/location/appartement/bereldange/id-9370001.html,
+athome,30,750,73,,Appartement,Briey (FR),FR,https://www.athome.lu/location/appartement/briey/id-9364792.html,pieces_not_bedrooms=4
+athome,30,550,117,,Appartement,Desseling (FR),FR,https://www.athome.lu/location/appartement/desseling/id-9363059.html,pieces_not_bedrooms=4
+athome,30,723,74,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9359129.html,pieces_not_bedrooms=2
+athome,30,627,71,,Appartement,Jarville-la-Malgrange (FR),FR,https://www.athome.lu/location/appartement/jarville-la-malgrange/id-9353198.html,pieces_not_bedrooms=3
+athome,30,1000,111,,Appartement,Saulny (FR),FR,https://www.athome.lu/location/appartement/saulny/id-9335483.html,pieces_not_bedrooms=5
+athome,30,1080,65,,Appartement,Bertrange (FR),FR,https://www.athome.lu/location/appartement/bertrange/id-9325650.html,pieces_not_bedrooms=3
+athome,30,1053,105,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9295851.html,pieces_not_bedrooms=4
+athome,30,1050,85,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-9280368.html,pieces_not_bedrooms=5
+athome,30,743,60,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-9275652.html,pieces_not_bedrooms=3
+athome,30,730,75,,Appartement,Fresnes-en-Woëvre (FR),FR,https://www.athome.lu/location/appartement/fresnes-en-woevre/id-9049623.html,pieces_not_bedrooms=3
+athome,30,1550,55,1,Appartement,Luxembourg-Bonnevoie,LU,https://www.athome.lu/location/appartement/luxembourg/id-7230722.html,
+athome,30,860,137,,Appartement,Phalsbourg (FR),FR,https://www.athome.lu/location/appartement/phalsbourg/id-9437003.html,pieces_not_bedrooms=5
+athome,30,2700,108,2,Appartement,Luxembourg-Merl,LU,https://www.athome.lu/location/appartement/luxembourg/id-6583285.html,
+athome,30,2450,100,3,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-9432132.html,
+athome,31,960,109,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9339993.html,pieces_not_bedrooms=?
+athome,31,753,66,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-9338317.html,pieces_not_bedrooms=?
+athome,31,420,53,,Appartement,Dieuze (FR),FR,https://www.athome.lu/location/appartement/dieuze/id-9205441.html,pieces_not_bedrooms=?
+athome,31,2300,76,2,Appartement,Esch-sur-Alzette,LU,https://www.athome.lu/location/appartement/esch-sur-alzette/id-9359598.html,
+athome,31,6600,207,4,Appartement,Bertrange,LU,https://www.athome.lu/location/appartement/bertrange/id-8683619.html,
+athome,31,6500,206,3,Appartement,Bertrange,LU,https://www.athome.lu/location/appartement/bertrange/id-8717998.html,
+athome,31,3200,95,2,Appartement,Bertrange,LU,https://www.athome.lu/location/appartement/bertrange/id-9418465.html,
+athome,31,3200,68,1,Appartement,Luxembourg-Centre Ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9359886.html,
+athome,31,2900,55,1,Appartement,Luxembourg-Gare,LU,https://www.athome.lu/location/appartement/luxembourg/id-9405351.html,
+athome,31,3600,100,3,Appartement,Luxembourg-Bonnevoie,LU,https://www.athome.lu/location/appartement/luxembourg/id-9409271.html,
+athome,31,3200,75,2,Appartement,Luxembourg-Bonnevoie,LU,https://www.athome.lu/location/appartement/luxembourg/id-9409248.html,
+athome,31,2850,100,2,Appartement,Altlinster,LU,https://www.athome.lu/location/appartement/altlinster/id-9399630.html,
+athome,31,1700,100,,Appartement,Perl-Oberleuken (DE),DE,https://www.athome.lu/location/appartement/perl/id-9248292.html,pieces_not_bedrooms=?
+athome,31,2800,115,2,Appartement,Luxembourg-Gare,LU,https://www.athome.lu/location/appartement/luxembourg/id-8418678.html,
+athome,31,1800,78,1,Appartement,Luxembourg-Beggen,LU,https://www.athome.lu/location/appartement/luxembourg/id-9235253.html,
+athome,31,3500,84,2,Appartement,Luxembourg-Gasperich - Cloche d'or,LU,https://www.athome.lu/location/appartement/luxembourg/id-9361718.html,
+athome,31,3700,98,2,Appartement,Luxembourg-Gasperich - Cloche d'or,LU,https://www.athome.lu/location/appartement/luxembourg/id-9266219.html,
+athome,31,3150,125,3,Appartement,Bridel,LU,https://www.athome.lu/location/appartement/bridel/id-9386285.html,
+athome,31,1890,53,1,Appartement,Bertrange,LU,https://www.athome.lu/location/appartement/bertrange/id-9365391.html,
+athome,31,2800,90,2,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9437219.html,
+athome,32,1500,63,1,Appartement,Mondorf-Les-Bains,LU,https://www.athome.lu/location/appartement/mondorf-les-bains/id-9436321.html,
+athome,32,1400,53,1,Appartement,Bivange,LU,https://www.athome.lu/location/appartement/bivange/id-9435442.html,
+athome,32,3250,117,2,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9406592.html,
+athome,32,2300,85,2,Appartement,Wasserbillig,LU,https://www.athome.lu/location/appartement/wasserbillig/id-9265450.html,
+athome,32,485,32,,Appartement,Hayange (FR),FR,https://www.athome.lu/location/appartement/hayange/id-8397450.html,pieces_not_bedrooms=2
+athome,32,730,49,,Appartement,Yutz (FR),FR,https://www.athome.lu/location/appartement/yutz/id-9442265.html,pieces_not_bedrooms=2
+athome,32,2550,108,2,Appartement,Steinfort,LU,https://www.athome.lu/location/appartement/steinfort/id-9405563.html,
+athome,32,2350,58,1,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-9432387.html,
+athome,32,2500,106,2,Appartement,Bertrange,LU,https://www.athome.lu/location/appartement/bertrange/id-9369654.html,
+athome,32,2800,82,2,Appartement,Luxembourg-Cents,LU,https://www.athome.lu/location/appartement/luxembourg/id-9375684.html,
+athome,32,1800,55,1,Appartement,Differdange,LU,https://www.athome.lu/location/appartement/differdange/id-9389731.html,
+athome,32,1750,85,2,Appartement,Boevange-sur-Attert,LU,https://www.athome.lu/location/appartement/boevange-sur-attert/id-9425877.html,
+athome,32,1850,52,1,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-9424731.html,
+athome,32,3500,117,3,Appartement,Luxembourg-Kirchberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-9424667.html,
+athome,32,330,42,,Appartement,Commercy (FR),FR,https://www.athome.lu/location/appartement/commercy/id-9419213.html,pieces_not_bedrooms=2
+athome,32,4000,154,3,Appartement,Luxembourg-Centre Ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9407574.html,
+athome,32,3400,105,3,Appartement,Roeser,LU,https://www.athome.lu/location/appartement/roeser/id-9405336.html,
+athome,32,450,95,,Appartement,Naives-Rosières (FR),FR,https://www.athome.lu/location/appartement/naives-rosieres/id-9398669.html,pieces_not_bedrooms=3
+athome,32,480,107,,Appartement,Naives-Rosières (FR),FR,https://www.athome.lu/location/appartement/naives-rosieres/id-9389500.html,pieces_not_bedrooms=3
+athome,32,540,96,,Appartement,Commercy (FR),FR,https://www.athome.lu/location/appartement/commercy/id-9383688.html,pieces_not_bedrooms=3
+athome,33,197,25,,Appartement,Ligny-en-Barrois (FR),FR,https://www.athome.lu/location/appartement/ligny-en-barrois/id-9370930.html,pieces_not_bedrooms=1;suspect_rent_lt_300
+athome,33,350,50,,Appartement,Ligny-en-Barrois (FR),FR,https://www.athome.lu/location/appartement/ligny-en-barrois/id-9364941.html,pieces_not_bedrooms=3
+athome,33,3900,124,3,Appartement,Strassen,LU,https://www.athome.lu/location/appartement/strassen/id-9209415.html,
+athome,33,3900,105,2,Appartement,Strassen,LU,https://www.athome.lu/location/appartement/strassen/id-9347319.html,
+athome,33,2200,49,1,Appartement,Strassen,LU,https://www.athome.lu/location/appartement/strassen/id-9324910.html,
+athome,33,560,78,,Appartement,Bar-le-Duc (FR),FR,https://www.athome.lu/location/appartement/bar-le-duc/id-9359165.html,pieces_not_bedrooms=3
+athome,33,560,113,,Appartement,Commercy (FR),FR,https://www.athome.lu/location/appartement/commercy/id-9290597.html,pieces_not_bedrooms=4
+athome,33,570,78,,Appartement,Houdelaincourt (FR),FR,https://www.athome.lu/location/appartement/houdelaincourt/id-9267520.html,pieces_not_bedrooms=3
+athome,33,700,94,,Appartement,Thionville (FR),FR,https://www.athome.lu/location/appartement/thionville/id-9230467.html,pieces_not_bedrooms=5
+athome,33,1700,91,2,Appartement,Schengen,LU,https://www.athome.lu/location/appartement/schengen/id-9216745.html,
+athome,33,300,38,,Appartement,Bar-le-Duc (FR),FR,https://www.athome.lu/location/appartement/bar-le-duc/id-8959357.html,pieces_not_bedrooms=2
+athome,33,400,52,,Appartement,Ligny-en-Barrois (FR),FR,https://www.athome.lu/location/appartement/ligny-en-barrois/id-8890078.html,pieces_not_bedrooms=2
+athome,33,375,72,,Appartement,Ligny-en-Barrois (FR),FR,https://www.athome.lu/location/appartement/ligny-en-barrois/id-8741789.html,pieces_not_bedrooms=2
+athome,33,370,44,,Appartement,Saint-Mihiel (FR),FR,https://www.athome.lu/location/appartement/saint-mihiel/id-8727662.html,pieces_not_bedrooms=2
+athome,33,550,92,,Appartement,Ligny-en-Barrois (FR),FR,https://www.athome.lu/location/appartement/ligny-en-barrois/id-8710118.html,pieces_not_bedrooms=4
+athome,33,260,22,,Appartement,Bar-le-Duc (FR),FR,https://www.athome.lu/location/appartement/bar-le-duc/id-8534262.html,pieces_not_bedrooms=1;suspect_rent_lt_300
+athome,33,375,56,,Appartement,Bar-le-Duc (FR),FR,https://www.athome.lu/location/appartement/bar-le-duc/id-8394668.html,pieces_not_bedrooms=3
+athome,33,850,68,,Appartement,Yutz (FR),FR,https://www.athome.lu/location/appartement/yutz/id-8392987.html,pieces_not_bedrooms=3
+athome,33,220,17,,Appartement,Saint-Mihiel (FR),FR,https://www.athome.lu/location/appartement/saint-mihiel/id-8381064.html,pieces_not_bedrooms=1;suspect_rent_lt_300
+athome,33,330,31,,Appartement,Bar-le-Duc (FR),FR,https://www.athome.lu/location/appartement/bar-le-duc/id-8361568.html,pieces_not_bedrooms=2
+athome,34,387,67,,Appartement,Ligny-en-Barrois (FR),FR,https://www.athome.lu/location/appartement/ligny-en-barrois/id-8361045.html,pieces_not_bedrooms=2
+athome,34,705,52,,Appartement,Hettange-Grande (FR),FR,https://www.athome.lu/location/appartement/hettange-grande/id-8322282.html,pieces_not_bedrooms=2
+athome,34,450,104,,Appartement,Tréveray (FR),FR,https://www.athome.lu/location/appartement/treveray/id-8260832.html,pieces_not_bedrooms=4
+athome,34,890,104,,Appartement,Nilvange (FR),FR,https://www.athome.lu/location/appartement/nilvange/id-8181769.html,pieces_not_bedrooms=3
+athome,34,786,160,,Appartement,Bar-le-Duc (FR),FR,https://www.athome.lu/location/appartement/bar-le-duc/id-8014679.html,pieces_not_bedrooms=6
+athome,34,625,37,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-7914691.html,pieces_not_bedrooms=2
+athome,34,435,69,,Appartement,Saint-Mihiel (FR),FR,https://www.athome.lu/location/appartement/saint-mihiel/id-7771794.html,pieces_not_bedrooms=3
+athome,34,690,144,,Appartement,Bar-le-Duc (FR),FR,https://www.athome.lu/location/appartement/bar-le-duc/id-7594724.html,pieces_not_bedrooms=4
+athome,34,1450,61,,Appartement,Dudelange,LU,https://www.athome.lu/location/appartement/dudelange/id-7033783.html,
+athome,34,510,36,,Appartement,Yutz (FR),FR,https://www.athome.lu/location/appartement/yutz/id-7494599.html,pieces_not_bedrooms=2
+athome,34,3000,110,3,Appartement,Luxembourg-Merl,LU,https://www.athome.lu/location/appartement/luxembourg/id-6414477.html,
+athome,34,560,74,,Appartement,Ligny-en-Barrois (FR),FR,https://www.athome.lu/location/appartement/ligny-en-barrois/id-5517138.html,pieces_not_bedrooms=4
+athome,34,210,54,,Appartement,Cousances-les-Forges (FR),FR,https://www.athome.lu/location/appartement/cousances-les-forges/id-5357778.html,pieces_not_bedrooms=1;suspect_rent_lt_300
+athome,34,390,62,,Appartement,Ligny-en-Barrois (FR),FR,https://www.athome.lu/location/appartement/ligny-en-barrois/id-5268245.html,pieces_not_bedrooms=2
+athome,34,360,77,,Appartement,Cousances-les-Forges (FR),FR,https://www.athome.lu/location/appartement/cousances-les-forges/id-5183987.html,pieces_not_bedrooms=3
+athome,34,445,56,,Appartement,Bar-le-Duc (FR),FR,https://www.athome.lu/location/appartement/bar-le-duc/id-4432287.html,pieces_not_bedrooms=3
+athome,34,253,31,,Appartement,Revigny-sur-Ornain (FR),FR,https://www.athome.lu/location/appartement/revigny-sur-ornain/id-4224256.html,pieces_not_bedrooms=1;suspect_rent_lt_300
+athome,34,2950,80,1,Appartement,Strassen,LU,https://www.athome.lu/location/appartement/strassen/id-9442901.html,
+athome,34,2500,77,2,Appartement,Luxembourg-Gasperich - Cloche d'or,LU,https://www.athome.lu/location/appartement/luxembourg/id-9437191.html,
+athome,34,680,39,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9437078.html,pieces_not_bedrooms=2
+athome,35,1650,,1,Appartement,Esch-sur-Alzette,LU,https://www.athome.lu/location/appartement/esch-sur-alzette/id-9435925.html,
+athome,35,1650,64,1,Appartement,Dalheim,LU,https://www.athome.lu/location/appartement/dalheim/id-3543904.html,
+athome,35,495,29,,Appartement,Metz-Centre-Ville (FR),FR,https://www.athome.lu/location/appartement/metz/id-9431804.html,pieces_not_bedrooms=2
+athome,35,2650,78,2,Appartement,Munsbach,LU,https://www.athome.lu/location/appartement/munsbach/id-9427498.html,
+athome,35,1800,48,1,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-9418474.html,
+athome,35,585,47,,Appartement,Mancieulles (FR),FR,https://www.athome.lu/location/appartement/mancieulles/id-9426508.html,pieces_not_bedrooms=2
+athome,35,1690,33,1,Appartement,Luxembourg-Limpertsberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-9425638.html,
+athome,35,900,47,,Appartement,Lexy (FR),FR,https://www.athome.lu/location/appartement/lexy/id-9418638.html,pieces_not_bedrooms=2
+athome,35,390,,,Appartement,Bar-le-Duc (FR),FR,https://www.athome.lu/location/appartement/bar-le-duc/id-9406588.html,pieces_not_bedrooms=3
+athome,35,700,43,,Appartement,Metz-Centre-Ville (FR),FR,https://www.athome.lu/location/appartement/metz/id-9405939.html,pieces_not_bedrooms=2
+athome,35,610,47,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9400028.html,pieces_not_bedrooms=2
+athome,35,400,19,,Appartement,Metz-Centre-Ville (FR),FR,https://www.athome.lu/location/appartement/metz/id-9382949.html,pieces_not_bedrooms=1
+athome,35,2100,60,1,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-8811861.html,
+athome,35,4400,145,2,Appartement,Luxembourg-Grund,LU,https://www.athome.lu/location/appartement/luxembourg/id-9249216.html,
+athome,35,655,58,,Appartement,Montigny-lès-Metz (FR),FR,https://www.athome.lu/location/appartement/montigny-les-metz/id-9360453.html,pieces_not_bedrooms=3
+athome,35,590,90,,Appartement,Ligny-en-Barrois (FR),FR,https://www.athome.lu/location/appartement/ligny-en-barrois/id-9349542.html,pieces_not_bedrooms=4
+athome,35,610,58,,Appartement,Longuyon (FR),FR,https://www.athome.lu/location/appartement/longuyon/id-9339983.html,pieces_not_bedrooms=2
+athome,35,2250,48,1,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-9323942.html,
+athome,35,1500,130,3,Appartement,Bollendorf (DE),DE,https://www.athome.lu/location/appartement/bollendorf/id-9317754.html,
+athome,35,430,31,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9306523.html,pieces_not_bedrooms=1
+athome,36,980,90,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9278944.html,pieces_not_bedrooms=3
+athome,36,1100,76,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9278941.html,
+athome,36,710,64,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9278942.html,pieces_not_bedrooms=2
+athome,36,2750,85,1,Appartement,Luxembourg-Grund,LU,https://www.athome.lu/location/appartement/luxembourg/id-8452112.html,
+athome,36,1221,105,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9097066.html,
+athome,36,1220,88,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9175065.html,
+athome,36,750,61,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-9235830.html,pieces_not_bedrooms=2
+athome,36,600,123,,Appartement,Ligny-en-Barrois (FR),FR,https://www.athome.lu/location/appartement/ligny-en-barrois/id-9180462.html,pieces_not_bedrooms=4
+athome,36,2450,50,1,Appartement,Luxembourg-Weimershof,LU,https://www.athome.lu/location/appartement/luxembourg/id-9147377.html,
+athome,36,3900,160,3,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-9084438.html,
+athome,36,700,47,,Appartement,Longwy (FR),FR,https://www.athome.lu/location/appartement/longwy/id-8954017.html,pieces_not_bedrooms=2
+athome,36,785,63,,Appartement,Longuyon (FR),FR,https://www.athome.lu/location/appartement/longuyon/id-8871513.html,pieces_not_bedrooms=3
+athome,36,950,79,,Appartement,Longwy (FR),FR,https://www.athome.lu/location/appartement/longwy/id-8859242.html,pieces_not_bedrooms=3
+athome,36,320,16,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8799395.html,pieces_not_bedrooms=1
+athome,36,380,22,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8799394.html,pieces_not_bedrooms=1
+athome,36,400,24,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8799393.html,pieces_not_bedrooms=1
+athome,36,320,17,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8799392.html,pieces_not_bedrooms=1
+athome,36,365,25,,Appartement,Yutz (FR),FR,https://www.athome.lu/location/appartement/yutz/id-8790166.html,pieces_not_bedrooms=1
+athome,36,2300,,3,Appartement,Strassen,LU,https://www.athome.lu/location/appartement/strassen/id-7433245.html,
+athome,36,2000,60,1,Appartement,Luxembourg-Merl,LU,https://www.athome.lu/location/appartement/luxembourg/id-8763170.html,
+athome,37,2300,43,1,Appartement,Luxembourg-Merl,LU,https://www.athome.lu/location/appartement/luxembourg/id-8387954.html,
+athome,37,320,38,,Appartement,Commercy (FR),FR,https://www.athome.lu/location/appartement/commercy/id-8104518.html,pieces_not_bedrooms=2
+athome,37,2300,43,1,Appartement,Luxembourg-Merl,LU,https://www.athome.lu/location/appartement/luxembourg/id-7931354.html,
+athome,37,2300,43,1,Appartement,Luxembourg-Merl,LU,https://www.athome.lu/location/appartement/luxembourg/id-7930891.html,
+athome,37,2800,90,1,Appartement,Luxembourg-Limpertsberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-7930888.html,
+athome,37,450,34,,Appartement,Longwy (FR),FR,https://www.athome.lu/location/appartement/longwy/id-6980364.html,pieces_not_bedrooms=1
+athome,37,800,66,,Appartement,Herserange (FR),FR,https://www.athome.lu/location/appartement/herserange/id-6649774.html,pieces_not_bedrooms=3
+athome,37,400,55,,Appartement,Pont-à-Mousson (FR),FR,https://www.athome.lu/location/appartement/pont-a-mousson/id-6540303.html,pieces_not_bedrooms=2
+athome,37,535,20,,Appartement,Longwy (FR),FR,https://www.athome.lu/location/appartement/longwy/id-6466688.html,pieces_not_bedrooms=1
+athome,37,525,84,,Appartement,Longuyon (FR),FR,https://www.athome.lu/location/appartement/longuyon/id-5907377.html,pieces_not_bedrooms=4
+athome,37,875,73,,Appartement,Aumetz (FR),FR,https://www.athome.lu/location/appartement/aumetz/id-5678669.html,pieces_not_bedrooms=3
+athome,37,780,95,,Appartement,Metz (FR),FR,https://www.athome.lu/location/appartement/metz/id-4730235.html,pieces_not_bedrooms=4
+athome,37,650,56,,Appartement,Longwy (FR),FR,https://www.athome.lu/location/appartement/longwy/id-2799535.html,pieces_not_bedrooms=5
+athome,37,2800,155,3,Appartement,Esch-sur-Alzette,LU,https://www.athome.lu/location/appartement/esch-sur-alzette/id-9433516.html,
+athome,37,2600,82,2,Appartement,Strassen,LU,https://www.athome.lu/location/appartement/strassen/id-9435983.html,
+athome,37,1100,96,,Appartement,Kerling-lès-Sierck (FR),FR,https://www.athome.lu/location/appartement/kerling-les-sierck/id-9433852.html,pieces_not_bedrooms=4
+athome,37,2750,58,1,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-8351289.html,
+athome,37,2550,62,1,Appartement,Luxembourg-Limpertsberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-8946388.html,
+athome,37,2710,41,1,Appartement,Luxembourg-Eich,LU,https://www.athome.lu/location/appartement/luxembourg/id-7636079.html,
+athome,37,849,66,,Appartement,Contz-les-Bains (FR),FR,https://www.athome.lu/location/appartement/contz-les-bains/id-9423582.html,pieces_not_bedrooms=2
+athome,38,930,97,,Appartement,Sierck-les-Bains (FR),FR,https://www.athome.lu/location/appartement/sierck-les-bains/id-9418986.html,pieces_not_bedrooms=5
+athome,38,850,54,,Appartement,Escherange (FR),FR,https://www.athome.lu/location/appartement/escherange/id-9418982.html,pieces_not_bedrooms=3
+athome,38,2480,75,2,Appartement,Luxembourg-Hollerich,LU,https://www.athome.lu/location/appartement/luxembourg/id-9385390.html,
+athome,38,2350,75,2,Appartement,Luxembourg-Bonnevoie,LU,https://www.athome.lu/location/appartement/luxembourg/id-9385389.html,
+athome,38,1700,64,1,Appartement,Noertzange,LU,https://www.athome.lu/location/appartement/noertzange/id-9383683.html,
+athome,38,3500,90,2,Appartement,Bertrange,LU,https://www.athome.lu/location/appartement/bertrange/id-9376411.html,
+athome,38,2650,73,2,Appartement,Luxembourg-Centre Ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-9375972.html,
+athome,38,830,62,,Appartement,Thionville (FR),FR,https://www.athome.lu/location/appartement/thionville/id-9237400.html,pieces_not_bedrooms=2
+athome,38,2600,116,4,Appartement,Clervaux,LU,https://www.athome.lu/location/appartement/clervaux/id-8476683.html,
+athome,38,970,65,,Appartement,Veymerange (FR),FR,https://www.athome.lu/location/appartement/veymerange/id-8228397.html,pieces_not_bedrooms=3
+athome,38,530,35,,Appartement,Hayange (FR),FR,https://www.athome.lu/location/appartement/hayange/id-7920795.html,pieces_not_bedrooms=2
+athome,38,2700,130,3,Appartement,Kehlen,LU,https://www.athome.lu/location/appartement/kehlen/id-9434899.html,
+athome,38,2300,87,2,Appartement,Bertrange,LU,https://www.athome.lu/location/appartement/bertrange/id-9433791.html,
+athome,38,3950,163,3,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-9314531.html,
+athome,38,975,,1,Appartement,Heiderscheid,LU,https://www.athome.lu/location/appartement/heiderscheid/id-9409950.html,
+athome,38,2500,110,3,Appartement,Diekirch,LU,https://www.athome.lu/location/appartement/diekirch/id-9403678.html,
+athome,38,3805,127,3,Appartement,Mamer,LU,https://www.athome.lu/location/appartement/mamer/id-9385300.html,
+athome,38,2400,74,2,Appartement,Luxembourg-Gare,LU,https://www.athome.lu/location/appartement/luxembourg/id-9393670.html,
+athome,38,620,41,,Appartement,Montigny-lès-Metz (FR),FR,https://www.athome.lu/location/appartement/montigny-les-metz/id-9387302.html,
+athome,38,280,12,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8799396.html,pieces_not_bedrooms=1;suspect_rent_lt_300;suspect_surface_lt_15
+athome,39,460,48,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8751895.html,pieces_not_bedrooms=2
+athome,39,320,16,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8699485.html,pieces_not_bedrooms=1
+athome,39,320,16,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8698286.html,pieces_not_bedrooms=1
+athome,39,430,47,,Appartement,Bayon (FR),FR,https://www.athome.lu/location/appartement/bayon/id-8358222.html,pieces_not_bedrooms=3
+athome,39,320,16,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-8065034.html,pieces_not_bedrooms=1
+athome,39,930,113,,Appartement,Thionville (FR),FR,https://www.athome.lu/location/appartement/thionville/id-7291796.html,pieces_not_bedrooms=4
+athome,39,320,16,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-7251122.html,pieces_not_bedrooms=1
+athome,39,320,17,,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-6902841.html,pieces_not_bedrooms=1
+athome,39,690,64,,Appartement,Thionville (FR),FR,https://www.athome.lu/location/appartement/thionville/id-6265715.html,pieces_not_bedrooms=3
+athome,39,1600,50,1,Appartement,Mondercange,LU,https://www.athome.lu/location/appartement/mondercange/id-9442958.html,
+athome,39,1350,43,,Appartement,Dudelange,LU,https://www.athome.lu/location/appartement/dudelange/id-9433528.html,
+athome,39,2950,86,2,Appartement,Luxembourg-Gasperich - Cloche d'or,LU,https://www.athome.lu/location/appartement/luxembourg/id-9382802.html,
+athome,39,2350,100,2,Appartement,Howald,LU,https://www.athome.lu/location/appartement/howald/id-8527278.html,
+athome,39,320,28,,Appartement,Rohrbach-lès-Bitche (FR),FR,https://www.athome.lu/location/appartement/rohrbach-les-bitche/id-9442609.html,pieces_not_bedrooms=1
+athome,39,4000,126,4,Appartement,Lorentzweiler,LU,https://www.athome.lu/location/appartement/lorentzweiler/id-9442145.html,
+athome,39,1900,59,1,Appartement,Differdange,LU,https://www.athome.lu/location/appartement/differdange/id-9442133.html,
+athome,39,480,25,,Appartement,Trier (DE),DE,https://www.athome.lu/location/appartement/trier/id-9441918.html,pieces_not_bedrooms=1
+athome,39,1280,97,,Appartement,Trier (DE),DE,https://www.athome.lu/location/appartement/trier/id-9441916.html,pieces_not_bedrooms=3
+athome,39,650,69,,Appartement,Boulay-Moselle (FR),FR,https://www.athome.lu/location/appartement/boulay-moselle/id-9437062.html,pieces_not_bedrooms=3
+athome,39,760,73,,Appartement,Thionville (FR),FR,https://www.athome.lu/location/appartement/thionville/id-9437059.html,pieces_not_bedrooms=3
+athome,40,450,36,1,Appartement,Nancy (FR),FR,https://www.athome.lu/location/appartement/nancy/id-9436058.html,
+athome,40,850,81,3,Appartement,Amnéville (FR),FR,https://www.athome.lu/location/appartement/amneville/id-9435406.html,
+athome,40,2100,50,,Appartement,Luxembourg-Cessange,LU,https://www.athome.lu/location/appartement/luxembourg/id-9432145.html,
+athome,40,660,38,2,Appartement,Maidières (FR),FR,https://www.athome.lu/location/appartement/maidieres/id-9435374.html,
+athome,40,540,45,2,Appartement,Pont-à-Mousson (FR),FR,https://www.athome.lu/location/appartement/pont-a-mousson/id-9435373.html,
+athome,40,4000,125,3,Appartement,Luxembourg-Limpertsberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-9026706.html,
+athome,40,3450,87,2,Appartement,Luxembourg-Limpertsberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-9184541.html,
+athome,40,2400,53,1,Appartement,Luxembourg-Hollerich,LU,https://www.athome.lu/location/appartement/luxembourg/id-9372950.html,
+athome,40,2400,60,1,Appartement,Luxembourg-Limpertsberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-6818794.html,
+athome,40,2550,62,1,Appartement,Luxembourg-Limpertsberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-7840153.html,
+athome,40,2550,62,1,Appartement,Luxembourg-Limpertsberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-8258064.html,
+athome,40,3500,80,2,Appartement,Luxembourg-Gare,LU,https://www.athome.lu/location/appartement/luxembourg/id-8579980.html,
+athome,40,2750,63,1,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-8543797.html,
+athome,40,2500,52,1,Appartement,Luxembourg-Belair,LU,https://www.athome.lu/location/appartement/luxembourg/id-8589016.html,
+athome,40,2500,52,1,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-8589024.html,
+athome,40,2900,63,2,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-8589040.html,
+athome,40,4840,155,4,Appartement,Luxembourg-Centre ville,LU,https://www.athome.lu/location/appartement/luxembourg/id-8763431.html,
+athome,40,2550,72,1,Appartement,Luxembourg-Limpertsberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-8881597.html,
+athome,40,2950,84,2,Appartement,Luxembourg-Limpertsberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-8901938.html,
+athome,40,2550,73,1,Appartement,Luxembourg-Limpertsberg,LU,https://www.athome.lu/location/appartement/luxembourg/id-8970356.html,

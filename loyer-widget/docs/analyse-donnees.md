@@ -2,12 +2,13 @@
 
 Date de l'analyse : 17/11/2026. Objectif : savoir si les données publiques permettent d'afficher une fourchette de loyer **réaliste** pour un appartement ou une maison, et avec quelle méthode.
 
-**Verdict proposé : GO avec restrictions.**
+**Verdict proposé : GO avec restrictions** (appartements et maisons).
 
 - Appartements : oui, mais **pas** avec le loyer annoncé au m² par commune (biaisé, voir partie 2). Méthode proposée : loyers réels de l'enquête « cadastre des loyers » (canton × surface), mis à jour avec l'indice officiel des loyers annoncés (partie 5).
-- Maisons : **pas de chiffre** dans la V1. Données trop rares (4 communes publiées). Estimation personnelle par Jay.
+- Maisons : les données officielles sont trop rares (4 communes publiées). **Mise à jour 17/11/2026 : chiffre possible** avec un modèle construit sur 84 annonces de maisons au Luxembourg (atHome + wortimmo), cohérent avec la moyenne nationale de l'Observatoire (20,0 contre 19,77 €/m²). Fourchette large (± 19 % d'écart typique). Détail dans `controle-annonces.md`.
 - Meublé, balcon, parking : aucune donnée officielle. Coefficients à proposer par Jay.
 - **Contrôle sur 87 annonces réelles** (atHome, 17/11/2026, détail dans `controle-annonces.md`) : les loyers demandés sont en médiane 18 % au-dessus de la méthode de base. Les appartements anciens sans extras tombent dessus ; les biens récents A/B avec parking compris sont 35 à 65 % plus haut. Conséquences : facteur de surface interpolé, ajustements parking / énergie / meublé indispensables, fourchette plus large (– 10 % / + 15 %).
+- **Échantillon élargi à 350 appartements** (même jour) : les loyers demandés sont 17 % au-dessus de la méthode, de façon stable dans toutes les zones et toutes les surfaces. La méthode est donc bonne pour la structure (lieu, surface) ; le niveau « annonce » s'obtient avec un facteur 1,17. Proposition de fourchette commune appartements / maisons : `controle-annonces.md`, dernière partie.
 
 ---
 
