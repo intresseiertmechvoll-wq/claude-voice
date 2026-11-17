@@ -5,13 +5,13 @@
 //   import EstimationWidget from '@/components/EstimationWidget';
 //   <EstimationWidget lang="fr" />
 //
-// Adresse de l'outil : variable NEXT_PUBLIC_ESTIMATION_URL dans .env (ex. https://estimation-widget.pages.dev)
+// Adresse de l'outil : variable NEXT_PUBLIC_ESTIMATION_URL dans .env (ex. https://estimatioun.lu)
 'use client';
 
 import Script from 'next/script';
 import { useEffect } from 'react';
 
-const WIDGET_URL = process.env.NEXT_PUBLIC_ESTIMATION_URL ?? 'https://estimation-widget.pages.dev';
+const WIDGET_URL = process.env.NEXT_PUBLIC_ESTIMATION_URL ?? 'https://estimatioun.lu';
 
 declare global {
   interface Window {

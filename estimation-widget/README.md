@@ -134,9 +134,22 @@ Ce qui est stocké dans KV : une empreinte (SHA-256) de l'adresse IP et un compt
 2. Fais une estimation avec tes propres coordonnées.
 3. Vérifie que l'e-mail arrive dans `LEAD_EMAIL`, et que « Répondre » écrit bien au visiteur.
 
-### 3.6 (Facultatif) Ta propre adresse
+### 3.6 Les adresses : estimatioun.lu, combien.lu, combien.fr
 
-Workers & Pages → estimation-widget → Custom domains → `estimation.immobuild.lu`. Ensuite, remplace `estimation-widget.pages.dev` par cette adresse dans le code d'intégration (partie 5).
+Tu possèdes ces trois domaines. Rôle de chacun :
+
+| Domaine | Rôle |
+| --- | --- |
+| `estimatioun.lu` | **Adresse de l'outil** (page autonome et `embed.js`). |
+| `combien.lu` | Adresse courte pour flyers, panneaux et annonces : redirige vers `https://estimatioun.lu/?lang=fr`. |
+| `combien.fr` | Protège le nom et capte les frontaliers : même redirection. L'outil ne couvre que les communes luxembourgeoises ; un bien en France ne peut pas être estimé. |
+
+1. **Les trois domaines chez Cloudflare** (offre Free) : dans le tableau de bord, *Add a domain* pour chacun. Cloudflare donne 2 serveurs de noms ; remplace ceux de ton registrar par ceux-là (chez le registrar de chaque domaine). Obligatoire pour `estimatioun.lu` : un domaine « nu » (sans `www`) ne peut servir un projet Pages que s'il est une zone Cloudflare ([documentation](https://developers.cloudflare.com/pages/configuration/custom-domains/)).
+2. **L'outil sur estimatioun.lu** : Workers & Pages → estimation-widget → Custom domains → `estimatioun.lu` (et `www.estimatioun.lu`).
+3. **Les redirections** : dans la zone `combien.lu`, Rules → Redirect Rules → Create rule → « All incoming requests » → type Static → URL `https://estimatioun.lu/?lang=fr` → code 301. Pareil pour `combien.fr`. Il faut un enregistrement DNS « proxied » (nuage orange) pour que la règle s'applique, par ex. `A @ 192.0.2.1` (adresse factice, normale pour une redirection Cloudflare).
+4. Dans le code d'intégration (partie 5), l'adresse est déjà `https://estimatioun.lu`.
+
+Les e-mails partent toujours de `immobuild.lu` (Resend, 3.3) : c'est ta marque, et les visiteurs la reconnaissent.
 
 ## 4. Mettre à jour les données (chaque trimestre)
 
@@ -155,14 +168,14 @@ Le dossier `moteur-v1` n'existait pas quand l'outil a été créé : le script p
 
 ## 5. Intégrer l'outil
 
-Remplace `https://estimation-widget.pages.dev` par ton adresse si tu en as une autre (3.6).
+L'adresse de l'outil est `https://estimatioun.lu` (3.6). Tant que le domaine n'est pas branché, utilise `https://estimation-widget.pages.dev`.
 
 ### WordPress (Elementor)
 
 Ajoute un widget **HTML** sur la page, et colle **une ligne** :
 
 ```html
-<div data-immobuild-estimation data-lang="fr"></div><script src="https://estimation-widget.pages.dev/embed.js" async></script>
+<div data-immobuild-estimation data-lang="fr"></div><script src="https://estimatioun.lu/embed.js" async></script>
 ```
 
 Pour les pages en allemand ou en anglais : `data-lang="de"` ou `data-lang="en"`.
@@ -170,7 +183,7 @@ Pour les pages en allemand ou en anglais : `data-lang="de"` ou `data-lang="en"`.
 Options utiles :
 
 - **En-tête fixe** sur le site (menu qui reste en haut) : ajoute sa hauteur, ex. `data-offset="90"` sur le `<div>`, pour que le haut de l'outil ne passe pas dessous quand il fait défiler la page.
-- **Extension WordPress qui recopie les scripts** (cache, optimisation) : ajoute `data-src="https://estimation-widget.pages.dev/embed.js"` sur le `<script>`.
+- **Extension WordPress qui recopie les scripts** (cache, optimisation) : ajoute `data-src="https://estimatioun.lu/embed.js"` sur le `<script>`.
 - **Largeur** : prévois au moins 320 px pour la colonne qui contient l'outil (testé de 320 à 1280 px, rien ne déborde).
 - **Si l'outil ne s'affiche pas** (adresse du site non autorisée, panne), un bouton « Ouvrir l'estimation gratuite » le remplace après 15 secondes, et la console du navigateur explique pourquoi.
 - **Si ton site a une règle CSP** : autorise l'adresse de l'outil dans `frame-src`.
@@ -187,7 +200,7 @@ Je n'ai pas modifié ce dépôt. Voici le composant à ajouter. Il est aussi dan
 import Script from 'next/script';
 import { useEffect } from 'react';
 
-const WIDGET_URL = process.env.NEXT_PUBLIC_ESTIMATION_URL ?? 'https://estimation-widget.pages.dev';
+const WIDGET_URL = process.env.NEXT_PUBLIC_ESTIMATION_URL ?? 'https://estimatioun.lu';
 
 declare global {
   interface Window {
@@ -210,7 +223,7 @@ export default function EstimationWidget({ lang = 'fr' }: { lang?: 'fr' | 'de' |
 ```
 
 2. Dans la page voulue : `import EstimationWidget from '@/components/EstimationWidget';` puis `<EstimationWidget lang="fr" />`.
-3. Dans `.env` : `NEXT_PUBLIC_ESTIMATION_URL=https://estimation-widget.pages.dev`.
+3. Dans `.env` : `NEXT_PUBLIC_ESTIMATION_URL=https://estimatioun.lu`.
 
 **Important :** l'outil n'accepte d'être affiché que sur `immobuild.lu` et ses sous-domaines (règle `frame-ancestors` dans `public/_headers`). Si le nouveau site tourne sur une autre adresse (par exemple `immobuild-website.vercel.app`), ajoute-la sur cette ligne, puis `npm run deploy`.
 
