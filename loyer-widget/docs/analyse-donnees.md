@@ -7,6 +7,7 @@ Date de l'analyse : 17/11/2026. Objectif : savoir si les données publiques perm
 - Appartements : oui, mais **pas** avec le loyer annoncé au m² par commune (biaisé, voir partie 2). Méthode proposée : loyers réels de l'enquête « cadastre des loyers » (canton × surface), mis à jour avec l'indice officiel des loyers annoncés (partie 5).
 - Maisons : **pas de chiffre** dans la V1. Données trop rares (4 communes publiées). Estimation personnelle par Jay.
 - Meublé, balcon, parking : aucune donnée officielle. Coefficients à proposer par Jay.
+- **Contrôle sur 87 annonces réelles** (atHome, 17/11/2026, détail dans `controle-annonces.md`) : les loyers demandés sont en médiane 18 % au-dessus de la méthode de base. Les appartements anciens sans extras tombent dessus ; les biens récents A/B avec parking compris sont 35 à 65 % plus haut. Conséquences : facteur de surface interpolé, ajustements parking / énergie / meublé indispensables, fourchette plus large (– 10 % / + 15 %).
 
 ---
 
@@ -145,26 +146,27 @@ Toutes les communes passent par leur **canton** (Luxembourg-Ville à part, comme
 
 ```
 loyer au m² = médiane du canton                                    (rapport n°24, graphique 5)
-            × facteur surface   = médiane zone × classe de surface ÷ médiane de la zone   (graphique 7)
+            × facteur surface   = médiane zone × surface ÷ médiane de la zone            (graphique 7, interpolé entre
+                                  les centres de classe 40, 60, 80, 100, 120, 145 m², voir controle-annonces.md partie 4)
             × facteur bail récent = baux 2024-2025 ÷ tous les baux, de la zone          (graphique 10)
             × mise à jour indice = dernier indice trimestriel ÷ moyenne 2024-2025      (data.public.lu, CC0)
             × ajustements du bien (énergie, état, meublé, extérieur, parking)          (params.json, à valider par Jay)
 loyer mensuel = loyer au m² × surface, arrondi à 50 €
-fourchette : basse / milieu / haute autour de ce loyer (écart à fixer, par ex. ± 8 %)
+fourchette : basse / milieu / haute autour de ce loyer (proposition après contrôle : – 10 % / + 15 %)
 ```
 
 ### Exemple à la main : Dudelange, appartement de 80 m², classe énergétique D, bon état, non meublé
 
 1. Médiane du canton d'Esch-sur-Alzette : **19,12 €/m²** (zone Sud = canton d'Esch).
-2. Facteur surface : 80 m² est dans la classe 70–89 ; Sud 70–89 = 17,9 ; 17,9 ÷ 19,12 = **0,936**.
+2. Facteur surface : 80 m² est le centre de la classe 70–89 (pas d'interpolation nécessaire) ; Sud 70–89 = 17,9 ; 17,9 ÷ 19,12 = **0,936**.
 3. Facteur bail récent : Sud 22,59 ÷ 19,39 = **1,165**.
 4. Mise à jour : indice T2 2026 = 206,49 ; moyenne 2024-2025 = 197,79 ; 206,49 ÷ 197,79 = **1,044**.
 5. 19,12 × 0,936 × 1,165 × 1,044 = **21,77 €/m²** ; × 80 m² = 1 741 € → **1 750 €/mois** (milieu).
-6. Avec ± 8 % : environ **1 600 € à 1 900 €**.
+6. Avec – 10 % / + 15 % : environ **1 550 € à 2 000 €** (avant ajustements énergie, parking, meublé).
 
 Pour comparer : la méthode « €/m² annoncé de la commune » donnerait 2 430 €.
 
-Ordre de grandeur plausible pour un 2 chambres à Dudelange, à mon avis, mais **non vérifié** contre des annonces réelles. Vérification simple que Jay peut faire : saisir 3 à 5 biens qu'il connaît (loués récemment) dans l'outil et dans le simulateur officiel de l'Observatoire, et comparer.
+Contrôle sur annonces (17/11/2026) : à Dudelange, un 60 m² ancien sans parking est demandé 1 400 € (méthode : 1 460 €), un 93 m² classe F avec 1 parking 1 950 € (méthode : 1 900 €), un 85 m² classe A meublé avec 2 parkings 2 500 € (méthode : 1 810 €). Détails dans `controle-annonces.md`. Vérification complémentaire utile : Jay saisit 3 à 5 biens qu'il a loués récemment.
 
 ### Fiabilité affichée (proposition)
 
@@ -195,6 +197,7 @@ L'outil peut aussi afficher le **nombre d'annonces de location dans la commune**
 1. **Précision au niveau du canton seulement.** Dans le canton d'Esch, Dudelange, Esch, Rumelange et Leudelange ont le même niveau de départ. Jay connaît mieux les écarts locaux ; il peut ajouter plus tard un petit ajustement par commune (à justifier).
 2. **Combinaison de tableaux publiés séparément.** Les facteurs surface et bail récent sont multipliés comme s'ils étaient indépendants ; ce n'est qu'une approximation. Le rapport mélange aussi médianes (graphiques 5 et 7) et moyennes (graphique 10).
 3. **Données de fin 2025 mises à jour par un indice national.** Si les loyers évoluent différemment selon les régions, l'écart grandit avec le temps.
+4. **Ajustements non mesurés par une source officielle.** Le contrôle sur annonces montre qu'ils pèsent lourd (parking compris, A/B, meublé) ; les valeurs seront des propositions à valider par Jay.
 
 ---
 
@@ -204,3 +207,4 @@ L'outil peut aussi afficher le **nombre d'annonces de location dans la commune**
 - Observatoire de l'Habitat (2026), *Rapport d'analyse n°24 : Le cadastre des loyers – Premiers résultats*, 05/06/2026 : graphiques 5, 6, 7, 8, 9, 10 et texte de la section 4.
 - STATEC et Observatoire de l'Habitat (2026), *Le Logement en chiffres n°20*, 24/09/2026 : « Focus sur… les évolutions récentes des loyers annoncés ».
 - Observatoire de l'Habitat, *Simulateur des loyers*, page consultée le 17/11/2026.
+- atHome.lu et immotop.lu, annonces de location consultées le 17/11/2026 (liste : `annonces-controle-2026-11-17.csv`).
