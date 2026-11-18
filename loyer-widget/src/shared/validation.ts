@@ -14,7 +14,7 @@ import {
   type Submission,
 } from './types';
 
-export type ErrorCode = 'required' | 'invalid' | 'range' | 'email' | 'phone' | 'rgpd';
+export type ErrorCode = 'required' | 'invalid' | 'range' | 'email' | 'phone' | 'phone_pays' | 'rgpd';
 export type Errors = Record<string, ErrorCode>;
 
 /** Données brutes telles qu'envoyées par le formulaire */
@@ -129,6 +129,8 @@ export function normalizePhone(code: unknown, number: unknown): string | ErrorCo
     // Luxembourg : pas de 0 initial ; fixes = 6 à 8 chiffres (pas de 1 initial : numéros spéciaux) ;
     // mobiles = 9 chiffres, uniquement dans les plages attribuées (ILR, plan national de numérotation,
     // plages utilisées depuis octobre 2025) : à compléter si l'ILR en ouvre une nouvelle.
+    // Numéro étranger tapé avec +352 (fréquent chez les frontaliers) : on le dit clairement
+    if (/^0[67]\d{8}$|^04\d{8}$|^01[5-7]\d{7,9}$/.test(digits)) return 'phone_pays';
     if (/^[01]/.test(digits)) return 'phone';
     if (digits.startsWith('6')) return /^6\d{8}$/.test(digits) && MOBILES_LU.includes(digits.slice(0, 3)) && !numeroFactice(digits) ? c + digits : 'phone';
     return digits.length >= 6 && digits.length <= 8 && !numeroFactice(digits) ? c + digits : 'phone';
@@ -201,7 +203,7 @@ const CHECKS: Record<string, FieldCheck> = {
   rgpd: (r) => (r.rgpd === true || r.rgpd === 'on' ? true : 'rgpd'),
 };
 
-const ERROR_CODES = new Set<unknown>(['required', 'invalid', 'range', 'email', 'phone', 'rgpd']);
+const ERROR_CODES = new Set<unknown>(['required', 'invalid', 'range', 'email', 'phone', 'phone_pays', 'rgpd']);
 const isError = (v: unknown): v is ErrorCode => typeof v === 'string' && ERROR_CODES.has(v);
 
 /** Vérifie une liste de champs. Renvoie les valeurs propres et les erreurs. */

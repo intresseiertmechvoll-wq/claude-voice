@@ -171,6 +171,49 @@ export function leadSections(s: Submission, e: Estimate, date: Date): Section[] 
   return sections;
 }
 
+/* ---------- Boutons d'action en tête de l'e-mail : appeler, WhatsApp, répondre ---------- */
+
+const BIEN: Record<Submission['lang'], Record<'appartement' | 'maison', string>> = {
+  fr: { appartement: 'votre appartement', maison: 'votre maison' },
+  de: { appartement: 'Ihre Wohnung', maison: 'Ihr Haus' },
+  en: { appartement: 'your apartment', maison: 'your house' },
+};
+
+/** Réponse préparée dans la langue du visiteur (Jason la relit et la complète avant d'envoyer) */
+export function reponsePreparee(s: Submission): { subject: string; body: string } {
+  const { prenom, nom } = s.contact;
+  const bien = BIEN[s.lang][s.answers.type];
+  const commune = s.answers.commune;
+  if (s.lang === 'de')
+    return {
+      subject: `Ihre Mietschätzung in ${commune}`,
+      body: `Guten Tag ${prenom} ${nom},\n\nvielen Dank für Ihre Anfrage zur Miete für ${bien} in ${commune}. Gerne bespreche ich das Ergebnis kurz mit Ihnen am Telefon: Wann sind Sie gut erreichbar?\n\nFreundliche Grüße\nJason\nImmoBuild Kohn`,
+    };
+  if (s.lang === 'en')
+    return {
+      subject: `Your rent estimate in ${commune}`,
+      body: `Dear ${prenom} ${nom},\n\nThank you for your rent estimate request for ${bien} in ${commune}. I would be happy to go through the result with you by phone: when is a good time to call you?\n\nKind regards,\nJason\nImmoBuild Kohn`,
+    };
+  return {
+    subject: `Votre estimation de loyer à ${commune}`,
+    body: `Bonjour ${prenom} ${nom},\n\nMerci pour votre demande d’estimation de loyer pour ${bien} à ${commune}. Je vous propose d’en parler brièvement par téléphone : quand êtes-vous joignable ?\n\nBien cordialement,\nJason\nImmoBuild Kohn`,
+  };
+}
+
+/** Numéro de mobile (WhatsApp possible) : Luxembourg 6…, France 6/7…, Belgique 4…, Allemagne 15/16/17… */
+export function estMobile(tel: string): boolean {
+  return /^\+3526|^\+33[67]|^\+324|^\+491[5-7]/.test(tel);
+}
+
+function boutons(s: Submission): string {
+  const tel = s.contact.telephone;
+  const r = reponsePreparee(s);
+  const mailto = `mailto:${encodeURIComponent(s.contact.email).replace(/%40/g, '@')}?subject=${encodeURIComponent(r.subject)}&body=${encodeURIComponent(r.body)}`;
+  const btn = (href: string, label: string, plein: boolean) =>
+    `<a href="${escapeHtml(href)}" style="display:inline-block;margin:0 8px 8px 0;padding:10px 16px;border-radius:6px;font-weight:bold;font-size:14px;text-decoration:none;${plein ? 'background:#0A2342;color:#ffffff' : 'background:#ffffff;color:#0A2342;border:1px solid #0A2342'}">${escapeHtml(label)}</a>`;
+  return `<p style="margin:0 0 8px">${btn(`tel:${tel}`, `📞 Appeler ${formatPhone(tel)}`, true)}${estMobile(tel) ? btn(`https://wa.me/${tel.slice(1)}`, 'WhatsApp', false) : ''}${btn(mailto, `✉️ Répondre (${L.lang[s.lang].toLowerCase()}, texte préparé)`, false)}</p>`;
+}
+
 export function leadEmail(s: Submission, e: Estimate, date = new Date()): { subject: string; html: string; text: string } {
   const sections = leadSections(s, e, date);
   const text = sections
@@ -179,6 +222,7 @@ export function leadEmail(s: Submission, e: Estimate, date = new Date()): { subj
   const html = `<!doctype html><html lang="fr"><body style="margin:0;padding:24px;background:#F8F8F6;font-family:Arial,Helvetica,sans-serif;color:#0A2342">
 <div style="max-width:640px;margin:0 auto;background:#ffffff;border-top:4px solid #C5A46D;padding:24px">
 <h1 style="font-size:20px;margin:0 0 16px">${escapeHtml(leadSubject(s))}</h1>
+${boutons(s)}
 ${sections
   .map(
     (sec) => `<h2 style="font-size:16px;margin:24px 0 8px;padding-bottom:4px;border-bottom:1px solid #F2EFEA">${escapeHtml(sec.title)}</h2>

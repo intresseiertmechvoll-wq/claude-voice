@@ -179,7 +179,8 @@
     "rate_limit": "Trop d’envois depuis cette connexion. Réessayez dans une heure, ou écrivez-moi à {contact}.",
     "network": "L’envoi n’a pas abouti. Vérifiez votre connexion et réessayez.",
     "server": "L’envoi n’a pas abouti. Réessayez dans quelques minutes, ou écrivez-moi à {contact}.",
-    "reload": "L’outil vient d’être mis à jour. Rechargez la page pour continuer."
+    "reload": "L’outil vient d’être mis à jour. Rechargez la page pour continuer.",
+    "phone_pays": "Ce numéro ressemble à un numéro français, belge ou allemand : choisissez l’indicatif à gauche (par exemple +33 pour la France)."
   },
   "recap": {
     "title": "Votre bien en résumé",

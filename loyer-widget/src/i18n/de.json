@@ -179,7 +179,8 @@
     "rate_limit": "Zu viele Anfragen von dieser Verbindung. Versuchen Sie es in einer Stunde erneut oder schreiben Sie mir an {contact}.",
     "network": "Das Senden hat nicht geklappt. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
     "server": "Das Senden hat nicht geklappt. Versuchen Sie es in ein paar Minuten erneut oder schreiben Sie mir an {contact}.",
-    "reload": "Das Tool wurde gerade aktualisiert. Laden Sie die Seite neu, um fortzufahren."
+    "reload": "Das Tool wurde gerade aktualisiert. Laden Sie die Seite neu, um fortzufahren.",
+    "phone_pays": "Diese Nummer sieht nach einer Nummer aus Frankreich, Belgien oder Deutschland aus: Bitte wählen Sie links die passende Vorwahl (z. B. +33 für Frankreich)."
   },
   "recap": {
     "title": "Ihre Immobilie im Überblick",

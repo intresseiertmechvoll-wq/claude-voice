@@ -47,6 +47,29 @@ describe('API /api/estimate', () => {
     expect(sent.text).toContain('Stationnement : garage × 1');
   });
 
+  it('e-mail du lead : boutons Appeler, WhatsApp (mobile) et Répondre avec un texte préparé dans la langue du visiteur', async () => {
+    const { fetchMock, env, deps } = setup();
+    const res = await handleEstimate(req({ ...body({ contact: { prenom: 'Paul-André', nom: "O'Neil" } }), lang: 'de' }), env, deps);
+    expect(await res.clone().json()).toMatchObject({ ok: true });
+    const html = JSON.parse((fetchMock.mock.calls[0] as unknown as [string, RequestInit])[1].body as string).html as string;
+    expect(html).toContain('href="tel:+352621123456"');
+    expect(html).toContain('href="https://wa.me/352621123456"');
+    const mailto = /href="(mailto:[^"]+)"/.exec(html)![1].replace(/&#39;/g, "'").replace(/&amp;/g, '&');
+    expect(mailto.startsWith('mailto:marie.muller@example.lu?subject=')).toBe(true);
+    const body_ = decodeURIComponent(mailto.split('body=')[1]);
+    expect(body_).toContain("Guten Tag Paul-André O'Neil");
+    expect(body_).toContain('Ihre Wohnung in Dudelange');
+    expect(html).not.toContain("O'Neil"); // apostrophe échappée dans le HTML
+  });
+
+  it('e-mail du lead : pas de bouton WhatsApp pour un numéro fixe', async () => {
+    const { fetchMock, env, deps } = setup();
+    await handleEstimate(req(body({ contact: { numero: '26 54 87 12' } })), env, deps);
+    const html = JSON.parse((fetchMock.mock.calls[0] as unknown as [string, RequestInit])[1].body as string).html as string;
+    expect(html).toContain('href="tel:+35226548712"');
+    expect(html).not.toContain('wa.me');
+  });
+
   it('priorité : tiède si la gestion est « peut-être », froid si le visiteur n’est pas propriétaire', async () => {
     const { fetchMock, env, deps } = setup();
     await handleEstimate(req(body({ answers: { gestion: 'peut_etre', disponibilite: 'plus_tard' } })), env, deps);
@@ -191,6 +214,13 @@ describe('Vérification des réponses', () => {
     expect(normalizePhone('+352', '112 112')).toBe('phone');
     expect(normalizePhone('+352', '26 54 87 12')).toBe('+35226548712');
     expect(normalizePhone('+352', '691 234 567')).toBe('+352691234567');
+  });
+
+  it('téléphone : numéro français, belge ou allemand tapé avec +352 : message clair', () => {
+    expect(normalizePhone('+352', '06 71 82 93 04')).toBe('phone_pays');
+    expect(normalizePhone('+352', '0471 82 93 04')).toBe('phone_pays');
+    expect(normalizePhone('+352', '0151 2345 6789')).toBe('phone_pays');
+    expect(normalizePhone('+33', '06 71 82 93 04')).toBe('+33671829304');
   });
 
   it('téléphone : longueur contrôlée pour la France et la Belgique', () => {

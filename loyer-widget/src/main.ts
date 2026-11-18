@@ -378,7 +378,10 @@ function onInput(e: Event) {
   if (el.name === 'commune') return; // géré par la liste
   // Choix (radio, case) : vérification immédiate ; texte : à la sortie du champ
   const immediate = e.type === 'change';
-  checkOne(el.name, immediate && el.value !== '');
+  const run = () => el.isConnected && checkOne(el.name, immediate && el.value !== '');
+  // Champ texte quitté en touchant un autre élément : message affiché après le toucher (voir plus bas)
+  if (immediate && pointerDown && el.tagName === 'INPUT' && !['radio', 'checkbox', 'range'].includes(el.type)) return void pendingChecks.push(run);
+  run();
 }
 
 app.addEventListener('click', (e) => {
@@ -438,6 +441,8 @@ app.addEventListener('click', (e) => {
     app.querySelector('#email-suggest')?.remove();
     clearError('email');
   } else if (action === 'back' && !state.sending) {
+    // Même chemin que la touche « retour » du navigateur, pour garder l'historique en ordre
+    if (depth > 0) return history.back();
     state.step = Math.max(1, state.step - 1);
     state.direction = 'back';
     state.errors = {};
@@ -453,6 +458,7 @@ app.addEventListener('click', (e) => {
     state.result = null;
     state.step = 1;
     state.direction = 'next';
+    unwindHistory();
     render();
   }
 });
@@ -465,17 +471,40 @@ const EMAIL_TYPOS: Record<string, string> = {
 function emailSuggest(value: string) {
   app.querySelector('#email-suggest')?.remove();
   const at = value.lastIndexOf('@');
-  const fix = at > 0 ? EMAIL_TYPOS[value.slice(at + 1).toLowerCase()] : undefined;
+  const domaine = at > 0 ? value.slice(at + 1).toLowerCase() : '';
+  // Fautes de frappe courantes sur la fin de l'adresse : « .con », « .cmo », « .comm », « .lux »
+  const fin = domaine.replace(/\.(con|cmo|ocm|comm|vom|xom)$/, '.com').replace(/\.(lux|lu\.)$/, '.lu');
+  const fix = at > 0 ? EMAIL_TYPOS[fin] ?? (fin !== domaine ? fin : undefined) : undefined;
   if (!fix) return;
   const suggestion = value.slice(0, at + 1) + fix;
   app.querySelector('[data-field="email"]')?.insertAdjacentHTML('beforeend', `<p class="suggest" id="email-suggest">${esc(t('fields.emailTypo'))} <button type="button" class="link-btn" data-action="fix-email" data-value="${esc(suggestion)}">${esc(suggestion)}</button> ?</p>`);
   sendHeight();
 }
+/* Quand on quitte un champ en touchant un autre élément (case à cocher, bouton…), le message d'erreur
+ * ou la suggestion qui apparaît décale la page : le doigt tomberait à côté. On attend donc la fin du
+ * toucher (après le « click ») pour afficher le message. */
+let pointerDown = false;
+let pendingChecks: (() => void)[] = [];
+document.addEventListener('pointerdown', () => (pointerDown = true), true);
+const pointerEnd = () => {
+  pointerDown = false;
+  const runs = pendingChecks;
+  pendingChecks = [];
+  if (runs.length) setTimeout(() => runs.forEach((f) => f()), 0);
+};
+document.addEventListener('pointerup', pointerEnd, true);
+document.addEventListener('pointercancel', pointerEnd, true);
+
 app.addEventListener('focusout', (e) => {
   const el = e.target as HTMLInputElement;
-  if (el.name === 'email') emailSuggest(el.value.trim());
-  if (!el.name || el.type === 'radio' || el.type === 'checkbox' || el.name === 'commune' || el.name === 'website') return;
-  if (String(el.value).trim() !== '') checkOne(el.name === 'indicatif' ? 'numero' : el.name, true);
+  const run = () => {
+    if (el.name === 'email') emailSuggest(el.value.trim());
+    if (!el.name || el.type === 'radio' || el.type === 'checkbox' || el.name === 'commune' || el.name === 'website') return;
+    if (!el.isConnected) return; // étape changée entre-temps
+    if (String(el.value).trim() !== '') checkOne(el.name === 'indicatif' ? 'numero' : el.name, true);
+  };
+  if (pointerDown) pendingChecks.push(run);
+  else run();
 });
 
 app.addEventListener('submit', (e) => {
@@ -494,6 +523,7 @@ app.addEventListener('submit', (e) => {
   if (state.step < TOTAL) {
     state.step += 1;
     state.direction = 'next';
+    pushStep();
     return render();
   }
   void send();
@@ -542,6 +572,7 @@ async function send() {
   state.sending = false;
   if (res.ok && json.ok && json.result) {
     state.result = json.result;
+    pushStep();
     return render();
   }
   if (json.error === 'validation' && json.errors) {
@@ -557,6 +588,46 @@ async function send() {
   }
   render();
 }
+
+/* ---------- Touche « retour » du navigateur ou du téléphone : une étape en arrière ----------
+ * Chaque étape franchie (et le résultat) ajoute une entrée à l'historique. « Retour » revient à
+ * l'étape précédente au lieu de quitter la page et de perdre les réponses. Depuis le résultat, on
+ * revient aux coordonnées (un nouvel envoi refait une estimation et un nouvel e-mail). */
+let depth = 0;
+let ignorePop = false;
+function pushStep() {
+  try {
+    history.pushState({ loyer: true }, '');
+    depth++;
+  } catch {
+    /* historique indisponible : on garde la navigation par boutons */
+  }
+}
+function unwindHistory() {
+  if (depth > 0) {
+    ignorePop = true;
+    history.go(-depth);
+    depth = 0;
+  }
+}
+window.addEventListener('popstate', () => {
+  if (ignorePop) {
+    ignorePop = false;
+    return;
+  }
+  if (depth > 0) depth--;
+  if (state.sending) return;
+  if (state.result) {
+    state.result = null;
+    state.step = TOTAL;
+  } else if (state.step > 1) {
+    state.step -= 1;
+  } else return;
+  state.direction = 'back';
+  state.errors = {};
+  state.serverError = null;
+  render();
+});
 
 render(false);
 post({ type: 'ready' });

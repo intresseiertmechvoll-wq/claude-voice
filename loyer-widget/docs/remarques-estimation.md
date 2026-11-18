@@ -57,3 +57,17 @@ La capitalisation entre dans le calcul pour 27 des 36 communes qui ont un loyer 
 - **Fichier** : `estimation-widget/src/shared/ratelimit.ts`, ligne 57 (`Date.now()`), alors que `allowSubmission` accepte `now`.
 - **Effet** : aucun en production ; seulement des tests de temps moins faciles à écrire.
 - **Proposition** : passer `now` en paramètre, comme dans `allowSubmission`. Non corrigé (sans effet visible).
+
+## 7. Toucher la case RGPD juste après un numéro faux : le toucher tombe à côté (ajouté le 18/11/2026)
+
+- **Fichier** : `estimation-widget/src/main.ts`, lignes 381–382 (`onInput`, événement `change`) et 607–612 (`focusout`).
+- **Problème** : quand on quitte un champ texte en touchant directement un autre élément (par exemple la case RGPD après avoir tapé le téléphone), le message d'erreur (ou la suggestion d'e-mail) s'affiche **pendant** le toucher, décale la page, et le « click » tombe à côté : la case reste décochée. Reproduit dans l'outil de loyer avec Playwright (Pixel 7) : téléphone « 06 71 82 93 04 » avec +352, puis toucher la case → case décochée.
+- **Effet** : le visiteur doit toucher deux fois, puis voit en plus « Cochez cette case » à l'envoi. Frustrant au moment le plus important (juste avant le lead).
+- **Proposition** : n'afficher le message qu'après la fin du toucher (`pointerdown` / `pointerup` + `setTimeout`). Fait dans `loyer-widget/src/main.ts` (« pendingChecks »).
+
+## 8. Touche « retour » du téléphone : on quitte l'outil et on perd les réponses (ajouté le 18/11/2026)
+
+- **Fichier** : `estimation-widget/src/main.ts` (aucun `pushState`).
+- **Problème** : sur Android, le geste ou la touche « retour » quitte la page au lieu de revenir à l'étape précédente ; toutes les réponses sont perdues.
+- **Proposition** : une entrée d'historique par étape (`history.pushState`) et `popstate` → étape précédente. Fait dans `loyer-widget/src/main.ts` (vérifié aussi dans l'iframe de démonstration).
+

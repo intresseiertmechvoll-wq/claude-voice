@@ -179,7 +179,8 @@
     "rate_limit": "Too many requests from this connection. Try again in an hour, or email me at {contact}.",
     "network": "Sending failed. Check your connection and try again.",
     "server": "Sending failed. Try again in a few minutes, or email me at {contact}.",
-    "reload": "The tool has just been updated. Reload the page to continue."
+    "reload": "The tool has just been updated. Reload the page to continue.",
+    "phone_pays": "This looks like a French, Belgian or German number: please choose the country code on the left (e.g. +33 for France)."
   },
   "recap": {
     "title": "Your property at a glance",
