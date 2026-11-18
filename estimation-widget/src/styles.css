@@ -537,7 +537,7 @@ input[type='text']:focus, input[type='email']:focus, input[type='tel']:focus, se
 .avatar-sm { width: 48px; height: 48px; font-size: 1.0625rem; box-shadow: 0 0 0 2px var(--gold-soft); }
 .coach-bubble { min-width: 0; overflow-wrap: anywhere; position: relative; margin: 0; padding: 10px 14px; border-radius: 16px 16px 16px 4px; background: var(--beige); font-weight: 400; font-size: 0.9375rem; line-height: 1.4; }
 .coach-bubble.pop { animation: bubble 0.45s var(--ease); }
-@keyframes bubble { 0% { transform: scale(0.92) translateY(4px); opacity: 0.4; } 60% { transform: scale(1.03); opacity: 1; } 100% { transform: none; } }
+@keyframes bubble { 0% { transform: scale(0.97) translateY(2px); } 60% { transform: scale(1.01); } 100% { transform: none; } }
 
 /* Récapitulatif replié */
 details.recap { padding: 0; }
@@ -591,9 +591,12 @@ body { font-size: 1rem; }
   .rate-box { font-size: 0.75rem; }
   .value-amount { font-size: 1.0625rem; white-space: nowrap; }
   .value-card { padding-inline: 8px; }
+  .values.values-wide { grid-template-columns: 1fr; }
   .coach .avatar-sm { width: 36px; height: 36px; }
   .coach-bubble { padding: 8px 10px; }
   .pdot-ico { width: 34px; height: 34px; }
+  .choices-tiles .option-label { font-size: 0.9375rem; }
+  .choices-tiles .option-box { padding-inline: 5px; }
   .choices-tiles.n3 .option-label { font-size: 0.8125rem; }
 }
 .recap-bar { flex-wrap: wrap; }

@@ -72,8 +72,8 @@
       "neuf": "Neu",
       "renove": "Kürzlich renoviert",
       "bon": "Guter Zustand",
-      "rafraichir": "Auffrischungsbedürftig",
-      "renover": "Renovierungsbedürftig"
+      "rafraichir": "Kleine Arbeiten nötig",
+      "renover": "Zu renovieren"
     },
     "energie": "Energieklasse",
     "energieHelp": "Siehe Energiepass.",
@@ -267,10 +267,10 @@
       }
     },
     "communeTitle": "{commune} in Zahlen",
-    "statNotarie": "Durchschnittlicher Verkaufspreis",
+    "statNotarie": "Mittlerer Verkaufspreis",
     "statNotarieSub": "{n} Wohnungsverkäufe",
-    "statAnnonceAppartement": "Durchschnittlicher Angebotspreis",
-    "statAnnonceMaison": "Durchschnittlicher Angebotspreis (Häuser)",
+    "statAnnonceAppartement": "Mittlerer Angebotspreis",
+    "statAnnonceMaison": "Mittlerer Angebotspreis (Häuser)",
     "statAnnonceSub": "{n} Anzeigen",
     "statYou": "Ihre Bewertung",
     "statYouSub": "für {n} m²",
@@ -329,8 +329,8 @@
   "factors": {
     "etat_neuf": "Neuwertig",
     "etat_renove": "Kürzlich renoviert",
-    "etat_rafraichir": "Auffrischungsbedürftig",
-    "etat_renover": "Renovierungsbedürftig",
+    "etat_rafraichir": "Auffrischung nötig",
+    "etat_renover": "Zu renovieren",
     "gros_postes": "Zustand der Bauteile",
     "energie": "Energieklasse {c}",
     "rez_de_chaussee": "Erdgeschoss",
@@ -362,7 +362,7 @@
         "none": "Nicht genug öffentliche Daten für {commune}"
       },
       "compare": {
-        "title": "Berechnungsmethoden werden angewendet",
+        "title": "Methoden werden angewendet",
         "appartement": "Echte Verkäufe, korrigierte Angebote und Mietrendite",
         "maison": "Angebotspreise, korrigiert um den üblichen Abstand zum Verkaufspreis"
       },
