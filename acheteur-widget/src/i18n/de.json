@@ -59,7 +59,7 @@
     "investir": "Bei einer Kapitalanlage leiht die Bank höchstens 80 % des Preises.",
     "renover": "Mit meinem ImmoBuild-Team helfe ich Ihnen, die Arbeiten zu beziffern.",
     "commune": "{commune}, notiert!",
-    "courtier": "Sehr gut: Unser Partner-Kreditvermittler meldet sich nach Ihrer Anfrage bei Ihnen.",
+    "courtier": "Sehr gut: Nach Ihrer Anfrage gibt Jason sie an unseren Partner-Kreditvermittler weiter.",
     "mandat": "Gerne, darüber sprechen wir am Telefon."
   },
   "fields": {
@@ -206,7 +206,7 @@
     "venteHelp": "Freiwillig: Mit diesen beiden Beträgen zählt der Verkaufserlös zu Ihrem Eigenkapital. Noch keine Bewertung?",
     "valeurVente": "Geschätzter Wert Ihrer Immobilie",
     "restePret": "Restschuld Ihres aktuellen Kredits",
-    "restePretHelp": "0, wenn Sie keinen Kredit mehr haben."
+    "restePretHelp": "Pflicht, wenn Sie einen Wert angeben; 0, wenn Sie keinen Kredit mehr haben."
   },
   "errors": {
     "required": "Dieses Feld ist erforderlich.",
@@ -264,7 +264,9 @@
     "apportTotal": "Eigenkapital gesamt",
     "relais": "Der Verkaufserlös steht erst nach dem Verkauf zur Verfügung. Wer vorher kauft, braucht einen Überbrückungskredit: mit Ihrer Bank oder unserem Partner-Kreditvermittler klären.",
     "pretNecessaire": "Nötiger Kredit mit Ihrem Eigenkapital",
-    "pretNecessaireNote": "Wenn Sie Ihr ganzes Eigenkapital einsetzen. Die Monatsrate unten wird mit diesem Betrag gerechnet."
+    "pretNecessaireNote": "Wenn Sie Ihr ganzes Eigenkapital einsetzen. Die Monatsrate unten wird mit diesem Betrag gerechnet.",
+    "surtaxe": "{communes}: Für bestimmte Gebäude, vor allem gemischt oder gewerblich genutzte, kann ein Gemeindezuschlag (bis +3 % des Preises) dazukommen. Er ist hier nicht eingerechnet: Fragen Sie Ihren Notar, ob er gilt.",
+    "fraisPretMax": "Auf den Höchstkredit gerechnet: höchstens. Beim nötigen Kredit etwas weniger."
   },
   "result": {
     "title": "Danke {prenom}, Ihre Analyse ist fertig",
@@ -316,7 +318,7 @@
   },
   "trust": {
     "line": "Kostenlos · unverbindlich · ohne Cookies",
-    "where": "Ihre Antworten gehen per E-Mail nur an ImmoBuild Kohn, und nur auf Ihren Wunsch an unseren Partner-Kreditvermittler."
+    "where": "Ihre Antworten gehen per E-Mail an ImmoBuild Kohn (über unseren Versanddienst). Wenn Sie es wünschen, gibt Jason Ihre Anfrage an unseren Partner-Kreditvermittler weiter."
   },
   "mensualite": {
     "title": "Beispiel-Monatsrate",

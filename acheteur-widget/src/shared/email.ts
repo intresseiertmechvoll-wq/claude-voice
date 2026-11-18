@@ -1,4 +1,5 @@
 /** E-mail du lead acheteur envoyé à ImmoBuild Kohn (toujours en français) */
+import params from '../../params.json';
 import server from '../../server.json';
 import { mensualite, partRevenu, type Taux } from './taux';
 import type { Budget, CommuneM2, Submission } from './types';
@@ -73,6 +74,8 @@ export function talkingPoints(s: Submission, b: Budget): string[] {
   const a = s.answers;
   const out: string[] = [];
   if (a.vendre === 'oui_lu') out.push(`Doit d’abord vendre son bien au Luxembourg${a.valeurVente ? ` (valeur estimée par le visiteur : ${eur(a.valeurVente)})` : ''} → proposer l’estimation (estimatioun.lu ou visite).`);
+  const surtaxe = a.communes.filter((c) => params.surtaxe.communes.includes(c));
+  if (surtaxe.length) out.push(`${surtaxe.join(', ')} : surtaxe communale possible (+3 % du prix) selon le type d’immeuble, non comptée dans le calcul. Le visiteur a vu un avertissement.`);
   if (a.prixDepart || a.apportDepart !== null) out.push('A testé d’autres montants dans le simulateur : voir « Budget ».');
   if (a.vendre === 'oui_etranger') out.push('Doit d’abord vendre un bien à l’étranger → timing et financement relais à aborder.');
   if (a.courtier) out.push(`Souhaite être mis(e) en relation avec le courtier partenaire → transmettre à ${server.courtierNom}.`);
@@ -205,7 +208,7 @@ function mensualiteSection(s: Submission, b: Budget, taux: Taux | null): Section
   const mois = `${taux.mois} (${taux.origine === 'bce' ? 'lu en direct à la BCE' : 'VALEUR DE SECOURS de params.json : la BCE n’a pas répondu'})`;
   const fmtPct = (v: number) => `${v.toFixed(2).replace('.', ',')} %`;
   const rows: [string, string][] = [['Taux moyens BCL', `variable ${fmtPct(taux.variable)} · fixe plus de 10 ans ${fmtPct(taux.fixe)} · ${mois}`]];
-  for (const n of [20, 25, 30]) rows.push([`Sur ${n} ans (prêt ${eur(b.pretNecessaire)})`, `${eur(Math.round(mensualite(b.pretNecessaire, taux.variable, n)))} variable · ${eur(Math.round(mensualite(b.pretNecessaire, taux.fixe, n)))} fixe`]);
+  for (const n of [20, 25, 30]) rows.push([`Sur ${n} ans (prêt ${eur(b.pretNecessaire)})`, `${eur(Math.round(mensualite(b.pretNecessaire, taux.variable, n) / 10) * 10)} variable · ${eur(Math.round(mensualite(b.pretNecessaire, taux.fixe, n) / 10) * 10)} fixe`]);
   const part = partRevenu(mensualite(b.pretNecessaire, taux.fixe, 25), s.answers.revenu);
   if (part) rows.push(['Part du revenu (25 ans, fixe)', `${part.min !== null ? Math.round(part.min * 100) : '?'} à ${part.max !== null ? Math.round(part.max * 100) : '?'} %`]);
   return { title: 'Mensualité d’exemple (hors assurance)', rows };

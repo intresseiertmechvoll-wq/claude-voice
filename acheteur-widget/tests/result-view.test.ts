@@ -116,3 +116,12 @@ describe('Simulateur et vente dans l’aperçu', () => {
     expect(renderSim(computeBudget(couple({ prix: 550000, apport: 20000 }), PARAMS), { prixDepart: 600000, apportDepart: 20000 }, t, 'fr')).not.toMatch(/id="sim-depart" hidden/);
   });
 });
+
+describe('Surtaxe communale', () => {
+  it('Avertissement si Luxembourg ou Mamer est choisie, sans montant ajouté', () => {
+    const b = computeBudget(couple(), PARAMS);
+    const avec = strip(renderBudgetPreview(b, t, 'fr', { ...opts, surtaxe: ['Luxembourg'] }));
+    expect(avec).toContain('Luxembourg : une surtaxe communale');
+    expect(strip(renderBudgetPreview(b, t, 'fr', { ...opts, surtaxe: [] }))).not.toContain('surtaxe');
+  });
+});

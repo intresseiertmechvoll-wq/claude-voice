@@ -165,6 +165,8 @@ export interface Budget {
   pretNecessaire: number;
   /** prix maximal avec l'apport et le montant d'emprunt connus (seulement si montant connu) */
   prixMax: number | null;
+  /** prêt qui s'applique au prix maximal (montant connu ou règle CSSF à ce prix) */
+  pretAuPrixMax: number | null;
 }
 
 /** Surface accessible avec le budget dans une commune */

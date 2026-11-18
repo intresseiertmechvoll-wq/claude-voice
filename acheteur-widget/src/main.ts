@@ -85,6 +85,7 @@ fetch('/api/taux', { signal: timeoutSignal(8000) })
 
 function budgetOptions(): BudgetOptions {
   return {
+    surtaxe: (Array.isArray(state.values.communes) ? (state.values.communes as string[]) : []).filter((c) => P.surtaxe.communes.includes(c)),
     mensualite: { taux, revenu: (state.values.revenu as string) || null, repere: P.taux.repere_revenu as [number, number], durees: P.taux.durees },
     date: today,
     bellegenAnnonce: { montant: P.bellegen.annonce_par_personne, actuel: P.bellegen.par_personne, etatAu: P.bellegen.annonce_etat_au },
@@ -296,6 +297,8 @@ function simDepart(): SimOptions | null {
   return prixDepart && apportDepart !== null && Number.isFinite(prixDepart) && Number.isFinite(apportDepart) ? { prixDepart, apportDepart } : null;
 }
 let simTimer: ReturnType<typeof setTimeout> | undefined;
+/** derniers montants laissés dans l'aperçu */
+let simLast: { prix: number; apport: number } | null = null;
 function onSim(el: HTMLInputElement) {
   const key = el.name === 'sim_prix' ? 'prix' : el.name === 'sim_apport' ? 'apport' : null;
   if (!key) return;
@@ -307,6 +310,7 @@ function onSim(el: HTMLInputElement) {
   const input = budgetInput(state.values);
   if (!input) return;
   state.preview = computeBudget(input, P);
+  simLast = { prix: input.prix, apport: input.apport };
   const live = app.querySelector('#budget-live');
   if (live) live.innerHTML = renderBudgetLive(state.preview, t, lang, budgetOptions());
   const d = simDepart();
@@ -420,6 +424,7 @@ function onInput(e: Event) {
   if (el.name === 'capacite') {
     const box = app.querySelector<HTMLElement>('#capacite-montant');
     if (box) box.hidden = state.values.capacite !== 'oui';
+    if (state.values.capacite !== 'oui') clearError('capaciteMontant');
     sendHeight();
   }
   if (el.name === 'indicatif') return checkOne('numero', false);
@@ -469,6 +474,20 @@ app.addEventListener('click', (e) => {
     const { errors } = checkFields(state.values, stepFields(state.step, state.values));
     state.errors = errors;
     if (Object.keys(errors).length) return render();
+    // Une réponse des étapes 1 à 3 peut changer le budget : on remontre l'aperçu (et l'étape 3 si elle n'est plus complète)
+    if (state.step <= 3) {
+      const input = budgetInput(state.values);
+      if (!input) {
+        state.step = 3;
+        state.errors = checkFields(state.values, stepFields(3, state.values)).errors;
+        return render();
+      }
+      state.step = 3;
+      state.preview = computeBudget(input, P);
+      simLast = { prix: input.prix, apport: input.apport };
+      state.direction = 'next';
+      return render();
+    }
     state.step = state.returnTo;
     state.returnTo = null;
     state.direction = 'next';
@@ -485,13 +504,12 @@ app.addEventListener('click', (e) => {
       state.values.prix = String(d.prixDepart);
       state.values.apport = String(d.apportDepart);
       state.preview = computeBudget(budgetInput(state.values)!, P);
+      simLast = { prix: d.prixDepart, apport: d.apportDepart };
       render(false);
       app.querySelector<HTMLInputElement>('#sim-prix')?.focus();
     }
   } else if (action === 'edit-budget') {
-    // Retour à l'étape 3 : les montants saisis deviennent le nouveau départ du simulateur
-    delete state.values.prixDepart;
-    delete state.values.apportDepart;
+    // Retour à l'étape 3 : si le visiteur change les montants, ils deviendront le nouveau départ du simulateur (voir l'envoi de l'étape 3)
     state.preview = null;
     state.step = 3;
     state.direction = 'back';
@@ -558,9 +576,13 @@ app.addEventListener('submit', (e) => {
     const input = budgetInput(state.values);
     if (input) {
       state.preview = computeBudget(input, P);
-      // Montants de départ du simulateur « Et si… ? » (gardés si le visiteur revient à l'aperçu)
-      state.values.prixDepart ??= String(input.prix);
-      state.values.apportDepart ??= String(input.apport);
+      // Départ du simulateur : gardé seulement si le visiteur revient avec les montants qu'il avait laissés dans l'aperçu ;
+      // s'il a tapé d'autres montants à l'étape 3, ce sont eux le nouveau départ
+      if (!state.values.prixDepart || !simLast || simLast.prix !== input.prix || simLast.apport !== input.apport) {
+        state.values.prixDepart = String(input.prix);
+        state.values.apportDepart = String(input.apport);
+      }
+      simLast = { prix: input.prix, apport: input.apport };
       state.direction = 'next';
       return render();
     }

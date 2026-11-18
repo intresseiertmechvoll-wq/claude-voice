@@ -46,3 +46,11 @@ describe('Bien à vendre', () => {
     expect(checkFields({ vendre: 'oui_lu', valeurVente: '' }, ['valeurVente']).values.valeurVente).toBeNull();
   });
 });
+
+describe('Prêt restant obligatoire avec une valeur de vente', () => {
+  it('Valeur sans prêt restant : « obligatoire » ; « 0 » accepté', () => {
+    expect(checkFields({ vendre: 'oui_lu', valeurVente: '500k', restePret: '' }, ['restePret']).errors.restePret).toBe('required');
+    expect(checkFields({ vendre: 'oui_lu', valeurVente: '500k', restePret: '0' }, ['restePret']).values.restePret).toBe(0);
+    expect(checkFields({ vendre: 'oui_lu', valeurVente: '', restePret: '' }, ['restePret']).values.restePret).toBeNull();
+  });
+});

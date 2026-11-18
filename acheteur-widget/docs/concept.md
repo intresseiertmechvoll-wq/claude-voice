@@ -627,6 +627,19 @@ Getestet: 52 automatische Tests; Ablauf im echten Browser (Chromium, 390 px und 
 - **Verkaufen und kaufen:** Wert der eigenen Immobilie und Restschuld (freiwillig) → Netto-Erlös nach geschätzten Maklerkosten (3 % + MwSt., **Annahme, von Jason zu bestätigen**) zählt zum Eigenkapital. Hinweis auf Überbrückungskredit, ohne ihn zu berechnen.
 - **Korrektur beim Bau gefunden:** Die Monatsrate wurde vorher auf den höchsten erlaubten Kredit gerechnet, nicht auf den nötigen. Bei viel Eigenkapital war sie dadurch deutlich zu hoch (Beispiel: 2 910 € statt 1 650 € pro Monat). Jetzt: Rate auf den nötigen Kredit, wenn das ganze Eigenkapital eingesetzt wird.
 
+## 14. Zweite Gesamtprüfung (18.11.2026)
+
+Unabhängige Code-Prüfung plus Randfälle im Browser. Korrigiert:
+- Satz zum Höchstpreis nannte den Kredit zum aktuellen Preis statt zum Höchstpreis (rechnerisch unmöglicher Satz).
+- Leere Restschuld wurde als 0 € gerechnet → jetzt Pflicht, sobald ein Verkaufswert angegeben ist.
+- Simulator: alte Startwerte blieben stehen, wenn der Kunde zurückging und neu tippte → falsche Angabe „im Simulator geändert“ in der E-Mail.
+- Nötiger Kredit: Kreditnebenkosten jetzt auf den nötigen Kredit gerechnet (vorher auf den Höchstkredit).
+- Rückweg von der Übersicht zeigt das Budget erneut, wenn Schritt 1–3 geändert wurde.
+- Monatsrate in E-Mail und Bildschirm gleich gerundet; Ergebnis nutzt nur die Zinsen des Servers.
+- Gemeindezuschlag Stadt Luxemburg / Mamer: Quellen widersprüchlich → Hinweis statt Zahl.
+- Texte: Weitergabe an den Courtier erfolgt durch Jason (nicht automatisch), Versanddienst erwähnt.
+- `frame-ancestors`: localhost aus der Produktivkonfiguration entfernt.
+
 ## Anhang: Quellen
 
 | Quelle | URL | Stand |

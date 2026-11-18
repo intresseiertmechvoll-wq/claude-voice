@@ -153,16 +153,33 @@ describe('Vendre d’abord : le produit de la vente compte dans l’apport', () 
 });
 
 describe('Prêt nécessaire (base de la mensualité)', () => {
-  it('Tout l’apport utilisé : 606 090,74 − 60 000 = 546 090,74 € (pas le prêt maximal de 600 000 €)', () => {
+  it('Tout l’apport utilisé, frais de l’acte calculés sur ce prêt : 603 147,76 + 2 754,45 − 60 000 = 545 902,21 € (pas 600 000 €)', () => {
     const b = computeBudget(couple(), PARAMS);
     expect(b.pret).toBe(600000);
-    expect(b.pretNecessaire).toBe(546100);
+    expect(b.pretNecessaire).toBe(545900);
   });
-  it('Avec la vente : 606 090,74 − 202 450 = 403 640,74 €', () => {
-    expect(computeBudget(couple({ apport: 20000, valeurVente: 500000, restePret: 300000 }), PARAMS).pretNecessaire).toBe(403600);
+  it('Avec la vente : 603 147,76 + 2 256,27 − 202 450 = 402 954,03 €', () => {
+    expect(computeBudget(couple({ apport: 20000, valeurVente: 500000, restePret: 300000 }), PARAMS).pretNecessaire).toBe(403000);
   });
   it('Apport insuffisant : prêt nécessaire = prêt maximal', () => {
     const b = computeBudget(couple({ usage: 'investir', prix: 400000, apport: 50000 }), PARAMS);
     expect(b.pretNecessaire).toBe(b.pret);
+  });
+});
+
+describe('Corrections après la revue du code', () => {
+  it('Prix maximal : le texte cite le prêt qui s’applique à ce prix (pas celui du prix actuel)', () => {
+    const b = computeBudget(couple({ apport: 100000, prix: 500000, capaciteMontant: 700000 }), PARAMS);
+    expect(b.pretAuPrixMax).toBe(700000);
+    expect(b.prixMax!).toBeGreaterThan(700000);
+    const c = computeBudget(couple({ premier: 'non', apport: 100000, prix: 400000, capaciteMontant: 500000 }), PARAMS);
+    expect(c.pretAuPrixMax).toBe(Math.min(500000, Math.round((c.prixMax! * 0.9) / 100) * 100));
+  });
+  it('Vente sans prêt restant renseigné : pas comptée (jamais supposé à 0)', () => {
+    expect(computeBudget(couple({ valeurVente: 500000, restePret: null }), PARAMS).produitVente).toBeNull();
+  });
+  it('Écart affiché = apport total − apport nécessaire affichés', () => {
+    const b = computeBudget(couple({ apport: 12345 }), PARAMS);
+    expect(b.margeMin).toBe(b.apportTotal - b.apportNecessaireMax);
   });
 });

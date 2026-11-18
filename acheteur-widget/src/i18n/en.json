@@ -59,7 +59,7 @@
     "investir": "For a buy-to-let, the bank lends at most 80% of the price.",
     "renover": "With my ImmoBuild team, I can help you cost the works.",
     "commune": "{commune}, noted!",
-    "courtier": "Great: our partner broker will contact you after your request.",
+    "courtier": "Great: after your request, Jason will pass it on to our partner broker.",
     "mandat": "Happy to, let’s talk about it on the phone."
   },
   "fields": {
@@ -206,7 +206,7 @@
     "venteHelp": "Optional: with these two amounts, the sale proceeds count towards your deposit. No valuation yet?",
     "valeurVente": "Estimated value of your property",
     "restePret": "Remaining balance on your current loan",
-    "restePretHelp": "0 if you no longer have a loan."
+    "restePretHelp": "Required if you enter a value; 0 if you no longer have a loan."
   },
   "errors": {
     "required": "This field is required.",
@@ -264,7 +264,9 @@
     "apportTotal": "Total deposit",
     "relais": "The sale proceeds are only available after the sale. To buy before, you need a bridging loan: talk to your bank or our partner broker.",
     "pretNecessaire": "Loan needed with your deposit",
-    "pretNecessaireNote": "If you use your whole deposit. The monthly payment below is based on this amount."
+    "pretNecessaireNote": "If you use your whole deposit. The monthly payment below is based on this amount.",
+    "surtaxe": "{communes}: a municipal surcharge (up to +3% of the price) may apply to some buildings, especially mixed-use or commercial ones. It is not included here: ask your notary whether it applies.",
+    "fraisPretMax": "Calculated on the maximum loan: an upper figure. Slightly less on the loan actually needed."
   },
   "result": {
     "title": "Thank you {prenom}, your analysis is ready",
@@ -316,7 +318,7 @@
   },
   "trust": {
     "line": "Free · no commitment · no cookies",
-    "where": "Your answers are emailed to ImmoBuild Kohn only, and to our partner broker only if you asked for it."
+    "where": "Your answers are emailed to ImmoBuild Kohn (through our email provider). If you asked for it, Jason passes your request on to our partner broker."
   },
   "mensualite": {
     "title": "Example monthly payment",

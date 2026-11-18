@@ -33,7 +33,7 @@ Comme l’outil d’estimation : pas de base de données, pas de cookie, pas de 
 | Droits | 7 % du prix (6 % + 1 %) | guichet.public.lu, page du 07/07/2025 | officiel |
 | Bien neuf | 7 % affiché comme **maximum** (souvent seulement sur le terrain et la partie construite) | | prudent |
 | Bëllegen Akt | 40 000 € par personne, plafonné aux droits ; l’AED perçoit toujours au moins 100 € ; 0 si investissement ou déjà utilisé | guichet.public.lu, pfi.public.lu | officiel |
-| Ville de Luxembourg, Mamer | surtaxe communale (+50 % du droit d’enregistrement) **seulement** pour les immeubles à usage mixte ou commercial : 0 pour un logement, donc pas dans l’outil | pfi.public.lu (surtaxe), guichet.public.lu | vérifié le 18/11/2026 |
+| Ville de Luxembourg, Mamer | surtaxe communale (+50 % du droit d’enregistrement = jusqu’à +3 % du prix) selon le type d’immeuble. Les sources ne concordent pas toutes sur les exemptions : **non calculée, avertissement affiché** quand l’une de ces communes est choisie (et point à aborder dans l’e-mail) | pfi.public.lu (surtaxe), guichet.public.lu | à faire confirmer par un notaire |
 | 45 000 € annoncés | **affichés comme information, pas utilisés** (projet de loi 8806 pas voté au 18/11/2026) | gouvernement.lu, chd.lu | à mettre à jour quand la loi passe : `bellegen.par_personne` |
 | Prêt maximal | 100 % premier achat pour y habiter ; 90 % autre résidence principale ; 90 % si « je ne sais pas » ; 80 % investissement | Règlement CSSF 20-08, FAQ du 09/03/2026 | officiel |
 | Notaire, vente | barème 7 par tranches + TVA 17 % (600 000 € → 2 048 €) | notariat.lu, texte coordonné du Conseil d’État (doc. 51.123) | vérifié |
@@ -79,7 +79,7 @@ Même procédure que l’outil d’estimation (voir son README, parties 1 à 3),
 cd acheteur-widget
 npm install
 cp .dev.vars.example .dev.vars   # EMAIL_MODE=log : aucun e-mail ne part en local
-npm test                          # 75 tests
+npm test                          # 80 tests
 npm run dev                       # http://localhost:8788/ et /demo.html
 ```
 
@@ -112,7 +112,7 @@ cd acheteur-widget && npm run sync-data && npm test && npm run deploy
 3. Politique de confidentialité : ajouter les nouvelles données (budget, revenu en tranche) et **nommer atHome Finance comme destinataire possible** (voir `PRIVACY.md`).
 4. Quand le projet de loi 8806 est voté : `params.json` → `bellegen.par_personne` = 45000 (et mettre à jour `_source`). L’annonce « pas encore votée » disparaît alors toute seule.
 
-## Tests (75)
+## Tests (80)
 
 | Sujet | Fichier |
 | --- | --- |

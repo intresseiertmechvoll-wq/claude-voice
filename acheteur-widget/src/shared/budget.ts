@@ -45,6 +45,11 @@ export function bellegenPlafond(i: Pick<BudgetInput, 'usage' | 'achat' | 'belleg
   return (i.achat === 'deux' ? 2 : 1) * p.bellegen.par_personne;
 }
 
+/** Acte de prêt : droit 0,24 % + inscription 0,05 % + honoraires barème 5 avec TVA */
+function fraisActePret(pret: number, p: Params): number {
+  return pret > 0 ? pret * (p.pret.droit_acte_pret + p.pret.inscription) + notairePretHT(pret, p) * (1 + p.notaire.tva) : 0;
+}
+
 /** Calcul brut (sans arrondi) pour un prix donné */
 function raw(i: BudgetInput, prix: number, p: Params) {
   const droits = prix * p.droits.taux;
@@ -55,7 +60,7 @@ function raw(i: BudgetInput, prix: number, p: Params) {
   const { ltv, rule } = ltvFor(i, p);
   const pretMaxCssf = prix * ltv;
   const pret = i.capaciteMontant !== null ? Math.min(pretMaxCssf, i.capaciteMontant) : pretMaxCssf;
-  const fraisPret = pret > 0 ? pret * (p.pret.droit_acte_pret + p.pret.inscription) + notairePretHT(pret, p) * (1 + p.notaire.tva) : 0;
+  const fraisPret = fraisActePret(pret, p);
   const base = prix + droits - bellegen + notaireVente + fraisPret;
   return { droits, plafond, bellegen, notaireVente, ltv, rule, pretMaxCssf, pret, fraisPret, totalMin: base + p.divers.min, totalMax: base + p.divers.max };
 }
@@ -66,7 +71,8 @@ function raw(i: BudgetInput, prix: number, p: Params) {
  */
 /** Vente du bien actuel : produit net = valeur − prêt restant − frais d'agence estimés (jamais négatif) */
 export function vente(i: Pick<BudgetInput, 'valeurVente' | 'restePret'>, p: Params): { frais: number; produit: number } | null {
-  if (i.valeurVente === null || i.valeurVente <= 0) return null;
+  // Seulement avec les deux montants : un prêt restant non renseigné n'est jamais compté comme 0
+  if (i.valeurVente === null || i.valeurVente <= 0 || i.restePret === null) return null;
   const frais = i.valeurVente * p.vente.frais_taux;
   return { frais, produit: Math.max(0, i.valeurVente - (i.restePret ?? 0) - frais) };
 }
@@ -103,6 +109,12 @@ export function computeBudget(i: BudgetInput, p: Params): Budget {
   const apportNecessaireMax = Math.max(0, r.totalMax - r.pret);
   const v = vente(i, p);
   const dispo = i.apport + (v?.produit ?? 0);
+  // Prêt nécessaire : les frais de l'acte de prêt dépendent du prêt lui-même, on resserre en quelques tours
+  const sansFraisPret = r.totalMax - r.fraisPret;
+  let pretNecessaire = Math.max(0, Math.min(r.pret, r.totalMax - dispo));
+  for (let k = 0; k < 5; k++) pretNecessaire = Math.max(0, Math.min(r.pret, sansFraisPret + fraisActePret(pretNecessaire, p) - dispo));
+  const prixMax = prixMaximal(i, p);
+  const ltv = r.ltv;
   return {
     prix: i.prix,
     droits: rd(r.droits),
@@ -127,10 +139,11 @@ export function computeBudget(i: BudgetInput, p: Params): Budget {
     fraisVente: v ? rd(v.frais) : null,
     produitVente: v ? rd(v.produit) : null,
     apportTotal: rd(dispo),
-    // Frais au plus haut : on ne sous-estime pas le prêt
-    pretNecessaire: rd(Math.max(0, Math.min(r.pret, r.totalMax - dispo))),
-    margeMin: rd(dispo - apportNecessaireMax),
-    margeMax: rd(dispo - apportNecessaireMin),
-    prixMax: prixMaximal(i, p),
+    pretNecessaire: rd(pretNecessaire),
+    // Écarts calculés sur les montants affichés (arrondis) : la soustraction à l'écran tombe juste
+    margeMin: rd(dispo) - rd(apportNecessaireMax),
+    margeMax: rd(dispo) - rd(apportNecessaireMin),
+    prixMax,
+    pretAuPrixMax: prixMax === null ? null : rd(Math.min(i.capaciteMontant ?? Infinity, prixMax * ltv)),
   };
 }

@@ -203,7 +203,12 @@ const CHECKS: Record<string, FieldCheck> = {
   capaciteMontant: (r) => (r.capacite !== 'oui' || isEmpty(r.capaciteMontant) ? null : money(r.capaciteMontant, LIMITS.capaciteMontant)),
   // Bien à vendre d'abord : valeur et prêt restant, facultatifs, seulement si le visiteur doit vendre
   valeurVente: (r) => (!String(r.vendre ?? '').startsWith('oui') || isEmpty(r.valeurVente) ? null : money(r.valeurVente, LIMITS.valeurVente)),
-  restePret: (r) => (!String(r.vendre ?? '').startsWith('oui') || isEmpty(r.restePret) ? null : money(r.restePret, LIMITS.restePret)),
+  // Obligatoire dès qu'une valeur de vente est donnée (« 0 » si plus de prêt) : jamais supposé à 0
+  restePret: (r) => {
+    if (!String(r.vendre ?? '').startsWith('oui')) return null;
+    if (isEmpty(r.restePret)) return isEmpty(r.valeurVente) ? null : 'required';
+    return money(r.restePret, LIMITS.restePret);
+  },
   // Montants de départ, avant le simulateur « Et si… ? » (pour l'e-mail ; facultatifs)
   prixDepart: (r) => (isEmpty(r.prixDepart) ? null : money(r.prixDepart, LIMITS.prix)),
   apportDepart: (r) => (isEmpty(r.apportDepart) ? null : money(r.apportDepart, LIMITS.apport)),

@@ -13,6 +13,8 @@ export interface BudgetOptions {
   bellegenAnnonce: { montant: number; actuel: number; etatAu: string };
   bellegenChoix: 'non' | 'oui' | 'nsp';
   usage: 'habiter' | 'investir';
+  /** communes choisies où une surtaxe communale peut s'appliquer (avertissement, non calculée) */
+  surtaxe?: string[];
   /** mensualité d'exemple : taux du mois (null = pas affichée), tranche de revenu, repère des banques, durées */
   mensualite?: { taux: Taux | null; revenu: string | null; repere: [number, number]; durees: number[] };
 }
@@ -100,7 +102,7 @@ export function renderBudget(b: Budget, t: T, lang: Lang, o: BudgetOptions): str
       ${row(t('budget.droits'), `${b.droitsMaximum ? '≤\u00a0' : ''}${eur(b.droits)}`, '', b.droitsMaximum ? t('budget.droitsMax') : '')}
       ${row(t('budget.bellegen'), b.bellegen ? `−\u00a0${eur(b.bellegen)}` : eur(0), 'minus', bellegenNote)}
       ${row(t('budget.notaire'), eur(b.notaireVente))}
-      ${b.pret > 0 ? row(t('budget.fraisPret'), eur(b.fraisPret)) : ''}
+      ${b.pret > 0 ? row(t('budget.fraisPret'), eur(b.fraisPret), '', b.pretNecessaire < b.pret ? t('budget.fraisPretMax') : '') : ''}
       ${row(t('budget.divers'), rangeHtml(b.fraisDiversMin, b.fraisDiversMax, lang), '', t('budget.fraisPretNote'))}
       ${row(t('budget.total'), `<strong>${rangeHtml(b.totalMin, b.totalMax, lang)}</strong>`, 'total')}
       ${row(b.pretLimiteParCapacite ? t('budget.pretCapacite') : t('budget.pret'), `−\u00a0${eur(b.pret)}`, 'minus', `${t(`budget.ltv.${b.ltvRule}`)} ${t('budget.ltvNote')}`)}
@@ -117,8 +119,9 @@ export function renderBudget(b: Budget, t: T, lang: Lang, o: BudgetOptions): str
   </table>
   ${verdict}
   ${b.produitVente ? `<p class="small relais">${icon('info', 'ico ico-xs')} ${esc(t('budget.relais'))}</p>` : ''}
-  ${b.prixMax !== null ? `<p class="prixmax">${icon('cle', 'ico ico-sm')}<span>${esc(t('budget.prixMax', { pret: formatEuro(b.pretLimiteParCapacite ? b.pret : b.pretMaxCssf, lang), prix: formatEuro(b.prixMax, lang) }))}</span></p>` : ''}
+  ${b.prixMax !== null ? `<p class="prixmax">${icon('cle', 'ico ico-sm')}<span>${esc(t('budget.prixMax', { pret: formatEuro(b.pretAuPrixMax ?? 0, lang), prix: formatEuro(b.prixMax, lang) }))}</span></p>` : ''}
   ${annonce}
+  ${o.surtaxe?.length ? `<p class="small surtaxe">${icon('info', 'ico ico-xs')} ${esc(t('budget.surtaxe', { communes: o.surtaxe.join(', ') }))}</p>` : ''}
   <p class="small disclaimer">${esc(t('budget.disclaimer'))}</p>
 </section>`;
 }
@@ -139,7 +142,7 @@ const round = (v: number, step: number) => Math.round(v / step) * step;
 export function simBounds(s: SimOptions) {
   return {
     prix: { min: Math.max(50_000, round(s.prixDepart * 0.6, 5000)), max: Math.min(20_000_000, round(s.prixDepart * 1.4, 5000)), step: 5000 },
-    apport: { min: 0, max: Math.max(round(s.apportDepart * 2, 1000), s.apportDepart + 100_000), step: 1000 },
+    apport: { min: 0, max: Math.min(20_000_000, Math.max(round(s.apportDepart * 2, 1000), s.apportDepart + 100_000)), step: 1000 },
   };
 }
 
@@ -229,7 +232,7 @@ export function renderResult(r: PublicResult, a: Pick<Answers, 'prix' | 'premier
     <p class="hero-sub">${esc(t('result.sub'))}</p>
   </div>
   ${communesHtml(r.communes, a.prix, r, t, lang)}
-  ${o.mensualite ? renderMensualite(r.budget.pretNecessaire, r.taux ?? o.mensualite.taux, a.revenu, t, lang, o.mensualite.repere, o.mensualite.durees) : ''}
+  ${o.mensualite ? renderMensualite(r.budget.pretNecessaire, r.taux, a.revenu, t, lang, o.mensualite.repere, o.mensualite.durees) : ''}
   <details class="budget-again panel"><summary>${icon('donnees', 'ico ico-sm')}<span>${esc(t('result.budgetAgain', { prix: formatEuro(r.budget.prix, lang) }))}</span></summary>${renderBudget(r.budget, t, lang, o)}</details>
   <section class="panel" aria-labelledby="check-title">
     <h3 id="check-title">${icon('info', 'ico ico-sm')}<span>${esc(t('result.checkTitle'))}</span></h3>
