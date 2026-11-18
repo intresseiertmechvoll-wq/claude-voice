@@ -12,6 +12,12 @@ Outil « Quel loyer pour votre bien ? » pour gagner des clients en **gestion lo
 3. savoir que si l'adresse est fausse, l'envoi « réussit » quand même : le refus arrive plus tard dans le tableau de bord Resend (onglet des e-mails), pas dans l'outil.
 Si la copie ne part pas, le résultat s'affiche quand même (le lead est déjà chez toi).
 
+**Adresse e-mail fausse : tu es prévenu.** Quand la copie ne peut pas être livrée (adresse inexistante, boîte refusée…), Resend le signale à l'outil, qui t'envoie aussitôt un e-mail « ⚠️ Adresse e-mail fausse : … – rappeler au +352 … », avec un bouton **Appeler** (et WhatsApp si c'est un mobile). L'e-mail du lead, lui, arrive toujours (il part avant la copie). À régler une fois, dans Resend :
+1. *Webhooks* → *Add Webhook* ; adresse : `https://<adresse de l'outil>/api/resend-webhook` (par ex. `https://verlounen.lu/api/resend-webhook`) ; événements : `email.bounced`, `email.failed`, `email.suppressed` ;
+2. copier le *Signing Secret* (`whsec_…`) puis : `npx wrangler pages secret put RESEND_WEBHOOK_SECRET --project-name loyer-widget` ;
+3. tester : envoyer une estimation avec l'adresse `bounced@resend.dev` (adresse de test de Resend qui est toujours refusée) ; l'avis doit arriver en une à deux minutes.
+Sécurité : seuls les messages signés par Resend sont acceptés (signature vérifiée, 5 minutes de tolérance) ; seuls les e-mails « copie au visiteur » déclenchent un avis (pas de boucle) ; rien n'est enregistré. Si un avis est envoyé deux fois (Resend réessaie quand l'outil ne répond pas), tu peux recevoir un doublon.
+
 L'outil est construit à partir de l'outil d'estimation (`estimation-widget/`) : même technique, même design, même sécurité. Il s'affiche seul sur **verlounen.lu** ou dans une iframe sur ton site (WordPress ou Next.js).
 
 | Partie | Où | Rôle |
@@ -110,6 +116,7 @@ npx wrangler pages secret put FROM_EMAIL --project-name loyer-widget
 | `RESEND_API_KEY` | ta clé Resend (`re_…`), la même que pour l'outil d'estimation ou une nouvelle | oui |
 | `LEAD_EMAIL` | l'adresse qui reçoit les leads, par défaut `contact@immobuild.lu` | non |
 | `FROM_EMAIL` | l'expéditeur, sur ton domaine validé chez Resend, par ex. `ImmoBuild Loyer <loyer@immobuild.lu>` | oui, sauf si c'est exactement cette adresse |
+| `RESEND_WEBHOOK_SECRET` | secret de signature des avis de Resend (`whsec_…`), voir « Adresse e-mail fausse » ci-dessous | seulement si la copie au visiteur est activée |
 | `RATE_LIMIT_SALT` | une longue phrase au hasard, gardée secrète (empêche de retrouver une IP à partir de son empreinte) | non, conseillé |
 
 La clé n'est jamais dans le code. Relance `npm run deploy` après un changement.

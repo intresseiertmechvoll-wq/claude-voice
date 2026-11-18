@@ -5,3 +5,5 @@ LEAD_EMAIL=contact@immobuild.lu
 # Pour tester un vrai envoi en local, retirer EMAIL_MODE et ajouter :
 # RESEND_API_KEY=re_xxxxxxxx
 # FROM_EMAIL=ImmoBuild Loyer <loyer@immobuild.lu>
+# Avis de Resend (copie au visiteur non livrée), seulement pour tester le webhook en local :
+# RESEND_WEBHOOK_SECRET=whsec_...

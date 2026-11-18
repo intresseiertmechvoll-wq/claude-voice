@@ -50,6 +50,7 @@ Si tu actives `copieVisiteur` dans `config.json` :
 - cet e-mail ne contient **aucun texte saisi librement** (ni prénom, ni nom, ni message) : quelqu'un qui taperait l'adresse d'un tiers ne peut pas s'en servir pour lui envoyer un texte ;
 - Resend traite donc aussi l'adresse du visiteur comme destinataire et garde une trace de cet envoi dans son journal (même prestataire, même cadre que ci-dessus) ;
 - base légale à mon avis : exécution de la demande du visiteur (il a demandé une estimation). **À valider** ;
+- pour l'avis « adresse fausse », la copie part avec deux étiquettes Resend : `categorie = copie_visiteur` et le numéro de téléphone du visiteur en chiffres (déjà présent dans l'e-mail du lead chez Resend). Si la copie est refusée, Resend renvoie l'adresse, l'objet et ces étiquettes à l'outil, qui t'envoie l'avis puis n'enregistre rien ;
 - **avant d'activer** : ajouter la phrase proposée au point 7 dans ta politique de confidentialité.
 
 ## 4. Adresse IP et limite d'envois

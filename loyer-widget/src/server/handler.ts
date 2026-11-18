@@ -21,6 +21,8 @@ export interface Env {
   EMAIL_MODE?: string;
   RATE_LIMIT?: KVLike;
   RATE_LIMIT_SALT?: string;
+  /** secret de signature des avis de Resend (webhook), commence par « whsec_ » */
+  RESEND_WEBHOOK_SECRET?: string;
 }
 
 export interface Deps {
@@ -59,6 +61,8 @@ export interface Mail {
   replyTo: string;
   /** destinataire ; par défaut l'adresse des leads (LEAD_EMAIL) */
   to?: string;
+  /** étiquettes Resend (lettres, chiffres, _ et - seulement), renvoyées dans ses avis */
+  tags?: { name: string; value: string }[];
 }
 
 /** Envoi par Resend (ou affichage dans la console avec EMAIL_MODE=log). Renvoie une erreur ou null. */
@@ -78,7 +82,7 @@ export async function sendMail(env: Env, d: Deps, mail: Mail): Promise<'config' 
     res = await d.fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ from, to: [to], reply_to: mail.replyTo, subject: mail.subject, html: mail.html, text: mail.text }),
+      body: JSON.stringify({ from, to: [to], reply_to: mail.replyTo, subject: mail.subject, html: mail.html, text: mail.text, ...(mail.tags ? { tags: mail.tags } : {}) }),
       signal: AbortSignal.timeout(10_000),
     });
   } catch (err) {
@@ -141,7 +145,12 @@ export async function handleEstimate(request: Request, env: Env, deps: Partial<D
   let copie = false;
   if (d.copieVisiteur) {
     const m = emailVisiteur(v.value, est);
-    copie = (await sendMail(env, d, { ...m, to: v.value.contact.email, replyTo: env.LEAD_EMAIL || config.defaultLeadEmail })) === null;
+    // Étiquettes : si l'adresse est fausse, l'avis de Resend permet de prévenir Jason (src/server/webhook.ts)
+    const tags = [
+      { name: 'categorie', value: 'copie_visiteur' },
+      { name: 'tel', value: v.value.contact.telephone.replace(/\D/g, '') },
+    ];
+    copie = (await sendMail(env, d, { ...m, to: v.value.contact.email, replyTo: env.LEAD_EMAIL || config.defaultLeadEmail, tags })) === null;
   }
 
   return json({ ok: true, result: est.result, copie });
