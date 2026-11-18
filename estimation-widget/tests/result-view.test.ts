@@ -22,9 +22,9 @@ describe('Écran de résultat', () => {
     const html = renderResult(r, translator('fr'), 'fr', '#');
     expect(html).not.toContain('data-testid="indicative"');
     expect(html).toContain('Elle ne remplace pas une estimation sur place.');
-    expect(html).toContain('Prix pour une vente rapide');
+    expect(html).toContain('Estimation basse');
     expect(html).toContain('Prix de biens comparables dans votre commune');
-    expect(html).toContain('Avec un acheteur coup de cœur');
+    expect(html).toContain('Estimation haute');
   });
 
   it('Commune sans données : pas de prix, message de recontact', () => {

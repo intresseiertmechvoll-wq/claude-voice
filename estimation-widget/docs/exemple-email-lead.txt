@@ -16,9 +16,9 @@ Téléphone : +352621123456
 Message : Bonjour, je pense vendre au printemps. Merci de me rappeler en fin de journée.
 
 == Résultat affiché au visiteur ==
-Valeur basse (vente rapide) : 550.000 €
+Estimation basse : 550.000 €
 Valeur de marché : 585.000 €
-Valeur haute (coup de cœur) : 620.000 €
+Estimation haute : 620.000 €
 Fourchette : ± 6 %
 
 == Le bien ==

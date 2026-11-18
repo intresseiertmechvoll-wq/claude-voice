@@ -109,9 +109,9 @@ export function leadSections(s: Submission, e: Estimate, date: Date): Section[] 
       rows:
         r.status === 'ok'
           ? [
-              ['Valeur basse (vente rapide)', eur(r.low)],
+              ['Estimation basse', eur(r.low)],
               ['Valeur de marché', eur(r.market)],
-              ['Valeur haute (coup de cœur)', eur(r.high)],
+              ['Estimation haute', eur(r.high)],
               ['Fourchette', `± ${(r.spread! * 100).toFixed(0)} %${r.indicative ? ' – mention « indicative » affichée' : ''}`],
             ]
           : [['Résultat', `Pas de prix affiché (« Je vous recontacte avec une estimation personnalisée »). Raison : ${e.reason}`]],

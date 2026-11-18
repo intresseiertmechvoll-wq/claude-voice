@@ -171,8 +171,8 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
     <h3 id="range-title">${esc(t('result.rangeTitle'))}</h3>
     <div class="range-viz" aria-hidden="true"><span class="rv-low"></span><span class="rv-mid"></span><span class="rv-high"></span></div>
     <div class="values${r.high >= 1_000_000 ? ' values-wide' : ''}">
-      <div class="value-card value-low"><p class="value-label">${esc(t('result.low'))}</p><p class="value-amount">${eur(r.low)}</p><p class="value-text">${esc(t('result.lowText'))}</p></div>
-      <div class="value-card value-high"><p class="value-label">${esc(t('result.high'))}</p><p class="value-amount">${eur(r.high)}</p><p class="value-text">${esc(t('result.highText'))}</p></div>
+      <div class="value-card value-low"><p class="value-label">${esc(t('result.low'))}</p><p class="value-amount">${eur(r.low)}</p>${t('result.lowText') ? `<p class="value-text">${esc(t('result.lowText'))}</p>` : ''}</div>
+      <div class="value-card value-high"><p class="value-label">${esc(t('result.high'))}</p><p class="value-amount">${eur(r.high)}</p>${t('result.highText') ? `<p class="value-text">${esc(t('result.highText'))}</p>` : ''}</div>
     </div>
   </section>
   ${

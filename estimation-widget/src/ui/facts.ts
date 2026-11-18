@@ -4,8 +4,9 @@ import { esc } from './html';
 const sources: Partial<Record<number, string>> = {
   // Observatoire de l’Habitat / STATEC, consulté le 18/11/2026 (seuil après sélection et traitements).
   1: 'https://data.public.lu/fr/datasets/prix-de-vente-des-appartements-par-commune/',
-  // Guichet.lu, consulté le 18/11/2026 (énergie primaire et chaleur de chauffage).
-  2: 'https://guichet.public.lu/fr/citoyens/logement/acquisition/performances-energie/demande-passeport-energetique.html',
+  // Guichet.lu, consulté le 18/11/2026 : « Un prêt climatique, garanti par l’État et proposé par les établissements
+  // bancaires agréés, peut contribuer au financement de vos travaux d’assainissement énergétique. »
+  2: 'https://guichet.public.lu/fr/citoyens/life-event/logement/performance-energetique-logement.html',
   // Observatoire de l’Habitat, consulté le 18/11/2026 (série séparée, hors annexes).
   4: 'https://data.public.lu/fr/datasets/prix-de-vente-des-appartements-prix-affines-hors-annexes-par-commune/',
   // Observatoire de l’Habitat, consulté le 18/11/2026 (loyers demandés avant négociation).
