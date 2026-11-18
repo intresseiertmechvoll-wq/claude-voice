@@ -85,6 +85,17 @@
     "total_max": 0.20
   },
 
+  "taille_appartement": {
+    "_source": "Observatoire de l'Habitat, « Prix de vente des appartements – par classe de surface » (actes notariés, appartements existants), moyenne T3 2025 – T2 2026, écart de chaque classe au prix moyen national. data.public.lu, CC0, consulté le 18/11/2026.",
+    "classes": [
+      { "moins_de_m2": 50, "ajustement": 0.228 },
+      { "moins_de_m2": 70, "ajustement": 0.05 },
+      { "moins_de_m2": 90, "ajustement": -0.025 },
+      { "moins_de_m2": 110, "ajustement": -0.07 },
+      { "moins_de_m2": 130, "ajustement": -0.112 },
+      { "moins_de_m2": null, "ajustement": -0.167 }
+    ]
+  },
   "annexes": {
     "appartement": {
       "garage": 25000,

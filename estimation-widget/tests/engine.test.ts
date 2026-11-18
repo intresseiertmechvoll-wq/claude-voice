@@ -16,19 +16,34 @@ describe('Calcul', () => {
     const capitalisation = (30.37 * 12 * (1 - 0.1)) / 0.045; // 7 288,80
     // Garde-fou : capitalisation vs moyenne des deux autres = +9,8 % (< 20 %) → gardée
     const base = 0.5 * notarie + 0.3 * annonces + 0.2 * capitalisation; // 6 742,07 €/m²
-    const brut = base * 80 * (1 + 0); // bon état, classe E, gros postes « bon », 1er étage avec ascenseur : coefficients = 0
+    // Taille : 80 m² → classe 70–90 m² des prix notariés par surface = −2,5 % (params.json, taille_appartement)
+    const brut = base * (1 - 0.025) * 80 * (1 + 0); // bon état, classe E, gros postes « bon », 1er étage avec ascenseur : coefficients = 0
     const attendu = Math.round(brut / 5000) * 5000;
 
-    expect(attendu).toBe(540000);
+    expect(attendu).toBe(525000);
     const e = estimate(apartment(), DATA, PARAMS);
     expect(e.result.status).toBe('ok');
     expect(e.detail!.decote.value).toBeCloseTo(decote, 10);
     expect(e.detail!.baseM2).toBeCloseTo(base, 6);
     expect(e.detail!.rawMarket).toBeCloseTo(brut, 4);
     expect(e.result.market).toBe(attendu);
-    expect(e.result.low).toBe(Math.round((brut * 0.94) / 5000) * 5000); // 505 000
-    expect(e.result.high).toBe(Math.round((brut * 1.06) / 5000) * 5000); // 570 000
+    expect(e.result.low).toBe(Math.round((brut * 0.94) / 5000) * 5000); // 495 000
+    expect(e.result.high).toBe(Math.round((brut * 1.06) / 5000) * 5000); // 555 000
     expect(e.result.indicative).toBe(false);
+  });
+
+  it('Taille de l’appartement : prix notariés par classe de surface (petits plus chers au m², grands moins chers)', () => {
+    const m2 = (surface: number) => estimate(apartment({ surface }), DATA, PARAMS).detail!;
+    expect(m2(44).taille).toBe(0.228); // moins de 50 m²
+    expect(m2(60).taille).toBe(0.05);
+    expect(m2(80).taille).toBe(-0.025);
+    expect(m2(150).taille).toBe(-0.167); // 130 m² et plus
+    const petit = estimate(apartment({ surface: 44 }), DATA, PARAMS).result;
+    expect(petit.factors![0]).toEqual({ key: 'taille', kind: 'pct', value: 0.228, qty: 44 });
+    // Le facteur taille n'est pas soumis au plafond des coefficients (+20 %)
+    expect(estimate(apartment({ surface: 44 }), DATA, PARAMS).detail!.buildingValue).toBeCloseTo(m2(44).baseM2 * 1.228 * 44, 4);
+    // Les maisons ne sont pas concernées
+    expect(estimate(house({ surface: 44 }), DATA, PARAMS).detail!.taille).toBe(0);
   });
 
   it('Maison à Dudelange : fourchette de ±12 % et mention « indicative »', () => {

@@ -28,6 +28,8 @@ export interface Detail {
   decote: { value: number; origin: 'canton' | 'national'; communes: number };
   methods: Method[];
   baseM2: number;
+  /** ajustement selon la surface (appartements), appliqué au prix de base */
+  taille: number;
   coefficients: { key: string; value: number; capped?: boolean }[];
   coefSum: number;
   coefApplied: number;
@@ -128,6 +130,13 @@ function coefficients(a: Answers, params: Params): { key: string; value: number;
     else if (ratio > t.grand_si_plus_de) out.push({ key: 'grand_terrain', value: t.grand });
   }
   return out.filter((x) => x.value !== 0);
+}
+
+/** Écart de prix au m² selon la taille de l'appartement (données notariées par classe de surface) */
+export function tailleAppartement(a: Answers, params: Params): number {
+  if (a.type !== 'appartement') return 0;
+  const cl = params.taille_appartement.classes.find((c) => c.moins_de_m2 === null || a.surface < c.moins_de_m2);
+  return cl ? cl.ajustement : 0;
 }
 
 export type AnnexKey = 'garage' | 'parking' | 'cave' | 'terrasse';
@@ -257,7 +266,8 @@ export function estimate(a: Answers, data: Dataset, params: Params): Estimate {
   const coefs = coefficients(a, params);
   const coefSum = coefs.reduce((s, x) => s + x.value, 0);
   const coefApplied = clamp(coefSum, params.coefficients.total_min, params.coefficients.total_max);
-  const buildingValue = baseM2 * a.surface * (1 + coefApplied);
+  const taille = tailleAppartement(a, params);
+  const buildingValue = baseM2 * (1 + taille) * a.surface * (1 + coefApplied);
   const ax = annexes(a, baseM2, params);
   const annexesTotal = ax.list.reduce((s, x) => s + x.amount, 0);
   const rawMarket = buildingValue + annexesTotal;
@@ -284,6 +294,7 @@ export function estimate(a: Answers, data: Dataset, params: Params): Estimate {
       // Même base que le prix affiché (arrondi), annexes retirées : sans annexes, identique à pricePerM2
       buildingPerM2: Math.round((market - annexesTotal) / a.surface),
       factors: [
+        ...(taille ? [{ key: 'taille', kind: 'pct' as const, value: taille, qty: a.surface }] : []),
         ...coefs.map((x) => ({ key: x.key, kind: 'pct' as const, value: x.value })),
         ...ax.list.map((x) => ({ key: x.key, kind: 'eur' as const, value: roundTo(x.amount, 500), qty: x.qty })),
       ],
@@ -309,6 +320,7 @@ export function estimate(a: Answers, data: Dataset, params: Params): Estimate {
       decote,
       methods,
       baseM2,
+      taille,
       coefficients: coefs,
       coefSum,
       coefApplied,

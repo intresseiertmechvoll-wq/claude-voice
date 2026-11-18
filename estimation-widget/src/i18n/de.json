@@ -327,6 +327,7 @@
     "where": "Ihre Antworten gehen nur an ImmoBuild Kohn, per E-Mail."
   },
   "factors": {
+    "taille": "Wohnungsgröße ({n} m²)",
     "etat_neuf": "Neuwertig",
     "etat_renove": "Kürzlich renoviert",
     "etat_rafraichir": "Auffrischung nötig",
