@@ -254,12 +254,16 @@ Texte auf Französisch, wie sie im Tool stehen würden. DE und EN folgen wie bei
 - Freiwillig: surface minimum ; extérieur (balcon / jardin / peu importe) ; garage ; neuf / ancien / peu importe ; « prêt à rénover ? » (oui / non / selon prix) → wichtig für ImmoBuild
 - Freiwillig: Notiz « ce qui compte pour vous » (école, trajet, calme…), höchstens 300 Zeichen
 
-**Schritt 3 – Votre budget**
+**Schritt 3 – Votre budget** (angepasst nach deinen Antworten vom 18.11.2026)
 - **Apport personnel disponible (€)** als runde Zahl, mit Erklärung „Ersparnisse, ohne Rücklage“
 - **Prix d'achat visé (€)** **oder** „je ne sais pas“ → dann rechnet das Tool den Höchstpreis allein aus dem Eigenkapital und der CSSF-Regel
 - Freiwillig: Revenu net mensuel du ménage als **Spanne**: < 4 000 / 4–6 000 / 6–8 000 / 8–10 000 / 10–14 000 / > 14 000 € / je préfère ne pas répondre
   - Nur für einen **Hinweis**, keine Kreditberechnung (Teil 5.2, Block 3)
-- Freiwillig: Rendez-vous banque déjà pris ? oui / non
+- **Avez-vous déjà parlé à votre banque ?** oui / pas encore
+- **Savez-vous combien vous pouvez emprunter ?** oui, environ … € (freiwillige Zahl) / non
+  - Mit Betrag: Das Tool rechnet mit dieser Zahl statt nur mit der CSSF-Grenze.
+- Freiwillig, **eigenes Kästchen, nicht vorausgewählt:** « Je souhaite être mis(e) en relation, sans engagement, avec un courtier en crédit immobilier partenaire. »
+  - Bedingungen dazu in Teil 8.
 
 **Schritt 4 – Calendrier**
 - **Quand voulez-vous acheter ?** dès que possible / 3–6 mois / 6–12 mois / je me renseigne
@@ -404,6 +408,18 @@ Alles aus den Lead-E-Mails zählbar, z. B. monatlich per Hand oder mit einem kle
 
 ---
 
+## 7a. Deine Antworten vom 18.11.2026
+
+| Punkt | Entscheidung |
+| --- | --- |
+| Provision | **Offen.** Du klärst das mit anderen Agenturen. Idee: Käufer-Mandat (Teil 9). |
+| Finanzierung | **Offen.** Idee: Weiterleitung an einen Courtier (Teil 8). Partner noch nicht festgelegt. |
+| Gebiet | **Ganz Luxemburg.** Gemeinden ohne genug Daten bekommen den Kantonswert mit Hinweis, wie im Estimation-Tool. |
+| Ergebnis | **Teilweise ohne Kontaktdaten:** Block 1 sofort, Rest nach Kontakt. |
+| Budget-Fragen | **Ja**, ergänzt um Bank-Kontakt, bekannter Kreditbetrag und Weiterleitung an einen Courtier (Teil 5.1, Schritt 3). |
+| Preis-Check | **Nicht in der ersten Version, aber fest für später geplant.** Passt gut zum Käufer-Mandat (Teil 9). |
+| Domain | Deine Wunschdomain ist vergeben. Neue Ideen in Teil 10.3. |
+
 ## 7. Entscheidungen, die du treffen musst (bevor gebaut wird)
 
 1. **Provision:** Wer zahlt bei dir, Verkäufer, Käufer oder beide? Bezahlst du dich auch als **Suchmakler** für Käufer? Davon hängt ab, wie viel ein Käufer-Lead wert ist und ob Option A sich lohnt.
@@ -417,8 +433,105 @@ Alles aus den Lead-E-Mails zählbar, z. B. monatlich per Hand oder mit einem kle
 9. **Querverweis in estimatioun.lu:** Darf ich später einen Link zum Käufer-Tool im Ergebnis des Estimation-Tools einbauen? Das wäre eine eigene, kleine Änderung.
 10. **Name und Domain:** kaafen.lu oder eine andere Idee? Kannst du die Verfügbarkeit prüfen oder mir dns.google im Netzwerk freigeben?
 11. **Sprachen:** FR, DE, EN wie bisher? Portugiesisch wäre für Käufer im Süden vielleicht wichtig **[Vermutung]**. estimimmo bietet es an.
+12. **Courtier-Partner:** Wer ist es genau? Bekommst du Geld für die Weiterleitung? Hast du seine CSSF-Zulassung gesehen?
+13. **Käufer-Mandat:** Soll die Zeile « Ça m'intéresse » schon in die erste Version?
 
 ---
+
+## 8. Weiterleitung an einen Courtier (neu, 18.11.2026)
+
+**Was du willst:** Käufer können sich freiwillig und unverbindlich an einen Courtier en crédit immobilier weiterleiten lassen.
+
+**1. Chance**
+- Klärt die Finanzierung früh. Ein Käufer mit geklärtem Budget ist für dich viel wertvoller.
+- Ein Courtier ist der Kanal, über den du selbst **keine Kreditberatung** machen musst.
+
+**2. Prüfung**
+- *Recht:*
+  - Das Gesetz nimmt aus, wer einen Verbraucher nur „vorstellt“ (L. 226-1 Pkt. 14, Teil 2.3). Eine reine Weiterleitung des Kontakts fällt nach meiner Lesart darunter. **[Vermutung]**
+  - Der Wortlaut nennt die Vorstellung „à un prêteur“, ein Courtier ist aber kein prêteur. Ob die Ausnahme auch dann gilt, wenn du **Geld vom Courtier** bekommst, habe ich nicht geprüft. → Anwaltsfrage, vor allem falls es eine Provision gibt.
+  - Unproblematisch bleibt es nur, wenn du **nicht** über Kreditbedingungen sprichst, keine Unterlagen sammelst und keinen Kredit empfiehlst.
+- *Courtier prüfen:* Er muss als intermédiaire de crédit immobilier zugelassen sein. Das CSSF-Register ist öffentlich. Vor dem Start nachsehen, nicht vertrauen.
+- *Datenschutz:*
+  - Weitergabe an einen Dritten **nur mit eigenem Kästchen**, nicht vorausgewählt und getrennt von der Datenschutz-Zustimmung zum Rückruf.
+  - Der Courtier wird **namentlich** genannt, bevor man ankreuzt.
+  - Die Datenschutzerklärung wird ergänzt.
+- *Technik:* Am einfachsten bekommst **du** die E-Mail mit dem Vermerk „Weiterleitung an Courtier gewünscht“ und leitest sie selbst weiter. So geht nichts automatisch an Dritte, und du behältst die Kontrolle über den Lead.
+
+**3. Fazit**
+- Gute Idee für die erste Version, als freiwilliges Kästchen.
+- Größtes Risiko: eine Provision vom Courtier ohne rechtliche Prüfung.
+- Ohne Provision ist das Risiko gering. **Sicherheit meiner Einschätzung: mittel, keine Rechtsberatung.**
+
+**Offen:** Wer ist der Partner? Du hast einen Namen genannt, den ich nicht sicher verstanden habe (Frage 12).
+
+## 9. Idee Käufer-Mandat: „Ich vertrete den Käufer“ (neu, zum Weiterdenken)
+
+**Was du willst:** Ein Käufer beauftragt dich, für ihn den besten Preis, gute Bedingungen und einen technischen Check-up des Hauses herauszuholen.
+
+**1. Chance**
+- Damit hättest du ein Angebot, das estimimmo, die Portale und Banken **nicht** haben.
+- Als ImmoBuild kennst du Bau und Renovierungskosten. Den Check Maison gibt es als Ablauf schon.
+- Der spätere **Preis-Check** wird hier zu einem echten Werkzeug: Er bereitet die Verhandlung vor und ist keine automatische Bewertung fremder Anzeigen.
+- Das Käufer-Tool wird der natürliche Einstieg: « Vous avez trouvé un bien ? Faites-le vérifier avant de signer. »
+
+**2. Prüfung**
+- *Markt:* Ob Käufer in Luxemburg dafür bezahlen, weiß ich nicht. Käufer-Mandate (chasseur immobilier, mandat de recherche) gibt es, ich habe aber keine Zahlen für Luxemburg recherchiert. **[nicht geprüft]**
+- *Interessenkonflikt:* Du darfst nicht beim gleichen Objekt den Verkäufer **und** den Käufer vertreten, ohne dass beide es wissen. Das ist **[Vermutung]**, die Rechtslage in Luxemburg ist nicht geprüft. Für eigene Objekte also keine Käufer-Mandate.
+- *„Beste Konditionen“:* Beim **Preis** und beim Kaufvertrag ja. Bei den **Kreditkonditionen** nein, das ist Kreditberatung (Teil 2.3) und bleibt beim Courtier.
+
+**3. Fazit**
+- Vielversprechender als ein Daten-Tool, aber ein **Geschäftsmodell**, kein Softwareproblem.
+- Vorschlag: Im Käufer-Tool zuerst nur **eine Zeile** im Ergebnis zeigen, ob jemand Interesse hat, und das messen:
+  - « Vous aimeriez être accompagné(e) pour négocier et faire vérifier l'état du bien ? »
+  - Kästchen « Ça m'intéresse ».
+- Preis, Vertrag und Ablauf legst du fest, wenn sich Interesse zeigt.
+
+## 10. Was du Notar und Apimo fragen sollst (Texte zum Versenden)
+
+### 10.1 An den Notar
+
+**Warum:** Das Tool soll die Kaufnebenkosten als **Spanne** zeigen. Ich habe dafür keine geprüften Zahlen, und eine falsche Zahl in einem öffentlichen Tool wäre schlimmer als keine.
+
+> Bonjour Maître,
+>
+> Je prépare pour mes clients acquéreurs un petit outil en ligne qui donne une **estimation indicative** des frais d'achat. Pourriez-vous m'indiquer, à titre d'ordre de grandeur :
+>
+> 1. vos **honoraires** pour un acte de vente d'un logement de 400 000 €, 700 000 € et 1 000 000 € (hors droits d'enregistrement) ;
+> 2. le coût total d'un **acte de prêt hypothécaire** (honoraires + inscription hypothécaire + frais divers) pour un prêt de 300 000 €, 600 000 € et 900 000 € ;
+> 3. les autres frais habituels (débours, copies, extraits, TVA sur honoraires) ;
+> 4. si le **Bëllegen Akt** s'impute bien d'abord sur les droits d'enregistrement et de transcription (7 %) et, en cas d'achat à deux à parts inégales, comment il se répartit ;
+> 5. si vous accepteriez que j'écrive dans l'outil « fourchette indicative, à confirmer auprès de votre notaire ».
+>
+> Merci beaucoup,
+> Jason
+
+### 10.2 An Apimo
+
+**Warum:** Ohne Zugang zur API gibt es keinen automatischen Abgleich zwischen Suchprofil und Bestand. Laut Doku braucht man eine provider ID und ein token „vom Support“. Kosten und Bedingungen stehen nicht in der Doku.
+
+> Bonjour,
+>
+> Je suis client Apimo (agence ImmoBuild Kohn, Dudelange). Je souhaite lire **mes propres biens** via l'API v3 (lecture seule, scope `properties`, sans données privées) pour les comparer aux recherches de mes clients acquéreurs sur mon site.
+>
+> 1. Comment obtenir un **provider ID et un token** ? Est-ce inclus dans mon abonnement ou payant ?
+> 2. Faut-il signer un contrat de partenaire, même pour un usage interne à l'agence ?
+> 3. Le quota par défaut (1 000 requêtes/jour) s'applique-t-il ? Une synchronisation par nuit avec `timestamp` est-elle la bonne méthode ?
+> 4. Les biens **non publiés** (off-market) sont-ils lisibles, et peut-on les exclure ou les filtrer ?
+> 5. Existe-t-il un environnement de test ?
+>
+> Merci,
+> Jason
+
+### 10.3 Domain: neue Ideen
+
+Deine erste Wahl ist vergeben. Die Verfügbarkeit konnte ich nicht prüfen, weil DNS in dieser Sitzung gesperrt ist. Bitte auf whois.dns.lu oder bei deinem Registrar prüfen:
+
+- **kafen.lu**: ich vermute, das ist die luxemburgische Schreibweise von „kaufen“ (ech kafen). Bitte von einem Muttersprachler bestätigen.
+- **akafen.lu** oder **akaf.lu**
+- **weivill.lu**: „wie viel?“, Gegenstück zu combien.lu
+- **monbudgetimmo.lu**
+- **acheter-au-luxembourg.lu**: lang, aber selbsterklärend für Grenzgänger
 
 ## Anhang: Quellen
 
