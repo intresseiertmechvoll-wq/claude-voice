@@ -352,6 +352,8 @@ input[type='text']:focus, input[type='email']:focus, input[type='tel']:focus, se
 .reliability { display: flex; gap: 10px; align-items: center; margin-top: 10px !important; padding: 8px 12px; border-radius: var(--radius); background: var(--offwhite); font-size: 0.875rem; line-height: 1.4; }
 .reliability p { margin: 0; color: var(--muted); }
 .reliability strong { color: var(--navy); }
+.copie { display: flex; gap: 8px; align-items: flex-start; margin-top: 10px !important; margin-bottom: 0 !important; font-size: 0.875rem; line-height: 1.4; color: var(--navy); overflow-wrap: anywhere; }
+.copie .ico { flex: none; margin-top: 2px; }
 .rel-bars { display: flex; gap: 3px; align-items: flex-end; height: 22px; margin-top: 2px; }
 .rel-bars i { width: 7px; border-radius: 2px; background: #d3d8df; }
 .rel-bars i:nth-child(1) { height: 8px; }

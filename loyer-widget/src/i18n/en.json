@@ -197,7 +197,8 @@
   },
   "trust": {
     "line": "Free · no obligation · no cookies",
-    "where": "Your answers are sent only to ImmoBuild Kohn, by email."
+    "where": "Your answers are sent only to ImmoBuild Kohn, by email.",
+    "whereCopie": "Your answers are sent only to ImmoBuild Kohn, by email. You also receive a copy of your result."
   },
   "result": {
     "sent": "Request received",
@@ -266,7 +267,8 @@
     "print": "Print or save as PDF",
     "restart": "New estimate",
     "factorsMaisonInclus": "For a house, the garden, garage and number of bedrooms are already included in the comparison value.",
-    "factorsNoneMaison": "Condition and energy class match the average: no adjustment."
+    "factorsNoneMaison": "Condition and energy class match the average: no adjustment.",
+    "copie": "A copy of your result has been sent to {email}. Nothing received? Check your spam folder."
   },
   "factors": {
     "etat_neuf": "New property",

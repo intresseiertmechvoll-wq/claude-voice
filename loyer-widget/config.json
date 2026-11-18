@@ -1,5 +1,5 @@
 {
-  "_note": "Liens et réglages affichés dans l'outil. À VÉRIFIER PAR JASON : contactUrl (prise de rendez-vous), gestionUrl (page « gestion locative » de ton site), privacyUrl, agent.photo, phone (vide = pas de numéro affiché), quickCommunes (raccourcis de l'étape 1), publicEmail (adresse affichée dans les messages d'erreur).",
+  "_note": "Liens et réglages affichés dans l'outil. À VÉRIFIER PAR JASON : contactUrl (prise de rendez-vous), gestionUrl (page « gestion locative » de ton site), privacyUrl, agent.photo, phone (vide = pas de numéro affiché), quickCommunes (raccourcis de l'étape 1), publicEmail (adresse affichée dans les messages d'erreur), copieVisiteur (copie du résultat envoyée au visiteur : à activer seulement après mise à jour de la politique de confidentialité, voir PRIVACY.md).",
   "contactUrl": {
     "fr": "https://immobuild.lu/contact/",
     "de": "https://immobuild.lu/contact/",
@@ -33,5 +33,6 @@
     "Esch-sur-Alzette",
     "Schifflange"
   ],
-  "publicEmail": "contact@immobuild.lu"
+  "publicEmail": "contact@immobuild.lu",
+  "copieVisiteur": false
 }

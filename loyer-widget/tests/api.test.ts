@@ -62,6 +62,44 @@ describe('API /api/estimate', () => {
     expect(html).not.toContain("O'Neil"); // apostrophe échappée dans le HTML
   });
 
+  it('copie au visiteur : désactivée par défaut, un seul e-mail part (à Jason)', async () => {
+    const { fetchMock, env, deps } = setup();
+    const json = (await (await handleEstimate(req(body()), env, deps)).json()) as any;
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(json.copie).toBe(false);
+    expect(config.copieVisiteur).toBe(false);
+  });
+
+  it('copie au visiteur activée : 2e e-mail au visiteur, dans sa langue, réponse vers Jason, sans aucun texte libre', async () => {
+    const { fetchMock, env, deps } = setup();
+    const res = await handleEstimate(
+      req({ ...body({ contact: { prenom: 'Achetez', nom: 'Pilules', message: 'Visitez spam.example' } }), lang: 'de' }),
+      env,
+      { ...deps, copieVisiteur: true },
+    );
+    const json = (await res.json()) as any;
+    expect(json.copie).toBe(true);
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    const sent = JSON.parse((fetchMock.mock.calls[1] as unknown as [string, RequestInit])[1].body as string);
+    expect(sent.to).toEqual(['marie.muller@example.lu']);
+    expect(sent.reply_to).toBe('contact@immobuild.lu');
+    expect(sent.subject).toBe('Ihre Mietschätzung für Dudelange – ImmoBuild Kohn');
+    expect(sent.text).toContain('Empfohlene Miete: ');
+    expect(sent.text).toContain('Unverbindliche Schätzung');
+    for (const libre of ['Achetez', 'Pilules', 'spam.example']) {
+      expect(sent.text).not.toContain(libre);
+      expect(sent.html).not.toContain(libre);
+    }
+  });
+
+  it('copie au visiteur : si son envoi échoue, le résultat s’affiche quand même (le lead est parti)', async () => {
+    const { fetchMock, env, deps } = setup();
+    fetchMock.mockImplementationOnce(async () => new Response('{}', { status: 200 })).mockImplementationOnce(async () => new Response('refus', { status: 422 }));
+    const res = await handleEstimate(req(body()), env, { ...deps, copieVisiteur: true });
+    expect(res.status).toBe(200);
+    expect(((await res.json()) as any).copie).toBe(false);
+  });
+
   it('e-mail du lead : pas de bouton WhatsApp pour un numéro fixe', async () => {
     const { fetchMock, env, deps } = setup();
     await handleEstimate(req(body({ contact: { numero: '26 54 87 12' } })), env, deps);

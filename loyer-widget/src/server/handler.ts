@@ -8,6 +8,7 @@ import references from '../../data/references.json';
 import params from '../../params.json';
 import { estimate, type Params } from '../shared/engine';
 import { leadEmail } from '../shared/email';
+import { emailVisiteur } from '../shared/email-visiteur';
 import { allowSubmission, refundSubmission, type KVLike } from '../shared/ratelimit';
 import type { Dataset, References } from '../shared/types';
 import { validateSubmission } from '../shared/validation';
@@ -29,6 +30,8 @@ export interface Deps {
   data: Dataset;
   refs: References;
   params: Params;
+  /** copie du résultat au visiteur (config.json → copieVisiteur) */
+  copieVisiteur: boolean;
 }
 
 export const defaultDeps = (): Deps => ({
@@ -38,6 +41,7 @@ export const defaultDeps = (): Deps => ({
   data: data as unknown as Dataset,
   refs: references as References,
   params: params as Params,
+  copieVisiteur: config.copieVisiteur === true,
 });
 
 export const json = (body: unknown, status = 200) =>
@@ -53,11 +57,13 @@ export interface Mail {
   html: string;
   text: string;
   replyTo: string;
+  /** destinataire ; par défaut l'adresse des leads (LEAD_EMAIL) */
+  to?: string;
 }
 
 /** Envoi par Resend (ou affichage dans la console avec EMAIL_MODE=log). Renvoie une erreur ou null. */
 export async function sendMail(env: Env, d: Deps, mail: Mail): Promise<'config' | 'send' | null> {
-  const to = env.LEAD_EMAIL || config.defaultLeadEmail;
+  const to = mail.to ?? (env.LEAD_EMAIL || config.defaultLeadEmail);
   const from = env.FROM_EMAIL || config.defaultFromEmail;
   if (env.EMAIL_MODE === 'log') {
     d.log(`\n=== E-MAIL (mode log, non envoyé) ===\nÀ : ${to}\nDe : ${from}\nRépondre à : ${mail.replyTo}\nObjet : ${mail.subject}\n\n${mail.text}\n=== FIN ===\n`);
@@ -130,5 +136,13 @@ export async function handleEstimate(request: Request, env: Env, deps: Partial<D
     return json({ ok: false, error: err }, err === 'config' ? 500 : 502);
   }
 
-  return json({ ok: true, result: est.result });
+  // Copie au visiteur : seulement si Jason l'a activée. Un échec ne bloque pas le résultat
+  // (le lead est déjà parti) : l'écran dit simplement qu'aucune copie n'a été envoyée.
+  let copie = false;
+  if (d.copieVisiteur) {
+    const m = emailVisiteur(v.value, est);
+    copie = (await sendMail(env, d, { ...m, to: v.value.contact.email, replyTo: env.LEAD_EMAIL || config.defaultLeadEmail })) === null;
+  }
+
+  return json({ ok: true, result: est.result, copie });
 }

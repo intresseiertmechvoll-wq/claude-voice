@@ -40,10 +40,12 @@ const state: {
   sending: boolean;
   serverError: string | null;
   result: PublicResult | null;
+  /** une copie du résultat a été envoyée au visiteur */
+  copie: boolean;
   direction: 'next' | 'back';
   /** après « Modifier » depuis le résumé : bouton pour y revenir directement */
   returnTo: number | null;
-} = { step: 1, values: { ...DEFAULTS }, errors: {}, sending: false, serverError: null, result: null, direction: 'next', returnTo: null };
+} = { step: 1, values: { ...DEFAULTS }, errors: {}, sending: false, serverError: null, result: null, copie: false, direction: 'next', returnTo: null };
 
 const app = document.getElementById('app')!;
 
@@ -121,7 +123,7 @@ function recapBar(): string {
 
 function render(focus = true) {
   if (state.result) {
-    app.innerHTML = `<div class="card card-result anim-in">${late!.renderResult(state.result, t, lang, { contactUrl, gestionUrl, legalUrl: config.legalUrl, agent: config.agent, phone: config.phone })}</div>`;
+    app.innerHTML = `<div class="card card-result anim-in">${late!.renderResult(state.result, t, lang, { contactUrl, gestionUrl, legalUrl: config.legalUrl, agent: config.agent, phone: config.phone, copieA: state.copie ? String(state.values.email ?? '') : null })}</div>`;
     hydrate();
     countUp();
     after(focus);
@@ -165,7 +167,7 @@ function render(focus = true) {
       </div>
       ${coachHtml()}
       ${summary}
-      ${renderStep(s, { t, lang, v: state.values, e: state.errors, privacyUrl, quickCommunes: config.quickCommunes })}
+      ${renderStep(s, { t, lang, v: state.values, e: state.errors, privacyUrl, quickCommunes: config.quickCommunes, copieVisiteur: config.copieVisiteur === true })}
     </div>
     <div class="actions">
       ${
@@ -530,7 +532,7 @@ app.addEventListener('submit', (e) => {
 });
 
 /* ---------- Envoi : le résultat s'affiche dès que le serveur a répondu (pas d'attente artificielle) ---------- */
-type ApiJson = { ok?: boolean; result?: PublicResult; error?: string; errors?: Errors };
+type ApiJson = { ok?: boolean; result?: PublicResult; copie?: boolean; error?: string; errors?: Errors };
 
 async function send() {
   state.sending = true;
@@ -572,6 +574,7 @@ async function send() {
   state.sending = false;
   if (res.ok && json.ok && json.result) {
     state.result = json.result;
+    state.copie = json.copie === true;
     pushStep();
     return render();
   }

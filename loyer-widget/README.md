@@ -6,6 +6,12 @@ Outil « Quel loyer pour votre bien ? » pour gagner des clients en **gestion lo
 2. il donne ses coordonnées ;
 3. il voit une fourchette de loyer mensuel (prudent / conseillé / en annonce), et tu reçois le lead par e-mail, avec sa priorité. En tête de l'e-mail : boutons **Appeler**, **WhatsApp** (si c'est un mobile) et **Répondre** (réponse déjà rédigée dans la langue du visiteur, à relire avant d'envoyer).
 
+**Option, désactivée par défaut : copie du résultat au visiteur** (`config.json` → `"copieVisiteur": true`, puis remettre en ligne). Le visiteur reçoit son résultat par e-mail, dans sa langue (exemple : `docs/exemple-email-visiteur.txt`) ; l'écran le lui dit (« Une copie a été envoyée à … ») et l'étape 4 l'annonce. Avant d'activer :
+1. compléter ta politique de confidentialité (texte proposé dans `PRIVACY.md`, point 7) ;
+2. compter **2 e-mails par lead** dans le quota Resend (offre gratuite : 100 par jour, partagée avec l'outil d'estimation) ;
+3. savoir que si l'adresse est fausse, l'envoi « réussit » quand même : le refus arrive plus tard dans le tableau de bord Resend (onglet des e-mails), pas dans l'outil.
+Si la copie ne part pas, le résultat s'affiche quand même (le lead est déjà chez toi).
+
 L'outil est construit à partir de l'outil d'estimation (`estimation-widget/`) : même technique, même design, même sécurité. Il s'affiche seul sur **verlounen.lu** ou dans une iframe sur ton site (WordPress ou Next.js).
 
 | Partie | Où | Rôle |

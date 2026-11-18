@@ -17,6 +17,8 @@ export interface Ctx {
   e: Errors;
   privacyUrl: string;
   quickCommunes: string[];
+  /** une copie du résultat est envoyée au visiteur (config.json → copieVisiteur) */
+  copieVisiteur?: boolean;
 }
 
 export const STEP_ICONS = ['epingle', 'outils', 'drapeau', 'personne'];
@@ -328,7 +330,7 @@ ${input(ctx, 'email', t('fields.email'), { type: 'email', autocomplete: 'email',
   </label>
   ${errorMessage(ctx, 'rgpd')}
 </div>
-<p class="trust">${icon('bouclier', 'ico ico-sm')}<span>${esc(t('trust.line'))}<br>${esc(t('trust.where'))}</span></p>`;
+<p class="trust">${icon('bouclier', 'ico ico-sm')}<span>${esc(t('trust.line'))}<br>${esc(t(ctx.copieVisiteur ? 'trust.whereCopie' : 'trust.where'))}</span></p>`;
 }
 
 const STEPS = [step1, step2, step3, step4];

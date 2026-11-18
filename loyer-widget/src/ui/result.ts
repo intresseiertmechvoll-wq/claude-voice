@@ -13,6 +13,8 @@ export interface ResultOptions {
   legalUrl: string;
   agent?: { name: string; role: string; photo?: string };
   phone?: string;
+  /** adresse à laquelle une copie du résultat vient d'être envoyée */
+  copieA?: string | null;
 }
 
 /** « 2026-11-17 » → « novembre 2026 » / « November 2026 » */
@@ -143,6 +145,7 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, o: ResultOptions
     </div>
   </section>
   ${reliability}
+  ${o.copieA ? `<p class="copie" data-testid="copie">${icon('info', 'ico ico-sm')}<span>${esc(t('result.copie', { email: o.copieA }))}</span></p>` : ''}
   <p class="disclaimer" data-testid="disclaimer">${esc(t('result.disclaimer'))}</p>
   ${ctaGestion}${ctaRdv}${call}
   ${legal}

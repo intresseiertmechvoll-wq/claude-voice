@@ -42,6 +42,16 @@ Base légale proposée : le **consentement** (case à cocher obligatoire, non co
 
 **Cloudflare** : traite les requêtes (dont l'adresse IP) pour faire fonctionner et protéger le service. Cloudflare propose aussi un DPA, accepté avec ses conditions d'utilisation. **À vérifier** dans ton compte Cloudflare.
 
+### Copie du résultat au visiteur (option, désactivée)
+
+Si tu actives `copieVisiteur` dans `config.json` :
+
+- un **deuxième e-mail** part, vers l'adresse saisie par le visiteur, avec son résultat (type de bien, surface, commune, trois loyers, fiabilité, plafond légal, « sans engagement »). Expéditeur : `FROM_EMAIL` ; « Répondre » arrive chez toi (`LEAD_EMAIL`) ;
+- cet e-mail ne contient **aucun texte saisi librement** (ni prénom, ni nom, ni message) : quelqu'un qui taperait l'adresse d'un tiers ne peut pas s'en servir pour lui envoyer un texte ;
+- Resend traite donc aussi l'adresse du visiteur comme destinataire et garde une trace de cet envoi dans son journal (même prestataire, même cadre que ci-dessus) ;
+- base légale à mon avis : exécution de la demande du visiteur (il a demandé une estimation). **À valider** ;
+- **avant d'activer** : ajouter la phrase proposée au point 7 dans ta politique de confidentialité.
+
 ## 4. Adresse IP et limite d'envois
 
 - Pour bloquer les abus, l'outil compte les envois par adresse IP : au plus 20 par heure.
@@ -65,4 +75,5 @@ Accès, rectification, effacement, opposition, retrait du consentement : par e-m
 > **Outil « Estimation de loyer » (verlounen.lu)**
 > Quand vous utilisez notre outil d'estimation de loyer, nous recueillons la description de votre bien, votre projet (location, gestion, disponibilité) et vos coordonnées (prénom, nom, e-mail, téléphone, message facultatif). Ces informations servent à calculer une estimation indicative et à vous recontacter au sujet de votre bien, avec votre accord. Elles nous sont transmises par e-mail et ne sont pas enregistrées dans une base de données.
 > L'outil est hébergé par Cloudflare, Inc. L'e-mail est envoyé par Resend (Plus Five Five, Inc.), dont les serveurs sont situés aux États-Unis ; ce transfert est encadré par les clauses contractuelles types de la Commission européenne. Pour limiter les abus, une empreinte chiffrée de votre adresse IP peut être conservée une heure au maximum.
+> *(À ajouter seulement si la copie au visiteur est activée :)* Vous recevez une copie de votre estimation à l'adresse e-mail indiquée. Cet e-mail est envoyé une seule fois ; nous ne vous envoyons pas de newsletter.
 > L'outil n'utilise ni cookie ni traceur. Nous conservons votre demande pendant **[durée à compléter]**. Vous pouvez à tout moment demander l'accès, la rectification ou l'effacement de vos données, ou retirer votre accord, en écrivant à contact@immobuild.lu. Vous pouvez aussi adresser une réclamation à la CNPD.

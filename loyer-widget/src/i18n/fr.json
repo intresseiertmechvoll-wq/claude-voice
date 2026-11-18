@@ -197,7 +197,8 @@
   },
   "trust": {
     "line": "Gratuit · sans engagement · sans cookie",
-    "where": "Vos réponses sont envoyées uniquement à ImmoBuild Kohn, par e-mail."
+    "where": "Vos réponses sont envoyées uniquement à ImmoBuild Kohn, par e-mail.",
+    "whereCopie": "Vos réponses sont envoyées uniquement à ImmoBuild Kohn, par e-mail. Vous recevez aussi une copie de votre résultat."
   },
   "result": {
     "sent": "Demande bien reçue",
@@ -266,7 +267,8 @@
     "print": "Imprimer ou enregistrer en PDF",
     "restart": "Faire une autre estimation",
     "factorsMaisonInclus": "Pour une maison, le jardin, le garage et le nombre de chambres sont déjà compris dans la valeur de comparaison.",
-    "factorsNoneMaison": "L’état et la classe énergétique correspondent à la moyenne : pas d’ajustement."
+    "factorsNoneMaison": "L’état et la classe énergétique correspondent à la moyenne : pas d’ajustement.",
+    "copie": "Une copie de votre résultat a été envoyée à {email}. Rien reçu ? Regardez dans les courriers indésirables."
   },
   "factors": {
     "etat_neuf": "Bien neuf",
