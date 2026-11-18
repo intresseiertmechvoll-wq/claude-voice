@@ -201,7 +201,12 @@
     "alerte": "Benachrichtigen Sie mich, wenn eine passende Immobilie zu ImmoBuild kommt.",
     "honeypot": "Dieses Feld nicht ausfüllen",
     "rgpd": "Ich bin einverstanden, dass ImmoBuild Kohn meine Antworten nutzt, um mich wegen meiner Suche zu kontaktieren ({link}).",
-    "rgpdLink": "Datenschutzerklärung"
+    "rgpdLink": "Datenschutzerklärung",
+    "venteTitle": "Die Immobilie, die Sie verkaufen",
+    "venteHelp": "Freiwillig: Mit diesen beiden Beträgen zählt der Verkaufserlös zu Ihrem Eigenkapital. Noch keine Bewertung?",
+    "valeurVente": "Geschätzter Wert Ihrer Immobilie",
+    "restePret": "Restschuld Ihres aktuellen Kredits",
+    "restePretHelp": "0, wenn Sie keinen Kredit mehr haben."
   },
   "errors": {
     "required": "Dieses Feld ist erforderlich.",
@@ -252,7 +257,14 @@
     "disclaimer": "Dieses Tool ist weder eine Kreditberatung noch ein Kreditangebot. Nur Ihre Bank entscheidet.",
     "next": "Was Ihr Budget in Ihren Gemeinden bedeutet und ein Anruf von Jason: noch 2 Schritte.",
     "edit": "Budget ändern",
-    "divers": "Kopien, Auszüge und Auslagen"
+    "divers": "Kopien, Auszüge und Auslagen",
+    "epargne": "Ihre Ersparnisse",
+    "produitVente": "Netto-Verkaufserlös",
+    "produitVenteNote": "Wert − Restschuld − geschätzte Maklerkosten ({frais}, 3 % + MwSt.).",
+    "apportTotal": "Eigenkapital gesamt",
+    "relais": "Der Verkaufserlös steht erst nach dem Verkauf zur Verfügung. Wer vorher kauft, braucht einen Überbrückungskredit: mit Ihrer Bank oder unserem Partner-Kreditvermittler klären.",
+    "pretNecessaire": "Nötiger Kredit mit Ihrem Eigenkapital",
+    "pretNecessaireNote": "Wenn Sie Ihr ganzes Eigenkapital einsetzen. Die Monatsrate unten wird mit diesem Betrag gerechnet."
   },
   "result": {
     "title": "Danke {prenom}, Ihre Analyse ist fertig",
@@ -319,5 +331,15 @@
     "repere_mid": "Das liegt im üblichen Richtwert der Banken (etwa ein Drittel bis 40 %).",
     "repere_high": "Das liegt eher über dem üblichen Richtwert der Banken (etwa ein Drittel bis 40 %): Eine längere Laufzeit, ein niedrigerer Preis oder mehr Eigenkapital können helfen.",
     "disclaimer": "Durchschnitt der in diesem Monat abgeschlossenen Kredite: weder ein Angebot noch Ihr Zins. Je nach Eigenkapital, Einkommen und Bank kann Ihr Zins höher oder niedriger sein."
+  },
+  "sim": {
+    "title": "Und wenn …?",
+    "sub": "Bewegen Sie die Regler: Die Rechnung folgt sofort.",
+    "prix": "Kaufpreis",
+    "apport": "Ihre Ersparnisse",
+    "depart": "Am Anfang: {prix} und {apport}.",
+    "reset": "Zurück zum Anfang",
+    "statusOk": "Bei {prix} deckt das Eigenkapital das Minimum.",
+    "statusGap": "Bei {prix} fehlen etwa {montant} Eigenkapital."
   }
 }

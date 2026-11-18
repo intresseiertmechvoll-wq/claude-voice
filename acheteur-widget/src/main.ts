@@ -8,11 +8,12 @@ import { computeBudget, type Params } from './shared/budget';
 import { COMMUNES } from './shared/communes';
 import type { Budget, PublicResult } from './shared/types';
 import { checkTaux, type Taux } from './shared/taux';
-import { budgetInput, checkFields, LIMITS, stepFields, TOTAL_STEPS, type Errors } from './shared/validation';
+import { budgetInput, checkFields, parseMoney, LIMITS, stepFields, TOTAL_STEPS, type Errors } from './shared/validation';
 import { setupCombobox } from './ui/combobox';
 import { esc } from './ui/html';
 import { icon } from './ui/icons';
-import { renderBudgetPreview, renderResult, type BudgetOptions } from './ui/result';
+import { renderBudgetLive, renderBudgetPreview, renderResult, type BudgetOptions, type SimOptions } from './ui/result';
+import { formatEuro } from './ui/format';
 import { communeChips, errorKey, renderStep, STEP_ICONS, vendreNote, type Ctx, type Values } from './ui/steps';
 
 /** Délai maximal d'une requête. AbortSignal.timeout n'existe qu'à partir de Safari 16 : repli pour les iPhone plus anciens. */
@@ -213,7 +214,7 @@ function render(focus = true) {
     app.innerHTML = `<div class="card">
   <div class="card-body">
   ${progress()}
-  <div class="step-body anim-next">${renderBudgetPreview(state.preview, t, lang, budgetOptions())}</div>
+  <div class="step-body anim-next">${renderBudgetPreview(state.preview, t, lang, budgetOptions(), simDepart() ?? undefined)}</div>
   <div class="actions">
     <button type="button" class="btn btn-primary btn-block btn-go" data-action="from-preview">${esc(t('nav.next'))}<span class="arrow">${icon('fleche')}</span></button>
     <button type="button" class="btn btn-ghost" data-action="edit-budget">${icon('fleche')}<span>${esc(t('budget.edit'))}</span></button>
@@ -286,6 +287,39 @@ function after(focus: boolean) {
     const card = app.querySelector<HTMLElement>('.card');
     if (card && card.getBoundingClientRect().top < 0) card.scrollIntoView({ block: 'start', behavior: reducedMotion ? 'auto' : 'smooth' });
   }
+}
+
+/* ---------- Simulateur « Et si… ? » (aperçu du budget) ---------- */
+function simDepart(): SimOptions | null {
+  const prixDepart = parseMoney(state.values.prixDepart);
+  const apportDepart = parseMoney(state.values.apportDepart);
+  return prixDepart && apportDepart !== null && Number.isFinite(prixDepart) && Number.isFinite(apportDepart) ? { prixDepart, apportDepart } : null;
+}
+let simTimer: ReturnType<typeof setTimeout> | undefined;
+function onSim(el: HTMLInputElement) {
+  const key = el.name === 'sim_prix' ? 'prix' : el.name === 'sim_apport' ? 'apport' : null;
+  if (!key) return;
+  state.values[key] = el.value;
+  const txt = formatEuro(Number(el.value), lang);
+  const out = app.querySelector(`#sim-${key}-out`);
+  if (out) out.textContent = txt;
+  el.setAttribute('aria-valuetext', txt);
+  const input = budgetInput(state.values);
+  if (!input) return;
+  state.preview = computeBudget(input, P);
+  const live = app.querySelector('#budget-live');
+  if (live) live.innerHTML = renderBudgetLive(state.preview, t, lang, budgetOptions());
+  const d = simDepart();
+  const dep = app.querySelector<HTMLElement>('#sim-depart');
+  if (dep && d) dep.hidden = state.preview.prix === d.prixDepart && state.preview.apport === d.apportDepart;
+  sendHeight();
+  // Lecteur d'écran : un résumé court, après l'arrêt du curseur
+  clearTimeout(simTimer);
+  simTimer = setTimeout(() => {
+    const st = app.querySelector('#sim-status');
+    const b = state.preview;
+    if (st && b) st.textContent = b.margeMin >= 0 ? t('sim.statusOk', { prix: formatEuro(b.prix, lang) }) : t('sim.statusGap', { prix: formatEuro(b.prix, lang), montant: formatEuro(-b.margeMin, lang) });
+  }, 600);
 }
 
 /* ---------- Communes (jusqu'à 3) ---------- */
@@ -362,6 +396,7 @@ app.addEventListener('input', onInput);
 app.addEventListener('change', onInput);
 function onInput(e: Event) {
   const el = e.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+  if (el.closest('.sim')) return onSim(el as HTMLInputElement);
   if (!el.name || el.name === 'commune') return;
   queueMicrotask(updateFill);
   if (el instanceof HTMLInputElement && el.type === 'checkbox') state.values[el.name] = el.checked;
@@ -444,7 +479,19 @@ app.addEventListener('click', (e) => {
     state.returnTo = null;
     state.direction = 'next';
     render();
+  } else if (action === 'sim-reset') {
+    const d = simDepart();
+    if (d) {
+      state.values.prix = String(d.prixDepart);
+      state.values.apport = String(d.apportDepart);
+      state.preview = computeBudget(budgetInput(state.values)!, P);
+      render(false);
+      app.querySelector<HTMLInputElement>('#sim-prix')?.focus();
+    }
   } else if (action === 'edit-budget') {
+    // Retour à l'étape 3 : les montants saisis deviennent le nouveau départ du simulateur
+    delete state.values.prixDepart;
+    delete state.values.apportDepart;
     state.preview = null;
     state.step = 3;
     state.direction = 'back';
@@ -511,6 +558,9 @@ app.addEventListener('submit', (e) => {
     const input = budgetInput(state.values);
     if (input) {
       state.preview = computeBudget(input, P);
+      // Montants de départ du simulateur « Et si… ? » (gardés si le visiteur revient à l'aperçu)
+      state.values.prixDepart ??= String(input.prix);
+      state.values.apportDepart ??= String(input.apport);
       state.direction = 'next';
       return render();
     }
@@ -540,6 +590,9 @@ async function send() {
   for (const [k, v] of Object.entries(state.values)) {
     if (k !== 'website') (contactFields.includes(k) ? contact : answers)[k] = v;
   }
+  // Montants de départ : envoyés seulement s'ils ont changé dans le simulateur
+  if (parseMoney(answers.prixDepart) === parseMoney(answers.prix)) delete answers.prixDepart;
+  if (parseMoney(answers.apportDepart) === parseMoney(answers.apport)) delete answers.apportDepart;
   const website = String(app.querySelector<HTMLInputElement>('#website')?.value ?? '');
   let res: Response;
   let json: ApiJson;

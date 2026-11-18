@@ -201,7 +201,12 @@
     "alerte": "Prévenez-moi si un bien correspondant entre chez ImmoBuild.",
     "honeypot": "Ne pas remplir ce champ",
     "rgpd": "J’accepte qu’ImmoBuild Kohn utilise mes réponses pour me recontacter au sujet de ma recherche ({link}).",
-    "rgpdLink": "politique de confidentialité"
+    "rgpdLink": "politique de confidentialité",
+    "venteTitle": "Le bien que vous vendez",
+    "venteHelp": "Facultatif : avec ces deux montants, le produit de la vente compte dans votre apport. Pas encore d’estimation ?",
+    "valeurVente": "Valeur estimée de votre bien",
+    "restePret": "Reste à rembourser sur votre prêt actuel",
+    "restePretHelp": "0 si vous n’avez plus de prêt."
   },
   "errors": {
     "required": "Ce champ est obligatoire.",
@@ -252,7 +257,14 @@
     "disclaimer": "Cet outil ne constitue ni un conseil en crédit ni une offre de prêt. Seule votre banque décide.",
     "next": "Ce que votre budget représente dans vos communes et un appel de Jason : encore 2 étapes.",
     "edit": "Modifier mon budget",
-    "divers": "Copies, extraits et débours"
+    "divers": "Copies, extraits et débours",
+    "epargne": "Votre épargne",
+    "produitVente": "Produit net de la vente",
+    "produitVenteNote": "Valeur − reste du prêt − frais d’agence estimés ({frais}, 3 % + TVA).",
+    "apportTotal": "Apport total",
+    "relais": "Le produit de la vente n’est disponible qu’après la vente. Pour acheter avant, il faut un prêt relais : à voir avec votre banque ou notre courtier partenaire.",
+    "pretNecessaire": "Prêt nécessaire avec votre apport",
+    "pretNecessaireNote": "Si vous utilisez tout votre apport. La mensualité ci-dessous est calculée sur ce montant."
   },
   "result": {
     "title": "Merci {prenom}, votre analyse est prête",
@@ -319,5 +331,15 @@
     "repere_mid": "C’est dans le repère habituel des banques (environ un tiers à 40 %).",
     "repere_high": "C’est plutôt au-dessus du repère habituel des banques (environ un tiers à 40 %) : une durée plus longue, un prix plus bas ou plus d’apport peuvent aider.",
     "disclaimer": "Moyenne des crédits signés ce mois-là : ce n’est ni une offre ni votre taux. Selon votre apport, vos revenus et votre banque, votre taux peut être plus haut ou plus bas."
+  },
+  "sim": {
+    "title": "Et si… ?",
+    "sub": "Déplacez les curseurs : le calcul suit tout de suite.",
+    "prix": "Prix d’achat",
+    "apport": "Votre épargne",
+    "depart": "Au départ : {prix} et {apport}.",
+    "reset": "Revenir au départ",
+    "statusOk": "Avec {prix}, l’apport couvre le minimum.",
+    "statusGap": "Avec {prix}, il manque environ {montant} d’apport."
   }
 }

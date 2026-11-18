@@ -105,22 +105,72 @@ export function renderBudget(b: Budget, t: T, lang: Lang, o: BudgetOptions): str
       ${row(t('budget.total'), `<strong>${rangeHtml(b.totalMin, b.totalMax, lang)}</strong>`, 'total')}
       ${row(b.pretLimiteParCapacite ? t('budget.pretCapacite') : t('budget.pret'), `−\u00a0${eur(b.pret)}`, 'minus', `${t(`budget.ltv.${b.ltvRule}`)} ${t('budget.ltvNote')}`)}
       ${row(t('budget.apportNecessaire'), `<strong>${rangeHtml(b.apportNecessaireMin, b.apportNecessaireMax, lang)}</strong>`, 'total')}
-      ${row(t('budget.apportDeclare'), eur(b.apport))}
+      ${
+        b.produitVente !== null
+          ? `${row(t('budget.epargne'), eur(b.apport))}
+      ${row(t('budget.produitVente'), `+\u00a0${eur(b.produitVente)}`, 'minus', t('budget.produitVenteNote', { frais: formatEuro(b.fraisVente ?? 0, lang) }))}
+      ${row(t('budget.apportTotal'), `<strong>${eur(b.apportTotal)}</strong>`, 'total')}`
+          : row(t('budget.apportDeclare'), eur(b.apport))
+      }
+      ${b.pretNecessaire < b.pret ? row(t('budget.pretNecessaire'), `<strong>${eur(b.pretNecessaire)}</strong>`, 'total', t('budget.pretNecessaireNote')) : ''}
     </tbody>
   </table>
   ${verdict}
+  ${b.produitVente ? `<p class="small relais">${icon('info', 'ico ico-xs')} ${esc(t('budget.relais'))}</p>` : ''}
   ${b.prixMax !== null ? `<p class="prixmax">${icon('cle', 'ico ico-sm')}<span>${esc(t('budget.prixMax', { pret: formatEuro(b.pretLimiteParCapacite ? b.pret : b.pretMaxCssf, lang), prix: formatEuro(b.prixMax, lang) }))}</span></p>` : ''}
   ${annonce}
   <p class="small disclaimer">${esc(t('budget.disclaimer'))}</p>
 </section>`;
 }
 
+/** Partie de l'aperçu recalculée à chaque mouvement du simulateur */
+export function renderBudgetLive(b: Budget, t: T, lang: Lang, o: BudgetOptions): string {
+  return `${renderBudget(b, t, lang, o)}
+  ${o.mensualite ? renderMensualite(b.pretNecessaire, o.mensualite.taux, o.mensualite.revenu, t, lang, o.mensualite.repere, o.mensualite.durees) : ''}`;
+}
+
+export interface SimOptions {
+  prixDepart: number;
+  apportDepart: number;
+}
+
+const round = (v: number, step: number) => Math.round(v / step) * step;
+/** Bornes des curseurs, fixées à partir des montants de départ (elles ne bougent pas pendant le glissement) */
+export function simBounds(s: SimOptions) {
+  return {
+    prix: { min: Math.max(50_000, round(s.prixDepart * 0.6, 5000)), max: Math.min(20_000_000, round(s.prixDepart * 1.4, 5000)), step: 5000 },
+    apport: { min: 0, max: Math.max(round(s.apportDepart * 2, 1000), s.apportDepart + 100_000), step: 1000 },
+  };
+}
+
+/** Simulateur « Et si… ? » : prix et apport, recalcul immédiat dans le navigateur */
+export function renderSim(b: Budget, s: SimOptions, t: T, lang: Lang): string {
+  const bd = simBounds(s);
+  const changed = b.prix !== s.prixDepart || b.apport !== s.apportDepart;
+  const slider = (name: 'prix' | 'apport', label: string, value: number) => {
+    const lim = bd[name];
+    return `<div class="sim-row">
+    <label for="sim-${name}">${esc(label)}</label>
+    <output id="sim-${name}-out" for="sim-${name}">${esc(formatEuro(value, lang))}</output>
+    <input type="range" id="sim-${name}" name="sim_${name}" min="${lim.min}" max="${lim.max}" step="${lim.step}" value="${Math.min(lim.max, Math.max(lim.min, value))}" aria-valuetext="${esc(formatEuro(value, lang))}">
+  </div>`;
+  };
+  return `<section class="sim" aria-labelledby="sim-title">
+  <h3 id="sim-title">${icon('outils', 'ico ico-sm')}<span>${esc(t('sim.title'))}</span></h3>
+  <p class="small">${esc(t('sim.sub'))}</p>
+  ${slider('prix', t('sim.prix'), b.prix)}
+  ${slider('apport', t('sim.apport'), b.apport)}
+  <p class="small sim-depart" id="sim-depart"${changed ? '' : ' hidden'}>${esc(t('sim.depart', { prix: formatEuro(s.prixDepart, lang), apport: formatEuro(s.apportDepart, lang) }))} <button type="button" class="link-btn" data-action="sim-reset">${esc(t('sim.reset'))}</button></p>
+</section>`;
+}
+
 /** Aperçu affiché après l'étape 3, sans coordonnées */
-export function renderBudgetPreview(b: Budget, t: T, lang: Lang, o: BudgetOptions): string {
+export function renderBudgetPreview(b: Budget, t: T, lang: Lang, o: BudgetOptions, sim?: SimOptions): string {
   return `<section class="result" aria-labelledby="preview-title">
   <h2 id="preview-title" class="step-title" tabindex="-1">${esc(t('steps.3.title'))}</h2>
-  ${renderBudget(b, t, lang, o)}
-  ${o.mensualite ? renderMensualite(b.pret, o.mensualite.taux, o.mensualite.revenu, t, lang, o.mensualite.repere, o.mensualite.durees) : ''}
+  ${sim ? renderSim(b, sim, t, lang) : ''}
+  <p class="sr-only" id="sim-status" aria-live="polite"></p>
+  <div id="budget-live">${renderBudgetLive(b, t, lang, o)}</div>
   <p class="next-hint">${icon('fleche', 'ico ico-sm')}<span>${esc(t('budget.next'))}</span></p>
 </section>`;
 }
@@ -179,7 +229,7 @@ export function renderResult(r: PublicResult, a: Pick<Answers, 'prix' | 'premier
     <p class="hero-sub">${esc(t('result.sub'))}</p>
   </div>
   ${communesHtml(r.communes, a.prix, r, t, lang)}
-  ${o.mensualite ? renderMensualite(r.budget.pret, r.taux ?? o.mensualite.taux, a.revenu, t, lang, o.mensualite.repere, o.mensualite.durees) : ''}
+  ${o.mensualite ? renderMensualite(r.budget.pretNecessaire, r.taux ?? o.mensualite.taux, a.revenu, t, lang, o.mensualite.repere, o.mensualite.durees) : ''}
   <details class="budget-again panel"><summary>${icon('donnees', 'ico ico-sm')}<span>${esc(t('result.budgetAgain', { prix: formatEuro(r.budget.prix, lang) }))}</span></summary>${renderBudget(r.budget, t, lang, o)}</details>
   <section class="panel" aria-labelledby="check-title">
     <h3 id="check-title">${icon('info', 'ico ico-sm')}<span>${esc(t('result.checkTitle'))}</span></h3>

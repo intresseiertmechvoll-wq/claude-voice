@@ -46,7 +46,7 @@ export function errorKey(name: string, code: string): string {
   if (code === 'required' && name !== 'communes') return 'errors.required';
   if (name === 'communes') return code === 'communes_max' ? 'errors.communes_max' : 'errors.communes';
   if (name === 'prix' && code === 'range') return 'errors.prixRange';
-  if (['apport', 'prix', 'capaciteMontant'].includes(name) && code === 'invalid') return 'errors.money';
+  if (['apport', 'prix', 'capaciteMontant', 'valeurVente', 'restePret'].includes(name) && code === 'invalid') return 'errors.money';
   return `errors.${code}`;
 }
 
@@ -260,6 +260,12 @@ function step3(ctx: Ctx): string {
     : '';
   return `${money(ctx, 'apport', t('fields.apport'), t('fields.apportHelp'))}
 ${money(ctx, 'prix', t('fields.prix'), t('fields.prixHelp'))}
+<div class="vente-box" id="vente-box"${String(v.vendre ?? '').startsWith('oui') ? '' : ' hidden'}>
+  <p class="vente-title">${icon('vendre', 'ico ico-sm')}<span>${esc(t('fields.venteTitle'))}</span></p>
+  <p class="small">${esc(t('fields.venteHelp'))} <a href="${esc(ctx.estimationUrl)}" target="_blank" rel="noopener">${esc(t('fields.vendreLink'))}</a></p>
+  ${money(ctx, 'valeurVente', t('fields.valeurVente'), undefined, true)}
+  ${money(ctx, 'restePret', t('fields.restePret'), t('fields.restePretHelp'), true)}
+</div>
 ${choices(ctx, 'banque', t('fields.banque'), opts(t, 'fields.banqueOptions', BANQUE), 'chips')}
 ${choices(ctx, 'capacite', t('fields.capacite'), opts(t, 'fields.capaciteOptions', CAPACITE), 'chips')}
 <div id="capacite-montant"${v.capacite === 'oui' ? '' : ' hidden'}>${money(ctx, 'capaciteMontant', t('fields.capaciteMontant'), t('fields.capaciteMontantHelp'), true)}</div>

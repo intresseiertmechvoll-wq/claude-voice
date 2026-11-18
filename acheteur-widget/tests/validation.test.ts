@@ -34,7 +34,15 @@ describe('Montant d’emprunt connu', () => {
 describe('Aperçu du budget', () => {
   it('Disponible dès que les étapes 1 à 3 sont valides, sans coordonnées', () => {
     const v = { usage: 'habiter', achat: 'seul', premier: 'oui', bellegen: 'non', vendre: 'non', neuf: 'ancien', apport: '50k', prix: '450 000', banque: 'oui', capacite: 'non' };
-    expect(budgetInput(v)).toEqual({ usage: 'habiter', achat: 'seul', premier: 'oui', bellegen: 'non', neuf: 'ancien', apport: 50000, prix: 450000, capaciteMontant: null });
+    expect(budgetInput(v)).toEqual({ usage: 'habiter', achat: 'seul', premier: 'oui', bellegen: 'non', neuf: 'ancien', apport: 50000, prix: 450000, capaciteMontant: null, valeurVente: null, restePret: null });
     expect(budgetInput({ ...v, prix: '' })).toBeNull();
+  });
+});
+
+describe('Bien à vendre', () => {
+  it('Valeur et prêt restant lus seulement si le visiteur doit vendre', () => {
+    expect(checkFields({ vendre: 'oui_lu', valeurVente: '500k', restePret: '300 000' }, ['valeurVente', 'restePret']).values).toEqual({ valeurVente: 500000, restePret: 300000 });
+    expect(checkFields({ vendre: 'non', valeurVente: '500k' }, ['valeurVente']).values.valeurVente).toBeNull();
+    expect(checkFields({ vendre: 'oui_lu', valeurVente: '' }, ['valeurVente']).values.valeurVente).toBeNull();
   });
 });

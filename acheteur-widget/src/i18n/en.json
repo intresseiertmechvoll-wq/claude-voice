@@ -201,7 +201,12 @@
     "alerte": "Let me know if a matching property comes in at ImmoBuild.",
     "honeypot": "Do not fill in this field",
     "rgpd": "I agree that ImmoBuild Kohn may use my answers to contact me about my search ({link}).",
-    "rgpdLink": "privacy policy"
+    "rgpdLink": "privacy policy",
+    "venteTitle": "The property you are selling",
+    "venteHelp": "Optional: with these two amounts, the sale proceeds count towards your deposit. No valuation yet?",
+    "valeurVente": "Estimated value of your property",
+    "restePret": "Remaining balance on your current loan",
+    "restePretHelp": "0 if you no longer have a loan."
   },
   "errors": {
     "required": "This field is required.",
@@ -252,7 +257,14 @@
     "disclaimer": "This tool is neither credit advice nor a loan offer. Only your bank decides.",
     "next": "What your budget means in your municipalities and a call from Jason: 2 more steps.",
     "edit": "Change my budget",
-    "divers": "Copies, extracts and expenses"
+    "divers": "Copies, extracts and expenses",
+    "epargne": "Your savings",
+    "produitVente": "Net sale proceeds",
+    "produitVenteNote": "Value − remaining loan − estimated agency fees ({frais}, 3% + VAT).",
+    "apportTotal": "Total deposit",
+    "relais": "The sale proceeds are only available after the sale. To buy before, you need a bridging loan: talk to your bank or our partner broker.",
+    "pretNecessaire": "Loan needed with your deposit",
+    "pretNecessaireNote": "If you use your whole deposit. The monthly payment below is based on this amount."
   },
   "result": {
     "title": "Thank you {prenom}, your analysis is ready",
@@ -319,5 +331,15 @@
     "repere_mid": "That is within the usual bank guideline (about one third to 40%).",
     "repere_high": "That is rather above the usual bank guideline (about one third to 40%): a longer term, a lower price or a larger deposit can help.",
     "disclaimer": "Average of the loans signed that month: neither an offer nor your rate. Depending on your deposit, income and bank, your rate may be higher or lower."
+  },
+  "sim": {
+    "title": "What if…?",
+    "sub": "Move the sliders: the calculation follows straight away.",
+    "prix": "Purchase price",
+    "apport": "Your savings",
+    "depart": "At the start: {prix} and {apport}.",
+    "reset": "Back to the start",
+    "statusOk": "At {prix}, the deposit covers the minimum.",
+    "statusGap": "At {prix}, about {montant} of deposit is missing."
   }
 }

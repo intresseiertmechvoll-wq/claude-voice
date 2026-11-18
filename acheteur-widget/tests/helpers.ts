@@ -9,7 +9,7 @@ export const PARAMS = params as Params;
 
 /** Couple, premier achat pour y habiter, Bëllegen Akt pas encore utilisé, ancien, 600 000 €, apport 60 000 € */
 export function couple(over: Partial<BudgetInput> = {}): BudgetInput {
-  return { usage: 'habiter', achat: 'deux', premier: 'oui', bellegen: 'non', neuf: 'ancien', apport: 60000, prix: 600000, capaciteMontant: null, ...over };
+  return { usage: 'habiter', achat: 'deux', premier: 'oui', bellegen: 'non', neuf: 'ancien', apport: 60000, prix: 600000, capaciteMontant: null, valeurVente: null, restePret: null, ...over };
 }
 
 /** Corps de requête tel que l'envoie le formulaire */

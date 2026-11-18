@@ -101,5 +101,9 @@
       0.33,
       0.4
     ]
+  },
+  "vente": {
+    "_hypothese": "HYPOTHÈSE à valider par Jason : frais de vente du bien actuel = commission d'agence 3 % + TVA 17 % = 3,51 % de la valeur. Pratique du marché, pas une règle légale. Impôt sur la plus-value non calculé (résidence principale en général exonérée).",
+    "frais_taux": 0.0351
   }
 }

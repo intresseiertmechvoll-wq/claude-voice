@@ -20,8 +20,8 @@ Comme l’outil d’estimation : pas de base de données, pas de cookie, pas de 
 
 1. **Votre projet** : y habiter ou louer, seul ou à deux, premier achat (définition CSSF), Bëllegen Akt déjà utilisé, bien à vendre d’abord (→ lien vers estimatioun.lu).
 2. **Ce que vous cherchez** : appartement / maison / les deux, neuf ou ancien, **1 à 3 communes de tout le Luxembourg**, chambres, surface (facultatif), extérieur (facultatif), garage, prêt à rénover, ce qui compte (facultatif).
-3. **Votre budget** : apport, prix envisagé, banque déjà vue, montant d’emprunt connu (facultatif), revenu en tranche (facultatif), case « mis(e) en relation avec notre courtier partenaire ».
-   → **Aperçu du budget, sans coordonnées** (calcul dans le navigateur, rien n’est envoyé).
+3. **Votre budget** : apport, prix envisagé, **bien à vendre d’abord : valeur estimée et prêt restant (facultatif)**, banque déjà vue, montant d’emprunt connu (facultatif), revenu en tranche (facultatif), case « mis(e) en relation avec notre courtier partenaire ».
+   → **Aperçu du budget, sans coordonnées** (calcul dans le navigateur, rien n’est envoyé), avec le **simulateur « Et si… ? »** : curseurs prix et épargne, recalcul immédiat du budget et de la mensualité, « Revenir au départ ». Les montants retenus partent dans le lead ; si le visiteur a bougé les curseurs, l’e-mail montre aussi les montants de départ.
 4. **Calendrier** : quand, biens déjà visités (facultatif), intérêt pour un accompagnement à l’achat (facultatif).
 5. **Coordonnées** : prénom, nom, e-mail, téléphone, message, « prévenez-moi si un bien correspond », accord RGPD.
    → **Résultat complet** : m² par commune, budget, points à vérifier, prochaines étapes (estimation si vente d’abord, rénovation, accompagnement, courtier), appel / rendez-vous, PDF.
@@ -41,6 +41,15 @@ Comme l’outil d’estimation : pas de base de données, pas de cookie, pas de 
 | Copies, extraits, débours | **300 à 1 000 €** | | **hypothèse à valider** (`divers`) |
 | Prix maximal | seulement si le visiteur connaît son montant d’emprunt (sinon, avec 100 % de prêt, seul le revenu limiterait, et l’outil ne calcule pas de prêt) | | |
 | m² par commune | appartement : ventes notariées (≥ 10), neuf : ventes VEFA (≥ 10), sinon médiane du canton ; maison : **prix annoncés** (≥ 30), sinon médiane du canton | Observatoire de l’Habitat | « prix demandés » écrit en clair pour les maisons |
+
+### Vendre d’abord (ajouté le 18/11/2026)
+
+- Produit net de la vente = valeur estimée − prêt restant − frais d’agence estimés (**3 % + TVA = 3,51 %, hypothèse à valider** : `params.json` → `vente.frais_taux`). Jamais négatif. Impôt sur la plus-value non calculé.
+- Il s’ajoute à l’épargne (« Apport total ») pour le budget et le prix maximal. L’outil rappelle qu’il faut un **prêt relais** pour acheter avant d’avoir vendu, sans le calculer (c’est le rôle de la banque ou du courtier).
+
+### Prêt nécessaire
+
+- Le budget montre le **prêt maximal** selon la CSSF et, si l’apport dépasse le minimum, le **prêt nécessaire** en utilisant tout l’apport (frais au plus haut). **La mensualité est calculée sur le prêt nécessaire**, pas sur le maximum.
 
 ### Mensualité d’exemple (ajoutée le 18/11/2026)
 
@@ -70,7 +79,7 @@ Même procédure que l’outil d’estimation (voir son README, parties 1 à 3),
 cd acheteur-widget
 npm install
 cp .dev.vars.example .dev.vars   # EMAIL_MODE=log : aucun e-mail ne part en local
-npm test                          # 65 tests
+npm test                          # 75 tests
 npm run dev                       # http://localhost:8788/ et /demo.html
 ```
 
@@ -103,7 +112,7 @@ cd acheteur-widget && npm run sync-data && npm test && npm run deploy
 3. Politique de confidentialité : ajouter les nouvelles données (budget, revenu en tranche) et **nommer atHome Finance comme destinataire possible** (voir `PRIVACY.md`).
 4. Quand le projet de loi 8806 est voté : `params.json` → `bellegen.par_personne` = 45000 (et mettre à jour `_source`). L’annonce « pas encore votée » disparaît alors toute seule.
 
-## Tests (65)
+## Tests (75)
 
 | Sujet | Fichier |
 | --- | --- |

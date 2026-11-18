@@ -37,6 +37,8 @@ export const LIMITS = {
   apport: { min: 0, max: 20_000_000 },
   prix: { min: 50_000, max: 20_000_000 },
   capaciteMontant: { min: 10_000, max: 20_000_000 },
+  valeurVente: { min: 20_000, max: 20_000_000 },
+  restePret: { min: 0, max: 20_000_000 },
   communes: 3,
 };
 
@@ -54,7 +56,7 @@ export function stepFields(step: number, raw: Raw = {}): string[] {
     case 2:
       return ['type', 'neuf', 'communes', 'chambres', 'surface', 'exterieur', 'garage', 'renover', 'note'];
     case 3:
-      return ['apport', 'prix', 'banque', 'capacite', 'capaciteMontant', 'revenu', 'courtier'];
+      return ['apport', 'prix', 'valeurVente', 'restePret', 'banque', 'capacite', 'capaciteMontant', 'revenu', 'courtier', 'prixDepart', 'apportDepart'];
     case 4:
       return ['delai', 'visites', 'mandat'];
     case 5:
@@ -199,6 +201,12 @@ const CHECKS: Record<string, FieldCheck> = {
   capacite: (r) => oneOf(r.capacite, CAPACITE),
   // Montant facultatif, seulement si le visiteur sait combien il peut emprunter
   capaciteMontant: (r) => (r.capacite !== 'oui' || isEmpty(r.capaciteMontant) ? null : money(r.capaciteMontant, LIMITS.capaciteMontant)),
+  // Bien à vendre d'abord : valeur et prêt restant, facultatifs, seulement si le visiteur doit vendre
+  valeurVente: (r) => (!String(r.vendre ?? '').startsWith('oui') || isEmpty(r.valeurVente) ? null : money(r.valeurVente, LIMITS.valeurVente)),
+  restePret: (r) => (!String(r.vendre ?? '').startsWith('oui') || isEmpty(r.restePret) ? null : money(r.restePret, LIMITS.restePret)),
+  // Montants de départ, avant le simulateur « Et si… ? » (pour l'e-mail ; facultatifs)
+  prixDepart: (r) => (isEmpty(r.prixDepart) ? null : money(r.prixDepart, LIMITS.prix)),
+  apportDepart: (r) => (isEmpty(r.apportDepart) ? null : money(r.apportDepart, LIMITS.apport)),
   revenu: (r) => optOneOf(r.revenu, REVENUS),
   courtier: (r) => flag(r.courtier),
   delai: (r) => oneOf(r.delai, DELAIS),
@@ -248,6 +256,8 @@ export function budgetInput(raw: Raw): BudgetInput | null {
     apport: v.apport as number,
     prix: v.prix as number,
     capaciteMontant: (v.capaciteMontant as number | null) ?? null,
+    valeurVente: (v.valeurVente as number | null) ?? null,
+    restePret: (v.restePret as number | null) ?? null,
   };
 }
 
@@ -292,6 +302,11 @@ export function validateSubmission(body: unknown): ValidationResult {
     banque: v.banque as Answers['banque'],
     capacite: v.capacite as Answers['capacite'],
     capaciteMontant: (v.capaciteMontant as number | null) ?? null,
+    valeurVente: (v.valeurVente as number | null) ?? null,
+    restePret: (v.restePret as number | null) ?? null,
+    // Montants de départ gardés seulement s'ils diffèrent des montants retenus
+    prixDepart: v.prixDepart != null && v.prixDepart !== v.prix ? (v.prixDepart as number) : null,
+    apportDepart: v.apportDepart != null && v.apportDepart !== v.apport ? (v.apportDepart as number) : null,
     revenu: (v.revenu as Answers['revenu']) ?? null,
     courtier: v.courtier as boolean,
     delai: v.delai as Answers['delai'],

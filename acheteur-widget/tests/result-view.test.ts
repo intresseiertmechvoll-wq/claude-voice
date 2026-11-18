@@ -98,3 +98,21 @@ describe('Textes essentiels dans les 3 langues', () => {
     expect(translator('de')('budget.total')).toBe('Gesamtbedarf');
   });
 });
+
+describe('Simulateur et vente dans l’aperçu', () => {
+  it('Curseurs, montants de départ et lignes de la vente', async () => {
+    const { renderSim, simBounds } = await import('../src/ui/result');
+    const b = computeBudget(couple({ apport: 20000, valeurVente: 500000, restePret: 300000 }), PARAMS);
+    const html = renderBudgetPreview(b, t, 'fr', opts, { prixDepart: 600000, apportDepart: 20000 });
+    const txt = strip(html);
+    expect(html).toContain('id="sim-prix"');
+    expect(html).toContain('id="sim-apport"');
+    expect(txt).toContain('Produit net de la vente');
+    expect(txt).toContain('Apport total');
+    expect(txt).toContain('prêt relais');
+    expect(simBounds({ prixDepart: 600000, apportDepart: 20000 })).toEqual({ prix: { min: 360000, max: 840000, step: 5000 }, apport: { min: 0, max: 120000, step: 1000 } });
+    // « Revenir au départ » caché tant que rien n'a bougé, visible ensuite
+    expect(renderSim(b, { prixDepart: 600000, apportDepart: 20000 }, t, 'fr')).toMatch(/id="sim-depart" hidden/);
+    expect(renderSim(computeBudget(couple({ prix: 550000, apport: 20000 }), PARAMS), { prixDepart: 600000, apportDepart: 20000 }, t, 'fr')).not.toMatch(/id="sim-depart" hidden/);
+  });
+});

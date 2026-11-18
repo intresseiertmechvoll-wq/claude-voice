@@ -45,6 +45,9 @@ export interface BudgetInput {
   prix: number;
   /** montant d'emprunt connu (banque, courtier), sinon null */
   capaciteMontant: number | null;
+  /** bien à vendre d'abord : valeur estimée et prêt restant (null si non renseignés) */
+  valeurVente: number | null;
+  restePret: number | null;
 }
 
 /** Réponses validées du visiteur */
@@ -60,6 +63,9 @@ export interface Answers extends BudgetInput {
   note: string;
   banque: Banque;
   capacite: Capacite;
+  /** montants avant le simulateur « Et si… ? » (null si inchangés) */
+  prixDepart: number | null;
+  apportDepart: number | null;
   revenu: Revenu | null;
   courtier: boolean;
   delai: Delai;
@@ -150,6 +156,13 @@ export interface Budget {
   /** apport déclaré − apport nécessaire (négatif = il manque de l'apport) */
   margeMin: number;
   margeMax: number;
+  /** vente du bien actuel : frais estimés et produit net (null si pas de vente renseignée) */
+  fraisVente: number | null;
+  produitVente: number | null;
+  /** apport utilisé dans le calcul : épargne + produit net de la vente */
+  apportTotal: number;
+  /** prêt vraiment nécessaire si tout l'apport est utilisé (au plus le prêt retenu) : base de la mensualité */
+  pretNecessaire: number;
   /** prix maximal avec l'apport et le montant d'emprunt connus (seulement si montant connu) */
   prixMax: number | null;
 }

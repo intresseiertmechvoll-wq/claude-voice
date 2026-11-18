@@ -72,7 +72,8 @@ export function leadPriority(s: Submission, b: Budget): { level: 'chaud' | 'tiè
 export function talkingPoints(s: Submission, b: Budget): string[] {
   const a = s.answers;
   const out: string[] = [];
-  if (a.vendre === 'oui_lu') out.push('Doit d’abord vendre son bien au Luxembourg → proposer l’estimation (estimatioun.lu ou visite).');
+  if (a.vendre === 'oui_lu') out.push(`Doit d’abord vendre son bien au Luxembourg${a.valeurVente ? ` (valeur estimée par le visiteur : ${eur(a.valeurVente)})` : ''} → proposer l’estimation (estimatioun.lu ou visite).`);
+  if (a.prixDepart || a.apportDepart !== null) out.push('A testé d’autres montants dans le simulateur : voir « Budget ».');
   if (a.vendre === 'oui_etranger') out.push('Doit d’abord vendre un bien à l’étranger → timing et financement relais à aborder.');
   if (a.courtier) out.push(`Souhaite être mis(e) en relation avec le courtier partenaire → transmettre à ${server.courtierNom}.`);
   else if (a.banque === 'pas_encore') out.push('N’a pas encore parlé à une banque.');
@@ -149,8 +150,14 @@ export function leadSections(s: Submission, b: Budget, communes: CommuneM2[], da
     {
       title: 'Budget (déclaratif)',
       rows: [
-        ['Prix visé', eur(a.prix)],
-        ['Apport', eur(a.apport)],
+        ['Prix visé', `${eur(a.prix)}${a.prixDepart ? ` (au départ ${eur(a.prixDepart)}, modifié dans le simulateur)` : ''}`],
+        ['Épargne', `${eur(a.apport)}${a.apportDepart !== null ? ` (au départ ${eur(a.apportDepart)}, modifié dans le simulateur)` : ''}`],
+        ...(a.valeurVente !== null
+          ? ([
+              ['Bien à vendre : valeur estimée', `${eur(a.valeurVente)} (déclarée par le visiteur)`],
+              ['Bien à vendre : reste du prêt', eur(a.restePret ?? 0)],
+            ] as [string, string][])
+          : []),
         ['A parlé à sa banque', L.banque[a.banque]],
         ['Sait combien emprunter', a.capacite === 'oui' ? `oui${a.capaciteMontant ? `, environ ${eur(a.capaciteMontant)}` : ''}` : 'non'],
         ['Revenu net du ménage / mois', a.revenu ? L.revenu[a.revenu] : '—'],
@@ -167,8 +174,15 @@ export function leadSections(s: Submission, b: Budget, communes: CommuneM2[], da
         ['Copies, extraits, débours (hypothèse)', range(b.fraisDiversMin, b.fraisDiversMax)],
         ['Besoin total', range(b.totalMin, b.totalMax)],
         ['Règle CSSF', L.ltv[b.ltvRule]],
-        ['Prêt retenu', `${eur(b.pret)}${b.pretLimiteParCapacite ? ' (limité au montant indiqué par le visiteur)' : ''}`],
+        ['Prêt nécessaire (tout l’apport utilisé)', eur(b.pretNecessaire)],
+        ['Prêt maximal retenu', `${eur(b.pret)}${b.pretLimiteParCapacite ? ' (limité au montant indiqué par le visiteur)' : ''}`],
         ['Apport nécessaire', range(b.apportNecessaireMin, b.apportNecessaireMax)],
+        ...(b.produitVente !== null
+          ? ([
+              ['Produit net de la vente', `${eur(b.produitVente)} (frais d’agence estimés ${eur(b.fraisVente)})`],
+              ['Apport total retenu', eur(b.apportTotal)],
+            ] as [string, string][])
+          : []),
         ['Écart avec l’apport déclaré', b.margeMin >= 0 ? `suffisant (+${eur(b.margeMin)} au moins)` : `manque ${range(Math.max(0, -b.margeMax), -b.margeMin)}`],
         ...(b.prixMax !== null ? ([['Prix maximal avec ce montant d’emprunt', eur(b.prixMax)]] as [string, string][]) : []),
       ],
@@ -191,8 +205,8 @@ function mensualiteSection(s: Submission, b: Budget, taux: Taux | null): Section
   const mois = `${taux.mois} (${taux.origine === 'bce' ? 'lu en direct à la BCE' : 'VALEUR DE SECOURS de params.json : la BCE n’a pas répondu'})`;
   const fmtPct = (v: number) => `${v.toFixed(2).replace('.', ',')} %`;
   const rows: [string, string][] = [['Taux moyens BCL', `variable ${fmtPct(taux.variable)} · fixe plus de 10 ans ${fmtPct(taux.fixe)} · ${mois}`]];
-  for (const n of [20, 25, 30]) rows.push([`Sur ${n} ans (prêt ${eur(b.pret)})`, `${eur(Math.round(mensualite(b.pret, taux.variable, n)))} variable · ${eur(Math.round(mensualite(b.pret, taux.fixe, n)))} fixe`]);
-  const part = partRevenu(mensualite(b.pret, taux.fixe, 25), s.answers.revenu);
+  for (const n of [20, 25, 30]) rows.push([`Sur ${n} ans (prêt ${eur(b.pretNecessaire)})`, `${eur(Math.round(mensualite(b.pretNecessaire, taux.variable, n)))} variable · ${eur(Math.round(mensualite(b.pretNecessaire, taux.fixe, n)))} fixe`]);
+  const part = partRevenu(mensualite(b.pretNecessaire, taux.fixe, 25), s.answers.revenu);
   if (part) rows.push(['Part du revenu (25 ans, fixe)', `${part.min !== null ? Math.round(part.min * 100) : '?'} à ${part.max !== null ? Math.round(part.max * 100) : '?'} %`]);
   return { title: 'Mensualité d’exemple (hors assurance)', rows };
 }

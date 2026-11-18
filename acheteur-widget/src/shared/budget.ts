@@ -64,11 +64,24 @@ function raw(i: BudgetInput, prix: number, p: Params) {
  * Prix maximal pour un apport et un montant d'emprunt connus.
  * Sans montant connu, il n'y en a pas : avec 100 % de prêt possible (premier achat), seul le revenu limite, et l'outil ne le calcule pas.
  */
+/** Vente du bien actuel : produit net = valeur − prêt restant − frais d'agence estimés (jamais négatif) */
+export function vente(i: Pick<BudgetInput, 'valeurVente' | 'restePret'>, p: Params): { frais: number; produit: number } | null {
+  if (i.valeurVente === null || i.valeurVente <= 0) return null;
+  const frais = i.valeurVente * p.vente.frais_taux;
+  return { frais, produit: Math.max(0, i.valeurVente - (i.restePret ?? 0) - frais) };
+}
+
+/** Apport utilisé : épargne + produit net de la vente */
+export function apportTotal(i: BudgetInput, p: Params): number {
+  return i.apport + (vente(i, p)?.produit ?? 0);
+}
+
 export function prixMaximal(i: BudgetInput, p: Params): number | null {
   if (i.capaciteMontant === null) return null;
+  const dispo = apportTotal(i, p);
   const ok = (prix: number) => {
     const r = raw(i, prix, p);
-    return r.totalMax - r.pret <= i.apport;
+    return r.totalMax - r.pret <= dispo;
   };
   let lo = 0;
   let hi = 20_000_000;
@@ -88,6 +101,8 @@ export function computeBudget(i: BudgetInput, p: Params): Budget {
   const rd = (v: number) => roundTo(v, step);
   const apportNecessaireMin = Math.max(0, r.totalMin - r.pret);
   const apportNecessaireMax = Math.max(0, r.totalMax - r.pret);
+  const v = vente(i, p);
+  const dispo = i.apport + (v?.produit ?? 0);
   return {
     prix: i.prix,
     droits: rd(r.droits),
@@ -109,8 +124,13 @@ export function computeBudget(i: BudgetInput, p: Params): Budget {
     apportNecessaireMin: rd(apportNecessaireMin),
     apportNecessaireMax: rd(apportNecessaireMax),
     apport: i.apport,
-    margeMin: rd(i.apport - apportNecessaireMax),
-    margeMax: rd(i.apport - apportNecessaireMin),
+    fraisVente: v ? rd(v.frais) : null,
+    produitVente: v ? rd(v.produit) : null,
+    apportTotal: rd(dispo),
+    // Frais au plus haut : on ne sous-estime pas le prêt
+    pretNecessaire: rd(Math.max(0, Math.min(r.pret, r.totalMax - dispo))),
+    margeMin: rd(dispo - apportNecessaireMax),
+    margeMax: rd(dispo - apportNecessaireMin),
     prixMax: prixMaximal(i, p),
   };
 }

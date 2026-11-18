@@ -129,3 +129,17 @@ describe('Investissement', () => {
     expect(sent.text).not.toContain('Bëllegen Akt :');
   });
 });
+
+describe('Vente et simulateur dans l’e-mail', () => {
+  it('Produit de la vente et montants de départ du simulateur', async () => {
+    resetMemoryLimiter();
+    const { env, deps, fetchMock } = setup();
+    const res = await handleBudget(req(body({ answers: { apport: '20 000', valeurVente: '500 000', restePret: '300 000', prix: '550000', prixDepart: '600000', apportDepart: '20000' } })), env, deps);
+    expect(res.status).toBe(200);
+    const sent = JSON.parse((fetchMock.mock.calls.find((c) => String(c[0]).includes('resend')) as unknown as [string, RequestInit])[1].body as string);
+    expect(sent.text).toContain('Produit net de la vente');
+    expect(sent.text).toContain('au départ 600.000 €, modifié dans le simulateur');
+    expect(sent.text).toContain('A testé d’autres montants dans le simulateur');
+    expect(sent.text).not.toContain('au départ 20.000 €'); // épargne inchangée : pas de mention
+  });
+});

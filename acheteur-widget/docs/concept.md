@@ -621,6 +621,12 @@ Getestet: 52 automatische Tests; Ablauf im echten Browser (Chromium, 390 px und 
 - **Nicht getestet:** Abruf bei der EZB aus Cloudflare heraus. Lokal lief der Ersatzwert.
 - Rechtlich (meine Einschätzung, nicht anwaltlich geprüft): eine allgemeine Beispielrechnung mit öffentlichen Durchschnittszinsen, ohne Produkt und ohne Bank, ist keine Kreditvermittlung im Sinne von L. 226-1. Banken zeigen solche Rechner öffentlich.
 
+## 13. Simulator und Verkaufserlös (18.11.2026)
+
+- **Simulator „Et si… ?“** im Budget-Bildschirm: Regler für Kaufpreis und Ersparnisse, sofortige Neuberechnung von Budget und Monatsrate, „Revenir au départ“. Die zuletzt eingestellten Beträge gehen in den Lead; geänderte Ausgangswerte stehen in der E-Mail.
+- **Verkaufen und kaufen:** Wert der eigenen Immobilie und Restschuld (freiwillig) → Netto-Erlös nach geschätzten Maklerkosten (3 % + MwSt., **Annahme, von Jason zu bestätigen**) zählt zum Eigenkapital. Hinweis auf Überbrückungskredit, ohne ihn zu berechnen.
+- **Korrektur beim Bau gefunden:** Die Monatsrate wurde vorher auf den höchsten erlaubten Kredit gerechnet, nicht auf den nötigen. Bei viel Eigenkapital war sie dadurch deutlich zu hoch (Beispiel: 2 910 € statt 1 650 € pro Monat). Jetzt: Rate auf den nötigen Kredit, wenn das ganze Eigenkapital eingesetzt wird.
+
 ## Anhang: Quellen
 
 | Quelle | URL | Stand |

@@ -707,8 +707,29 @@ html.is-embedded #app { padding: 4px 2px 24px; }
 
 .mens-table th[scope="col"] { text-align: right; font-size: 0.8125rem; font-weight: 600; color: var(--muted); }
 .mens-table th[scope="col"]:first-child { text-align: left; }
+.mens-table th[scope="row"] { white-space: nowrap; }
 .part { margin: 14px 0 0; padding: 12px 14px; border-radius: 10px; font-weight: 600; }
 .part-low { background: var(--up-bg); color: var(--up); }
 .part-mid { background: var(--gold-soft); color: var(--navy); }
 .part-high { background: var(--down-bg); color: var(--down); }
 @media print { .part { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+
+/* Vente du bien actuel (étape 3) */
+.vente-box { margin-top: 18px; padding: 14px; border-radius: var(--radius); border: 1.5px dashed var(--gold); background: var(--offwhite); }
+.vente-box[hidden] { display: none; }
+.vente-title { display: flex; align-items: center; gap: 8px; margin: 0; font-weight: 700; }
+.vente-box .field { margin-top: 14px; }
+.relais { display: flex; gap: 8px; align-items: flex-start; }
+
+/* Simulateur « Et si… ? » */
+.sim { margin-top: 16px; padding: 14px 16px 16px; border-radius: var(--radius); background: var(--navy); color: var(--white); }
+.sim h3 { display: flex; align-items: center; gap: 8px; margin: 0; font-family: var(--font-title); font-size: 1.0625rem; }
+.sim h3 .ico { color: var(--gold); }
+.sim .small { color: #dfe6ef; margin-top: 4px; }
+.sim-row { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 4px 12px; margin-top: 14px; }
+.sim-row label { font-weight: 600; font-size: 0.9375rem; }
+.sim-row output { font-family: var(--font-title); font-weight: 600; font-variant-numeric: tabular-nums; color: var(--gold-soft); }
+.sim-row input[type='range'] { grid-column: 1 / -1; width: 100%; min-height: 32px; accent-color: var(--gold); }
+.sim .link-btn { color: var(--white); }
+.sim-depart[hidden] { display: none; }
+@media print { .sim { display: none; } }

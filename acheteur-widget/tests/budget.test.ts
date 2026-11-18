@@ -125,3 +125,44 @@ describe('Neuf sans assez de ventes de neuf', () => {
     expect(d.ancienPourNeuf).toBeUndefined();
   });
 });
+
+describe('Vendre d’abord : le produit de la vente compte dans l’apport', () => {
+  it('Valeur 500 000 €, reste du prêt 300 000 €, épargne 20 000 € : calcul à la main', async () => {
+    const { vente } = await import('../src/shared/budget');
+    const i = couple({ apport: 20000, valeurVente: 500000, restePret: 300000 });
+    // frais d'agence estimés 3,51 % = 17 550 € ; produit net = 500 000 − 300 000 − 17 550 = 182 450 €
+    expect(vente(i, PARAMS)).toEqual({ frais: 17550, produit: 182450 });
+    const b = computeBudget(i, PARAMS);
+    expect(b.produitVente).toBe(182500); // arrondi à 100 €
+    expect(b.apportTotal).toBe(202500);
+    expect(b.margeMin).toBe(196400); // 202 450 − 6 090,74
+  });
+  it('Prêt restant plus haut que la valeur : produit 0, jamais négatif', () => {
+    expect(computeBudget(couple({ valeurVente: 300000, restePret: 350000 }), PARAMS).produitVente).toBe(0);
+  });
+  it('Sans valeur renseignée : rien ne change', () => {
+    const b = computeBudget(couple(), PARAMS);
+    expect(b.produitVente).toBeNull();
+    expect(b.apportTotal).toBe(60000);
+  });
+  it('Le prix maximal tient compte du produit de la vente', () => {
+    const sans = prixMaximal(couple({ apport: 20000, capaciteMontant: 500000 }), PARAMS)!;
+    const avec = prixMaximal(couple({ apport: 20000, capaciteMontant: 500000, valeurVente: 400000, restePret: 200000 }), PARAMS)!;
+    expect(avec).toBeGreaterThan(sans + 150000);
+  });
+});
+
+describe('Prêt nécessaire (base de la mensualité)', () => {
+  it('Tout l’apport utilisé : 606 090,74 − 60 000 = 546 090,74 € (pas le prêt maximal de 600 000 €)', () => {
+    const b = computeBudget(couple(), PARAMS);
+    expect(b.pret).toBe(600000);
+    expect(b.pretNecessaire).toBe(546100);
+  });
+  it('Avec la vente : 606 090,74 − 202 450 = 403 640,74 €', () => {
+    expect(computeBudget(couple({ apport: 20000, valeurVente: 500000, restePret: 300000 }), PARAMS).pretNecessaire).toBe(403600);
+  });
+  it('Apport insuffisant : prêt nécessaire = prêt maximal', () => {
+    const b = computeBudget(couple({ usage: 'investir', prix: 400000, apport: 50000 }), PARAMS);
+    expect(b.pretNecessaire).toBe(b.pret);
+  });
+});

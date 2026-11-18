@@ -35,7 +35,7 @@ Prévenir si un bien correspond : Oui
 
 == Budget (déclaratif) ==
 Prix visé : 600.000 €
-Apport : 60.000 €
+Épargne : 60.000 €
 A parlé à sa banque : pas encore
 Sait combien emprunter : non
 Revenu net du ménage / mois : 6 000 – 8 000 €
@@ -49,16 +49,17 @@ Acte de prêt (0,24 % + 0,05 % + notaire barème 5, TVA) : 2.900 €
 Copies, extraits, débours (hypothèse) : 300 € à 1.000 €
 Besoin total : 605.400 € à 606.100 €
 Règle CSSF : 100 % (premier achat)
-Prêt retenu : 600.000 €
+Prêt nécessaire (tout l’apport utilisé) : 546.100 €
+Prêt maximal retenu : 600.000 €
 Apport nécessaire : 5.400 € à 6.100 €
 Écart avec l’apport déclaré : suffisant (+53.900 € au moins)
 
 == Mensualité d’exemple (hors assurance) ==
 Taux moyens BCL : variable 3,13 % · fixe plus de 10 ans 4,03 % · 2026-09 (lu en direct à la BCE)
-Sur 20 ans (prêt 600.000 €) : 3.367 € variable · 3.645 € fixe
-Sur 25 ans (prêt 600.000 €) : 2.886 € variable · 3.177 € fixe
-Sur 30 ans (prêt 600.000 €) : 2.572 € variable · 2.875 € fixe
-Part du revenu (25 ans, fixe) : 40 à 53 %
+Sur 20 ans (prêt 546.100 €) : 3.064 € variable · 3.318 € fixe
+Sur 25 ans (prêt 546.100 €) : 2.627 € variable · 2.892 € fixe
+Sur 30 ans (prêt 546.100 €) : 2.341 € variable · 2.617 € fixe
+Part du revenu (25 ans, fixe) : 36 à 48 %
 
 == Ce que 600.000 € représente (1er juillet 2025 – 30 juin 2026) ==
 Dudelange – appartement : ≈ 92 m² (6.512 €/m², ventes notariées, 130 ventes)
