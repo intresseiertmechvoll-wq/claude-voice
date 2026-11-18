@@ -19,18 +19,18 @@ Date du relevé : la date du jour, `AAAA-MM-JJ`. Dossier de travail : le scratch
 Avec l'outil MCP `mcp__Firecrawl__firecrawl_scrape` (l'accès direct à athome.lu est bloqué par le proxy) :
 
 - page 1 : `https://www.athome.lu/location/maison`, puis `https://www.athome.lu/location/maison?page=2`, `?page=3`… jusqu'à une page 404 ou une page sans nouvelle annonce (environ 24 pages ; 20 annonces par page) ;
-- `formats: ["query"]`, et ce `queryOptions.prompt` :
+- `formats: ["query"]`, **`maxAge: 0`** (obligatoire : sinon Firecrawl peut renvoyer une copie de la page vieille de plusieurs jours, et les maisons louées entre-temps ne seraient pas vues comme disparues ; vérifier dans la réponse que `cacheState` n'est pas `hit`), et ce `queryOptions.prompt` :
 
 > Return ONLY a CSV (header: rent_eur,surface_m2,bedrooms,type,locality,url) with one line per rental listing card in the main results list of this page, including inline 'Annonce suggérée' cards. Copy numbers exactly as shown on the card: rent as integer euros (no spaces, no € sign), surface as integer m2 (empty if not shown). bedrooms = the number in 'N chambre(s)' only; if the card says 'N pièces', leave bedrooms empty. type = card title words before 'à louer' or before the count (Maison, Maison individuelle, Maison mitoyenne, Maison jumelée, Villa, Bungalow…). locality = locality exactly as shown, including a country suffix like (FR), (BE) or (DE). After the CSV, one line: RESULTS_LINE=<text like '21 - 40 sur 463 annonces'>.
 
 - Plusieurs pages peuvent être lues en parallèle (6 à la fois).
-- **Contrôle** : lire aussi la page 1 avec `formats: ["markdown"]` et vérifier chaque ligne du CSV (loyer, surface) contre le texte. Si plus d'une ligne sur 20 est fausse, s'arrêter et le signaler.
+- **Contrôle** : lire aussi la page 1 avec `formats: ["markdown"]` (et `maxAge: 0`) et vérifier chaque ligne du CSV (loyer, surface) contre le texte. Si plus d'une ligne sur 20 est fausse, s'arrêter et le signaler.
 - Écrire un seul fichier `athome.csv` avec l'en-tête `source,page,rent_eur,surface_m2,bedrooms,type,locality,country,url,flag` : `source = athome`, `country = LU` sauf si la localité finit par (FR), (BE) ou (DE). Retirer les doublons (même `url`).
 - Si une page renvoie une erreur, la relancer une fois. Si le total lu est très inférieur au total annoncé (« sur N annonces »), le noter dans le rapport.
 
 ## 2. wortimmo : toutes les maisons à louer
 
-- `https://www.wortimmo.lu/fr/location/maison`, puis `?page=2`, `?page=3`… jusqu'à ce que le lien « page suivante » manque (environ 4 pages).
+- `https://www.wortimmo.lu/fr/location/maison`, puis `?page=2`, `?page=3`… jusqu'à ce que le lien « page suivante » manque (environ 4 pages). Là aussi **`maxAge: 0`**.
 - `queryOptions.prompt` :
 
 > Return CSV rent_eur,surface_m2,bedrooms,locality,url for each listing card (empty if absent; numbers as integers, no € sign). Then one line NEXT=<href of next page link or none>.
