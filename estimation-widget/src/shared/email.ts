@@ -1,6 +1,6 @@
 /** E-mail du lead envoyé à ImmoBuild Kohn (toujours en français) */
 import type { Estimate } from './engine';
-import type { Submission } from './types';
+import type { AddressDetails, Submission } from './types';
 import { POSTES_APPARTEMENT, POSTES_MAISON } from './types';
 
 const L = {
@@ -72,7 +72,35 @@ export function leadSubject(s: Submission): string {
 
 type Section = { title: string; rows: [string, string][] };
 
-export function leadSections(s: Submission, e: Estimate, date: Date): Section[] {
+const m2 = (v: number) => `${new Intl.NumberFormat('fr-LU', { maximumFractionDigits: 2 }).format(v).replace(/[\u00a0\u202f]/g, ' ')} m²`;
+const flood = (z: { river: string; depth: string } | null) => (z ? `oui – ${z.river || 'cours d’eau non précisé'}${z.depth ? `, hauteur d’eau ${z.depth}` : ''}` : 'non (hors zone cartographiée)');
+
+/** Section « Adresse sur les cartes officielles » : données relues par le serveur sur le géoportail */
+export function addressSection(s: Submission, geo: AddressDetails | null): Section {
+  const a = s.answers;
+  const title = 'Adresse sur les cartes officielles (géoportail)';
+  if (!geo) return { title, rows: [['Recherche', 'géoportail injoignable : données non disponibles pour cette demande']] };
+  if (!geo.address) return { title, rows: [['Recherche', 'adresse non trouvée sur le géoportail']] };
+  const house = a.type === 'maison';
+  const rows: [string, string][] = [['Adresse trouvée', `${geo.address.label}${geo.address.precise ? '' : ' (approximative : rue ou localité seulement, pas de parcelle)'}`]];
+  if (geo.address.precise) {
+    rows.push(['Parcelle cadastrale', geo.parcel ? `${geo.parcel.numero} – ${m2(geo.parcel.areaM2)}${house ? ` (terrain déclaré : ${a.terrain} m² ; le bien peut compter plusieurs parcelles)` : ' (parcelle de l’immeuble)'}` : 'non trouvée']);
+    const b = geo.building;
+    rows.push(['Emprise au sol du bâtiment', b ? m2(b.footprintM2) : 'non trouvée']);
+    if (house && b && b.typeSuggere) {
+      rows.push([
+        'Bâtiments accolés',
+        `${b.adjacent} → suggestion : ${L.maisonType[b.typeSuggere].toLowerCase()} (d’après le plan cadastral, à vérifier : un garage ou une annexe accolés comptent aussi) ; réponse du visiteur : ${a.maisonType ? L.maisonType[a.maisonType].toLowerCase() : '—'}`,
+      ]);
+    }
+    rows.push(['Zone inondable – crue centennale (HQ100)', geo.flood ? flood(geo.flood.hq100) : 'non disponible']);
+    rows.push(['Zone inondable – crue extrême (HQext)', geo.flood ? flood(geo.flood.hqext) : 'non disponible']);
+  }
+  rows.push(['Sources', '© ACT – plan cadastral (CC BY 4.0) et base nationale des bâtiments ; cartes des zones inondables, Administration de la gestion de l’eau']);
+  return { title, rows };
+}
+
+export function leadSections(s: Submission, e: Estimate, date: Date, geo?: AddressDetails | null): Section[] {
   const a = s.answers;
   const c = s.contact;
   const r = e.result;
@@ -121,7 +149,7 @@ export function leadSections(s: Submission, e: Estimate, date: Date): Section[] 
       rows: [
         ['Type', L.type[a.type]],
         ['Commune', `${a.commune}${d ? ` (canton ${d.canton})` : ''}`],
-        ['Rue', a.rue || '—'],
+        ['Adresse', a.rue || '—'],
         ['Surface habitable nette', `${a.surface} m²`],
         ['Chambres', String(a.chambres)],
         ['Salles de bain', String(a.sdb)],
@@ -139,6 +167,7 @@ export function leadSections(s: Submission, e: Estimate, date: Date): Section[] 
             ] as [string, string][])),
       ],
     },
+    ...(geo !== undefined ? [addressSection(s, geo)] : []),
     { title: 'Gros postes', rows: postes.map((p) => [L.posteNom[p], L.poste[a.postes[p] ?? 'inconnu']] as [string, string]) },
     {
       title: 'Annexes',
@@ -198,8 +227,9 @@ export function leadSections(s: Submission, e: Estimate, date: Date): Section[] 
   return sections;
 }
 
-export function leadEmail(s: Submission, e: Estimate, date = new Date()): { subject: string; html: string; text: string } {
-  const sections = leadSections(s, e, date);
+/** geo : absent si aucune adresse n'a été donnée ; null si le géoportail n'a pas répondu */
+export function leadEmail(s: Submission, e: Estimate, date = new Date(), geo?: AddressDetails | null): { subject: string; html: string; text: string } {
+  const sections = leadSections(s, e, date, geo);
   const text = sections
     .map((sec) => `== ${sec.title} ==\n` + sec.rows.map(([k, v]) => `${k} : ${v.replace(/\n/g, '\n    | ')}`).join('\n'))
     .join('\n\n');

@@ -229,6 +229,39 @@ export default function EstimationWidget({ lang = 'fr' }: { lang?: 'fr' | 'de' |
 
 ---
 
+## Adresse et cartes officielles
+
+L'adresse est **facultative** (étape 1). Dès 4 caractères, l'outil propose des adresses ; le visiteur peut aussi taper librement sans choisir.
+
+**Ce qui se passe quand il choisit une adresse.** Le serveur de l'outil (pas le navigateur) interroge le géoportail national, geoportail.lu :
+
+| Donnée | Service | Licence / source |
+| --- | --- | --- |
+| Propositions d'adresses, position exacte | recherche et géocodage du géoportail | © ACT (Administration du cadastre et de la topographie) |
+| Parcelle cadastrale (numéro, surface) | plan cadastral numérisé (PCN), service INSPIRE `cp` | CC BY 4.0, © ACT |
+| Emprise du bâtiment, bâtiments accolés | base nationale des bâtiments 2023, service INSPIRE `bu` | © ACT |
+| Zones inondables (crue centennale HQ100, crue extrême HQext) | cartes des zones inondables | Administration de la gestion de l'eau |
+
+Ce que le visiteur voit :
+
+- **Maison** : à l'étape 2, le terrain est prérempli avec la surface de la parcelle s'il est vide (« Cadastre : 555 m² (parcelle 1329/5186). Modifiable si le terrain comprend plusieurs parcelles. »), et le type de maison est présélectionné s'il n'a rien choisi (« Détecté d'après le plan cadastral, à vérifier »). Un choix du visiteur n'est jamais remplacé.
+- **Appartement** : rien sur la parcelle (elle concerne tout l'immeuble).
+- **Résultat** : section « Votre adresse sur les cartes officielles » (parcelle et bâtiment pour les maisons, zones inondables pour tous), avec les sources. Rien si aucune adresse n'a été choisie dans la liste.
+
+Ce que tu reçois : à l'envoi, le serveur refait la recherche lui-même (il ne reprend jamais les données du navigateur) et ajoute à l'e-mail du lead la section « Adresse sur les cartes officielles » : adresse trouvée, parcelle et surface, emprise du bâtiment, bâtiments accolés et type suggéré (à côté de la réponse du visiteur), zones inondables. Au plus 4 secondes ; si le géoportail est en panne, l'e-mail le dit et l'estimation part quand même.
+
+**Limites à connaître :**
+
+- **Plusieurs parcelles** : un terrain peut en compter plusieurs (jardin, accès). Seule la parcelle sous l'adresse est lue : d'où « Modifiable » sous le terrain.
+- **Maison accolée** : on compte les bâtiments à moins de 0,6 m du bâtiment principal (0 isolée, 1 jumelée, 2 et plus mitoyenne). Un garage ou une annexe accolés comptent aussi : c'est une suggestion, à vérifier.
+- **Adresse approximative** (rue seulement) : pas de parcelle, ni de bâtiment, ni de zone inondable.
+- **Bruit** (routes, aéroport) : pas encore disponible par une interface documentée du géoportail (les couches testées le 18/11/2026 ne renvoient rien). Non utilisé.
+- Aucune de ces données ne change le prix calculé : elles t'aident à préparer le rendez-vous.
+
+**À vérifier après la mise en ligne.** Le géoportail n'était pas joignable depuis l'environnement de développement : les tests utilisent des réponses réelles enregistrées le 18/11/2026 (`tests/fixtures/geoportail/`). Après `npm run deploy`, fais un essai avec une vraie adresse (par ex. 206, route de Burange, Dudelange : parcelle 1329/5186, 555 m²) et vérifie la section dans l'e-mail. Si le géoportail change ses services, l'outil continue de fonctionner sans ces données.
+
+Limites par adresse IP (en mémoire) : 120 recherches d'adresses et 60 recherches de détails par heure.
+
 ## Comment le prix est calculé
 
 Toutes les données viennent de l'Observatoire de l'Habitat (data.public.lu, licence CC0), période actuelle : 1er juillet 2025 – 30 juin 2026.
@@ -335,7 +368,8 @@ Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'a
 - Le formulaire n'est accepté que depuis la page de l'outil elle-même : l'en-tête `Origin` est obligatoire et doit être celui de l'outil (une requête sans `Origin` est refusée). Limite honnête : un robot peut imiter cet en-tête ; le contrôle bloque surtout les envois depuis d'autres sites et les scripts simples.
 - HTTPS imposé au navigateur (en-tête `Strict-Transport-Security`, 1 an) ; `www.estimatioun.lu` redirige vers `estimatioun.lu`.
 - Le résultat n'est renvoyé qu'après des coordonnées valides **et** l'envoi réussi de l'e-mail. Si Resend échoue ou ne répond pas en 10 secondes, le visiteur voit un message d'erreur avec ton adresse e-mail et peut réessayer (l'essai raté ne compte pas dans la limite) : le lead n'est jamais perdu en silence.
-- La rue, le nom et les autres champs d'une ligne ne peuvent pas contenir de retour à la ligne ni de caractères invisibles : impossible d'imiter une rubrique de l'e-mail. Le message libre est mis en retrait.
+- L'adresse, le nom et les autres champs d'une ligne ne peuvent pas contenir de retour à la ligne ni de caractères invisibles : impossible d'imiter une rubrique de l'e-mail. Le message libre est mis en retrait.
+- Le géoportail ne reçoit que l'adresse, envoyée par le serveur (jamais l'IP ni les coordonnées du visiteur) ; ses réponses sont nettoyées (une ligne, sans caractère de contrôle) avant d'entrer dans l'e-mail.
 - Aucune donnée n'est stockée ailleurs que dans l'e-mail (et, si KV est activé, une empreinte d'IP effacée après 1 heure).
 - Détails pour ta politique de confidentialité : `PRIVACY.md`.
 
@@ -356,6 +390,7 @@ Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'a
 | Écran d'analyse : 5 étapes, durée réglable, vrais chiffres seulement après la réponse du serveur | `tests/analysis.test.ts` |
 | Textes essentiels protégés (jardin et cave privatifs, ares, bornes de la jauge, ventes notariées, destination des données) | `tests/texts-essentiels.test.ts` |
 | Simulateur : ticket signé obligatoire, valeurs interdites refusées, aucun e-mail par essai, e-mail de complément recalculé côté serveur | `tests/simulate.test.ts` |
+| Adresse : propositions et détails du géoportail (réponses réelles enregistrées), bonne parcelle parmi les voisines, bâtiments accolés, zones inondables (point dans le polygone), pannes et lenteurs → données vides mais estimation envoyée, section de l'e-mail | `tests/adresse.test.ts`, `tests/geo.test.ts`, `tests/adresse-vue.test.ts` |
 | Revue par 6 agents (11/11/2026) : un test par bug confirmé (Resend en panne, rejeu du ticket, saisie tolérante, autres noms de communes, fourchette des petits logements, garages plafonnés, prix au m² cohérent, poids réels dans l'e-mail) | `tests/revue-agents.test.ts` |
 
 `npm run screenshots` (serveur local lancé) parcourt tout le questionnaire comme un visiteur, prend les captures et lance un audit d'accessibilité axe-core (WCAG 2.1 AA) sur chaque écran.

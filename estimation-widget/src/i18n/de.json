@@ -61,7 +61,7 @@
     "commune": "Gemeinde",
     "communeHelp": "Tippen Sie die ersten Buchstaben oder wählen Sie unten.",
     "communeEmpty": "Keine Gemeinde gefunden.",
-    "rue": "Straße",
+    "rue": "Adresse",
     "surface": "Netto-Wohnfläche (m²)",
     "surfaceHelp": "Netto = ohne Wandstärke.",
     "chambres": "Anzahl Schlafzimmer",
@@ -202,7 +202,13 @@
     "numeroWhy": "Nur, um Sie zu Ihrer Immobilie zu kontaktieren.",
     "emailTypo": "Meinten Sie",
     "terrainAres": "In Ar? {a} a = {m2} m². Bitte die Fläche in m² angeben.",
-    "objectifHelp": "Sie erhalten eine Schätzung des Verkaufspreises, auch wenn Sie vermieten möchten."
+    "objectifHelp": "Sie erhalten eine Schätzung des Verkaufspreises, auch wenn Sie vermieten möchten.",
+    "rueHelp": "Mit Ihrer Adresse wird die Schätzung genauer.",
+    "ruePlaceholder": "z. B. 12, rue de la Gare",
+    "rueSuggestions": "Vorgeschlagene Adressen: {n}",
+    "rueFound": "Adresse auf der amtlichen Karte gefunden.",
+    "geoTerrain": "Kataster: {m2} m² (Parzelle {parcelle}). Bitte anpassen, wenn das Grundstück aus mehreren Parzellen besteht.",
+    "geoMaisonType": "Aus dem Katasterplan erkannt, bitte prüfen."
   },
   "errors": {
     "required": "Dieses Feld ist erforderlich.",
@@ -442,5 +448,15 @@
     "renseigne": "Gute Idee, sich erst einmal unverbindlich zu informieren.",
     "nonProprio": "Kein Problem, ich schätze auch eine Immobilie, die Ihnen nicht gehört.",
     "energieMid": "Klasse {c}, notiert."
+  },
+  "geo": {
+    "title": "Ihre Adresse auf den amtlichen Karten",
+    "parcel": "Katasterparzelle {parcelle}: {m2} m²",
+    "building": "Grundfläche des Gebäudes: {m2} m²",
+    "floodNone": "Außerhalb der kartierten Überschwemmungsgebiete (hundertjährliches und extremes Hochwasser)",
+    "flood100": "Überschwemmungsgebiet (hundertjährliches Hochwasser) – {detail}",
+    "floodExt": "Überschwemmungsgebiet (extremes Hochwasser) – {detail}",
+    "flood100None": "Außerhalb des Gebiets für hundertjährliches Hochwasser",
+    "sources": "© ACT – Katasterplan (CC BY 4.0) · Hochwassergefahrenkarten, Wasserwirtschaftsamt"
   }
 }

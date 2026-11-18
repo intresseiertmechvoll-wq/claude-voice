@@ -18,6 +18,8 @@ export interface Ctx {
   e: Errors;
   privacyUrl: string;
   quickCommunes: string[];
+  /** notes tirées des cartes officielles (adresse choisie dans la liste), déjà traduites */
+  geo?: { found?: string; terrain?: string; maisonType?: string };
 }
 
 export const STEP_ICONS = ['epingle', 'regle', 'outils', 'garage', 'drapeau', 'personne'];
@@ -49,8 +51,8 @@ function errorMessage(ctx: Ctx, name: string): string {
   return `<p class="field-error" id="${name}-error">${icon('info', 'ico ico-xs')}<span>${esc(ctx.t(key))}</span></p>`;
 }
 
-function describedBy(ctx: Ctx, name: string, help: boolean): string {
-  const ids = [help ? `${name}-help` : '', ctx.e[name] ? `${name}-error` : ''].filter(Boolean).join(' ');
+function describedBy(ctx: Ctx, name: string, help: boolean, extra = ''): string {
+  const ids = [help ? `${name}-help` : '', extra, ctx.e[name] ? `${name}-error` : ''].filter(Boolean).join(' ');
   return ids ? ` aria-describedby="${ids}"` : '';
 }
 
@@ -90,13 +92,17 @@ function input(
 
 type Opt = { value: string; label: string; icon?: string; hint?: string };
 
+/** Petite note sous un champ, tirée du plan cadastral */
+const geoNote = (name: string, text: string) => `<p class="geo-note" id="${name}-geo">${icon('epingle', 'ico ico-xs')}<span>${esc(text)}</span></p>`;
+
 /** Choix unique sous forme de cartes (avec icône) ou de pastilles */
-function choices(ctx: Ctx, name: string, legend: string, options: Opt[], variant: 'cards' | 'tiles' | 'chips' | 'list' = 'cards', legendIcon?: string): string {
+function choices(ctx: Ctx, name: string, legend: string, options: Opt[], variant: 'cards' | 'tiles' | 'chips' | 'list' = 'cards', legendIcon?: string, note?: string): string {
   const hint = name === 'objectif' ? ctx.t('fields.objectifHelp') : '';
-  const desc = describedBy(ctx, name, !!hint);
+  const desc = describedBy(ctx, name, !!hint, note ? `${name}-geo` : '');
   return `<fieldset class="field choices choices-${variant} n${options.length}${hasErr(ctx, name)}" id="${name}" data-field="${name}"${desc}>
   <legend><span>${esc(legend)}</span></legend>
   ${hint ? `<p class="help" id="${name}-help">${esc(hint)}</p>` : ''}
+  ${note ? geoNote(name, note) : ''}
   ${errorMessage(ctx, name)}
   <div class="options">
     ${options
@@ -130,7 +136,7 @@ function stepper(ctx: Ctx, name: string, label: string, lim: { min: number; max:
 }
 
 /** Nombre + curseur synchronisés (surface, terrain, terrasse) */
-function slider(ctx: Ctx, name: string, label: string, sliderLabel: string, o: { min: number; max: number; step: number; help?: string; ico?: string; optional?: boolean }): string {
+function slider(ctx: Ctx, name: string, label: string, sliderLabel: string, o: { min: number; max: number; step: number; help?: string; ico?: string; optional?: boolean; note?: string }): string {
   const raw = String(ctx.v[name] ?? '');
   const n = Number(raw.replace(',', '.'));
   const pos = raw !== '' && Number.isFinite(n) ? Math.min(o.max, Math.max(o.min, n)) : o.min;
@@ -138,9 +144,10 @@ function slider(ctx: Ctx, name: string, label: string, sliderLabel: string, o: {
   <label for="${name}"><span>${labelText(ctx, label, o.optional)}</span></label>
   ${o.help ? `<p class="help" id="${name}-help">${esc(o.help)}</p>` : ''}
   <div class="slider-row">
-    <div class="input-wrap has-suffix slider-number"><input type="text" id="${name}" name="${name}" value="${esc(raw)}" inputmode="decimal" autocomplete="off" maxlength="6" aria-required="true"${invalid(ctx, name)}${describedBy(ctx, name, !!o.help)}><span class="suffix" aria-hidden="true">m²</span></div>
+    <div class="input-wrap has-suffix slider-number"><input type="text" id="${name}" name="${name}" value="${esc(raw)}" inputmode="decimal" autocomplete="off" maxlength="6" aria-required="true"${invalid(ctx, name)}${describedBy(ctx, name, !!o.help, o.note ? `${name}-geo` : '')}><span class="suffix" aria-hidden="true">m²</span></div>
     <input type="range" class="range" data-sync="${name}" min="${o.min}" max="${o.max}" step="${o.step}" value="${pos}" aria-label="${esc(sliderLabel)}">
   </div>
+  ${o.note ? geoNote(name, o.note) : ''}
   ${errorMessage(ctx, name)}
 </div>`;
 }
@@ -237,7 +244,17 @@ function step1(ctx: Ctx): string {
   </div>
   <p class="sr-only" id="commune-status" role="status" aria-live="polite"></p>
 </div>
-${input(ctx, 'rue', t('fields.rue'), { optional: true, autocomplete: 'address-line1', maxlength: 120 })}`;
+<div class="field combobox${hasErr(ctx, 'rue')}" data-field="rue">
+  <label for="rue" id="rue-label">${labelText(ctx, t('fields.rue'), true)}</label>
+  <p class="help" id="rue-help">${esc(t('fields.rueHelp'))}</p>
+  <div class="combo">
+    <input type="text" id="rue" name="rue" value="${esc(v.rue ?? '')}" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="rue-list" autocomplete="off" spellcheck="false" maxlength="160" placeholder="${esc(t('fields.ruePlaceholder'))}"${invalid(ctx, 'rue')}${describedBy(ctx, 'rue', true)}>
+    <ul id="rue-list" class="combo-inline" role="listbox" aria-labelledby="rue-label" hidden></ul>
+  </div>
+  ${errorMessage(ctx, 'rue')}
+  <p class="addr-ok" id="rue-found" aria-live="polite">${ctx.geo?.found ? `${icon('check', 'ico ico-xs')}${esc(ctx.geo.found)}` : ''}</p>
+  <p class="sr-only" id="rue-status" role="status" aria-live="polite"></p>
+</div>`;
 }
 
 function energyScale(ctx: Ctx): string {
@@ -281,8 +298,8 @@ ${choices(ctx, 'etat', t('fields.etat'), opts(t, 'fields.etatOptions', ETATS, ET
 ${energyScale(ctx)}
 ${
   house
-    ? `${choices(ctx, 'maisonType', t('fields.maisonType'), opts(t, 'fields.maisonTypeOptions', MAISON_TYPES, { mitoyenne: 'mitoyenne', jumelee: 'jumelee', isolee: 'isolee' }), 'tiles')}
-${slider(ctx, 'terrain', t('fields.terrain'), t('fields.terrainSlider'), { min: 0, max: 2000, step: 10, help: t('fields.terrainHelp'), ico: 'jardin' })}`
+    ? `${choices(ctx, 'maisonType', t('fields.maisonType'), opts(t, 'fields.maisonTypeOptions', MAISON_TYPES, { mitoyenne: 'mitoyenne', jumelee: 'jumelee', isolee: 'isolee' }), 'tiles', undefined, ctx.geo?.maisonType)}
+${slider(ctx, 'terrain', t('fields.terrain'), t('fields.terrainSlider'), { min: 0, max: 2000, step: 10, help: t('fields.terrainHelp'), ico: 'jardin', note: ctx.geo?.terrain })}`
     : `${choices(ctx, 'etage', t('fields.etage'), ['0', '1', '2', '3', '4', '5'].map((value) => ({ value, label: t(`fields.etageChips.${value}`) })), 'chips', 'escalier')}
 ${choices(ctx, 'ascenseur', t('fields.ascenseur'), [{ value: 'oui', label: t('yes') }, { value: 'non', label: t('no') }], 'chips', 'ascenseur')}`
 }`;

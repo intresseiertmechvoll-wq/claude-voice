@@ -7,13 +7,14 @@ Ce document décrit ce que fait l'outil, pour t'aider à mettre à jour ta polit
 - Pas de cookie, pas de traceur, pas de statistiques de visite, pas de police chargée depuis Google.
 - Pas de base de données : les réponses partent par e-mail, puis l'outil ne garde rien.
 - Deux prestataires : **Cloudflare** (hébergement de l'outil et calcul) et **Resend** (envoi de l'e-mail).
+- Si le visiteur donne son adresse (facultatif), notre serveur la transmet au **géoportail de l'État luxembourgeois** (geoportail.lu, Administration du cadastre et de la topographie) pour lire des cartes publiques. Son adresse IP n'est pas transmise ; rien n'est enregistré.
 
 ## 1. Données collectées
 
 | Données | Obligatoire | D'où |
 | --- | --- | --- |
 | Description du bien : type, commune, surface, chambres, salles de bain, année, état, classe énergétique, étage/ascenseur ou terrain/type de maison, gros postes, annexes | oui | formulaire |
-| Rue du bien | non | formulaire |
+| Adresse du bien (avec propositions d'adresses pendant la saisie) | non | formulaire |
 | Projet : propriétaire oui/non, objectif, délai | oui | formulaire |
 | Prénom, nom, e-mail, téléphone | oui | formulaire |
 | Message | non | formulaire |
@@ -49,6 +50,14 @@ Base légale proposée : le **consentement** (case à cocher obligatoire, non co
 - Pour cela, le résultat contient un **ticket signé** valable 2 heures. Il contient les réponses sur le bien et le prénom, le nom, l'e-mail et le téléphone du visiteur. Il reste dans la page ouverte du visiteur (pas de cookie, pas de stockage dans le navigateur) et disparaît quand il la ferme.
 - Le visiteur en est informé dans le simulateur (« Je reçois vos essais pour en parler avec vous »). Quand il quitte la page (ou clique sur « Prendre rendez-vous »), un e-mail de complément part à ImmoBuild Kohn, par Resend, avec ses nouveaux essais et les valeurs recalculées : au plus 3 par résultat.
 - Base légale proposée : la même que la demande (le visiteur vient d'accepter d'être recontacté au sujet de son bien). **À valider.**
+
+## 3 ter. Adresse et cartes officielles (géoportail)
+
+- Le champ « Adresse » est facultatif. Pendant la saisie (à partir de 4 caractères), le texte tapé est envoyé à notre serveur Cloudflare, qui demande des propositions d'adresses au **géoportail national** (geoportail.lu, service de l'État luxembourgeois géré par l'Administration du cadastre et de la topographie, ACT).
+- Quand le visiteur choisit une adresse, notre serveur demande au géoportail les données **publiques** de cet endroit : parcelle cadastrale et sa surface, emprise du bâtiment et bâtiments accolés (plan cadastral, licence CC BY 4.0), zones inondables (cartes de l'Administration de la gestion de l'eau). Il refait la même recherche à l'envoi du formulaire, pour l'e-mail du lead.
+- Seule l'adresse (ou le début tapé) part vers le géoportail, **depuis notre serveur** : ni l'adresse IP du visiteur, ni ses coordonnées, ni ses autres réponses ne sont transmises. Rien n'est enregistré par l'outil (un compteur en mémoire limite les recherches par adresse IP, comme au point 4).
+- L'adresse et les données trouvées figurent dans l'e-mail du lead (section « Adresse sur les cartes officielles »). Sans adresse, rien n'est envoyé au géoportail.
+- Le géoportail est un service public : **à vérifier** s'il tient des journaux techniques des requêtes reçues (ils contiendraient l'adresse recherchée et l'adresse IP de Cloudflare, pas celle du visiteur).
 
 ## 4. Adresse IP et limite d'envois
 

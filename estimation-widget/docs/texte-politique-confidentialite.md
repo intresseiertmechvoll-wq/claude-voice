@@ -9,7 +9,7 @@
 **Responsable du traitement.** ImmoBuild Kohn, 206, route de Burange, L-3429 Dudelange, contact@immobuild.lu, +352 621 830 272.
 
 **Données collectées.** Quand vous utilisez notre outil d'estimation en ligne (sur estimatioun.lu ou intégré à notre site), nous recueillons :
-- la description de votre bien (type, commune, rue si vous l'indiquez, surface, pièces, année, état, classe énergétique, équipements et annexes) ;
+- la description de votre bien (type, commune, adresse si vous l'indiquez, surface, pièces, année, état, classe énergétique, équipements et annexes) ;
 - votre projet (propriétaire ou non, vendre ou louer, délai) ;
 - vos coordonnées : prénom, nom, e-mail, téléphone et, si vous le souhaitez, un message ;
 - si vous utilisez le simulateur « Et si… ? » : les travaux que vous avez testés et les valeurs recalculées ;
@@ -23,6 +23,7 @@ Les champs marqués comme obligatoires sont nécessaires pour calculer l'estimat
 - **Cloudflare, Inc.** héberge l'outil et effectue le calcul. Vos réponses sont traitées en mémoire puis oubliées ; elles ne sont pas enregistrées dans une base de données.
 - **Resend (Plus Five Five, Inc.)** nous transmet votre demande par e-mail. Ses serveurs sont situés aux États-Unis ; ce transfert est encadré par les clauses contractuelles types de la Commission européenne et par le cadre de protection des données UE–États-Unis (Data Privacy Framework).
 - **Microsoft (Microsoft 365)** héberge notre messagerie professionnelle, où la demande est reçue.
+- **Géoportail national du Luxembourg (geoportail.lu, Administration du cadastre et de la topographie)** : si vous indiquez l'adresse de votre bien, notre serveur l'envoie au géoportail de l'État pour vous proposer des adresses et lire des données cartographiques publiques (parcelle cadastrale, bâtiment, zones inondables). Seule l'adresse est transmise, par notre serveur : votre adresse IP et vos autres données ne le sont pas. Ces données publiques ne sont pas enregistrées par l'outil ; elles sont jointes à votre demande.
 - Vos données ne sont ni vendues ni utilisées pour de la publicité.
 
 **Adresse IP et limite d'envois.** Pour empêcher les envois abusifs, l'outil compte les demandes par adresse IP (20 par heure au maximum). Il conserve pour cela une empreinte chiffrée de votre adresse IP, calculée avec une clé secrète, pendant une heure au maximum. Votre adresse IP elle-même n'est pas enregistrée et n'apparaît pas dans l'e-mail.

@@ -4,7 +4,7 @@
  * (npm i -D playwright && npx playwright install chromium).
  * Usage : npm run screenshots   → dossier screenshots/
  */
-import { mkdirSync } from 'node:fs';
+import { mkdirSync, readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
@@ -18,6 +18,31 @@ const browser = await chromium.launch();
 const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, locale: 'fr-LU', bypassCSP: true });
 const page = await ctx.newPage();
 const problems = [];
+
+/*
+ * Géoportail simulé pour le parcours « maison » : le serveur local ne peut pas toujours joindre geoportail.lu.
+ * Propositions = réponse réelle enregistrée ; détails = ce que /api/adresse/details calcule à partir des réponses
+ * enregistrées (tests/adresse.test.ts). Le parcours « appartement » garde le vrai serveur : sans géoportail,
+ * le champ reste un simple champ texte.
+ */
+const FIXTURES = new URL('../tests/fixtures/geoportail/', import.meta.url);
+const SUGGEST = JSON.parse(readFileSync(new URL('fulltextsearch-route-de-bur.json', FIXTURES), 'utf8')).features.map((f) => ({ label: f.properties.label }));
+const DETAILS = {
+  address: { label: '206, Route de Burange, L-3429 Dudelange', locality: 'Dudelange', zip: '3429', precise: true },
+  parcel: { numero: '1329/5186', areaM2: 555.45 },
+  building: { footprintM2: 125, adjacent: 0, typeSuggere: 'isolee' },
+  flood: { hq100: null, hqext: null },
+};
+async function mockGeoportal(on) {
+  if (!on) return page.unroute('**/api/adresse/**');
+  await page.route('**/api/adresse/suggest', (r) => r.fulfill({ json: SUGGEST }));
+  await page.route('**/api/adresse/details', (r) => r.fulfill({ json: DETAILS }));
+}
+/** Rien ne doit déborder horizontalement (contrôle à 320 px) */
+async function noOverflow(name) {
+  const w = await page.evaluate(() => [document.documentElement.scrollWidth, window.innerWidth]);
+  if (w[0] > w[1]) problems.push(`${name} : débordement horizontal (${w[0]} px pour ${w[1]} px)`);
+}
 
 async function audit(name) {
   await page.addScriptTag({ path: AXE });
@@ -48,7 +73,9 @@ async function step1(type, commune, quick = false) {
 await step1('Appartement', 'Dudelange');
 await shot('1a-recherche-commune');
 await page.locator('#commune-list li', { hasText: 'Dudelange' }).first().dispatchEvent('mousedown');
-await page.locator('#rue').fill('Rue de la Libération');
+await page.locator('#rue').pressSequentially('Rue de la Libération');
+await page.waitForTimeout(800); // propositions demandées au serveur local : sans géoportail, aucune liste, aucun message d'erreur
+if (await page.locator('#rue-list').isVisible()) await page.keyboard.press('Escape');
 await shot('1b-le-bien');
 await next();
 
@@ -105,9 +132,18 @@ await page.waitForTimeout(900);
 await page.locator('.whatif').screenshot({ path: `${OUT}8c-simulateur-et-si.png` });
 await audit('8c-simulateur-et-si');
 
-// ---------- Maison à Dudelange ----------
+// ---------- Maison à Dudelange, avec l'adresse choisie dans la liste ----------
+await mockGeoportal(true);
 await step1('Maison', 'Dudelange', true);
+await page.locator('#rue').pressSequentially('route de bur');
+await page.locator('#rue-list li').first().waitFor();
+await shot('1c-adresse-propositions');
+await page.keyboard.press('ArrowDown');
+await page.keyboard.press('Enter');
+await page.locator('#rue-found').getByText('Adresse trouvée').waitFor();
+await shot('1d-adresse-trouvee');
 await next();
+await shot('2c-donnees-maison-cadastre');
 await page.locator('#surface').fill('150');
 await plus('chambres', 4);
 await plus('sdb', 2);
@@ -136,6 +172,21 @@ await page.getByRole('button', { name: 'Voir mon estimation' }).click();
 await page.locator('#result-title').waitFor({ timeout: 15000 });
 await page.waitForTimeout(1200);
 await shot('8b-resultat-maison');
+await mockGeoportal(false);
+
+// ---------- 320 px : rien ne déborde (résultat, puis étape 1 avec la liste d'adresses) ----------
+await page.setViewportSize({ width: 320, height: 720 });
+await page.waitForTimeout(300);
+await noOverflow('8b-resultat-maison (320 px)');
+await page.locator('section.geo').screenshot({ path: `${OUT}8d-cartes-officielles-320.png` });
+await mockGeoportal(true);
+await step1('Maison', 'Dudelange', true);
+await page.locator('#rue').pressSequentially('route de bur');
+await page.locator('#rue-list li').first().waitFor();
+await noOverflow('1c-adresse-propositions (320 px)');
+await page.screenshot({ path: `${OUT}1e-adresse-propositions-320.png` });
+await mockGeoportal(false);
+await page.setViewportSize({ width: 390, height: 844 });
 
 // ---------- Intégration dans une page (embed.js) ----------
 await page.goto(`${BASE}/demo.html`);

@@ -144,3 +144,18 @@ export interface PublicResult {
     decote: number;
   };
 }
+
+/** Zone inondable trouvée sur la carte officielle (cours d'eau, classe de hauteur d'eau, ex. « 0 - 0.5 m ») */
+export interface FloodZone {
+  river: string;
+  depth: string;
+}
+
+/** Données publiques du géoportail pour une adresse (chaque partie vaut null si elle n'a pas pu être lue) */
+export interface AddressDetails {
+  address: { label: string; locality: string; zip: string; precise: boolean } | null;
+  parcel: { numero: string; areaM2: number } | null;
+  /** adjacent / typeSuggere : null si la recherche des bâtiments voisins n'a pas abouti */
+  building: { footprintM2: number; adjacent: number | null; typeSuggere: MaisonType | null } | null;
+  flood: { hq100: FloodZone | null; hqext: FloodZone | null } | null;
+}

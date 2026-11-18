@@ -61,7 +61,7 @@
     "commune": "Municipality",
     "communeHelp": "Type the first letters or pick below.",
     "communeEmpty": "No municipality found.",
-    "rue": "Street",
+    "rue": "Address",
     "surface": "Net living area (m²)",
     "surfaceHelp": "Net = excluding wall thickness.",
     "chambres": "Number of bedrooms",
@@ -202,7 +202,13 @@
     "numeroWhy": "Only to contact you about your property.",
     "emailTypo": "Did you mean",
     "terrainAres": "In ares? {a} a = {m2} m². Please enter the area in m².",
-    "objectifHelp": "The result estimates a sale price, even if you are thinking of renting the property out."
+    "objectifHelp": "The result estimates a sale price, even if you are thinking of renting the property out.",
+    "rueHelp": "With your address, the estimate is more precise.",
+    "ruePlaceholder": "e.g. 12, rue de la Gare",
+    "rueSuggestions": "Suggested addresses: {n}",
+    "rueFound": "Address found on the official map.",
+    "geoTerrain": "Land register: {m2} m² (parcel {parcelle}). Change it if the plot has several parcels.",
+    "geoMaisonType": "Detected from the cadastral map, please check."
   },
   "errors": {
     "required": "This field is required.",
@@ -442,5 +448,15 @@
     "renseigne": "Good idea to look into it first, with no commitment.",
     "nonProprio": "No problem, I can also value a property you don’t own.",
     "energieMid": "Rating {c}, noted."
+  },
+  "geo": {
+    "title": "Your address on the official maps",
+    "parcel": "Cadastral parcel {parcelle}: {m2} m²",
+    "building": "Building footprint: {m2} m²",
+    "floodNone": "Outside the mapped flood zones (100-year and extreme flood)",
+    "flood100": "Flood zone (100-year flood) – {detail}",
+    "floodExt": "Flood zone (extreme flood) – {detail}",
+    "flood100None": "Outside the 100-year flood zone",
+    "sources": "© ACT – cadastral map (CC BY 4.0) · Flood hazard maps, Water Management Administration"
   }
 }

@@ -2,10 +2,11 @@ import './fonts.css';
 import './styles.css';
 
 import config from '../config.json';
-import { deCanton, loadLang, pickLang, translator } from './i18n';
+import { deCanton, loadLang, LOCALES, pickLang, translator } from './i18n';
 import { COMMUNES } from './shared/communes';
-import { POSTES_APPARTEMENT, POSTES_MAISON, type PropertyType, type PublicResult } from './shared/types';
+import { MAISON_TYPES, POSTES_APPARTEMENT, POSTES_MAISON, type AddressDetails, type PropertyType, type PublicResult } from './shared/types';
 import { checkFields, stepFields, type Errors } from './shared/validation';
+import { setupAddressCombobox } from './ui/address';
 import { resolveCommune, setupCombobox } from './ui/combobox';
 import { esc } from './ui/html';
 import { icon } from './ui/icons';
@@ -54,6 +55,70 @@ const state: {
 } = { step: 1, values: { ...DEFAULTS }, errors: {}, sending: false, serverError: null, result: null, direction: 'next', returnTo: null };
 
 const app = document.getElementById('app')!;
+
+/* ---------- Adresse choisie dans la liste : données des cartes officielles (hors des réponses envoyées) ---------- */
+let geo: { label: string; details: AddressDetails | null; prefilled: boolean; typePrefilled: boolean } | null = null;
+
+async function suggestAddresses(q: string, signal: AbortSignal): Promise<string[]> {
+  const res = await fetch('/api/adresse/suggest', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ q }), signal });
+  const j = (await res.json().catch(() => null)) as unknown;
+  return res.ok && Array.isArray(j) ? j.map((x) => (x as { label?: unknown })?.label).filter((l): l is string => typeof l === 'string').slice(0, 6) : [];
+}
+
+function selectAddress(label: string) {
+  state.values.rue = label;
+  clearError('rue');
+  const current: NonNullable<typeof geo> = { label, details: null, prefilled: false, typePrefilled: false };
+  geo = current;
+  updateAddressFound();
+  fetch('/api/adresse/details', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ label }), signal: timeoutSignal(10_000) })
+    .then((res) => (res.ok ? (res.json() as Promise<AddressDetails>) : null))
+    .then((d) => {
+      // Le visiteur a pu changer d'adresse entre-temps
+      if (geo !== current || !d || typeof d !== 'object') return;
+      current.details = d;
+      updateAddressFound();
+    })
+    .catch(() => {});
+}
+
+function updateAddressFound() {
+  const el = app.querySelector('#rue-found');
+  if (!el) return;
+  const found = geoNotes().found;
+  el.innerHTML = found ? `${icon('check', 'ico ico-xs')}${esc(found)}` : '';
+  sendHeight();
+}
+
+/** Données utilisables : adresse précise, toujours celle du champ */
+function geoDetails(): AddressDetails | null {
+  return geo && geo.label === state.values.rue && geo.details?.address?.precise ? geo.details : null;
+}
+
+/** Maison : terrain prérempli avec la parcelle et type de maison proposé, seulement si le visiteur n'a rien indiqué */
+function applyGeoPrefill() {
+  const d = geoDetails();
+  if (!geo || !d || geo.prefilled || state.values.type !== 'maison') return;
+  geo.prefilled = true;
+  const area = d.parcel ? Math.round(d.parcel.areaM2) : 0;
+  if (area > 0 && area <= 100_000 && String(state.values.terrain ?? '').trim() === '') state.values.terrain = String(area);
+  const sug = d.building?.typeSuggere;
+  if (sug && MAISON_TYPES.includes(sug) && !state.values.maisonType) {
+    state.values.maisonType = sug;
+    geo.typePrefilled = true;
+  }
+}
+
+function geoNotes(): { found?: string; terrain?: string; maisonType?: string } {
+  const d = geoDetails();
+  if (!d) return {};
+  const house = state.values.type === 'maison';
+  return {
+    found: t('fields.rueFound'),
+    terrain: house && d.parcel ? t('fields.geoTerrain', { m2: new Intl.NumberFormat(LOCALES[lang]).format(Math.round(d.parcel.areaM2)), parcelle: d.parcel.numero }) : undefined,
+    maisonType: house && geo?.typePrefilled && state.values.maisonType === d.building?.typeSuggere ? t('fields.geoMaisonType') : undefined,
+  };
+}
 
 function readContactFields() {
   if (state.step !== TOTAL) return;
@@ -150,13 +215,14 @@ function recapBar(): string {
 
 function render(focus = true) {
   if (state.result) {
-    app.innerHTML = `<div class="card card-result anim-in">${late!.renderResult(state.result, t, lang, { contactUrl, agent: config.agent, phone: config.phone, whatIf: whatIfBase() })}</div>`;
+    app.innerHTML = `<div class="card card-result anim-in">${late!.renderResult(state.result, t, lang, { contactUrl, agent: config.agent, phone: config.phone, whatIf: whatIfBase(), geo: geoDetails() })}</div>`;
     hydrate();
     countUp();
     after(focus);
     return;
   }
   const s = state.step;
+  if (s === 2) applyGeoPrefill();
   // Dès l'étape 4, on prépare en arrière-plan le code de l'analyse et du résultat
   if (s >= 4) prefetchLate();
   const errorCount = Object.keys(state.errors).length;
@@ -195,7 +261,7 @@ function render(focus = true) {
       </div>
       ${coachHtml()}
       ${summary}
-      ${renderStep(s, { t, lang, v: state.values, e: state.errors, privacyUrl, quickCommunes: config.quickCommunes })}
+      ${renderStep(s, { t, lang, v: state.values, e: state.errors, privacyUrl, quickCommunes: config.quickCommunes, geo: geoNotes() })}
     </div>
     <div class="actions">
       ${
@@ -220,6 +286,11 @@ function render(focus = true) {
       t('fields.communeEmpty'),
       (name) => setCommune(name),
     );
+    setupAddressCombobox(app.querySelector<HTMLInputElement>('#rue')!, app.querySelector<HTMLUListElement>('#rue-list')!, app.querySelector<HTMLElement>('#rue-status')!, {
+      suggest: suggestAddresses,
+      onSelect: selectAddress,
+      countText: (n) => t('fields.rueSuggestions', { n }),
+    });
   }
   hydrate();
   after(focus);
@@ -405,6 +476,12 @@ function onInput(e: Event) {
     }
   }
   if (el.name === 'terrain') aresHint();
+  // Adresse retapée à la main : les données de l'ancienne adresse ne s'appliquent plus
+  if (el.name === 'rue' && geo && geo.label !== el.value) {
+    geo = null;
+    updateAddressFound();
+  }
+  if (el.name === 'maisonType') app.querySelector('#maisonType-geo')?.remove();
   if (el.name === 'type') updateNoData();
   if (el.name === 'indicatif') return checkOne('numero', false);
   if (el.name === 'commune') return; // géré par la liste
@@ -509,6 +586,7 @@ app.addEventListener('click', (e) => {
     const keep = Object.fromEntries(CONTACT_KEYS.map((k) => [k, state.values[k]]));
     state.values = { ...DEFAULTS, ...keep };
     state.result = null;
+    geo = null;
     state.step = 1;
     state.direction = 'next';
     render();

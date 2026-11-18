@@ -44,7 +44,7 @@ export function maxYear(): number {
 
 export const PHONE_CODES = ['+352', '+33', '+32', '+49', '+41', '+31', '+351', '+39', '+34', '+44'];
 
-const TEXT_MAX = { prenom: 80, nom: 80, rue: 120, message: 2000, email: 254, page: 500 };
+const TEXT_MAX = { prenom: 80, nom: 80, rue: 160, message: 2000, email: 254, page: 500 };
 
 /** Champs demandés à chaque étape (1 à 6) */
 export function stepFields(step: number, type: unknown): string[] {

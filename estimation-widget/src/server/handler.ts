@@ -7,6 +7,8 @@ import data from '../../data/communes.json';
 import params from '../../params.json';
 import { estimate, type Params } from '../shared/engine';
 import { leadEmail } from '../shared/email';
+import type { AddressDetails } from '../shared/types';
+import { GEO_TIMEOUT_MS, lookupAddress, validLabel } from './adresse';
 import { allowSubmission, refundSubmission, type KVLike } from '../shared/ratelimit';
 import type { Dataset } from '../shared/types';
 import { validateSubmission } from '../shared/validation';
@@ -26,6 +28,8 @@ export interface Env {
 
 export interface Deps {
   fetch: typeof fetch;
+  /** appels au géoportail (séparés de l'envoi d'e-mail) */
+  geoFetch: typeof fetch;
   now: () => Date;
   log: (...args: unknown[]) => void;
   data: Dataset;
@@ -34,6 +38,7 @@ export interface Deps {
 
 export const defaultDeps = (): Deps => ({
   fetch: (...a) => fetch(...a),
+  geoFetch: (...a) => fetch(...a),
   now: () => new Date(),
   log: (...a) => console.log(...a),
   data: data as unknown as Dataset,
@@ -125,7 +130,17 @@ export async function handleEstimate(request: Request, env: Env, deps: Partial<D
   if (!allowed) return json({ ok: false, error: 'rate_limit' }, 429);
 
   const est = estimate(v.value.answers, d.data, d.params);
-  const mail = leadEmail(v.value, est, d.now());
+  // Adresse donnée : données publiques du géoportail pour Jason, relues ici (jamais reprises du navigateur).
+  // Au mieux 4 secondes au total ; une panne n'empêche ni le calcul ni l'e-mail.
+  let geo: AddressDetails | null | undefined;
+  const label = validLabel(v.value.answers.rue);
+  if (label) {
+    geo = await lookupAddress(label, d.geoFetch, { deadlineMs: GEO_TIMEOUT_MS }).catch((err) => {
+      d.log('Géoportail : recherche impossible', (err as Error).message);
+      return null;
+    });
+  }
+  const mail = leadEmail(v.value, est, d.now(), geo);
   const err = await sendMail(env, d, { ...mail, replyTo: v.value.contact.email });
   if (err) {
     // Rien n'est parti : l'essai ne compte pas dans la limite, le visiteur peut réessayer

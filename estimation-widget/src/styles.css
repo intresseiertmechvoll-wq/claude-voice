@@ -691,3 +691,16 @@ html.is-embedded #app { padding: 4px 2px 24px; }
 .contact-context p { margin: 0; }
 .contact-context p + p { margin-top: 4px; color: var(--muted); }
 .step-body > .step-fact { margin: -8px 0 18px; }
+
+/* Adresse et cartes officielles (géoportail) */
+/* Liste d'adresses dans le flux : elle pousse la suite au lieu d'être coupée par le bas de la carte */
+.combo ul.combo-inline { position: static; margin-top: 6px; }
+.combo li { overflow-wrap: anywhere; }
+.addr-ok { display: flex; align-items: center; gap: 6px; margin: 8px 0 0; font-size: 0.875rem; font-weight: 600; color: var(--up); }
+.addr-ok:empty { display: none; }
+.geo-note { display: flex; gap: 6px; align-items: flex-start; margin: 8px 0 0; font-size: 0.875rem; color: var(--muted); text-wrap: pretty; }
+.geo-note .ico { flex: none; margin-top: 2px; color: var(--navy); }
+.choices .geo-note { margin: 0 0 10px; }
+.geo-address { margin: 0 0 8px; font-weight: 600; overflow-wrap: anywhere; }
+.geo-list { margin: 0; padding-inline-start: 20px; }
+.geo-list li + li { margin-top: 4px; }

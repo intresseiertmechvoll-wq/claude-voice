@@ -3,7 +3,7 @@ import { deCanton, LOCALES, type T } from '../i18n';
 import { formatEuro } from './format';
 
 export { formatEuro };
-import type { Lang, PublicFactor, PublicResult } from '../shared/types';
+import type { AddressDetails, FloodZone, Lang, PublicFactor, PublicResult } from '../shared/types';
 import { esc } from './html';
 import { icon } from './icons';
 import { renderWhatIf, type WhatIfBase } from './whatif';
@@ -14,6 +14,37 @@ export interface ResultOptions {
   phone?: string;
   /** réponses de départ, pour le simulateur « Et si… ? » */
   whatIf?: WhatIfBase;
+  /** données des cartes officielles pour l'adresse choisie dans la liste (sinon rien n'est affiché) */
+  geo?: AddressDetails | null;
+}
+
+/** « 0 - 0.5 m » → « 0 – 0,5 m » (virgule en français et en allemand) */
+export function floodDepth(depth: string, lang: Lang): string {
+  return depth.replace(/(\d)\.(\d)/g, lang === 'en' ? '$1.$2' : '$1,$2').replace(/\s+-\s+/g, ' – ');
+}
+
+/** Section « Votre adresse sur les cartes officielles » : parcelle et bâtiment (maisons), zones inondables */
+export function renderGeo(geo: AddressDetails | null | undefined, type: PublicResult['type'], t: T, lang: Lang): string {
+  if (!geo?.address?.precise) return '';
+  const n = (v: number) => new Intl.NumberFormat(LOCALES[lang], { maximumFractionDigits: 0 }).format(v);
+  const zone = (key: string, z: FloodZone) => t(key, { detail: [z.river, floodDepth(z.depth, lang)].filter(Boolean).join(', ') }).replace(/ – $/, '');
+  const lines: string[] = [];
+  if (type === 'maison' && geo.parcel) lines.push(t('geo.parcel', { parcelle: geo.parcel.numero, m2: n(geo.parcel.areaM2) }));
+  if (type === 'maison' && geo.building) lines.push(t('geo.building', { m2: n(geo.building.footprintM2) }));
+  const f = geo.flood;
+  if (f) {
+    if (!f.hq100 && !f.hqext) lines.push(t('geo.floodNone'));
+    if (f.hq100) lines.push(zone('geo.flood100', f.hq100));
+    else if (f.hqext) lines.push(t('geo.flood100None'));
+    if (f.hqext) lines.push(zone('geo.floodExt', f.hqext));
+  }
+  if (!lines.length) return '';
+  return `<section class="panel geo" aria-labelledby="geo-title">
+    <h3 id="geo-title">${icon('epingle', 'ico ico-sm')}<span>${esc(t('geo.title'))}</span></h3>
+    <p class="geo-address">${esc(geo.address.label).replace(/\bL-\d{4}\b/g, '<span class="nowrap">$&</span>')}</p>
+    <ul class="geo-list">${lines.map((l) => `<li>${esc(l)}</li>`).join('')}</ul>
+    <p class="small">${esc(t('geo.sources'))}</p>
+  </section>`;
 }
 
 function formatDate(iso: string, lang: Lang): string {
@@ -194,6 +225,7 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
   ${r.simToken && o.whatIf ? `<button type="button" class="teaser" data-action="goto-whatif">${icon('neuf', 'ico ico-sm')}<span>${esc(t('whatif.teaser'))}</span><span class="teaser-arrow">${icon('fleche', 'ico ico-sm')}</span></button>` : ''}
   ${gauge}
   ${stats}
+  ${renderGeo(o.geo, r.type, t, lang)}
   ${factorsHtml}
   ${r.simToken && o.whatIf ? renderWhatIf(t, o.whatIf, formatEuro(r.market, lang)) : ''}
   ${how}

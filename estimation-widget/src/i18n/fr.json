@@ -61,7 +61,7 @@
     "commune": "Commune",
     "communeHelp": "Tapez les premières lettres ou choisissez ci-dessous.",
     "communeEmpty": "Aucune commune trouvée.",
-    "rue": "Rue",
+    "rue": "Adresse",
     "surface": "Surface habitable nette (m²)",
     "surfaceHelp": "Nette = sans l’épaisseur des murs.",
     "chambres": "Nombre de chambres",
@@ -202,7 +202,13 @@
     "numeroWhy": "Uniquement pour vous recontacter au sujet de votre bien.",
     "emailTypo": "Vouliez-vous dire",
     "terrainAres": "En ares ? {a} a = {m2} m². Indiquez la surface en m².",
-    "objectifHelp": "Le résultat estime un prix de vente, même si votre projet est de louer."
+    "objectifHelp": "Le résultat estime un prix de vente, même si votre projet est de louer.",
+    "rueHelp": "Avec votre adresse, l’estimation est plus précise.",
+    "ruePlaceholder": "ex. 12, rue de la Gare",
+    "rueSuggestions": "Adresses proposées : {n}",
+    "rueFound": "Adresse trouvée sur la carte officielle.",
+    "geoTerrain": "Cadastre : {m2} m² (parcelle {parcelle}). Modifiable si le terrain comprend plusieurs parcelles.",
+    "geoMaisonType": "Détecté d’après le plan cadastral, à vérifier."
   },
   "errors": {
     "required": "Ce champ est obligatoire.",
@@ -442,5 +448,15 @@
     "renseigne": "Bonne idée de vous renseigner d’abord, sans engagement.",
     "nonProprio": "Pas de souci, je peux aussi estimer un bien qui n’est pas à vous.",
     "energieMid": "Classe {c}, c’est noté."
+  },
+  "geo": {
+    "title": "Votre adresse sur les cartes officielles",
+    "parcel": "Parcelle cadastrale {parcelle} : {m2} m²",
+    "building": "Emprise au sol du bâtiment : {m2} m²",
+    "floodNone": "Hors zone inondable cartographiée (crue centennale et extrême)",
+    "flood100": "Zone inondable (crue centennale) – {detail}",
+    "floodExt": "Zone inondable (crue extrême) – {detail}",
+    "flood100None": "Hors zone de crue centennale",
+    "sources": "© ACT – plan cadastral (CC BY 4.0) · Cartes des zones inondables, Administration de la gestion de l’eau"
   }
 }
