@@ -4,14 +4,15 @@
   },
   "intro": {
     "title": "Was ist Ihr Zuhause wert?",
-    "text": "Ein paar Fragen zu Ihrer Immobilie, Ihre Kontaktdaten, dann Ihre Preisspanne.",
+    "text": "Beantworten Sie ein paar Fragen. Vor der Verkaufspreisspanne fragt Jason nach Ihren Kontaktdaten, damit er sich zu Ihrer Immobilie melden kann.",
     "kicker": "Kostenlose Bewertung · ImmoBuild Kohn",
     "badges": {
       "free": "Kostenlos",
       "commitment": "Unverbindlich",
       "official": "Öffentliche Daten",
       "instant": "Sofortiges Ergebnis"
-    }
+    },
+    "language": "Sprache"
   },
   "progress": "Schritt {n} von {total}",
   "nav": {
@@ -197,10 +198,11 @@
     "energieHigh": "Hoher Verbrauch",
     "communePlaceholder": "z. B. Dudelange",
     "numeroPlaceholder": "621 123 456",
-    "communeNoData": "Wenig öffentliche Daten für {commune}: Ich mache Ihnen eine persönliche Bewertung.",
+    "communeNoData": "Für diesen Immobilientyp in {commune} gibt es online keinen Preis. Sie können fortfahren und Jason um eine Bewertung bitten.",
     "numeroWhy": "Nur, um Sie zu Ihrer Immobilie zu kontaktieren.",
     "emailTypo": "Meinten Sie",
-    "terrainAres": "In Ar? {a} a = {m2} m². Bitte die Fläche in m² angeben."
+    "terrainAres": "In Ar? {a} a = {m2} m². Bitte die Fläche in m² angeben.",
+    "objectifHelp": "Sie erhalten eine Schätzung des Verkaufspreises, auch wenn Sie vermieten möchten."
   },
   "errors": {
     "required": "Dieses Feld ist erforderlich.",
@@ -230,7 +232,7 @@
     "indicativeHouse": "Für Häuser gibt es keine öffentlichen Verkaufspreise. Die Berechnung geht von Anzeigen aus, deshalb ist die Spanne breiter.",
     "source": "Quelle: {source}. Zeitraum: {periode}.",
     "disclaimer": "Richtwert auf Basis öffentlicher Statistiken. Er ersetzt keine Bewertung vor Ort.",
-    "cta": "Termin für eine genaue Bewertung vereinbaren",
+    "cta": "Bewertung vor Ort anfragen",
     "call": "{name} anrufen",
     "noDataTitle": "Danke, Ihre Anfrage wurde gesendet",
     "noDataText": "Für Ihre Gemeinde gibt es nicht genug öffentliche Daten. Ich melde mich mit einer persönlichen Bewertung bei Ihnen.",
@@ -239,7 +241,7 @@
     "sourceMaison": "Observatoire de l’Habitat (Hausangebote)",
     "sourceLink": "Zu den Daten",
     "ready": "Hier ist Ihre Bewertung!",
-    "perM2": "das sind {value}\u00a0pro\u00a0m²",
+    "perM2": "das sind {value} pro m²",
     "rangeTitle": "Ihre Preisspanne",
     "gaugeTitle": "Ihre Immobilie im Vergleich zu den Verkäufen in {commune}",
     "gaugeText": "Verkäufe bestehender Wohnungen vom {debut} bis zum {fin}, ohne die 5 % niedrigsten und 5 % höchsten Preise.",
@@ -284,13 +286,14 @@
       "capitalisation": "Mietrendite",
       "annonces_maison": "Bereinigte Angebotspreise (Häuser)"
     },
-    "methodLine": "{name}: {m2}\u00a0pro\u00a0m² ({weight} der Berechnung)",
+    "methodLine": "{name}: {m2} pro m² ({weight} der Berechnung)",
     "nextTitle": "Wie geht es weiter?",
     "next1": "Ich erhalte Ihre Anfrage und melde mich bei Ihnen.",
     "next2": "Vor Ort berücksichtige ich, was Zahlen nicht zeigen: Aussicht, Licht, Ausstattung.",
     "print": "Drucken oder als PDF speichern",
     "restart": "Neue Bewertung starten",
-    "statGap": "Für die Schätzung werden die Angebotspreise um {p} gesenkt."
+    "statGap": "Für die Schätzung werden die Angebotspreise um {p} gesenkt.",
+    "printDate": "Schätzung vom {date}"
   },
   "stepsShort": {
     "1": "Immobilie",
@@ -324,7 +327,9 @@
     "data": "Ihre Daten gehen nur an ImmoBuild Kohn",
     "cookies": "Keine Cookies, keine Werbung",
     "line": "Kostenlos · unverbindlich · ohne Cookies",
-    "where": "Ihre Antworten gehen nur an ImmoBuild Kohn, per E-Mail."
+    "where": "Ihre Angaben und Kontaktdaten gehen per E-Mail an ImmoBuild Kohn, damit Jason sich zu dieser Immobilie bei Ihnen melden kann.",
+    "purpose": "Wir fragen nach Ihren Kontaktdaten, bevor wir die Preisspanne anzeigen.",
+    "purposeNoData": "Jason meldet sich bei Ihnen für eine persönliche Bewertung."
   },
   "factors": {
     "taille": "Wohnungsgröße ({n} m²)",
@@ -408,9 +413,11 @@
     "title": "Schon gewusst?",
     "source": "Offizielle Quelle",
     "step1": "Die Wohnungsbeobachtungsstelle veröffentlicht einen Mittelwert pro Gemeinde, wenn mindestens 10 Wohnungsverkäufe in die Auswertung eingehen.",
-    "step2": "Um die Energieklasse einer Wohnung zu verbessern, bieten zugelassene Banken einen vom Staat garantierten „Klimakredit“ (prêt climatique) an.",
+    "energie": "Um die Energieklasse einer Wohnung zu verbessern, bieten zugelassene Banken einen vom Staat garantierten „Klimakredit“ (prêt climatique) an.",
+    "surface": "Zur Wohnfläche zählen Wohnräume, Bad und WC sowie Innenflächen wie Flure.",
     "step4": "Die Wohnungsbeobachtungsstelle veröffentlicht auch Quadratmeterpreise für Wohnungen ohne den Wert von Garagen, Außenstellplätzen und Kellern.",
-    "step5": "Die Statistik der Angebotsmieten zeigt, welche Miete Vermieter vor der Verhandlung verlangen."
+    "step5": "Die Statistik der Angebotsmieten zeigt, welche Miete Vermieter vor der Verhandlung verlangen.",
+    "surfaceTitle": "Was zählt zur Wohnfläche?"
   },
   "coach": {
     "start": "Guten Tag, ich bin Jason. Ein paar Fragen, dann gibt es Ihre Preisspanne.",

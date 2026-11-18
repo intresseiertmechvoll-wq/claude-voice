@@ -55,6 +55,27 @@ const state: {
 
 const app = document.getElementById('app')!;
 
+function readContactFields() {
+  if (state.step !== TOTAL) return;
+  const form = app.querySelector<HTMLFormElement>('#form');
+  if (!form) return;
+  const fields = new FormData(form);
+  for (const key of [...CONTACT_KEYS, 'message', 'website']) {
+    state.values[key] = String(fields.get(key) ?? '');
+  }
+  state.values.rgpd = fields.has('rgpd');
+}
+
+function languageLinks(): string {
+  const names = { fr: 'Français', de: 'Deutsch', en: 'English' } as const;
+  return `<nav class="language-links" aria-label="${esc(t('intro.language'))}">${(['fr', 'de', 'en'] as const).map((code) => {
+    const query = new URLSearchParams({ lang: code });
+    if (page) query.set('src', page);
+    return `<a href="?${esc(query.toString())}" hreflang="${code}" lang="${code}"${lang === code ? ' aria-current="true"' : ''}>${names[code]}</a>`;
+  }).join('')}</nav>`;
+}
+
+
 /* ---------- Code de fin de parcours, chargé en arrière-plan ---------- */
 type Late = typeof import('./ui/late');
 let late: Late | null = null;
@@ -149,6 +170,7 @@ function render(focus = true) {
   ${
     s === 1
       ? `<header class="intro">
+    ${languageLinks()}
     <p class="kicker">${esc(t('intro.kicker')).replace(/ImmoBuild Kohn/g, '<span class="nowrap">ImmoBuild Kohn</span>')}</p>
     <h1>${esc(t('intro.title'))}</h1>
     <p>${esc(t('intro.text'))}</p>
@@ -185,7 +207,7 @@ function render(focus = true) {
       ${s > 1 ? `<button type="button" class="btn btn-ghost" data-action="back" ${state.sending ? 'disabled' : ''}>${icon('fleche')}<span>${esc(t('nav.back'))}</span></button>` : ''}
     </div>
   </form>
-  ${renderFact(s, t)}
+  ${renderFact(s === 2 ? 'energie' : `step${s}`, t)}
   </div>
 </div>`;
 
@@ -386,8 +408,9 @@ function onInput(e: Event) {
   if (el.name === 'type') updateNoData();
   if (el.name === 'indicatif') return checkOne('numero', false);
   if (el.name === 'commune') return; // géré par la liste
-  // Choix (radio, case) : vérification immédiate ; texte : à la sortie du champ
-  const immediate = e.type === 'change';
+  // Les nouveaux messages de saisie libre apparaissent à l’envoi : un message ajouté
+  // au blur pourrait déplacer le bouton sous le doigt avant le clic.
+  const immediate = e.type === 'change' && (el.type === 'radio' || el.type === 'checkbox' || el instanceof HTMLSelectElement);
   checkOne(el.name, immediate && el.value !== '');
 }
 
@@ -433,6 +456,7 @@ app.addEventListener('click', (e) => {
 
   const goto = target.closest<HTMLButtonElement>('[data-goto]');
   if (goto) {
+    readContactFields();
     state.returnTo = TOTAL;
     state.step = Number(goto.dataset.goto);
     state.direction = 'back';
@@ -460,13 +484,13 @@ app.addEventListener('click', (e) => {
     app.querySelector('#email-suggest')?.remove();
     clearError('email');
   } else if (action === 'back' && !state.sending) {
+    readContactFields();
     state.step = Math.max(1, state.step - 1);
     state.direction = 'back';
     state.errors = {};
     state.serverError = null;
     render();
   } else if (action === 'print') {
-    app.querySelectorAll('details').forEach((d) => (d.open = true));
     window.print();
   } else if (action === 'goto-whatif') {
     const box = app.querySelector<HTMLElement>('.whatif');
@@ -615,14 +639,16 @@ function aresHint() {
 
 app.addEventListener('focusout', (e) => {
   const el = e.target as HTMLInputElement;
-  if (el.name === 'email') emailSuggest(el.value.trim());
+  const destination = e.relatedTarget;
+  if (el.name === 'email' && !(destination instanceof HTMLButtonElement && destination.type === 'submit')) emailSuggest(el.value.trim());
   if (!el.name || el.type === 'radio' || el.type === 'checkbox' || el.name === 'commune' || el.name === 'website') return;
-  if (String(el.value).trim() !== '') checkOne(el.name === 'indicatif' ? 'numero' : el.name, true);
+  if (String(el.value).trim() !== '') checkOne(el.name === 'indicatif' ? 'numero' : el.name, false);
 });
 
 app.addEventListener('submit', (e) => {
   e.preventDefault();
   if (state.sending) return;
+  readContactFields();
   state.serverError = null;
   if (state.step === 1) {
     const typed = app.querySelector<HTMLInputElement>('#commune')?.value ?? String(state.values.commune ?? '');
