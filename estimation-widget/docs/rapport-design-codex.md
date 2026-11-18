@@ -45,6 +45,8 @@ Je Zelle die Vorher- und die Nachher-Ansicht. Die Aufnahmen sind vollständige S
 
 ## 4. Jasons Sprechblasen
 
+> **Nachtrag (Claude, 18.11.2026):** Die unten aufgeführten neuen Formulierungen wurden nach der Übernahme **nicht** so live geschaltet. Sie waren frei von KI-Floskeln, klangen aber amtlich und gleichförmig („Je note…“ / „Ich habe notiert…“ in vielen Blasen). Die übernommene Fassung ist ein Mittelweg: menschlich, abwechslungsreich, ohne Begeisterungs-Floskeln, im Einklang mit den Leistungen auf immobuild.lu („de A à Z“, Gestion locative). Gültig ist der Stand in `src/i18n/*.json` (`coach`). Geprüft: Jede Blase hat bei 320 px höchstens 3 Zeilen (FR/DE/EN), axe 0 Fehler.
+
 Die Reaktionen benennen eine Auswahl oder erklären, wie Jason mit ihr umgeht. Die Texte verzichten auf Lob für eine Energieklasse oder Wertungen zum Zustand. Die längste eingesetzte Fassung hat 64 Zeichen. Die sichtbaren Blasen in den getesteten Durchläufen blieben bei 320 px innerhalb von drei Zeilen. Der Humanizer war in dieser Umgebung nicht verfügbar. Die Texte wurden pro Sprache eigenständig überarbeitet.
 
 ### Französisch
