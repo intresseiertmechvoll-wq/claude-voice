@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { baseVide, communeDe, comparerCommunes, importerReleve, sansDoublons, type AnnonceReleve, type Releve } from '../src/marche/maisons';
+import { baseVide, communeDe, comparer, importerReleve, memeMaison, objets, type AnnonceReleve, type Releve } from '../src/marche/maisons';
 import { DATA, PARAMS, REFS } from './helpers';
 
 const a = (id: string, loyer: number, over: Partial<AnnonceReleve> = {}): AnnonceReleve => ({
   source: 'athome', id, url: `https://www.athome.lu/location/maison/x/id-${id}.html`, loyer, surface: 150, chambres: 3, type: 'Maison', localite: 'Dudelange', pays: 'LU', ...over,
 });
-const releve = (date: string, annonces: AnnonceReleve[], lues = { athome: 100, wortimmo: 40 }): Releve => ({ date, lues, annonces });
+const releve = (date: string, annonces: AnnonceReleve[], lues: Releve['lues'] = { athome: 100, wortimmo: 40 }): Releve => ({ date, lues, annonces });
 
 describe('Localités → communes', () => {
   it('reconnaît communes, quartiers de Luxembourg, villages et pays étrangers', () => {
@@ -54,32 +54,97 @@ describe('Suivi mois après mois', () => {
   });
 });
 
-describe('Comparaison par commune', () => {
-  it('même maison sur atHome et wortimmo : comptée une fois', () => {
+describe('Doublons entre portails', () => {
+  it('même maison sur atHome, immotop et wortimmo : un seul objet, l’annonce atHome est gardée', () => {
     const base = baseVide();
-    importerReleve(base, releve('2026-11-17', [a('1', 3000), a('9', 3050, { source: 'wortimmo', url: 'https://www.wortimmo.lu/fr/location-maison-id_9' })]));
-    expect(sansDoublons(Object.values(base.fiches))).toHaveLength(1);
+    importerReleve(base, releve('2026-11-17', [
+      a('1', 3000),
+      a('7', 2950, { source: 'immotop', url: 'https://www.immotop.lu/annonces/7/', surface: 151 }),
+      a('9', 3050, { source: 'wortimmo', url: 'https://www.wortimmo.lu/fr/location-maison-id_9' }),
+    ], { athome: 100, immotop: 90, wortimmo: 40 }));
+    const o = objets(Object.values(base.fiches));
+    expect(o).toHaveLength(1);
+    expect(o[0].fiche.source).toBe('athome');
+    expect(o[0].annonces).toHaveLength(3);
   });
 
-  it('écart affiché seulement avec assez de maisons ; sinon « trop peu de données »', () => {
+  it('pas de fusion si la surface, les chambres ou le loyer diffèrent, ni entre deux annonces du même portail', () => {
     const base = baseVide();
-    // Modèle Sud, 150 m² : 3 226 € ; cinq maisons à 3 550 € = +10 %
-    importerReleve(base, releve('2026-11-17', ['1', '2', '3', '4', '5'].map((id) => a(id, 3550)).concat(a('6', 2000, { localite: 'Kayl', surface: 100 }))));
-    const lignes = comparerCommunes(base, DATA, REFS, PARAMS);
-    const dud = lignes.find((l) => l.commune === 'Dudelange')!;
-    expect(dud.actives).toBe(5);
-    expect(dud.ecart).toBeCloseTo(3550 / 3226, 2);
-    expect(dud.verdict).toBe('au-dessus du modèle de 10 % (toutes les annonces)');
-    expect(lignes.find((l) => l.commune === 'Kayl')!.verdict).toBe('trop peu de données (1 maison)');
+    importerReleve(base, releve('2026-11-17', [
+      a('1', 3000),
+      a('2', 3000),
+      a('7', 3000, { source: 'immotop', url: 'https://www.immotop.lu/annonces/7/', surface: 160 }),
+      a('8', 3000, { source: 'immotop', url: 'https://www.immotop.lu/annonces/8/', chambres: 5 }),
+      a('9', 3300, { source: 'wortimmo', url: 'https://www.wortimmo.lu/fr/location-maison-id_9' }),
+    ], { athome: 100, immotop: 90, wortimmo: 40 }));
+    const f = base.fiches;
+    expect(memeMaison(f['athome:1'], f['athome:2'])).toBe(false);
+    expect(memeMaison(f['athome:1'], f['immotop:7'])).toBe(false);
+    expect(memeMaison(f['athome:1'], f['immotop:8'])).toBe(false);
+    expect(memeMaison(f['athome:1'], f['wortimmo:9'])).toBe(false);
+    expect(objets(Object.values(f))).toHaveLength(5);
   });
 
-  it('dès 3 maisons disparues, l’écart se calcule sur leur dernier prix', () => {
+  it('une chambre d’écart entre portails : même maison si le loyer est identique, pas si le loyer diffère de 2 %', () => {
     const base = baseVide();
-    importerReleve(base, releve('2026-11-17', ['1', '2', '3', '4'].map((id) => a(id, 3000))));
-    importerReleve(base, releve('2026-12-17', [a('4', 3000)]));
-    const dud = comparerCommunes(base, DATA, REFS, PARAMS).find((l) => l.commune === 'Dudelange')!;
-    expect(dud.disparues).toBe(3);
-    expect(dud.disparuesJoursMedian).toBe(30);
-    expect(dud.verdict).toMatch(/au-dessous du modèle de 7 % \(maisons disparues\)/);
+    importerReleve(base, releve('2026-11-17', [
+      a('1', 8900, { chambres: 5, surface: 314 }),
+      a('7', 8900, { source: 'immotop', url: 'https://www.immotop.lu/annonces/7/', chambres: 4, surface: 314 }),
+      a('2', 3000, { chambres: 3 }),
+      a('8', 3060, { source: 'immotop', url: 'https://www.immotop.lu/annonces/8/', chambres: 4 }),
+    ], { athome: 100, immotop: 90 }));
+    expect(memeMaison(base.fiches['athome:1'], base.fiches['immotop:7'])).toBe(true);
+    expect(memeMaison(base.fiches['athome:2'], base.fiches['immotop:8'])).toBe(false);
+  });
+
+  it('une maison reste « active » tant qu’au moins un portail l’annonce', () => {
+    const base = baseVide();
+    const lues = { athome: 100, immotop: 90, wortimmo: 40 };
+    importerReleve(base, releve('2026-11-17', [a('1', 3000), a('7', 3000, { source: 'immotop', url: 'https://www.immotop.lu/annonces/7/' })], lues));
+    importerReleve(base, releve('2026-12-17', [a('7', 3000, { source: 'immotop', url: 'https://www.immotop.lu/annonces/7/' })], lues));
+    expect(base.fiches['athome:1'].statut).toBe('disparue');
+    expect(objets(Object.values(base.fiches))[0].statut).toBe('active');
+  });
+});
+
+describe('Comparaison : au moins 10 maisons par territoire', () => {
+  const lues = { athome: 100, immotop: 90, wortimmo: 40 };
+  const maisons = (n: number, commune: string, loyer: number, depart = 0) =>
+    Array.from({ length: n }, (_, i) => a(String(depart + i), loyer, { localite: commune, surface: 150 + i * 5 }));
+
+  it('commune avec 10 maisons : comparée sur elle-même ; commune avec 2 : sur son canton s’il en a 10', () => {
+    const base = baseVide();
+    // Dudelange : 10 maisons ; Kayl : 2 maisons ; canton d'Esch = 12 maisons
+    importerReleve(base, releve('2026-11-17', [...maisons(10, 'Dudelange', 3600), ...maisons(2, 'Kayl', 3600, 100)], lues));
+    const c = comparer(base, DATA, REFS, PARAMS);
+    const dud = c.communes.find((l) => l.commune === 'Dudelange')!;
+    const kayl = c.communes.find((l) => l.commune === 'Kayl')!;
+    expect(dud.reference).toMatchObject({ niveau: 'commune', objets: 10 });
+    expect(kayl.reference).toMatchObject({ niveau: 'canton', nom: 'Esch-sur-Alzette', objets: 12 });
+    expect(c.cantons.find((g) => g.nom === 'Esch-sur-Alzette')!.objets).toBe(12);
+    expect(c.cantons.find((g) => g.nom === 'Wiltz')!.objets).toBe(0);
+  });
+
+  it('canton sous 10 maisons : la commune est comparée sur sa zone', () => {
+    const base = baseVide();
+    importerReleve(base, releve('2026-11-17', [...maisons(3, 'Wiltz', 2500), ...maisons(8, 'Clervaux', 2500, 50)], lues));
+    const c = comparer(base, DATA, REFS, PARAMS);
+    expect(c.communes.find((l) => l.commune === 'Wiltz')!.reference).toMatchObject({ niveau: 'zone', nom: 'Nord', objets: 11 });
+  });
+
+  it('Luxembourg-Ville est un territoire à part du reste du canton', () => {
+    const base = baseVide();
+    importerReleve(base, releve('2026-11-17', [...maisons(4, 'Luxembourg-Belair', 5000), ...maisons(3, 'Strassen', 4000, 50)], lues));
+    const c = comparer(base, DATA, REFS, PARAMS);
+    expect(c.cantons.find((g) => g.nom === 'Luxembourg-Ville')!.objets).toBe(4);
+    expect(c.cantons.find((g) => g.nom === 'Luxembourg')!.objets).toBe(3);
+  });
+
+  it('les maisons disparues comptent 12 mois, puis sortent de la comparaison', () => {
+    const base = baseVide();
+    importerReleve(base, releve('2026-01-17', maisons(5, 'Dudelange', 3200), lues));
+    importerReleve(base, releve('2026-02-17', [], { athome: 100, immotop: 90, wortimmo: 40 }));
+    expect(comparer(base, DATA, REFS, PARAMS, '2026-12-17').objetsTotal).toBe(5);
+    expect(comparer(base, DATA, REFS, PARAMS, '2027-03-17').objetsTotal).toBe(0);
   });
 });

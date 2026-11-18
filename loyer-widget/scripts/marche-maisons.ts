@@ -3,6 +3,9 @@
  *
  *   npm run marche -- import --date 2026-12-17 --athome chemin/athome.csv --wortimmo chemin/wortimmo.csv
  *   npm run marche -- rapport            (recalcule le rapport, par ex. après ajout d'une localité)
+ *   npm run marche -- immotop --out immotop.csv page1.json page2.json …
+ *       (lit les pages immotop enregistrées par Firecrawl en « rawHtml », ou des fichiers .html,
+ *        et écrit le CSV ; les données sont lues dans la page, sans interprétation par une IA)
  *
  * Format CSV attendu (une ligne par annonce, tous pays) :
  *   source,page,rent_eur,surface_m2,bedrooms,type,locality,country,url,flag
@@ -16,7 +19,8 @@ import refs from '../data/references.json';
 import params from '../params.json';
 import type { Params } from '../src/shared/engine';
 import type { Dataset, References } from '../src/shared/types';
-import { baseVide, communeDe, comparerCommunes, importerReleve, rapport, type AnnonceReleve, type Base, type Releve } from '../src/marche/maisons';
+import { extraireImmotop } from '../src/marche/immotop';
+import { baseVide, communeDe, comparer, importerReleve, rapport, type AnnonceReleve, type Base, type Releve } from '../src/marche/maisons';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const BASE = join(ROOT, 'data/marche/maisons.json');
@@ -57,7 +61,7 @@ const entier = (v: string | undefined) => {
 };
 
 function idDe(url: string, source: AnnonceReleve['source']): string | null {
-  const m = source === 'athome' ? url.match(/id-(\d+)\.html/) : url.match(/id_(\d+)/);
+  const m = source === 'athome' ? url.match(/id-(\d+)\.html/) : source === 'immotop' ? url.match(/annonces\/(\d+)/) : url.match(/id_(\d+)/);
   return m ? m[1] : null;
 }
 
@@ -90,17 +94,16 @@ function chargerBase(): Base {
 
 function ecrireSorties(base: Base, inconnues: string[]) {
   const date = base.releves[base.releves.length - 1].date;
-  const lignes = comparerCommunes(base, data as unknown as Dataset, refs as References, params as Params);
+  const comp = comparer(base, data as unknown as Dataset, refs as References, params as Params);
   mkdirSync(join(ROOT, 'data/marche'), { recursive: true });
   mkdirSync(join(ROOT, 'docs/marche'), { recursive: true });
   writeFileSync(BASE, JSON.stringify(base, null, 1) + '\n');
-  writeFileSync(COMMUNES, JSON.stringify({ _note: 'Généré par scripts/marche-maisons.ts : comparaison par commune, dernier relevé.', date, communes: lignes }, null, 1) + '\n');
+  writeFileSync(COMMUNES, JSON.stringify({ _note: 'Généré par scripts/marche-maisons.ts : comparaison par canton, zone et commune, dernier relevé.', date, ...comp }, null, 1) + '\n');
   const fichier = join(ROOT, `docs/marche/rapport-maisons-${date}.md`);
-  writeFileSync(fichier, rapport(base, lignes, inconnues, date));
-  const avecEcart = lignes.filter((l) => l.ecart !== null);
+  writeFileSync(fichier, rapport(base, comp, inconnues, date));
   console.log(`✔ ${fichier.replace(ROOT + '/', '')}`);
-  console.log(`  ${lignes.length} communes avec au moins une maison, ${avecEcart.length} avec assez de données pour un écart`);
-  for (const l of avecEcart) console.log(`  ${l.commune.padEnd(20)} ${l.verdict}`);
+  console.log(`  ${comp.objetsTotal} maisons différentes (${comp.doublons} doublons entre portails retirés), ${comp.communes.length} communes`);
+  for (const g of comp.cantons) console.log(`  ${g.nom.padEnd(18)} ${String(g.objets).padStart(3)} maisons${g.objets < 10 ? '  (moins de 10)' : ''}`);
 }
 
 const cmd = process.argv[2];
@@ -109,7 +112,7 @@ if (cmd === 'import') {
   if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) throw new Error('--date AAAA-MM-JJ obligatoire');
   const releve: Releve = { date, lues: {}, annonces: [] };
   const rejets: string[] = [];
-  for (const source of ['athome', 'wortimmo'] as const) {
+  for (const source of ['athome', 'immotop', 'wortimmo'] as const) {
     const f = arg(source);
     if (!f) continue;
     const r = lireAnnonces(f, source);
@@ -127,6 +130,35 @@ if (cmd === 'import') {
   if (rejets.length) console.warn(`⚠ ${rejets.length} ligne(s) ignorée(s) :\n  ${rejets.slice(0, 10).join('\n  ')}`);
   if (inconnues.length) console.warn(`⚠ localités inconnues (à ajouter dans src/shared/aliases.ts, puis npm run marche -- rapport) : ${inconnues.join(', ')}`);
   ecrireSorties(base, inconnues);
+} else if (cmd === 'immotop') {
+  const out = arg('out');
+  const fichiers = process.argv.slice(3).filter((f: string, i: number, all: string[]) => f !== '--out' && all[i - 1] !== '--out');
+  if (!out || !fichiers.length) throw new Error('usage : npm run marche -- immotop --out immotop.csv page1.json [page2.json …]');
+  const lignes: string[] = ['source,page,rent_eur,surface_m2,bedrooms,type,locality,country,url,flag'];
+  const vus = new Set<string>();
+  const esc = (v: unknown) => {
+    const t = String(v ?? '');
+    return /[",\n]/.test(t) ? `"${t.replace(/"/g, '""')}"` : t;
+  };
+  for (const f of fichiers) {
+    const brut = readFileSync(f, 'utf8');
+    let html = brut;
+    try {
+      const j = JSON.parse(brut);
+      html = j.rawHtml ?? j.html ?? brut;
+    } catch {
+      /* fichier .html */
+    }
+    const page = extraireImmotop(html);
+    console.log(`${f} : ${page.annonces.length} annonces (page ${page.page} sur ${page.pages}, ${page.total} au total)${page.pages > page.page ? '  ⚠ il reste des pages : ajouter ?pag=N' : ''}`);
+    for (const a of page.annonces) {
+      if (vus.has(a.url)) continue;
+      vus.add(a.url);
+      lignes.push(['immotop', page.page, a.loyer, a.surface ?? '', a.chambres ?? '', a.type, a.localite, a.pays, a.url, ''].map(esc).join(','));
+    }
+  }
+  writeFileSync(out, lignes.join('\n') + '\n');
+  console.log(`✔ ${out} : ${lignes.length - 1} annonces`);
 } else if (cmd === 'rapport') {
   const base = chargerBase();
   if (!base.releves.length) throw new Error('base vide : importer d’abord un relevé');

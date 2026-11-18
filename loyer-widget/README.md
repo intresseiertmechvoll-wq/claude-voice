@@ -148,13 +148,14 @@ L'indice met à jour le niveau des loyers. Les tests utilisent une copie figée 
 
 ### Chaque mois, automatiquement : suivi des maisons à louer
 
-Une session Claude planifiée relève une fois par mois toutes les maisons à louer sur atHome et wortimmo (loyer, surface, chambres, localité, lien ; jamais de nom d'agent), puis :
+Une session Claude planifiée relève une fois par mois toutes les maisons à louer sur atHome, immotop et wortimmo (loyer, surface, chambres, localité, lien ; jamais de nom d'agent), puis :
 
 - met à jour la base `data/marche/maisons.json` : une fiche par maison, avec ses prix successifs ; une annonce qui n'est plus en ligne est marquée « disparue » (probablement louée, ou retirée) ;
-- compare chaque commune au modèle de l'outil : `docs/marche/rapport-maisons-AAAA-MM-JJ.md` et `data/marche/communes-maisons.json` ;
+- reconnaît la même maison annoncée sur plusieurs portails et ne la compte qu'une fois ;
+- compare chaque canton, chaque zone et chaque commune au modèle de l'outil, avec au moins 10 maisons de comparaison par territoire (sinon le territoire supérieur) : `docs/marche/rapport-maisons-AAAA-MM-JJ.md` et `data/marche/communes-maisons.json` ;
 - enregistre le tout dans git.
 
-Procédure complète (aussi pour la faire à la main) : `docs/marche/PROCEDURE.md`. À la main : `npm run marche -- import --date AAAA-MM-JJ --athome athome.csv --wortimmo wortimmo.csv`.
+Procédure complète (aussi pour la faire à la main) : `docs/marche/PROCEDURE.md`. À la main : `npm run marche -- import --date AAAA-MM-JJ --athome athome.csv --immotop immotop.csv --wortimmo wortimmo.csv`.
 
 Le modèle de l'outil n'est **pas** modifié automatiquement : quand une commune s'écarte durablement de son modèle (assez de maisons, plusieurs mois), c'est toi qui décides d'un ajustement. Risque lié aux conditions d'utilisation des portails : accepté par le propriétaire du projet le 17/11/2026.
 

@@ -11,6 +11,19 @@
    "nouvelles": 123,
    "disparues": 0,
    "avertissements": []
+  },
+  {
+   "date": "2026-11-18",
+   "lues": {
+    "immotop": 91
+   },
+   "luxembourg": 91,
+   "nouvelles": 91,
+   "disparues": 0,
+   "avertissements": [
+    "athome : pas relevé cette fois ; disparitions non comptées pour cette source",
+    "wortimmo : pas relevé cette fois ; disparitions non comptées pour cette source"
+   ]
   }
  ],
  "fiches": {
@@ -2960,6 +2973,2190 @@
    ],
    "premier_vu": "2026-11-17",
    "dernier_vu": "2026-11-17",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2073009": {
+   "cle": "immotop:2073009",
+   "source": "immotop",
+   "id": "2073009",
+   "url": "https://www.immotop.lu/annonces/2073009/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 200,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3500
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2116873": {
+   "cle": "immotop:2116873",
+   "source": "immotop",
+   "id": "2116873",
+   "url": "https://www.immotop.lu/annonces/2116873/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 180,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 4300
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2015307": {
+   "cle": "immotop:2015307",
+   "source": "immotop",
+   "id": "2015307",
+   "url": "https://www.immotop.lu/annonces/2015307/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison jumelée / mitoyenne",
+   "surface": 120,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3100
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:675531": {
+   "cle": "immotop:675531",
+   "source": "immotop",
+   "id": "675531",
+   "url": "https://www.immotop.lu/annonces/675531/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison jumelée / mitoyenne",
+   "surface": 314,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 8900
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2118467": {
+   "cle": "immotop:2118467",
+   "source": "immotop",
+   "id": "2118467",
+   "url": "https://www.immotop.lu/annonces/2118467/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison jumelée / mitoyenne",
+   "surface": 180,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 6900
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2119603": {
+   "cle": "immotop:2119603",
+   "source": "immotop",
+   "id": "2119603",
+   "url": "https://www.immotop.lu/annonces/2119603/",
+   "localite": "Strassen",
+   "commune": "Strassen",
+   "type": "Maison individuelle",
+   "surface": 38,
+   "chambres": 1,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 2145
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2117575": {
+   "cle": "immotop:2117575",
+   "source": "immotop",
+   "id": "2117575",
+   "url": "https://www.immotop.lu/annonces/2117575/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 270,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 7200
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:1399861": {
+   "cle": "immotop:1399861",
+   "source": "immotop",
+   "id": "1399861",
+   "url": "https://www.immotop.lu/annonces/1399861/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison jumelée / mitoyenne",
+   "surface": 11,
+   "chambres": 1,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 800
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "surface < 30 m² (garage ou erreur)"
+  },
+  "immotop:1964961": {
+   "cle": "immotop:1964961",
+   "source": "immotop",
+   "id": "1964961",
+   "url": "https://www.immotop.lu/annonces/1964961/",
+   "localite": "Hesperange",
+   "commune": "Hesperange",
+   "type": "Maison individuelle",
+   "surface": 150,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3800
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:1417807": {
+   "cle": "immotop:1417807",
+   "source": "immotop",
+   "id": "1417807",
+   "url": "https://www.immotop.lu/annonces/1417807/",
+   "localite": "Strassen",
+   "commune": "Strassen",
+   "type": "Maison individuelle",
+   "surface": 13,
+   "chambres": 1,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 900
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "surface < 30 m² (garage ou erreur)"
+  },
+  "immotop:2093551": {
+   "cle": "immotop:2093551",
+   "source": "immotop",
+   "id": "2093551",
+   "url": "https://www.immotop.lu/annonces/2093551/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": null,
+   "chambres": null,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 300
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "sans surface"
+  },
+  "immotop:2115177": {
+   "cle": "immotop:2115177",
+   "source": "immotop",
+   "id": "2115177",
+   "url": "https://www.immotop.lu/annonces/2115177/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 160,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 4500
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2114657": {
+   "cle": "immotop:2114657",
+   "source": "immotop",
+   "id": "2114657",
+   "url": "https://www.immotop.lu/annonces/2114657/",
+   "localite": "Sandweiler",
+   "commune": "Sandweiler",
+   "type": "Maison individuelle",
+   "surface": 120,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3500
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2118513": {
+   "cle": "immotop:2118513",
+   "source": "immotop",
+   "id": "2118513",
+   "url": "https://www.immotop.lu/annonces/2118513/",
+   "localite": "Strassen",
+   "commune": "Strassen",
+   "type": "Maison individuelle",
+   "surface": 240,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 5200
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2114191": {
+   "cle": "immotop:2114191",
+   "source": "immotop",
+   "id": "2114191",
+   "url": "https://www.immotop.lu/annonces/2114191/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 180,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 4300
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2092241": {
+   "cle": "immotop:2092241",
+   "source": "immotop",
+   "id": "2092241",
+   "url": "https://www.immotop.lu/annonces/2092241/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 186,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 4500
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2121939": {
+   "cle": "immotop:2121939",
+   "source": "immotop",
+   "id": "2121939",
+   "url": "https://www.immotop.lu/annonces/2121939/",
+   "localite": "Lintgen",
+   "commune": "Lintgen",
+   "type": "Maison individuelle",
+   "surface": 165,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3200
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2055923": {
+   "cle": "immotop:2055923",
+   "source": "immotop",
+   "id": "2055923",
+   "url": "https://www.immotop.lu/annonces/2055923/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 218,
+   "chambres": null,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 6900
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2013959": {
+   "cle": "immotop:2013959",
+   "source": "immotop",
+   "id": "2013959",
+   "url": "https://www.immotop.lu/annonces/2013959/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 280,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 5500
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2116547": {
+   "cle": "immotop:2116547",
+   "source": "immotop",
+   "id": "2116547",
+   "url": "https://www.immotop.lu/annonces/2116547/",
+   "localite": "Lorentzweiler",
+   "commune": "Lorentzweiler",
+   "type": "Maison individuelle",
+   "surface": 126,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 4000
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2105653": {
+   "cle": "immotop:2105653",
+   "source": "immotop",
+   "id": "2105653",
+   "url": "https://www.immotop.lu/annonces/2105653/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison jumelée / mitoyenne",
+   "surface": null,
+   "chambres": 6,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 5000
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "sans surface"
+  },
+  "immotop:1997363": {
+   "cle": "immotop:1997363",
+   "source": "immotop",
+   "id": "1997363",
+   "url": "https://www.immotop.lu/annonces/1997363/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 250,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 5900
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2116501": {
+   "cle": "immotop:2116501",
+   "source": "immotop",
+   "id": "2116501",
+   "url": "https://www.immotop.lu/annonces/2116501/",
+   "localite": "Niederanven",
+   "commune": "Niederanven",
+   "type": "Maison jumelée / mitoyenne",
+   "surface": 155,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3950
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2105561": {
+   "cle": "immotop:2105561",
+   "source": "immotop",
+   "id": "2105561",
+   "url": "https://www.immotop.lu/annonces/2105561/",
+   "localite": "Sandweiler",
+   "commune": "Sandweiler",
+   "type": "Maison individuelle",
+   "surface": 250,
+   "chambres": 6,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 4500
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2080311": {
+   "cle": "immotop:2080311",
+   "source": "immotop",
+   "id": "2080311",
+   "url": "https://www.immotop.lu/annonces/2080311/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 220,
+   "chambres": null,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 6200
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2027755": {
+   "cle": "immotop:2027755",
+   "source": "immotop",
+   "id": "2027755",
+   "url": "https://www.immotop.lu/annonces/2027755/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 220,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 5500
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2109481": {
+   "cle": "immotop:2109481",
+   "source": "immotop",
+   "id": "2109481",
+   "url": "https://www.immotop.lu/annonces/2109481/",
+   "localite": "Niederanven",
+   "commune": "Niederanven",
+   "type": "Maison individuelle",
+   "surface": 369,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 4800
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2112283": {
+   "cle": "immotop:2112283",
+   "source": "immotop",
+   "id": "2112283",
+   "url": "https://www.immotop.lu/annonces/2112283/",
+   "localite": "Hesperange",
+   "commune": "Hesperange",
+   "type": "Maison individuelle",
+   "surface": 500,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 7000
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "surface ≥ 400 m² (terrain compté ?)"
+  },
+  "immotop:2122051": {
+   "cle": "immotop:2122051",
+   "source": "immotop",
+   "id": "2122051",
+   "url": "https://www.immotop.lu/annonces/2122051/",
+   "localite": "Niederanven",
+   "commune": "Niederanven",
+   "type": "Maison individuelle",
+   "surface": 211,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 6750
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2037747": {
+   "cle": "immotop:2037747",
+   "source": "immotop",
+   "id": "2037747",
+   "url": "https://www.immotop.lu/annonces/2037747/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison jumelée / mitoyenne",
+   "surface": 250,
+   "chambres": 6,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 5500
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2091729": {
+   "cle": "immotop:2091729",
+   "source": "immotop",
+   "id": "2091729",
+   "url": "https://www.immotop.lu/annonces/2091729/",
+   "localite": "Fischbach",
+   "commune": "Fischbach",
+   "type": "Maison individuelle",
+   "surface": 258,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 4500
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2089309": {
+   "cle": "immotop:2089309",
+   "source": "immotop",
+   "id": "2089309",
+   "url": "https://www.immotop.lu/annonces/2089309/",
+   "localite": "Steinsel",
+   "commune": "Steinsel",
+   "type": "Maison individuelle",
+   "surface": 208,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 4500
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2052437": {
+   "cle": "immotop:2052437",
+   "source": "immotop",
+   "id": "2052437",
+   "url": "https://www.immotop.lu/annonces/2052437/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 277,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 8500
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2122721": {
+   "cle": "immotop:2122721",
+   "source": "immotop",
+   "id": "2122721",
+   "url": "https://www.immotop.lu/annonces/2122721/",
+   "localite": "Weiler-la-Tour",
+   "commune": "Weiler-la-Tour",
+   "type": "Maison individuelle",
+   "surface": 185,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 2900
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2104629": {
+   "cle": "immotop:2104629",
+   "source": "immotop",
+   "id": "2104629",
+   "url": "https://www.immotop.lu/annonces/2104629/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 260,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 6200
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2116193": {
+   "cle": "immotop:2116193",
+   "source": "immotop",
+   "id": "2116193",
+   "url": "https://www.immotop.lu/annonces/2116193/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 112,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 2900
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2094761": {
+   "cle": "immotop:2094761",
+   "source": "immotop",
+   "id": "2094761",
+   "url": "https://www.immotop.lu/annonces/2094761/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 140,
+   "chambres": null,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3000
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2093633": {
+   "cle": "immotop:2093633",
+   "source": "immotop",
+   "id": "2093633",
+   "url": "https://www.immotop.lu/annonces/2093633/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 195,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 4500
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2092379": {
+   "cle": "immotop:2092379",
+   "source": "immotop",
+   "id": "2092379",
+   "url": "https://www.immotop.lu/annonces/2092379/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 135,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3800
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2114593": {
+   "cle": "immotop:2114593",
+   "source": "immotop",
+   "id": "2114593",
+   "url": "https://www.immotop.lu/annonces/2114593/",
+   "localite": "Sandweiler",
+   "commune": "Sandweiler",
+   "type": "Maison individuelle",
+   "surface": 180,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3700
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2044091": {
+   "cle": "immotop:2044091",
+   "source": "immotop",
+   "id": "2044091",
+   "url": "https://www.immotop.lu/annonces/2044091/",
+   "localite": "Hesperange",
+   "commune": "Hesperange",
+   "type": "Maison individuelle",
+   "surface": 85,
+   "chambres": 1,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 2200
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2122533": {
+   "cle": "immotop:2122533",
+   "source": "immotop",
+   "id": "2122533",
+   "url": "https://www.immotop.lu/annonces/2122533/",
+   "localite": "Strassen",
+   "commune": "Strassen",
+   "type": "Maison individuelle",
+   "surface": 235,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 4400
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:1975677": {
+   "cle": "immotop:1975677",
+   "source": "immotop",
+   "id": "1975677",
+   "url": "https://www.immotop.lu/annonces/1975677/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": null,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 6000
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "sans surface"
+  },
+  "immotop:2103219": {
+   "cle": "immotop:2103219",
+   "source": "immotop",
+   "id": "2103219",
+   "url": "https://www.immotop.lu/annonces/2103219/",
+   "localite": "Remich",
+   "commune": "Remich",
+   "type": "Maison jumelée / mitoyenne",
+   "surface": 170,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 2800
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2046645": {
+   "cle": "immotop:2046645",
+   "source": "immotop",
+   "id": "2046645",
+   "url": "https://www.immotop.lu/annonces/2046645/",
+   "localite": "Grevenmacher",
+   "commune": "Grevenmacher",
+   "type": "Maison individuelle",
+   "surface": 182,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3150
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2112811": {
+   "cle": "immotop:2112811",
+   "source": "immotop",
+   "id": "2112811",
+   "url": "https://www.immotop.lu/annonces/2112811/",
+   "localite": "Bech",
+   "commune": "Bech",
+   "type": "Maison individuelle",
+   "surface": 135,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 2800
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2089665": {
+   "cle": "immotop:2089665",
+   "source": "immotop",
+   "id": "2089665",
+   "url": "https://www.immotop.lu/annonces/2089665/",
+   "localite": "Mondorf-les-Bains",
+   "commune": "Mondorf-les-Bains",
+   "type": "Maison individuelle",
+   "surface": null,
+   "chambres": null,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3650
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "sans surface"
+  },
+  "immotop:2094145": {
+   "cle": "immotop:2094145",
+   "source": "immotop",
+   "id": "2094145",
+   "url": "https://www.immotop.lu/annonces/2094145/",
+   "localite": "Dalheim",
+   "commune": "Dalheim",
+   "type": "Maison individuelle",
+   "surface": 142,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3000
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2054895": {
+   "cle": "immotop:2054895",
+   "source": "immotop",
+   "id": "2054895",
+   "url": "https://www.immotop.lu/annonces/2054895/",
+   "localite": "Dalheim",
+   "commune": "Dalheim",
+   "type": "Maison jumelée / mitoyenne",
+   "surface": 160,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3550
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2105635": {
+   "cle": "immotop:2105635",
+   "source": "immotop",
+   "id": "2105635",
+   "url": "https://www.immotop.lu/annonces/2105635/",
+   "localite": "Junglinster",
+   "commune": "Junglinster",
+   "type": "Maison individuelle",
+   "surface": 225,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3200
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2095695": {
+   "cle": "immotop:2095695",
+   "source": "immotop",
+   "id": "2095695",
+   "url": "https://www.immotop.lu/annonces/2095695/",
+   "localite": "Kiischpelt",
+   "commune": "Kiischpelt",
+   "type": "Maison individuelle",
+   "surface": 105,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 1900
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2107987": {
+   "cle": "immotop:2107987",
+   "source": "immotop",
+   "id": "2107987",
+   "url": "https://www.immotop.lu/annonces/2107987/",
+   "localite": "Kiischpelt",
+   "commune": "Kiischpelt",
+   "type": "Maison individuelle",
+   "surface": 80,
+   "chambres": 2,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 1250
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2115043": {
+   "cle": "immotop:2115043",
+   "source": "immotop",
+   "id": "2115043",
+   "url": "https://www.immotop.lu/annonces/2115043/",
+   "localite": "Parc Hosingen",
+   "commune": "Parc Hosingen",
+   "type": "Maison individuelle",
+   "surface": 205,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 2750
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2122727": {
+   "cle": "immotop:2122727",
+   "source": "immotop",
+   "id": "2122727",
+   "url": "https://www.immotop.lu/annonces/2122727/",
+   "localite": "Reisdorf",
+   "commune": "Reisdorf",
+   "type": "Maison individuelle",
+   "surface": 146,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 2500
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2113881": {
+   "cle": "immotop:2113881",
+   "source": "immotop",
+   "id": "2113881",
+   "url": "https://www.immotop.lu/annonces/2113881/",
+   "localite": "Erpeldange-sur-Sûre",
+   "commune": "Erpeldange-sur-Sûre",
+   "type": "Maison individuelle",
+   "surface": 191,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 2600
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2030267": {
+   "cle": "immotop:2030267",
+   "source": "immotop",
+   "id": "2030267",
+   "url": "https://www.immotop.lu/annonces/2030267/",
+   "localite": "Winseler",
+   "commune": "Winseler",
+   "type": "Maison jumelée / mitoyenne",
+   "surface": 140,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 2400
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2107927": {
+   "cle": "immotop:2107927",
+   "source": "immotop",
+   "id": "2107927",
+   "url": "https://www.immotop.lu/annonces/2107927/",
+   "localite": "Clervaux",
+   "commune": "Clervaux",
+   "type": "Maison individuelle",
+   "surface": 180,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 2200
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2102053": {
+   "cle": "immotop:2102053",
+   "source": "immotop",
+   "id": "2102053",
+   "url": "https://www.immotop.lu/annonces/2102053/",
+   "localite": "Ettelbruck",
+   "commune": "Ettelbruck",
+   "type": "Maison individuelle",
+   "surface": 202,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 2800
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2122105": {
+   "cle": "immotop:2122105",
+   "source": "immotop",
+   "id": "2122105",
+   "url": "https://www.immotop.lu/annonces/2122105/",
+   "localite": "Schieren",
+   "commune": "Schieren",
+   "type": "Maison individuelle",
+   "surface": 210,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3600
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2096765": {
+   "cle": "immotop:2096765",
+   "source": "immotop",
+   "id": "2096765",
+   "url": "https://www.immotop.lu/annonces/2096765/",
+   "localite": "Kopstal",
+   "commune": "Kopstal",
+   "type": "Maison jumelée / mitoyenne",
+   "surface": 180,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3800
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2092067": {
+   "cle": "immotop:2092067",
+   "source": "immotop",
+   "id": "2092067",
+   "url": "https://www.immotop.lu/annonces/2092067/",
+   "localite": "Mamer",
+   "commune": "Mamer",
+   "type": "Maison individuelle",
+   "surface": 165,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 5250
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2117935": {
+   "cle": "immotop:2117935",
+   "source": "immotop",
+   "id": "2117935",
+   "url": "https://www.immotop.lu/annonces/2117935/",
+   "localite": "Käerjeng",
+   "commune": "Käerjeng",
+   "type": "Maison individuelle",
+   "surface": 400,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3500
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "surface ≥ 400 m² (terrain compté ?)"
+  },
+  "immotop:2118095": {
+   "cle": "immotop:2118095",
+   "source": "immotop",
+   "id": "2118095",
+   "url": "https://www.immotop.lu/annonces/2118095/",
+   "localite": "Grosbous",
+   "commune": "Groussbus-Wal",
+   "type": "Maison individuelle",
+   "surface": null,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3000
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "sans surface"
+  },
+  "immotop:1968383": {
+   "cle": "immotop:1968383",
+   "source": "immotop",
+   "id": "1968383",
+   "url": "https://www.immotop.lu/annonces/1968383/",
+   "localite": "Käerjeng",
+   "commune": "Käerjeng",
+   "type": "Maison individuelle",
+   "surface": null,
+   "chambres": null,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 4500
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "sans surface"
+  },
+  "immotop:2083621": {
+   "cle": "immotop:2083621",
+   "source": "immotop",
+   "id": "2083621",
+   "url": "https://www.immotop.lu/annonces/2083621/",
+   "localite": "Vichten",
+   "commune": "Vichten",
+   "type": "Maison individuelle",
+   "surface": null,
+   "chambres": null,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 2500
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "sans surface"
+  },
+  "immotop:1991689": {
+   "cle": "immotop:1991689",
+   "source": "immotop",
+   "id": "1991689",
+   "url": "https://www.immotop.lu/annonces/1991689/",
+   "localite": "Mamer",
+   "commune": "Mamer",
+   "type": "Maison individuelle",
+   "surface": 110,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3000
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2122671": {
+   "cle": "immotop:2122671",
+   "source": "immotop",
+   "id": "2122671",
+   "url": "https://www.immotop.lu/annonces/2122671/",
+   "localite": "Dippach",
+   "commune": "Dippach",
+   "type": "Maison individuelle",
+   "surface": 260,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3500
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2058297": {
+   "cle": "immotop:2058297",
+   "source": "immotop",
+   "id": "2058297",
+   "url": "https://www.immotop.lu/annonces/2058297/",
+   "localite": "Mamer",
+   "commune": "Mamer",
+   "type": "Maison individuelle",
+   "surface": 180,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3500
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2121941": {
+   "cle": "immotop:2121941",
+   "source": "immotop",
+   "id": "2121941",
+   "url": "https://www.immotop.lu/annonces/2121941/",
+   "localite": "Steinfort",
+   "commune": "Steinfort",
+   "type": "Maison individuelle",
+   "surface": 156,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3200
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2118125": {
+   "cle": "immotop:2118125",
+   "source": "immotop",
+   "id": "2118125",
+   "url": "https://www.immotop.lu/annonces/2118125/",
+   "localite": "Vichten",
+   "commune": "Vichten",
+   "type": "Maison individuelle",
+   "surface": 80,
+   "chambres": 2,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 1400
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2111515": {
+   "cle": "immotop:2111515",
+   "source": "immotop",
+   "id": "2111515",
+   "url": "https://www.immotop.lu/annonces/2111515/",
+   "localite": "Dippach",
+   "commune": "Dippach",
+   "type": "Maison individuelle",
+   "surface": 372,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 4400
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2025267": {
+   "cle": "immotop:2025267",
+   "source": "immotop",
+   "id": "2025267",
+   "url": "https://www.immotop.lu/annonces/2025267/",
+   "localite": "Grosbous",
+   "commune": "Groussbus-Wal",
+   "type": "Maison jumelée / mitoyenne",
+   "surface": 150,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 2950
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2116191": {
+   "cle": "immotop:2116191",
+   "source": "immotop",
+   "id": "2116191",
+   "url": "https://www.immotop.lu/annonces/2116191/",
+   "localite": "Habscht",
+   "commune": "Habscht",
+   "type": "Maison jumelée / mitoyenne",
+   "surface": 200,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3000
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2118123": {
+   "cle": "immotop:2118123",
+   "source": "immotop",
+   "id": "2118123",
+   "url": "https://www.immotop.lu/annonces/2118123/",
+   "localite": "Vichten",
+   "commune": "Vichten",
+   "type": "Maison individuelle",
+   "surface": 100,
+   "chambres": 2,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 1700
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2026377": {
+   "cle": "immotop:2026377",
+   "source": "immotop",
+   "id": "2026377",
+   "url": "https://www.immotop.lu/annonces/2026377/",
+   "localite": "Kehlen",
+   "commune": "Kehlen",
+   "type": "Maison jumelée / mitoyenne",
+   "surface": 180,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3600
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2118141": {
+   "cle": "immotop:2118141",
+   "source": "immotop",
+   "id": "2118141",
+   "url": "https://www.immotop.lu/annonces/2118141/",
+   "localite": "Vichten",
+   "commune": "Vichten",
+   "type": "Maison individuelle",
+   "surface": 80,
+   "chambres": 2,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 1400
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2118143": {
+   "cle": "immotop:2118143",
+   "source": "immotop",
+   "id": "2118143",
+   "url": "https://www.immotop.lu/annonces/2118143/",
+   "localite": "Vichten",
+   "commune": "Vichten",
+   "type": "Maison individuelle",
+   "surface": 100,
+   "chambres": 2,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 1700
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2093951": {
+   "cle": "immotop:2093951",
+   "source": "immotop",
+   "id": "2093951",
+   "url": "https://www.immotop.lu/annonces/2093951/",
+   "localite": "Koerich",
+   "commune": "Koerich",
+   "type": "Maison individuelle",
+   "surface": 275,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 4250
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2089015": {
+   "cle": "immotop:2089015",
+   "source": "immotop",
+   "id": "2089015",
+   "url": "https://www.immotop.lu/annonces/2089015/",
+   "localite": "Habscht",
+   "commune": "Habscht",
+   "type": "Maison individuelle",
+   "surface": 200,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 2950
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:1997315": {
+   "cle": "immotop:1997315",
+   "source": "immotop",
+   "id": "1997315",
+   "url": "https://www.immotop.lu/annonces/1997315/",
+   "localite": "Mamer",
+   "commune": "Mamer",
+   "type": "Maison individuelle",
+   "surface": 140,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3900
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2121817": {
+   "cle": "immotop:2121817",
+   "source": "immotop",
+   "id": "2121817",
+   "url": "https://www.immotop.lu/annonces/2121817/",
+   "localite": "Leudelange",
+   "commune": "Leudelange",
+   "type": "Maison individuelle",
+   "surface": 126,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 2900
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2020559": {
+   "cle": "immotop:2020559",
+   "source": "immotop",
+   "id": "2020559",
+   "url": "https://www.immotop.lu/annonces/2020559/",
+   "localite": "Esch-sur-Alzette",
+   "commune": "Esch-sur-Alzette",
+   "type": "Maison individuelle",
+   "surface": 328,
+   "chambres": 6,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 4500
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:1916951": {
+   "cle": "immotop:1916951",
+   "source": "immotop",
+   "id": "1916951",
+   "url": "https://www.immotop.lu/annonces/1916951/",
+   "localite": "Mondercange",
+   "commune": "Mondercange",
+   "type": "Maison individuelle",
+   "surface": 364,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 10000
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:1403501": {
+   "cle": "immotop:1403501",
+   "source": "immotop",
+   "id": "1403501",
+   "url": "https://www.immotop.lu/annonces/1403501/",
+   "localite": "Reckange-sur-Mess",
+   "commune": "Reckange-sur-Mess",
+   "type": "Maison individuelle",
+   "surface": 35,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 800
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2083261": {
+   "cle": "immotop:2083261",
+   "source": "immotop",
+   "id": "2083261",
+   "url": "https://www.immotop.lu/annonces/2083261/",
+   "localite": "Differdange",
+   "commune": "Differdange",
+   "type": "Maison individuelle",
+   "surface": 220,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3650
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2121943": {
+   "cle": "immotop:2121943",
+   "source": "immotop",
+   "id": "2121943",
+   "url": "https://www.immotop.lu/annonces/2121943/",
+   "localite": "Leudelange",
+   "commune": "Leudelange",
+   "type": "Maison individuelle",
+   "surface": 200,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3250
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2102051": {
+   "cle": "immotop:2102051",
+   "source": "immotop",
+   "id": "2102051",
+   "url": "https://www.immotop.lu/annonces/2102051/",
+   "localite": "Leudelange",
+   "commune": "Leudelange",
+   "type": "Maison individuelle",
+   "surface": 340,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 5400
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2107779": {
+   "cle": "immotop:2107779",
+   "source": "immotop",
+   "id": "2107779",
+   "url": "https://www.immotop.lu/annonces/2107779/",
+   "localite": "Differdange",
+   "commune": "Differdange",
+   "type": "Maison individuelle",
+   "surface": 230,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 3650
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:1480743": {
+   "cle": "immotop:1480743",
+   "source": "immotop",
+   "id": "1480743",
+   "url": "https://www.immotop.lu/annonces/1480743/",
+   "localite": "Leudelange",
+   "commune": "Leudelange",
+   "type": "Maison individuelle",
+   "surface": 10,
+   "chambres": 8,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 800
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "surface < 30 m² (garage ou erreur)"
+  },
+  "immotop:2053847": {
+   "cle": "immotop:2053847",
+   "source": "immotop",
+   "id": "2053847",
+   "url": "https://www.immotop.lu/annonces/2053847/",
+   "localite": "Roeser",
+   "commune": "Roeser",
+   "type": "Maison individuelle",
+   "surface": 277,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 9000
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2052445": {
+   "cle": "immotop:2052445",
+   "source": "immotop",
+   "id": "2052445",
+   "url": "https://www.immotop.lu/annonces/2052445/",
+   "localite": "Roeser",
+   "commune": "Roeser",
+   "type": "Maison individuelle",
+   "surface": 277,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-18",
+     "loyer": 8500
+    }
+   ],
+   "premier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-18",
    "nb_releves": 1,
    "statut": "active",
    "disparue_le": null,
