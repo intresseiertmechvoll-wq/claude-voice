@@ -60,7 +60,9 @@ Le script :
 - met à jour `data/marche/maisons.json` (une fiche par annonce : prix successifs, première et dernière observation, « disparue » quand l'annonce n'est plus en ligne) ;
 - garde une copie du relevé (annonces du Luxembourg) dans `data/marche/releves/AAAA-MM-JJ.json` ;
 - regroupe les annonces des trois portails en maisons (même commune, surface à 2 m² près, même nombre de chambres et loyer à 3 % près, ou une chambre d'écart et loyer à 1 % près) ;
-- écrit `data/marche/communes-maisons.json` et `docs/marche/rapport-maisons-AAAA-MM-JJ.md` : comparaison avec le modèle de l'outil par canton, par zone et par commune. Objectif : **au moins 10 maisons de comparaison par territoire**. Les maisons disparues restent comptées 12 mois. Chaque commune est comparée sur le plus petit territoire qui atteint 10 maisons (la commune, sinon son canton, sinon sa zone).
+- écrit `data/marche/communes-maisons.json` et `docs/marche/rapport-maisons-AAAA-MM-JJ.md` : comparaison avec le modèle de l'outil par secteur, par région et par commune. Objectif : **au moins 10 maisons de comparaison par territoire**. Les maisons disparues restent comptées 12 mois. Chaque commune est comparée sur le plus petit territoire qui atteint 10 maisons (la commune, sinon son secteur, sinon sa région, sinon tout le pays).
+
+Le découpage est dans `data/marche/secteurs.json` : 15 secteurs regroupés en 6 régions (Luxembourg-Ville ; couronne de Luxembourg-Ville ; Ouest et Centre ; Sud en 3 secteurs : Sud-Ouest, Esch et Belval, Sud-Est ; Est en 4 secteurs : Moselle sud, Moselle nord, Junglinster et Betzdorf, Mullerthal ; Nord). Chaque commune doit y figurer une seule fois (un test le vérifie). Jason peut déplacer une commune d'un secteur à l'autre : modifier le fichier, puis `npm test` et `npm run marche -- rapport`.
 
 S'il signale des **localités inconnues** : ajouter la correspondance localité → commune dans `src/shared/aliases.ts` **seulement si elle est certaine** (vérifier la commune), puis `npm run marche -- rapport`. En cas de doute, laisser la localité inconnue : elle reste listée dans le rapport.
 
@@ -79,7 +81,7 @@ Fin du message de commit : les lignes d'attribution demandées par la session. S
 ## 6. Message final (en allemand, court)
 
 - nombre d'annonces lues (atHome, immotop, wortimmo), maisons différentes après regroupement, nouvelles, disparues ;
-- cantons qui ont atteint ou pas les 10 maisons de comparaison ;
+- secteurs qui ont atteint ou pas les 10 maisons de comparaison (et régions, si une région est sous 10) ;
 - communes dont l'écart avec le modèle dépasse ± 10 % **et** qui ont assez de données ;
 - avertissements (relevé incomplet, localités inconnues, contrôle de la page 1) ;
 - lien vers le rapport du mois.
@@ -88,5 +90,6 @@ Fin du message de commit : les lignes d'attribution demandées par la session. S
 
 - Une annonce disparue n'est pas forcément louée (retirée, expirée, louée ailleurs). Son dernier prix est une approximation du loyer conclu, pas un loyer signé.
 - La durée en ligne n'est précise qu'au mois près.
-- Peu de maisons à louer dans certains cantons (Vianden 0, Echternach 1 le 18/11/2026) : même en cumulant 12 mois, ils n'atteindront peut-être jamais 10 maisons. Leurs communes restent alors comparées sur la zone (toutes les zones ont plus de 10 maisons dès le premier mois).
+- Peu de maisons à louer dans plusieurs secteurs (le 18/11/2026 : 4 secteurs sur 15 ont 10 maisons ; Mullerthal 1, Junglinster et Betzdorf 2). Même en cumulant 12 mois, certains n'atteindront peut-être jamais 10 maisons. Leurs communes restent alors comparées sur la région (les 6 régions ont au moins 10 maisons dès le premier relevé ; l'Est tout juste : 10).
+- Une même maison peut être annoncée deux fois sur le même portail avec deux loyers (exemple : Roeser, 277 m², 8 500 € et 9 000 € sur immotop le 18/11/2026). Le script ne regroupe pas deux annonces du même portail (deux maisons jumelles identiques sont possibles) : elles comptent deux fois.
 - Le modèle de l'outil (`data/references.json` → `maisons`) n'est **pas** modifié automatiquement : un ajustement par commune ne se fait qu'après décision de Jason.

@@ -46,7 +46,7 @@
   },
   "zones": {
     "LV": "Luxembourg-Ville",
-    "LC": "Luxembourg-Campagne",
+    "LC": "communes autour de Luxembourg-Ville",
     "Peri": "cantons de Capellen et Mersch",
     "Sud": "canton d’Esch-sur-Alzette",
     "Est": "est du pays",

@@ -1,13 +1,13 @@
 {
- "_note": "Généré par scripts/marche-maisons.ts : comparaison par canton, zone et commune, dernier relevé.",
+ "_note": "Généré par scripts/marche-maisons.ts : comparaison par secteur, région et commune, dernier relevé.",
  "date": "2026-11-18",
  "depuis": "2025-11-17",
  "objetsTotal": 111,
  "annoncesTotal": 191,
  "doublons": 80,
- "cantons": [
+ "secteurs": [
   {
-   "niveau": "canton",
+   "niveau": "secteur",
    "nom": "Luxembourg-Ville",
    "objets": 27,
    "actives": 27,
@@ -20,99 +20,47 @@
    "partBaissePrix": 0
   },
   {
-   "niveau": "canton",
-   "nom": "Capellen",
-   "objets": 17,
-   "actives": 17,
+   "niveau": "secteur",
+   "nom": "Couronne ouest et nord",
+   "objets": 6,
+   "actives": 6,
    "disparues": 0,
-   "loyerMedian": 3500,
-   "m2Median": 20,
-   "ecart": 0.9361183536570457,
+   "loyerMedian": 4450,
+   "m2Median": 21.650641025641026,
+   "ecart": 1.0401170795557617,
    "ecartDisparues": null,
    "joursDisparuesMedian": null,
    "partBaissePrix": 0
   },
   {
-   "niveau": "canton",
-   "nom": "Clervaux",
-   "objets": 3,
-   "actives": 3,
+   "niveau": "secteur",
+   "nom": "Couronne est et sud",
+   "objets": 13,
+   "actives": 13,
    "disparues": 0,
-   "loyerMedian": 2750,
-   "m2Median": 13.414634146341463,
-   "ecart": 0.9736074565874924,
+   "loyerMedian": 3700,
+   "m2Median": 22.78481012658228,
+   "ecart": 0.9817157104230403,
    "ecartDisparues": null,
    "joursDisparuesMedian": null,
    "partBaissePrix": 0
   },
   {
-   "niveau": "canton",
-   "nom": "Diekirch",
-   "objets": 4,
-   "actives": 4,
-   "disparues": 0,
-   "loyerMedian": 2700,
-   "m2Median": 15.49233690492337,
-   "ecart": 1.0468315939701793,
-   "ecartDisparues": null,
-   "joursDisparuesMedian": null,
-   "partBaissePrix": 0
-  },
-  {
-   "niveau": "canton",
-   "nom": "Echternach",
-   "objets": 1,
-   "actives": 1,
-   "disparues": 0,
-   "loyerMedian": 2800,
-   "m2Median": 20.74074074074074,
-   "ecart": 1.0785576329951925,
-   "ecartDisparues": null,
-   "joursDisparuesMedian": null,
-   "partBaissePrix": 0
-  },
-  {
-   "niveau": "canton",
-   "nom": "Esch-sur-Alzette",
+   "niveau": "secteur",
+   "nom": "Canton de Capellen",
    "objets": 16,
    "actives": 16,
    "disparues": 0,
-   "loyerMedian": 3500,
-   "m2Median": 22.142857142857142,
-   "ecart": 0.9863066291274956,
+   "loyerMedian": 3550,
+   "m2Median": 20.256410256410255,
+   "ecart": 0.9494914729950035,
    "ecartDisparues": null,
    "joursDisparuesMedian": null,
    "partBaissePrix": 0
   },
   {
-   "niveau": "canton",
-   "nom": "Grevenmacher",
-   "objets": 5,
-   "actives": 5,
-   "disparues": 0,
-   "loyerMedian": 3150,
-   "m2Median": 16.120218579234972,
-   "ecart": 0.9403754912657837,
-   "ecartDisparues": null,
-   "joursDisparuesMedian": null,
-   "partBaissePrix": 0
-  },
-  {
-   "niveau": "canton",
-   "nom": "Luxembourg",
-   "objets": 19,
-   "actives": 19,
-   "disparues": 0,
-   "loyerMedian": 3800,
-   "m2Median": 21.666666666666668,
-   "ecart": 0.9889777167508312,
-   "ecartDisparues": null,
-   "joursDisparuesMedian": null,
-   "partBaissePrix": 0
-  },
-  {
-   "niveau": "canton",
-   "nom": "Mersch",
+   "niveau": "secteur",
+   "nom": "Mersch et vallée de l’Alzette",
    "objets": 7,
    "actives": 7,
    "disparues": 0,
@@ -124,21 +72,47 @@
    "partBaissePrix": 0
   },
   {
-   "niveau": "canton",
-   "nom": "Redange",
-   "objets": 5,
-   "actives": 5,
+   "niveau": "secteur",
+   "nom": "Sud-Ouest (Differdange, Pétange)",
+   "objets": 4,
+   "actives": 4,
    "disparues": 0,
-   "loyerMedian": 1700,
-   "m2Median": 17.5,
-   "ecart": 0.9407616526037321,
+   "loyerMedian": 3575,
+   "m2Median": 18.26212121212121,
+   "ecart": 0.8936359747405095,
    "ecartDisparues": null,
    "joursDisparuesMedian": null,
    "partBaissePrix": 0
   },
   {
-   "niveau": "canton",
-   "nom": "Remich",
+   "niveau": "secteur",
+   "nom": "Esch et Belval",
+   "objets": 10,
+   "actives": 10,
+   "disparues": 0,
+   "loyerMedian": 3425,
+   "m2Median": 20.734126984126984,
+   "ecart": 0.9644748205249332,
+   "ecartDisparues": null,
+   "joursDisparuesMedian": null,
+   "partBaissePrix": 0
+  },
+  {
+   "niveau": "secteur",
+   "nom": "Sud-Est (Dudelange, Bettembourg)",
+   "objets": 3,
+   "actives": 3,
+   "disparues": 0,
+   "loyerMedian": 8500,
+   "m2Median": 30.685920577617328,
+   "ecart": 1.7988098823899028,
+   "ecartDisparues": null,
+   "joursDisparuesMedian": null,
+   "partBaissePrix": 0
+  },
+  {
+   "niveau": "secteur",
+   "nom": "Moselle sud (Remich, Mondorf)",
    "objets": 4,
    "actives": 4,
    "disparues": 0,
@@ -150,36 +124,88 @@
    "partBaissePrix": 0
   },
   {
-   "niveau": "canton",
-   "nom": "Vianden",
-   "objets": 0,
-   "actives": 0,
-   "disparues": 0,
-   "loyerMedian": null,
-   "m2Median": null,
-   "ecart": null,
-   "ecartDisparues": null,
-   "joursDisparuesMedian": null,
-   "partBaissePrix": null
-  },
-  {
-   "niveau": "canton",
-   "nom": "Wiltz",
+   "niveau": "secteur",
+   "nom": "Moselle nord (Grevenmacher)",
    "objets": 3,
    "actives": 3,
    "disparues": 0,
-   "loyerMedian": 1900,
-   "m2Median": 17.142857142857142,
-   "ecart": 1.0199993153592355,
+   "loyerMedian": 3150,
+   "m2Median": 16.120218579234972,
+   "ecart": 1.0075591179535548,
+   "ecartDisparues": null,
+   "joursDisparuesMedian": null,
+   "partBaissePrix": 0
+  },
+  {
+   "niveau": "secteur",
+   "nom": "Junglinster et Betzdorf",
+   "objets": 2,
+   "actives": 2,
+   "disparues": 0,
+   "loyerMedian": 2900,
+   "m2Median": 15.777777777777777,
+   "ecart": 0.9174876463441863,
+   "ecartDisparues": null,
+   "joursDisparuesMedian": null,
+   "partBaissePrix": 0
+  },
+  {
+   "niveau": "secteur",
+   "nom": "Mullerthal (Echternach)",
+   "objets": 1,
+   "actives": 1,
+   "disparues": 0,
+   "loyerMedian": 2800,
+   "m2Median": 20.74074074074074,
+   "ecart": 1.0785576329951925,
+   "ecartDisparues": null,
+   "joursDisparuesMedian": null,
+   "partBaissePrix": 0
+  },
+  {
+   "niveau": "secteur",
+   "nom": "Nordstad (Ettelbruck, Diekirch)",
+   "objets": 4,
+   "actives": 4,
+   "disparues": 0,
+   "loyerMedian": 2700,
+   "m2Median": 15.49233690492337,
+   "ecart": 1.0468315939701793,
+   "ecartDisparues": null,
+   "joursDisparuesMedian": null,
+   "partBaissePrix": 0
+  },
+  {
+   "niveau": "secteur",
+   "nom": "Éislek (Clervaux, Wiltz, Vianden)",
+   "objets": 6,
+   "actives": 6,
+   "disparues": 0,
+   "loyerMedian": 2300,
+   "m2Median": 16.38392857142857,
+   "ecart": 0.9968033859733639,
+   "ecartDisparues": null,
+   "joursDisparuesMedian": null,
+   "partBaissePrix": 0
+  },
+  {
+   "niveau": "secteur",
+   "nom": "Canton de Redange",
+   "objets": 5,
+   "actives": 5,
+   "disparues": 0,
+   "loyerMedian": 1700,
+   "m2Median": 17.5,
+   "ecart": 0.9407616526037321,
    "ecartDisparues": null,
    "joursDisparuesMedian": null,
    "partBaissePrix": 0
   }
  ],
- "zones": [
+ "regions": [
   {
-   "niveau": "zone",
-   "nom": "LV",
+   "niveau": "region",
+   "nom": "Luxembourg-Ville",
    "objets": 27,
    "actives": 27,
    "disparues": 0,
@@ -191,8 +217,8 @@
    "partBaissePrix": 0
   },
   {
-   "niveau": "zone",
-   "nom": "LC",
+   "niveau": "region",
+   "nom": "Couronne de Luxembourg-Ville",
    "objets": 19,
    "actives": 19,
    "disparues": 0,
@@ -204,33 +230,33 @@
    "partBaissePrix": 0
   },
   {
-   "niveau": "zone",
-   "nom": "Peri",
-   "objets": 24,
-   "actives": 24,
+   "niveau": "region",
+   "nom": "Ouest et Centre (Capellen, Mersch)",
+   "objets": 23,
+   "actives": 23,
    "disparues": 0,
    "loyerMedian": 3500,
    "m2Median": 20,
-   "ecart": 0.9624520133112952,
+   "ecart": 0.9628645923329613,
    "ecartDisparues": null,
    "joursDisparuesMedian": null,
    "partBaissePrix": 0
   },
   {
-   "niveau": "zone",
+   "niveau": "region",
    "nom": "Sud",
-   "objets": 16,
-   "actives": 16,
+   "objets": 17,
+   "actives": 17,
    "disparues": 0,
    "loyerMedian": 3500,
-   "m2Median": 22.142857142857142,
-   "ecart": 0.9863066291274956,
+   "m2Median": 21.428571428571427,
+   "ecart": 0.9706967362385848,
    "ecartDisparues": null,
    "joursDisparuesMedian": null,
    "partBaissePrix": 0
   },
   {
-   "niveau": "zone",
+   "niveau": "region",
    "nom": "Est",
    "objets": 10,
    "actives": 10,
@@ -243,7 +269,7 @@
    "partBaissePrix": 0
   },
   {
-   "niveau": "zone",
+   "niveau": "region",
    "nom": "Nord",
    "objets": 15,
    "actives": 15,
@@ -272,8 +298,8 @@
  "communes": [
   {
    "commune": "Luxembourg",
-   "canton": "Luxembourg-Ville",
-   "zone": "LV",
+   "secteur": "Luxembourg-Ville",
+   "region": "Luxembourg-Ville",
    "objets": 27,
    "actives": 27,
    "disparues": 0,
@@ -288,787 +314,787 @@
   },
   {
    "commune": "Niederanven",
-   "canton": "Luxembourg",
-   "zone": "LC",
+   "secteur": "Couronne est et sud",
+   "region": "Couronne de Luxembourg-Ville",
    "objets": 7,
    "actives": 7,
    "disparues": 0,
    "loyerMedian": 3950,
    "reference": {
-    "niveau": "canton",
-    "nom": "Luxembourg",
-    "objets": 19,
-    "ecart": 0.9889777167508312
+    "niveau": "secteur",
+    "nom": "Couronne est et sud",
+    "objets": 13,
+    "ecart": 0.9817157104230403
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur le canton (Luxembourg) : 19 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur le secteur Couronne est et sud : 13 maisons"
   },
   {
    "commune": "Mamer",
-   "canton": "Capellen",
-   "zone": "Peri",
+   "secteur": "Canton de Capellen",
+   "region": "Ouest et Centre (Capellen, Mersch)",
    "objets": 6,
    "actives": 6,
    "disparues": 0,
    "loyerMedian": 3700,
    "reference": {
-    "niveau": "canton",
-    "nom": "Capellen",
-    "objets": 17,
-    "ecart": 0.9361183536570457
+    "niveau": "secteur",
+    "nom": "Canton de Capellen",
+    "objets": 16,
+    "ecart": 0.9494914729950035
    },
-   "verdict": "au-dessous du modèle de 6 %, mesuré sur le canton (Capellen) : 17 maisons"
+   "verdict": "au-dessous du modèle de 5 %, mesuré sur le secteur Canton de Capellen : 16 maisons"
   },
   {
    "commune": "Esch-sur-Alzette",
-   "canton": "Esch-sur-Alzette",
-   "zone": "Sud",
+   "secteur": "Esch et Belval",
+   "region": "Sud",
    "objets": 4,
    "actives": 4,
    "disparues": 0,
    "loyerMedian": 3500,
    "reference": {
-    "niveau": "canton",
-    "nom": "Esch-sur-Alzette",
-    "objets": 16,
-    "ecart": 0.9863066291274956
+    "niveau": "secteur",
+    "nom": "Esch et Belval",
+    "objets": 10,
+    "ecart": 0.9644748205249332
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur le canton (Esch-sur-Alzette) : 16 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur le secteur Esch et Belval : 10 maisons"
   },
   {
    "commune": "Vichten",
-   "canton": "Redange",
-   "zone": "Nord",
+   "secteur": "Canton de Redange",
+   "region": "Nord",
    "objets": 4,
    "actives": 4,
    "disparues": 0,
    "loyerMedian": 1550,
    "reference": {
-    "niveau": "zone",
+    "niveau": "region",
     "nom": "Nord",
     "objets": 15,
     "ecart": 0.9736074565874924
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 15 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Nord : 15 maisons"
   },
   {
    "commune": "Habscht",
-   "canton": "Capellen",
-   "zone": "Peri",
+   "secteur": "Canton de Capellen",
+   "region": "Ouest et Centre (Capellen, Mersch)",
    "objets": 3,
    "actives": 3,
    "disparues": 0,
    "loyerMedian": 3000,
    "reference": {
-    "niveau": "canton",
-    "nom": "Capellen",
-    "objets": 17,
-    "ecart": 0.9361183536570457
+    "niveau": "secteur",
+    "nom": "Canton de Capellen",
+    "objets": 16,
+    "ecart": 0.9494914729950035
    },
-   "verdict": "au-dessous du modèle de 6 %, mesuré sur le canton (Capellen) : 17 maisons"
+   "verdict": "au-dessous du modèle de 5 %, mesuré sur le secteur Canton de Capellen : 16 maisons"
   },
   {
    "commune": "Leudelange",
-   "canton": "Esch-sur-Alzette",
-   "zone": "Sud",
+   "secteur": "Esch et Belval",
+   "region": "Sud",
    "objets": 3,
    "actives": 3,
    "disparues": 0,
    "loyerMedian": 3250,
    "reference": {
-    "niveau": "canton",
-    "nom": "Esch-sur-Alzette",
-    "objets": 16,
-    "ecart": 0.9863066291274956
+    "niveau": "secteur",
+    "nom": "Esch et Belval",
+    "objets": 10,
+    "ecart": 0.9644748205249332
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur le canton (Esch-sur-Alzette) : 16 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur le secteur Esch et Belval : 10 maisons"
   },
   {
    "commune": "Sandweiler",
-   "canton": "Luxembourg",
-   "zone": "LC",
+   "secteur": "Couronne est et sud",
+   "region": "Couronne de Luxembourg-Ville",
    "objets": 3,
    "actives": 3,
    "disparues": 0,
    "loyerMedian": 3700,
    "reference": {
-    "niveau": "canton",
-    "nom": "Luxembourg",
-    "objets": 19,
-    "ecart": 0.9889777167508312
+    "niveau": "secteur",
+    "nom": "Couronne est et sud",
+    "objets": 13,
+    "ecart": 0.9817157104230403
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur le canton (Luxembourg) : 19 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur le secteur Couronne est et sud : 13 maisons"
   },
   {
    "commune": "Strassen",
-   "canton": "Luxembourg",
-   "zone": "LC",
+   "secteur": "Couronne ouest et nord",
+   "region": "Couronne de Luxembourg-Ville",
    "objets": 3,
    "actives": 3,
    "disparues": 0,
    "loyerMedian": 4400,
    "reference": {
-    "niveau": "canton",
-    "nom": "Luxembourg",
+    "niveau": "region",
+    "nom": "Couronne de Luxembourg-Ville",
     "objets": 19,
     "ecart": 0.9889777167508312
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur le canton (Luxembourg) : 19 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Couronne de Luxembourg-Ville : 19 maisons"
   },
   {
    "commune": "Clervaux",
-   "canton": "Clervaux",
-   "zone": "Nord",
+   "secteur": "Éislek (Clervaux, Wiltz, Vianden)",
+   "region": "Nord",
    "objets": 2,
    "actives": 2,
    "disparues": 0,
    "loyerMedian": 2500,
    "reference": {
-    "niveau": "zone",
+    "niveau": "region",
     "nom": "Nord",
     "objets": 15,
     "ecart": 0.9736074565874924
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 15 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Nord : 15 maisons"
   },
   {
    "commune": "Dalheim",
-   "canton": "Remich",
-   "zone": "Est",
+   "secteur": "Moselle sud (Remich, Mondorf)",
+   "region": "Est",
    "objets": 2,
    "actives": 2,
    "disparues": 0,
    "loyerMedian": 3275,
    "reference": {
-    "niveau": "zone",
+    "niveau": "region",
     "nom": "Est",
     "objets": 10,
     "ecart": 0.9739673046096693
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 10 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Est : 10 maisons"
   },
   {
    "commune": "Differdange",
-   "canton": "Esch-sur-Alzette",
-   "zone": "Sud",
+   "secteur": "Sud-Ouest (Differdange, Pétange)",
+   "region": "Sud",
    "objets": 2,
    "actives": 2,
    "disparues": 0,
    "loyerMedian": 3650,
    "reference": {
-    "niveau": "canton",
-    "nom": "Esch-sur-Alzette",
-    "objets": 16,
-    "ecart": 0.9863066291274956
+    "niveau": "region",
+    "nom": "Sud",
+    "objets": 17,
+    "ecart": 0.9706967362385848
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur le canton (Esch-sur-Alzette) : 16 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Sud : 17 maisons"
   },
   {
    "commune": "Dippach",
-   "canton": "Capellen",
-   "zone": "Peri",
+   "secteur": "Canton de Capellen",
+   "region": "Ouest et Centre (Capellen, Mersch)",
    "objets": 2,
    "actives": 2,
    "disparues": 0,
    "loyerMedian": 3950,
    "reference": {
-    "niveau": "canton",
-    "nom": "Capellen",
-    "objets": 17,
-    "ecart": 0.9361183536570457
+    "niveau": "secteur",
+    "nom": "Canton de Capellen",
+    "objets": 16,
+    "ecart": 0.9494914729950035
    },
-   "verdict": "au-dessous du modèle de 6 %, mesuré sur le canton (Capellen) : 17 maisons"
+   "verdict": "au-dessous du modèle de 5 %, mesuré sur le secteur Canton de Capellen : 16 maisons"
   },
   {
    "commune": "Hesperange",
-   "canton": "Luxembourg",
-   "zone": "LC",
+   "secteur": "Couronne est et sud",
+   "region": "Couronne de Luxembourg-Ville",
    "objets": 2,
    "actives": 2,
    "disparues": 0,
    "loyerMedian": 3000,
    "reference": {
-    "niveau": "canton",
-    "nom": "Luxembourg",
-    "objets": 19,
-    "ecart": 0.9889777167508312
+    "niveau": "secteur",
+    "nom": "Couronne est et sud",
+    "objets": 13,
+    "ecart": 0.9817157104230403
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur le canton (Luxembourg) : 19 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur le secteur Couronne est et sud : 13 maisons"
   },
   {
    "commune": "Kiischpelt",
-   "canton": "Wiltz",
-   "zone": "Nord",
+   "secteur": "Éislek (Clervaux, Wiltz, Vianden)",
+   "region": "Nord",
    "objets": 2,
    "actives": 2,
    "disparues": 0,
    "loyerMedian": 1575,
    "reference": {
-    "niveau": "zone",
+    "niveau": "region",
     "nom": "Nord",
     "objets": 15,
     "ecart": 0.9736074565874924
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 15 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Nord : 15 maisons"
   },
   {
    "commune": "Kopstal",
-   "canton": "Capellen",
-   "zone": "Peri",
+   "secteur": "Canton de Capellen",
+   "region": "Ouest et Centre (Capellen, Mersch)",
    "objets": 2,
    "actives": 2,
    "disparues": 0,
    "loyerMedian": 4800,
    "reference": {
-    "niveau": "canton",
-    "nom": "Capellen",
-    "objets": 17,
-    "ecart": 0.9361183536570457
+    "niveau": "secteur",
+    "nom": "Canton de Capellen",
+    "objets": 16,
+    "ecart": 0.9494914729950035
    },
-   "verdict": "au-dessous du modèle de 6 %, mesuré sur le canton (Capellen) : 17 maisons"
+   "verdict": "au-dessous du modèle de 5 %, mesuré sur le secteur Canton de Capellen : 16 maisons"
   },
   {
    "commune": "Mersch",
-   "canton": "Mersch",
-   "zone": "Peri",
+   "secteur": "Mersch et vallée de l’Alzette",
+   "region": "Ouest et Centre (Capellen, Mersch)",
    "objets": 2,
    "actives": 2,
    "disparues": 0,
    "loyerMedian": 3800,
    "reference": {
-    "niveau": "zone",
-    "nom": "Peri",
-    "objets": 24,
-    "ecart": 0.9624520133112952
+    "niveau": "region",
+    "nom": "Ouest et Centre (Capellen, Mersch)",
+    "objets": 23,
+    "ecart": 0.9628645923329613
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 24 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Ouest et Centre (Capellen, Mersch) : 23 maisons"
   },
   {
    "commune": "Mertert",
-   "canton": "Grevenmacher",
-   "zone": "Est",
+   "secteur": "Moselle nord (Grevenmacher)",
+   "region": "Est",
    "objets": 2,
    "actives": 2,
    "disparues": 0,
    "loyerMedian": 4225,
    "reference": {
-    "niveau": "zone",
+    "niveau": "region",
     "nom": "Est",
     "objets": 10,
     "ecart": 0.9739673046096693
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 10 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Est : 10 maisons"
   },
   {
    "commune": "Roeser",
-   "canton": "Esch-sur-Alzette",
-   "zone": "Sud",
+   "secteur": "Sud-Est (Dudelange, Bettembourg)",
+   "region": "Sud",
    "objets": 2,
    "actives": 2,
    "disparues": 0,
    "loyerMedian": 8750,
    "reference": {
-    "niveau": "canton",
-    "nom": "Esch-sur-Alzette",
-    "objets": 16,
-    "ecart": 0.9863066291274956
+    "niveau": "region",
+    "nom": "Sud",
+    "objets": 17,
+    "ecart": 0.9706967362385848
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur le canton (Esch-sur-Alzette) : 16 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Sud : 17 maisons"
   },
   {
    "commune": "Bech",
-   "canton": "Echternach",
-   "zone": "Est",
+   "secteur": "Mullerthal (Echternach)",
+   "region": "Est",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 2800,
    "reference": {
-    "niveau": "zone",
+    "niveau": "region",
     "nom": "Est",
     "objets": 10,
     "ecart": 0.9739673046096693
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 10 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Est : 10 maisons"
   },
   {
    "commune": "Bertrange",
-   "canton": "Luxembourg",
-   "zone": "LC",
+   "secteur": "Couronne ouest et nord",
+   "region": "Couronne de Luxembourg-Ville",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 5000,
    "reference": {
-    "niveau": "canton",
-    "nom": "Luxembourg",
+    "niveau": "region",
+    "nom": "Couronne de Luxembourg-Ville",
     "objets": 19,
     "ecart": 0.9889777167508312
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur le canton (Luxembourg) : 19 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Couronne de Luxembourg-Ville : 19 maisons"
   },
   {
    "commune": "Bettembourg",
-   "canton": "Esch-sur-Alzette",
-   "zone": "Sud",
+   "secteur": "Sud-Est (Dudelange, Bettembourg)",
+   "region": "Sud",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 3000,
    "reference": {
-    "niveau": "canton",
-    "nom": "Esch-sur-Alzette",
-    "objets": 16,
-    "ecart": 0.9863066291274956
+    "niveau": "region",
+    "nom": "Sud",
+    "objets": 17,
+    "ecart": 0.9706967362385848
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur le canton (Esch-sur-Alzette) : 16 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Sud : 17 maisons"
   },
   {
    "commune": "Betzdorf",
-   "canton": "Grevenmacher",
-   "zone": "Est",
+   "secteur": "Junglinster et Betzdorf",
+   "region": "Est",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 2600,
    "reference": {
-    "niveau": "zone",
+    "niveau": "region",
     "nom": "Est",
     "objets": 10,
     "ecart": 0.9739673046096693
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 10 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Est : 10 maisons"
   },
   {
    "commune": "Erpeldange-sur-Sûre",
-   "canton": "Diekirch",
-   "zone": "Nord",
+   "secteur": "Nordstad (Ettelbruck, Diekirch)",
+   "region": "Nord",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 2600,
    "reference": {
-    "niveau": "zone",
+    "niveau": "region",
     "nom": "Nord",
     "objets": 15,
     "ecart": 0.9736074565874924
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 15 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Nord : 15 maisons"
   },
   {
    "commune": "Ettelbruck",
-   "canton": "Diekirch",
-   "zone": "Nord",
+   "secteur": "Nordstad (Ettelbruck, Diekirch)",
+   "region": "Nord",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 2800,
    "reference": {
-    "niveau": "zone",
+    "niveau": "region",
     "nom": "Nord",
     "objets": 15,
     "ecart": 0.9736074565874924
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 15 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Nord : 15 maisons"
   },
   {
    "commune": "Fischbach",
-   "canton": "Mersch",
-   "zone": "Peri",
+   "secteur": "Mersch et vallée de l’Alzette",
+   "region": "Ouest et Centre (Capellen, Mersch)",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 4500,
    "reference": {
-    "niveau": "zone",
-    "nom": "Peri",
-    "objets": 24,
-    "ecart": 0.9624520133112952
+    "niveau": "region",
+    "nom": "Ouest et Centre (Capellen, Mersch)",
+    "objets": 23,
+    "ecart": 0.9628645923329613
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 24 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Ouest et Centre (Capellen, Mersch) : 23 maisons"
   },
   {
    "commune": "Grevenmacher",
-   "canton": "Grevenmacher",
-   "zone": "Est",
+   "secteur": "Moselle nord (Grevenmacher)",
+   "region": "Est",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 3150,
    "reference": {
-    "niveau": "zone",
+    "niveau": "region",
     "nom": "Est",
     "objets": 10,
     "ecart": 0.9739673046096693
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 10 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Est : 10 maisons"
   },
   {
    "commune": "Groussbus-Wal",
-   "canton": "Redange",
-   "zone": "Nord",
+   "secteur": "Canton de Redange",
+   "region": "Nord",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 2950,
    "reference": {
-    "niveau": "zone",
+    "niveau": "region",
     "nom": "Nord",
     "objets": 15,
     "ecart": 0.9736074565874924
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 15 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Nord : 15 maisons"
   },
   {
    "commune": "Helperknapp",
-   "canton": "Mersch",
-   "zone": "Peri",
+   "secteur": "Mersch et vallée de l’Alzette",
+   "region": "Ouest et Centre (Capellen, Mersch)",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 2900,
    "reference": {
-    "niveau": "zone",
-    "nom": "Peri",
-    "objets": 24,
-    "ecart": 0.9624520133112952
+    "niveau": "region",
+    "nom": "Ouest et Centre (Capellen, Mersch)",
+    "objets": 23,
+    "ecart": 0.9628645923329613
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 24 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Ouest et Centre (Capellen, Mersch) : 23 maisons"
   },
   {
    "commune": "Junglinster",
-   "canton": "Grevenmacher",
-   "zone": "Est",
+   "secteur": "Junglinster et Betzdorf",
+   "region": "Est",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 3200,
    "reference": {
-    "niveau": "zone",
+    "niveau": "region",
     "nom": "Est",
     "objets": 10,
     "ecart": 0.9739673046096693
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 10 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Est : 10 maisons"
   },
   {
    "commune": "Käerjeng",
-   "canton": "Capellen",
-   "zone": "Peri",
+   "secteur": "Sud-Ouest (Differdange, Pétange)",
+   "region": "Sud",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 2990,
    "reference": {
-    "niveau": "canton",
-    "nom": "Capellen",
+    "niveau": "region",
+    "nom": "Sud",
     "objets": 17,
-    "ecart": 0.9361183536570457
+    "ecart": 0.9706967362385848
    },
-   "verdict": "au-dessous du modèle de 6 %, mesuré sur le canton (Capellen) : 17 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Sud : 17 maisons"
   },
   {
    "commune": "Kehlen",
-   "canton": "Capellen",
-   "zone": "Peri",
+   "secteur": "Canton de Capellen",
+   "region": "Ouest et Centre (Capellen, Mersch)",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 3600,
    "reference": {
-    "niveau": "canton",
-    "nom": "Capellen",
-    "objets": 17,
-    "ecart": 0.9361183536570457
+    "niveau": "secteur",
+    "nom": "Canton de Capellen",
+    "objets": 16,
+    "ecart": 0.9494914729950035
    },
-   "verdict": "au-dessous du modèle de 6 %, mesuré sur le canton (Capellen) : 17 maisons"
+   "verdict": "au-dessous du modèle de 5 %, mesuré sur le secteur Canton de Capellen : 16 maisons"
   },
   {
    "commune": "Koerich",
-   "canton": "Capellen",
-   "zone": "Peri",
+   "secteur": "Canton de Capellen",
+   "region": "Ouest et Centre (Capellen, Mersch)",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 4250,
    "reference": {
-    "niveau": "canton",
-    "nom": "Capellen",
-    "objets": 17,
-    "ecart": 0.9361183536570457
+    "niveau": "secteur",
+    "nom": "Canton de Capellen",
+    "objets": 16,
+    "ecart": 0.9494914729950035
    },
-   "verdict": "au-dessous du modèle de 6 %, mesuré sur le canton (Capellen) : 17 maisons"
+   "verdict": "au-dessous du modèle de 5 %, mesuré sur le secteur Canton de Capellen : 16 maisons"
   },
   {
    "commune": "Larochette",
-   "canton": "Mersch",
-   "zone": "Peri",
+   "secteur": "Mersch et vallée de l’Alzette",
+   "region": "Ouest et Centre (Capellen, Mersch)",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 3500,
    "reference": {
-    "niveau": "zone",
-    "nom": "Peri",
-    "objets": 24,
-    "ecart": 0.9624520133112952
+    "niveau": "region",
+    "nom": "Ouest et Centre (Capellen, Mersch)",
+    "objets": 23,
+    "ecart": 0.9628645923329613
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 24 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Ouest et Centre (Capellen, Mersch) : 23 maisons"
   },
   {
    "commune": "Lintgen",
-   "canton": "Mersch",
-   "zone": "Peri",
+   "secteur": "Mersch et vallée de l’Alzette",
+   "region": "Ouest et Centre (Capellen, Mersch)",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 3200,
    "reference": {
-    "niveau": "zone",
-    "nom": "Peri",
-    "objets": 24,
-    "ecart": 0.9624520133112952
+    "niveau": "region",
+    "nom": "Ouest et Centre (Capellen, Mersch)",
+    "objets": 23,
+    "ecart": 0.9628645923329613
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 24 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Ouest et Centre (Capellen, Mersch) : 23 maisons"
   },
   {
    "commune": "Lorentzweiler",
-   "canton": "Mersch",
-   "zone": "Peri",
+   "secteur": "Mersch et vallée de l’Alzette",
+   "region": "Ouest et Centre (Capellen, Mersch)",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 4000,
    "reference": {
-    "niveau": "zone",
-    "nom": "Peri",
-    "objets": 24,
-    "ecart": 0.9624520133112952
+    "niveau": "region",
+    "nom": "Ouest et Centre (Capellen, Mersch)",
+    "objets": 23,
+    "ecart": 0.9628645923329613
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 24 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Ouest et Centre (Capellen, Mersch) : 23 maisons"
   },
   {
    "commune": "Mondercange",
-   "canton": "Esch-sur-Alzette",
-   "zone": "Sud",
+   "secteur": "Esch et Belval",
+   "region": "Sud",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 10000,
    "reference": {
-    "niveau": "canton",
-    "nom": "Esch-sur-Alzette",
-    "objets": 16,
-    "ecart": 0.9863066291274956
+    "niveau": "secteur",
+    "nom": "Esch et Belval",
+    "objets": 10,
+    "ecart": 0.9644748205249332
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur le canton (Esch-sur-Alzette) : 16 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur le secteur Esch et Belval : 10 maisons"
   },
   {
    "commune": "Parc Hosingen",
-   "canton": "Clervaux",
-   "zone": "Nord",
+   "secteur": "Éislek (Clervaux, Wiltz, Vianden)",
+   "region": "Nord",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 2750,
    "reference": {
-    "niveau": "zone",
+    "niveau": "region",
     "nom": "Nord",
     "objets": 15,
     "ecart": 0.9736074565874924
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 15 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Nord : 15 maisons"
   },
   {
    "commune": "Pétange",
-   "canton": "Esch-sur-Alzette",
-   "zone": "Sud",
+   "secteur": "Sud-Ouest (Differdange, Pétange)",
+   "region": "Sud",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 3500,
    "reference": {
-    "niveau": "canton",
-    "nom": "Esch-sur-Alzette",
-    "objets": 16,
-    "ecart": 0.9863066291274956
+    "niveau": "region",
+    "nom": "Sud",
+    "objets": 17,
+    "ecart": 0.9706967362385848
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur le canton (Esch-sur-Alzette) : 16 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Sud : 17 maisons"
   },
   {
    "commune": "Reckange-sur-Mess",
-   "canton": "Esch-sur-Alzette",
-   "zone": "Sud",
+   "secteur": "Esch et Belval",
+   "region": "Sud",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 800,
    "reference": {
-    "niveau": "canton",
-    "nom": "Esch-sur-Alzette",
-    "objets": 16,
-    "ecart": 0.9863066291274956
+    "niveau": "secteur",
+    "nom": "Esch et Belval",
+    "objets": 10,
+    "ecart": 0.9644748205249332
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur le canton (Esch-sur-Alzette) : 16 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur le secteur Esch et Belval : 10 maisons"
   },
   {
    "commune": "Reisdorf",
-   "canton": "Diekirch",
-   "zone": "Nord",
+   "secteur": "Nordstad (Ettelbruck, Diekirch)",
+   "region": "Nord",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 2500,
    "reference": {
-    "niveau": "zone",
+    "niveau": "region",
     "nom": "Nord",
     "objets": 15,
     "ecart": 0.9736074565874924
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 15 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Nord : 15 maisons"
   },
   {
    "commune": "Remich",
-   "canton": "Remich",
-   "zone": "Est",
+   "secteur": "Moselle sud (Remich, Mondorf)",
+   "region": "Est",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 2800,
    "reference": {
-    "niveau": "zone",
+    "niveau": "region",
     "nom": "Est",
     "objets": 10,
     "ecart": 0.9739673046096693
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 10 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Est : 10 maisons"
   },
   {
    "commune": "Sanem",
-   "canton": "Esch-sur-Alzette",
-   "zone": "Sud",
+   "secteur": "Esch et Belval",
+   "region": "Sud",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 3350,
    "reference": {
-    "niveau": "canton",
-    "nom": "Esch-sur-Alzette",
-    "objets": 16,
-    "ecart": 0.9863066291274956
+    "niveau": "secteur",
+    "nom": "Esch et Belval",
+    "objets": 10,
+    "ecart": 0.9644748205249332
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur le canton (Esch-sur-Alzette) : 16 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur le secteur Esch et Belval : 10 maisons"
   },
   {
    "commune": "Schengen",
-   "canton": "Remich",
-   "zone": "Est",
+   "secteur": "Moselle sud (Remich, Mondorf)",
+   "region": "Est",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 2500,
    "reference": {
-    "niveau": "zone",
+    "niveau": "region",
     "nom": "Est",
     "objets": 10,
     "ecart": 0.9739673046096693
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 10 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Est : 10 maisons"
   },
   {
    "commune": "Schieren",
-   "canton": "Diekirch",
-   "zone": "Nord",
+   "secteur": "Nordstad (Ettelbruck, Diekirch)",
+   "region": "Nord",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 3600,
    "reference": {
-    "niveau": "zone",
+    "niveau": "region",
     "nom": "Nord",
     "objets": 15,
     "ecart": 0.9736074565874924
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 15 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Nord : 15 maisons"
   },
   {
    "commune": "Steinfort",
-   "canton": "Capellen",
-   "zone": "Peri",
+   "secteur": "Canton de Capellen",
+   "region": "Ouest et Centre (Capellen, Mersch)",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 3200,
    "reference": {
-    "niveau": "canton",
-    "nom": "Capellen",
-    "objets": 17,
-    "ecart": 0.9361183536570457
+    "niveau": "secteur",
+    "nom": "Canton de Capellen",
+    "objets": 16,
+    "ecart": 0.9494914729950035
    },
-   "verdict": "au-dessous du modèle de 6 %, mesuré sur le canton (Capellen) : 17 maisons"
+   "verdict": "au-dessous du modèle de 5 %, mesuré sur le secteur Canton de Capellen : 16 maisons"
   },
   {
    "commune": "Steinsel",
-   "canton": "Luxembourg",
-   "zone": "LC",
+   "secteur": "Couronne ouest et nord",
+   "region": "Couronne de Luxembourg-Ville",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 4500,
    "reference": {
-    "niveau": "canton",
-    "nom": "Luxembourg",
+    "niveau": "region",
+    "nom": "Couronne de Luxembourg-Ville",
     "objets": 19,
     "ecart": 0.9889777167508312
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur le canton (Luxembourg) : 19 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Couronne de Luxembourg-Ville : 19 maisons"
   },
   {
    "commune": "Walferdange",
-   "canton": "Luxembourg",
-   "zone": "LC",
+   "secteur": "Couronne ouest et nord",
+   "region": "Couronne de Luxembourg-Ville",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 2950,
    "reference": {
-    "niveau": "canton",
-    "nom": "Luxembourg",
+    "niveau": "region",
+    "nom": "Couronne de Luxembourg-Ville",
     "objets": 19,
     "ecart": 0.9889777167508312
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur le canton (Luxembourg) : 19 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Couronne de Luxembourg-Ville : 19 maisons"
   },
   {
    "commune": "Weiler-la-Tour",
-   "canton": "Luxembourg",
-   "zone": "LC",
+   "secteur": "Couronne est et sud",
+   "region": "Couronne de Luxembourg-Ville",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 2900,
    "reference": {
-    "niveau": "canton",
-    "nom": "Luxembourg",
-    "objets": 19,
-    "ecart": 0.9889777167508312
+    "niveau": "secteur",
+    "nom": "Couronne est et sud",
+    "objets": 13,
+    "ecart": 0.9817157104230403
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur le canton (Luxembourg) : 19 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur le secteur Couronne est et sud : 13 maisons"
   },
   {
    "commune": "Winseler",
-   "canton": "Wiltz",
-   "zone": "Nord",
+   "secteur": "Éislek (Clervaux, Wiltz, Vianden)",
+   "region": "Nord",
    "objets": 1,
    "actives": 1,
    "disparues": 0,
    "loyerMedian": 2400,
    "reference": {
-    "niveau": "zone",
+    "niveau": "region",
     "nom": "Nord",
     "objets": 15,
     "ecart": 0.9736074565874924
    },
-   "verdict": "conforme au modèle (± 5 %), mesuré sur la zone : 15 maisons"
+   "verdict": "conforme au modèle (± 5 %), mesuré sur la région Nord : 15 maisons"
   }
  ]
 }

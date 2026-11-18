@@ -46,7 +46,7 @@
   },
   "zones": {
     "LV": "Luxembourg City",
-    "LC": "Luxembourg canton outside the city",
+    "LC": "communes around Luxembourg City",
     "Peri": "Capellen and Mersch cantons",
     "Sud": "Esch-sur-Alzette canton",
     "Est": "east of the country",

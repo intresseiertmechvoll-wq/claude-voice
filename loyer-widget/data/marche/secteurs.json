@@ -1,0 +1,28 @@
+{
+  "_note": "Découpage du pays pour comparer les loyers des maisons (relevé mensuel). Proposition du 18/11/2026, À VALIDER PAR JASON : déplacer une commune = la changer de liste. Chaque commune doit figurer exactement une fois (vérifié par les tests). Les « régions » regroupent les secteurs ; elles correspondent aux zones du rapport n°24 de l'Observatoire (utilisées par le modèle de l'outil), avec des noms plus clairs. Exception : Käerjeng (canton de Capellen) est dans le secteur Sud-Ouest, car son marché est celui de Differdange et Pétange.",
+  "regions": [
+    { "id": "LV", "nom": "Luxembourg-Ville", "nom_de": "Luxemburg-Stadt" },
+    { "id": "LC", "nom": "Couronne de Luxembourg-Ville", "nom_de": "Umland der Hauptstadt" },
+    { "id": "Peri", "nom": "Ouest et Centre (Capellen, Mersch)", "nom_de": "Westen und Mitte (Capellen, Mersch)" },
+    { "id": "Sud", "nom": "Sud", "nom_de": "Süden" },
+    { "id": "Est", "nom": "Est", "nom_de": "Osten" },
+    { "id": "Nord", "nom": "Nord", "nom_de": "Norden" }
+  ],
+  "secteurs": [
+    { "id": "ville", "region": "LV", "nom": "Luxembourg-Ville", "nom_de": "Luxemburg-Stadt", "communes": ["Luxembourg"] },
+    { "id": "couronne-ouest-nord", "region": "LC", "nom": "Couronne ouest et nord", "nom_de": "Umland West und Nord", "communes": ["Bertrange", "Strassen", "Walferdange", "Steinsel"] },
+    { "id": "couronne-est-sud", "region": "LC", "nom": "Couronne est et sud", "nom_de": "Umland Ost und Süd", "communes": ["Hesperange", "Contern", "Weiler-la-Tour", "Sandweiler", "Schuttrange", "Niederanven"] },
+    { "id": "capellen", "region": "Peri", "nom": "Canton de Capellen", "nom_de": "Kanton Capellen", "communes": ["Mamer", "Kopstal", "Kehlen", "Dippach", "Garnich", "Steinfort", "Habscht", "Koerich"] },
+    { "id": "mersch", "region": "Peri", "nom": "Mersch et vallée de l’Alzette", "nom_de": "Mersch und Alzettetal", "communes": ["Mersch", "Lintgen", "Lorentzweiler", "Bissen", "Colmar-Berg", "Helperknapp", "Fischbach", "Heffingen", "Larochette", "Nommern"] },
+    { "id": "sud-ouest", "region": "Sud", "nom": "Sud-Ouest (Differdange, Pétange)", "nom_de": "Südwesten (Differdange, Pétange)", "communes": ["Differdange", "Pétange", "Käerjeng"] },
+    { "id": "esch", "region": "Sud", "nom": "Esch et Belval", "nom_de": "Esch und Belval", "communes": ["Esch-sur-Alzette", "Sanem", "Schifflange", "Mondercange", "Reckange-sur-Mess", "Leudelange"] },
+    { "id": "sud-est", "region": "Sud", "nom": "Sud-Est (Dudelange, Bettembourg)", "nom_de": "Südosten (Dudelange, Bettembourg)", "communes": ["Dudelange", "Bettembourg", "Kayl", "Rumelange", "Roeser", "Frisange"] },
+    { "id": "moselle-sud", "region": "Est", "nom": "Moselle sud (Remich, Mondorf)", "nom_de": "Mosel Süd (Remich, Mondorf)", "communes": ["Remich", "Mondorf-les-Bains", "Schengen", "Stadtbredimus", "Bous-Waldbredimus", "Dalheim", "Lenningen"] },
+    { "id": "moselle-nord", "region": "Est", "nom": "Moselle nord (Grevenmacher)", "nom_de": "Mosel Nord (Grevenmacher)", "communes": ["Grevenmacher", "Mertert", "Wormeldange", "Flaxweiler", "Manternach", "Biwer"] },
+    { "id": "junglinster", "region": "Est", "nom": "Junglinster et Betzdorf", "nom_de": "Junglinster und Betzdorf", "communes": ["Junglinster", "Betzdorf"] },
+    { "id": "mullerthal", "region": "Est", "nom": "Mullerthal (Echternach)", "nom_de": "Müllerthal (Echternach)", "communes": ["Echternach", "Berdorf", "Consdorf", "Bech", "Beaufort", "Waldbillig", "Rosport-Mompach"] },
+    { "id": "nordstad", "region": "Nord", "nom": "Nordstad (Ettelbruck, Diekirch)", "nom_de": "Nordstad (Ettelbruck, Diekirch)", "communes": ["Ettelbruck", "Diekirch", "Erpeldange-sur-Sûre", "Schieren", "Bettendorf", "Feulen", "Mertzig", "Bourscheid", "Reisdorf", "Vallée de l'Ernz"] },
+    { "id": "eislek", "region": "Nord", "nom": "Éislek (Clervaux, Wiltz, Vianden)", "nom_de": "Ösling (Clervaux, Wiltz, Vianden)", "communes": ["Clervaux", "Parc Hosingen", "Troisvierges", "Weiswampach", "Wincrange", "Wiltz", "Boulaide", "Esch-sur-Sûre", "Goesdorf", "Kiischpelt", "Lac de la Haute-Sûre", "Winseler", "Vianden", "Putscheid", "Tandel"] },
+    { "id": "redange", "region": "Nord", "nom": "Canton de Redange", "nom_de": "Kanton Redange", "communes": ["Redange-sur-Attert", "Beckerich", "Ell", "Groussbus-Wal", "Préizerdaul", "Rambrouch", "Saeul", "Useldange", "Vichten"] }
+  ]
+}

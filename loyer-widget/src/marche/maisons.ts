@@ -12,6 +12,7 @@
 import { ALIASES } from '../shared/aliases';
 import { COMMUNES, normalize } from '../shared/communes';
 import { estimate, type Params } from '../shared/engine';
+import SECTEURS from '../../data/marche/secteurs.json';
 import type { Answers, Dataset, References } from '../shared/types';
 
 export interface AnnonceReleve {
@@ -266,7 +267,7 @@ export function loyerModele(commune: string, surface: number, data: Dataset, ref
   return estimate(a, data, refs, params).detail.annonce;
 }
 
-export type Niveau = 'commune' | 'canton' | 'zone' | 'pays';
+export type Niveau = 'commune' | 'secteur' | 'region' | 'pays';
 
 export interface Groupe {
   niveau: Niveau;
@@ -285,8 +286,8 @@ export interface Groupe {
 
 export interface LigneCommune {
   commune: string;
-  canton: string;
-  zone: string;
+  secteur: string;
+  region: string;
   objets: number;
   actives: number;
   disparues: number;
@@ -301,14 +302,15 @@ export interface Comparaison {
   objetsTotal: number;
   annoncesTotal: number;
   doublons: number;
-  cantons: Groupe[];
-  zones: Groupe[];
+  secteurs: Groupe[];
+  regions: Groupe[];
   pays: Groupe;
   communes: LigneCommune[];
 }
 
-/** Canton affiché : Luxembourg-Ville à part du reste du canton de Luxembourg */
-const cantonDe = (commune: string, canton: string) => (commune === 'Luxembourg' ? 'Luxembourg-Ville' : canton);
+/** Secteur et région de chaque commune (data/marche/secteurs.json) */
+const SECTEUR_DE = new Map(SECTEURS.secteurs.flatMap((s) => s.communes.map((c) => [c, s] as const)));
+const NOM_REGION = new Map(SECTEURS.regions.map((r) => [r.id, r.nom]));
 
 function groupe(niveau: Niveau, nom: string, obj: Objet[], ratio: (o: Objet) => number): Groupe {
   const dis = obj.filter((o) => o.statut === 'disparue');
@@ -330,14 +332,13 @@ function groupe(niveau: Niveau, nom: string, obj: Objet[], ratio: (o: Objet) => 
 /**
  * Compare les maisons des 12 derniers mois (actives et disparues) au modèle de l'outil.
  * Pour chaque commune, la comparaison se fait sur le plus petit territoire qui a au moins 10 maisons :
- * la commune, sinon son canton, sinon sa zone, sinon le pays.
+ * la commune, sinon son secteur, sinon sa région, sinon le pays.
  */
 export function comparer(base: Base, data: Dataset, refs: References, params: Params, dateRef?: string): Comparaison {
   const fin = dateRef ?? base.releves[base.releves.length - 1]?.date ?? new Date().toISOString().slice(0, 10);
   const debut = new Date(Date.parse(fin) - FENETRE_MOIS * 30.5 * 86_400_000).toISOString().slice(0, 10);
   const fiches = Object.values(base.fiches).filter((f) => f.commune && !f.exclusion && f.dernier_vu >= debut);
   const obj = objets(fiches);
-  const info = new Map(data.communes.map((c) => [c.commune, c]));
   const cache = new Map<string, number>();
   const ratio = (o: Objet) => {
     const k = `${o.commune}|${o.surface}`;
@@ -350,26 +351,25 @@ export function comparer(base: Base, data: Dataset, refs: References, params: Pa
     return m;
   };
   const parCommune = par((o) => o.commune);
-  const parCanton = par((o) => cantonDe(o.commune, info.get(o.commune)!.canton));
-  const parZone = par((o) => info.get(o.commune)!.zone);
+  const parSecteur = par((o) => SECTEUR_DE.get(o.commune)!.id);
+  const parRegion = par((o) => SECTEUR_DE.get(o.commune)!.region);
 
-  const tousCantons = ['Luxembourg-Ville', ...[...new Set(data.communes.map((c) => c.canton))].sort((a, b) => a.localeCompare(b, 'fr'))];
-  const cantons = tousCantons.map((c) => groupe('canton', c, parCanton.get(c) ?? [], ratio));
-  const zones = ['LV', 'LC', 'Peri', 'Sud', 'Est', 'Nord'].map((z) => groupe('zone', z, parZone.get(z) ?? [], ratio));
+  const secteurs = SECTEURS.secteurs.map((s) => groupe('secteur', s.nom, parSecteur.get(s.id) ?? [], ratio));
+  const regions = SECTEURS.regions.map((r) => groupe('region', r.nom, parRegion.get(r.id) ?? [], ratio));
   const pays = groupe('pays', 'Luxembourg', obj, ratio);
 
   const communes: LigneCommune[] = [...parCommune.entries()].map(([commune, liste]) => {
-    const c = info.get(commune)!;
-    const canton = cantonDe(commune, c.canton);
+    const sec = SECTEUR_DE.get(commune)!;
+    const regionNom = NOM_REGION.get(sec.region)!;
     const candidats: Groupe[] = [
       groupe('commune', commune, liste, ratio),
-      cantons.find((g) => g.nom === canton)!,
-      zones.find((g) => g.nom === c.zone)!,
+      secteurs.find((g) => g.nom === sec.nom)!,
+      regions.find((g) => g.nom === regionNom)!,
       pays,
     ];
     const ref = candidats.find((g) => g.objets >= MINIMUM_OBJETS) ?? pays;
     const e = ref.ecart;
-    const ou = ref.niveau === 'commune' ? 'la commune' : ref.niveau === 'canton' ? `le canton (${ref.nom})` : ref.niveau === 'zone' ? 'la zone' : 'le pays';
+    const ou = ref.niveau === 'commune' ? 'la commune' : ref.niveau === 'secteur' ? `le secteur ${ref.nom}` : ref.niveau === 'region' ? `la région ${ref.nom}` : 'tout le pays';
     const verdict =
       e === null
         ? 'pas de données'
@@ -377,8 +377,8 @@ export function comparer(base: Base, data: Dataset, refs: References, params: Pa
     const dis = liste.filter((o) => o.statut === 'disparue').length;
     return {
       commune,
-      canton,
-      zone: c.zone,
+      secteur: sec.nom,
+      region: regionNom,
       objets: liste.length,
       actives: liste.length - dis,
       disparues: dis,
@@ -388,12 +388,11 @@ export function comparer(base: Base, data: Dataset, refs: References, params: Pa
     };
   });
   communes.sort((a, b) => b.objets - a.objets || a.commune.localeCompare(b.commune, 'fr'));
-  return { depuis: debut, objetsTotal: obj.length, annoncesTotal: fiches.length, doublons: fiches.length - obj.length, cantons, zones, pays, communes };
+  return { depuis: debut, objetsTotal: obj.length, annoncesTotal: fiches.length, doublons: fiches.length - obj.length, secteurs, regions, pays, communes };
 }
 
 /* ---------- Rapport ---------- */
 
-export const NOMS_ZONES: Record<string, string> = { LV: 'Luxembourg-Ville', LC: 'Luxembourg-Campagne', Peri: 'Capellen, Mersch', Sud: 'Sud', Est: 'Est', Nord: 'Nord' };
 
 const eur = (v: number | null) => (v === null ? '—' : `${new Intl.NumberFormat('fr-LU', { maximumFractionDigits: 0 }).format(Math.round(v))} €`);
 const pctEcart = (v: number | null) => (v === null ? '—' : `${v >= 1 ? '+' : '−'}${Math.round(Math.abs(v - 1) * 100)} %`);
@@ -409,7 +408,7 @@ export function rapport(base: Base, c: Comparaison, inconnues: string[], date: s
   const fiches = Object.values(base.fiches);
   const premier = base.releves[0]?.date ?? date;
   const lus = Object.entries(r.lues).map(([s, n]) => `${s} ${n}`).join(', ');
-  const manquants = c.cantons.filter((g) => g.objets < MINIMUM_OBJETS);
+  const manquants = c.secteurs.filter((g) => g.objets < MINIMUM_OBJETS);
   const tete = '| Territoire | Maisons (12 mois) | Actives | Disparues | Loyer médian | €/m² | Écart au modèle | Écart, disparues | Jours avant disparition |\n| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |';
   return `# Maisons à louer – relevé du ${date}
 
@@ -424,30 +423,32 @@ Généré par \`scripts/marche-maisons.ts\`. Suivi depuis le ${premier} (${base.
 ${r.avertissements.length ? `\n**Avertissements :**\n${r.avertissements.map((a) => `- ${a}`).join('\n')}\n` : ''}${inconnues.length ? `\n**Localités inconnues** (à ajouter dans \`src/shared/aliases.ts\`, puis relancer) : ${inconnues.join(', ')}\n` : ''}
 ## Objectif : au moins ${MINIMUM_OBJETS} maisons de comparaison par territoire
 
-${manquants.length ? `Cantons sous le minimum : ${manquants.map((g) => `${g.nom} (${g.objets})`).join(', ')}. Pour leurs communes, la comparaison se fait sur la zone. Les maisons disparues restent comptées 12 mois : le nombre monte au fil des relevés.` : 'Tous les cantons ont au moins 10 maisons.'}
+Découpage : ${c.secteurs.length} secteurs regroupés en ${c.regions.length} régions (\`data/marche/secteurs.json\`, à valider par Jason).
 
-### Par canton
+${manquants.length ? `Secteurs sous le minimum : ${manquants.map((g) => `${g.nom} (${g.objets})`).join(', ')}. Pour leurs communes, la comparaison se fait sur la région. Les maisons disparues restent comptées 12 mois : le nombre monte au fil des relevés.` : 'Tous les secteurs ont au moins 10 maisons.'}
 
-${tete}
-${c.cantons.map((g) => ligneGroupe(g)).join('\n')}
-
-### Par zone
+### Par secteur
 
 ${tete}
-${c.zones.map((g) => ligneGroupe(g, NOMS_ZONES[g.nom] ?? g.nom)).join('\n')}
+${c.secteurs.map((g) => ligneGroupe(g)).join('\n')}
+
+### Par région
+
+${tete}
+${c.regions.map((g) => ligneGroupe(g)).join('\n')}
 ${ligneGroupe(c.pays, '**Tout le pays**')}
 
 ## Par commune
 
-Chaque commune est comparée sur le plus petit territoire qui a au moins ${MINIMUM_OBJETS} maisons : la commune elle-même, sinon son canton, sinon sa zone.
+Chaque commune est comparée sur le plus petit territoire qui a au moins ${MINIMUM_OBJETS} maisons : la commune elle-même, sinon son secteur, sinon sa région.
 
-| Commune | Canton | Maisons | Actives | Disparues | Loyer médian | Comparée sur | Écart au modèle | Lecture |
+| Commune | Secteur | Maisons | Actives | Disparues | Loyer médian | Comparée sur | Écart au modèle | Lecture |
 | --- | --- | ---: | ---: | ---: | ---: | --- | ---: | --- |
-${c.communes.map((l) => `| ${l.commune} | ${l.canton} | ${l.objets} | ${l.actives} | ${l.disparues} | ${eur(l.loyerMedian)} | ${l.reference.niveau === 'zone' ? NOMS_ZONES[l.reference.nom] ?? l.reference.nom : l.reference.nom} (${l.reference.objets}) | ${pctEcart(l.reference.ecart)} | ${l.verdict} |`).join('\n')}
+${c.communes.map((l) => `| ${l.commune} | ${l.secteur} | ${l.objets} | ${l.actives} | ${l.disparues} | ${eur(l.loyerMedian)} | ${l.reference.nom} (${l.reference.objets}) | ${pctEcart(l.reference.ecart)} | ${l.verdict} |`).join('\n')}
 
 ## Comment lire
 
-- « Modèle » = loyer en annonce que donne l'outil pour une maison de même surface dans la même zone. « +8 % » = les maisons de ce territoire sont annoncées 8 % plus cher que le modèle.
+- « Modèle » = loyer en annonce que donne l'outil pour une maison de même surface dans la même zone de l'Observatoire. « +8 % » = les maisons de ce territoire sont annoncées 8 % plus cher que le modèle.
 - « Disparues » = annonces qui ne sont plus en ligne : probablement louées, mais peut-être retirées. Leur dernier prix est ce qui se rapproche le plus d'un loyer conclu. « Écart, disparues » n'apparaît qu'à partir de 3 maisons disparues.
 - Une maison annoncée sur plusieurs portails (atHome, immotop, wortimmo) n'est comptée qu'une fois : même commune, surface à 2 m² près, même nombre de chambres et loyer à 3 % près (ou une chambre d'écart et loyer à 1 % près).
 - Ce sont des loyers **demandés** : aucune source publique ne donne les loyers signés des maisons par commune.

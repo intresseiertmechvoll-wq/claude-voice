@@ -152,7 +152,7 @@ Une session Claude planifiée relève une fois par mois toutes les maisons à lo
 
 - met à jour la base `data/marche/maisons.json` : une fiche par maison, avec ses prix successifs ; une annonce qui n'est plus en ligne est marquée « disparue » (probablement louée, ou retirée) ;
 - reconnaît la même maison annoncée sur plusieurs portails et ne la compte qu'une fois ;
-- compare chaque canton, chaque zone et chaque commune au modèle de l'outil, avec au moins 10 maisons de comparaison par territoire (sinon le territoire supérieur) : `docs/marche/rapport-maisons-AAAA-MM-JJ.md` et `data/marche/communes-maisons.json` ;
+- compare chaque secteur, chaque région et chaque commune au modèle de l'outil, avec au moins 10 maisons de comparaison par territoire (sinon le territoire supérieur). Découpage en 15 secteurs et 6 régions dans `data/marche/secteurs.json` (Sud et Est découpés en plusieurs secteurs ; à valider par Jason, modifiable) : `docs/marche/rapport-maisons-AAAA-MM-JJ.md` et `data/marche/communes-maisons.json` ;
 - enregistre le tout dans git.
 
 Procédure complète (aussi pour la faire à la main) : `docs/marche/PROCEDURE.md`. À la main : `npm run marche -- import --date AAAA-MM-JJ --athome athome.csv --immotop immotop.csv --wortimmo wortimmo.csv`.
@@ -227,13 +227,13 @@ Tout est dans `params.json` et `data/references.json`. Les coefficients s'additi
 | Classe énergétique | A+/A +5 %, B +3 %, C +1 %, D/E 0, F −2 %, G −3 %, H/I −4 %, inconnue 0 | Le rapport n°24 montre +35 à 40 % entre A et F–H, mais mélangé avec l'âge du bien et la date du bail (déjà comptés) : on n'en garde qu'une petite partie | proposition |
 | Extérieur (appartement) | balcon +2 %, terrasse +4 %, jardin +5 % | Aucune donnée publique | proposition |
 | Étage (appartement) | rez-de-chaussée −3 % ; 3e ou plus sans ascenseur −5 % | Même logique que l'outil d'estimation | proposition |
-| Garage / place intérieure | +200 € Luxembourg-Ville, +170 € Luxembourg-Campagne, +140 € Périphérie et Sud, +120 € Est, +100 € Nord (par mois) | Annonces atHome du 17/11/2026 : médiane 200 € à Luxembourg-Ville (20 annonces), 140 € dans le Sud (14) ; autres zones : proposition | en partie mesuré |
+| Garage / place intérieure | +200 € Luxembourg-Ville, +170 € communes autour de Luxembourg-Ville, +140 € Périphérie et Sud, +120 € Est, +100 € Nord (par mois) | Annonces atHome du 17/11/2026 : médiane 200 € à Luxembourg-Ville (20 annonces), 140 € dans le Sud (14) ; autres zones : proposition | en partie mesuré |
 | Parking extérieur | +120 / 100 / 80 / 80 / 70 / 60 € | Environ 60 % d'un garage | proposition |
 | Places comptées | 2 au plus | Au-delà, plus un logement standard | proposition |
 | Maison : stationnement et extérieur | pas d'ajustement | Supposés compris dans les annonces de maisons | proposition |
 | Meublé | pas d'ajustement du loyer | La loi prévoit un supplément mobilier séparé, au plus 1,5 % par mois des factures des meubles de moins de 10 ans | légal |
 | Arrondi | 50 € | | proposition |
-| Fiabilité « bonne » | appartement à Luxembourg-Ville, Luxembourg-Campagne ou dans le Sud, 40 à 130 m², au moins 1 chambre | Zones avec le plus de données | proposition |
+| Fiabilité « bonne » | appartement à Luxembourg-Ville, dans les communes autour ou dans le Sud, 40 à 130 m², au moins 1 chambre | Zones avec le plus de données | proposition |
 | Fiabilité « limitée » | cantons de Vianden, Redange, Echternach, Wiltz, Clervaux ; studio ; moins de 30 ou plus de 160 m² ; maison dans l'est ou le nord, ou hors 100–300 m² | Peu de données | proposition |
 | Priorité du lead | chaud : propriétaire + veut la gestion + libre dans les 3 mois ; tiède : propriétaire + gestion oui ou peut-être ; froid : le reste | Ta consigne | à valider |
 

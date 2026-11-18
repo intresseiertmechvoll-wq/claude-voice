@@ -1,7 +1,7 @@
 {
   "_note": "Valeurs de référence saisies à la main depuis des publications (pas de fichier CC0 pour elles). Chaque bloc indique sa source. À revoir à chaque nouveau rapport de l'Observatoire de l'Habitat et à chaque nouveau relevé d'annonces (voir README, partie « Mettre à jour les données »).",
   "zones": {
-    "_note": "Découpage du rapport n°24 : Luxembourg-Ville ; Luxembourg-Campagne = reste du canton de Luxembourg ; Périphérie = cantons de Capellen et Mersch ; Sud = canton d'Esch-sur-Alzette ; Est = cantons d'Echternach, Grevenmacher, Remich ; Nord = cantons de Clervaux, Diekirch, Redange, Vianden, Wiltz.",
+    "_note": "Découpage du rapport n°24 : Luxembourg-Ville ; « Luxembourg-Campagne » (nom du rapport) = reste du canton de Luxembourg, affiché « communes autour de Luxembourg-Ville » ; Périphérie = cantons de Capellen et Mersch ; Sud = canton d'Esch-sur-Alzette ; Est = cantons d'Echternach, Grevenmacher, Remich ; Nord = cantons de Clervaux, Diekirch, Redange, Vianden, Wiltz.",
     "parCanton": {
       "Luxembourg": "LC",
       "Capellen": "Peri",

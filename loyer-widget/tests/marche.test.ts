@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { baseVide, communeDe, comparer, importerReleve, memeMaison, objets, type AnnonceReleve, type Releve } from '../src/marche/maisons';
+import cantons from '../data/cantons.json';
+import SECTEURS from '../data/marche/secteurs.json';
 import { DATA, PARAMS, REFS } from './helpers';
 
 const a = (id: string, loyer: number, over: Partial<AnnonceReleve> = {}): AnnonceReleve => ({
@@ -112,32 +114,51 @@ describe('Comparaison : au moins 10 maisons par territoire', () => {
   const maisons = (n: number, commune: string, loyer: number, depart = 0) =>
     Array.from({ length: n }, (_, i) => a(String(depart + i), loyer, { localite: commune, surface: 150 + i * 5 }));
 
-  it('commune avec 10 maisons : comparée sur elle-même ; commune avec 2 : sur son canton s’il en a 10', () => {
+  it('le découpage couvre les 100 communes, chacune une seule fois, et chaque secteur a une région', () => {
+    const toutes = Object.entries(cantons).filter(([k]) => !k.startsWith('_')).flatMap(([, v]) => v as string[]);
+    const affectees = SECTEURS.secteurs.flatMap((s) => s.communes);
+    expect(affectees.sort()).toEqual([...toutes].sort());
+    const regions = new Set(SECTEURS.regions.map((r) => r.id));
+    for (const s of SECTEURS.secteurs) expect(regions.has(s.region)).toBe(true);
+  });
+
+  it('le Sud et l’Est sont découpés en plusieurs secteurs', () => {
+    const par = (r: string) => SECTEURS.secteurs.filter((s) => s.region === r).map((s) => s.id);
+    expect(par('Sud')).toEqual(['sud-ouest', 'esch', 'sud-est']);
+    expect(par('Est')).toEqual(['moselle-sud', 'moselle-nord', 'junglinster', 'mullerthal']);
+  });
+
+  it('commune avec 10 maisons : comparée sur elle-même ; commune avec 2 : sur son secteur s’il en a 10', () => {
     const base = baseVide();
-    // Dudelange : 10 maisons ; Kayl : 2 maisons ; canton d'Esch = 12 maisons
     importerReleve(base, releve('2026-11-17', [...maisons(10, 'Dudelange', 3600), ...maisons(2, 'Kayl', 3600, 100)], lues));
     const c = comparer(base, DATA, REFS, PARAMS);
-    const dud = c.communes.find((l) => l.commune === 'Dudelange')!;
-    const kayl = c.communes.find((l) => l.commune === 'Kayl')!;
-    expect(dud.reference).toMatchObject({ niveau: 'commune', objets: 10 });
-    expect(kayl.reference).toMatchObject({ niveau: 'canton', nom: 'Esch-sur-Alzette', objets: 12 });
-    expect(c.cantons.find((g) => g.nom === 'Esch-sur-Alzette')!.objets).toBe(12);
-    expect(c.cantons.find((g) => g.nom === 'Wiltz')!.objets).toBe(0);
+    expect(c.communes.find((l) => l.commune === 'Dudelange')!.reference).toMatchObject({ niveau: 'commune', objets: 10 });
+    expect(c.communes.find((l) => l.commune === 'Kayl')!.reference).toMatchObject({ niveau: 'secteur', nom: 'Sud-Est (Dudelange, Bettembourg)', objets: 12 });
   });
 
-  it('canton sous 10 maisons : la commune est comparée sur sa zone', () => {
+  it('Esch et Dudelange sont dans deux secteurs différents du Sud', () => {
     const base = baseVide();
-    importerReleve(base, releve('2026-11-17', [...maisons(3, 'Wiltz', 2500), ...maisons(8, 'Clervaux', 2500, 50)], lues));
+    importerReleve(base, releve('2026-11-17', [...maisons(6, 'Dudelange', 3600), ...maisons(6, 'Esch-sur-Alzette', 3400, 50)], lues));
     const c = comparer(base, DATA, REFS, PARAMS);
-    expect(c.communes.find((l) => l.commune === 'Wiltz')!.reference).toMatchObject({ niveau: 'zone', nom: 'Nord', objets: 11 });
+    expect(c.secteurs.find((g) => g.nom === 'Sud-Est (Dudelange, Bettembourg)')!.objets).toBe(6);
+    expect(c.secteurs.find((g) => g.nom === 'Esch et Belval')!.objets).toBe(6);
+    // aucun secteur n'a 10 maisons : comparaison sur la région Sud (12)
+    expect(c.communes.find((l) => l.commune === 'Dudelange')!.reference).toMatchObject({ niveau: 'region', nom: 'Sud', objets: 12 });
   });
 
-  it('Luxembourg-Ville est un territoire à part du reste du canton', () => {
+  it('secteur sous 10 maisons : la commune est comparée sur sa région', () => {
+    const base = baseVide();
+    importerReleve(base, releve('2026-11-17', [...maisons(3, 'Wiltz', 2500), ...maisons(8, 'Diekirch', 2500, 50)], lues));
+    const c = comparer(base, DATA, REFS, PARAMS);
+    expect(c.communes.find((l) => l.commune === 'Wiltz')!.reference).toMatchObject({ niveau: 'region', nom: 'Nord', objets: 11 });
+  });
+
+  it('Luxembourg-Ville est séparée de sa couronne', () => {
     const base = baseVide();
     importerReleve(base, releve('2026-11-17', [...maisons(4, 'Luxembourg-Belair', 5000), ...maisons(3, 'Strassen', 4000, 50)], lues));
     const c = comparer(base, DATA, REFS, PARAMS);
-    expect(c.cantons.find((g) => g.nom === 'Luxembourg-Ville')!.objets).toBe(4);
-    expect(c.cantons.find((g) => g.nom === 'Luxembourg')!.objets).toBe(3);
+    expect(c.regions.find((g) => g.nom === 'Luxembourg-Ville')!.objets).toBe(4);
+    expect(c.regions.find((g) => g.nom === 'Couronne de Luxembourg-Ville')!.objets).toBe(3);
   });
 
   it('les maisons disparues comptent 12 mois, puis sortent de la comparaison', () => {

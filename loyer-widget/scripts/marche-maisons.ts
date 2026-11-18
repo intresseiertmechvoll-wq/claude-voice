@@ -98,12 +98,12 @@ function ecrireSorties(base: Base, inconnues: string[]) {
   mkdirSync(join(ROOT, 'data/marche'), { recursive: true });
   mkdirSync(join(ROOT, 'docs/marche'), { recursive: true });
   writeFileSync(BASE, JSON.stringify(base, null, 1) + '\n');
-  writeFileSync(COMMUNES, JSON.stringify({ _note: 'Généré par scripts/marche-maisons.ts : comparaison par canton, zone et commune, dernier relevé.', date, ...comp }, null, 1) + '\n');
+  writeFileSync(COMMUNES, JSON.stringify({ _note: 'Généré par scripts/marche-maisons.ts : comparaison par secteur, région et commune, dernier relevé.', date, ...comp }, null, 1) + '\n');
   const fichier = join(ROOT, `docs/marche/rapport-maisons-${date}.md`);
   writeFileSync(fichier, rapport(base, comp, inconnues, date));
   console.log(`✔ ${fichier.replace(ROOT + '/', '')}`);
   console.log(`  ${comp.objetsTotal} maisons différentes (${comp.doublons} doublons entre portails retirés), ${comp.communes.length} communes`);
-  for (const g of comp.cantons) console.log(`  ${g.nom.padEnd(18)} ${String(g.objets).padStart(3)} maisons${g.objets < 10 ? '  (moins de 10)' : ''}`);
+  for (const g of comp.secteurs) console.log(`  ${g.nom.padEnd(34)} ${String(g.objets).padStart(3)} maisons${g.objets < 10 ? '  (moins de 10)' : ''}`);
 }
 
 const cmd = process.argv[2];

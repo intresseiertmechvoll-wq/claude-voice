@@ -8,7 +8,7 @@ const L = {
   exterieur: { aucun: 'Aucun', balcon: 'Balcon', terrasse: 'Terrasse', jardin: 'Jardin privatif' },
   gestion: { oui: 'Oui', peut_etre: 'Peut-être', non: 'Non' },
   dispo: { libre: 'Libre maintenant', '3mois': 'Dans les 3 mois', '3a6mois': 'Dans 3 à 6 mois', plus_tard: 'Plus tard / je ne sais pas' },
-  zone: { LV: 'Luxembourg-Ville', LC: 'Luxembourg-Campagne', Peri: 'Périphérie (Capellen, Mersch)', Sud: 'Sud (canton d’Esch)', Est: 'Est', Nord: 'Nord' },
+  zone: { LV: 'Luxembourg-Ville', LC: 'Communes autour de Luxembourg-Ville', Peri: 'Périphérie (Capellen, Mersch)', Sud: 'Sud (canton d’Esch)', Est: 'Est', Nord: 'Nord' },
   fiabilite: { high: 'Bonne', medium: 'Moyenne', low: 'Limitée' },
   lang: { fr: 'Français', de: 'Allemand', en: 'Anglais' },
 } as const;

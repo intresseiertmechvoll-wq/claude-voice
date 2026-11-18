@@ -111,7 +111,7 @@ function stationnement(a: Answers, zone: Zone, refs: References, params: Params)
 
 /**
  * Fiabilité affichée (règle simple, à valider par Jason) :
- * - appartement : « bonne » à Luxembourg-Ville, Luxembourg-Campagne et dans le Sud pour 40 à 130 m² avec au moins
+ * - appartement : « bonne » à Luxembourg-Ville, dans les communes autour et dans le Sud pour 40 à 130 m² avec au moins
  *   une chambre ; « limitée » dans les petits cantons du nord et de l'est, pour un studio ou hors 30–160 m² ;
  *   « moyenne » sinon ;
  * - maison : « moyenne » si la zone compte au moins 13 annonces dans le relevé et 100 à 300 m², « limitée » sinon.
