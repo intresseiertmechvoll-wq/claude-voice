@@ -461,5 +461,12 @@
     "floodExt": "Zone inondable (crue extrême) – {detail}",
     "flood100None": "Hors zone de crue centennale",
     "sources": "© ACT – plan cadastral (CC BY 4.0) · Cartes des zones inondables, Administration de la gestion de l’eau"
+  },
+  "certif": {
+    "label": "Agence certifiée",
+    "org": "Chambre immobilière",
+    "link": "Voir notre fiche de membre",
+    "newTab": "(nouvel onglet)",
+    "logo": "ImmoBuild Kohn"
   }
 }

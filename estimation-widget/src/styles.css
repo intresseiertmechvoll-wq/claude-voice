@@ -55,6 +55,25 @@ button { font: inherit; color: inherit; }
 .badges li { display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 999px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.22); font-size: 0.8125rem; font-weight: 600; white-space: nowrap; }
 .badges .ico { color: var(--gold); }
 
+/* Logo et badge « Agence certifiée » */
+.intro-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.intro-top .language-links { margin-bottom: 0; }
+.intro-logo { display: block; width: auto; height: 52px; flex: none; }
+@media (min-width: 560px) { .intro-logo { height: 60px; } }
+.certif { display: inline-flex; align-items: center; gap: 10px; margin: 14px 0 0; color: inherit; text-decoration: none; font-size: 0.8125rem; line-height: 1.35; }
+.certif-img { display: block; width: auto; height: 52px; flex: none; }
+.certif-text { display: flex; flex-direction: column; }
+.certif-text strong { font-weight: 600; }
+.certif-link { text-decoration: underline; text-underline-offset: 3px; margin-top: 2px; }
+a.certif:hover .certif-link { text-decoration-thickness: 2px; }
+.certif-dark { color: var(--white); }
+.certif-dark .certif-text > span:not(.certif-link) { color: #dfe6ef; }
+.certif-dark:focus-visible { outline: 3px solid var(--white); outline-offset: 3px; border-radius: 6px; }
+.certif-light { color: var(--navy); margin: 0; }
+.certif-light .certif-text > span:not(.certif-link) { color: var(--muted); }
+.certif-light:focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; border-radius: 6px; }
+.next-agent { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; margin-bottom: 12px; }
+
 /* Progression */
 .progress { margin-bottom: 18px; }
 .progress-label { display: flex; justify-content: space-between; margin: 0 0 10px; font-size: 0.875rem; font-weight: 600; color: var(--muted); }
@@ -453,6 +472,8 @@ input[type='text']:focus, input[type='email']:focus, input[type='tel']:focus, se
   .hero-amount { font-size: 2rem; }
   .hero-amount .sr-only { position: static; width: auto; height: auto; margin: 0; overflow: visible; clip: auto; }
   .result-print-only { display: block; }
+  .print-logo { width: auto; height: 56px; margin: 0 0 10px; }
+  .certif-link { display: none; }
   p.result-print-only { color: var(--muted); font-size: 0.875rem; margin: 0 0 10px; }
   .range-block, .indicative, .result-context, .result .panel { margin-top: 12px !important; }
   .result .values { grid-template-columns: repeat(2, minmax(0, 1fr)); }

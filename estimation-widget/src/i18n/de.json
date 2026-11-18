@@ -461,5 +461,12 @@
     "floodExt": "Überschwemmungsgebiet (extremes Hochwasser) – {detail}",
     "flood100None": "Außerhalb des Gebiets für hundertjährliches Hochwasser",
     "sources": "© ACT – Katasterplan (CC BY 4.0) · Hochwassergefahrenkarten, Wasserwirtschaftsamt"
+  },
+  "certif": {
+    "label": "Zertifizierte Agentur",
+    "org": "Chambre immobilière",
+    "link": "Unser Mitgliedseintrag",
+    "newTab": "(neuer Tab)",
+    "logo": "ImmoBuild Kohn"
   }
 }

@@ -368,6 +368,7 @@ Autres réglages, dans `config.json` :
 - lien de la page contact et de la politique de confidentialité (**à vérifier : je ne connais pas tes vraies adresses**) ;
 - `agent` : ton prénom et ta ligne de présentation ; `photo` : chemin d'une photo placée dans `public/` (ex. `/jay.jpg`), sinon l'initiale s'affiche ;
 - `phone` : ton numéro, affiché comme bouton « appeler » sous le résultat (vide = pas de bouton) ;
+- `certificationUrl` : ta fiche de membre de la Chambre immobilière ; le badge « Agence certifiée » (en-tête de l'étape 1 et à côté de Jason sous le résultat) y mène, dans un nouvel onglet. Vide = badge sans lien. Le logo blanc est dans l'en-tête, le logo en couleur sur la version imprimée / PDF ;
 - `quickCommunes` : les raccourcis de l'étape 1 ;
 - `publicEmail` : l'adresse montrée au visiteur si l'envoi échoue ou s'il a atteint la limite (« écrivez-nous à … ») ;
 - adresse des leads par défaut, nombre d'envois par heure.

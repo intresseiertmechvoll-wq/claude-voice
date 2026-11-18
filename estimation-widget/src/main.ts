@@ -11,6 +11,7 @@ import { resolveCommune, setupCombobox } from './ui/combobox';
 import { esc } from './ui/html';
 import { icon } from './ui/icons';
 import { landingQuery, readLanding } from './ui/landing';
+import { certifBadge } from './ui/certif';
 import { renderFact } from './ui/facts';
 import { formatEuro } from './ui/format';
 import { errorKey, noDataNote, recapItems, renderStep, STEP_ICONS, type Values } from './ui/steps';
@@ -220,7 +221,7 @@ function recapBar(): string {
 
 function render(focus = true) {
   if (state.result) {
-    app.innerHTML = `<div class="card card-result anim-in">${late!.renderResult(state.result, t, lang, { contactUrl, agent: config.agent, phone: config.phone, whatIf: whatIfBase(), geo: geoDetails() })}</div>`;
+    app.innerHTML = `<div class="card card-result anim-in">${late!.renderResult(state.result, t, lang, { contactUrl, agent: config.agent, phone: config.phone, certificationUrl: config.certificationUrl, whatIf: whatIfBase(), geo: geoDetails() })}</div>`;
     hydrate();
     countUp();
     after(focus);
@@ -241,7 +242,10 @@ function render(focus = true) {
   ${
     s === 1
       ? `<header class="intro">
-    ${languageLinks()}
+    <div class="intro-top">
+      <img class="intro-logo" src="/logo-immobuild-blanc.webp" alt="${esc(t('certif.logo'))}" width="148" height="144">
+      ${languageLinks()}
+    </div>
     <p class="kicker">${esc(t('intro.kicker')).replace(/ImmoBuild Kohn/g, '<span class="nowrap">ImmoBuild Kohn</span>')}</p>
     <h1>${esc(t('intro.title'))}</h1>
     <p>${esc(t('intro.text'))}</p>
@@ -250,6 +254,7 @@ function render(focus = true) {
       <li>${icon('check', 'ico ico-xs')}${esc(t('intro.badges.commitment'))}</li>
       <li>${icon('donnees', 'ico ico-xs')}${esc(t('intro.badges.official'))}</li>
     </ul>
+    ${certifBadge(t, config.certificationUrl, 'dark')}
   </header>`
       : ''
   }

@@ -4,6 +4,7 @@ import { formatEuro } from './format';
 
 export { formatEuro };
 import type { AddressDetails, FloodZone, Lang, PublicFactor, PublicResult } from '../shared/types';
+import { certifBadge } from './certif';
 import { esc } from './html';
 import { icon } from './icons';
 import { renderWhatIf, type WhatIfBase } from './whatif';
@@ -12,6 +13,8 @@ export interface ResultOptions {
   contactUrl: string;
   agent?: { name: string; role: string; photo?: string };
   phone?: string;
+  /** fiche de membre de la Chambre immobilière (badge « Agence certifiée ») */
+  certificationUrl?: string;
   /** réponses de départ, pour le simulateur « Et si… ? » */
   whatIf?: WhatIfBase;
   /** données des cartes officielles pour l'adresse choisie dans la liste (sinon rien n'est affiché) */
@@ -97,7 +100,7 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
     <h2 id="result-title" class="step-title" tabindex="-1">${esc(t('result.noDataTitle'))}</h2>
     <p class="hero-sub">${esc(t('result.noDataText'))}</p>
   </div>
-  ${agentCard(t, o)}
+  <div class="next-agent">${agentCard(t, o)}${certifBadge(t, o.certificationUrl, 'light')}</div>
   ${contact}
   ${restart}
 </section>`;
@@ -188,6 +191,7 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
 
   return `<section class="result" aria-labelledby="result-title">
   <div class="result-hero">
+    <img class="result-print-only print-logo" src="/logo-immobuild.webp" alt="${esc(t('certif.logo'))}" width="142" height="144">
     <p class="sent-note"><svg class="seal" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle class="seal-ring" cx="24" cy="24" r="20"/><path class="seal-check" d="M15 24.5l6 6L33 18"/></svg><span>${esc(t('result.sent'))}</span></p>
     <h2 id="result-title" class="step-title" tabindex="-1">${esc(t('result.ready'))}</h2>
     <p class="hero-meta">${esc(t('result.subtitle', { type: typeLabel, commune: r.commune }))}${r.surface ? ` · ${r.surface}\u00a0m²` : ''}</p>
@@ -231,7 +235,7 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
   ${how}
   <section class="panel next" aria-labelledby="next-title">
     <h3 id="next-title">${icon('drapeau', 'ico ico-sm')}<span>${esc(t('result.nextTitle'))}</span></h3>
-    ${agentCard(t, o)}
+    <div class="next-agent">${agentCard(t, o)}${certifBadge(t, o.certificationUrl, 'light')}</div>
     <ol>
       <li>${esc(t('result.next1'))}</li>
       <li>${esc(t('result.next2'))}</li>

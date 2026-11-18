@@ -133,6 +133,10 @@ await shot('7-analyse-en-cours');
 await page.locator('#result-title').waitFor({ timeout: 15000 });
 await page.waitForTimeout(1200);
 await shot('8a-resultat-appartement');
+// Version imprimable / PDF : logo en couleur, sans boutons
+await page.emulateMedia({ media: 'print' });
+await page.screenshot({ path: `${OUT}8e-resultat-impression.png`, fullPage: true });
+await page.emulateMedia({ media: 'screen' });
 await page.locator('#wi_energie .e-B').click();
 await page.locator('label.work', { hasText: 'Salle de bain neuve' }).click();
 await page.waitForTimeout(900);

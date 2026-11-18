@@ -461,5 +461,12 @@
     "floodExt": "Flood zone (extreme flood) – {detail}",
     "flood100None": "Outside the 100-year flood zone",
     "sources": "© ACT – cadastral map (CC BY 4.0) · Flood hazard maps, Water Management Administration"
+  },
+  "certif": {
+    "label": "Certified agency",
+    "org": "Chambre immobilière",
+    "link": "See our member listing",
+    "newTab": "(new tab)",
+    "logo": "ImmoBuild Kohn"
   }
 }
