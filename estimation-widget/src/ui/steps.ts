@@ -91,9 +91,11 @@ type Opt = { value: string; label: string; icon?: string; hint?: string };
 
 /** Choix unique sous forme de cartes (avec icône) ou de pastilles */
 function choices(ctx: Ctx, name: string, legend: string, options: Opt[], variant: 'cards' | 'tiles' | 'chips' | 'list' = 'cards', legendIcon?: string): string {
-  const err = ctx.e[name] ? ` aria-describedby="${name}-error"` : '';
-  return `<fieldset class="field choices choices-${variant} n${options.length}${hasErr(ctx, name)}" id="${name}" data-field="${name}"${err}>
+  const hint = name === 'objectif' ? ctx.t('fields.objectifHelp') : '';
+  const desc = describedBy(ctx, name, !!hint);
+  return `<fieldset class="field choices choices-${variant} n${options.length}${hasErr(ctx, name)}" id="${name}" data-field="${name}"${desc}>
   <legend><span>${esc(legend)}</span></legend>
+  ${hint ? `<p class="help" id="${name}-help">${esc(hint)}</p>` : ''}
   ${errorMessage(ctx, name)}
   <div class="options">
     ${options
@@ -272,7 +274,7 @@ function step2(ctx: Ctx): string {
   ${stepper(ctx, 'chambres', t('fields.chambres'), LIMITS.chambres)}
   ${stepper(ctx, 'sdb', t('fields.sdb'), { min: 0, max: LIMITS.sdb.max })}
 </div>
-${input(ctx, 'annee', t('fields.annee'), { inputmode: 'numeric', placeholder: t('fields.anneePlaceholder'), maxlength: 4 })}
+${input(ctx, 'annee', t('fields.annee'), { inputmode: 'numeric', placeholder: t('fields.anneePlaceholder'), help: t('fields.anneeHelp'), maxlength: 4 })}
 ${choices(ctx, 'etat', t('fields.etat'), opts(t, 'fields.etatOptions', ETATS, ETAT_ICONS, 'fields.etatHints'), 'list')}
 ${energyScale(ctx)}
 ${
@@ -337,7 +339,12 @@ function step6(ctx: Ctx): string {
   const { t } = ctx;
   const link = `<a href="${esc(ctx.privacyUrl)}" target="_blank" rel="noopener">${esc(t('fields.rgpdLink'))}</a>`;
   const phoneErr = ctx.e.numero || ctx.e.indicatif;
+  const purpose = noDataNote(t, ctx.v.type, ctx.v.commune) ? 'trust.purposeNoData' : 'trust.purpose';
   return `${recapCard(ctx)}
+<div class="contact-context">
+  <p><strong>${esc(t(purpose))}</strong></p>
+  <p>${esc(t('trust.where'))}</p>
+</div>
 <div class="row">
   ${input(ctx, 'prenom', t('fields.prenom'), { autocomplete: 'given-name', maxlength: 80 })}
   ${input(ctx, 'nom', t('fields.nom'), { autocomplete: 'family-name', maxlength: 80 })}
@@ -376,7 +383,7 @@ ${input(ctx, 'email', t('fields.email'), { type: 'email', autocomplete: 'email',
   </label>
   ${errorMessage(ctx, 'rgpd')}
 </div>
-<p class="trust">${icon('bouclier', 'ico ico-sm')}<span>${esc(t('trust.line'))}<br>${esc(t('trust.where'))}</span></p>`;
+<p class="trust">${icon('bouclier', 'ico ico-sm')}<span>${esc(t('trust.line'))}</span></p>`;
 }
 
 const STEPS = [step1, step2, step3, step4, step5, step6];

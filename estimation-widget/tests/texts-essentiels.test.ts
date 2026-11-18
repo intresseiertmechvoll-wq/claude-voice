@@ -29,7 +29,9 @@ describe('Textes essentiels (exactitude des réponses et confiance)', () => {
 
   it('Coordonnées : où partent les données', () => {
     const html = renderStep(6, ctx({ type: 'appartement', commune: 'Dudelange', surface: '80', postes: {} }));
-    expect(html).toContain('Vos réponses sont envoyées uniquement à ImmoBuild Kohn');
+    expect(html).toContain('Vos réponses et vos coordonnées sont envoyées par e-mail à ImmoBuild Kohn');
+    expect(html).toContain('pour que Jason puisse vous recontacter au sujet de ce bien');
+    expect(html.indexOf('Ces coordonnées sont demandées avant')).toBeLessThan(html.indexOf('id="prenom"'));
     expect(html).toContain('politique de confidentialité');
   });
 

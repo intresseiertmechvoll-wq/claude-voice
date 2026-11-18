@@ -4,14 +4,15 @@
   },
   "intro": {
     "title": "What is your home worth?",
-    "text": "A few questions about your property, your contact details, then your price range.",
+    "text": "Answer a few questions. Before you see the selling price range, leave your contact details so Jason can follow up about the property.",
     "kicker": "Free valuation · ImmoBuild Kohn",
     "badges": {
       "free": "Free",
       "commitment": "No commitment",
       "official": "Public data",
       "instant": "Instant result"
-    }
+    },
+    "language": "Language"
   },
   "progress": "Step {n} of {total}",
   "nav": {
@@ -197,10 +198,11 @@
     "energieHigh": "Inefficient",
     "communePlaceholder": "e.g. Dudelange",
     "numeroPlaceholder": "621 123 456",
-    "communeNoData": "Little public data for {commune}: I will prepare a personal valuation for you.",
+    "communeNoData": "There is no online price for this property type in {commune}. You can continue to request a valuation from Jason.",
     "numeroWhy": "Only to contact you about your property.",
     "emailTypo": "Did you mean",
-    "terrainAres": "In ares? {a} a = {m2} m². Please enter the area in m²."
+    "terrainAres": "In ares? {a} a = {m2} m². Please enter the area in m².",
+    "objectifHelp": "The result estimates a sale price, even if you are thinking of renting the property out."
   },
   "errors": {
     "required": "This field is required.",
@@ -239,7 +241,7 @@
     "sourceMaison": "Observatoire de l’Habitat (house listings)",
     "sourceLink": "See the data",
     "ready": "Here is your valuation!",
-    "perM2": "or {value}\u00a0per\u00a0m²",
+    "perM2": "or {value} per m²",
     "rangeTitle": "Your price range",
     "gaugeTitle": "How your property compares with sales in {commune}",
     "gaugeText": "Sales of existing apartments from {debut} to {fin}, excluding the lowest 5% and the highest 5% of prices.",
@@ -284,7 +286,7 @@
       "capitalisation": "Rental yield",
       "annonces_maison": "Corrected house listings"
     },
-    "methodLine": "{name}: {m2}\u00a0per\u00a0m² ({weight} of the calculation)",
+    "methodLine": "{name}: {m2} per m² ({weight} of the calculation)",
     "nextTitle": "What happens next?",
     "next1": "Your request comes straight to me, and I’ll get back to you.",
     "next2": "On site, I fine-tune it with what figures can’t show: view, light, finishes.",
@@ -324,7 +326,9 @@
     "data": "Your details only go to ImmoBuild Kohn",
     "cookies": "No cookies, no advertising",
     "line": "Free · no commitment · no cookies",
-    "where": "Your answers are sent only to ImmoBuild Kohn, by email."
+    "where": "Your answers and contact details are emailed to ImmoBuild Kohn so Jason can follow up about this property.",
+    "purpose": "We ask for your contact details before showing the price range.",
+    "purposeNoData": "Jason will get in touch about a personalised valuation."
   },
   "factors": {
     "etat_neuf": "New property",

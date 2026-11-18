@@ -5,13 +5,14 @@
   "intro": {
     "kicker": "Estimation gratuite · ImmoBuild Kohn",
     "title": "Combien vaut votre chez-vous ?",
-    "text": "Quelques questions sur votre bien, vos coordonnées, puis votre fourchette de prix.",
+    "text": "Répondez à quelques questions. Avant la fourchette de prix de vente, laissez vos coordonnées pour que Jason puisse vous recontacter au sujet du bien.",
     "badges": {
       "free": "Gratuit",
       "commitment": "Sans engagement",
       "official": "Données publiques",
       "instant": "Résultat immédiat"
-    }
+    },
+    "language": "Langue"
   },
   "progress": "Étape {n} sur {total}",
   "nav": {
@@ -197,10 +198,11 @@
     "energieHigh": "Énergivore",
     "communePlaceholder": "ex. Dudelange",
     "numeroPlaceholder": "621 123 456",
-    "communeNoData": "Peu de données publiques pour {commune} : je vous ferai une estimation personnalisée.",
+    "communeNoData": "Pas de prix en ligne pour ce type de bien à {commune}. Vous pouvez continuer pour demander une estimation à Jason.",
     "numeroWhy": "Uniquement pour vous recontacter au sujet de votre bien.",
     "emailTypo": "Vouliez-vous dire",
-    "terrainAres": "En ares ? {a} a = {m2} m². Indiquez la surface en m²."
+    "terrainAres": "En ares ? {a} a = {m2} m². Indiquez la surface en m².",
+    "objectifHelp": "Le résultat estime un prix de vente, même si votre projet est de louer."
   },
   "errors": {
     "required": "Ce champ est obligatoire.",
@@ -239,7 +241,7 @@
     "sourceMaison": "Observatoire de l’Habitat (annonces de maisons)",
     "sourceLink": "Voir les données",
     "ready": "Voilà votre estimation !",
-    "perM2": "soit {value}\u00a0par\u00a0m²",
+    "perM2": "soit {value} par m²",
     "rangeTitle": "Votre fourchette de prix",
     "gaugeTitle": "Votre bien parmi les ventes à {commune}",
     "gaugeText": "Ventes d’appartements existants du {debut} au {fin}, sans les 5 % de prix les plus bas ni les 5 % les plus hauts.",
@@ -284,7 +286,7 @@
       "capitalisation": "Rendement locatif",
       "annonces_maison": "Annonces de maisons corrigées"
     },
-    "methodLine": "{name} : {m2}\u00a0par\u00a0m² ({weight} du calcul)",
+    "methodLine": "{name} : {m2} par m² ({weight} du calcul)",
     "nextTitle": "Et maintenant ?",
     "next1": "Je reçois votre demande et je vous recontacte.",
     "next2": "Sur place, j’affine avec ce que les chiffres ne voient pas : vue, lumière, finitions.",
@@ -324,7 +326,9 @@
     "data": "Vos données ne sont envoyées qu’à ImmoBuild Kohn",
     "cookies": "Pas de cookie, pas de publicité",
     "line": "Gratuit · sans engagement · sans cookie",
-    "where": "Vos réponses sont envoyées uniquement à ImmoBuild Kohn, par e-mail."
+    "where": "Vos réponses et vos coordonnées sont envoyées par e-mail à ImmoBuild Kohn pour que Jason puisse vous recontacter au sujet de ce bien.",
+    "purpose": "Ces coordonnées sont demandées avant l’affichage de la fourchette.",
+    "purposeNoData": "Pour ce bien, Jason vous recontactera pour une estimation personnalisée."
   },
   "factors": {
     "etat_neuf": "Bien neuf",
