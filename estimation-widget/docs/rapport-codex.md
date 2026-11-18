@@ -4,7 +4,14 @@
 
 ## 1. Gesamturteil
 
-Das Tool ist **in der aktuellen Live-Konfiguration noch nicht bereit, aktiv Kundenverkehr darauf zu lenken**: Die eine erlaubte Live-Testanfrage endete mit einer Fehlermeldung und ohne angezeigte Schätzung. Ob Resend die E-Mail dennoch angenommen hat, ließ sich nicht feststellen; ein zweiter Versuch wurde deshalb nicht gemacht. Die größten Risiken sind der ungeklärte Live-Versand, die verpflichtende Einwilligung als Zugangsvoraussetzung zum Ergebnis und eine öffentliche Datenschutzerklärung, die die im internen Datenschutzdokument genannten Anbieter und den Zweck des Tools nicht nennt. Die Rechenlogik folgt der README und liefert nachvollziehbare Ergebnisse; die Preisparameter sind laut Projekt selbst noch von Jason zu bestätigen.
+Der Live-Test vom 18.11.2026 war erfolgreich. Die Schätzung erschien nach 6,6 Sekunden und die zugehörige Testmail ging im verbundenen Outlook-Postfach ein. Der fehlgeschlagene Ersttest vom 17.11. bleibt dokumentiert. Vor aktiver Bewerbung bleiben vor allem die öffentliche Datenschutzerklärung, die Kopplung der Kontaktaufnahme an die Preisfreigabe sowie die Validierung der Preisparameter offen. Die Datenschutzprüfung und die übrigen Bewertungskriterien wurden für den Nachtest nicht wiederholt.
+
+## Live-Nachtest am 18.11.2026
+
+- **Geprüft:** Eine einzelne Anfrage mit denselben vorgegebenen Testdaten wurde um **08:33:23 Uhr (MEZ)** über `https://estimatioun.lu/?lang=fr` abgeschickt. Die Bestätigung „Demande bien reçue“ und die Schätzung für eine Wohnung mit **80 m² in Dudelange** erschienen nach **6,6 Sekunden**. Der Marktwert lag bei **540.000 €**, die Spanne bei **505.000–570.000 €**. Das entspricht der Handrechnung in Abschnitt 3.
+- **Geprüft:** Im verbundenen Outlook-Postfach ging die zugehörige E-Mail um **08:33:30 Uhr (MEZ)** ein. Betreff „Nouveau lead estimation – Dudelange – Appartement – Dans les 3 mois“. Die Vorschau enthielt die vereinbarte Testnachricht. Der Live-`Reply-To`-Header wurde nicht geprüft.
+- **Geprüft:** Das Resultat zeigte einen Anrufbutton für Jason. Das Formular verlinkte direkt auf `/politique-de-confidentialite-cookies/`. Diese beiden Beobachtungen aktualisieren die entsprechenden Angaben zur Live-Oberfläche vom 17.11.
+- **Offen:** Die Ursache der Fehlermeldung vom 17.11. und die Stabilität über längere Zeit bleiben ungeklärt. Die Noten und das nachstehende Protokoll dokumentieren den Stand der Hauptprüfung vom 17.11.
 
 ## 2. Notentabelle
 
