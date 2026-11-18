@@ -246,7 +246,7 @@
     "gaugeYou": "Ihre Immobilie",
     "gaugeAvg": "Durchschnitt",
     "factorsTitle": "Was Ihren Preis beeinflusst",
-    "factorsNone": "Ihre Immobilie entspricht dem Durchschnitt der Gemeinde: keine Anpassung.",
+    "factorsNone": "Aus Ihren Angaben ergibt sich keine Anpassung.",
     "factorsCapped": "Um vorsichtig zu bleiben, ist die Summe der Anpassungen begrenzt.",
     "reliabilityTitle": "Verlässlichkeit der Daten",
     "reliability": {
@@ -290,7 +290,7 @@
     "next2": "Vor Ort berücksichtige ich, was Zahlen nicht zeigen: Aussicht, Licht, Ausstattung.",
     "print": "Drucken oder als PDF speichern",
     "restart": "Neue Bewertung starten",
-    "statGap": "Tatsächliche Verkäufe liegen im Schnitt {p} unter den Anzeigen."
+    "statGap": "Für die Schätzung werden die Angebotspreise um {p} gesenkt."
   },
   "stepsShort": {
     "1": "Immobilie",

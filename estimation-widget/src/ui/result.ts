@@ -54,6 +54,7 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
   const o: ResultOptions = typeof opts === 'string' ? { contactUrl: opts } : opts;
   const cta = `<a class="btn btn-primary btn-block" href="${esc(o.contactUrl)}" target="_top" rel="noopener">${icon('rdv')}<span>${esc(t('result.cta'))}</span></a>`;
   const call = o.phone ? `<a class="btn btn-secondary btn-block" href="tel:${esc(o.phone.replace(/\s/g, ''))}" target="_top">${icon('telephone')}<span class="call-text"><span>${esc(t('result.call', { name: o.agent?.name ?? '' }).trim())}</span><span class="call-num">${esc(o.phone)}</span></span></a>` : '';
+  const contact = `<div class="result-contact${call ? ' has-call' : ''}">${cta}${call}</div>`;
   const actions = `<div class="result-actions">
     <button type="button" class="btn btn-ghost" data-action="print">${icon('imprimer')}<span>${esc(t('result.print'))}</span></button>
     <button type="button" class="btn btn-ghost" data-action="restart">${icon('recommencer')}<span>${esc(t('result.restart'))}</span></button>
@@ -67,7 +68,7 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
     <p class="hero-sub">${esc(t('result.noDataText'))}</p>
   </div>
   ${agentCard(t, o)}
-  ${cta}${call}
+  ${contact}
   <div class="result-actions">
     <button type="button" class="btn btn-ghost" data-action="restart">${icon('recommencer')}<span>${esc(t('result.restart'))}</span></button>
   </div>
@@ -91,11 +92,16 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
     gauge = `<section class="panel" aria-labelledby="gauge-title">
     <h3 id="gauge-title">${icon('donnees', 'ico ico-sm')}<span>${esc(t('result.gaugeTitle', { commune: r.commune }))}</span></h3>
     <div class="gauge" role="img" aria-label="${esc(`${t('result.gaugeYou')}${colon(lang)}${ownPerM2} / m² · ${t('result.gaugeAvg')}${colon(lang)}${formatEuro(s.notarieM2, lang)} / m² · ${formatEuro(s.notarieMinM2, lang)} – ${formatEuro(s.notarieMaxM2, lang)}`)}">
-      <div class="gauge-track"></div>
-      <div class="gauge-mark mark-avg" data-pos="${pos(s.notarieM2)}"><span>${esc(t('result.gaugeAvg'))}<br><strong>${eur(s.notarieM2)}\u00a0/\u00a0m²</strong></span></div>
-      <div class="gauge-mark mark-you" data-pos="${pos(ownM2)}"><span>${esc(t('result.gaugeYou'))}<br><strong>${esc(ownPerM2!)}\u00a0/\u00a0m²</strong></span></div>
+      <div class="gauge-key">
+        <span class="gauge-avg">${esc(t('result.gaugeAvg'))}<strong>${eur(s.notarieM2)} / m²</strong></span>
+        <span class="gauge-you">${esc(t('result.gaugeYou'))}<strong>${esc(ownPerM2!)} / m²</strong></span>
+      </div>
+      <div class="gauge-track">
+        <span class="gauge-mark mark-avg" data-pos="${pos(s.notarieM2)}"></span>
+        <span class="gauge-mark mark-you" data-pos="${pos(ownM2)}"></span>
+      </div>
+      <div class="gauge-ends"><span>${eur(s.notarieMinM2)} / m²</span><span>${eur(s.notarieMaxM2)} / m²</span></div>
     </div>
-    <div class="gauge-ends"><span>${eur(s.notarieMinM2)}\u00a0/\u00a0m²</span><span>${eur(s.notarieMaxM2)}\u00a0/\u00a0m²</span></div>
     <p class="small">${esc(t('result.gaugeText', { debut: formatDate(r.periodeDebut, lang), fin: formatDate(r.periodeFin, lang) }))}</p>
   </section>`;
   }
@@ -158,8 +164,17 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
     <p class="hero-meta">${esc(t('result.subtitle', { type: typeLabel, commune: r.commune }))}${r.surface ? ` · ${r.surface}\u00a0m²` : ''}</p>
     <p class="hero-label">${esc(t('result.market'))}</p>
     <p class="hero-amount"><span class="sr-only">${eur(r.market)}</span><span aria-hidden="true" data-countup="${r.market}">${eur(r.market)}</span></p>
-    <p class="hero-sub">${esc(t('result.marketText'))}${perM2 ? ` · ${esc(t('result.perM2', { value: perM2 }))}` : ''}</p>
+    ${perM2 ? `<p class="hero-unit">${esc(t('result.perM2', { value: perM2 }))}</p>` : ''}
+    <p class="hero-sub">${esc(t('result.marketText'))}</p>
   </div>
+  <section class="range-block" aria-labelledby="range-title">
+    <h3 id="range-title">${esc(t('result.rangeTitle'))}</h3>
+    <div class="range-viz" aria-hidden="true"><span class="rv-low"></span><span class="rv-mid"></span><span class="rv-high"></span></div>
+    <div class="values">
+      <div class="value-card value-low"><p class="value-label">${esc(t('result.low'))}</p><p class="value-amount">${eur(r.low)}</p><p class="value-text">${esc(t('result.lowText'))}</p></div>
+      <div class="value-card value-high"><p class="value-label">${esc(t('result.high'))}</p><p class="value-amount">${eur(r.high)}</p><p class="value-text">${esc(t('result.highText'))}</p></div>
+    </div>
+  </section>
   ${
     r.indicative
       ? `<div class="indicative" role="note" data-testid="indicative">
@@ -168,18 +183,12 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
   </div>`
       : ''
   }
-  <section class="range-block" aria-labelledby="range-title">
-    <h3 id="range-title" class="sr-only">${esc(t('result.rangeTitle'))}</h3>
-    <div class="range-viz" aria-hidden="true"><span class="rv-low"></span><span class="rv-mid"></span><span class="rv-high"></span></div>
-    <div class="values">
-      <div class="value-card value-low"><p class="value-label">${esc(t('result.low'))}</p><p class="value-amount">${eur(r.low)}</p><p class="value-text">${esc(t('result.lowText'))}</p></div>
-      <div class="value-card value-high"><p class="value-label">${esc(t('result.high'))}</p><p class="value-amount">${eur(r.high)}</p><p class="value-text">${esc(t('result.highText'))}</p></div>
-    </div>
-  </section>
-  ${reliability}
-  <p class="source">${esc(t('result.source', { source, periode }))} <a href="${esc(r.sourceUrl)}" target="_blank" rel="noopener">${esc(t('result.sourceLink'))}</a></p>
-  <p class="disclaimer">${esc(t('result.disclaimer'))}</p>
-  ${cta}${call}
+  <div class="result-context">
+    ${reliability}
+    <p class="disclaimer">${esc(t('result.disclaimer'))}</p>
+    <p class="source">${esc(t('result.source', { source, periode }))} <a href="${esc(r.sourceUrl)}" target="_blank" rel="noopener">${esc(t('result.sourceLink'))}</a></p>
+  </div>
+  ${contact}
   ${r.simToken && o.whatIf ? `<button type="button" class="teaser" data-action="goto-whatif">${icon('neuf', 'ico ico-sm')}<span>${esc(t('whatif.teaser'))}</span><span class="teaser-arrow">${icon('fleche', 'ico ico-sm')}</span></button>` : ''}
   ${gauge}
   ${stats}

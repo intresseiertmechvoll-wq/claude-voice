@@ -246,7 +246,7 @@
     "gaugeYou": "Votre bien",
     "gaugeAvg": "Moyenne",
     "factorsTitle": "Ce qui joue sur votre prix",
-    "factorsNone": "Votre bien correspond à la moyenne de la commune : pas d’ajustement.",
+    "factorsNone": "Aucun ajustement pour les caractéristiques renseignées.",
     "factorsCapped": "Pour rester prudent, le total des ajustements est plafonné.",
     "reliabilityTitle": "Fiabilité des données",
     "reliability": {
@@ -290,7 +290,7 @@
     "next2": "Sur place, j’affine avec ce que les chiffres ne voient pas : vue, lumière, finitions.",
     "print": "Imprimer ou enregistrer en PDF",
     "restart": "Faire une autre estimation",
-    "statGap": "Les ventes réelles se font en moyenne {p} sous les annonces."
+    "statGap": "Le calcul applique une décote de {p} aux prix annoncés."
   },
   "stepsShort": {
     "1": "Le bien",

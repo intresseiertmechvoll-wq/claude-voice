@@ -246,7 +246,7 @@
     "gaugeYou": "Your property",
     "gaugeAvg": "Average",
     "factorsTitle": "What affects your price",
-    "factorsNone": "Your property matches the local average: no adjustment.",
+    "factorsNone": "The features you entered did not change the estimate.",
     "factorsCapped": "To stay cautious, the total of the adjustments is capped.",
     "reliabilityTitle": "Data reliability",
     "reliability": {
@@ -290,7 +290,7 @@
     "next2": "On site, I fine-tune it with what figures can’t show: view, light, finishes.",
     "print": "Print or save as PDF",
     "restart": "Start a new valuation",
-    "statGap": "Actual sales are on average {p} below listings."
+    "statGap": "The estimate applies a {p} reduction to asking prices."
   },
   "stepsShort": {
     "1": "Property",

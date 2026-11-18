@@ -206,8 +206,6 @@ function hydrate() {
   app.querySelectorAll<HTMLElement>('[data-pos]').forEach((el) => {
     const p = Number(el.dataset.pos);
     el.style.setProperty('--pos', `${p}%`);
-    el.classList.toggle('edge-left', p < 18);
-    el.classList.toggle('edge-right', p > 82);
   });
   app.querySelectorAll<HTMLElement>('[data-width]').forEach((el) => el.style.setProperty('--w', `${el.dataset.width}%`));
   app.querySelectorAll<HTMLInputElement>('input[type="range"]').forEach(paintRange);
@@ -732,6 +730,10 @@ async function send() {
     barFill.style.transition = `width ${reducedMotion ? 0 : ms}ms ease-in-out`;
     barFill.style.width = `${to}%`;
     bar.setAttribute('aria-valuenow', String(Math.round(to)));
+    if (reducedMotion) {
+      pctEl.textContent = String(Math.round(to));
+      return;
+    }
     const from = shown;
     const t0 = performance.now();
     const tick = (now: number) => {
