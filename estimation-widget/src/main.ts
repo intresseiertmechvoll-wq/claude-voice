@@ -491,7 +491,6 @@ app.addEventListener('click', (e) => {
     state.serverError = null;
     render();
   } else if (action === 'print') {
-    app.querySelectorAll('details').forEach((d) => (d.open = true));
     window.print();
   } else if (action === 'goto-whatif') {
     const box = app.querySelector<HTMLElement>('.whatif');

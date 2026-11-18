@@ -232,7 +232,7 @@
     "indicativeHouse": "Für Häuser gibt es keine öffentlichen Verkaufspreise. Die Berechnung geht von Anzeigen aus, deshalb ist die Spanne breiter.",
     "source": "Quelle: {source}. Zeitraum: {periode}.",
     "disclaimer": "Richtwert auf Basis öffentlicher Statistiken. Er ersetzt keine Bewertung vor Ort.",
-    "cta": "Termin für eine genaue Bewertung vereinbaren",
+    "cta": "Bewertung vor Ort anfragen",
     "call": "{name} anrufen",
     "noDataTitle": "Danke, Ihre Anfrage wurde gesendet",
     "noDataText": "Für Ihre Gemeinde gibt es nicht genug öffentliche Daten. Ich melde mich mit einer persönlichen Bewertung bei Ihnen.",
@@ -292,7 +292,8 @@
     "next2": "Vor Ort berücksichtige ich, was Zahlen nicht zeigen: Aussicht, Licht, Ausstattung.",
     "print": "Drucken oder als PDF speichern",
     "restart": "Neue Bewertung starten",
-    "statGap": "Für die Schätzung werden die Angebotspreise um {p} gesenkt."
+    "statGap": "Für die Schätzung werden die Angebotspreise um {p} gesenkt.",
+    "printDate": "Schätzung vom {date}"
   },
   "stepsShort": {
     "1": "Immobilie",

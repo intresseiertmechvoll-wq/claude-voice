@@ -55,8 +55,7 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
   const cta = `<a class="btn btn-primary btn-block" href="${esc(o.contactUrl)}" target="_top" rel="noopener">${icon('rdv')}<span>${esc(t('result.cta'))}</span></a>`;
   const call = o.phone ? `<a class="btn btn-secondary btn-block" href="tel:${esc(o.phone.replace(/\s/g, ''))}" target="_top">${icon('telephone')}<span class="call-text"><span>${esc(t('result.call', { name: o.agent?.name ?? '' }).trim())}</span><span class="call-num">${esc(o.phone)}</span></span></a>` : '';
   const contact = `<div class="result-contact${call ? ' has-call' : ''}">${cta}${call}</div>`;
-  const actions = `<div class="result-actions">
-    <button type="button" class="btn btn-ghost" data-action="print">${icon('imprimer')}<span>${esc(t('result.print'))}</span></button>
+  const restart = `<div class="result-actions">
     <button type="button" class="btn btn-ghost" data-action="restart">${icon('recommencer')}<span>${esc(t('result.restart'))}</span></button>
   </div>`;
 
@@ -69,9 +68,7 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
   </div>
   ${agentCard(t, o)}
   ${contact}
-  <div class="result-actions">
-    <button type="button" class="btn btn-ghost" data-action="restart">${icon('recommencer')}<span>${esc(t('result.restart'))}</span></button>
-  </div>
+  ${restart}
 </section>`;
   }
 
@@ -79,6 +76,7 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
   const source = t(r.type === 'maison' ? 'result.sourceMaison' : 'result.sourceAppartement');
   const typeLabel = t(`fields.typeOptions.${r.type}`);
   const eur = (v: number) => esc(formatEuro(v, lang));
+  const date = new Intl.DateTimeFormat(LOCALES[lang], { dateStyle: 'long' }).format(new Date());
   const perM2 = r.pricePerM2 ? formatEuro(r.pricePerM2, lang) : null;
   const ownM2 = r.buildingPerM2 ?? r.pricePerM2 ?? null;
   const ownPerM2 = ownM2 ? formatEuro(ownM2, lang) : null;
@@ -162,6 +160,7 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
     <p class="sent-note"><svg class="seal" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle class="seal-ring" cx="24" cy="24" r="20"/><path class="seal-check" d="M15 24.5l6 6L33 18"/></svg><span>${esc(t('result.sent'))}</span></p>
     <h2 id="result-title" class="step-title" tabindex="-1">${esc(t('result.ready'))}</h2>
     <p class="hero-meta">${esc(t('result.subtitle', { type: typeLabel, commune: r.commune }))}${r.surface ? ` · ${r.surface}\u00a0m²` : ''}</p>
+    <p class="result-print-only">${esc(t('result.printDate', { date }))}</p>
     <p class="hero-label">${esc(t('result.market'))}</p>
     <p class="hero-amount"><span class="sr-only">${eur(r.market)}</span><span aria-hidden="true" data-countup="${r.market}">${eur(r.market)}</span></p>
     ${perM2 ? `<p class="hero-unit">${esc(t('result.perM2', { value: perM2 }))}</p>` : ''}
@@ -189,6 +188,9 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
     <p class="source">${esc(t('result.source', { source, periode }))} <a href="${esc(r.sourceUrl)}" target="_blank" rel="noopener">${esc(t('result.sourceLink'))}</a></p>
   </div>
   ${contact}
+  <div class="result-save">
+    <button type="button" class="btn btn-ghost" data-action="print">${icon('imprimer')}<span>${esc(t('result.print'))}</span></button>
+  </div>
   ${r.simToken && o.whatIf ? `<button type="button" class="teaser" data-action="goto-whatif">${icon('neuf', 'ico ico-sm')}<span>${esc(t('whatif.teaser'))}</span><span class="teaser-arrow">${icon('fleche', 'ico ico-sm')}</span></button>` : ''}
   ${gauge}
   ${stats}
@@ -203,6 +205,11 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, opts: ResultOpti
       <li>${esc(t('result.next2'))}</li>
     </ol>
   </section>
-  ${actions}
+  ${restart}
+  ${o.agent ? `<footer class="result-print-only result-print-contact">
+    <strong>${esc(o.agent.name)} · ${esc(o.agent.role)}</strong>
+    ${o.phone ? `<span>${esc(o.phone)}</span>` : ''}
+    <a href="${esc(o.contactUrl)}">${esc(o.contactUrl.replace(/^https?:\/\//, ''))}</a>
+  </footer>` : ''}
 </section>`;
 }

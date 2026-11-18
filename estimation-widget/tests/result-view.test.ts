@@ -12,7 +12,7 @@ describe('Écran de résultat', () => {
     expect(html).toContain('Estimation indicative');
     expect(html).toContain('Il n’existe pas de prix de vente publics pour les maisons');
     expect(html).toContain('Estimation indicative basée sur des statistiques publiques. Elle ne remplace pas une estimation sur place.');
-    expect(html).toContain('Prendre rendez-vous pour une estimation précise');
+    expect(html).toContain('Demander une estimation sur place');
     expect(html).toContain('href="https://immobuild.lu/contact/"');
     expect(html).toContain('1er juillet 2025');
   });
@@ -32,6 +32,7 @@ describe('Écran de résultat', () => {
     const html = renderResult(r, translator('fr'), 'fr', '#');
     expect(html).toContain('Je vous recontacte avec une estimation personnalisée.');
     expect(html).not.toMatch(/€/);
+    expect(html).not.toContain('data-action="print"');
   });
 
   it('Textes DE et EN présents pour chaque clé française', async () => {
