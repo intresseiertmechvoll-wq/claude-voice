@@ -46,11 +46,11 @@ const TEXT_MAX = { prenom: 80, nom: 80, note: 300, message: 2000, email: 254, pa
 
 export const TOTAL_STEPS = 5;
 
-/** Champs demandés à chaque étape (1 à 5) */
-export function stepFields(step: number): string[] {
+/** Champs demandés à chaque étape (1 à 5). Pour un investissement, « premier achat » et « Bëllegen Akt » ne changent rien : on ne les demande pas. */
+export function stepFields(step: number, raw: Raw = {}): string[] {
   switch (step) {
     case 1:
-      return ['usage', 'achat', 'premier', 'bellegen', 'vendre'];
+      return raw.usage === 'investir' ? ['usage', 'achat', 'vendre'] : ['usage', 'achat', 'premier', 'bellegen', 'vendre'];
     case 2:
       return ['type', 'neuf', 'communes', 'chambres', 'surface', 'exterieur', 'garage', 'renover', 'note'];
     case 3:
@@ -237,13 +237,13 @@ export function checkFields(raw: Raw, fields: string[]): { values: Record<string
 
 /** Données du calcul de budget, si les étapes 1 à 3 sont valides (aperçu dans le navigateur) */
 export function budgetInput(raw: Raw): BudgetInput | null {
-  const { values: v, errors } = checkFields(raw, [...stepFields(1), 'neuf', ...stepFields(3)]);
+  const { values: v, errors } = checkFields(raw, [...stepFields(1, raw), 'neuf', ...stepFields(3)]);
   if (Object.keys(errors).length) return null;
   return {
     usage: v.usage as BudgetInput['usage'],
     achat: v.achat as BudgetInput['achat'],
-    premier: v.premier as BudgetInput['premier'],
-    bellegen: v.bellegen as BudgetInput['bellegen'],
+    premier: (v.premier as BudgetInput['premier']) ?? 'nsp',
+    bellegen: (v.bellegen as BudgetInput['bellegen']) ?? 'nsp',
     neuf: v.neuf as BudgetInput['neuf'],
     apport: v.apport as number,
     prix: v.prix as number,
@@ -263,7 +263,7 @@ export function validateSubmission(body: unknown): ValidationResult {
   if (!b.answers || typeof b.answers !== 'object' || !b.contact || typeof b.contact !== 'object') return { ok: false, errors: { form: 'invalid' } };
 
   const raw: Raw = { ...(b.answers as Raw), ...(b.contact as Raw) };
-  const fields = [1, 2, 3, 4, 5].flatMap((s) => stepFields(s));
+  const fields = [1, 2, 3, 4, 5].flatMap((s) => stepFields(s, raw));
   const { values: v, errors } = checkFields(raw, fields);
   if (Object.keys(errors).length) return { ok: false, errors };
 
@@ -274,8 +274,9 @@ export function validateSubmission(body: unknown): ValidationResult {
   const answers: Answers = {
     usage: v.usage as Answers['usage'],
     achat: v.achat as Answers['achat'],
-    premier: v.premier as Answers['premier'],
-    bellegen: v.bellegen as Answers['bellegen'],
+    // Investissement : non demandés, sans effet sur le calcul
+    premier: (v.premier as Answers['premier']) ?? 'nsp',
+    bellegen: (v.bellegen as Answers['bellegen']) ?? 'nsp',
     vendre: v.vendre as Answers['vendre'],
     type: v.type as Answers['type'],
     neuf: v.neuf as Answers['neuf'],

@@ -43,7 +43,8 @@ export function communesM2(prix: number, communes: string[], type: TypeBien, neu
     if (!c) continue;
     for (const t of types) {
       const d = t === 'appartement' ? apartment(c, data, neuf, p) : house(c, data, p);
-      out.push({ commune: c.commune, canton: c.canton, type: t, ...d, m2: d.prixM2 ? Math.round(prix / d.prixM2) : null });
+      const ancienPourNeuf = t === 'appartement' && neuf === 'neuf' && d.source !== null && d.source !== 'vefa';
+      out.push({ commune: c.commune, canton: c.canton, type: t, ...d, m2: d.prixM2 ? Math.round(prix / d.prixM2) : null, ...(ancienPourNeuf ? { ancienPourNeuf } : {}) });
     }
   }
   return out;

@@ -216,8 +216,10 @@ function step1(ctx: Ctx): string {
   const { t, v } = ctx;
   return `${choices(ctx, 'usage', t('fields.usage'), opts(t, 'fields.usageOptions', USAGES, { habiter: 'maison', investir: 'louer' }, 'fields.usageHints'))}
 ${choices(ctx, 'achat', t('fields.achat'), opts(t, 'fields.achatOptions', ACHATS, { seul: 'personne', deux: 'cle' }))}
+<div id="habiter-only"${v.usage === 'investir' ? ' hidden' : ''}>
 ${choices(ctx, 'premier', t('fields.premier'), opts(t, 'fields.premierOptions', PREMIER), 'chips', { help: t('fields.premierHelp') })}
 ${choices(ctx, 'bellegen', t('fields.bellegen'), opts(t, 'fields.bellegenOptions', BELLEGEN), 'chips', { help: t('fields.bellegenHelp') })}
+</div>
 ${choices(ctx, 'vendre', t('fields.vendre'), opts(t, 'fields.vendreOptions', VENDRE), 'chips')}
 <p class="commune-nodata" id="vendre-note" aria-live="polite">${vendreNote(ctx, v.vendre)}</p>`;
 }

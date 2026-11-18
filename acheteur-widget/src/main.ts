@@ -104,7 +104,7 @@ const HEAD_START = 0.25;
 function fillPercent(): number {
   if (state.preview) return Math.round((3 / TOTAL) * 100);
   const s = state.step;
-  const fields = stepFields(s);
+  const fields = stepFields(s, state.values);
   const missing = Object.keys(checkFields(state.values, fields).errors).length;
   let frac = fields.length ? 1 - missing / fields.length : 0;
   if (s === 1) frac = Math.max(frac, HEAD_START);
@@ -364,6 +364,13 @@ function onInput(e: Event) {
     if (note) note.innerHTML = vendreNote(ctx(), state.values.vendre);
     sendHeight();
   }
+  if (el.name === 'usage') {
+    // Premier achat et Bëllegen Akt : seulement pour y habiter
+    const box = app.querySelector<HTMLElement>('#habiter-only');
+    if (box) box.hidden = state.values.usage === 'investir';
+    if (state.values.usage === 'investir') ['premier', 'bellegen'].forEach(clearError);
+    sendHeight();
+  }
   if (el.name === 'capacite') {
     const box = app.querySelector<HTMLElement>('#capacite-montant');
     if (box) box.hidden = state.values.capacite !== 'oui';
@@ -413,7 +420,7 @@ app.addEventListener('click', (e) => {
 
   const action = target.closest<HTMLElement>('[data-action]')?.dataset.action;
   if (action === 'to-summary' && state.returnTo) {
-    const { errors } = checkFields(state.values, stepFields(state.step));
+    const { errors } = checkFields(state.values, stepFields(state.step, state.values));
     state.errors = errors;
     if (Object.keys(errors).length) return render();
     state.step = state.returnTo;
@@ -485,7 +492,7 @@ app.addEventListener('submit', (e) => {
   e.preventDefault();
   if (state.sending) return;
   state.serverError = null;
-  const { errors } = checkFields(state.values, stepFields(state.step));
+  const { errors } = checkFields(state.values, stepFields(state.step, state.values));
   state.errors = errors;
   if (Object.keys(errors).length) return render();
   if (state.step === 3) {
@@ -546,7 +553,7 @@ async function send() {
   if (json.error === 'validation' && json.errors) {
     state.errors = json.errors;
     for (let s = 1; s <= TOTAL; s++) {
-      if (stepFields(s).some((f) => f in json.errors!)) {
+      if (stepFields(s, state.values).some((f) => f in json.errors!)) {
         state.step = s;
         break;
       }

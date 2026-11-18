@@ -20,7 +20,7 @@ describe('Aperçu du budget (sans coordonnées)', () => {
     expect(txt).toContain('Besoin total');
     expect(txt).toContain('Premier achat pour y habiter : jusqu’à 100 % du prix.');
     expect(txt).toContain('Apport nécessaire au minimum');
-    expect(txt).toContain('Votre apport couvre ce qu’il faut au minimum pour ce prix.');
+    expect(txt).toContain('si votre banque vous prête ce montant');
   });
   it('Dit clairement que ce n’est ni un conseil en crédit ni une offre de prêt', () => {
     expect(strip(html)).toContain('Cet outil ne constitue ni un conseil en crédit ni une offre de prêt.');

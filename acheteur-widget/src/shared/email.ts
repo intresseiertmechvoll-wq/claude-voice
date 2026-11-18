@@ -59,7 +59,9 @@ export function leadPriority(s: Submission, b: Budget): { level: 'chaud' | 'tiè
   if (a.vendre === 'oui_lu') reasons.push('doit d’abord vendre au Luxembourg');
   if (a.mandat === 'oui') reasons.push('veut être accompagné(e)');
   if (a.courtier) reasons.push('veut le courtier partenaire');
-  if (b.margeMin >= 0) reasons.push('apport suffisant pour ce prix');
+  if (a.capacite === 'oui') reasons.push('connaît son montant d’emprunt');
+  // Avec 100 % de prêt possible (premier achat), un apport « suffisant » ne dit presque rien : compté seulement avec la règle à 90 % ou 80 %
+  if (b.margeMin >= 0 && b.ltvRule !== 'premier') reasons.push('apport suffisant pour ce prix');
   if (soon && reasons.length) return { level: 'chaud', why: `${L.delai[a.delai].toLowerCase()} + ${reasons.join(', ')}` };
   if (a.delai !== 'renseigne') return { level: 'tiède', why: `${L.delai[a.delai].toLowerCase()}${reasons.length ? ` ; ${reasons.join(', ')}` : ''}` };
   return { level: 'froid', why: `se renseigne${reasons.length ? ` ; ${reasons.join(', ')}` : ''}` };
@@ -76,8 +78,8 @@ export function talkingPoints(s: Submission, b: Budget): string[] {
   if (a.mandat === 'oui' || a.mandat === 'peut_etre') out.push(`Intéressé(e) par l’accompagnement acheteur (négociation, état du bien) : ${L.mandat[a.mandat]}.`);
   if (a.renover === 'oui' || a.renover === 'selon_prix') out.push(`Prêt(e) à acheter un bien à rénover (${L.renover[a.renover]}) → argument ImmoBuild.`);
   if (b.margeMin < 0) out.push(`Pour ce prix, il manque environ ${range(Math.max(0, -b.margeMax), -b.margeMin)} d’apport selon la règle CSSF.`);
-  if (a.premier === 'nsp') out.push('Ne sait pas s’il / si elle est premier acquéreur (définition CSSF) : à vérifier.');
-  if (a.bellegen === 'nsp') out.push('Ne sait pas si le Bëllegen Akt a déjà été utilisé : à vérifier.');
+  if (a.usage === 'habiter' && a.premier === 'nsp') out.push('Ne sait pas s’il / si elle est premier acquéreur (définition CSSF) : à vérifier.');
+  if (a.usage === 'habiter' && a.bellegen === 'nsp') out.push('Ne sait pas si le Bëllegen Akt a déjà été utilisé : à vérifier.');
   if (s.contact.alerte) out.push('Veut être prévenu(e) si un bien correspondant arrive → vérifier dans Apimo.');
   return out;
 }
@@ -93,7 +95,7 @@ type Section = { title: string; rows: [string, string][] };
 function communeLine(c: CommuneM2): [string, string] {
   const label = `${c.commune} – ${c.type === 'maison' ? 'maison' : 'appartement'}`;
   if (c.m2 === null || c.prixM2 === null || c.source === null) return [label, 'pas assez de données publiques'];
-  return [label, `≈ ${c.m2} m² (${eur(Math.round(c.prixM2))}/m², ${L.source[c.source]}${c.nombre ? `, ${c.nombre} ${c.source.startsWith('canton') ? 'communes' : c.source === 'annonce' ? 'annonces' : 'ventes'}` : ''})`];
+  return [label, `≈ ${c.m2} m² (${eur(Math.round(c.prixM2))}/m², ${L.source[c.source]}${c.nombre ? `, ${c.nombre} ${c.source.startsWith('canton') ? 'communes' : c.source === 'annonce' ? 'annonces' : 'ventes'}` : ''})${c.ancienPourNeuf ? ' – prix de l’ancien : le visiteur cherche du neuf, surface surestimée' : ''}`];
 }
 
 export function leadSections(s: Submission, b: Budget, communes: CommuneM2[], date: Date, periode: string): Section[] {
@@ -117,8 +119,12 @@ export function leadSections(s: Submission, b: Budget, communes: CommuneM2[], da
       title: 'Projet',
       rows: [
         ['Pour', `${L.usage[a.usage]} · achat ${L.achat[a.achat]}`],
-        ['Premier achat (CSSF)', L.premier[a.premier]],
-        ['Bëllegen Akt', L.bellegen[a.bellegen]],
+        ...(a.usage === 'habiter'
+          ? ([
+              ['Premier achat (CSSF)', L.premier[a.premier]],
+              ['Bëllegen Akt', L.bellegen[a.bellegen]],
+            ] as [string, string][])
+          : []),
         ['Doit d’abord vendre', L.vendre[a.vendre]],
         ['Calendrier', L.delai[a.delai]],
         ['Biens déjà visités', a.visites ? L.visites[a.visites] : '—'],

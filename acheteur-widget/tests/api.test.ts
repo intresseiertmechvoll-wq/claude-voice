@@ -110,3 +110,18 @@ describe('API /api/budget', () => {
     expect((await handleBudget(req(body(), '198.51.100.1'), env, deps)).status).toBe(429);
   });
 });
+
+describe('Investissement', () => {
+  it('« Premier achat » et « Bëllegen Akt » ne sont pas demandés', async () => {
+    resetMemoryLimiter();
+    const { env, deps, fetchMock } = setup();
+    const b = body({ answers: { usage: 'investir', premier: undefined, bellegen: undefined } });
+    const res = await handleBudget(req(b), env, deps);
+    expect(res.status).toBe(200);
+    const json = (await res.json()) as any;
+    expect(json.result.budget.ltvRule).toBe('investissement');
+    expect(json.result.budget.bellegen).toBe(0);
+    const sent = JSON.parse((fetchMock.mock.calls[0] as unknown as [string, RequestInit])[1].body as string);
+    expect(sent.text).not.toContain('Bëllegen Akt :');
+  });
+});

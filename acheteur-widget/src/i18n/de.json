@@ -5,7 +5,7 @@
   "intro": {
     "kicker": "Mein Kaufbudget · ImmoBuild Kohn",
     "title": "Wie viel brauchen Sie wirklich für den Kauf?",
-    "text": "Preis, Nebenkosten, Bëllegen Akt, Eigenkapital: In 3 Minuten wissen Sie, wo Sie stehen. Ihr Budget sehen Sie ohne Anmeldung.",
+    "text": "Preis, Nebenkosten, Bëllegen Akt, Eigenkapital: In wenigen Minuten wissen Sie, wo Sie stehen. Ihr Budget sehen Sie ohne Anmeldung.",
     "badges": {
       "free": "Kostenlos",
       "commitment": "Unverbindlich",
@@ -17,7 +17,7 @@
     "next": "Weiter",
     "toBudget": "Mein Budget ansehen",
     "back": "Zurück",
-    "submit": "Meine Analyse erhalten",
+    "submit": "Meine Analyse ansehen",
     "sending": "Wird gesendet…",
     "toSummary": "Zurück zur Übersicht"
   },
@@ -45,7 +45,7 @@
       "title": "Ihr Zeitplan"
     },
     "5": {
-      "title": "Wohin sollen wir die Analyse schicken?"
+      "title": "Letzter Schritt: Ihre Kontaktdaten"
     }
   },
   "coach": {
@@ -59,7 +59,7 @@
     "investir": "Bei einer Kapitalanlage leiht die Bank höchstens 80 % des Preises.",
     "renover": "Mit meinem ImmoBuild-Team helfe ich Ihnen, die Arbeiten zu beziffern.",
     "commune": "{commune}, notiert!",
-    "courtier": "Sehr gut, ich gebe Ihre Daten an unseren Partner-Kreditvermittler weiter.",
+    "courtier": "Sehr gut: Unser Partner-Kreditvermittler meldet sich nach Ihrer Anfrage bei Ihnen.",
     "mandat": "Gerne, darüber sprechen wir am Telefon."
   },
   "fields": {
@@ -245,12 +245,12 @@
     "ltvNote": "Das ist eine gesetzliche Obergrenze. Ihre Bank entscheidet und kann mehr Eigenkapital verlangen.",
     "apportNecessaire": "Nötiges Eigenkapital mindestens",
     "apportDeclare": "Ihr Eigenkapital",
-    "ok": "Ihr Eigenkapital deckt das Minimum für diesen Preis.",
+    "ok": "Nach der CSSF-Regel deckt Ihr Eigenkapital das Minimum für diesen Preis, sofern Ihre Bank Ihnen diesen Betrag leiht. Ihr Einkommen zählt auch.",
     "manque": "Für diesen Preis fehlen nach der CSSF-Regel etwa {montant} Eigenkapital.",
     "pistes": "Möglichkeiten: ein etwas niedrigerer Preis, ein Kauf zu zweit, staatliche Hilfen, oder ein Gespräch mit einem Kreditvermittler.",
     "prixMax": "Mit Ihrem Eigenkapital und {pret} Kredit liegt Ihr Höchstpreis bei etwa {prix}.",
     "disclaimer": "Dieses Tool ist weder eine Kreditberatung noch ein Kreditangebot. Nur Ihre Bank entscheidet.",
-    "next": "Was Ihr Budget in Ihren Gemeinden bedeutet, die Analyse als PDF und ein Anruf von Jason: noch 2 Schritte.",
+    "next": "Was Ihr Budget in Ihren Gemeinden bedeutet und ein Anruf von Jason: noch 2 Schritte.",
     "edit": "Budget ändern"
   },
   "result": {
@@ -292,7 +292,9 @@
     "cta": "Termin vereinbaren",
     "call": "{name} anrufen",
     "print": "Drucken oder als PDF speichern",
-    "restart": "Neu beginnen"
+    "restart": "Neu beginnen",
+    "ancienPourNeuf": "Preis von Bestandsimmobilien (zu wenige Neubau-Verkäufe hier): Neubau kostet meist mehr, also weniger m².",
+    "budgetAgain": "Details Ihres Budgets für {prix} ansehen"
   },
   "recap": {
     "title": "Ihre Suche im Überblick",
@@ -301,6 +303,6 @@
   },
   "trust": {
     "line": "Kostenlos · unverbindlich · ohne Cookies",
-    "where": "Ihre Antworten gehen nur per E-Mail an ImmoBuild Kohn."
+    "where": "Ihre Antworten gehen per E-Mail nur an ImmoBuild Kohn, und nur auf Ihren Wunsch an unseren Partner-Kreditvermittler."
   }
 }

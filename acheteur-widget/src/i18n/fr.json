@@ -5,7 +5,7 @@
   "intro": {
     "kicker": "Mon budget d’achat · ImmoBuild Kohn",
     "title": "Combien vous faut-il vraiment pour acheter ?",
-    "text": "Prix, frais, Bëllegen Akt, apport : en 3 minutes, vous savez où vous en êtes. Sans inscription pour voir votre budget.",
+    "text": "Prix, frais, Bëllegen Akt, apport : en quelques minutes, vous savez où vous en êtes. Votre budget s’affiche sans inscription.",
     "badges": {
       "free": "Gratuit",
       "commitment": "Sans engagement",
@@ -17,7 +17,7 @@
     "next": "Continuer",
     "toBudget": "Voir mon budget",
     "back": "Retour",
-    "submit": "Recevoir mon analyse",
+    "submit": "Voir mon analyse",
     "sending": "Envoi en cours…",
     "toSummary": "Revenir au résumé"
   },
@@ -45,7 +45,7 @@
       "title": "Votre calendrier"
     },
     "5": {
-      "title": "Où vous envoyer l’analyse ?"
+      "title": "Dernière étape : vos coordonnées"
     }
   },
   "coach": {
@@ -59,7 +59,7 @@
     "investir": "Pour un investissement, la banque prête au plus 80 % du prix.",
     "renover": "Avec mes équipes ImmoBuild, je peux vous aider à chiffrer les travaux.",
     "commune": "{commune}, c’est noté !",
-    "courtier": "Très bien, je transmets vos coordonnées à notre courtier partenaire.",
+    "courtier": "Très bien : notre courtier partenaire vous contactera après votre demande.",
     "mandat": "Avec plaisir, on en parle au téléphone."
   },
   "fields": {
@@ -245,12 +245,12 @@
     "ltvNote": "C’est un plafond légal. Votre banque décide et peut demander plus d’apport.",
     "apportNecessaire": "Apport nécessaire au minimum",
     "apportDeclare": "Votre apport",
-    "ok": "Votre apport couvre ce qu’il faut au minimum pour ce prix.",
+    "ok": "Selon la règle CSSF, votre apport couvre le minimum pour ce prix, si votre banque vous prête ce montant. Vos revenus comptent aussi.",
     "manque": "Pour ce prix, il manque environ {montant} d’apport selon la règle CSSF.",
     "pistes": "Pistes : un prix un peu plus bas, un achat à deux, les aides de l’État, ou en parler à un courtier.",
     "prixMax": "Avec votre apport et {pret} d’emprunt, votre prix maximal est d’environ {prix}.",
     "disclaimer": "Cet outil ne constitue ni un conseil en crédit ni une offre de prêt. Seule votre banque décide.",
-    "next": "Ce que votre budget représente dans vos communes, l’analyse en PDF et un appel de Jason : encore 2 étapes.",
+    "next": "Ce que votre budget représente dans vos communes et un appel de Jason : encore 2 étapes.",
     "edit": "Modifier mon budget"
   },
   "result": {
@@ -292,7 +292,9 @@
     "cta": "Prendre rendez-vous",
     "call": "Appeler {name}",
     "print": "Imprimer ou enregistrer en PDF",
-    "restart": "Recommencer"
+    "restart": "Recommencer",
+    "ancienPourNeuf": "Prix de l’ancien (trop peu de ventes de neuf ici) : le neuf coûte en général plus cher, donc moins de m².",
+    "budgetAgain": "Revoir le détail de votre budget pour {prix}"
   },
   "recap": {
     "title": "Votre recherche en bref",
@@ -301,6 +303,6 @@
   },
   "trust": {
     "line": "Gratuit · sans engagement · sans cookie",
-    "where": "Vos réponses sont envoyées uniquement à ImmoBuild Kohn, par e-mail."
+    "where": "Vos réponses sont envoyées par e-mail à ImmoBuild Kohn uniquement, et à notre courtier partenaire seulement si vous l’avez demandé."
   }
 }

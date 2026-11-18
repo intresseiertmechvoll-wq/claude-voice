@@ -5,7 +5,7 @@
   "intro": {
     "kicker": "My purchase budget · ImmoBuild Kohn",
     "title": "How much do you really need to buy?",
-    "text": "Price, fees, Bëllegen Akt, deposit: in 3 minutes you know where you stand. No sign-up needed to see your budget.",
+    "text": "Price, fees, Bëllegen Akt, deposit: in a few minutes you know where you stand. Your budget is shown without sign-up.",
     "badges": {
       "free": "Free",
       "commitment": "No commitment",
@@ -17,7 +17,7 @@
     "next": "Continue",
     "toBudget": "See my budget",
     "back": "Back",
-    "submit": "Get my analysis",
+    "submit": "See my analysis",
     "sending": "Sending…",
     "toSummary": "Back to the summary"
   },
@@ -45,7 +45,7 @@
       "title": "Your timing"
     },
     "5": {
-      "title": "Where should we send your analysis?"
+      "title": "Last step: your details"
     }
   },
   "coach": {
@@ -59,7 +59,7 @@
     "investir": "For a buy-to-let, the bank lends at most 80% of the price.",
     "renover": "With my ImmoBuild team, I can help you cost the works.",
     "commune": "{commune}, noted!",
-    "courtier": "Great, I’ll pass your details to our partner mortgage broker.",
+    "courtier": "Great: our partner broker will contact you after your request.",
     "mandat": "Happy to, let’s talk about it on the phone."
   },
   "fields": {
@@ -245,12 +245,12 @@
     "ltvNote": "This is a legal ceiling. Your bank decides and may ask for a larger deposit.",
     "apportNecessaire": "Minimum deposit needed",
     "apportDeclare": "Your deposit",
-    "ok": "Your deposit covers the minimum needed for this price.",
+    "ok": "Under the CSSF rule, your deposit covers the minimum for this price, if your bank lends you this amount. Your income counts too.",
     "manque": "For this price, you are short of about {montant} of deposit under the CSSF rule.",
     "pistes": "Options: a slightly lower price, buying as a couple, state aid, or talking to a broker.",
     "prixMax": "With your deposit and a {pret} loan, your maximum price is about {prix}.",
     "disclaimer": "This tool is neither credit advice nor a loan offer. Only your bank decides.",
-    "next": "What your budget means in your municipalities, the analysis as a PDF and a call from Jason: 2 more steps.",
+    "next": "What your budget means in your municipalities and a call from Jason: 2 more steps.",
     "edit": "Change my budget"
   },
   "result": {
@@ -292,7 +292,9 @@
     "cta": "Book an appointment",
     "call": "Call {name}",
     "print": "Print or save as PDF",
-    "restart": "Start again"
+    "restart": "Start again",
+    "ancienPourNeuf": "Existing-home prices (too few new-build sales here): new builds usually cost more, so fewer m².",
+    "budgetAgain": "See your budget details for {prix}"
   },
   "recap": {
     "title": "Your search at a glance",
@@ -301,6 +303,6 @@
   },
   "trust": {
     "line": "Free · no commitment · no cookies",
-    "where": "Your answers are only sent to ImmoBuild Kohn, by email."
+    "where": "Your answers are emailed to ImmoBuild Kohn only, and to our partner broker only if you asked for it."
   }
 }

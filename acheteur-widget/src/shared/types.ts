@@ -163,6 +163,8 @@ export interface CommuneM2 {
   /** nombre de ventes ou d'annonces derrière ce prix */
   nombre: number | null;
   m2: number | null;
+  /** neuf demandé, mais seulement des prix de l'ancien disponibles : le neuf coûte en général plus cher */
+  ancienPourNeuf?: boolean;
 }
 
 export interface PublicResult {

@@ -103,3 +103,19 @@ describe('Surfaces par commune', () => {
     expect(d.m2).toBeGreaterThan(0);
   });
 });
+
+describe('Neuf sans assez de ventes de neuf', () => {
+  it('Prix de l’ancien utilisé, mais signalé (sinon la surface serait surestimée)', () => {
+    const kayl = DATA.communes.find((c) => c.commune === 'Kayl')!;
+    expect((kayl.notarie_vefa_ventes ?? 0) < 10).toBe(true);
+    const [d] = communesM2(600000, ['Kayl'], 'appartement', 'neuf', DATA, PARAMS);
+    expect(d.source).toBe('notarie');
+    expect(d.ancienPourNeuf).toBe(true);
+  });
+  it('Assez de ventes de neuf : prix du neuf, pas d’avertissement', () => {
+    const withVefa = DATA.communes.find((c) => (c.notarie_vefa_ventes ?? 0) >= 10)!;
+    const [d] = communesM2(600000, [withVefa.commune], 'appartement', 'neuf', DATA, PARAMS);
+    expect(d.source).toBe('vefa');
+    expect(d.ancienPourNeuf).toBeUndefined();
+  });
+});

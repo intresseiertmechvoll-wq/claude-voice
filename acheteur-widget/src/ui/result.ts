@@ -95,7 +95,8 @@ function communesHtml(list: CommuneM2[], prix: number, r: PublicResult, t: T, la
       if (c.m2 === null || c.prixM2 === null || c.source === null) {
         return `<li class="cm"><p class="cm-name">${label}</p><p class="cm-m2 muted">${esc(t('result.noData'))}</p></li>`;
       }
-      return `<li class="cm"><p class="cm-name">${label}</p><p class="cm-m2">${esc(t('result.m2', { m2: String(c.m2) }))}</p><p class="cm-sub">${esc(t('result.perM2', { prix: formatEuro(Math.round(c.prixM2), lang) }))} · ${esc(t(`result.source.${c.source}`, { n: String(c.nombre ?? '') }))}</p></li>`;
+      const neuf = c.ancienPourNeuf ? `<p class="cm-sub cm-warn">${esc(t('result.ancienPourNeuf'))}</p>` : '';
+      return `<li class="cm"><p class="cm-name">${label}</p><p class="cm-m2">${esc(t('result.m2', { m2: String(c.m2) }))}</p><p class="cm-sub">${esc(t('result.perM2', { prix: formatEuro(Math.round(c.prixM2), lang) }))} · ${esc(t(`result.source.${c.source}`, { n: String(c.nombre ?? '') }))}</p>${neuf}</li>`;
     })
     .join('');
   return `<section class="panel" aria-labelledby="communes-title">
@@ -141,7 +142,7 @@ export function renderResult(r: PublicResult, a: Pick<Answers, 'prix' | 'premier
     <p class="hero-sub">${esc(t('result.sub'))}</p>
   </div>
   ${communesHtml(r.communes, a.prix, r, t, lang)}
-  ${renderBudget(r.budget, t, lang, o)}
+  <details class="budget-again panel"><summary>${icon('donnees', 'ico ico-sm')}<span>${esc(t('result.budgetAgain', { prix: formatEuro(r.budget.prix, lang) }))}</span></summary>${renderBudget(r.budget, t, lang, o)}</details>
   <section class="panel" aria-labelledby="check-title">
     <h3 id="check-title">${icon('info', 'ico ico-sm')}<span>${esc(t('result.checkTitle'))}</span></h3>
     <ul class="checklist">${checks.map((c) => `<li>${c.includes('<a ') ? c : esc(c)}</li>`).join('')}</ul>
