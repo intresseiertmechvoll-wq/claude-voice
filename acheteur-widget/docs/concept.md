@@ -1,6 +1,6 @@
 # Käufer-Tool ImmoBuild Kohn: Konzept (noch kein Code)
 
-Stand: 18.11.2026 · Branch `claude/acheteur-concept` · Status: **Entwurf. Bitte zuerst die Entscheidungen in Teil 7 treffen, erst dann wird gebaut.**
+Stand: 18.11.2026 · Branch `claude/acheteur-concept` · Status: **Entscheidungen getroffen (Teil 7a, 18.11.2026). Bereit zum Bau, sobald Jason das Startsignal gibt.**
 
 Legende für alle Fakten:
 - **[geprüft]**: Seite oder Datei selbst geöffnet; URL und Seitendatum stehen dabei.
@@ -418,7 +418,9 @@ Alles aus den Lead-E-Mails zählbar, z. B. monatlich per Hand oder mit einem kle
 | Ergebnis | **Teilweise ohne Kontaktdaten:** Block 1 sofort, Rest nach Kontakt. |
 | Budget-Fragen | **Ja**, ergänzt um Bank-Kontakt, bekannter Kreditbetrag und Weiterleitung an einen Courtier (Teil 5.1, Schritt 3). |
 | Preis-Check | **Nicht in der ersten Version, aber fest für später geplant.** Passt gut zum Käufer-Mandat (Teil 9). |
-| Domain | Deine Wunschdomain ist vergeben. Neue Ideen in Teil 10.3. |
+| Domain | **Keine eigene Domain.** Das Tool wird auf immobuild.lu eingebettet, z. B. auf einer Seite /acheter. Technisch läuft es auf Cloudflare Pages (`*.pages.dev` oder eine Subdomain von immobuild.lu, falls du deren DNS verwalten kannst). |
+| Sprachen | **FR, DE, EN.** |
+| Käufermandat | **Ja**, die Zeile « Ça m'intéresse » kommt in die erste Version, um das Interesse zu messen. |
 
 ## 7. Entscheidungen, die du treffen musst (bevor gebaut wird)
 
@@ -473,7 +475,10 @@ Alles aus den Lead-E-Mails zählbar, z. B. monatlich per Hand oder mit einem kle
 - **Vergütung:** Jason wird für die Weiterleitung bezahlt und möchte das **nicht** im Formular erwähnen. Das ist seine Entscheidung und wird so umgesetzt.
   - Ob eine Offenlegung Pflicht ist, habe ich nicht geprüft. **[Vermutung]**
   - Folge für die Texte: Der Courtier wird nicht als « indépendant » oder « neutre » bezeichnet, sondern als « courtier partenaire ». So ist die Formulierung ehrlich, ohne die Vergütung zu nennen.
-- Das Kästchen im Formular: « Je souhaite être mis(e) en relation, sans engagement, avec notre courtier partenaire atHome Finance (service gratuit pour vous). »
+- **Kästchen im Formular, Jasons Wortlaut (18.11.2026):** « Je souhaite être mis(e) en relation, sans engagement, avec notre courtier partenaire. »
+  - Ohne Namen im Kästchen.
+  - **[Vermutung, nicht anwaltlich geprüft]** Für eine gültige Einwilligung zur Weitergabe an einen anderen Verantwortlichen verlangen die EDPB-Leitlinien 05/2020 zur Einwilligung, dass dieser **benannt** wird.
+  - Lösung ohne längeres Kästchen: ein kleiner Link « Qui est notre courtier partenaire ? » direkt daneben, der atHome Finance nennt. Außerdem atHome Finance in der Datenschutzerklärung nennen.
 
 ### 8.1 Der Werbesatz für den Courtier
 
