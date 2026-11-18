@@ -146,9 +146,9 @@ npm run update-data && npm test && npm run deploy
 
 L'indice met à jour le niveau des loyers. Les tests utilisent une copie figée (`tests/fixtures/`) : le calcul à la main reste valable.
 
-### Tous les 15 jours, automatiquement : suivi des maisons à louer
+### Chaque semaine, automatiquement : suivi des maisons à louer
 
-Une session Claude planifiée relève le 3 et le 17 de chaque mois toutes les maisons à louer sur atHome, immotop et wortimmo (loyer, surface, chambres, localité, lien ; jamais de nom d'agent), puis :
+Une session Claude planifiée relève chaque lundi toutes les maisons à louer sur atHome, immotop et wortimmo (loyer, surface, chambres, localité, lien ; jamais de nom d'agent), puis :
 
 - met à jour la base `data/marche/maisons.json` : une fiche par maison, avec ses prix successifs ; une annonce qui n'est plus en ligne est marquée « disparue » (probablement louée, ou retirée) ;
 - reconnaît la même maison annoncée sur plusieurs portails et ne la compte qu'une fois ;

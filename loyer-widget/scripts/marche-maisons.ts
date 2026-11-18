@@ -1,15 +1,16 @@
 /**
- * Suivi des maisons à louer (tous les 15 jours) : import d'un relevé, base, comparaison par commune, rapport.
+ * Suivi des maisons à louer (chaque semaine) : import d'un relevé, base, comparaison par commune, rapport.
  *
  *   npm run marche -- import --date 2026-12-17 --athome chemin/athome.csv --wortimmo chemin/wortimmo.csv
  *   npm run marche -- rapport            (recalcule le rapport, par ex. après ajout d'une localité)
- *   npm run marche -- immotop --out immotop.csv page1.json page2.json …
- *       (lit les pages immotop enregistrées par Firecrawl en « rawHtml », ou des fichiers .html,
- *        et écrit le CSV ; les données sont lues dans la page, sans interprétation par une IA)
+ *   npm run marche -- lire --dossier releve/ page1.json page2.json …
+ *       (lit les pages atHome, immotop et wortimmo enregistrées par Firecrawl en « rawHtml », ou des
+ *        fichiers .html, et écrit athome.csv, immotop.csv, wortimmo.csv ; les données sont lues dans
+ *        la page, sans interprétation par une IA)
  *
  * Format CSV attendu (une ligne par annonce, tous pays) :
- *   source,page,rent_eur,surface_m2,bedrooms,type,locality,country,url,flag
- * (les colonnes page, type et flag peuvent manquer ; procédure complète : docs/marche/PROCEDURE.md)
+ *   source,page,rent_eur,surface_m2,bedrooms,type,locality,country,url,flag,published
+ * (les colonnes page, type, flag et published peuvent manquer ; procédure complète : docs/marche/PROCEDURE.md)
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -20,6 +21,7 @@ import params from '../params.json';
 import type { Params } from '../src/shared/engine';
 import type { Dataset, References } from '../src/shared/types';
 import { extraireImmotop } from '../src/marche/immotop';
+import { extraireAthome, extraireWortimmo, portailDe } from '../src/marche/portails';
 import { baseVide, communeDe, comparer, importerReleve, rapport, type AnnonceReleve, type Base, type Releve } from '../src/marche/maisons';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -130,35 +132,76 @@ if (cmd === 'import') {
   if (rejets.length) console.warn(`⚠ ${rejets.length} ligne(s) ignorée(s) :\n  ${rejets.slice(0, 10).join('\n  ')}`);
   if (inconnues.length) console.warn(`⚠ localités inconnues (à ajouter dans src/shared/aliases.ts, puis npm run marche -- rapport) : ${inconnues.join(', ')}`);
   ecrireSorties(base, inconnues);
-} else if (cmd === 'immotop') {
-  const out = arg('out');
-  const fichiers = process.argv.slice(3).filter((f: string, i: number, all: string[]) => f !== '--out' && all[i - 1] !== '--out');
-  if (!out || !fichiers.length) throw new Error('usage : npm run marche -- immotop --out immotop.csv page1.json [page2.json …]');
-  const lignes: string[] = ['source,page,rent_eur,surface_m2,bedrooms,type,locality,country,url,flag'];
+} else if (cmd === 'lire' || cmd === 'immotop') {
+  // Lit les pages enregistrées par Firecrawl (« rawHtml », fichier .json) ou des fichiers .html,
+  // reconnaît le portail de chaque page et écrit un CSV par portail dans --dossier.
+  const dossier = arg('dossier') ?? (arg('out') ? dirname(arg('out')!) : undefined);
+  const fichiers = process.argv.slice(3).filter((f: string, i: number, all: string[]) => !f.startsWith('--') && !['--dossier', '--out'].includes(all[i - 1]));
+  if (!dossier || !fichiers.length) throw new Error('usage : npm run marche -- lire --dossier <dossier> page1.json [page2.json …]');
+  const ENTETE = 'source,page,rent_eur,surface_m2,bedrooms,type,locality,country,url,flag,published';
+  const sorties: Record<string, string[]> = { athome: [], immotop: [], wortimmo: [] };
   const vus = new Set<string>();
+  const totaux: Record<string, { lues: number; annoncees: number; pages: Set<number>; pagesMax: number }> = {};
   const esc = (v: unknown) => {
     const t = String(v ?? '');
     return /[",\n]/.test(t) ? `"${t.replace(/"/g, '""')}"` : t;
   };
+  let erreurs = 0;
   for (const f of fichiers) {
     const brut = readFileSync(f, 'utf8');
     let html = brut;
+    let adresse = '';
     try {
       const j = JSON.parse(brut);
       html = j.rawHtml ?? j.html ?? brut;
+      adresse = j.metadata?.sourceURL ?? j.metadata?.url ?? '';
+      const cache = j.metadata?.cacheState;
+      if (cache === 'hit') console.warn(`⚠ ${f} : copie en cache de Firecrawl (cacheState = hit) : relire la page avec maxAge: 0`);
     } catch {
       /* fichier .html */
     }
-    const page = extraireImmotop(html);
-    console.log(`${f} : ${page.annonces.length} annonces (page ${page.page} sur ${page.pages}, ${page.total} au total)${page.pages > page.page ? '  ⚠ il reste des pages : ajouter ?pag=N' : ''}`);
+    const portail = portailDe(html);
+    if (!portail) {
+      console.error(`✖ ${f} : portail non reconnu ou page sans annonces (format changé ?)`);
+      erreurs++;
+      continue;
+    }
+    let page;
+    try {
+      page =
+        portail === 'athome'
+          ? extraireAthome(html)
+          : portail === 'immotop'
+            ? extraireImmotop(html)
+            : extraireWortimmo(html, Number(/[?&]page=(\d+)/.exec(adresse)?.[1] ?? 1));
+    } catch (e) {
+      console.error(`✖ ${f} : ${(e as Error).message}`);
+      erreurs++;
+      continue;
+    }
+    const t = (totaux[portail] ??= { lues: 0, annoncees: 0, pages: new Set(), pagesMax: 0 });
+    t.pages.add(page.page);
+    t.pagesMax = Math.max(t.pagesMax, page.pages);
+    if (portail !== 'wortimmo') t.annoncees = Math.max(t.annoncees, page.total);
+    console.log(`${f} : ${portail}, page ${page.page} sur ${page.pages}, ${page.annonces.length} annonces`);
     for (const a of page.annonces) {
       if (vus.has(a.url)) continue;
       vus.add(a.url);
-      lignes.push(['immotop', page.page, a.loyer, a.surface ?? '', a.chambres ?? '', a.type, a.localite, a.pays, a.url, ''].map(esc).join(','));
+      t.lues++;
+      sorties[portail].push([portail, page.page, a.loyer, a.surface ?? '', a.chambres ?? '', a.type, a.localite, a.pays, a.url, '', (a as { publiee_le?: string | null }).publiee_le ?? ''].map(esc).join(','));
     }
   }
-  writeFileSync(out, lignes.join('\n') + '\n');
-  console.log(`✔ ${out} : ${lignes.length - 1} annonces`);
+  mkdirSync(dossier, { recursive: true });
+  for (const [portail, lignes] of Object.entries(sorties)) {
+    if (!lignes.length) continue;
+    const out = join(dossier, `${portail}.csv`);
+    writeFileSync(out, [ENTETE, ...lignes].join('\n') + '\n');
+    const t = totaux[portail];
+    const manquantes = Array.from({ length: t.pagesMax }, (_, i) => i + 1).filter((p) => !t.pages.has(p));
+    console.log(`✔ ${out} : ${t.lues} annonces${t.annoncees ? ` (le portail en annonce ${t.annoncees}, tous pays)` : ''}`);
+    if (manquantes.length) console.warn(`⚠ ${portail} : pages pas encore lues : ${manquantes.join(', ')}`);
+  }
+  if (erreurs) process.exitCode = 1;
 } else if (cmd === 'rapport') {
   const base = chargerBase();
   if (!base.releves.length) throw new Error('base vide : importer d’abord un relevé');
