@@ -333,8 +333,9 @@ function coachReact(name: string, value: unknown) {
     // Avec les flèches du clavier, on attend que le choix soit posé avant de réagir
     clearTimeout(energyTimer);
     energyTimer = setTimeout(() => {
-      if (['A+', 'A', 'B'].includes(v)) coachSay('coach.energieGood');
-      else if (['G', 'H', 'I'].includes(v)) coachSay('coach.energieBad');
+      if (state.step !== 2 || state.values.energie !== v) return;
+      if (['A+', 'A', 'B'].includes(v)) coachSay('coach.energieGood', { c: v });
+      else if (['G', 'H', 'I'].includes(v)) coachSay('coach.energieBad', { c: v });
       else if (v === 'inconnu') coachSay('coach.energieUnknown');
       else coachSay('coach.energieMid', { c: v });
     }, 600);
