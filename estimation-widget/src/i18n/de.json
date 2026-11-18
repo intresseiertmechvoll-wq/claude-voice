@@ -412,9 +412,10 @@
     "title": "Schon gewusst?",
     "source": "Offizielle Quelle",
     "step1": "Die Wohnungsbeobachtungsstelle veröffentlicht einen Mittelwert pro Gemeinde, wenn mindestens 10 Wohnungsverkäufe in die Auswertung eingehen.",
-    "step2": "Um die Energieklasse einer Wohnung zu verbessern, bieten zugelassene Banken einen vom Staat garantierten „Klimakredit“ (prêt climatique) an.",
+    "step2": "Zur Wohnfläche zählen Wohnräume, Bad und WC sowie Innenflächen wie Flure.",
     "step4": "Die Wohnungsbeobachtungsstelle veröffentlicht auch Quadratmeterpreise für Wohnungen ohne den Wert von Garagen, Außenstellplätzen und Kellern.",
-    "step5": "Die Statistik der Angebotsmieten zeigt, welche Miete Vermieter vor der Verhandlung verlangen."
+    "step5": "Die Statistik der Angebotsmieten zeigt, welche Miete Vermieter vor der Verhandlung verlangen.",
+    "surfaceTitle": "Was zählt zur Wohnfläche?"
   },
   "coach": {
     "start": "Guten Tag, ich bin Jason. Ein paar Fragen, dann gibt es Ihre Preisspanne.",

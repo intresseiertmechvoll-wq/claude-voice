@@ -5,6 +5,7 @@ import { COMMUNES } from '../shared/communes';
 import { DELAIS, ENERGIES, ETATS, MAISON_TYPES, OBJECTIFS, POSTES_APPARTEMENT, POSTES_MAISON, POSTE_NOTES } from '../shared/types';
 import { LIMITS, PHONE_CODES, type Errors } from '../shared/validation';
 import sansDonnees from '../../data/sans-donnees.json';
+import { renderFact } from './facts';
 import { esc } from './html';
 import { icon } from './icons';
 
@@ -270,6 +271,7 @@ function step2(ctx: Ctx): string {
   const { t, v } = ctx;
   const house = v.type === 'maison';
   return `${slider(ctx, 'surface', t('fields.surface'), t('fields.surfaceSlider'), { min: house ? 50 : 20, max: house ? 400 : 250, step: 1, help: t('fields.surfaceHelp'), ico: 'regle' })}
+${renderFact(2, t)}
 <div class="row">
   ${stepper(ctx, 'chambres', t('fields.chambres'), LIMITS.chambres)}
   ${stepper(ctx, 'sdb', t('fields.sdb'), { min: 0, max: LIMITS.sdb.max })}

@@ -412,9 +412,10 @@
     "title": "Did you know?",
     "source": "Official source",
     "step1": "The Housing Observatory publishes a municipal average when at least 10 apartment sales are included in the analysis.",
-    "step2": "To improve a home’s energy rating, approved banks offer a state-guaranteed “climate loan” (prêt climatique).",
+    "step2": "Living area includes living spaces, bathrooms and toilets, and indoor circulation areas such as hallways.",
     "step4": "The Housing Observatory also publishes apartment prices per m² with the value of garages, outdoor parking and cellars removed.",
-    "step5": "Asking rent statistics show what landlords request before negotiation."
+    "step5": "Asking rent statistics show what landlords request before negotiation.",
+    "surfaceTitle": "What counts as living area?"
   },
   "coach": {
     "start": "Hello, I’m Jason. A few questions, and I’ll give you a price range.",

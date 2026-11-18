@@ -690,3 +690,4 @@ html.is-embedded #app { padding: 4px 2px 24px; }
 .contact-context { margin: 0 0 18px; padding: 12px; border-radius: 10px; background: var(--offwhite); font-size: 0.875rem; }
 .contact-context p { margin: 0; }
 .contact-context p + p { margin-top: 4px; color: var(--muted); }
+.step-body > .step-fact { margin: -8px 0 18px; }

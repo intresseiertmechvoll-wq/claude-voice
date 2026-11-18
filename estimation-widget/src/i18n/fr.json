@@ -412,9 +412,10 @@
     "title": "Le saviez-vous ?",
     "source": "Source officielle",
     "step1": "L’Observatoire publie un prix moyen des appartements par commune si au moins 10 ventes sont retenues après traitement.",
-    "step2": "Pour améliorer la classe énergétique d’un logement, les banques agréées proposent un « prêt climatique » garanti par l’État.",
+    "step2": "La surface habitable comprend les pièces à vivre, les salles d’eau et les circulations intérieures, comme les couloirs.",
     "step4": "L’Observatoire publie aussi des prix au m² pour les appartements en retirant la valeur des garages, parkings extérieurs et caves.",
-    "step5": "Les statistiques des loyers annoncés indiquent ce que les bailleurs demandent avant la négociation."
+    "step5": "Les statistiques des loyers annoncés indiquent ce que les bailleurs demandent avant la négociation.",
+    "surfaceTitle": "Que compte la surface habitable ?"
   },
   "coach": {
     "start": "Bonjour, je suis Jason. Quelques questions, puis votre fourchette de prix.",

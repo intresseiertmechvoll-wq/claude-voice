@@ -207,7 +207,7 @@ function render(focus = true) {
       ${s > 1 ? `<button type="button" class="btn btn-ghost" data-action="back" ${state.sending ? 'disabled' : ''}>${icon('fleche')}<span>${esc(t('nav.back'))}</span></button>` : ''}
     </div>
   </form>
-  ${renderFact(s, t)}
+  ${s === 2 ? '' : renderFact(s, t)}
   </div>
 </div>`;
 

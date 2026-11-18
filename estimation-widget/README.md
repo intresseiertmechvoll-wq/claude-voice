@@ -298,12 +298,12 @@ Autres réglages, dans `config.json` :
 
 ## Repères facultatifs « Le saviez-vous ? »
 
-Quatre repères repliés apparaissent sous les boutons des étapes 1, 2, 4 et 5. Ils ne changent ni les réponses ni le calcul. Les liens sont dans `src/ui/facts.ts` et les textes dans `src/i18n/{fr,de,en}.json`. Sources consultées le **18/11/2026** :
+Quatre repères repliés sont disponibles. Celui de l’étape 2 reste près de la saisie de la surface. Les trois autres sont sous la navigation des étapes 1, 4 et 5. Ils ne changent ni les réponses ni le calcul. Les liens sont dans `src/ui/facts.ts` et les textes dans `src/i18n/{fr,de,en}.json`. Sources consultées le **18/11/2026** :
 
 | Étape | Repère | Source officielle |
 | --- | --- | --- |
 | 1 · Le bien | Prix moyen des appartements publié si au moins dix ventes restent après traitement. | [Observatoire de l’Habitat et STATEC, prix de vente des appartements par commune](https://data.public.lu/fr/datasets/prix-de-vente-des-appartements-par-commune/) |
-| 2 · Les détails | Le passeport énergétique distingue performance énergétique et isolation thermique. | [Guichet.lu, certificat de performance énergétique](https://guichet.public.lu/fr/citoyens/logement/acquisition/performances-energie/demande-passeport-energetique.html) |
+| 2 · Les détails | La surface habitable comprend les pièces à vivre, les pièces d’eau et les circulations intérieures. | [Guichet.lu / ILNAS, calcul de la surface habitable](https://guichet.public.lu/fr/citoyens/logement/construction-renovation-transformation/surface-habitable/calcul-surface-habitable.html) |
 | 4 · Les annexes | Une série séparée donne des prix au m² hors garages, places extérieures et caves. | [Observatoire de l’Habitat, prix affinés hors annexes](https://data.public.lu/fr/datasets/prix-de-vente-des-appartements-prix-affines-hors-annexes-par-commune/) |
 | 5 · Le projet | Les loyers des annonces sont les montants demandés avant négociation. | [Observatoire de l’Habitat, loyers annoncés par commune](https://data.public.lu/fr/datasets/loyers-annonces-des-logements-par-commune/) |
 
