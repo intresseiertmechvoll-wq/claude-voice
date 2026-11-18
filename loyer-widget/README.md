@@ -146,9 +146,9 @@ npm run update-data && npm test && npm run deploy
 
 L'indice met à jour le niveau des loyers. Les tests utilisent une copie figée (`tests/fixtures/`) : le calcul à la main reste valable.
 
-### Chaque mois, automatiquement : suivi des maisons à louer
+### Tous les 15 jours, automatiquement : suivi des maisons à louer
 
-Une session Claude planifiée relève une fois par mois toutes les maisons à louer sur atHome, immotop et wortimmo (loyer, surface, chambres, localité, lien ; jamais de nom d'agent), puis :
+Une session Claude planifiée relève le 3 et le 17 de chaque mois toutes les maisons à louer sur atHome, immotop et wortimmo (loyer, surface, chambres, localité, lien ; jamais de nom d'agent), puis :
 
 - met à jour la base `data/marche/maisons.json` : une fiche par maison, avec ses prix successifs ; une annonce qui n'est plus en ligne est marquée « disparue » (probablement louée, ou retirée) ;
 - reconnaît la même maison annoncée sur plusieurs portails et ne la compte qu'une fois ;
@@ -161,7 +161,7 @@ Le modèle de l'outil n'est **pas** modifié automatiquement : quand une commune
 
 ### Deux fois par an, à la main
 
-- **Relevé d'annonces d'appartements** (facteur « annonce ÷ bail ») et **réestimation du modèle maisons** à partir de la base mensuelle : relancer `docs/analyse-appartements.py` et `docs/analyse-maisons.py`, reporter les chiffres dans `data/references.json` (`maisons`, `calibration`, `stationnement`). Le site lui-même ne collecte rien sur les portails.
+- **Relevé d'annonces d'appartements** (facteur « annonce ÷ bail ») et **réestimation du modèle maisons** à partir de la base des relevés : relancer `docs/analyse-appartements.py` et `docs/analyse-maisons.py`, reporter les chiffres dans `data/references.json` (`maisons`, `calibration`, `stationnement`). Le site lui-même ne collecte rien sur les portails.
 - **Nouveau rapport de l'Observatoire** sur le cadastre des loyers (une grille de loyers de référence est annoncée) : mettre à jour `data/references.json` → `cadastre`, ou remplacer la méthode si la grille officielle est publiée.
 
 ## 5. Intégrer l'outil

@@ -1,5 +1,5 @@
 /**
- * Suivi mensuel des maisons à louer : import d'un relevé, base, comparaison par commune, rapport.
+ * Suivi des maisons à louer (tous les 15 jours) : import d'un relevé, base, comparaison par commune, rapport.
  *
  *   npm run marche -- import --date 2026-12-17 --athome chemin/athome.csv --wortimmo chemin/wortimmo.csv
  *   npm run marche -- rapport            (recalcule le rapport, par ex. après ajout d'une localité)

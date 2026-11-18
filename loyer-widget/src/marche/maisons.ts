@@ -1,5 +1,5 @@
 /**
- * Suivi mensuel des maisons à louer (relevés d'annonces atHome et wortimmo).
+ * Suivi des maisons à louer (relevés d'annonces atHome, immotop et wortimmo, tous les 15 jours).
  *
  * Chaque relevé met à jour une « base » (data/marche/maisons.json) : une fiche par annonce, avec
  * l'historique des prix, la première et la dernière date où elle a été vue. Une annonce qui disparaît
