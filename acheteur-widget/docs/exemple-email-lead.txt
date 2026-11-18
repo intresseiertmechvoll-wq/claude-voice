@@ -1,0 +1,63 @@
+Objet : [Acheteur · CHAUD] Marie Muller – Dudelange/Kayl/Bettembourg – Appartement – 600.000 €
+
+== En un coup d’œil ==
+Priorité : 🔥 Chaud – dès que possible + doit d’abord vendre au Luxembourg, veut être accompagné(e), veut le courtier partenaire, apport suffisant pour ce prix
+Rappeler : Marie Muller – +352 621 123 456
+E-mail : marie.muller@example.lu
+Langue : Français
+
+== À dire au téléphone ==
+1. Doit d’abord vendre son bien au Luxembourg → proposer l’estimation (estimatioun.lu ou visite).
+2. Souhaite être mis(e) en relation avec le courtier partenaire → transmettre à atHome Finance.
+3. Intéressé(e) par l’accompagnement acheteur (négociation, état du bien) : OUI.
+4. Prêt(e) à acheter un bien à rénover (selon le prix) → argument ImmoBuild.
+5. Veut être prévenu(e) si un bien correspondant arrive → vérifier dans Apimo.
+
+== Projet ==
+Pour : Résidence principale · achat à deux
+Premier achat (CSSF) : oui
+Bëllegen Akt : pas encore utilisé
+Doit d’abord vendre : OUI, un bien au Luxembourg
+Calendrier : Dès que possible
+Biens déjà visités : 1 à 5
+Accompagnement acheteur : OUI
+
+== Recherche ==
+Type : Appartement · ancien
+Communes : Dudelange, Kayl, Bettembourg
+Chambres minimum : 3
+Surface minimum : —
+Extérieur : balcon ou terrasse
+Garage souhaité : Oui
+Bien à rénover : selon le prix
+Ce qui compte : École à pied
+Prévenir si un bien correspond : Oui
+
+== Budget (déclaratif) ==
+Prix visé : 600.000 €
+Apport : 60.000 €
+A parlé à sa banque : pas encore
+Sait combien emprunter : non
+Revenu net du ménage / mois : 6 000 – 8 000 €
+Mise en relation courtier partenaire : OUI → atHome Finance
+
+== Calcul affiché au visiteur ==
+Droits d’enregistrement et de transcription (7 %) : 42.000 €
+Bëllegen Akt déduit : − 42.000 € (plafond 80.000 €)
+Notaire, acte de vente (TVA comprise) : 2.000 €
+Frais du prêt (estimation) : 2.700 € à 4.200 €
+Besoin total : 604.800 € à 606.300 €
+Règle CSSF : 100 % (premier achat)
+Prêt retenu : 600.000 €
+Apport nécessaire : 4.800 € à 6.300 €
+Écart avec l’apport déclaré : suffisant (+53.700 € au moins)
+
+== Ce que 600.000 € représente (1er juillet 2025 – 30 juin 2026) ==
+Dudelange – appartement : ≈ 92 m² (6.512 €/m², ventes notariées, 130 ventes)
+Kayl – appartement : ≈ 83 m² (7.257 €/m², ventes notariées, 60 ventes)
+Bettembourg – appartement : ≈ 82 m² (7.280 €/m², ventes notariées, 48 ventes)
+
+== Contexte ==
+Date : mercredi 18 novembre 2026 à 15:32
+Page d’origine : https://immobuild.lu/acheter/
+Correspondance avec mes biens : à vérifier dans Apimo (pas automatique en V1)

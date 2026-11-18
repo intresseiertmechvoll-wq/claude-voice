@@ -1,0 +1,34 @@
+{
+  "_note": "Liens et réglages affichés dans l'outil (ce fichier est lisible par tout visiteur). À VÉRIFIER PAR JASON : contactUrl, privacyUrl, estimationUrl. courtierNomPublic : vide = la case dit seulement « notre courtier partenaire » (ton choix du 18/11/2026) ; avec un nom = un petit lien « Qui est notre courtier partenaire ? » le montre à côté de la case. Les réglages du serveur (adresses e-mail, nom du courtier dans l'e-mail) sont dans server.json.",
+  "contactUrl": {
+    "fr": "https://immobuild.lu/contact/",
+    "de": "https://immobuild.lu/contact/",
+    "en": "https://immobuild.lu/contact/"
+  },
+  "privacyUrl": {
+    "fr": "https://immobuild.lu/politique-de-confidentialite-cookies/",
+    "de": "https://immobuild.lu/politique-de-confidentialite-cookies/",
+    "en": "https://immobuild.lu/politique-de-confidentialite-cookies/"
+  },
+  "estimationUrl": {
+    "fr": "https://estimatioun.lu/?lang=fr",
+    "de": "https://estimatioun.lu/?lang=de",
+    "en": "https://estimatioun.lu/?lang=en"
+  },
+  "agent": {
+    "name": "Jason",
+    "role": "ImmoBuild Kohn · Dudelange",
+    "photo": "/jay.webp"
+  },
+  "phone": "+352 621 830 272",
+  "quickCommunes": [
+    "Luxembourg",
+    "Esch-sur-Alzette",
+    "Dudelange",
+    "Bettembourg",
+    "Differdange",
+    "Mersch"
+  ],
+  "publicEmail": "contact@immobuild.lu",
+  "courtierNomPublic": ""
+}

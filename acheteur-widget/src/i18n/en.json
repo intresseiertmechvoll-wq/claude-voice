@@ -1,0 +1,306 @@
+{
+  "meta": {
+    "title": "My purchase budget – ImmoBuild Kohn"
+  },
+  "intro": {
+    "kicker": "My purchase budget · ImmoBuild Kohn",
+    "title": "How much do you really need to buy?",
+    "text": "Price, fees, Bëllegen Akt, deposit: in 3 minutes you know where you stand. No sign-up needed to see your budget.",
+    "badges": {
+      "free": "Free",
+      "commitment": "No commitment",
+      "official": "Public rules"
+    }
+  },
+  "progress": "Step {n} of {total}",
+  "nav": {
+    "next": "Continue",
+    "toBudget": "See my budget",
+    "back": "Back",
+    "submit": "Get my analysis",
+    "sending": "Sending…",
+    "toSummary": "Back to the summary"
+  },
+  "optional": "optional",
+  "yes": "Yes",
+  "no": "No",
+  "stepsShort": {
+    "1": "Your project",
+    "2": "Your search",
+    "3": "Your budget",
+    "4": "Timing",
+    "5": "Your details"
+  },
+  "steps": {
+    "1": {
+      "title": "Your project"
+    },
+    "2": {
+      "title": "What you are looking for"
+    },
+    "3": {
+      "title": "Your budget"
+    },
+    "4": {
+      "title": "Your timing"
+    },
+    "5": {
+      "title": "Where should we send your analysis?"
+    }
+  },
+  "coach": {
+    "step1": "Hello! I’m Jason. These questions change the calculation a lot.",
+    "step2": "Up to 3 municipalities: I’ll show you what your budget means there.",
+    "step3": "Approximate amounts are fine.",
+    "step4": "This helps me get back to you at the right time.",
+    "step5": "Your number is only used to talk about your search.",
+    "vendre": "Good to know: I can also value the property you are selling.",
+    "premierOui": "First purchase: the bank may lend up to 100% of the price.",
+    "investir": "For a buy-to-let, the bank lends at most 80% of the price.",
+    "renover": "With my ImmoBuild team, I can help you cost the works.",
+    "commune": "{commune}, noted!",
+    "courtier": "Great, I’ll pass your details to our partner mortgage broker.",
+    "mandat": "Happy to, let’s talk about it on the phone."
+  },
+  "fields": {
+    "usage": "You are buying to…",
+    "usageOptions": {
+      "habiter": "Live in it",
+      "investir": "Rent it out"
+    },
+    "usageHints": {
+      "habiter": "main residence",
+      "investir": "buy-to-let"
+    },
+    "achat": "You are buying…",
+    "achatOptions": {
+      "seul": "Alone",
+      "deux": "As a couple"
+    },
+    "premier": "Is this your first purchase with a mortgage in Luxembourg?",
+    "premierHelp": "As defined by the CSSF: nobody has ever had a home loan for a property in Luxembourg. As a couple, you must both be first-time buyers.",
+    "premierOptions": {
+      "oui": "Yes",
+      "non": "No",
+      "nsp": "I don’t know"
+    },
+    "bellegen": "Have you already used the “Bëllegen Akt” tax credit?",
+    "bellegenHelp": "It reduces the registration fees when you buy a home to live in.",
+    "bellegenOptions": {
+      "non": "No",
+      "oui": "Yes, partly or fully",
+      "nsp": "I don’t know"
+    },
+    "vendre": "Do you need to sell a property first?",
+    "vendreOptions": {
+      "non": "No",
+      "oui_lu": "Yes, in Luxembourg",
+      "oui_etranger": "Yes, abroad"
+    },
+    "vendreNote": "Need to sell first? Get a free valuation of your property:",
+    "vendreLink": "estimatioun.lu",
+    "type": "You are looking for…",
+    "typeOptions": {
+      "appartement": "Apartment",
+      "maison": "House",
+      "les_deux": "Either"
+    },
+    "neuf": "New or existing?",
+    "neufOptions": {
+      "ancien": "Existing",
+      "neuf": "New build",
+      "peu_importe": "Either"
+    },
+    "communes": "In which municipalities?",
+    "communesHelp": "Up to 3. Type a name, then pick it from the list.",
+    "communePlaceholder": "e.g. Dudelange, Kirchberg…",
+    "communeEmpty": "No municipality found",
+    "communeQuick": "Often chosen:",
+    "communeRemove": "Remove {commune}",
+    "communesFull": "You have chosen 3 municipalities. Remove one to add another.",
+    "chambres": "Bedrooms (minimum)",
+    "decrease": "Fewer: {label}",
+    "increase": "More: {label}",
+    "surface": "Minimum living area",
+    "exterieur": "Outdoor space",
+    "exterieurOptions": {
+      "balcon": "Balcony or terrace",
+      "jardin": "Garden",
+      "peu_importe": "No preference"
+    },
+    "garage": "Garage wanted",
+    "garageHint": "or indoor parking space",
+    "renover": "Would you buy a property that needs renovation?",
+    "renoverOptions": {
+      "oui": "Yes",
+      "selon_prix": "Depending on the price",
+      "non": "No"
+    },
+    "note": "What matters to you",
+    "notePlaceholder": "School within walking distance, quiet, near the station…",
+    "apport": "Available deposit (own funds)",
+    "apportHelp": "Your savings for the purchase, without your safety reserve.",
+    "prix": "Purchase price you have in mind",
+    "prixHelp": "A rough figure is enough. You can change it later.",
+    "banque": "Have you already talked to your bank?",
+    "banqueOptions": {
+      "oui": "Yes",
+      "pas_encore": "Not yet"
+    },
+    "capacite": "Do you know how much you can borrow?",
+    "capaciteOptions": {
+      "oui": "Yes",
+      "non": "No"
+    },
+    "capaciteMontant": "Amount you can borrow, roughly",
+    "capaciteMontantHelp": "If you know it, I’ll also calculate your maximum price.",
+    "revenu": "Household net monthly income",
+    "revenuHelp": "Only to advise you better. No loan is calculated with it.",
+    "revenuOptions": {
+      "moins_4000": "Under €4,000",
+      "4000_6000": "€4,000 – 6,000",
+      "6000_8000": "€6,000 – 8,000",
+      "8000_10000": "€8,000 – 10,000",
+      "10000_14000": "€10,000 – 14,000",
+      "plus_14000": "Over €14,000",
+      "nr": "I’d rather not say"
+    },
+    "courtier": "I would like to be put in touch, with no commitment, with our partner mortgage broker.",
+    "courtierHint": "Did you know that rates are negotiated case by case? A broker compares several banks for you, free of charge.",
+    "courtierWho": "Who is our partner broker?",
+    "courtierName": "Our partner broker is {nom}. They only receive your details if you tick this box.",
+    "delai": "When do you want to buy?",
+    "delaiOptions": {
+      "asap": "As soon as possible",
+      "3a6mois": "In 3 to 6 months",
+      "6a12mois": "In 6 to 12 months",
+      "renseigne": "Just looking"
+    },
+    "visites": "Have you already visited properties?",
+    "visitesOptions": {
+      "0": "Not yet",
+      "1_5": "1 to 5",
+      "plus5": "More than 5"
+    },
+    "mandat": "Would you like help negotiating the price and having a property’s condition checked before signing?",
+    "mandatOptions": {
+      "oui": "Yes, I’m interested",
+      "peut_etre": "Maybe",
+      "non": "No thanks"
+    },
+    "prenom": "First name",
+    "nom": "Last name",
+    "email": "Email",
+    "emailTypo": "Did you mean",
+    "telephone": "Phone",
+    "indicatif": "Country code",
+    "numero": "Number",
+    "numeroPlaceholder": "621 123 456",
+    "numeroWhy": "To talk about your search. Never any cold calls.",
+    "message": "A message for Jason",
+    "alerte": "Let me know if a matching property comes in at ImmoBuild.",
+    "honeypot": "Do not fill in this field",
+    "rgpd": "I agree that ImmoBuild Kohn may use my answers to contact me about my search ({link}).",
+    "rgpdLink": "privacy policy"
+  },
+  "errors": {
+    "required": "This field is required.",
+    "invalid": "This value is not valid.",
+    "range": "This value is out of range.",
+    "email": "This email address is not valid.",
+    "phone": "This number is not valid. Example: 621 123 456.",
+    "rgpd": "Please tick this box to receive your analysis.",
+    "communes": "Choose at least one municipality from the list.",
+    "communes_max": "3 municipalities at most.",
+    "money": "Enter an amount in euros, e.g. 60,000.",
+    "prixRange": "Enter a price between €50,000 and €20,000,000.",
+    "summary": "Please correct the highlighted fields.",
+    "rate_limit": "Too many submissions from this connection. Try again in an hour, or email me at {contact}.",
+    "network": "Sending failed. Check your connection and try again.",
+    "server": "Sending failed. Try again in a few minutes, or email me at {contact}."
+  },
+  "budget": {
+    "title": "Your budget for {prix}",
+    "sub": "Indicative calculation based on the public rules in force on {date}.",
+    "prix": "Purchase price",
+    "droits": "Registration and transcription duties (7%)",
+    "droitsMax": "New build: 7% at most. Duties often apply only to the land and the part already built.",
+    "bellegen": "Bëllegen Akt (tax credit)",
+    "bellegenNone": "No Bëllegen Akt for a buy-to-let.",
+    "bellegenUsed": "Already used: you may have some left. Check with your notary.",
+    "bellegenNsp": "Calculated as if you had not used it yet. Please check.",
+    "bellegenAnnonce": "{montant} per person has been announced for deeds since 16/07/2026, but the law has not been passed yet (as of {date}). The calculation uses the current amount.",
+    "notaire": "Notary, deed of sale (VAT included)",
+    "fraisPret": "Loan costs (deed, registration, expenses)",
+    "fraisPretNote": "Estimate: to be confirmed by your notary.",
+    "total": "Total needed",
+    "pret": "Maximum loan under the CSSF rule",
+    "pretCapacite": "Loan used (the amount you gave me)",
+    "ltv": {
+      "premier": "First purchase to live in: up to 100% of the price.",
+      "residence": "Main residence: up to 90% of the price.",
+      "incertain": "First-time buyer status unknown: cautious calculation at 90%. 100% if you are a first-time buyer.",
+      "investissement": "Buy-to-let: up to 80% of the price."
+    },
+    "ltvNote": "This is a legal ceiling. Your bank decides and may ask for a larger deposit.",
+    "apportNecessaire": "Minimum deposit needed",
+    "apportDeclare": "Your deposit",
+    "ok": "Your deposit covers the minimum needed for this price.",
+    "manque": "For this price, you are short of about {montant} of deposit under the CSSF rule.",
+    "pistes": "Options: a slightly lower price, buying as a couple, state aid, or talking to a broker.",
+    "prixMax": "With your deposit and a {pret} loan, your maximum price is about {prix}.",
+    "disclaimer": "This tool is neither credit advice nor a loan offer. Only your bank decides.",
+    "next": "What your budget means in your municipalities, the analysis as a PDF and a call from Jason: 2 more steps.",
+    "edit": "Change my budget"
+  },
+  "result": {
+    "title": "Thank you {prenom}, your analysis is ready",
+    "sub": "Jason has received it too and will call you to talk it through.",
+    "communesTitle": "What {prix} gets you",
+    "communesSub": "Approximate living area at the municipality’s average price per m².",
+    "m2": "≈ {m2} m²",
+    "perM2": "{prix} / m²",
+    "source": {
+      "notarie": "{n} notarised sales",
+      "vefa": "{n} notarised sales of new builds",
+      "canton": "median of sales in the canton ({n} municipalities)",
+      "annonce": "{n} listings: asking prices, not sale prices",
+      "canton_annonce": "median of listings in the canton ({n} municipalities): asking prices"
+    },
+    "noData": "Not enough public data",
+    "typeLabel": {
+      "appartement": "Apartment",
+      "maison": "House"
+    },
+    "communesNote": "Source: Observatoire de l’Habitat, {debut} to {fin}. Municipal average: depending on the neighbourhood, condition and floor, a property can cost much more or less.",
+    "checkTitle": "Points to check",
+    "checkPremier": "First-time buyer status: confirm with your bank (CSSF definition).",
+    "checkRevenu": "Banks often check that the monthly payment stays below roughly one third to 40% of net income. This is not a legal rule: your bank decides.",
+    "checkAides": "Possible aid depending on income: prime d’accession, prime d’épargne, interest subsidy, state guarantee.",
+    "checkAidesLink": "See guichet.lu",
+    "nextTitle": "Next steps",
+    "vendreTitle": "Need to sell first?",
+    "vendreText": "Value your property in 2 minutes, then we plan both sales together.",
+    "vendreCta": "Value my property",
+    "renoverTitle": "A property to renovate?",
+    "renoverText": "It can be a good deal if you know the cost of the works. With ImmoBuild, I can help you cost them.",
+    "mandatTitle": "Help with your purchase",
+    "mandatText": "Negotiating the price, checking the condition, reading the terms before signing: let’s talk on the phone.",
+    "courtierTitle": "Your financing",
+    "courtierText": "Our partner broker will contact you, with no commitment.",
+    "agentText": "I’ll call you to talk about your search. I also know properties that are not online yet.",
+    "cta": "Book an appointment",
+    "call": "Call {name}",
+    "print": "Print or save as PDF",
+    "restart": "Start again"
+  },
+  "recap": {
+    "title": "Your search at a glance",
+    "edit": "Edit",
+    "editStep": "Edit: {step}"
+  },
+  "trust": {
+    "line": "Free · no commitment · no cookies",
+    "where": "Your answers are only sent to ImmoBuild Kohn, by email."
+  }
+}

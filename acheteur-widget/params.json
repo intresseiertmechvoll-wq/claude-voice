@@ -1,0 +1,56 @@
+{
+  "_statut": "Valeurs officielles avec leur source, sauf celles marquées « hypothèse » : à valider par Jason. Explications : README, partie « Calcul ».",
+  "version": "2026-11-18",
+
+  "arrondi": 100,
+
+  "droits": {
+    "_source": "guichet.public.lu, crédit d'impôt sur les actes notariés (page du 07/07/2025) : 6 % enregistrement + 1 % transcription",
+    "taux": 0.07
+  },
+
+  "bellegen": {
+    "_source": "guichet.public.lu (page du 07/07/2025) : 40 000 € par personne. 45 000 € annoncés le 16/07/2026, projet de loi 8806 pas encore voté (chd.lu, consulté le 18/11/2026).",
+    "par_personne": 40000,
+    "annonce_par_personne": 45000,
+    "annonce_etat_au": "2026-11-18"
+  },
+
+  "ltv": {
+    "_source": "Règlement CSSF 20-08, FAQ technique du 09/03/2026 : 100 % premier achat résidence principale, 90 % autre résidence principale, 80 % autres (dont location)",
+    "premier": 1.0,
+    "residence": 0.9,
+    "investissement": 0.8
+  },
+
+  "notaire": {
+    "_source": "Barème 7 du règlement grand-ducal modifié du 24/07/1971 (repris de tevaxia.lu, consulté le 18/11/2026 ; texte légal à relire sur legilux). TVA 17 %.",
+    "tranches": [
+      { "jusqua": 3718.40, "taux": 0.04 },
+      { "jusqua": 7436.80, "taux": 0.02 },
+      { "jusqua": 17352.54, "taux": 0.015 },
+      { "jusqua": 24789.35, "taux": 0.008 },
+      { "jusqua": 74368.05, "taux": 0.006 },
+      { "jusqua": 148736.11, "taux": 0.005 },
+      { "jusqua": 247893.52, "taux": 0.003 },
+      { "jusqua": 1239467.62, "taux": 0.001 },
+      { "jusqua": null, "taux": 0.0005 }
+    ],
+    "minimum": 99.16,
+    "tva": 0.17
+  },
+
+  "pret": {
+    "_source": "Inscription hypothécaire 0,05 % : pfi.public.lu (consulté le 18/11/2026). Droit sur l'acte de prêt 0,24 % : tevaxia.lu et konstrulux.lu (non vérifié sur un site officiel).",
+    "droit_acte_pret": 0.0024,
+    "inscription": 0.0005,
+    "_hypothese": "HYPOTHÈSE à valider : honoraires de l'acte de prêt (barème 5, non trouvé), TVA, copies et débours.",
+    "divers_min": 1000,
+    "divers_max": 2500
+  },
+
+  "communes": {
+    "ventes_min": 10,
+    "offres_min": 30
+  }
+}

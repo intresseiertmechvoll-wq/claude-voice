@@ -1,6 +1,6 @@
 # Käufer-Tool ImmoBuild Kohn: Konzept (noch kein Code)
 
-Stand: 18.11.2026 · Branch `claude/acheteur-concept` · Status: **Entscheidungen getroffen (Teil 7a, 18.11.2026). Bereit zum Bau, sobald Jason das Startsignal gibt.**
+Stand: 18.11.2026 · Branch `claude/acheteur-concept` · Status: **Erste Version gebaut (18.11.2026), siehe Teil 11 und `acheteur-widget/README.md`.**
 
 Legende für alle Fakten:
 - **[geprüft]**: Seite oder Datei selbst geöffnet; URL und Seitendatum stehen dabei.
@@ -595,6 +595,21 @@ Deine erste Wahl ist vergeben. Die Verfügbarkeit konnte ich nicht prüfen, weil
 - **weivill.lu**: „wie viel?“, Gegenstück zu combien.lu
 - **monbudgetimmo.lu**
 - **acheter-au-luxembourg.lu**: lang, aber selbsterklärend für Grenzgänger
+
+## 11. Umsetzung der ersten Version (18.11.2026)
+
+Gebaut in `acheteur-widget/`, nach Jasons Startsignal vom 18.11.2026. Bei der Prüfung vor dem Bau und beim Bau habe ich folgende Abweichungen vom Entwurf vorgenommen:
+
+| Punkt | Entwurf | Umgesetzt | Warum |
+| --- | --- | --- | --- |
+| Neubau (VEFA) | 7 % auf den ganzen Preis | 7 % als **Höchstwert** angezeigt, mit Hinweis | Bei Neubau fallen die Gebühren oft nur auf Grundstück und bereits gebauten Teil an. Mit vollen 7 % wäre der Bedarf überschätzt und als genau dargestellt worden. |
+| Kaufpreis | freiwillig, sonst Höchstpreis aus Eigenkapital | **Pflicht** | Bei Erstkäufern (100 % Kredit) begrenzt nur das Einkommen den Preis. Da das Tool absichtlich nicht mit dem Einkommen rechnet, wäre ein „Höchstpreis“ nur aus dem Eigenkapital sinnlos hoch. Höchstpreis nur, wenn der Käufer seinen möglichen Kreditbetrag kennt. |
+| Nebenkosten des Kredits | Spanne 4 000–6 000 € | 0,24 % + 0,05 % des Kredits + **1 000–2 500 € (Annahme)** | So wird die Spanne mit dem Kreditbetrag größer oder kleiner. Die 1 000–2 500 € sind eine Annahme und stehen so in `params.json`. |
+| 45 000 € Bëllegen Akt | Hinweis | Hinweis, **verschwindet automatisch**, sobald `par_personne` auf 45 000 gesetzt wird | Weniger Pflege. |
+| Name des Courtiers | im Kästchen | **nicht im Kästchen und nicht im Code des Browsers** (`server.json`) | Jasons Wunsch. Der Name stand anfangs noch im Browser-Code, das habe ich beim Prüfen korrigiert. Schalter `courtierNomPublic` in `config.json`, falls er ihn doch zeigen will (Datenschutz-Hinweis in `PRIVACY.md`). |
+| Käufermandat | Zeile im Ergebnis | Frage in Schritt 4 (freiwillig) **und** Karte im Ergebnis | Damit die Antwort in der Lead-E-Mail steht. |
+
+Getestet: 52 automatische Tests; Ablauf im echten Browser (Chromium, 390 px und 320 px): 0 JavaScript-Fehler, 0 Barrierefreiheits-Fehler (axe-core, WCAG 2.1 AA) auf 8 Bildschirmen, kein seitliches Scrollen, Einbettung per iframe. **Nicht getestet:** echter E-Mail-Versand über Resend, Betrieb auf Cloudflare (nur lokal mit wrangler), WordPress-Seite, Safari/iPhone.
 
 ## Anhang: Quellen
 

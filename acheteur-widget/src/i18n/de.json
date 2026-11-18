@@ -1,0 +1,306 @@
+{
+  "meta": {
+    "title": "Mein Kaufbudget – ImmoBuild Kohn"
+  },
+  "intro": {
+    "kicker": "Mein Kaufbudget · ImmoBuild Kohn",
+    "title": "Wie viel brauchen Sie wirklich für den Kauf?",
+    "text": "Preis, Nebenkosten, Bëllegen Akt, Eigenkapital: In 3 Minuten wissen Sie, wo Sie stehen. Ihr Budget sehen Sie ohne Anmeldung.",
+    "badges": {
+      "free": "Kostenlos",
+      "commitment": "Unverbindlich",
+      "official": "Öffentliche Regeln"
+    }
+  },
+  "progress": "Schritt {n} von {total}",
+  "nav": {
+    "next": "Weiter",
+    "toBudget": "Mein Budget ansehen",
+    "back": "Zurück",
+    "submit": "Meine Analyse erhalten",
+    "sending": "Wird gesendet…",
+    "toSummary": "Zurück zur Übersicht"
+  },
+  "optional": "freiwillig",
+  "yes": "Ja",
+  "no": "Nein",
+  "stepsShort": {
+    "1": "Ihr Vorhaben",
+    "2": "Ihre Suche",
+    "3": "Ihr Budget",
+    "4": "Zeitplan",
+    "5": "Ihre Kontaktdaten"
+  },
+  "steps": {
+    "1": {
+      "title": "Ihr Vorhaben"
+    },
+    "2": {
+      "title": "Was Sie suchen"
+    },
+    "3": {
+      "title": "Ihr Budget"
+    },
+    "4": {
+      "title": "Ihr Zeitplan"
+    },
+    "5": {
+      "title": "Wohin sollen wir die Analyse schicken?"
+    }
+  },
+  "coach": {
+    "step1": "Hallo! Ich bin Jason. Diese Fragen verändern die Rechnung stark.",
+    "step2": "Bis zu 3 Gemeinden: Ich zeige Ihnen, was Ihr Budget dort bedeutet.",
+    "step3": "Ungefähre Beträge reichen.",
+    "step4": "So kann ich mich zum richtigen Zeitpunkt melden.",
+    "step5": "Ihre Nummer dient nur dazu, über Ihre Suche zu sprechen.",
+    "vendre": "Gut zu wissen: Ich kann auch Ihre bisherige Immobilie bewerten.",
+    "premierOui": "Erster Kauf: Die Bank darf bis zu 100 % des Preises leihen.",
+    "investir": "Bei einer Kapitalanlage leiht die Bank höchstens 80 % des Preises.",
+    "renover": "Mit meinem ImmoBuild-Team helfe ich Ihnen, die Arbeiten zu beziffern.",
+    "commune": "{commune}, notiert!",
+    "courtier": "Sehr gut, ich gebe Ihre Daten an unseren Partner-Kreditvermittler weiter.",
+    "mandat": "Gerne, darüber sprechen wir am Telefon."
+  },
+  "fields": {
+    "usage": "Sie kaufen, um …",
+    "usageOptions": {
+      "habiter": "selbst zu wohnen",
+      "investir": "zu vermieten"
+    },
+    "usageHints": {
+      "habiter": "Hauptwohnsitz",
+      "investir": "Kapitalanlage"
+    },
+    "achat": "Sie kaufen …",
+    "achatOptions": {
+      "seul": "Allein",
+      "deux": "Zu zweit"
+    },
+    "premier": "Ist es Ihr erster Kauf mit einem Kredit in Luxemburg?",
+    "premierHelp": "Im Sinne der CSSF: Niemand hatte je einen Wohnkredit für eine Immobilie in Luxemburg. Zu zweit müssen Sie es beide sein.",
+    "premierOptions": {
+      "oui": "Ja",
+      "non": "Nein",
+      "nsp": "Weiß nicht"
+    },
+    "bellegen": "Haben Sie die Steuergutschrift „Bëllegen Akt“ schon genutzt?",
+    "bellegenHelp": "Sie senkt die Registrierungsgebühren, wenn Sie selbst einziehen.",
+    "bellegenOptions": {
+      "non": "Nein",
+      "oui": "Ja, teilweise oder ganz",
+      "nsp": "Weiß nicht"
+    },
+    "vendre": "Müssen Sie zuerst eine Immobilie verkaufen?",
+    "vendreOptions": {
+      "non": "Nein",
+      "oui_lu": "Ja, in Luxemburg",
+      "oui_etranger": "Ja, im Ausland"
+    },
+    "vendreNote": "Sie müssen zuerst verkaufen? Lassen Sie Ihre Immobilie kostenlos bewerten:",
+    "vendreLink": "estimatioun.lu",
+    "type": "Sie suchen …",
+    "typeOptions": {
+      "appartement": "Wohnung",
+      "maison": "Haus",
+      "les_deux": "Beides"
+    },
+    "neuf": "Neubau oder Bestand?",
+    "neufOptions": {
+      "ancien": "Bestand",
+      "neuf": "Neubau",
+      "peu_importe": "Egal"
+    },
+    "communes": "In welchen Gemeinden?",
+    "communesHelp": "Bis zu 3. Namen eingeben und aus der Liste wählen.",
+    "communePlaceholder": "z. B. Düdelingen, Kirchberg …",
+    "communeEmpty": "Keine Gemeinde gefunden",
+    "communeQuick": "Oft gewählt:",
+    "communeRemove": "{commune} entfernen",
+    "communesFull": "Sie haben 3 Gemeinden gewählt. Entfernen Sie eine, um eine andere hinzuzufügen.",
+    "chambres": "Schlafzimmer (mindestens)",
+    "decrease": "Weniger: {label}",
+    "increase": "Mehr: {label}",
+    "surface": "Wohnfläche mindestens",
+    "exterieur": "Außenbereich",
+    "exterieurOptions": {
+      "balcon": "Balkon oder Terrasse",
+      "jardin": "Garten",
+      "peu_importe": "Egal"
+    },
+    "garage": "Garage gewünscht",
+    "garageHint": "oder Innenstellplatz",
+    "renover": "Würden Sie eine renovierungsbedürftige Immobilie kaufen?",
+    "renoverOptions": {
+      "oui": "Ja",
+      "selon_prix": "Je nach Preis",
+      "non": "Nein"
+    },
+    "note": "Was Ihnen wichtig ist",
+    "notePlaceholder": "Schule zu Fuß, ruhig, nah am Bahnhof …",
+    "apport": "Verfügbares Eigenkapital",
+    "apportHelp": "Ihre Ersparnisse für den Kauf, ohne Notreserve.",
+    "prix": "Geplanter Kaufpreis",
+    "prixHelp": "Eine Größenordnung reicht. Sie können ihn später ändern.",
+    "banque": "Haben Sie schon mit Ihrer Bank gesprochen?",
+    "banqueOptions": {
+      "oui": "Ja",
+      "pas_encore": "Noch nicht"
+    },
+    "capacite": "Wissen Sie, wie viel Sie leihen können?",
+    "capaciteOptions": {
+      "oui": "Ja",
+      "non": "Nein"
+    },
+    "capaciteMontant": "Möglicher Kreditbetrag, ungefähr",
+    "capaciteMontantHelp": "Wenn Sie ihn kennen: Dann berechne ich auch Ihren Höchstpreis.",
+    "revenu": "Monatliches Nettoeinkommen des Haushalts",
+    "revenuHelp": "Nur, um Sie besser zu beraten. Damit wird kein Kredit berechnet.",
+    "revenuOptions": {
+      "moins_4000": "Unter 4 000 €",
+      "4000_6000": "4 000 – 6 000 €",
+      "6000_8000": "6 000 – 8 000 €",
+      "8000_10000": "8 000 – 10 000 €",
+      "10000_14000": "10 000 – 14 000 €",
+      "plus_14000": "Über 14 000 €",
+      "nr": "Keine Angabe"
+    },
+    "courtier": "Ich möchte unverbindlich mit unserem Partner-Kreditvermittler in Kontakt gebracht werden.",
+    "courtierHint": "Wussten Sie, dass Zinsen einzeln verhandelt werden? Ein Kreditvermittler vergleicht für Sie mehrere Banken, kostenlos.",
+    "courtierWho": "Wer ist unser Partner-Kreditvermittler?",
+    "courtierName": "Unser Partner-Kreditvermittler ist {nom}. Er erhält Ihre Daten nur, wenn Sie dieses Feld ankreuzen.",
+    "delai": "Wann möchten Sie kaufen?",
+    "delaiOptions": {
+      "asap": "So bald wie möglich",
+      "3a6mois": "In 3 bis 6 Monaten",
+      "6a12mois": "In 6 bis 12 Monaten",
+      "renseigne": "Ich informiere mich"
+    },
+    "visites": "Haben Sie schon Immobilien besichtigt?",
+    "visitesOptions": {
+      "0": "Noch nicht",
+      "1_5": "1 bis 5",
+      "plus5": "Mehr als 5"
+    },
+    "mandat": "Möchten Sie begleitet werden, um den Preis zu verhandeln und den Zustand einer Immobilie vor der Unterschrift prüfen zu lassen?",
+    "mandatOptions": {
+      "oui": "Ja, das interessiert mich",
+      "peut_etre": "Vielleicht",
+      "non": "Nein danke"
+    },
+    "prenom": "Vorname",
+    "nom": "Nachname",
+    "email": "E-Mail",
+    "emailTypo": "Meinten Sie",
+    "telephone": "Telefon",
+    "indicatif": "Vorwahl",
+    "numero": "Nummer",
+    "numeroPlaceholder": "621 123 456",
+    "numeroWhy": "Um über Ihre Suche zu sprechen. Keine Werbeanrufe.",
+    "message": "Eine Nachricht an Jason",
+    "alerte": "Benachrichtigen Sie mich, wenn eine passende Immobilie zu ImmoBuild kommt.",
+    "honeypot": "Dieses Feld nicht ausfüllen",
+    "rgpd": "Ich bin einverstanden, dass ImmoBuild Kohn meine Antworten nutzt, um mich wegen meiner Suche zu kontaktieren ({link}).",
+    "rgpdLink": "Datenschutzerklärung"
+  },
+  "errors": {
+    "required": "Dieses Feld ist erforderlich.",
+    "invalid": "Dieser Wert ist ungültig.",
+    "range": "Dieser Wert liegt außerhalb der Grenzen.",
+    "email": "Diese E-Mail-Adresse ist ungültig.",
+    "phone": "Diese Nummer ist ungültig. Beispiel: 621 123 456.",
+    "rgpd": "Bitte kreuzen Sie dieses Feld an, um Ihre Analyse zu erhalten.",
+    "communes": "Wählen Sie mindestens eine Gemeinde aus der Liste.",
+    "communes_max": "Höchstens 3 Gemeinden.",
+    "money": "Bitte einen Betrag in Euro angeben, z. B. 60 000.",
+    "prixRange": "Bitte einen Preis zwischen 50 000 € und 20 000 000 € angeben.",
+    "summary": "Bitte korrigieren Sie die markierten Felder.",
+    "rate_limit": "Zu viele Anfragen von dieser Verbindung. Versuchen Sie es in einer Stunde erneut oder schreiben Sie mir an {contact}.",
+    "network": "Das Senden ist fehlgeschlagen. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
+    "server": "Das Senden ist fehlgeschlagen. Versuchen Sie es in einigen Minuten erneut oder schreiben Sie mir an {contact}."
+  },
+  "budget": {
+    "title": "Ihr Budget für {prix}",
+    "sub": "Unverbindliche Rechnung nach den öffentlichen Regeln, Stand {date}.",
+    "prix": "Kaufpreis",
+    "droits": "Registrierungs- und Transkriptionsgebühren (7 %)",
+    "droitsMax": "Neubau: höchstens 7 %. Die Gebühren fallen oft nur auf das Grundstück und den bereits gebauten Teil an.",
+    "bellegen": "Bëllegen Akt (Steuergutschrift)",
+    "bellegenNone": "Kein Bëllegen Akt bei einer Kapitalanlage.",
+    "bellegenUsed": "Schon genutzt: Vielleicht bleibt ein Rest. Mit Ihrem Notar klären.",
+    "bellegenNsp": "Gerechnet, als hätten Sie ihn noch nicht genutzt. Bitte prüfen.",
+    "bellegenAnnonce": "{montant} pro Person sind für Akten ab dem 16.07.2026 angekündigt, das Gesetz ist aber noch nicht verabschiedet (Stand {date}). Die Rechnung nutzt den aktuellen Betrag.",
+    "notaire": "Notar, Kaufakt (inkl. MwSt.)",
+    "fraisPret": "Kreditnebenkosten (Akt, Eintragung, Auslagen)",
+    "fraisPretNote": "Schätzung: von Ihrem Notar bestätigen lassen.",
+    "total": "Gesamtbedarf",
+    "pret": "Höchster Kredit nach CSSF-Regel",
+    "pretCapacite": "Angesetzter Kredit (Ihr angegebener Betrag)",
+    "ltv": {
+      "premier": "Erster Kauf zum Selbstbewohnen: bis zu 100 % des Preises.",
+      "residence": "Hauptwohnsitz: bis zu 90 % des Preises.",
+      "incertain": "Erstkäufer-Status unbekannt: vorsichtige Rechnung mit 90 %. 100 %, wenn Sie Erstkäufer sind.",
+      "investissement": "Kapitalanlage: bis zu 80 % des Preises."
+    },
+    "ltvNote": "Das ist eine gesetzliche Obergrenze. Ihre Bank entscheidet und kann mehr Eigenkapital verlangen.",
+    "apportNecessaire": "Nötiges Eigenkapital mindestens",
+    "apportDeclare": "Ihr Eigenkapital",
+    "ok": "Ihr Eigenkapital deckt das Minimum für diesen Preis.",
+    "manque": "Für diesen Preis fehlen nach der CSSF-Regel etwa {montant} Eigenkapital.",
+    "pistes": "Möglichkeiten: ein etwas niedrigerer Preis, ein Kauf zu zweit, staatliche Hilfen, oder ein Gespräch mit einem Kreditvermittler.",
+    "prixMax": "Mit Ihrem Eigenkapital und {pret} Kredit liegt Ihr Höchstpreis bei etwa {prix}.",
+    "disclaimer": "Dieses Tool ist weder eine Kreditberatung noch ein Kreditangebot. Nur Ihre Bank entscheidet.",
+    "next": "Was Ihr Budget in Ihren Gemeinden bedeutet, die Analyse als PDF und ein Anruf von Jason: noch 2 Schritte.",
+    "edit": "Budget ändern"
+  },
+  "result": {
+    "title": "Danke {prenom}, Ihre Analyse ist fertig",
+    "sub": "Jason hat sie auch erhalten und ruft Sie an, um darüber zu sprechen.",
+    "communesTitle": "Was {prix} bedeuten",
+    "communesSub": "Ungefähre Wohnfläche zum durchschnittlichen m²-Preis der Gemeinde.",
+    "m2": "≈ {m2} m²",
+    "perM2": "{prix} / m²",
+    "source": {
+      "notarie": "{n} notarielle Verkäufe",
+      "vefa": "{n} notarielle Verkäufe von Neubauten",
+      "canton": "Median der Verkäufe im Kanton ({n} Gemeinden)",
+      "annonce": "{n} Inserate: Angebotspreise, keine Verkaufspreise",
+      "canton_annonce": "Median der Inserate im Kanton ({n} Gemeinden): Angebotspreise"
+    },
+    "noData": "Nicht genug öffentliche Daten",
+    "typeLabel": {
+      "appartement": "Wohnung",
+      "maison": "Haus"
+    },
+    "communesNote": "Quelle: Observatoire de l’Habitat, {debut} bis {fin}. Durchschnitt der Gemeinde: Je nach Viertel, Zustand und Stockwerk kann eine Immobilie deutlich mehr oder weniger kosten.",
+    "checkTitle": "Zu prüfen",
+    "checkPremier": "Erstkäufer-Status: mit Ihrer Bank bestätigen (CSSF-Definition).",
+    "checkRevenu": "Banken achten oft darauf, dass die Monatsrate unter etwa einem Drittel bis 40 % des Nettoeinkommens bleibt. Das ist keine gesetzliche Regel: Ihre Bank entscheidet.",
+    "checkAides": "Mögliche Hilfen je nach Einkommen: Prime d’accession, Prime d’épargne, Zinssubvention, Staatsgarantie.",
+    "checkAidesLink": "Auf guichet.lu ansehen",
+    "nextTitle": "Nächste Schritte",
+    "vendreTitle": "Sie müssen zuerst verkaufen?",
+    "vendreText": "Bewerten Sie Ihre Immobilie in 2 Minuten, dann planen wir beide Geschäfte gemeinsam.",
+    "vendreCta": "Meine Immobilie bewerten",
+    "renoverTitle": "Eine Immobilie zum Renovieren?",
+    "renoverText": "Das kann ein gutes Geschäft sein, wenn man die Kosten der Arbeiten kennt. Mit ImmoBuild helfe ich Ihnen, sie zu beziffern.",
+    "mandatTitle": "Begleitung beim Kauf",
+    "mandatText": "Preis verhandeln, Zustand prüfen, Bedingungen vor der Unterschrift lesen: Darüber sprechen wir am Telefon.",
+    "courtierTitle": "Ihre Finanzierung",
+    "courtierText": "Unser Partner-Kreditvermittler meldet sich bei Ihnen, unverbindlich.",
+    "agentText": "Ich rufe Sie an, um über Ihre Suche zu sprechen. Ich kenne auch Immobilien, die noch nicht online sind.",
+    "cta": "Termin vereinbaren",
+    "call": "{name} anrufen",
+    "print": "Drucken oder als PDF speichern",
+    "restart": "Neu beginnen"
+  },
+  "recap": {
+    "title": "Ihre Suche im Überblick",
+    "edit": "Ändern",
+    "editStep": "Ändern: {step}"
+  },
+  "trust": {
+    "line": "Kostenlos · unverbindlich · ohne Cookies",
+    "where": "Ihre Antworten gehen nur per E-Mail an ImmoBuild Kohn."
+  }
+}

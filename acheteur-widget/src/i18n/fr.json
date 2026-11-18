@@ -1,0 +1,306 @@
+{
+  "meta": {
+    "title": "Mon budget d’achat – ImmoBuild Kohn"
+  },
+  "intro": {
+    "kicker": "Mon budget d’achat · ImmoBuild Kohn",
+    "title": "Combien vous faut-il vraiment pour acheter ?",
+    "text": "Prix, frais, Bëllegen Akt, apport : en 3 minutes, vous savez où vous en êtes. Sans inscription pour voir votre budget.",
+    "badges": {
+      "free": "Gratuit",
+      "commitment": "Sans engagement",
+      "official": "Règles publiques"
+    }
+  },
+  "progress": "Étape {n} sur {total}",
+  "nav": {
+    "next": "Continuer",
+    "toBudget": "Voir mon budget",
+    "back": "Retour",
+    "submit": "Recevoir mon analyse",
+    "sending": "Envoi en cours…",
+    "toSummary": "Revenir au résumé"
+  },
+  "optional": "facultatif",
+  "yes": "Oui",
+  "no": "Non",
+  "stepsShort": {
+    "1": "Votre projet",
+    "2": "Votre recherche",
+    "3": "Votre budget",
+    "4": "Calendrier",
+    "5": "Vos coordonnées"
+  },
+  "steps": {
+    "1": {
+      "title": "Votre projet"
+    },
+    "2": {
+      "title": "Ce que vous cherchez"
+    },
+    "3": {
+      "title": "Votre budget"
+    },
+    "4": {
+      "title": "Votre calendrier"
+    },
+    "5": {
+      "title": "Où vous envoyer l’analyse ?"
+    }
+  },
+  "coach": {
+    "step1": "Bonjour ! Je suis Jason. Ces questions changent beaucoup le calcul.",
+    "step2": "Jusqu’à 3 communes : je vous montre ce que votre budget y représente.",
+    "step3": "Des montants approximatifs suffisent.",
+    "step4": "Ça m’aide à vous répondre au bon moment.",
+    "step5": "Votre numéro sert uniquement à parler de votre recherche.",
+    "vendre": "Bon à savoir : je peux aussi estimer le bien que vous vendez.",
+    "premierOui": "Premier achat : la banque peut prêter jusqu’à 100 % du prix.",
+    "investir": "Pour un investissement, la banque prête au plus 80 % du prix.",
+    "renover": "Avec mes équipes ImmoBuild, je peux vous aider à chiffrer les travaux.",
+    "commune": "{commune}, c’est noté !",
+    "courtier": "Très bien, je transmets vos coordonnées à notre courtier partenaire.",
+    "mandat": "Avec plaisir, on en parle au téléphone."
+  },
+  "fields": {
+    "usage": "Vous achetez pour…",
+    "usageOptions": {
+      "habiter": "Y habiter",
+      "investir": "Louer (investissement)"
+    },
+    "usageHints": {
+      "habiter": "résidence principale",
+      "investir": "le bien sera loué"
+    },
+    "achat": "Vous achetez…",
+    "achatOptions": {
+      "seul": "Seul(e)",
+      "deux": "À deux"
+    },
+    "premier": "Est-ce votre premier achat avec un prêt au Luxembourg ?",
+    "premierHelp": "Au sens de la CSSF : personne n’a jamais eu de prêt pour un logement au Luxembourg. À deux, vous devez l’être tous les deux.",
+    "premierOptions": {
+      "oui": "Oui",
+      "non": "Non",
+      "nsp": "Je ne sais pas"
+    },
+    "bellegen": "Avez-vous déjà utilisé le crédit d’impôt « Bëllegen Akt » ?",
+    "bellegenHelp": "Il réduit les frais d’enregistrement quand vous achetez pour y habiter.",
+    "bellegenOptions": {
+      "non": "Non",
+      "oui": "Oui, en partie ou en entier",
+      "nsp": "Je ne sais pas"
+    },
+    "vendre": "Devez-vous d’abord vendre un bien ?",
+    "vendreOptions": {
+      "non": "Non",
+      "oui_lu": "Oui, au Luxembourg",
+      "oui_etranger": "Oui, à l’étranger"
+    },
+    "vendreNote": "Vous devez d’abord vendre ? Estimez votre bien gratuitement :",
+    "vendreLink": "estimatioun.lu",
+    "type": "Vous cherchez…",
+    "typeOptions": {
+      "appartement": "Appartement",
+      "maison": "Maison",
+      "les_deux": "Les deux"
+    },
+    "neuf": "Neuf ou ancien ?",
+    "neufOptions": {
+      "ancien": "Ancien",
+      "neuf": "Neuf",
+      "peu_importe": "Peu importe"
+    },
+    "communes": "Dans quelles communes ?",
+    "communesHelp": "Jusqu’à 3. Tapez un nom, puis choisissez dans la liste.",
+    "communePlaceholder": "Ex. Dudelange, Kirchberg…",
+    "communeEmpty": "Aucune commune trouvée",
+    "communeQuick": "Souvent choisies :",
+    "communeRemove": "Retirer {commune}",
+    "communesFull": "Vous avez choisi 3 communes. Retirez-en une pour en ajouter une autre.",
+    "chambres": "Chambres (minimum)",
+    "decrease": "Moins : {label}",
+    "increase": "Plus : {label}",
+    "surface": "Surface habitable minimum",
+    "exterieur": "Extérieur",
+    "exterieurOptions": {
+      "balcon": "Balcon ou terrasse",
+      "jardin": "Jardin",
+      "peu_importe": "Peu importe"
+    },
+    "garage": "Garage souhaité",
+    "garageHint": "ou emplacement intérieur",
+    "renover": "Seriez-vous prêt(e) à acheter un bien à rénover ?",
+    "renoverOptions": {
+      "oui": "Oui",
+      "selon_prix": "Selon le prix",
+      "non": "Non"
+    },
+    "note": "Ce qui compte pour vous",
+    "notePlaceholder": "École à pied, calme, proche de la gare…",
+    "apport": "Apport personnel disponible",
+    "apportHelp": "Vos économies pour l’achat, sans votre réserve de sécurité.",
+    "prix": "Prix d’achat envisagé",
+    "prixHelp": "Un ordre de grandeur suffit. Vous pourrez le changer.",
+    "banque": "Avez-vous déjà parlé à votre banque ?",
+    "banqueOptions": {
+      "oui": "Oui",
+      "pas_encore": "Pas encore"
+    },
+    "capacite": "Savez-vous combien vous pouvez emprunter ?",
+    "capaciteOptions": {
+      "oui": "Oui",
+      "non": "Non"
+    },
+    "capaciteMontant": "Montant que vous pouvez emprunter, environ",
+    "capaciteMontantHelp": "Si vous le connaissez : je calcule aussi votre prix maximal.",
+    "revenu": "Revenu net mensuel du ménage",
+    "revenuHelp": "Seulement pour mieux vous conseiller. Aucun calcul de prêt n’est fait avec.",
+    "revenuOptions": {
+      "moins_4000": "Moins de 4 000 €",
+      "4000_6000": "4 000 – 6 000 €",
+      "6000_8000": "6 000 – 8 000 €",
+      "8000_10000": "8 000 – 10 000 €",
+      "10000_14000": "10 000 – 14 000 €",
+      "plus_14000": "Plus de 14 000 €",
+      "nr": "Je préfère ne pas répondre"
+    },
+    "courtier": "Je souhaite être mis(e) en relation, sans engagement, avec notre courtier partenaire.",
+    "courtierHint": "Saviez-vous que les taux se négocient au cas par cas ? Un courtier compare plusieurs banques pour vous, gratuitement.",
+    "courtierWho": "Qui est notre courtier partenaire ?",
+    "courtierName": "Notre courtier partenaire est {nom}. Il ne reçoit vos coordonnées que si vous cochez cette case.",
+    "delai": "Quand voulez-vous acheter ?",
+    "delaiOptions": {
+      "asap": "Dès que possible",
+      "3a6mois": "Dans 3 à 6 mois",
+      "6a12mois": "Dans 6 à 12 mois",
+      "renseigne": "Je me renseigne"
+    },
+    "visites": "Avez-vous déjà visité des biens ?",
+    "visitesOptions": {
+      "0": "Pas encore",
+      "1_5": "1 à 5",
+      "plus5": "Plus de 5"
+    },
+    "mandat": "Aimeriez-vous être accompagné(e) pour négocier le prix et faire vérifier l’état d’un bien avant de signer ?",
+    "mandatOptions": {
+      "oui": "Oui, ça m’intéresse",
+      "peut_etre": "Peut-être",
+      "non": "Non merci"
+    },
+    "prenom": "Prénom",
+    "nom": "Nom",
+    "email": "E-mail",
+    "emailTypo": "Vouliez-vous dire",
+    "telephone": "Téléphone",
+    "indicatif": "Indicatif",
+    "numero": "Numéro",
+    "numeroPlaceholder": "621 123 456",
+    "numeroWhy": "Pour parler de votre recherche. Jamais de démarchage.",
+    "message": "Un message pour Jason",
+    "alerte": "Prévenez-moi si un bien correspondant entre chez ImmoBuild.",
+    "honeypot": "Ne pas remplir ce champ",
+    "rgpd": "J’accepte qu’ImmoBuild Kohn utilise mes réponses pour me recontacter au sujet de ma recherche ({link}).",
+    "rgpdLink": "politique de confidentialité"
+  },
+  "errors": {
+    "required": "Ce champ est obligatoire.",
+    "invalid": "Cette valeur n’est pas valide.",
+    "range": "Cette valeur est hors limites.",
+    "email": "Cette adresse e-mail n’est pas valide.",
+    "phone": "Ce numéro n’est pas valide. Exemple : 621 123 456.",
+    "rgpd": "Merci de cocher cette case pour recevoir votre analyse.",
+    "communes": "Choisissez au moins une commune dans la liste.",
+    "communes_max": "3 communes au maximum.",
+    "money": "Indiquez un montant en euros, ex. 60 000.",
+    "prixRange": "Indiquez un prix entre 50 000 € et 20 000 000 €.",
+    "summary": "Merci de corriger les champs signalés.",
+    "rate_limit": "Trop d’envois depuis cette connexion. Réessayez dans une heure, ou écrivez-moi à {contact}.",
+    "network": "L’envoi n’a pas abouti. Vérifiez votre connexion et réessayez.",
+    "server": "L’envoi n’a pas abouti. Réessayez dans quelques minutes, ou écrivez-moi à {contact}."
+  },
+  "budget": {
+    "title": "Votre budget pour {prix}",
+    "sub": "Calcul indicatif selon les règles publiques en vigueur au {date}.",
+    "prix": "Prix d’achat",
+    "droits": "Droits d’enregistrement et de transcription (7 %)",
+    "droitsMax": "Bien neuf : 7 % au maximum. Les droits ne portent souvent que sur le terrain et la partie déjà construite.",
+    "bellegen": "Bëllegen Akt (crédit d’impôt)",
+    "bellegenNone": "Pas de Bëllegen Akt pour un investissement locatif.",
+    "bellegenUsed": "Déjà utilisé : il vous reste peut-être un solde. À vérifier avec votre notaire.",
+    "bellegenNsp": "Calculé comme si vous ne l’aviez pas encore utilisé. À vérifier.",
+    "bellegenAnnonce": "{montant} par personne sont annoncés pour les actes depuis le 16/07/2026, mais la loi n’est pas encore votée (état au {date}). Le calcul utilise le montant actuel.",
+    "notaire": "Notaire, acte de vente (TVA comprise)",
+    "fraisPret": "Frais du prêt (acte, inscription, débours)",
+    "fraisPretNote": "Estimation : à confirmer par votre notaire.",
+    "total": "Besoin total",
+    "pret": "Prêt maximal selon la règle CSSF",
+    "pretCapacite": "Prêt retenu (montant que vous m’avez indiqué)",
+    "ltv": {
+      "premier": "Premier achat pour y habiter : jusqu’à 100 % du prix.",
+      "residence": "Résidence principale : jusqu’à 90 % du prix.",
+      "incertain": "Statut de premier acquéreur inconnu : calcul prudent à 90 %. À 100 % si vous êtes premier acquéreur.",
+      "investissement": "Investissement : jusqu’à 80 % du prix."
+    },
+    "ltvNote": "C’est un plafond légal. Votre banque décide et peut demander plus d’apport.",
+    "apportNecessaire": "Apport nécessaire au minimum",
+    "apportDeclare": "Votre apport",
+    "ok": "Votre apport couvre ce qu’il faut au minimum pour ce prix.",
+    "manque": "Pour ce prix, il manque environ {montant} d’apport selon la règle CSSF.",
+    "pistes": "Pistes : un prix un peu plus bas, un achat à deux, les aides de l’État, ou en parler à un courtier.",
+    "prixMax": "Avec votre apport et {pret} d’emprunt, votre prix maximal est d’environ {prix}.",
+    "disclaimer": "Cet outil ne constitue ni un conseil en crédit ni une offre de prêt. Seule votre banque décide.",
+    "next": "Ce que votre budget représente dans vos communes, l’analyse en PDF et un appel de Jason : encore 2 étapes.",
+    "edit": "Modifier mon budget"
+  },
+  "result": {
+    "title": "Merci {prenom}, votre analyse est prête",
+    "sub": "Jason l’a reçue aussi et vous rappelle pour en parler.",
+    "communesTitle": "Ce que {prix} représente",
+    "communesSub": "Surface habitable approximative au prix moyen au m² de la commune.",
+    "m2": "≈ {m2} m²",
+    "perM2": "{prix} / m²",
+    "source": {
+      "notarie": "{n} ventes notariées",
+      "vefa": "{n} ventes notariées de biens neufs",
+      "canton": "médiane des ventes du canton ({n} communes)",
+      "annonce": "{n} annonces : prix demandés, pas prix de vente",
+      "canton_annonce": "médiane des annonces du canton ({n} communes) : prix demandés"
+    },
+    "noData": "Pas assez de données publiques",
+    "typeLabel": {
+      "appartement": "Appartement",
+      "maison": "Maison"
+    },
+    "communesNote": "Source : Observatoire de l’Habitat, du {debut} au {fin}. Moyenne de la commune : selon le quartier, l’état et l’étage, un bien peut coûter nettement plus ou moins.",
+    "checkTitle": "Points à vérifier",
+    "checkPremier": "Statut de premier acquéreur : à confirmer avec votre banque (définition CSSF).",
+    "checkRevenu": "Les banques regardent souvent si la mensualité reste sous environ un tiers à 40 % du revenu net. Ce n’est pas une règle légale : votre banque décide.",
+    "checkAides": "Aides possibles selon vos revenus : prime d’accession, prime d’épargne, subvention d’intérêt, garantie de l’État.",
+    "checkAidesLink": "Voir sur guichet.lu",
+    "nextTitle": "Prochaines étapes",
+    "vendreTitle": "Vous devez d’abord vendre ?",
+    "vendreText": "Estimez votre bien en 2 minutes, puis on organise les deux ventes ensemble.",
+    "vendreCta": "Estimer mon bien",
+    "renoverTitle": "Un bien à rénover ?",
+    "renoverText": "Ça peut être une bonne affaire si on connaît le coût des travaux. Avec ImmoBuild, je vous aide à le chiffrer.",
+    "mandatTitle": "Accompagnement à l’achat",
+    "mandatText": "Négocier le prix, vérifier l’état du bien, relire les conditions avant de signer : on en parle au téléphone.",
+    "courtierTitle": "Votre financement",
+    "courtierText": "Notre courtier partenaire vous contactera, sans engagement.",
+    "agentText": "Je vous rappelle pour parler de votre recherche. Je connais aussi des biens qui ne sont pas encore en ligne.",
+    "cta": "Prendre rendez-vous",
+    "call": "Appeler {name}",
+    "print": "Imprimer ou enregistrer en PDF",
+    "restart": "Recommencer"
+  },
+  "recap": {
+    "title": "Votre recherche en bref",
+    "edit": "Modifier",
+    "editStep": "Modifier : {step}"
+  },
+  "trust": {
+    "line": "Gratuit · sans engagement · sans cookie",
+    "where": "Vos réponses sont envoyées uniquement à ImmoBuild Kohn, par e-mail."
+  }
+}

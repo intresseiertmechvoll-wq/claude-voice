@@ -1,0 +1,7 @@
+{
+  "_note": "Réglages lus uniquement par le serveur (jamais envoyés au navigateur). courtierNom : nom du courtier partenaire dans l'e-mail du lead.",
+  "defaultLeadEmail": "contact@immobuild.lu",
+  "defaultFromEmail": "ImmoBuild Acheteurs <acheteurs@immobuild.lu>",
+  "rateLimitPerHour": 20,
+  "courtierNom": "atHome Finance"
+}
