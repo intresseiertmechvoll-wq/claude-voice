@@ -5,7 +5,7 @@
   "intro": {
     "kicker": "Mietschätzung · ImmoBuild Kohn",
     "title": "Welche Miete für Ihre Immobilie?",
-    "text": "Vier kurze Schritte, dann eine realistische Mietspanne, berechnet aus öffentlichen Daten.",
+    "text": "Vier kurze Schritte, dann eine realistische Mietspanne, berechnet aus öffentlichen Daten. Kostenlos und unverbindlich: Für das Ergebnis hinterlassen Sie am Ende Ihre Kontaktdaten.",
     "badges": {
       "free": "Kostenlos",
       "commitment": "Unverbindlich",
@@ -60,7 +60,7 @@
     },
     "commune": "Gemeinde",
     "communeEmpty": "Keine Gemeinde gefunden.",
-    "communePlaceholder": "z. B. Düdelingen",
+    "communePlaceholder": "z. B. Dudelange",
     "communeQuick": "Zum Beispiel:",
     "communeSelected": "Kanton {deCanton}",
     "communeFewData": "Wenige öffentliche Inserate in {commune}: Die Berechnung stützt sich auf die Mieten des Kantons.",
@@ -172,7 +172,7 @@
     "invalid": "Dieser Wert ist ungültig.",
     "range": "Dieser Wert liegt außerhalb der Grenzen.",
     "email": "Diese E-Mail-Adresse ist ungültig.",
-    "phone": "Diese Nummer ist ungültig. Beispiel: 621 123 456.",
+    "phone": "Diese Nummer scheint ungültig. Bitte geben Sie eine echte Nummer an, zum Beispiel 621 123 456.",
     "rgpd": "Bitte setzen Sie dieses Häkchen, um Ihre Miete zu sehen.",
     "commune": "Wählen Sie eine Gemeinde aus der Liste.",
     "summary": "Bitte korrigieren Sie die markierten Felder.",
@@ -244,7 +244,7 @@
     "statBaux": "Verträge 2024-2025",
     "statBauxSub": "Durchschnittsmiete pro m², {zone}",
     "statReleve": "Verglichene Häuser",
-    "statReleveSub": "erfasste Inserate, {zone}, am {date}",
+    "statReleveSub": "Hausinserate, {zone}, Erhebung {date}",
     "statYou": "Ihre empfohlene Miete",
     "statYouSub": "für {n} m²",
     "compareNote": "Die Berechnung geht von den Mieten im Kanton {deCanton} aus und passt sie an Ihre Wohnfläche an.",
@@ -263,7 +263,9 @@
     "next1": "Ich erhalte Ihre Anfrage und melde mich bei Ihnen.",
     "next2": "Gemeinsam prüfen wir vor Ort die Miete, die gesetzliche Obergrenze und was ich für Sie übernehmen kann.",
     "print": "Drucken oder als PDF speichern",
-    "restart": "Neue Schätzung"
+    "restart": "Neue Schätzung",
+    "factorsMaisonInclus": "Bei Häusern sind Garten, Garage und Zimmerzahl im Vergleichswert bereits enthalten.",
+    "factorsNoneMaison": "Zustand und Energieklasse entsprechen dem Durchschnitt: keine Anpassung."
   },
   "factors": {
     "etat_neuf": "Neubau",
@@ -283,7 +285,7 @@
     "start": "Hallo! Ich bin Jason. Vier Schritte, und Sie erhalten eine Mietspanne.",
     "step2": "Diese Details beeinflussen die Miete.",
     "step3": "So kann ich zum richtigen Zeitpunkt antworten.",
-    "step4": "Ihre Nummer dient nur dem Gespräch über Ihre Immobilie.",
+    "step4": "Unverbindlich: Ihre Angaben verpflichten Sie zu nichts. Ich melde mich nur wegen Ihrer Immobilie.",
     "appartement": "Eine Wohnung, sehr gut!",
     "maison": "Ein Haus, sehr gut!",
     "commune": "{commune}, notiert!",
@@ -298,6 +300,7 @@
     "gestion_oui": "Gern, das ist mein Beruf.",
     "gestion_peut_etre": "Wir sprechen unverbindlich darüber.",
     "gestion_non": "Kein Problem, die Schätzung bleibt kostenlos.",
-    "nonProprio": "Kein Problem, die Schätzung ist trotzdem möglich."
+    "nonProprio": "Kein Problem, die Schätzung ist trotzdem möglich.",
+    "garageMaison": "Notiert. Bei Häusern ist die Garage im Vergleich schon enthalten."
   }
 }

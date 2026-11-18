@@ -5,7 +5,7 @@
   "intro": {
     "kicker": "Rent estimate · ImmoBuild Kohn",
     "title": "What rent for your property?",
-    "text": "Four short steps, then a realistic rent range based on public data.",
+    "text": "Four short steps, then a realistic rent range based on public data. Free and without obligation: to see the result, you leave your contact details at the end.",
     "badges": {
       "free": "Free",
       "commitment": "No obligation",
@@ -172,7 +172,7 @@
     "invalid": "This value is not valid.",
     "range": "This value is out of range.",
     "email": "This email address is not valid.",
-    "phone": "This number is not valid. Example: 621 123 456.",
+    "phone": "This number does not look valid. Please enter a real number, for example 621 123 456.",
     "rgpd": "Please tick this box to see your rent.",
     "commune": "Choose a municipality from the list.",
     "summary": "Please correct the highlighted fields.",
@@ -244,7 +244,7 @@
     "statBaux": "Leases signed in 2024-2025",
     "statBauxSub": "average rent per m², {zone}",
     "statReleve": "Houses compared",
-    "statReleveSub": "listings collected, {zone}, on {date}",
+    "statReleveSub": "house listings, {zone}, collected {date}",
     "statYou": "Your suggested rent",
     "statYouSub": "for {n} m²",
     "compareNote": "The calculation starts from rents in the canton of {deCanton}, then adapts to your living area.",
@@ -263,7 +263,9 @@
     "next1": "I receive your request and get back to you.",
     "next2": "Together we check the rent on site, the legal cap and what I can take care of for you.",
     "print": "Print or save as PDF",
-    "restart": "New estimate"
+    "restart": "New estimate",
+    "factorsMaisonInclus": "For a house, the garden, garage and number of bedrooms are already included in the comparison value.",
+    "factorsNoneMaison": "Condition and energy class match the average: no adjustment."
   },
   "factors": {
     "etat_neuf": "New property",
@@ -283,7 +285,7 @@
     "start": "Hello! I’m Jason. Four steps and you’ll get a rent range.",
     "step2": "These details move the rent.",
     "step3": "This helps me get back to you at the right time.",
-    "step4": "Your number is only used to talk about your property.",
+    "step4": "No obligation: your details commit you to nothing. I will only contact you about your property.",
     "appartement": "An apartment, great!",
     "maison": "A house, great!",
     "commune": "{commune}, noted!",
@@ -298,6 +300,7 @@
     "gestion_oui": "With pleasure, it’s my job.",
     "gestion_peut_etre": "Let’s talk about it, no obligation.",
     "gestion_non": "No problem, the estimate stays free.",
-    "nonProprio": "No problem, you can still get an estimate."
+    "nonProprio": "No problem, you can still get an estimate.",
+    "garageMaison": "Noted. For a house, the garage is already included in the comparison."
   }
 }

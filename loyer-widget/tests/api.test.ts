@@ -172,8 +172,31 @@ describe('Vérification des réponses', () => {
     expect(normalizePhone('+352', '621 123 456')).toBe('+352621123456');
     expect(normalizePhone('+352', '52 12 34')).toBe('+352521234');
     expect(normalizePhone('+352', '721 123 456')).toBe('phone');
-    expect(normalizePhone('+33', '06 12 34 56 78')).toBe('+33612345678');
+    expect(normalizePhone('+33', '06 71 82 93 04')).toBe('+33671829304');
     expect(normalizePhone('+352', '12')).toBe('phone');
+  });
+
+  it('téléphone : les numéros manifestement inventés sont refusés', () => {
+    for (const n of ['00000', '000000', '111111', '621 000 000', '691 111 111', '123456', '12345678', '612 345 678', '987 654', '666 666 666'])
+      expect(normalizePhone('+352', n), n).toBe('phone');
+    for (const [c, n] of [['+33', '06 12 34 56 78'], ['+33', '00 00 00 00 00'], ['+49', '0000000'], ['+32', '0456 00 00 00']])
+      expect(normalizePhone(c, n), `${c} ${n}`).toBe('phone');
+  });
+
+  it('téléphone : mobiles luxembourgeois seulement dans les plages attribuées (ILR), fixes sans 1 initial', () => {
+    for (const p of ['621', '628', '651', '655', '658', '661', '668', '671', '678', '681', '691', '692', '698'])
+      expect(normalizePhone('+352', `${p} 482 731`)).toBe(`+352${p}482731`);
+    expect(normalizePhone('+352', '631 482 731')).toBe('phone');
+    expect(normalizePhone('+352', '601 482 731')).toBe('phone');
+    expect(normalizePhone('+352', '112 112')).toBe('phone');
+    expect(normalizePhone('+352', '26 54 87 12')).toBe('+35226548712');
+    expect(normalizePhone('+352', '691 234 567')).toBe('+352691234567');
+  });
+
+  it('téléphone : longueur contrôlée pour la France et la Belgique', () => {
+    expect(normalizePhone('+33', '06 71 82 93 0')).toBe('phone');
+    expect(normalizePhone('+32', '0471 82 93 04')).toBe('+32471829304');
+    expect(normalizePhone('+32', '04 718 29')).toBe('phone');
   });
 
   it('message : caractères invisibles retirés, séparateurs de ligne Unicode remplacés', () => {

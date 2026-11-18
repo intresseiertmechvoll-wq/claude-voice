@@ -15,6 +15,13 @@ export interface ResultOptions {
   phone?: string;
 }
 
+/** « 2026-11-17 » → « novembre 2026 » / « November 2026 » */
+function formatMonth(iso: string, lang: Lang): string {
+  const d = new Date(iso + 'T12:00:00Z');
+  if (Number.isNaN(d.getTime())) return iso;
+  return new Intl.DateTimeFormat(LOCALES[lang], { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(d);
+}
+
 function formatDate(iso: string, lang: Lang): string {
   const d = new Date(iso + 'T12:00:00Z');
   if (Number.isNaN(d.getTime())) return iso;
@@ -71,7 +78,7 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, o: ResultOptions
   const statBaux =
     r.type === 'appartement'
       ? `<div class="stat"><p class="stat-label">${esc(t('result.statBaux'))}</p><p class="stat-value">${esc(m2(c.bauxRecentsZoneM2, lang))}</p><p class="stat-sub">${esc(t('result.statBauxSub', { zone: zoneName }))}</p></div>`
-      : `<div class="stat"><p class="stat-label">${esc(t('result.statReleve'))}</p><p class="stat-value">${esc(String(c.maisonsReleve ?? 0))}</p><p class="stat-sub">${esc(t('result.statReleveSub', { zone: zoneName, date: formatDate(r.releveDate, lang) }))}</p></div>`;
+      : `<div class="stat"><p class="stat-label">${esc(t('result.statReleve'))}</p><p class="stat-value">${esc(String(c.maisonsReleve ?? 0))}</p><p class="stat-sub">${esc(t('result.statReleveSub', { zone: zoneName, date: formatMonth(r.releveDate, lang) }))}</p></div>`;
   const stats = `<section class="panel" aria-labelledby="stats-title">
     <h3 id="stats-title">${icon('epingle', 'ico ico-sm')}<span>${esc(t('result.compareTitle'))}</span></h3>
     <div class="stats">
@@ -94,8 +101,8 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, o: ResultOptions
               return `<li class="${up ? 'up' : 'down'}"><span class="factor-ico">${icon(up ? 'hausse' : 'baisse', 'ico ico-sm')}</span><span class="factor-label">${esc(factorLabel(f, t))}</span><span class="factor-val">${esc(val)}</span></li>`;
             })
             .join('')}</ul>${r.factorsCapped ? `<p class="small">${esc(t('result.factorsCapped'))}</p>` : ''}`
-        : `<p class="small">${esc(t('result.factorsNone'))}</p>`
-    }
+        : `<p class="small">${esc(t(r.type === 'maison' ? 'result.factorsNoneMaison' : 'result.factorsNone'))}</p>`
+    }${r.type === 'maison' ? `<p class="small">${esc(t('result.factorsMaisonInclus'))}</p>` : ''}
   </section>`;
 
   const rel = r.reliability;

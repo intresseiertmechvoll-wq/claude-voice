@@ -126,13 +126,43 @@ export function normalizePhone(code: unknown, number: unknown): string | ErrorCo
   }
   if (!/^\d+$/.test(digits)) return 'phone';
   if (c === '+352') {
-    // Luxembourg : pas de 0 initial ; mobiles = 9 chiffres commençant par 6 ; fixes = 6 à 8 chiffres
-    if (digits.startsWith('0')) return 'phone';
-    if (digits.startsWith('6')) return /^6\d{8}$/.test(digits) ? c + digits : 'phone';
-    return digits.length >= 6 && digits.length <= 8 ? c + digits : 'phone';
+    // Luxembourg : pas de 0 initial ; fixes = 6 à 8 chiffres (pas de 1 initial : numéros spéciaux) ;
+    // mobiles = 9 chiffres, uniquement dans les plages attribuées (ILR, plan national de numérotation,
+    // plages utilisées depuis octobre 2025) : à compléter si l'ILR en ouvre une nouvelle.
+    if (/^[01]/.test(digits)) return 'phone';
+    if (digits.startsWith('6')) return /^6\d{8}$/.test(digits) && MOBILES_LU.includes(digits.slice(0, 3)) && !numeroFactice(digits) ? c + digits : 'phone';
+    return digits.length >= 6 && digits.length <= 8 && !numeroFactice(digits) ? c + digits : 'phone';
   }
   if (digits.startsWith('0')) digits = digits.slice(1); // 06… en France, 04… en Belgique, 01… en Allemagne
-  return digits.length >= 6 && digits.length <= 13 ? c + digits : 'phone';
+  if (digits.startsWith('0') || numeroFactice(digits)) return 'phone';
+  const [min, max] = LONGUEURS[c] ?? [6, 13];
+  return digits.length >= min && digits.length <= max ? c + digits : 'phone';
+}
+
+/** Plages mobiles luxembourgeoises attribuées (ILR, consulté le 18/11/2026) */
+export const MOBILES_LU = ['621', '628', '651', '655', '658', '661', '668', '671', '678', '681', '691', '692', '698'];
+
+/** Longueur du numéro national sans le 0 initial, par indicatif */
+const LONGUEURS: Record<string, [number, number]> = {
+  '+33': [9, 9], // France
+  '+32': [8, 9], // Belgique
+  '+49': [6, 11], // Allemagne
+  '+31': [9, 9], // Pays-Bas
+  '+351': [9, 9], // Portugal
+  '+41': [9, 9], // Suisse
+  '+34': [9, 9], // Espagne
+  '+39': [6, 11], // Italie
+  '+44': [9, 10], // Royaume-Uni
+};
+
+/**
+ * Numéros manifestement inventés : tous les chiffres identiques (« 000000 »), les 6 derniers identiques
+ * (« 621 000 000 »), ou une suite de chiffres qui se suivent (« 123456 », « 6 12345678 », « 987654 »).
+ */
+export function numeroFactice(digits: string): boolean {
+  if (/^(\d)\1+$/.test(digits) || /(\d)\1{5}$/.test(digits)) return true;
+  const suite = (d: string) => d.length >= 6 && [1, -1].some((pas) => [...d].every((x, i) => i === 0 || Number(x) === (Number(d[i - 1]) + pas + 10) % 10));
+  return suite(digits) || suite(digits.slice(1));
 }
 
 type FieldCheck = (raw: Raw) => unknown;

@@ -337,7 +337,7 @@ function coachReact(name: string, value: unknown) {
   }
   if (name === 'chambres') return v === '0' ? coachSay('coach.studio') : coachDefault();
   if (name === 'meuble') return coachSay(v === 'oui' ? 'coach.meuble' : 'coach.vide');
-  if (name === 'garages' || name === 'parkings') return Number(v) > 0 ? coachSay('coach.garage') : coachDefault();
+  if (name === 'garages' || name === 'parkings') return Number(v) > 0 ? coachSay(state.values.type === 'maison' ? 'coach.garageMaison' : 'coach.garage') : coachDefault();
   if (name === 'gestion') return coachSay(`coach.gestion_${v}`);
   if (name === 'proprietaire') return v === 'non' ? coachSay('coach.nonProprio') : coachDefault();
 }

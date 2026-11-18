@@ -5,7 +5,7 @@
   "intro": {
     "kicker": "Estimation de loyer · ImmoBuild Kohn",
     "title": "Quel loyer pour votre bien ?",
-    "text": "Quatre étapes courtes, puis une fourchette de loyer réaliste, calculée sur des données publiques.",
+    "text": "Quatre étapes courtes, puis une fourchette de loyer réaliste, calculée sur des données publiques. Gratuit et sans engagement : pour voir le résultat, vous laissez vos coordonnées à la fin.",
     "badges": {
       "free": "Gratuit",
       "commitment": "Sans engagement",
@@ -172,7 +172,7 @@
     "invalid": "Cette valeur n’est pas valide.",
     "range": "Cette valeur est hors limites.",
     "email": "Cette adresse e-mail n’est pas valide.",
-    "phone": "Ce numéro n’est pas valide. Exemple : 621 123 456.",
+    "phone": "Ce numéro ne semble pas valide. Indiquez un vrai numéro, par exemple 621 123 456.",
     "rgpd": "Merci de cocher cette case pour voir votre loyer.",
     "commune": "Choisissez une commune dans la liste.",
     "summary": "Merci de corriger les champs signalés.",
@@ -244,7 +244,7 @@
     "statBaux": "Baux signés en 2024-2025",
     "statBauxSub": "loyer moyen au m², {zone}",
     "statReleve": "Maisons comparées",
-    "statReleveSub": "annonces relevées, {zone}, le {date}",
+    "statReleveSub": "annonces de maisons, {zone}, relevé de {date}",
     "statYou": "Votre loyer conseillé",
     "statYouSub": "pour {n} m²",
     "compareNote": "Le calcul part des loyers du canton {deCanton}, puis s’adapte à votre surface.",
@@ -263,7 +263,9 @@
     "next1": "Je reçois votre demande et je vous recontacte.",
     "next2": "Ensemble, on vérifie le loyer sur place, le plafond légal et ce que je peux prendre en charge pour vous.",
     "print": "Imprimer ou enregistrer en PDF",
-    "restart": "Faire une autre estimation"
+    "restart": "Faire une autre estimation",
+    "factorsMaisonInclus": "Pour une maison, le jardin, le garage et le nombre de chambres sont déjà compris dans la valeur de comparaison.",
+    "factorsNoneMaison": "L’état et la classe énergétique correspondent à la moyenne : pas d’ajustement."
   },
   "factors": {
     "etat_neuf": "Bien neuf",
@@ -283,7 +285,7 @@
     "start": "Bonjour ! Je suis Jason. Quatre étapes et je vous donne une fourchette de loyer.",
     "step2": "Ces détails font bouger le loyer.",
     "step3": "Ça m’aide à vous répondre au bon moment.",
-    "step4": "Votre numéro sert uniquement à parler de votre bien.",
+    "step4": "Sans engagement : vos coordonnées ne vous obligent à rien. Je vous contacte uniquement au sujet de votre bien.",
     "appartement": "Un appartement, très bien !",
     "maison": "Une maison, très bien !",
     "commune": "{commune}, c’est noté !",
@@ -298,6 +300,7 @@
     "gestion_oui": "Avec plaisir, c’est mon métier.",
     "gestion_peut_etre": "On en parle sans engagement.",
     "gestion_non": "Pas de souci, l’estimation reste gratuite.",
-    "nonProprio": "Pas de souci, l’estimation reste possible."
+    "nonProprio": "Pas de souci, l’estimation reste possible.",
+    "garageMaison": "Noté. Pour une maison, le garage est déjà compris dans la comparaison."
   }
 }
