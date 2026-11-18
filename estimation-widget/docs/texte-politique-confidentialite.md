@@ -13,14 +13,15 @@
 - votre projet (propriétaire ou non, vendre ou louer, délai) ;
 - vos coordonnées : prénom, nom, e-mail, téléphone et, si vous le souhaitez, un message ;
 - si vous utilisez le simulateur « Et si… ? » : les travaux que vous avez testés et les valeurs recalculées ;
-- des données techniques : langue, page d'origine, date et heure, et votre adresse IP (voir plus bas).
+- des données techniques : langue, page d'origine, date et heure, et votre adresse IP (voir plus bas) ;
+- la provenance de votre visite, si le lien sur lequel vous avez cliqué en contient : paramètres de campagne (« utm_source », « utm_medium », « utm_campaign », « utm_content », « utm_term ») et la simple présence, sans leur valeur, d'un identifiant de clic publicitaire (« gclid », « fbclid », « msclkid »). Ils sont joints à votre demande pour savoir quelle publicité vous a amené, sans cookie ; ils ne sont transmis à aucune régie publicitaire.
 
 Les champs marqués comme obligatoires sont nécessaires pour calculer l'estimation et vous recontacter. Sans eux, l'estimation en ligne n'est pas possible ; vous pouvez toujours nous joindre directement par téléphone ou par e-mail.
 
-**Finalités et base légale.** Ces données servent à calculer une estimation indicative de votre bien et à vous recontacter à son sujet (estimation sur place, vente ou location). Base légale : votre consentement, donné en cochant la case prévue (article 6, paragraphe 1, point a du RGPD). Vous pouvez le retirer à tout moment, sans effet sur ce qui a été fait avant. La limitation des abus (voir plus bas) repose sur notre intérêt légitime à protéger l'outil (article 6, paragraphe 1, point f).
+**Finalités et base légale.** Ces données servent à calculer une estimation indicative de votre bien et à vous recontacter à son sujet (estimation sur place, vente ou location). Base légale : votre consentement, donné en cochant la case prévue (article 6, paragraphe 1, point a du RGPD). Vous pouvez le retirer à tout moment, sans effet sur ce qui a été fait avant. La limitation des abus et la vérification de vos coordonnées (voir plus bas), ainsi que la provenance de votre visite (savoir quelle publicité vous a amené), reposent sur notre intérêt légitime à protéger l'outil, à pouvoir vous recontacter et à mesurer l'efficacité de nos annonces sans traceur (article 6, paragraphe 1, point f).
 
 **Destinataires et prestataires.**
-- **Cloudflare, Inc.** héberge l'outil et effectue le calcul. Vos réponses sont traitées en mémoire puis oubliées ; elles ne sont pas enregistrées dans une base de données.
+- **Cloudflare, Inc.** héberge l'outil et effectue le calcul. Vos réponses sont traitées en mémoire puis oubliées ; elles ne sont pas enregistrées dans une base de données. Pour vérifier que le domaine de votre adresse e-mail existe (par exemple « pt.lu »), notre serveur pose une question DNS au service Cloudflare DNS : seul le nom de domaine est transmis (ni votre adresse complète, ni votre adresse IP), et l'outil n'enregistre rien.
 - **Resend (Plus Five Five, Inc.)** nous transmet votre demande par e-mail. Ses serveurs sont situés aux États-Unis ; ce transfert est encadré par les clauses contractuelles types de la Commission européenne et par le cadre de protection des données UE–États-Unis (Data Privacy Framework).
 - **Microsoft (Microsoft 365)** héberge notre messagerie professionnelle, où la demande est reçue.
 - **Géoportail national du Luxembourg (geoportail.lu, Administration du cadastre et de la topographie)** : si vous indiquez l'adresse de votre bien, notre serveur l'envoie au géoportail de l'État pour vous proposer des adresses et lire des données cartographiques publiques (parcelle cadastrale, bâtiment, zones inondables). Seule l'adresse est transmise, par notre serveur : votre adresse IP et vos autres données ne le sont pas. Ces données publiques ne sont pas enregistrées par l'outil ; elles sont jointes à votre demande.
@@ -28,7 +29,7 @@ Les champs marqués comme obligatoires sont nécessaires pour calculer l'estimat
 
 **Adresse IP et limite d'envois.** Pour empêcher les envois abusifs, l'outil compte les demandes par adresse IP (20 par heure au maximum). Il conserve pour cela une empreinte chiffrée de votre adresse IP, calculée avec une clé secrète, pendant une heure au maximum. Votre adresse IP elle-même n'est pas enregistrée et n'apparaît pas dans l'e-mail.
 
-**Cookies.** L'outil d'estimation n'utilise ni cookie, ni traceur, ni outil de statistiques.
+**Cookies.** L'outil d'estimation n'utilise ni cookie, ni traceur, ni outil de statistiques. Les paramètres de campagne décrits plus haut sont lus dans l'adresse de la page au moment de votre visite, gardés seulement dans la page ouverte et joints à votre demande ; rien n'est déposé sur votre appareil.
 
 **Durée de conservation.** Nous conservons votre demande pendant [durée à compléter, par exemple : 12 mois après notre dernier échange, sauf si une relation commerciale s'ensuit]. Resend conserve un journal technique des e-mails envoyés pendant [durée à vérifier dans le compte Resend].
 

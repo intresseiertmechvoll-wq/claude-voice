@@ -1,5 +1,5 @@
 /**
- * Traitement d'un envoi : vérification → limite par IP → calcul → e-mail → résultat.
+ * Traitement d'un envoi : vérification → limite par IP → domaine de l'e-mail (DNS) → calcul → e-mail → résultat.
  * Le résultat n'est renvoyé qu'une fois les coordonnées vérifiées ET l'e-mail parti.
  */
 import config from '../../config.json';
@@ -9,6 +9,7 @@ import { estimate, type Params } from '../shared/engine';
 import { leadEmail } from '../shared/email';
 import type { AddressDetails } from '../shared/types';
 import { GEO_TIMEOUT_MS, lookupAddress, validLabel } from './adresse';
+import { checkEmailDomain } from './dns';
 import { allowSubmission, refundSubmission, type KVLike } from '../shared/ratelimit';
 import type { Dataset } from '../shared/types';
 import { validateSubmission } from '../shared/validation';
@@ -30,6 +31,8 @@ export interface Deps {
   fetch: typeof fetch;
   /** appels au géoportail (séparés de l'envoi d'e-mail) */
   geoFetch: typeof fetch;
+  /** question DNS sur le domaine de l'e-mail (Cloudflare DNS-over-HTTPS) */
+  dnsFetch: typeof fetch;
   now: () => Date;
   log: (...args: unknown[]) => void;
   data: Dataset;
@@ -39,6 +42,7 @@ export interface Deps {
 export const defaultDeps = (): Deps => ({
   fetch: (...a) => fetch(...a),
   geoFetch: (...a) => fetch(...a),
+  dnsFetch: (...a) => fetch(...a),
   now: () => new Date(),
   log: (...a) => console.log(...a),
   data: data as unknown as Dataset,
@@ -129,6 +133,9 @@ export async function handleEstimate(request: Request, env: Env, deps: Partial<D
   const allowed = await allowSubmission(ip, config.rateLimitPerHour, env.RATE_LIMIT, salt);
   if (!allowed) return json({ ok: false, error: 'rate_limit' }, 429);
 
+  // Le domaine de l'e-mail existe-t-il ? (2 s au plus, en même temps que le géoportail ; panne = accepté)
+  const domainCheck = checkEmailDomain(v.value.contact.email, d.dnsFetch);
+
   const est = estimate(v.value.answers, d.data, d.params);
   // Adresse donnée : données publiques du géoportail pour Jason, relues ici (jamais reprises du navigateur).
   // Au mieux 4 secondes au total ; une panne n'empêche ni le calcul ni l'e-mail.
@@ -140,7 +147,13 @@ export async function handleEstimate(request: Request, env: Env, deps: Partial<D
       return null;
     });
   }
-  const mail = leadEmail(v.value, est, d.now(), geo);
+  const emailDomain = await domainCheck;
+  if (emailDomain === 'nxdomain') {
+    // Erreur de saisie : rien n'est parti, l'essai ne compte pas dans la limite
+    await refundSubmission(ip, env.RATE_LIMIT, salt);
+    return json({ ok: false, error: 'validation', errors: { email: 'email_domain' } }, 400);
+  }
+  const mail = leadEmail(v.value, est, d.now(), geo, { emailDomain });
   const err = await sendMail(env, d, { ...mail, replyTo: v.value.contact.email });
   if (err) {
     // Rien n'est parti : l'essai ne compte pas dans la limite, le visiteur peut réessayer

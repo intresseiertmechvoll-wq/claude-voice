@@ -14,10 +14,11 @@ import {
   POSTE_NOTES,
   type Answers,
   type Lang,
+  type Source,
   type Submission,
 } from './types';
 
-export type ErrorCode = 'required' | 'invalid' | 'range' | 'email' | 'phone' | 'rgpd';
+export type ErrorCode = 'required' | 'invalid' | 'range' | 'email' | 'email_temp' | 'email_domain' | 'phone' | 'phone_fake' | 'rgpd';
 export type Errors = Record<string, ErrorCode>;
 
 /** Données brutes telles qu'envoyées par le formulaire */
@@ -156,6 +157,70 @@ export function normalizePhone(code: unknown, number: unknown): string | ErrorCo
   return digits.length >= 6 && digits.length <= 13 ? c + digits : 'phone';
 }
 
+/**
+ * Numéro manifestement inventé (le format, lui, est déjà vérifié par normalizePhone).
+ * Volontairement prudent : en cas de doute, le numéro est accepté.
+ * - tous les chiffres après les 3 premiers identiques (621 000 000, 621 111 111), ou tout le numéro identique ;
+ * - suite qui monte ou descend d'un en un (123456, 654321) occupant tous les chiffres après les 3 premiers,
+ *   seulement pour les numéros nationaux de 9 ou 10 chiffres : au-delà (mobiles allemands, préfixe de 4 chiffres),
+ *   « les 3 premiers chiffres » ne correspondent plus au préfixe et on ne juge pas ;
+ * - quelques numéros d'exemple bien connus.
+ * Aucune liste de préfixes d'opérateurs.
+ */
+const EXAMPLE_PHONES = new Set(['+352621123456', '+352661123456', '+352691123456', '+33612345678', '+33123456789']);
+
+function isRun(d: string): boolean {
+  if (d.length < 6) return false;
+  const step = Number(d[1]) - Number(d[0]);
+  if (step !== 1 && step !== -1) return false;
+  for (let i = 1; i < d.length; i++) if (Number(d[i]) - Number(d[i - 1]) !== step) return false;
+  return true;
+}
+
+/** e164 : numéro rendu par normalizePhone ; code : l'indicatif choisi (+352…) */
+export function isFakePhone(code: string, e164: string): boolean {
+  if (EXAMPLE_PHONES.has(e164)) return true;
+  const nsn = e164.slice(code.trim().length);
+  const sub = nsn.slice(3);
+  const same = (d: string) => d.length >= 6 && /^(\d)\1+$/.test(d);
+  if (same(nsn) || same(sub)) return true;
+  return (nsn.length === 9 || nsn.length === 10) && isRun(sub);
+}
+
+/** Domaines d'adresses e-mail jetables (liste courte, les plus connus) */
+export const DISPOSABLE_DOMAINS = [
+  'mailinator.com', 'yopmail.com', 'yopmail.fr', 'yopmail.net', 'guerrillamail.com', 'guerrillamail.net', 'sharklasers.com',
+  '10minutemail.com', 'tempmail.com', 'temp-mail.org', 'trashmail.com', 'trashmail.de', 'getnada.com', 'maildrop.cc',
+  'dispostable.com', 'throwawaymail.com', 'fakeinbox.com', 'mailnesia.com', 'jetable.org', 'mohmal.com',
+];
+
+export function isDisposableEmail(email: string): boolean {
+  const domain = email.slice(email.lastIndexOf('@') + 1).toLowerCase();
+  return DISPOSABLE_DOMAINS.some((d) => domain === d || domain.endsWith('.' + d));
+}
+
+/* ---------- Provenance (paramètres de campagne du lien), sans cookie ---------- */
+export const SOURCE_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'] as const;
+export const CLICK_IDS = ['gclid', 'fbclid', 'msclkid'] as const;
+
+/** Garde seulement lettres sans accent, chiffres, espace, _ . - ; 60 caractères au plus */
+export function cleanSourceValue(v: unknown): string {
+  return typeof v === 'string' ? v.replace(/[^A-Za-z0-9 _.-]/g, '').trim().slice(0, 60).trim() : '';
+}
+
+/** Provenance propre : clés connues seulement ; identifiants de clic = simple présence (true), jamais la valeur */
+export function sanitizeSource(raw: unknown): Source {
+  const out: Source = {};
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return out;
+  const r = raw as Record<string, unknown>;
+  for (const k of SOURCE_KEYS) {
+    const v = cleanSourceValue(r[k]);
+    if (v) out[k] = v;
+  }
+  for (const k of CLICK_IDS) if (r[k] === true) out[k] = true;
+  return out;
+}
+
 type FieldCheck = (raw: Raw) => unknown;
 
 const CHECKS: Record<string, FieldCheck> = {
@@ -189,16 +254,20 @@ const CHECKS: Record<string, FieldCheck> = {
   email: (r) => {
     const s = str(r.email);
     if (s === '') return 'required';
-    return s.length <= TEXT_MAX.email && EMAIL_RE.test(s) ? s.toLowerCase() : 'email';
+    if (s.length > TEXT_MAX.email || !EMAIL_RE.test(s)) return 'email';
+    return isDisposableEmail(s) ? 'email_temp' : s.toLowerCase();
   },
   indicatif: (r) => (/^\+[1-9]\d{0,3}$/.test(str(r.indicatif)) ? str(r.indicatif) : 'phone'),
-  numero: (r) => normalizePhone(r.indicatif, r.numero),
+  numero: (r) => {
+    const p = normalizePhone(r.indicatif, r.numero);
+    return p.startsWith('+') && isFakePhone(str(r.indicatif), p) ? 'phone_fake' : p;
+  },
   message: (r) => optText(r.message, TEXT_MAX.message, true),
   rgpd: (r) => (r.rgpd === true || r.rgpd === 'on' ? true : 'rgpd'),
 };
 for (const p of POSTES_MAISON) CHECKS[`poste_${p}`] = (r) => oneOf(r[`poste_${p}`], POSTE_NOTES);
 
-const ERROR_CODES = new Set<unknown>(['required', 'invalid', 'range', 'email', 'phone', 'rgpd']);
+const ERROR_CODES = new Set<unknown>(['required', 'invalid', 'range', 'email', 'email_temp', 'email_domain', 'phone', 'phone_fake', 'rgpd']);
 const isError = (v: unknown): v is ErrorCode => typeof v === 'string' && ERROR_CODES.has(v);
 
 /** Vérifie une liste de champs. Renvoie les valeurs propres et les erreurs. */
@@ -247,6 +316,7 @@ export function validateSubmission(body: unknown): ValidationResult {
     value: {
       lang,
       page: safePage,
+      source: sanitizeSource(b.source),
       answers: {
         type: v.type as Answers['type'],
         commune: v.commune as string,

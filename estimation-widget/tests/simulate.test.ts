@@ -33,7 +33,7 @@ describe('Ticket signé', () => {
     expect(await verifyTicket(r.simToken, 'autre-secret')).toBeNull();
     const [b, s] = r.simToken.split('.');
     expect(await verifyTicket(`${b}x.${s}`, 're_test')).toBeNull();
-    const old = await signTicket({ v: 1, exp: 1000, lang: 'fr', a: apartment(), c: { prenom: 'A', nom: 'B', email: 'a@b.lu', telephone: '+352621123456' } }, 're_test');
+    const old = await signTicket({ v: 1, exp: 1000, lang: 'fr', a: apartment(), c: { prenom: 'A', nom: 'B', email: 'a@b.lu', telephone: '+352621483920' } }, 're_test');
     expect(await verifyTicket(old, 're_test')).toBeNull();
   });
 

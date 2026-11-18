@@ -229,6 +229,48 @@ export default function EstimationWidget({ lang = 'fr' }: { lang?: 'fr' | 'de' |
 
 ---
 
+## Campagnes publicitaires
+
+Tu peux savoir quelle annonce a amené chaque demande, **sans cookie ni traceur** : l'outil lit les paramètres du lien sur lequel le visiteur a cliqué et les joint au lead.
+
+**Construire l'adresse de l'annonce.** Fais pointer l'annonce directement sur la page qui contient l'outil (si le visiteur passe d'abord par une autre page de ton site, les paramètres sont perdus : il n'y a pas de cookie pour s'en souvenir). Ajoute :
+
+- `utm_source` (google, facebook…), `utm_medium` (cpc, paid…), `utm_campaign` (nom de la campagne), et si tu veux `utm_content` (quelle annonce) et `utm_term` (mot-clé) ;
+- `commune=` et `type=appartement` ou `type=maison` pour présélectionner l'étape 1 (une annonce par commune). La commune est reconnue comme dans la recherche (accents, autres noms : `Düdelingen` → Dudelange) ; une valeur inconnue est simplement ignorée.
+
+Valeurs : lettres sans accent, chiffres, espace, `_`, `.` et `-`, 60 caractères au plus (le reste est retiré). Préfère `dudelange-maisons` à `Dudelange – Maisons été`.
+
+Exemples :
+
+```text
+Google Ads (champ « URL finale » + « Suffixe de l'URL finale ») :
+https://immobuild.lu/estimation/?commune=Dudelange&type=maison&utm_source=google&utm_medium=cpc&utm_campaign=dudelange-maisons&utm_content=annonce-a
+
+Facebook / Instagram (champ « Paramètres d'URL » de la publicité) :
+https://immobuild.lu/estimation/?commune=Bettembourg&type=appartement&utm_source=facebook&utm_medium=paid&utm_campaign=bettembourg-appartements&utm_content=video-1
+
+Sans ton site, directement sur l'outil :
+https://estimatioun.lu/?lang=de&commune=Dudelange&type=maison&utm_source=google&utm_medium=cpc&utm_campaign=duedelingen-haeuser
+```
+
+(`/estimation/` : remplace par l'adresse réelle de ta page qui contient l'outil.) Google ajoute tout seul `gclid` (marquage automatique), Facebook `fbclid`, Microsoft Ads `msclkid` : l'outil note seulement leur **présence**, jamais leur valeur. Quand l'outil est intégré à ton site, `embed.js` transmet tout cela de ta page à l'outil ; changer de langue dans l'outil le garde aussi.
+
+**Ce que tu vois dans l'e-mail du lead.** En haut, deux lignes :
+
+```text
+Qualité du contact : Téléphone plausible ✓ · domaine de l’e-mail vérifié ✓
+Provenance : Google Ads (gclid présent) · source : google / cpc · campagne : dudelange-maisons
+```
+
+Puis une section « Provenance » avec chaque paramètre. Sans paramètre : « Directe / inconnue ». Ces informations ne sont gardées nulle part ailleurs que dans l'e-mail.
+
+**Contrôle des contacts** (pour moins de faux leads, sans bloquer les vrais) :
+
+- **Téléphone** : en plus du format, refus des numéros manifestement inventés : tous les chiffres après les 3 premiers identiques (621 000 000, 621 111 111), suite 123456 / 654321 qui occupe tout le numéro après les 3 premiers chiffres (numéros nationaux de 9 ou 10 chiffres seulement), quelques numéros d'exemple connus. Message : « Ce numéro semble incomplet ou fictif. Jason vous rappellera à ce numéro. » Pas de liste de préfixes d'opérateurs.
+- **E-mail** : refus d'une courte liste de domaines jetables (yopmail, mailinator… dans `src/shared/validation.ts`) ; puis le serveur demande à Cloudflare DNS si le domaine a un serveur de messagerie (MX, sinon A). Refus seulement si le DNS répond clairement « ce domaine n'existe pas » ; panne ou plus de 2 secondes : accepté, et l'e-mail du lead indique « non vérifiable ». Un envoi refusé ne compte pas dans la limite de 20 par heure.
+
+**Limites (choix voulu).** Il n'y a ni pixel Meta, ni balise Google, ni suivi de conversion : Google Ads et Meta ne savent pas qu'une annonce a produit un lead, et leurs algorithmes ne peuvent pas s'optimiser là-dessus. Tu compares toi-même, à partir des e-mails, le nombre de leads par campagne et ce que chaque campagne coûte. C'est un choix de confidentialité (pas de bandeau cookies, rien chez les régies). Un envoi des conversions côté serveur (import de conversions hors ligne Google Ads, API Conversions de Meta) serait une décision à part : il faudrait garder la valeur du `gclid` / `fbclid`, l'annoncer dans la politique de confidentialité et revoir la base légale. Autre limite : Safari en navigation privée et certaines applications retirent `gclid` / `fbclid` des liens ; les `utm_*` restent, mets-les donc toujours.
+
 ## Adresse et cartes officielles
 
 L'adresse est **facultative** (étape 1). Dès 4 caractères, l'outil propose des adresses ; le visiteur peut aussi taper librement sans choisir.
@@ -364,18 +406,20 @@ Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'a
 
 - Vérification de tous les champs sur le serveur (le navigateur ne fait qu'aider à la saisie).
 - Champ caché anti-robot (honeypot) : s'il est rempli, rien n'est calculé ni envoyé.
+- Numéros fictifs, e-mails jetables et domaines inexistants refusés, en acceptant en cas de doute (voir « Campagnes publicitaires » → Contrôle des contacts).
 - Au plus 20 envois par heure pour une même IP (3.4, réglable dans `config.json` → `rateLimitPerHour`). Pourquoi 20 et pas moins : sur les réseaux mobiles, beaucoup de clients peuvent partager la même adresse IP ; mieux vaut quelques e-mails de robot en plus qu'un vrai lead bloqué. La vraie protection contre les robots, ce sont le champ caché et le contrôle d'origine.
 - Le formulaire n'est accepté que depuis la page de l'outil elle-même : l'en-tête `Origin` est obligatoire et doit être celui de l'outil (une requête sans `Origin` est refusée). Limite honnête : un robot peut imiter cet en-tête ; le contrôle bloque surtout les envois depuis d'autres sites et les scripts simples.
 - HTTPS imposé au navigateur (en-tête `Strict-Transport-Security`, 1 an) ; `www.estimatioun.lu` redirige vers `estimatioun.lu`.
 - Le résultat n'est renvoyé qu'après des coordonnées valides **et** l'envoi réussi de l'e-mail. Si Resend échoue ou ne répond pas en 10 secondes, le visiteur voit un message d'erreur avec ton adresse e-mail et peut réessayer (l'essai raté ne compte pas dans la limite) : le lead n'est jamais perdu en silence.
 - L'adresse, le nom et les autres champs d'une ligne ne peuvent pas contenir de retour à la ligne ni de caractères invisibles : impossible d'imiter une rubrique de l'e-mail. Le message libre est mis en retrait.
 - Le géoportail ne reçoit que l'adresse, envoyée par le serveur (jamais l'IP ni les coordonnées du visiteur) ; ses réponses sont nettoyées (une ligne, sans caractère de contrôle) avant d'entrer dans l'e-mail.
+- La provenance (`utm_*`, présence d'un identifiant de clic) est nettoyée sur le serveur (clés connues seulement, `A-Z a-z 0-9 espace _ . -`, 60 caractères) avant d'entrer dans l'e-mail.
 - Aucune donnée n'est stockée ailleurs que dans l'e-mail (et, si KV est activé, une empreinte d'IP effacée après 1 heure).
 - Détails pour ta politique de confidentialité : `PRIVACY.md`.
 
 ## Tests
 
-`npm test` lance 63 tests, dont ceux demandés :
+`npm test` lance 153 tests, dont ceux demandés :
 
 | Test | Fichier |
 | --- | --- |
@@ -391,6 +435,7 @@ Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'a
 | Textes essentiels protégés (jardin et cave privatifs, ares, bornes de la jauge, ventes notariées, destination des données) | `tests/texts-essentiels.test.ts` |
 | Simulateur : ticket signé obligatoire, valeurs interdites refusées, aucun e-mail par essai, e-mail de complément recalculé côté serveur | `tests/simulate.test.ts` |
 | Adresse : propositions et détails du géoportail (réponses réelles enregistrées), bonne parcelle parmi les voisines, bâtiments accolés, zones inondables (point dans le polygone), pannes et lenteurs → données vides mais estimation envoyée, section de l'e-mail | `tests/adresse.test.ts`, `tests/geo.test.ts`, `tests/adresse-vue.test.ts` |
+| Contrôle des contacts et provenance : numéros fictifs refusés et numéros réels acceptés (dont +49 1512 3456789), e-mails jetables, DNS simulé (MX, A, NXDOMAIN, panne, délai), limite non consommée, `utm_*` nettoyés, `embed.js`, préremplissage `?commune=&type=`, section « Provenance » | `tests/qualite-provenance.test.ts` |
 | Revue par 6 agents (11/11/2026) : un test par bug confirmé (Resend en panne, rejeu du ticket, saisie tolérante, autres noms de communes, fourchette des petits logements, garages plafonnés, prix au m² cohérent, poids réels dans l'e-mail) | `tests/revue-agents.test.ts` |
 
 `npm run screenshots` (serveur local lancé) parcourt tout le questionnaire comme un visiteur, prend les captures et lance un audit d'accessibilité axe-core (WCAG 2.1 AA) sur chaque écran.

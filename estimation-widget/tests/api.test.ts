@@ -38,7 +38,7 @@ describe('API /api/estimate', () => {
     expect(sent.to).toEqual(['contact@immobuild.lu']);
     expect(sent.reply_to).toBe('marie.muller@example.lu');
     expect(sent.subject).toBe('Nouveau lead estimation – Dudelange – Appartement – Dans les 3 mois');
-    expect(sent.text).toContain('+352 621 123 456');
+    expect(sent.text).toContain('+352 621 483 920');
     expect(sent.text).toContain('Détail du calcul');
   });
 
@@ -137,7 +137,7 @@ describe('Vérification des réponses', () => {
 
   it('Téléphone : +352 par défaut, mobile et fixe luxembourgeois, et numéros étrangers', async () => {
     const { normalizePhone } = await import('../src/shared/validation');
-    expect(normalizePhone('+352', '621 123 456')).toBe('+352621123456');
+    expect(normalizePhone('+352', '621 483 920')).toBe('+352621483920');
     expect(normalizePhone('+352', '52 12 34')).toBe('+352521234');
     expect(normalizePhone('+352', '721 123 456')).toBe('phone');
     expect(normalizePhone('+33', '06 12 34 56 78')).toBe('+33612345678');

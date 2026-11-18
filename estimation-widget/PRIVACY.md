@@ -7,6 +7,8 @@ Ce document décrit ce que fait l'outil, pour t'aider à mettre à jour ta polit
 - Pas de cookie, pas de traceur, pas de statistiques de visite, pas de police chargée depuis Google.
 - Pas de base de données : les réponses partent par e-mail, puis l'outil ne garde rien.
 - Deux prestataires : **Cloudflare** (hébergement de l'outil et calcul) et **Resend** (envoi de l'e-mail).
+- Si le lien qui amène le visiteur contient des paramètres de campagne (`utm_*`) ou un identifiant de clic publicitaire (`gclid`, `fbclid`, `msclkid`), l'outil les joint à la demande pour savoir quelle annonce l'a amené : les `utm_*` nettoyés, et pour les identifiants de clic **seulement leur présence** (jamais leur valeur). Pas de cookie, rien d'autre n'est gardé.
+- Le domaine de l'adresse e-mail (la partie après « @ ») est vérifié par une question DNS à **Cloudflare DNS**, envoyée par notre serveur ; rien n'est enregistré.
 - Si le visiteur donne son adresse (facultatif), notre serveur la transmet au **géoportail de l'État luxembourgeois** (geoportail.lu, Administration du cadastre et de la topographie) pour lire des cartes publiques. Son adresse IP n'est pas transmise ; rien n'est enregistré.
 
 ## 1. Données collectées
@@ -20,6 +22,8 @@ Ce document décrit ce que fait l'outil, pour t'aider à mettre à jour ta polit
 | Message | non | formulaire |
 | Accord (case cochée) | oui | formulaire |
 | Langue de l'outil, page du site d'où vient la demande (adresse sans paramètres), date et heure | automatique | navigateur / serveur |
+| Provenance : paramètres de campagne du lien (`utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, 60 caractères au plus, lettres sans accent, chiffres, espace, `_ . -`) et présence oui/non d'un identifiant de clic publicitaire (`gclid` Google, `fbclid` Facebook/Instagram, `msclkid` Microsoft), **sans sa valeur** | automatique, s'ils sont dans le lien | adresse de la page (de l'outil ou de ton site qui l'intègre) |
+| Résultat de la vérification du domaine de l'e-mail (vérifié / non vérifiable) | automatique | serveur |
 | Adresse IP | automatique | technique, voir point 4 |
 
 L'estimation calculée (3 valeurs et détail du calcul) est ajoutée à l'e-mail. Le résultat affiché au visiteur (chiffres de sa commune, facteurs, fiabilité) ne contient que des statistiques publiques et ses propres réponses. Le bouton « Imprimer ou enregistrer en PDF » fonctionne dans son navigateur : rien n'est envoyé.
@@ -28,9 +32,10 @@ L'estimation calculée (3 valeurs et détail du calcul) est ajoutée à l'e-mail
 
 1. Calculer et afficher une estimation indicative du bien.
 2. Transmettre la demande à ImmoBuild Kohn pour recontacter la personne au sujet de son bien (estimation sur place, mise en vente ou en location).
-3. Protéger l'outil contre les abus (anti-robot, limite de 20 envois par heure et par adresse IP).
+3. Protéger l'outil contre les abus (anti-robot, limite de 20 envois par heure et par adresse IP) et éviter les faux contacts (numéro manifestement inventé, adresse e-mail jetable ou domaine inexistant).
+4. Savoir quelle publicité ou quel lien a amené la demande (provenance), pour juger l'efficacité des annonces.
 
-Base légale proposée : le **consentement** (case à cocher obligatoire, non cochée au départ) pour 1 et 2 ; l'**intérêt légitime** (sécurité) pour 3. **À valider** avec ta politique actuelle.
+Base légale proposée : le **consentement** (case à cocher obligatoire, non cochée au départ) pour 1 et 2 ; l'**intérêt légitime** (sécurité, qualité des contacts, mesure de l'efficacité des annonces sans traceur) pour 3 et 4. **À valider** avec ta politique actuelle.
 
 ## 3. Où vont les données
 
@@ -58,6 +63,12 @@ Base légale proposée : le **consentement** (case à cocher obligatoire, non co
 - Seule l'adresse (ou le début tapé) part vers le géoportail, **depuis notre serveur** : ni l'adresse IP du visiteur, ni ses coordonnées, ni ses autres réponses ne sont transmises. Rien n'est enregistré par l'outil (un compteur en mémoire limite les recherches par adresse IP, comme au point 4).
 - L'adresse et les données trouvées figurent dans l'e-mail du lead (section « Adresse sur les cartes officielles »). Sans adresse, rien n'est envoyé au géoportail.
 - Le géoportail est un service public : **à vérifier** s'il tient des journaux techniques des requêtes reçues (ils contiendraient l'adresse recherchée et l'adresse IP de Cloudflare, pas celle du visiteur).
+
+## 3 quater. Provenance et vérification de l'adresse e-mail
+
+- **Provenance.** À l'ouverture de l'outil, le navigateur lit l'adresse de la page : paramètres `utm_*` et présence de `gclid` / `fbclid` / `msclkid`. Quand l'outil est intégré à ton site, `embed.js` lit l'adresse de **ta** page et transmet ces mêmes informations à l'outil (identifiants de clic : seulement « présent », jamais la valeur). Elles restent en mémoire dans la page ouverte (pas de cookie, pas de stockage dans le navigateur), partent avec la demande et figurent dans l'e-mail du lead (section « Provenance »). Elles ne sont envoyées ni à Google, ni à Meta, ni à Microsoft : il n'y a aucun pixel ni suivi de conversion.
+- **Vérification du domaine de l'e-mail.** Avant d'envoyer la demande, notre serveur demande à Cloudflare DNS (`cloudflare-dns.com`, DNS-over-HTTPS) si le domaine de l'adresse (ex. `pt.lu`) a un serveur de messagerie. Seul le nom de domaine part, depuis notre serveur : ni l'adresse e-mail complète, ni l'IP du visiteur. Rien n'est enregistré par l'outil ; le résultat (vérifié / non vérifiable) figure dans l'e-mail du lead. Si le domaine n'existe pas, le visiteur est invité à corriger son adresse. En cas de panne ou de lenteur (plus de 2 secondes), la demande est acceptée.
+- **Adresses jetables et numéros fictifs.** Une courte liste de domaines d'e-mails jetables connus (yopmail, mailinator…) et des règles simples sur le numéro (tous les chiffres identiques, suite 123456 ou 654321, numéro d'exemple) sont vérifiées dans l'outil et sur le serveur, sans rien envoyer à personne.
 
 ## 4. Adresse IP et limite d'envois
 

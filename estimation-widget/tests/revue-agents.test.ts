@@ -29,11 +29,11 @@ describe('Saisie plus tolérante, sans laisser passer de mauvaises données', ()
   });
 
   it('Téléphone : indicatif recopié accepté, numéros incomplets refusés', () => {
-    expect(normalizePhone('+352', '+352 621 123 456')).toBe('+352621123456');
-    expect(normalizePhone('+352', '00352 621 123 456')).toBe('+352621123456');
-    expect(normalizePhone('+352', '352621123456')).toBe('+352621123456');
+    expect(normalizePhone('+352', '+352 621 483 920')).toBe('+352621483920');
+    expect(normalizePhone('+352', '00352 621 483 920')).toBe('+352621483920');
+    expect(normalizePhone('+352', '352621483920')).toBe('+352621483920');
     expect(normalizePhone('+352', '621 123 45')).toBe('phone'); // mobile à 8 chiffres
-    expect(normalizePhone('+352', '0621 123 456')).toBe('phone'); // pas de 0 au Luxembourg
+    expect(normalizePhone('+352', '0621 483 920')).toBe('phone'); // pas de 0 au Luxembourg
     expect(normalizePhone('+352', '26 12 34 56')).toBe('+35226123456'); // fixe
     expect(normalizePhone('+33', '+33 6 12 34 56 78')).toBe('+33612345678');
   });

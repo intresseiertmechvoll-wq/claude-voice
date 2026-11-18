@@ -10,6 +10,7 @@ import { setupAddressCombobox } from './ui/address';
 import { resolveCommune, setupCombobox } from './ui/combobox';
 import { esc } from './ui/html';
 import { icon } from './ui/icons';
+import { landingQuery, readLanding } from './ui/landing';
 import { renderFact } from './ui/facts';
 import { formatEuro } from './ui/format';
 import { errorKey, noDataNote, recapItems, renderStep, STEP_ICONS, type Values } from './ui/steps';
@@ -32,6 +33,8 @@ const page = (() => {
   const src = params.get('src') ?? '';
   return /^https?:\/\/[^\s<>"]{1,490}$/.test(src) ? src : '';
 })();
+/** Lien d'arrivée (annonces) : provenance (utm_*, présence d'un identifiant de clic) et préremplissage de l'étape 1, en mémoire seulement */
+const landing = readLanding(params, COMMUNES.map((c) => c.name));
 const contactUrl = config.contactUrl[lang];
 const privacyUrl = config.privacyUrl[lang];
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -52,7 +55,7 @@ const state: {
   direction: 'next' | 'back';
   /** après « Modifier » depuis le résumé : bouton pour y revenir directement */
   returnTo: number | null;
-} = { step: 1, values: { ...DEFAULTS }, errors: {}, sending: false, serverError: null, result: null, direction: 'next', returnTo: null };
+} = { step: 1, values: { ...DEFAULTS, ...landing.prefill }, errors: {}, sending: false, serverError: null, result: null, direction: 'next', returnTo: null };
 
 const app = document.getElementById('app')!;
 
@@ -134,8 +137,10 @@ function readContactFields() {
 function languageLinks(): string {
   const names = { fr: 'Français', de: 'Deutsch', en: 'English' } as const;
   return `<nav class="language-links" aria-label="${esc(t('intro.language'))}">${(['fr', 'de', 'en'] as const).map((code) => {
+    // On garde la page d'origine, la provenance et le préremplissage en changeant de langue
     const query = new URLSearchParams({ lang: code });
     if (page) query.set('src', page);
+    landingQuery(landing, query);
     return `<a href="?${esc(query.toString())}" hreflang="${code}" lang="${code}"${lang === code ? ' aria-current="true"' : ''}>${names[code]}</a>`;
   }).join('')}</nav>`;
 }
@@ -790,7 +795,7 @@ async function send() {
   const request: Promise<Outcome> = fetch('/api/estimate', {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ lang, page, website, answers, contact }),
+    body: JSON.stringify({ lang, page, website, answers, contact, source: landing.source }),
     signal: timeoutSignal(20_000),
   })
     .then(async (res) => ({ res, json: (await res.json().catch(() => ({}))) as ApiJson }))

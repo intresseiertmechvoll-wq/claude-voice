@@ -64,7 +64,7 @@ export function body(over: { answers?: Record<string, unknown>; contact?: Record
       ...over.answers,
     },
     contact: {
-      prenom: 'Marie', nom: 'Muller', email: 'marie.muller@example.lu', indicatif: '+352', numero: '621 123 456', message: '', rgpd: true,
+      prenom: 'Marie', nom: 'Muller', email: 'marie.muller@example.lu', indicatif: '+352', numero: '621 483 920', message: '', rgpd: true,
       ...over.contact,
     },
   };

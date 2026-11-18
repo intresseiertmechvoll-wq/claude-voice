@@ -1,6 +1,6 @@
 /** E-mail du lead envoyé à ImmoBuild Kohn (toujours en français) */
 import type { Estimate } from './engine';
-import type { AddressDetails, Submission } from './types';
+import type { AddressDetails, Source, Submission } from './types';
 import { POSTES_APPARTEMENT, POSTES_MAISON } from './types';
 
 const L = {
@@ -44,7 +44,7 @@ const eur = (v: number | null) => (v === null ? '—' : new Intl.NumberFormat('f
 const pct = (v: number) => `${v > 0 ? '+' : ''}${(v * 100).toFixed(1).replace('.', ',')} %`;
 const yn = (v: boolean | null) => (v === null ? '—' : v ? 'Oui' : 'Non');
 
-/** « +352621123456 » → « +352 621 123 456 » */
+/** « +352621483920 » → « +352 621 483 920 » */
 export function formatPhone(p: string): string {
   const m = p.match(/^(\+352|\+\d{2})(\d+)$/);
   if (!m) return p;
@@ -71,6 +71,57 @@ export function leadSubject(s: Submission): string {
 }
 
 type Section = { title: string; rows: [string, string][] };
+
+/** Résultats des contrôles faits par le serveur (absents dans les anciens appels) */
+export interface LeadChecks {
+  /** vérification DNS du domaine de l'e-mail */
+  emailDomain?: 'verified' | 'no_mail' | 'nxdomain' | 'unknown';
+}
+
+const CLICK_PLATFORMS = { gclid: 'Google Ads', fbclid: 'Facebook / Instagram', msclkid: 'Microsoft Ads (Bing)' } as const;
+
+/** « Google Ads (gclid présent) · campagne : dudelange-maisons », ou « Directe / inconnue » */
+export function sourceSummary(src: Source | undefined): string {
+  const s = src ?? {};
+  const parts: string[] = [];
+  const clicks = (Object.keys(CLICK_PLATFORMS) as (keyof typeof CLICK_PLATFORMS)[]).filter((k) => s[k]);
+  for (const k of clicks) parts.push(`${CLICK_PLATFORMS[k]} (${k} présent)`);
+  const origin = [s.utm_source, s.utm_medium].filter(Boolean).join(' / ');
+  if (origin) parts.push(clicks.length ? `source : ${origin}` : origin);
+  if (s.utm_campaign) parts.push(`campagne : ${s.utm_campaign}`);
+  return parts.length ? parts.join(' · ') : 'Directe / inconnue';
+}
+
+export function sourceSection(src: Source | undefined): Section {
+  const s = src ?? {};
+  const rows: [string, string][] = [['Résumé', sourceSummary(s)]];
+  const labels: [keyof Source, string][] = [
+    ['utm_source', 'Source (utm_source)'],
+    ['utm_medium', 'Support (utm_medium)'],
+    ['utm_campaign', 'Campagne (utm_campaign)'],
+    ['utm_content', 'Annonce (utm_content)'],
+    ['utm_term', 'Mot-clé (utm_term)'],
+  ];
+  for (const [k, label] of labels) if (typeof s[k] === 'string') rows.push([label, s[k] as string]);
+  const clicks = (Object.keys(CLICK_PLATFORMS) as (keyof typeof CLICK_PLATFORMS)[]).filter((k) => s[k]);
+  if (clicks.length) rows.push(['Identifiant de clic publicitaire', `${clicks.join(', ')} présent (valeur non transmise)`]);
+  rows.push(['Comment', 'paramètres du lien sur lequel le visiteur a cliqué ; aucun cookie, rien d’autre n’est gardé']);
+  return { title: 'Provenance', rows };
+}
+
+/** « Téléphone plausible ✓ · domaine de l’e-mail vérifié ✓ » */
+export function qualityLine(checks: LeadChecks | undefined): string {
+  const d = checks?.emailDomain;
+  const mail =
+    d === 'verified'
+      ? 'domaine de l’e-mail vérifié ✓'
+      : d === 'no_mail'
+        ? 'domaine de l’e-mail sans serveur de messagerie (à vérifier)'
+        : d === 'unknown'
+          ? 'domaine de l’e-mail non vérifiable (délai dépassé ou DNS injoignable)'
+          : 'domaine de l’e-mail —';
+  return `Téléphone plausible ✓ · ${mail}`;
+}
 
 const m2 = (v: number) => `${new Intl.NumberFormat('fr-LU', { maximumFractionDigits: 2 }).format(v).replace(/[\u00a0\u202f]/g, ' ')} m²`;
 const flood = (z: { river: string; depth: string } | null) => (z ? `oui – ${z.river || 'cours d’eau non précisé'}${z.depth ? `, hauteur d’eau ${z.depth}` : ''}` : 'non (hors zone cartographiée)');
@@ -100,7 +151,7 @@ export function addressSection(s: Submission, geo: AddressDetails | null): Secti
   return { title, rows };
 }
 
-export function leadSections(s: Submission, e: Estimate, date: Date, geo?: AddressDetails | null): Section[] {
+export function leadSections(s: Submission, e: Estimate, date: Date, geo?: AddressDetails | null, checks?: LeadChecks): Section[] {
   const a = s.answers;
   const c = s.contact;
   const r = e.result;
@@ -118,6 +169,8 @@ export function leadSections(s: Submission, e: Estimate, date: Date, geo?: Addre
         ...(r.status !== 'ok' ? ([['À faire', 'estimation personnalisée promise au visiteur']] as [string, string][]) : []),
         ['Rappeler', `${c.prenom} ${c.nom} – ${formatPhone(c.telephone)}`],
         ['E-mail', c.email],
+        ['Qualité du contact', qualityLine(checks)],
+        ['Provenance', sourceSummary(s.source)],
         ['Langue', L.lang[s.lang]],
         ...(c.message ? ([['Message', c.message]] as [string, string][]) : []),
       ],
@@ -215,6 +268,7 @@ export function leadSections(s: Submission, e: Estimate, date: Date, geo?: Addre
     });
   }
 
+  sections.push(sourceSection(s.source));
   sections.push({
     title: 'Contexte',
     rows: [
@@ -228,8 +282,8 @@ export function leadSections(s: Submission, e: Estimate, date: Date, geo?: Addre
 }
 
 /** geo : absent si aucune adresse n'a été donnée ; null si le géoportail n'a pas répondu */
-export function leadEmail(s: Submission, e: Estimate, date = new Date(), geo?: AddressDetails | null): { subject: string; html: string; text: string } {
-  const sections = leadSections(s, e, date, geo);
+export function leadEmail(s: Submission, e: Estimate, date = new Date(), geo?: AddressDetails | null, checks?: LeadChecks): { subject: string; html: string; text: string } {
+  const sections = leadSections(s, e, date, geo, checks);
   const text = sections
     .map((sec) => `== ${sec.title} ==\n` + sec.rows.map(([k, v]) => `${k} : ${v.replace(/\n/g, '\n    | ')}`).join('\n'))
     .join('\n\n');

@@ -49,9 +49,21 @@ export interface Contact {
   prenom: string;
   nom: string;
   email: string;
-  /** format international, ex. +352621123456 */
+  /** format international, ex. +352621483920 */
   telephone: string;
   message: string;
+}
+
+/** Provenance de la demande, tirée du lien (paramètres de campagne). Identifiants de clic : présence seulement. */
+export interface Source {
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_content?: string;
+  utm_term?: string;
+  gclid?: true;
+  fbclid?: true;
+  msclkid?: true;
 }
 
 export interface Submission {
@@ -59,6 +71,8 @@ export interface Submission {
   contact: Contact;
   lang: Lang;
   page: string;
+  /** absente = provenance inconnue */
+  source?: Source;
 }
 
 export interface CommuneData {

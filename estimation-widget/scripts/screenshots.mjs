@@ -113,11 +113,18 @@ await next();
 await page.locator('#prenom').fill('Marie');
 await page.locator('#nom').fill('Muller');
 await page.locator('#email').fill('marie.muller@example.lu');
-await page.locator('#numero').fill('621 123 456');
+await page.locator('#numero').fill('621 483 920');
 await page.getByRole('button', { name: 'Voir mon estimation' }).click();
 await page.locator('.alert').waitFor();
 await shot('6a-coordonnees-sans-case-rgpd-refuse');
 await page.locator('label.check', { hasText: 'J’accepte' }).click();
+// Numéro manifestement inventé : message aimable, rien n'est envoyé
+await page.locator('#numero').fill('621 111 111');
+await page.getByRole('button', { name: 'Voir mon estimation' }).click();
+await page.locator('#numero-error:not([hidden])').waitFor();
+await shot('6c-numero-fictif');
+await page.locator('#numero').fill('621 483 920');
+await page.locator('#prenom').focus();
 await shot('6b-les-coordonnees');
 await page.getByRole('button', { name: 'Voir mon estimation' }).click();
 await page.locator('#analysis-title').waitFor();
@@ -166,7 +173,7 @@ await next();
 await page.locator('#prenom').fill('Paul');
 await page.locator('#nom').fill('Weber');
 await page.locator('#email').fill('paul.weber@example.lu');
-await page.locator('#numero').fill('691 234 567');
+await page.locator('#numero').fill('691 527 038');
 await page.locator('label.check', { hasText: 'J’accepte' }).click();
 await page.getByRole('button', { name: 'Voir mon estimation' }).click();
 await page.locator('#result-title').waitFor({ timeout: 15000 });
@@ -188,8 +195,20 @@ await page.screenshot({ path: `${OUT}1e-adresse-propositions-320.png` });
 await mockGeoportal(false);
 await page.setViewportSize({ width: 390, height: 844 });
 
+// ---------- Lien d'annonce : provenance et étape 1 préremplie ----------
+await page.goto(`${BASE}/?lang=fr&commune=D%C3%BCdelingen&type=maison&utm_source=google&utm_medium=cpc&utm_campaign=dudelange-maisons&gclid=TEST`);
+await page.locator('#commune-canton').getByText('canton').waitFor();
+if ((await page.locator('#commune').inputValue()) !== 'Dudelange') problems.push('Préremplissage : commune non reprise du lien');
+if (!(await page.locator('input[name="type"][value="maison"]').isChecked())) problems.push('Préremplissage : type non repris du lien');
+const deLink = await page.locator('.language-links a[hreflang="de"]').getAttribute('href');
+if (!deLink.includes('utm_campaign=dudelange-maisons') || !deLink.includes('gclid=1') || deLink.includes('TEST')) problems.push(`Lien de langue : provenance mal transmise (${deLink})`);
+await shot('1f-lien-annonce-prerempli');
+
 // ---------- Intégration dans une page (embed.js) ----------
-await page.goto(`${BASE}/demo.html`);
+await page.goto(`${BASE}/demo.html?utm_source=newsletter&utm_campaign=demo-embed&fbclid=SECRET`);
+const frameSrc = await page.locator('iframe[data-immobuild-frame]').getAttribute('src');
+if (!frameSrc.includes('utm_campaign=demo-embed') || !frameSrc.includes('fbclid=1') || frameSrc.includes('SECRET')) problems.push(`embed.js : provenance mal transmise (${frameSrc})`);
+console.log('Adresse de l’iframe :', frameSrc);
 const frame = page.frameLocator('iframe[data-immobuild-frame]');
 await frame.locator('#step-title').waitFor();
 await page.waitForTimeout(600);
