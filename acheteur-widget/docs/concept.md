@@ -413,7 +413,7 @@ Alles aus den Lead-E-Mails zählbar, z. B. monatlich per Hand oder mit einem kle
 | Punkt | Entscheidung |
 | --- | --- |
 | Provision | **Offen.** Du klärst das mit anderen Agenturen. Idee: Käufer-Mandat (Teil 9). |
-| Finanzierung | **Offen.** Idee: Weiterleitung an einen Courtier (Teil 8). Partner noch nicht festgelegt. |
+| Finanzierung | Weiterleitung an **atHome Finance** (Vertrag vorhanden, kostenlos für Käufer), freiwilliges Kästchen (Teil 8). |
 | Gebiet | **Ganz Luxemburg.** Gemeinden ohne genug Daten bekommen den Kantonswert mit Hinweis, wie im Estimation-Tool. |
 | Ergebnis | **Teilweise ohne Kontaktdaten:** Block 1 sofort, Rest nach Kontakt. |
 | Budget-Fragen | **Ja**, ergänzt um Bank-Kontakt, bekannter Kreditbetrag und Weiterleitung an einen Courtier (Teil 5.1, Schritt 3). |
@@ -465,7 +465,15 @@ Alles aus den Lead-E-Mails zählbar, z. B. monatlich per Hand oder mit einem kle
 
 **Stand 18.11.2026:**
 - Jason hat einen Vertrag mit dem Courtier, und der Courtier ist laut Jason zugelassen. Den Vertrag habe ich **nicht gesehen**.
-- Offen ist noch, ob Jason für die Weiterleitung bezahlt wird. Wenn ja: im Formular offenlegen (« ImmoBuild Kohn peut être rémunéré par ce courtier »). Ob das Pflicht ist, habe ich nicht geprüft **[Vermutung]**. Ehrlich und vertrauensbildend ist es jedenfalls.
+- **Courtier: atHome Finance** (Jason, 18.11.2026), 5 rue Charles Darwin, L-1433 Luxembourg.
+  - **[Snippet]** Laut eigener Seite ist der Dienst für den Käufer kostenlos (« Free of charge », https://www.athome.lu/en/finance/mortgage). Jason bestätigt das.
+  - **[Snippet]** atHome Finance stellt auch eine Bescheinigung über den möglichen Kreditbetrag aus (https://www.athome.lu/finance/pret-immobilier). Das ist nützlich für Käufer bei Besichtigungen und für das Käufermandat.
+  - **[Vermutung]** atHome Finance gehört zur Gruppe des Portals athome.lu.
+  - Den Eintrag im CSSF-Register habe ich nicht selbst gesehen.
+- **Vergütung:** Jason wird für die Weiterleitung bezahlt und möchte das **nicht** im Formular erwähnen. Das ist seine Entscheidung und wird so umgesetzt.
+  - Ob eine Offenlegung Pflicht ist, habe ich nicht geprüft. **[Vermutung]**
+  - Folge für die Texte: Der Courtier wird nicht als « indépendant » oder « neutre » bezeichnet, sondern als « courtier partenaire ». So ist die Formulierung ehrlich, ohne die Vergütung zu nennen.
+- Das Kästchen im Formular: « Je souhaite être mis(e) en relation, sans engagement, avec notre courtier partenaire atHome Finance (service gratuit pour vous). »
 
 ### 8.1 Der Werbesatz für den Courtier
 
@@ -484,7 +492,7 @@ Alles aus den Lead-E-Mails zählbar, z. B. monatlich per Hand oder mit einem kle
 **3. Fazit:** Inhalt ja, Ton entschärfen. Vorschläge:
 - « Le taux d'un crédit immobilier se négocie : il n'est pas le même pour tout le monde. Un courtier compare plusieurs banques pour vous, sans engagement. »
 - « Saviez-vous que les taux se négocient au cas par cas ? Comparez avant de signer. Notre courtier partenaire le fait pour vous, gratuitement et sans engagement. »
-  - « gratuitement » nur, wenn der Courtier dem Käufer wirklich nichts berechnet. Bitte prüfen.
+  - « gratuitement » ist laut Jason und laut Seite von atHome Finance zutreffend.
 
 ## 9. Idee Käufer-Mandat: „Ich vertrete den Käufer“ (neu, zum Weiterdenken)
 
