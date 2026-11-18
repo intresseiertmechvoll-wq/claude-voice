@@ -9,6 +9,7 @@ import { checkFields, stepFields, type Errors } from './shared/validation';
 import { resolveCommune, setupCombobox } from './ui/combobox';
 import { esc } from './ui/html';
 import { icon } from './ui/icons';
+import { renderFact } from './ui/facts';
 import { formatEuro } from './ui/format';
 import { errorKey, noDataNote, recapItems, renderStep, STEP_ICONS, type Values } from './ui/steps';
 
@@ -184,6 +185,7 @@ function render(focus = true) {
       ${s > 1 ? `<button type="button" class="btn btn-ghost" data-action="back" ${state.sending ? 'disabled' : ''}>${icon('fleche')}<span>${esc(t('nav.back'))}</span></button>` : ''}
     </div>
   </form>
+  ${renderFact(s, t)}
   </div>
 </div>`;
 

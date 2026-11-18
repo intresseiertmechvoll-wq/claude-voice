@@ -28,7 +28,7 @@ Pas de base de données, pas de cookie, pas de traceur. Les polices sont incluse
 - **Un écran « Analyse de votre bien »** après l'envoi (environ 6 secondes) : une maison qui se remplit depuis le bas, un pourcentage et 5 étapes cochées une à une — rassemblement des réponses, recherche des données de la commune (avec les vrais chiffres, par ex. « 130 ventes notariées et 508 annonces trouvées à Dudelange »), comparaison des méthodes, ajustement du prix, calcul du prix final. Voir « Écran d'analyse » plus bas.
 - **Un simulateur « Et si… ? »** sous le résultat : le visiteur teste une autre classe énergétique, un autre état ou des travaux (cuisine, salle de bain, châssis…) et voit aussitôt la nouvelle valeur et l'écart. Le visiteur est prévenu que tu reçois ses essais. Tu reçois un e-mail de complément quand il quitte la page (au plus 3 par résultat, chacun avec les seuls essais nouveaux) : utile pour préparer le rendez-vous. Voir « Simulateur » plus bas.
 - **Une barre de progression qui avance à chaque réponse**, avec une petite avance au départ.
-- **Une présence humaine** : une bulle de Jason sous chaque titre, qui réagit à certaines réponses (« Un garage, ça compte ! »). Les phrases sont dans `src/i18n/fr.json` → `coach`, à adapter à ta voix. Ta photo : `config.json` → `agent.photo`.
+- **Une présence humaine** : une bulle de Jason sous chaque titre, qui réagit à certaines réponses (« Je retiens le garage dans les annexes. »). Les phrases sont dans `src/i18n/fr.json` → `coach`, à adapter à ta voix. Ta photo : `config.json` → `agent.photo`.
 - **Un résultat sobre** : un sceau doré qui se dessine (pas de confettis : une estimation peut décevoir).
 - **Un résultat utile pour lui** : valeur de marché en grand et prix au m², fourchette basse / haute, position de son bien parmi les ventes réelles de sa commune (appartements), chiffres de la commune, ce qui fait monter ou baisser son prix, fiabilité des données, explication du calcul, prochaines étapes, impression / PDF.
 - **Accessible et léger** : 0 erreur axe-core (WCAG 2.1 AA) sur tous les écrans capturés, utilisable au clavier, animations coupées si le visiteur le demande à son système. Lighthouse mobile (en local, 11/11/2026) : performance 100, accessibilité 100, bonnes pratiques 100, 89 Ko au total (photo comprise).
@@ -295,6 +295,17 @@ Autres réglages, dans `config.json` :
 - `quickCommunes` : les raccourcis de l'étape 1 ;
 - `publicEmail` : l'adresse montrée au visiteur si l'envoi échoue ou s'il a atteint la limite (« écrivez-nous à … ») ;
 - adresse des leads par défaut, nombre d'envois par heure.
+
+## Repères facultatifs « Le saviez-vous ? »
+
+Quatre repères repliés apparaissent sous les boutons des étapes 1, 2, 4 et 5. Ils ne changent ni les réponses ni le calcul. Les liens sont dans `src/ui/facts.ts` et les textes dans `src/i18n/{fr,de,en}.json`. Sources consultées le **18/11/2026** :
+
+| Étape | Repère | Source officielle |
+| --- | --- | --- |
+| 1 · Le bien | Prix moyen des appartements publié si au moins dix ventes restent après traitement. | [Observatoire de l’Habitat et STATEC, prix de vente des appartements par commune](https://data.public.lu/fr/datasets/prix-de-vente-des-appartements-par-commune/) |
+| 2 · Les détails | Le passeport énergétique distingue performance énergétique et isolation thermique. | [Guichet.lu, certificat de performance énergétique](https://guichet.public.lu/fr/citoyens/logement/acquisition/performances-energie/demande-passeport-energetique.html) |
+| 4 · Les annexes | Une série séparée donne des prix au m² hors garages, places extérieures et caves. | [Observatoire de l’Habitat, prix affinés hors annexes](https://data.public.lu/fr/datasets/prix-de-vente-des-appartements-prix-affines-hors-annexes-par-commune/) |
+| 5 · Le projet | Les loyers des annonces sont les montants demandés avant négociation. | [Observatoire de l’Habitat, loyers annoncés par commune](https://data.public.lu/fr/datasets/loyers-annonces-des-logements-par-commune/) |
 
 ## Écran d'analyse
 

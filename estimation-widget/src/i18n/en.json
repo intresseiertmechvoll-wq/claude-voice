@@ -403,6 +403,14 @@
     "note": "Indicative, not counting the cost of the work.",
     "teaser": "What if you renovated?"
   },
+  "facts": {
+    "title": "Did you know?",
+    "source": "Official source",
+    "step1": "The Housing Observatory publishes a municipal average when at least 10 apartment sales are included in the analysis.",
+    "step2": "The energy performance certificate gives separate ratings for energy performance and thermal insulation.",
+    "step4": "The Housing Observatory also publishes apartment prices per m² with the value of garages, outdoor parking and cellars removed.",
+    "step5": "Asking rent statistics show what landlords request before negotiation."
+  },
   "coach": {
     "start": "Hello, I’m Jason from ImmoBuild Kohn.",
     "step2": "I’m happy to work with an approximate floor area.",

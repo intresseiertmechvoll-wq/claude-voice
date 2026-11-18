@@ -403,6 +403,14 @@
     "note": "Indicatif, sans compter le coût des travaux.",
     "teaser": "Et si vous faisiez des travaux ?"
   },
+  "facts": {
+    "title": "Le saviez-vous ?",
+    "source": "Source officielle",
+    "step1": "L’Observatoire publie un prix moyen des appartements par commune si au moins 10 ventes sont retenues après traitement.",
+    "step2": "Le passeport énergétique distingue la classe de performance énergétique de la classe d’isolation thermique.",
+    "step4": "L’Observatoire publie aussi des prix au m² pour les appartements en retirant la valeur des garages, parkings extérieurs et caves.",
+    "step5": "Les statistiques des loyers annoncés indiquent ce que les bailleurs demandent avant la négociation."
+  },
   "coach": {
     "start": "Bonjour, je suis Jason, de l’agence ImmoBuild Kohn.",
     "step2": "Pour la surface, je peux partir d’une valeur approximative.",

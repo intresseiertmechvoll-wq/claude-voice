@@ -403,6 +403,14 @@
     "note": "Richtwert, ohne die Kosten der Arbeiten.",
     "teaser": "Und wenn Sie renovieren?"
   },
+  "facts": {
+    "title": "Schon gewusst?",
+    "source": "Offizielle Quelle",
+    "step1": "Die Wohnungsbeobachtungsstelle veröffentlicht einen Mittelwert pro Gemeinde, wenn mindestens 10 Wohnungsverkäufe in die Auswertung eingehen.",
+    "step2": "Der Energiepass weist für die Energieeffizienz und den Wärmeschutz getrennte Klassen aus.",
+    "step4": "Die Wohnungsbeobachtungsstelle veröffentlicht auch Quadratmeterpreise für Wohnungen ohne den Wert von Garagen, Außenstellplätzen und Kellern.",
+    "step5": "Die Statistik der Angebotsmieten zeigt, welche Miete Vermieter vor der Verhandlung verlangen."
+  },
   "coach": {
     "start": "Guten Tag, ich bin Jason von ImmoBuild Kohn.",
     "step2": "Für die Wohnfläche genügt mir ein ungefährer Wert.",

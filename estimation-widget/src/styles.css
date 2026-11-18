@@ -524,6 +524,13 @@ input[type='text']:focus, input[type='email']:focus, input[type='tel']:focus, se
 .teaser .teaser-arrow { margin-left: auto; transform: rotate(-90deg); }
 @media print { .teaser { display: none; } }
 
+/* À lire au choix, sous les boutons du questionnaire */
+.step-fact { margin-top: 12px; padding: 0 12px; background: var(--offwhite); border-inline-start: 2px solid var(--gold); border-radius: 8px; font-size: 0.875rem; color: var(--muted); }
+.step-fact summary { padding-block: 10px; color: var(--navy); font-weight: 600; cursor: pointer; width: fit-content; }
+.step-fact summary:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+.step-fact p { margin: 0; padding-bottom: 10px; text-wrap: pretty; }
+.step-fact a { color: var(--navy); text-underline-offset: 3px; }
+
 /* ---------- Bulle de Jason ---------- */
 .step-head { margin-bottom: 12px; }
 .coach { display: flex; align-items: flex-end; gap: 10px; margin: 0 0 18px; }
