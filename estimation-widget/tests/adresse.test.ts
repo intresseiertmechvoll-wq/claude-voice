@@ -209,7 +209,7 @@ describe('/api/estimate avec adresse', () => {
     (payload as Record<string, unknown>).geo = { parcel: { numero: '9999/1', areaM2: 99999 } };
     const res = await handleEstimate(post('/api/estimate', payload), { RESEND_API_KEY: 're_test' }, deps(geo, mail));
     expect(res.status).toBe(200);
-    expect(mail).toHaveBeenCalledTimes(1);
+    expect(mail).toHaveBeenCalledTimes(2); // e-mail du lead + copie au visiteur
     const sent = JSON.parse((mail.mock.calls[0] as unknown as [string, RequestInit])[1].body as string);
     expect(sent.text).toContain('== Adresse sur les cartes officielles (géoportail) ==');
     expect(sent.text).toContain(`Adresse trouvée : ${LABEL}`);
@@ -252,7 +252,7 @@ describe('/api/estimate avec adresse', () => {
       await vi.advanceTimersByTimeAsync(20);
       await until(() => res !== null);
       expect((res as Response | null)?.status).toBe(200);
-      expect(mail).toHaveBeenCalledTimes(1);
+      expect(mail).toHaveBeenCalledTimes(2); // e-mail du lead + copie au visiteur
     } finally {
       vi.useRealTimers();
     }

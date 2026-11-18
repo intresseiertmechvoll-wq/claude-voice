@@ -11,7 +11,8 @@
     "test": "vitest run",
     "update-data": "tsx scripts/update-data.ts",
     "screenshots": "node scripts/screenshots.mjs",
-    "deploy": "npm run build && wrangler pages deploy dist --project-name estimation-widget --branch main"
+    "deploy": "npm run build && wrangler pages deploy dist --project-name estimation-widget --branch main",
+    "funnel": "node scripts/funnel.mjs"
   },
   "license": "UNLICENSED",
   "devDependencies": {

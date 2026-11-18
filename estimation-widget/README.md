@@ -236,7 +236,7 @@ Tu peux savoir quelle annonce a amené chaque demande, **sans cookie ni traceur*
 **Construire l'adresse de l'annonce.** Fais pointer l'annonce directement sur la page qui contient l'outil (si le visiteur passe d'abord par une autre page de ton site, les paramètres sont perdus : il n'y a pas de cookie pour s'en souvenir). Ajoute :
 
 - `utm_source` (google, facebook…), `utm_medium` (cpc, paid…), `utm_campaign` (nom de la campagne), et si tu veux `utm_content` (quelle annonce) et `utm_term` (mot-clé) ;
-- `commune=` et `type=appartement` ou `type=maison` pour présélectionner l'étape 1 (une annonce par commune). La commune est reconnue comme dans la recherche (accents, autres noms : `Düdelingen` → Dudelange) ; une valeur inconnue est simplement ignorée.
+- `commune=` et `type=appartement` ou `type=maison` pour présélectionner l'étape 1 (une annonce par commune). La commune est reconnue comme dans la recherche (accents, autres noms : `Düdelingen` → Dudelange) ; une valeur inconnue est simplement ignorée. Le **titre** reprend alors le message de l'annonce : « Combien vaut votre maison à Dudelange ? », « Was ist Ihre Wohnung in Esch-sur-Alzette wert? » (sans ces paramètres : « Combien vaut votre chez-vous ? »).
 
 Valeurs : lettres sans accent, chiffres, espace, `_`, `.` et `-`, 60 caractères au plus (le reste est retiré). Préfère `dudelange-maisons` à `Dudelange – Maisons été`.
 
@@ -270,6 +270,34 @@ Puis une section « Provenance » avec chaque paramètre. Sans paramètre : « D
 - **E-mail** : refus d'une courte liste de domaines jetables (yopmail, mailinator… dans `src/shared/validation.ts`) ; puis le serveur demande à Cloudflare DNS si le domaine a un serveur de messagerie (MX, sinon A). Refus seulement si le DNS répond clairement « ce domaine n'existe pas » ; panne ou plus de 2 secondes : accepté, et l'e-mail du lead indique « non vérifiable ». Un envoi refusé ne compte pas dans la limite de 20 par heure.
 
 **Limites (choix voulu).** Il n'y a ni pixel Meta, ni balise Google, ni suivi de conversion : Google Ads et Meta ne savent pas qu'une annonce a produit un lead, et leurs algorithmes ne peuvent pas s'optimiser là-dessus. Tu compares toi-même, à partir des e-mails, le nombre de leads par campagne et ce que chaque campagne coûte. C'est un choix de confidentialité (pas de bandeau cookies, rien chez les régies). Un envoi des conversions côté serveur (import de conversions hors ligne Google Ads, API Conversions de Meta) serait une décision à part : il faudrait garder la valeur du `gclid` / `fbclid`, l'annoncer dans la politique de confidentialité et revoir la base légale. Autre limite : Safari en navigation privée et certaines applications retirent `gclid` / `fbclid` des liens ; les `utm_*` restent, mets-les donc toujours.
+
+### Où les visiteurs s'arrêtent (compteurs anonymes)
+
+L'outil compte, sans IP ni cookie ni identifiant, combien de visiteurs atteignent chaque étape, envoient une demande ou cliquent sur « Appeler ». Détails et limites : `PRIVACY.md`, section 3 quinquies.
+
+**À faire une fois dans Cloudflare** (sans cela, rien n'est compté, l'outil marche normalement) : Workers & Pages → `estimation-widget` → Paramètres → Liaisons (Bindings) → Ajouter → **Analytics Engine** : nom de variable `FUNNEL`, jeu de données `estimation_funnel` → Enregistrer, puis redéployer (`npm run deploy`).
+
+**Lire les chiffres** : `CLOUDFLARE_ACCOUNT_ID=… CLOUDFLARE_API_TOKEN=… npm run funnel -- 30` (30 derniers jours ; jeton avec le droit « Account Analytics : Read »). Exemple de sortie :
+
+```text
+Étape 1 affichée (visites)                        200   100 % des visites
+Étape 2                                           150    75 % des visites · 75 % de l'étape précédente
+…
+Demande envoyée, avec prix                         30    15 % des visites
+
+Par canal et campagne : visites → étape 6 → demandes (taux visite → demande)
+google · dudelange-maisons                        120 →   60 →   20   (17 %)
+```
+
+Une « visite » = un chargement de la page (rouvrir l'outil compte deux fois ; revenir en arrière dans l'outil, non). Cloudflare garde ces compteurs 3 mois.
+
+## Copie de l'estimation au visiteur
+
+Après l'e-mail du lead, le visiteur reçoit, dans sa langue, son estimation par e-mail (montants, source, « estimation indicative », ton téléphone et ton lien de contact). S'il répond, la réponse arrive chez toi. Exemple : [`docs/exemple-email-client.html`](docs/exemple-email-client.html) / [`.txt`](docs/exemple-email-client.txt) (régénérer : `npx tsx scripts/exemple-email-client.ts`). Si cet envoi échoue, le résultat s'affiche quand même. Pour le couper : `"customerEmail": false` dans `config.json`.
+
+**Quota Resend** : chaque demande envoie maintenant **2 e-mails** (lead + copie), plus parfois le complément du simulateur. L'offre gratuite de Resend s'arrête à 100 e-mails par jour : au-delà, l'e-mail du lead lui-même échoue et le visiteur voit un message d'erreur. Repère : au-delà d'environ 40 demandes par jour, passe à une offre payante de Resend (ou coupe `customerEmail`).
+
+**Avant de lancer des annonces** : fais 3 essais avec tes propres adresses (Gmail, Outlook/Hotmail, pt.lu) et vérifie que l'e-mail n'arrive pas dans les indésirables. L'expéditeur est `FROM_EMAIL` (par défaut `estimation@immobuild.lu`) : le domaine doit être vérifié dans Resend (SPF/DKIM), ce qui est déjà le cas puisque l'e-mail du lead part.
 
 ## Adresse et cartes officielles
 
@@ -368,6 +396,7 @@ Autres réglages, dans `config.json` :
 - lien de la page contact et de la politique de confidentialité (**à vérifier : je ne connais pas tes vraies adresses**) ;
 - `agent` : ton prénom et ta ligne de présentation ; `photo` : chemin d'une photo placée dans `public/` (ex. `/jay.jpg`), sinon l'initiale s'affiche ;
 - `phone` : ton numéro, affiché comme bouton « appeler » sous le résultat (vide = pas de bouton) ;
+- `customerEmail` : `true` = le visiteur reçoit aussi son estimation par e-mail (voir « Copie de l'estimation au visiteur ») ;
 - `certificationUrl` : ta fiche de membre de la Chambre immobilière ; le badge « Agence certifiée » (en-tête de l'étape 1 et à côté de Jason sous le résultat) y mène, dans un nouvel onglet. Vide = badge sans lien. Le logo blanc est dans l'en-tête, le logo en couleur sur la version imprimée / PDF ;
 - `quickCommunes` : les raccourcis de l'étape 1 ;
 - `publicEmail` : l'adresse montrée au visiteur si l'envoi échoue ou s'il a atteint la limite (« écrivez-nous à … ») ;
@@ -415,12 +444,13 @@ Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'a
 - L'adresse, le nom et les autres champs d'une ligne ne peuvent pas contenir de retour à la ligne ni de caractères invisibles : impossible d'imiter une rubrique de l'e-mail. Le message libre est mis en retrait.
 - Le géoportail ne reçoit que l'adresse, envoyée par le serveur (jamais l'IP ni les coordonnées du visiteur) ; ses réponses sont nettoyées (une ligne, sans caractère de contrôle) avant d'entrer dans l'e-mail.
 - La provenance (`utm_*`, présence d'un identifiant de clic) est nettoyée sur le serveur (clés connues seulement, `A-Z a-z 0-9 espace _ . -`, 60 caractères) avant d'entrer dans l'e-mail.
-- Aucune donnée n'est stockée ailleurs que dans l'e-mail (et, si KV est activé, une empreinte d'IP effacée après 1 heure).
+- Aucune donnée n'est stockée ailleurs que dans les e-mails (et, si KV est activé, une empreinte d'IP effacée après 1 heure ; si la liaison `FUNNEL` est configurée, des compteurs anonymes effacés après 3 mois).
+- `/api/e` (compteurs) : même contrôle d'origine, 1 000 octets au plus, liste fermée d'événements et de langues ; il ne peut rien écrire d'autre.
 - Détails pour ta politique de confidentialité : `PRIVACY.md`.
 
 ## Tests
 
-`npm test` lance 155 tests, dont ceux demandés :
+`npm test` lance 172 tests, dont ceux demandés :
 
 | Test | Fichier |
 | --- | --- |

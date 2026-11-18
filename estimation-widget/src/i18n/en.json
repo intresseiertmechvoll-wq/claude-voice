@@ -12,7 +12,14 @@
       "official": "Public data",
       "instant": "Instant result"
     },
-    "language": "Language"
+    "language": "Language",
+    "titleAd": {
+      "maison_commune": "What is your house in {commune} worth?",
+      "appartement_commune": "What is your apartment in {commune} worth?",
+      "commune": "What is your property in {commune} worth?",
+      "maison": "What is your house worth?",
+      "appartement": "What is your apartment worth?"
+    }
   },
   "progress": "Step {n} of {total}",
   "nav": {
@@ -468,5 +475,15 @@
     "link": "See our member listing",
     "newTab": "(new tab)",
     "logo": "ImmoBuild Kohn"
+  },
+  "mailClient": {
+    "subject": "Your valuation: {bien}",
+    "subjectNoData": "Your valuation request: {bien}",
+    "hello": "Hello {prenom},",
+    "intro": "Thank you for your request. Here is the estimate you saw online, to keep or to share.",
+    "next": "I will get back to you shortly. You can also call me or simply reply to this email.",
+    "phone": "Phone",
+    "footer": "You are receiving this email because a valuation was requested with this address on ImmoBuild Kohn’s online valuation tool. If this was not you, simply ignore this message.",
+    "privacy": "Privacy"
   }
 }

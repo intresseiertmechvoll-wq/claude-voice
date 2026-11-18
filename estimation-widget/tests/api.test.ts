@@ -31,7 +31,7 @@ describe('API /api/estimate', () => {
     const json = (await res.json()) as any;
     expect(json.ok).toBe(true);
     expect(json.result.market).toBeGreaterThan(0);
-    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock).toHaveBeenCalledTimes(2); // e-mail du lead + copie au visiteur
     const [url, init] = fetchMock.mock.calls[0] as unknown as [string, RequestInit];
     expect(url).toBe('https://api.resend.com/emails');
     const sent = JSON.parse(init.body as string);
@@ -100,7 +100,7 @@ describe('API /api/estimate', () => {
     for (let i = 0; i < max; i++) expect((await handleEstimate(req(body()), env, deps)).status).toBe(200);
     expect((await handleEstimate(req(body()), env, deps)).status).toBe(429);
     expect((await handleEstimate(req(body(), '198.51.100.1'), env, deps)).status).toBe(200);
-    expect(fetchMock).toHaveBeenCalledTimes(max + 1);
+    expect(fetchMock).toHaveBeenCalledTimes((max + 1) * 2); // lead + copie au visiteur ; le 21e envoi n'en déclenche aucun
   });
 
   it('Commune sans assez de données : pas de prix, mais le lead part quand même', async () => {
@@ -110,7 +110,7 @@ describe('API /api/estimate', () => {
     expect(res.status).toBe(200);
     expect(json.result.status).toBe('insufficient_data');
     expect(json.result.market).toBeNull();
-    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock).toHaveBeenCalledTimes(2); // e-mail du lead + copie au visiteur
   });
 
   it('Un envoi depuis un autre site est refusé', async () => {

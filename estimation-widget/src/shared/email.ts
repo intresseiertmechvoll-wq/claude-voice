@@ -78,6 +78,8 @@ export interface LeadChecks {
   emailDomain?: 'verified' | 'no_mail' | 'nxdomain' | 'unknown';
   /** le numéro se termine par une suite de chiffres (234567) : accepté, à vérifier */
   phoneSequence?: boolean;
+  /** le visiteur reçoit aussi son estimation par e-mail (config.customerEmail) */
+  clientCopy?: boolean;
 }
 
 const CLICK_PLATFORMS = { gclid: 'Google Ads', fbclid: 'Facebook / Instagram', msclkid: 'Microsoft Ads (Bing)' } as const;
@@ -172,6 +174,7 @@ export function leadSections(s: Submission, e: Estimate, date: Date, geo?: Addre
         ...(r.status !== 'ok' ? ([['À faire', 'estimation personnalisée promise au visiteur']] as [string, string][]) : []),
         ['Rappeler', `${c.prenom} ${c.nom} – ${formatPhone(c.telephone)}`],
         ['E-mail', c.email],
+        ...(checks?.clientCopy ? ([['Copie au visiteur', 'son estimation lui est envoyée par e-mail (même contenu que l’écran) ; s’il répond, la réponse arrive chez toi']] as [string, string][]) : []),
         ['Qualité du contact', qualityLine(checks)],
         ['Provenance', sourceSummary(s.source)],
         ['Langue', L.lang[s.lang]],

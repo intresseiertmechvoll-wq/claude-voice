@@ -3,6 +3,7 @@
  * Gardés en mémoire seulement : aucun cookie, aucun stockage dans le navigateur.
  */
 import { CLICK_IDS, sanitizeSource, SOURCE_KEYS } from '../shared/validation';
+import type { T } from '../i18n';
 import type { Source } from '../shared/types';
 import { resolveCommune } from './combobox';
 
@@ -32,4 +33,12 @@ export function landingQuery(l: Landing, query: URLSearchParams): void {
   for (const k of CLICK_IDS) if (l.source[k]) query.set(k, '1');
   if (l.prefill.commune) query.set('commune', l.prefill.commune);
   if (l.prefill.type) query.set('type', l.prefill.type);
+}
+
+/** Arrivée par une annonce (« ?type=maison&commune=Dudelange ») : le titre reprend le message de l'annonce */
+export function landingTitle(prefill: Landing['prefill'], t: T): string {
+  const { type, commune } = prefill;
+  if (!type && !commune) return t('intro.title');
+  const key = commune ? (type ? `${type}_commune` : 'commune') : type!;
+  return t(`intro.titleAd.${key}`, { commune: commune ?? '' });
 }

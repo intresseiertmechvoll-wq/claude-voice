@@ -12,7 +12,14 @@
       "official": "Données publiques",
       "instant": "Résultat immédiat"
     },
-    "language": "Langue"
+    "language": "Langue",
+    "titleAd": {
+      "maison_commune": "Combien vaut votre maison à {commune} ?",
+      "appartement_commune": "Combien vaut votre appartement à {commune} ?",
+      "commune": "Combien vaut votre bien à {commune} ?",
+      "maison": "Combien vaut votre maison ?",
+      "appartement": "Combien vaut votre appartement ?"
+    }
   },
   "progress": "Étape {n} sur {total}",
   "nav": {
@@ -468,5 +475,15 @@
     "link": "Voir notre fiche de membre",
     "newTab": "(nouvel onglet)",
     "logo": "ImmoBuild Kohn"
+  },
+  "mailClient": {
+    "subject": "Votre estimation : {bien}",
+    "subjectNoData": "Votre demande d’estimation : {bien}",
+    "hello": "Bonjour {prenom},",
+    "intro": "Merci pour votre demande. Voici l’estimation affichée en ligne, pour la garder ou la partager.",
+    "next": "Je vous recontacte prochainement. Vous pouvez aussi m’appeler ou répondre directement à cet e-mail.",
+    "phone": "Téléphone",
+    "footer": "Vous recevez cet e-mail parce qu’une estimation a été demandée avec cette adresse sur l’outil d’estimation d’ImmoBuild Kohn. Si ce n’est pas vous, ignorez simplement ce message.",
+    "privacy": "Protection des données"
   }
 }

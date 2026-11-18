@@ -7,9 +7,12 @@ import data from '../../data/communes.json';
 import params from '../../params.json';
 import { estimate, type Params } from '../shared/engine';
 import { leadEmail } from '../shared/email';
+import { clientEmail } from '../shared/email-client';
+import { loadLang } from '../i18n';
 import type { AddressDetails } from '../shared/types';
 import { GEO_TIMEOUT_MS, lookupAddress, validLabel } from './adresse';
 import { checkEmailDomain } from './dns';
+import { writeFunnel, type FunnelDataset } from '../shared/funnel';
 import { allowSubmission, refundSubmission, type KVLike } from '../shared/ratelimit';
 import type { Dataset } from '../shared/types';
 import { isSequencePhone, validateSubmission } from '../shared/validation';
@@ -25,6 +28,8 @@ export interface Env {
   RATE_LIMIT_SALT?: string;
   /** facultatif : secret des tickets du simulateur « Et si… ? » (sinon dérivé de RESEND_API_KEY) */
   SIMULATION_SECRET?: string;
+  /** facultatif : comptage anonyme du parcours (Workers Analytics Engine, jeu « estimation_funnel ») */
+  FUNNEL?: FunnelDataset;
 }
 
 export interface Deps {
@@ -37,6 +42,8 @@ export interface Deps {
   log: (...args: unknown[]) => void;
   data: Dataset;
   params: Params;
+  /** Pages : context.waitUntil – l'e-mail au visiteur part sans retarder le résultat */
+  waitUntil?: (p: Promise<unknown>) => void;
 }
 
 export const defaultDeps = (): Deps => ({
@@ -62,11 +69,13 @@ export interface Mail {
   html: string;
   text: string;
   replyTo: string;
+  /** destinataire ; par défaut l'adresse des leads (LEAD_EMAIL) */
+  to?: string;
 }
 
 /** Envoi par Resend (ou affichage dans la console avec EMAIL_MODE=log). Renvoie une erreur ou null. */
 export async function sendMail(env: Env, d: Deps, mail: Mail): Promise<'config' | 'send' | null> {
-  const to = env.LEAD_EMAIL || config.defaultLeadEmail;
+  const to = mail.to || env.LEAD_EMAIL || config.defaultLeadEmail;
   const from = env.FROM_EMAIL || config.defaultFromEmail;
   if (env.EMAIL_MODE === 'log') {
     d.log(`\n=== E-MAIL (mode log, non envoyé) ===\nÀ : ${to}\nDe : ${from}\nRépondre à : ${mail.replyTo}\nObjet : ${mail.subject}\n\n${mail.text}\n=== FIN ===\n`);
@@ -153,13 +162,30 @@ export async function handleEstimate(request: Request, env: Env, deps: Partial<D
     await refundSubmission(ip, env.RATE_LIMIT, salt);
     return json({ ok: false, error: 'validation', errors: { email: 'email_domain' } }, 400);
   }
-  const mail = leadEmail(v.value, est, d.now(), geo, { emailDomain, phoneSequence: isSequencePhone(v.value.contact.telephone) });
+  const clientCopy = config.customerEmail !== false;
+  const mail = leadEmail(v.value, est, d.now(), geo, { emailDomain, phoneSequence: isSequencePhone(v.value.contact.telephone), clientCopy });
   const err = await sendMail(env, d, { ...mail, replyTo: v.value.contact.email });
   if (err) {
     // Rien n'est parti : l'essai ne compte pas dans la limite, le visiteur peut réessayer
     await refundSubmission(ip, env.RATE_LIMIT, salt);
     return json({ ok: false, error: err }, err === 'config' ? 500 : 502);
   }
+
+  // Copie au visiteur, dans sa langue ; un échec ne change rien au résultat (Jason a déjà le lead)
+  if (clientCopy) {
+    const copy = sendClientCopy(env, d, v.value, est);
+    if (d.waitUntil) d.waitUntil(copy);
+    else await copy;
+  }
+
+  // Compteur anonyme : une demande envoyée (type de bien et commune, ni adresse ni coordonnées)
+  writeFunnel(env.FUNNEL, est.result.status === 'ok' ? 'lead' : 'lead-nodata', {
+    lang: v.value.lang,
+    source: v.value.source,
+    embedded: v.value.page !== '',
+    type: v.value.answers.type,
+    commune: v.value.answers.commune,
+  }, d.log);
 
   // Ticket pour le simulateur « Et si… ? » (seulement si un prix a été calculé)
   const secret = ticketSecret(env);
@@ -172,4 +198,22 @@ export async function handleEstimate(request: Request, env: Env, deps: Partial<D
   }
 
   return json({ ok: true, result: est.result });
+}
+
+/** E-mail au visiteur : la même estimation que l'écran ; réponse → Jason. Ne lève jamais d'erreur. */
+async function sendClientCopy(env: Env, d: Deps, s: import('../shared/types').Submission, est: ReturnType<typeof estimate>): Promise<void> {
+  try {
+    await loadLang(s.lang);
+    const m = clientEmail(s, est, {
+      agent: config.agent,
+      phone: config.phone || undefined,
+      contactUrl: config.contactUrl[s.lang],
+      privacyUrl: config.privacyUrl[s.lang],
+      date: d.now(),
+    });
+    const err = await sendMail(env, d, { ...m, to: s.contact.email, replyTo: env.LEAD_EMAIL || config.defaultLeadEmail });
+    if (err) d.log('E-mail au visiteur non envoyé :', err);
+  } catch (e) {
+    d.log('E-mail au visiteur impossible :', (e as Error).message);
+  }
 }

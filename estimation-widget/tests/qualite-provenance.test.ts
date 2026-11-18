@@ -14,7 +14,7 @@ import { leadEmail, qualityLine, sourceSummary } from '../src/shared/email';
 import { estimate } from '../src/shared/engine';
 import { resetMemoryLimiter } from '../src/shared/ratelimit';
 import { checkFields, isDisposableEmail, isSequencePhone, normalizePhone, sanitizeSource, validateSubmission } from '../src/shared/validation';
-import { landingQuery, readLanding } from '../src/ui/landing';
+import { landingQuery, landingTitle, readLanding } from '../src/ui/landing';
 import { errorKey } from '../src/ui/steps';
 import { body, DATA, PARAMS } from './helpers';
 
@@ -191,6 +191,17 @@ describe('Provenance : paramètres de campagne, sans cookie', () => {
     landingQuery(l, q);
     expect(q.toString()).toBe('lang=de&utm_source=google&utm_campaign=dudelange+maisons&gclid=1&commune=Dudelange&type=maison');
   });
+
+  it('Titre repris de l’annonce (FR, DE, EN), titre habituel sans préremplissage', async () => {
+    await loadLang('de');
+    await loadLang('en');
+    const fr = translator('fr'), de = translator('de'), en = translator('en');
+    expect(landingTitle({}, fr)).toBe(fr('intro.title'));
+    expect(landingTitle({ type: 'maison', commune: 'Dudelange' }, fr)).toBe('Combien vaut votre maison à Dudelange ?');
+    expect(landingTitle({ type: 'appartement', commune: 'Esch-sur-Alzette' }, de)).toBe('Was ist Ihre Wohnung in Esch-sur-Alzette wert?');
+    expect(landingTitle({ commune: 'Mersch' }, en)).toBe('What is your property in Mersch worth?');
+    expect(landingTitle({ type: 'maison' }, fr)).toBe('Combien vaut votre maison ?');
+  });
 });
 
 /* ---------- embed.js : la page du site transmet la provenance à l'outil ---------- */
@@ -296,7 +307,7 @@ describe('API : contrôles du contact et provenance', () => {
     const { resend, env, deps, sentText } = setup(dns({ MX }));
     const res = await handleEstimate(req(body({ contact: { numero: '691 234 567' } })), env, deps);
     expect(res.status).toBe(200);
-    expect(resend).toHaveBeenCalledTimes(1);
+    expect(resend).toHaveBeenCalledTimes(2); // e-mail du lead + copie au visiteur
     expect(sentText()).toContain('Qualité du contact : Téléphone : suite de chiffres, à vérifier');
   });
 
@@ -304,7 +315,7 @@ describe('API : contrôles du contact et provenance', () => {
     const { resend, env, deps, sentText } = setup(dns({ MX: 'error', A: 'error' }));
     const res = await handleEstimate(req(body()), env, deps);
     expect(res.status).toBe(200);
-    expect(resend).toHaveBeenCalledTimes(1);
+    expect(resend).toHaveBeenCalledTimes(2); // e-mail du lead + copie au visiteur
     expect(sentText()).toContain('Qualité du contact : Téléphone plausible ✓ · domaine de l’e-mail non vérifiable');
   });
 

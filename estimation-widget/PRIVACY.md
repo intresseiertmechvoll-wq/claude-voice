@@ -4,8 +4,8 @@ Ce document décrit ce que fait l'outil, pour t'aider à mettre à jour ta polit
 
 ## En bref
 
-- Pas de cookie, pas de traceur, pas de statistiques de visite, pas de police chargée depuis Google.
-- Pas de base de données : les réponses partent par e-mail, puis l'outil ne garde rien.
+- Pas de cookie, pas de traceur, pas de police chargée depuis Google. Seulement des **compteurs anonymes** du parcours (« étape 3 affichée », « demande envoyée »), sans IP ni identifiant de visiteur (section 3 quinquies).
+- Pas de base de données : les réponses partent par e-mail, puis l'outil ne garde rien. Le visiteur reçoit aussi une copie de son estimation par e-mail (désactivable : `customerEmail` dans `config.json`).
 - Deux prestataires : **Cloudflare** (hébergement de l'outil et calcul) et **Resend** (envoi de l'e-mail).
 - Si le lien qui amène le visiteur contient des paramètres de campagne (`utm_*`) ou un identifiant de clic publicitaire (`gclid`, `fbclid`, `msclkid`), l'outil les joint à la demande pour savoir quelle annonce l'a amené : les `utm_*` nettoyés, et pour les identifiants de clic **seulement leur présence** (jamais leur valeur). Pas de cookie, rien d'autre n'est gardé.
 - Le domaine de l'adresse e-mail (la partie après « @ ») est vérifié par une question DNS à **Cloudflare DNS**, envoyée par notre serveur ; rien n'est enregistré.
@@ -42,7 +42,8 @@ Base légale proposée : le **consentement** (case à cocher obligatoire, non co
 | Étape | Prestataire | Ce qui se passe | Où |
 | --- | --- | --- | --- |
 | Affichage et calcul | Cloudflare, Inc. (Cloudflare Pages Functions) | Le formulaire est envoyé au serveur de l'outil, vérifié et calculé en mémoire, puis oublié. | réseau mondial de Cloudflare, au plus près du visiteur |
-| Envoi de l'e-mail | Resend (Plus Five Five, Inc.) | Resend transmet l'e-mail à `LEAD_EMAIL`. | États-Unis (voir ci-dessous) |
+| Envoi de l'e-mail | Resend (Plus Five Five, Inc.) | Resend transmet l'e-mail à `LEAD_EMAIL`, et la copie de l'estimation au visiteur. | États-Unis (voir ci-dessous) |
+| Compteurs anonymes du parcours | Cloudflare (Workers Analytics Engine) | Compteurs sans IP ni identifiant, effacés après 3 mois. | voir Cloudflare ci-dessus |
 | Réception | ta boîte e-mail (`contact@immobuild.lu`) | L'e-mail reste dans ta boîte. | **à compléter** (ton fournisseur de messagerie, par ex. Microsoft 365) |
 
 **Resend** : d'après sa documentation, les données du compte et des e-mails sont stockées aux États-Unis. Le choix d'une région d'envoi en Europe (Irlande, offres payantes) change seulement l'endroit d'où partent les e-mails, pas l'endroit où les données sont stockées. Les transferts hors de l'UE sont couverts par son accord de traitement des données (DPA), qui contient les clauses contractuelles types de l'UE, et Resend indique être certifié au EU-US Data Privacy Framework. Sources : [resend.com/security/gdpr](https://resend.com/security/gdpr), [resend.com/legal/dpa](https://resend.com/legal/dpa), [resend.com/docs/dashboard/domains/regions](https://resend.com/docs/dashboard/domains/regions). Resend garde aussi une trace des e-mails envoyés dans ton tableau de bord : **à vérifier** dans ton compte (durée de conservation des journaux).
@@ -68,7 +69,14 @@ Base légale proposée : le **consentement** (case à cocher obligatoire, non co
 
 - **Provenance.** À l'ouverture de l'outil, le navigateur lit l'adresse de la page : paramètres `utm_*` et présence de `gclid` / `fbclid` / `msclkid`. Quand l'outil est intégré à ton site, `embed.js` lit l'adresse de **ta** page et transmet ces mêmes informations à l'outil (identifiants de clic : seulement « présent », jamais la valeur). Elles restent en mémoire dans la page ouverte (pas de cookie, pas de stockage dans le navigateur), partent avec la demande et figurent dans l'e-mail du lead (section « Provenance »). Elles ne sont envoyées ni à Google, ni à Meta, ni à Microsoft : il n'y a aucun pixel ni suivi de conversion.
 - **Vérification du domaine de l'e-mail.** Avant d'envoyer la demande, notre serveur demande à Cloudflare DNS (`cloudflare-dns.com`, DNS-over-HTTPS) si le domaine de l'adresse (ex. `pt.lu`) a un serveur de messagerie. Seul le nom de domaine part, depuis notre serveur : ni l'adresse e-mail complète, ni l'IP du visiteur. Rien n'est enregistré par l'outil ; le résultat (vérifié / non vérifiable) figure dans l'e-mail du lead. Si le domaine n'existe pas, le visiteur est invité à corriger son adresse. En cas de panne ou de lenteur (plus de 2 secondes), la demande est acceptée.
-- **Adresses jetables et numéros fictifs.** Une courte liste de domaines d'e-mails jetables connus (yopmail, mailinator…) et des règles simples sur le numéro (tous les chiffres identiques, suite 123456 ou 654321, numéro d'exemple) sont vérifiées dans l'outil et sur le serveur, sans rien envoyer à personne.
+- **Adresses jetables et numéros fictifs.** Une courte liste de domaines d'e-mails jetables connus (yopmail, mailinator…) et des règles simples sur le numéro (tous les chiffres identiques ou numéro d'exemple refusés ; suite 234567 seulement signalée à Jason) sont vérifiées dans l'outil et sur le serveur, sans rien envoyer à personne.
+
+
+## 3 quinquies. Copie au visiteur et compteurs anonymes
+
+- **Copie de l'estimation au visiteur.** Une fois l'e-mail du lead parti, le visiteur reçoit, dans sa langue, un e-mail avec le type de bien, la commune, les trois montants affichés, l'avertissement « estimation indicative », la source et le contact de Jason. Ni son téléphone, ni son adresse, ni son message, ni la provenance. S'il répond, la réponse arrive dans `LEAD_EMAIL`. Si cet envoi échoue, le résultat s'affiche quand même. L'e-mail du lead indique « Copie au visiteur ». Désactivable : `"customerEmail": false` dans `config.json`.
+- **Compteurs anonymes du parcours.** La page envoie à `/api/e` un événement la première fois que le visiteur atteint chaque étape (`step-1` à `step-6`), clique sur « Appeler » ou « Estimation sur place », imprime, ou utilise le simulateur ; le serveur compte lui-même chaque demande envoyée (`lead`, ou `lead-nodata` sans prix). Pour chaque événement : l'événement, la langue, le canal (utm_source, sinon « google » / « facebook » / « bing » si un identifiant de clic était présent, sinon « direct »), la campagne (utm_campaign), intégré au site ou non ; pour une demande, aussi le type de bien et la commune. **Jamais** : IP, identifiant de visiteur ou de session, cookie, réponses détaillées, coordonnées, adresse. Stockage : Cloudflare Workers Analytics Engine, jeu `estimation_funnel`, effacé après 3 mois (source : developers.cloudflare.com/analytics/analytics-engine/limits, consulté le 18/11/2026). Sans la liaison `FUNNEL` configurée, rien n'est compté.
+- Ces compteurs ne lisent ni n'écrivent rien sur l'appareil du visiteur (pas de cookie, pas de stockage). *Analyse technique, pas un avis juridique : à faire valider en cas de doute.*
 
 ## 4. Adresse IP et limite d'envois
 
@@ -91,4 +99,4 @@ Accès, rectification, effacement, opposition, retrait du consentement : par e-m
 
 Version complète, prête à coller (avec responsable, base légale, destinataires et droits) : [`docs/texte-politique-confidentialite.md`](docs/texte-politique-confidentialite.md). Deux passages sont à compléter : la durée de conservation de tes demandes et celle des journaux Resend.
 
-**Important :** la phrase « ni cookie, ni traceur, ni outil de statistiques » n'est vraie que si *Web Analytics* de Cloudflare est désactivé pour `estimatioun.lu` (Cloudflare l'a ajouté automatiquement ; la règle de sécurité CSP de l'outil le bloque, mais il faut le couper dans le tableau de bord).
+**Important :** la phrase « ni cookie, ni traceur, ni outil de statistiques qui suivrait un visiteur » n'est vraie que si *Web Analytics* de Cloudflare est désactivé pour `estimatioun.lu` (Cloudflare l'a ajouté automatiquement ; la règle de sécurité CSP de l'outil le bloque, mais il faut le couper dans le tableau de bord).

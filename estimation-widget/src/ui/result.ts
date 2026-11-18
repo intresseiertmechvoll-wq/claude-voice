@@ -1,6 +1,6 @@
 /** Écran de résultat (fonction pure : renvoie du HTML, testée) */
 import { deCanton, LOCALES, type T } from '../i18n';
-import { formatEuro } from './format';
+import { formatDate, formatEuro } from './format';
 
 export { formatEuro };
 import type { AddressDetails, FloodZone, Lang, PublicFactor, PublicResult } from '../shared/types';
@@ -50,12 +50,6 @@ export function renderGeo(geo: AddressDetails | null | undefined, type: PublicRe
   </section>`;
 }
 
-function formatDate(iso: string, lang: Lang): string {
-  const d = new Date(iso + 'T12:00:00Z');
-  if (Number.isNaN(d.getTime())) return iso;
-  const out = new Intl.DateTimeFormat(LOCALES[lang], { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(d);
-  return lang === 'fr' ? out.replace(/^1 /, '1er ') : out;
-}
 
 /** « 4\u202f% » en français et en allemand, « 4% » en anglais */
 export function percent(n: string | number, lang: Lang): string {

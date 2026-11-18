@@ -10,7 +10,7 @@ import { setupAddressCombobox } from './ui/address';
 import { resolveCommune, setupCombobox } from './ui/combobox';
 import { esc } from './ui/html';
 import { icon } from './ui/icons';
-import { landingQuery, readLanding } from './ui/landing';
+import { landingQuery, landingTitle, readLanding } from './ui/landing';
 import { certifBadge } from './ui/certif';
 import { renderFact } from './ui/facts';
 import { formatEuro } from './ui/format';
@@ -36,6 +36,22 @@ const page = (() => {
 })();
 /** Lien d'arrivée (annonces) : provenance (utm_*, présence d'un identifiant de clic) et préremplissage de l'étape 1, en mémoire seulement */
 const landing = readLanding(params, COMMUNES.map((c) => c.name));
+/**
+ * Compteur anonyme du parcours : « étape 3 atteinte », « bouton appeler »… une fois par chargement de page.
+ * Envoyé : l'événement, la langue, la provenance de l'annonce (utm, présence d'un identifiant de clic), intégré ou non.
+ * Jamais : réponses, coordonnées, identifiant de visiteur. Un échec est ignoré.
+ */
+const counted = new Set<string>();
+function track(e: string) {
+  if (counted.has(e)) return;
+  counted.add(e);
+  void fetch('/api/e', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ e, l: lang, s: landing.source, i: window.parent !== window }),
+    keepalive: true,
+  }).catch(() => {});
+}
 const contactUrl = config.contactUrl[lang];
 const privacyUrl = config.privacyUrl[lang];
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -135,6 +151,15 @@ function readContactFields() {
   state.values.rgpd = fields.has('rgpd');
 }
 
+/** Titre d'arrivée ; un nom court (« Esch-sur-Alzette ») ne se coupe pas au trait d'union, un nom long peut (320 px) */
+function titleHtml(): string {
+  const title = esc(landingTitle(landing.prefill, t));
+  const c = landing.prefill.commune;
+  if (!c) return title;
+  const safe = esc(c).split(' ').map((w) => (w.includes('-') && c.length <= 16 ? `<span class="nowrap">${w}</span>` : w)).join(' ');
+  return title.replace(esc(c), safe);
+}
+
 function languageLinks(): string {
   const names = { fr: 'Français', de: 'Deutsch', en: 'English' } as const;
   return `<nav class="language-links" aria-label="${esc(t('intro.language'))}">${(['fr', 'de', 'en'] as const).map((code) => {
@@ -228,6 +253,7 @@ function render(focus = true) {
     return;
   }
   const s = state.step;
+  track(`step-${s}`);
   if (s === 2) applyGeoPrefill();
   // Dès l'étape 4, on prépare en arrière-plan le code de l'analyse et du résultat
   if (s >= 4) prefetchLate();
@@ -247,7 +273,7 @@ function render(focus = true) {
       ${languageLinks()}
     </div>
     <p class="kicker">${esc(t('intro.kicker')).replace(/ImmoBuild Kohn/g, '<span class="nowrap">ImmoBuild Kohn</span>')}</p>
-    <h1>${esc(t('intro.title'))}</h1>
+    <h1>${titleHtml()}</h1>
     <p>${esc(t('intro.text'))}</p>
     <ul class="badges">
       <li>${icon('cadeau', 'ico ico-xs')}${esc(t('intro.badges.free'))}</li>
@@ -458,7 +484,10 @@ app.addEventListener('input', onInput);
 app.addEventListener('change', onInput);
 function onInput(e: Event) {
   const el = e.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
-  if (el.closest('.whatif')) return onWhatIf();
+  if (el.closest('.whatif')) {
+    track('whatif');
+    return onWhatIf();
+  }
   queueMicrotask(updateFill);
   if (el instanceof HTMLInputElement && el.type === 'range' && el.dataset.sync) {
     const name = el.dataset.sync;
@@ -578,6 +607,7 @@ app.addEventListener('click', (e) => {
     state.serverError = null;
     render();
   } else if (action === 'print') {
+    track('print');
     window.print();
   } else if (action === 'goto-whatif') {
     const box = app.querySelector<HTMLElement>('.whatif');
@@ -699,7 +729,10 @@ function sendSummary() {
 document.addEventListener('visibilitychange', () => document.visibilityState === 'hidden' && sendSummary());
 window.addEventListener('pagehide', sendSummary);
 app.addEventListener('click', (e) => {
-  if ((e.target as HTMLElement).closest('a.btn-primary, a.btn-secondary')) sendSummary();
+  const link = (e.target as HTMLElement).closest<HTMLAnchorElement>('a.btn-primary, a.btn-secondary');
+  if (!link) return;
+  track(link.href.startsWith('tel:') ? 'call' : 'rdv');
+  sendSummary();
 });
 
 const EMAIL_TYPOS: Record<string, string> = {
