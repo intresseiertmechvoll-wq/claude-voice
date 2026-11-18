@@ -308,7 +308,7 @@
   },
   "mensualite": {
     "title": "Mensualité d’exemple",
-    "sub": "Pour un prêt de {pret}, avec les taux moyens des nouveaux crédits immobiliers au Luxembourg (BCL, {mois}). Hors assurance.",
+    "sub": "Pour un prêt de {pret}, aux taux réellement accordés en moyenne par les banques au Luxembourg sur les nouveaux crédits immobiliers (BCL, {mois}). Hors assurance.",
     "duree": "{n} ans",
     "variable": "Taux variable {taux}",
     "fixe": "Taux fixe +10 ans {taux}",
@@ -318,6 +318,6 @@
     "repere_low": "C’est plutôt sous le repère habituel des banques (environ un tiers à 40 %).",
     "repere_mid": "C’est dans le repère habituel des banques (environ un tiers à 40 %).",
     "repere_high": "C’est plutôt au-dessus du repère habituel des banques (environ un tiers à 40 %) : une durée plus longue, un prix plus bas ou plus d’apport peuvent aider.",
-    "disclaimer": "Exemple de calcul avec des taux moyens : ce n’est ni une offre ni votre taux. Votre taux dépend de votre banque et de votre dossier."
+    "disclaimer": "Moyenne des crédits signés ce mois-là : ce n’est ni une offre ni votre taux. Selon votre apport, vos revenus et votre banque, votre taux peut être plus haut ou plus bas."
   }
 }

@@ -308,7 +308,7 @@
   },
   "mensualite": {
     "title": "Example monthly payment",
-    "sub": "For a {pret} loan, at the average rates of new home loans in Luxembourg (BCL, {mois}). Insurance not included.",
+    "sub": "For a {pret} loan, at the rates banks in Luxembourg actually granted on average on new home loans (BCL, {mois}). Insurance not included.",
     "duree": "{n} years",
     "variable": "Variable rate {taux}",
     "fixe": "Fixed 10+ years {taux}",
@@ -318,6 +318,6 @@
     "repere_low": "That is rather below the usual bank guideline (about one third to 40%).",
     "repere_mid": "That is within the usual bank guideline (about one third to 40%).",
     "repere_high": "That is rather above the usual bank guideline (about one third to 40%): a longer term, a lower price or a larger deposit can help.",
-    "disclaimer": "Example based on average rates: neither an offer nor your rate. Your rate depends on your bank and your situation."
+    "disclaimer": "Average of the loans signed that month: neither an offer nor your rate. Depending on your deposit, income and bank, your rate may be higher or lower."
   }
 }

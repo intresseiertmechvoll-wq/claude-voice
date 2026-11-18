@@ -308,7 +308,7 @@
   },
   "mensualite": {
     "title": "Beispiel-Monatsrate",
-    "sub": "Für einen Kredit von {pret}, mit den Durchschnittszinsen neuer Wohnkredite in Luxemburg (BCL, {mois}). Ohne Versicherung.",
+    "sub": "Für einen Kredit von {pret}, zu den Zinsen, die Banken in Luxemburg bei neuen Wohnkrediten im Durchschnitt tatsächlich gewährt haben (BCL, {mois}). Ohne Versicherung.",
     "duree": "{n} Jahre",
     "variable": "Variabler Zins {taux}",
     "fixe": "Fester Zins +10 Jahre {taux}",
@@ -318,6 +318,6 @@
     "repere_low": "Das liegt eher unter dem üblichen Richtwert der Banken (etwa ein Drittel bis 40 %).",
     "repere_mid": "Das liegt im üblichen Richtwert der Banken (etwa ein Drittel bis 40 %).",
     "repere_high": "Das liegt eher über dem üblichen Richtwert der Banken (etwa ein Drittel bis 40 %): Eine längere Laufzeit, ein niedrigerer Preis oder mehr Eigenkapital können helfen.",
-    "disclaimer": "Beispielrechnung mit Durchschnittszinsen: weder ein Angebot noch Ihr Zins. Ihr Zins hängt von Ihrer Bank und Ihrer Situation ab."
+    "disclaimer": "Durchschnitt der in diesem Monat abgeschlossenen Kredite: weder ein Angebot noch Ihr Zins. Je nach Eigenkapital, Einkommen und Bank kann Ihr Zins höher oder niedriger sein."
   }
 }
