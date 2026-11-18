@@ -7,6 +7,7 @@ import { loadLang, pickLang, translator } from './i18n';
 import { computeBudget, type Params } from './shared/budget';
 import { COMMUNES } from './shared/communes';
 import type { Budget, PublicResult } from './shared/types';
+import { checkTaux, type Taux } from './shared/taux';
 import { budgetInput, checkFields, LIMITS, stepFields, TOTAL_STEPS, type Errors } from './shared/validation';
 import { setupCombobox } from './ui/combobox';
 import { esc } from './ui/html';
@@ -72,8 +73,18 @@ function ctx(): Ctx {
   };
 }
 
+/* ---------- Taux du mois (BCL via BCE), lus par le serveur ; à défaut, valeur de secours contrôlée ---------- */
+let taux: Taux | null = checkTaux({ variable: P.taux.variable, fixe: P.taux.fixe, mois: P.taux.mois, origine: 'secours' }, new Date());
+fetch('/api/taux', { signal: timeoutSignal(8000) })
+  .then((r) => r.json())
+  .then((j: unknown) => {
+    if (j && typeof j === 'object' && 'taux' in j) taux = checkTaux((j as { taux: Taux | null }).taux, new Date());
+  })
+  .catch(() => {});
+
 function budgetOptions(): BudgetOptions {
   return {
+    mensualite: { taux, revenu: (state.values.revenu as string) || null, repere: P.taux.repere_revenu as [number, number], durees: P.taux.durees },
     date: today,
     bellegenAnnonce: { montant: P.bellegen.annonce_par_personne, actuel: P.bellegen.par_personne, etatAu: P.bellegen.annonce_etat_au },
     bellegenChoix: (state.values.bellegen as BudgetOptions['bellegenChoix']) ?? 'non',

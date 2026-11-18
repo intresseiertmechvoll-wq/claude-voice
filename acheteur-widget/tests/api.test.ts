@@ -1,7 +1,10 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { handleBudget } from '../src/server/handler';
 import { resetMemoryLimiter } from '../src/shared/ratelimit';
+import { readFileSync } from 'node:fs';
 import { body, DATA, PARAMS } from './helpers';
+
+const BCE_CSV = readFileSync(new URL('./fixtures/bce-2026-09.csv', import.meta.url), 'utf8');
 
 const URL_API = 'https://acheteur.example.pages.dev/api/budget';
 
@@ -12,7 +15,8 @@ function req(payload: unknown, ip = '203.0.113.7', origin: string | null = 'http
 }
 
 function setup(status = 200) {
-  const fetchMock = vi.fn(async () => new Response(JSON.stringify({ id: 'test' }), { status }));
+  // La BCE (taux du mois) et Resend (e-mail) sont simulés
+  const fetchMock = vi.fn(async (url: string) => (String(url).includes('ecb.europa.eu') ? new Response(BCE_CSV) : new Response(JSON.stringify({ id: 'test' }), { status })));
   const env = { RESEND_API_KEY: 're_test', LEAD_EMAIL: 'contact@immobuild.lu' };
   const deps = { fetch: fetchMock as unknown as typeof fetch, data: DATA, params: PARAMS, log: () => {}, now: () => new Date('2026-11-18T10:00:00Z') };
   return { fetchMock, env, deps };
@@ -30,8 +34,8 @@ describe('API /api/budget', () => {
     expect(json.result.budget.prix).toBe(600000);
     expect(json.result.communes.map((c: any) => c.commune)).toEqual(['Dudelange', 'Kayl', 'Bettembourg']);
     expect(json.result.communes[0].m2).toBe(92);
-    expect(fetchMock).toHaveBeenCalledTimes(1);
-    const sent = JSON.parse((fetchMock.mock.calls[0] as unknown as [string, RequestInit])[1].body as string);
+    expect(fetchMock.mock.calls.filter((c) => String(c[0]).includes('resend'))).toHaveLength(1);
+    const sent = JSON.parse((fetchMock.mock.calls.find((c) => String(c[0]).includes('resend')) as unknown as [string, RequestInit])[1].body as string);
     expect(sent.to).toEqual(['contact@immobuild.lu']);
     expect(sent.reply_to).toBe('marie.muller@example.lu');
     expect(sent.subject).toBe('[Acheteur · CHAUD] Marie Muller – Dudelange/Kayl/Bettembourg – Appartement – 600.000 €'); // format fr-LU, comme l’outil d’estimation
@@ -57,7 +61,7 @@ describe('API /api/budget', () => {
     expect(json.result).toBeUndefined();
     expect(json.errors.email).toBe('email');
     expect(json.errors.numero).toBe('required');
-    expect(fetchMock).not.toHaveBeenCalled();
+    expect(fetchMock.mock.calls.some((c) => String(c[0]).includes('resend'))).toBe(false);
   });
 
   it('Sans la case RGPD : refusé', async () => {
@@ -65,7 +69,7 @@ describe('API /api/budget', () => {
     const res = await handleBudget(req(body({ contact: { rgpd: false } })), env, deps);
     expect(res.status).toBe(400);
     expect(((await res.json()) as any).errors.rgpd).toBe('rgpd');
-    expect(fetchMock).not.toHaveBeenCalled();
+    expect(fetchMock.mock.calls.some((c) => String(c[0]).includes('resend'))).toBe(false);
   });
 
   it('Le honeypot bloque les robots', async () => {
@@ -73,7 +77,7 @@ describe('API /api/budget', () => {
     const res = await handleBudget(req(body({ website: 'https://spam.example' })), env, deps);
     expect(res.status).toBe(400);
     expect(await res.json()).toEqual({ ok: false, error: 'rejected' });
-    expect(fetchMock).not.toHaveBeenCalled();
+    expect(fetchMock.mock.calls.some((c) => String(c[0]).includes('resend'))).toBe(false);
   });
 
   it('Sans en-tête Origin, ou depuis un autre site : refusé', async () => {
@@ -121,7 +125,7 @@ describe('Investissement', () => {
     const json = (await res.json()) as any;
     expect(json.result.budget.ltvRule).toBe('investissement');
     expect(json.result.budget.bellegen).toBe(0);
-    const sent = JSON.parse((fetchMock.mock.calls[0] as unknown as [string, RequestInit])[1].body as string);
+    const sent = JSON.parse((fetchMock.mock.calls.find((c) => String(c[0]).includes('resend')) as unknown as [string, RequestInit])[1].body as string);
     expect(sent.text).not.toContain('Bëllegen Akt :');
   });
 });

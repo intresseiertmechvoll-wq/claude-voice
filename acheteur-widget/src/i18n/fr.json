@@ -155,7 +155,7 @@
     "capaciteMontant": "Montant que vous pouvez emprunter, environ",
     "capaciteMontantHelp": "Si vous le connaissez : je calcule aussi votre prix maximal.",
     "revenu": "Revenu net mensuel du ménage",
-    "revenuHelp": "Seulement pour mieux vous conseiller. Aucun calcul de prêt n’est fait avec.",
+    "revenuHelp": "Pour situer la mensualité d’exemple par rapport à votre revenu. Ce n’est pas une étude de prêt.",
     "revenuOptions": {
       "moins_4000": "Moins de 4 000 €",
       "4000_6000": "4 000 – 6 000 €",
@@ -305,5 +305,19 @@
   "trust": {
     "line": "Gratuit · sans engagement · sans cookie",
     "where": "Vos réponses sont envoyées par e-mail à ImmoBuild Kohn uniquement, et à notre courtier partenaire seulement si vous l’avez demandé."
+  },
+  "mensualite": {
+    "title": "Mensualité d’exemple",
+    "sub": "Pour un prêt de {pret}, avec les taux moyens des nouveaux crédits immobiliers au Luxembourg (BCL, {mois}). Hors assurance.",
+    "duree": "{n} ans",
+    "variable": "Taux variable {taux}",
+    "fixe": "Taux fixe +10 ans {taux}",
+    "partRange": "Sur 25 ans à taux fixe, cela représente environ {min} à {max} de votre revenu net.",
+    "partMin": "Sur 25 ans à taux fixe, cela représente au moins {min} de votre revenu net.",
+    "partMax": "Sur 25 ans à taux fixe, cela représente au plus {max} de votre revenu net.",
+    "repere_low": "C’est plutôt sous le repère habituel des banques (environ un tiers à 40 %).",
+    "repere_mid": "C’est dans le repère habituel des banques (environ un tiers à 40 %).",
+    "repere_high": "C’est plutôt au-dessus du repère habituel des banques (environ un tiers à 40 %) : une durée plus longue, un prix plus bas ou plus d’apport peuvent aider.",
+    "disclaimer": "Exemple de calcul avec des taux moyens : ce n’est ni une offre ni votre taux. Votre taux dépend de votre banque et de votre dossier."
   }
 }

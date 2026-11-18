@@ -11,6 +11,7 @@ import { leadEmail } from '../shared/email';
 import { allowSubmission, refundSubmission, type KVLike } from '../shared/ratelimit';
 import type { Dataset, PublicResult } from '../shared/types';
 import { validateSubmission } from '../shared/validation';
+import { getTaux } from './taux';
 
 export interface Env {
   RESEND_API_KEY?: string;
@@ -123,7 +124,8 @@ export async function handleBudget(request: Request, env: Env, deps: Partial<Dep
   // Le budget est recalculé ici : on ne reprend jamais un calcul venu du navigateur
   const budget = computeBudget(a, d.params);
   const communes = communesM2(a.prix, a.communes, a.type, a.neuf, d.data, d.params);
-  const mail = leadEmail(v.value, budget, communes, d.data.periode, d.now());
+  const taux = await getTaux(d);
+  const mail = leadEmail(v.value, budget, communes, d.data.periode, d.now(), taux);
   const err = await sendMail(env, d, { ...mail, replyTo: v.value.contact.email });
   if (err) {
     // Rien n'est parti : l'essai ne compte pas dans la limite, le visiteur peut réessayer
@@ -131,6 +133,6 @@ export async function handleBudget(request: Request, env: Env, deps: Partial<Dep
     return json({ ok: false, error: err }, err === 'config' ? 500 : 502);
   }
 
-  const result: PublicResult = { budget, communes, periodeDebut: d.data.periode_debut, periodeFin: d.data.periode_fin };
+  const result: PublicResult = { budget, communes, periodeDebut: d.data.periode_debut, periodeFin: d.data.periode_fin, taux };
   return json({ ok: true, result });
 }

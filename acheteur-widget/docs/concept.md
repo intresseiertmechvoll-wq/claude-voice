@@ -613,6 +613,14 @@ Gebaut in `acheteur-widget/`, nach Jasons Startsignal vom 18.11.2026. Bei der Pr
 
 Getestet: 52 automatische Tests; Ablauf im echten Browser (Chromium, 390 px und 320 px): 0 JavaScript-Fehler, 0 Barrierefreiheits-Fehler (axe-core, WCAG 2.1 AA) auf 8 Bildschirmen, kein seitliches Scrollen, Einbettung per iframe. **Nicht getestet:** echter E-Mail-Versand über Resend, Betrieb auf Cloudflare (nur lokal mit wrangler), WordPress-Seite, Safari/iPhone.
 
+## 12. Beispiel-Monatsrate (18.11.2026, auf Jasons Wunsch)
+
+- Rate für 20/25/30 Jahre mit dem Durchschnittszins der BCL (variabel und fest über 10 Jahre), ohne Versicherung, ausdrücklich „ni une offre ni votre taux“.
+- Mit Einkommensspanne: Anteil am Einkommen und Vergleich mit dem Richtwert der Banken (ein Drittel bis 40 %). Damit hat die Einkommensfrage für den Kunden einen Sinn.
+- **Monatliche Aktualisierung automatisch:** Der Server liest die Zinsen bei der EZB, die die BCL-Statistik veröffentlicht (geprüft: September 2026 = 3,13 % variabel wie in der BCL-Mitteilung vom 03.11.2026). Plausibilitätsprüfung, Ersatzwert, nach 4 Monaten ohne frische Daten keine Rate. Jede Lead-E-Mail zeigt Zins, Monat und Herkunft.
+- **Nicht getestet:** Abruf bei der EZB aus Cloudflare heraus. Lokal lief der Ersatzwert.
+- Rechtlich (meine Einschätzung, nicht anwaltlich geprüft): eine allgemeine Beispielrechnung mit öffentlichen Durchschnittszinsen, ohne Produkt und ohne Bank, ist keine Kreditvermittlung im Sinne von L. 226-1. Banken zeigen solche Rechner öffentlich.
+
 ## Anhang: Quellen
 
 | Quelle | URL | Stand |

@@ -2,6 +2,7 @@
 import { LOCALES, type T } from '../i18n';
 import type { Answers, Budget, CommuneM2, Lang, PublicResult } from '../shared/types';
 import { formatEuro } from './format';
+import { mensualite, partRevenu, type Taux } from '../shared/taux';
 import { esc } from './html';
 import { icon } from './icons';
 
@@ -12,6 +13,40 @@ export interface BudgetOptions {
   bellegenAnnonce: { montant: number; actuel: number; etatAu: string };
   bellegenChoix: 'non' | 'oui' | 'nsp';
   usage: 'habiter' | 'investir';
+  /** mensualité d'exemple : taux du mois (null = pas affichée), tranche de revenu, repère des banques, durées */
+  mensualite?: { taux: Taux | null; revenu: string | null; repere: [number, number]; durees: number[] };
+}
+
+/** Mensualité d'exemple avec les taux moyens BCL du mois. Rien si les taux manquent ou sont trop anciens. */
+export function renderMensualite(pret: number, taux: Taux | null, revenu: string | null | undefined, t: T, lang: Lang, repere: [number, number], durees: number[]): string {
+  if (!taux || pret <= 0) return '';
+  const pctFmt = (v: number) => new Intl.NumberFormat(LOCALES[lang], { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(v) + (lang === 'en' ? '%' : '\u00a0%');
+  const eur = (v: number) => `<span class="nw">${esc(formatEuro(Math.round(v / 10) * 10, lang))}</span>`;
+  const [y, m] = taux.mois.split('-').map(Number);
+  const moisTxt = new Intl.DateTimeFormat(LOCALES[lang], { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(Date.UTC(y, m - 1, 15)));
+  const rows = durees
+    .map((n) => `<tr><th scope="row">${esc(t('mensualite.duree', { n }))}</th><td>${eur(mensualite(pret, taux.variable, n))}</td><td>${eur(mensualite(pret, taux.fixe, n))}</td></tr>`)
+    .join('');
+  let part = '';
+  const p = partRevenu(mensualite(pret, taux.fixe, 25), revenu);
+  if (p) {
+    const pc = (v: number) => `${Math.round(v * 100)}${lang === 'en' ? '%' : '\u00a0%'}`;
+    const txt = p.min !== null && p.max !== null ? t('mensualite.partRange', { min: pc(p.min), max: pc(p.max) }) : p.min !== null ? t('mensualite.partMin', { min: pc(p.min) }) : t('mensualite.partMax', { max: pc(p.max!) });
+    // Milieu de la fourchette (ou la seule borne connue) comparé au repère des banques
+    const ref = p.min !== null && p.max !== null ? (p.min + p.max) / 2 : (p.min ?? p.max)!;
+    const level = ref > repere[1] ? 'high' : ref < repere[0] ? 'low' : 'mid';
+    part = `<p class="part part-${level}">${esc(txt)} ${esc(t(`mensualite.repere_${level}`))}</p>`;
+  }
+  return `<section class="panel mensualite" aria-labelledby="mens-title">
+  <h3 id="mens-title">${icon('calendrier', 'ico ico-sm')}<span>${esc(t('mensualite.title'))}</span></h3>
+  <p class="small">${esc(t('mensualite.sub', { pret: formatEuro(pret, lang), mois: moisTxt }))}</p>
+  <table class="budget-table mens-table">
+    <thead><tr><th scope="col"></th><th scope="col">${esc(t('mensualite.variable', { taux: pctFmt(taux.variable) }))}</th><th scope="col">${esc(t('mensualite.fixe', { taux: pctFmt(taux.fixe) }))}</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>
+  ${part}
+  <p class="small disclaimer">${esc(t('mensualite.disclaimer'))}</p>
+</section>`;
 }
 
 export interface ResultOptions {
@@ -85,6 +120,7 @@ export function renderBudgetPreview(b: Budget, t: T, lang: Lang, o: BudgetOption
   return `<section class="result" aria-labelledby="preview-title">
   <h2 id="preview-title" class="step-title" tabindex="-1">${esc(t('steps.3.title'))}</h2>
   ${renderBudget(b, t, lang, o)}
+  ${o.mensualite ? renderMensualite(b.pret, o.mensualite.taux, o.mensualite.revenu, t, lang, o.mensualite.repere, o.mensualite.durees) : ''}
   <p class="next-hint">${icon('fleche', 'ico ico-sm')}<span>${esc(t('budget.next'))}</span></p>
 </section>`;
 }
@@ -143,6 +179,7 @@ export function renderResult(r: PublicResult, a: Pick<Answers, 'prix' | 'premier
     <p class="hero-sub">${esc(t('result.sub'))}</p>
   </div>
   ${communesHtml(r.communes, a.prix, r, t, lang)}
+  ${o.mensualite ? renderMensualite(r.budget.pret, r.taux ?? o.mensualite.taux, a.revenu, t, lang, o.mensualite.repere, o.mensualite.durees) : ''}
   <details class="budget-again panel"><summary>${icon('donnees', 'ico ico-sm')}<span>${esc(t('result.budgetAgain', { prix: formatEuro(r.budget.prix, lang) }))}</span></summary>${renderBudget(r.budget, t, lang, o)}</details>
   <section class="panel" aria-labelledby="check-title">
     <h3 id="check-title">${icon('info', 'ico ico-sm')}<span>${esc(t('result.checkTitle'))}</span></h3>

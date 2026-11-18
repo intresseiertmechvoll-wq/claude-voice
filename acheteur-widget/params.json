@@ -15,7 +15,7 @@
   },
   "ltv": {
     "_source": "Règlement CSSF 20-08, FAQ technique du 09/03/2026 : 100 % premier achat résidence principale, 90 % autre résidence principale, 80 % autres (dont location)",
-    "premier": 1.0,
+    "premier": 1,
     "residence": 0.9,
     "investissement": 0.8
   },
@@ -86,5 +86,20 @@
     "_hypothese": "HYPOTHÈSE à valider avec un notaire : copies, extraits, débours (vente et prêt ensemble). Ordre de grandeur « quelques centaines d'euros ».",
     "min": 300,
     "max": 1000
+  },
+  "taux": {
+    "_source": "BCL, publiés par la BCE (data-api.ecb.europa.eu, séries MIR.M.LU.B.A2C.F et .P) : taux moyens des nouveaux crédits immobiliers. Septembre 2026 contrôlé le 18/11/2026 (variable 3,13 % = communiqué BCL du 03/11/2026). Valeur de SECOURS : l'outil lit les taux en direct ; celle-ci sert seulement si la BCE ne répond pas, et n'est plus affichée après 4 mois.",
+    "variable": 3.13,
+    "fixe": 4.03,
+    "mois": "2026-09",
+    "durees": [
+      20,
+      25,
+      30
+    ],
+    "repere_revenu": [
+      0.33,
+      0.4
+    ]
   }
 }

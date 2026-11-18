@@ -1,5 +1,6 @@
 /** E-mail du lead acheteur envoyé à ImmoBuild Kohn (toujours en français) */
 import server from '../../server.json';
+import { mensualite, partRevenu, type Taux } from './taux';
 import type { Budget, CommuneM2, Submission } from './types';
 
 const L = {
@@ -184,8 +185,21 @@ export function leadSections(s: Submission, b: Budget, communes: CommuneM2[], da
   ];
 }
 
-export function leadEmail(s: Submission, b: Budget, communes: CommuneM2[], periode: string, date = new Date()): { subject: string; html: string; text: string } {
+/** Mensualité d'exemple, telle qu'affichée au visiteur, avec le taux et son origine (pour contrôle) */
+function mensualiteSection(s: Submission, b: Budget, taux: Taux | null): Section {
+  if (!taux) return { title: 'Mensualité d’exemple', rows: [['Affichée', 'non (taux indisponibles ou de plus de 4 mois)']] };
+  const mois = `${taux.mois} (${taux.origine === 'bce' ? 'lu en direct à la BCE' : 'VALEUR DE SECOURS de params.json : la BCE n’a pas répondu'})`;
+  const fmtPct = (v: number) => `${v.toFixed(2).replace('.', ',')} %`;
+  const rows: [string, string][] = [['Taux moyens BCL', `variable ${fmtPct(taux.variable)} · fixe plus de 10 ans ${fmtPct(taux.fixe)} · ${mois}`]];
+  for (const n of [20, 25, 30]) rows.push([`Sur ${n} ans (prêt ${eur(b.pret)})`, `${eur(Math.round(mensualite(b.pret, taux.variable, n)))} variable · ${eur(Math.round(mensualite(b.pret, taux.fixe, n)))} fixe`]);
+  const part = partRevenu(mensualite(b.pret, taux.fixe, 25), s.answers.revenu);
+  if (part) rows.push(['Part du revenu (25 ans, fixe)', `${part.min !== null ? Math.round(part.min * 100) : '?'} à ${part.max !== null ? Math.round(part.max * 100) : '?'} %`]);
+  return { title: 'Mensualité d’exemple (hors assurance)', rows };
+}
+
+export function leadEmail(s: Submission, b: Budget, communes: CommuneM2[], periode: string, date = new Date(), taux: Taux | null = null): { subject: string; html: string; text: string } {
   const sections = leadSections(s, b, communes, date, periode);
+  sections.splice(sections.length - 2, 0, mensualiteSection(s, b, taux));
   const subject = leadSubject(s, b);
   const text = sections.map((sec) => `== ${sec.title} ==\n` + sec.rows.map(([k, v]) => `${/^\d+\.$/.test(k) ? `${k} ` : `${k} : `}${v.replace(/\n/g, '\n    | ')}`).join('\n')).join('\n\n');
   const html = `<!doctype html><html lang="fr"><body style="margin:0;padding:24px;background:#F8F8F6;font-family:Arial,Helvetica,sans-serif;color:#0A2342">

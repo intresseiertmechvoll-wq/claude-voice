@@ -704,3 +704,11 @@ html.is-embedded #app { padding: 4px 2px 24px; }
   .verdict, .prixmax, .cm, .chip { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .next-card .btn { display: none !important; }
 }
+
+.mens-table th[scope="col"] { text-align: right; font-size: 0.8125rem; font-weight: 600; color: var(--muted); }
+.mens-table th[scope="col"]:first-child { text-align: left; }
+.part { margin: 14px 0 0; padding: 12px 14px; border-radius: 10px; font-weight: 600; }
+.part-low { background: var(--up-bg); color: var(--up); }
+.part-mid { background: var(--gold-soft); color: var(--navy); }
+.part-high { background: var(--down-bg); color: var(--down); }
+@media print { .part { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }

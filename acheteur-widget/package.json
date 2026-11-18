@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "deploy": "npm run build && wrangler pages deploy dist --project-name acheteur-widget --branch main",
-    "sync-data": "node -e \"for (const f of ['communes.json','cantons.json','sans-donnees.json']) require('fs').copyFileSync('../estimation-widget/data/'+f,'data/'+f)\""
+    "sync-data": "node -e \"for (const f of ['communes.json','cantons.json','sans-donnees.json']) require('fs').copyFileSync('../estimation-widget/data/'+f,'data/'+f)\"",
+    "update-taux": "tsx scripts/update-taux.ts"
   },
   "license": "UNLICENSED",
   "devDependencies": {

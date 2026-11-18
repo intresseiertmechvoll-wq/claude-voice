@@ -155,7 +155,7 @@
     "capaciteMontant": "Möglicher Kreditbetrag, ungefähr",
     "capaciteMontantHelp": "Wenn Sie ihn kennen: Dann berechne ich auch Ihren Höchstpreis.",
     "revenu": "Monatliches Nettoeinkommen des Haushalts",
-    "revenuHelp": "Nur, um Sie besser zu beraten. Damit wird kein Kredit berechnet.",
+    "revenuHelp": "Um die Beispiel-Monatsrate mit Ihrem Einkommen zu vergleichen. Das ist keine Kreditprüfung.",
     "revenuOptions": {
       "moins_4000": "Unter 4 000 €",
       "4000_6000": "4 000 – 6 000 €",
@@ -305,5 +305,19 @@
   "trust": {
     "line": "Kostenlos · unverbindlich · ohne Cookies",
     "where": "Ihre Antworten gehen per E-Mail nur an ImmoBuild Kohn, und nur auf Ihren Wunsch an unseren Partner-Kreditvermittler."
+  },
+  "mensualite": {
+    "title": "Beispiel-Monatsrate",
+    "sub": "Für einen Kredit von {pret}, mit den Durchschnittszinsen neuer Wohnkredite in Luxemburg (BCL, {mois}). Ohne Versicherung.",
+    "duree": "{n} Jahre",
+    "variable": "Variabler Zins {taux}",
+    "fixe": "Fester Zins +10 Jahre {taux}",
+    "partRange": "Über 25 Jahre mit festem Zins sind das etwa {min} bis {max} Ihres Nettoeinkommens.",
+    "partMin": "Über 25 Jahre mit festem Zins sind das mindestens {min} Ihres Nettoeinkommens.",
+    "partMax": "Über 25 Jahre mit festem Zins sind das höchstens {max} Ihres Nettoeinkommens.",
+    "repere_low": "Das liegt eher unter dem üblichen Richtwert der Banken (etwa ein Drittel bis 40 %).",
+    "repere_mid": "Das liegt im üblichen Richtwert der Banken (etwa ein Drittel bis 40 %).",
+    "repere_high": "Das liegt eher über dem üblichen Richtwert der Banken (etwa ein Drittel bis 40 %): Eine längere Laufzeit, ein niedrigerer Preis oder mehr Eigenkapital können helfen.",
+    "disclaimer": "Beispielrechnung mit Durchschnittszinsen: weder ein Angebot noch Ihr Zins. Ihr Zins hängt von Ihrer Bank und Ihrer Situation ab."
   }
 }

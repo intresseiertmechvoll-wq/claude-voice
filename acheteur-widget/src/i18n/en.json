@@ -155,7 +155,7 @@
     "capaciteMontant": "Amount you can borrow, roughly",
     "capaciteMontantHelp": "If you know it, I’ll also calculate your maximum price.",
     "revenu": "Household net monthly income",
-    "revenuHelp": "Only to advise you better. No loan is calculated with it.",
+    "revenuHelp": "To compare the example monthly payment with your income. This is not a loan assessment.",
     "revenuOptions": {
       "moins_4000": "Under €4,000",
       "4000_6000": "€4,000 – 6,000",
@@ -305,5 +305,19 @@
   "trust": {
     "line": "Free · no commitment · no cookies",
     "where": "Your answers are emailed to ImmoBuild Kohn only, and to our partner broker only if you asked for it."
+  },
+  "mensualite": {
+    "title": "Example monthly payment",
+    "sub": "For a {pret} loan, at the average rates of new home loans in Luxembourg (BCL, {mois}). Insurance not included.",
+    "duree": "{n} years",
+    "variable": "Variable rate {taux}",
+    "fixe": "Fixed 10+ years {taux}",
+    "partRange": "Over 25 years at a fixed rate, that is about {min} to {max} of your net income.",
+    "partMin": "Over 25 years at a fixed rate, that is at least {min} of your net income.",
+    "partMax": "Over 25 years at a fixed rate, that is at most {max} of your net income.",
+    "repere_low": "That is rather below the usual bank guideline (about one third to 40%).",
+    "repere_mid": "That is within the usual bank guideline (about one third to 40%).",
+    "repere_high": "That is rather above the usual bank guideline (about one third to 40%): a longer term, a lower price or a larger deposit can help.",
+    "disclaimer": "Example based on average rates: neither an offer nor your rate. Your rate depends on your bank and your situation."
   }
 }

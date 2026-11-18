@@ -171,6 +171,8 @@ export interface CommuneM2 {
 
 export interface PublicResult {
   budget: Budget;
+  /** taux du mois utilisés pour la mensualité d'exemple (null : pas de mensualité affichée) */
+  taux: import('./taux').Taux | null;
   communes: CommuneM2[];
   periodeDebut: string;
   periodeFin: string;

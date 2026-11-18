@@ -45,6 +45,10 @@ Base légale proposée : **consentement** pour 1 à 4 (cases à cocher, non coch
 - **À compléter dans ta politique de confidentialité** : nommer atHome Finance comme destinataire possible, avec la finalité (contact au sujet du financement) et la condition (seulement si la case est cochée).
 - **Risque à connaître (je suppose, pas vérifié par un juriste)** : pour qu’un consentement à une transmission vers un autre responsable soit valable, les lignes directrices 05/2020 du CEPD/EDPB demandent que ce responsable soit **nommé** au moment du choix. Le nommer seulement dans la politique de confidentialité est plus faible que de le nommer à côté de la case. Option prête : `config.json` → `courtierNomPublic` = « atHome Finance » affiche un petit lien « Qui est notre courtier partenaire ? » à côté de la case, sans changer le texte de la case.
 
+## 3 bis. Taux du mois
+
+Le serveur lit les taux moyens publiés par la BCE (BCL). Cette requête ne contient **aucune donnée du visiteur**.
+
 ## 4. Durée de conservation
 
 - Dans l’outil : aucune (empreinte d’IP : 1 heure au plus).

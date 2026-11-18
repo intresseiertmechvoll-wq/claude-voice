@@ -45,7 +45,7 @@ describe('Aperçu du budget (sans coordonnées)', () => {
 
 describe('Résultat complet', () => {
   const b = computeBudget(couple(), PARAMS);
-  const r: PublicResult = { budget: b, communes: communesM2(600000, ['Dudelange', 'Kayl'], 'les_deux', 'ancien', DATA, PARAMS), periodeDebut: '2025-07-01', periodeFin: '2026-06-30' };
+  const r: PublicResult = { budget: b, communes: communesM2(600000, ['Dudelange', 'Kayl'], 'les_deux', 'ancien', DATA, PARAMS), periodeDebut: '2025-07-01', periodeFin: '2026-06-30', taux: null };
   const html = renderResult(
     r,
     { prix: 600000, premier: 'oui', usage: 'habiter', bellegen: 'non', vendre: 'oui_lu', renover: 'selon_prix', mandat: 'oui', courtier: true, revenu: null },

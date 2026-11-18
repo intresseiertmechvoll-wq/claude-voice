@@ -42,7 +42,17 @@ Comme l’outil d’estimation : pas de base de données, pas de cookie, pas de 
 | Prix maximal | seulement si le visiteur connaît son montant d’emprunt (sinon, avec 100 % de prêt, seul le revenu limiterait, et l’outil ne calcule pas de prêt) | | |
 | m² par commune | appartement : ventes notariées (≥ 10), neuf : ventes VEFA (≥ 10), sinon médiane du canton ; maison : **prix annoncés** (≥ 30), sinon médiane du canton | Observatoire de l’Habitat | « prix demandés » écrit en clair pour les maisons |
 
-Ce que l’outil **ne fait pas**, exprès : pas de mensualité, pas de taux, pas de capacité d’emprunt calculée à partir du revenu, pas de nom de banque. Phrase affichée sous chaque budget : « Cet outil ne constitue ni un conseil en crédit ni une offre de prêt. Seule votre banque décide. »
+### Mensualité d’exemple (ajoutée le 18/11/2026)
+
+- Montrée sous le budget (aperçu et résultat) : prêt retenu, sur 20, 25 et 30 ans, au **taux moyen variable** et au **taux moyen fixe plus de 10 ans** des nouveaux crédits immobiliers au Luxembourg, hors assurance.
+- Si le visiteur a donné sa tranche de revenu : part du revenu (25 ans, taux fixe), comparée au repère habituel des banques (un tiers à 40 %), en trois niveaux (plutôt sous / dans / plutôt au-dessus).
+- **D’où viennent les taux, chaque mois, sans rien faire** : le serveur les lit en direct à la BCE, qui publie les statistiques de la BCL (`data-api.ecb.europa.eu`, séries `MIR.M.LU.B.A2C.F` et `.P`), et les garde 12 heures. Contrôle du 18/11/2026 : septembre 2026 = 3,13 % variable (identique au communiqué BCL du 03/11/2026) et 4,03 % fixe.
+- **Garde-fous** (`src/shared/taux.ts`) : taux entre 0,5 et 10 %, écart variable/fixe de 4 points au plus, les deux séries du même mois, données de **4 mois au plus**. Sinon : valeur de secours de `params.json` (contrôlée, avec les mêmes règles) ; si elle a aussi plus de 4 mois, **aucune mensualité n’est affichée**.
+- **Ton contrôle** : chaque e-mail de lead indique le taux utilisé, son mois et s’il vient de la BCE en direct ou de la **VALEUR DE SECOURS**. Si tu vois « valeur de secours » plusieurs fois de suite, la lecture en direct ne marche plus.
+- Mettre à jour la valeur de secours (par ex. tous les 3 mois) : `npm run update-taux` puis `npm run deploy`. Le script s’arrête sans rien changer si les taux sont illisibles, non plausibles, trop anciens ou ont bougé de plus d’un point.
+- Non testé : la lecture en direct **depuis Cloudflare** (en local, le serveur de test n’a pas pu joindre la BCE et a pris la valeur de secours ; depuis cette machine, la BCE répond).
+
+Ce que l’outil **ne fait pas**, exprès : pas de capacité d’emprunt calculée à partir du revenu, pas de taux personnel, pas de nom de banque. La mensualité est un exemple au taux moyen, écrit comme tel. Phrase affichée sous chaque budget : « Cet outil ne constitue ni un conseil en crédit ni une offre de prêt. Seule votre banque décide. »
 
 ## Priorité du lead (e-mail)
 
@@ -60,7 +70,7 @@ Même procédure que l’outil d’estimation (voir son README, parties 1 à 3),
 cd acheteur-widget
 npm install
 cp .dev.vars.example .dev.vars   # EMAIL_MODE=log : aucun e-mail ne part en local
-npm test                          # 56 tests
+npm test                          # 65 tests
 npm run dev                       # http://localhost:8788/ et /demo.html
 ```
 
@@ -93,7 +103,7 @@ cd acheteur-widget && npm run sync-data && npm test && npm run deploy
 3. Politique de confidentialité : ajouter les nouvelles données (budget, revenu en tranche) et **nommer atHome Finance comme destinataire possible** (voir `PRIVACY.md`).
 4. Quand le projet de loi 8806 est voté : `params.json` → `bellegen.par_personne` = 45000 (et mettre à jour `_source`). L’annonce « pas encore votée » disparaît alors toute seule.
 
-## Tests (56)
+## Tests (65)
 
 | Sujet | Fichier |
 | --- | --- |
@@ -101,6 +111,7 @@ cd acheteur-widget && npm run sync-data && npm test && npm run deploy
 | m² par commune : Dudelange ≈ 92 m² (appartement), ≈ 113 m² (maison, prix annoncés), médiane du canton | `tests/budget.test.ts` |
 | API : e-mail complet, nom du courtier absent du résultat, pas de résultat sans coordonnées valides, RGPD, honeypot, Origin, 3 communes max, recalcul serveur, Resend en panne, limite de 20/heure | `tests/api.test.ts` |
 | Montants tolérants (« 60k », « 600.000 € », « 1,2 M »…), montant d’emprunt facultatif, aperçu sans coordonnées | `tests/validation.test.ts` |
+| Taux : lecture de la vraie réponse BCE, format inattendu, taux absurdes, trop anciens, BCE en panne ; mensualité calculée à la main (600 000 € sur 25 ans à 4,03 % = 3 176,97 €) ; part du revenu | `tests/taux.test.ts` |
 | Écrans : avertissement « ni conseil en crédit ni offre de prêt » (3 langues), 45 000 € annoncés mais non utilisés, aucun prix de commune dans l’aperçu, renvoi vers l’estimation, case courtier sans nom | `tests/result-view.test.ts` |
 
 Vérifié aussi dans un vrai navigateur (Chromium, 390 px et 320 px, 18/11/2026) : parcours complet jusqu’au résultat, 0 erreur JavaScript, 0 défaut d’accessibilité axe-core (WCAG 2.1 AA) sur les 8 écrans, pas de défilement horizontal, intégration par iframe. Captures dans `screenshots/`.
