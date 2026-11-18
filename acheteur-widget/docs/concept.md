@@ -463,7 +463,28 @@ Alles aus den Lead-E-Mails zählbar, z. B. monatlich per Hand oder mit einem kle
 - Größtes Risiko: eine Provision vom Courtier ohne rechtliche Prüfung.
 - Ohne Provision ist das Risiko gering. **Sicherheit meiner Einschätzung: mittel, keine Rechtsberatung.**
 
-**Offen:** Wer ist der Partner? Du hast einen Namen genannt, den ich nicht sicher verstanden habe (Frage 12).
+**Stand 18.11.2026:**
+- Jason hat einen Vertrag mit dem Courtier, und der Courtier ist laut Jason zugelassen. Den Vertrag habe ich **nicht gesehen**.
+- Offen ist noch, ob Jason für die Weiterleitung bezahlt wird. Wenn ja: im Formular offenlegen (« ImmoBuild Kohn peut être rémunéré par ce courtier »). Ob das Pflicht ist, habe ich nicht geprüft **[Vermutung]**. Ehrlich und vertrauensbildend ist es jedenfalls.
+
+### 8.1 Der Werbesatz für den Courtier
+
+**Jasons Vorschlag:** « Saviez-vous qu'au Luxembourg, les taux varient suivant la tête du client ? Ne vous faites pas avoir, parlez à un courtier. »
+
+**1. Chance**
+- Prägnant, und er trifft ein echtes Thema: Kreditzinsen werden einzeln verhandelt.
+- Die BCL veröffentlicht nur **Durchschnittswerte**. Im September 2026 lag der variable Satz im Schnitt bei 3,13 %. Was der Einzelne bekommt, weicht davon ab.
+
+**2. Prüfung**
+- *Belegt:* Es gibt Durchschnittssätze (BCL). Banken bewerten jeden Kunden einzeln.
+- *Nicht belegt:* **Wie groß** die Unterschiede zwischen Banken oder Kunden sind. Dafür habe ich keine Quelle.
+- „Suivant la tête du client“ unterstellt Willkür. „Ne vous faites pas avoir“ unterstellt, dass Banken übervorteilen. Das passt nicht zum sachlichen Ton des Tools, und ein Kunde, der seine Bank mag, fühlt sich angegriffen.
+- Ein Rechtsproblem sehe ich darin eher nicht, **[Vermutung]**. Das Problem ist die Glaubwürdigkeit.
+
+**3. Fazit:** Inhalt ja, Ton entschärfen. Vorschläge:
+- « Le taux d'un crédit immobilier se négocie : il n'est pas le même pour tout le monde. Un courtier compare plusieurs banques pour vous, sans engagement. »
+- « Saviez-vous que les taux se négocient au cas par cas ? Comparez avant de signer. Notre courtier partenaire le fait pour vous, gratuitement et sans engagement. »
+  - « gratuitement » nur, wenn der Courtier dem Käufer wirklich nichts berechnet. Bitte prüfen.
 
 ## 9. Idee Käufer-Mandat: „Ich vertrete den Käufer“ (neu, zum Weiterdenken)
 
@@ -478,7 +499,7 @@ Alles aus den Lead-E-Mails zählbar, z. B. monatlich per Hand oder mit einem kle
 **2. Prüfung**
 - *Markt:* Ob Käufer in Luxemburg dafür bezahlen, weiß ich nicht. Käufer-Mandate (chasseur immobilier, mandat de recherche) gibt es, ich habe aber keine Zahlen für Luxemburg recherchiert. **[nicht geprüft]**
 - *Interessenkonflikt:* Du darfst nicht beim gleichen Objekt den Verkäufer **und** den Käufer vertreten, ohne dass beide es wissen. Das ist **[Vermutung]**, die Rechtslage in Luxemburg ist nicht geprüft. Für eigene Objekte also keine Käufer-Mandate.
-- *„Beste Konditionen“:* Beim **Preis** und beim Kaufvertrag ja. Bei den **Kreditkonditionen** nein, das ist Kreditberatung (Teil 2.3) und bleibt beim Courtier.
+- *„Beste Konditionen“:* Gemeint sind die **Kaufbedingungen** (Preis, Vertrag, Fristen, Auflagen, Übergabe), nicht der Kredit. Das hat Jason am 18.11.2026 bestätigt. Der Kredit bleibt beim Courtier.
 
 **3. Fazit**
 - Vielversprechender als ein Daten-Tool, aber ein **Geschäftsmodell**, kein Softwareproblem.
@@ -489,7 +510,36 @@ Alles aus den Lead-E-Mails zählbar, z. B. monatlich per Hand oder mit einem kle
 
 ## 10. Was du Notar und Apimo fragen sollst (Texte zum Versenden)
 
-### 10.1 An den Notar
+### 10.0 Notarkosten: selbst recherchiert (18.11.2026)
+
+Du hast recht, die Tarife sind online zu finden. Damit ist die Anfrage beim Notar (10.1) **nicht mehr nötig**, höchstens zur Bestätigung.
+
+**Kaufakt, Honorar des Notars**
+- **[geprüft: Sekundärquelle]** Barème 7 des RGD vom 24.07.1971 (geändert). Es wird in Stufen gerechnet: 4 % bis 3 718 €, … 0,10 % von 247 894 € bis 1 239 468 €, darüber 0,05 %. Dazu 17 % TVA.
+  - Quelle: tevaxia.lu/guide/frais-notaire-luxembourg, abgerufen 18.11.2026.
+  - Den Gesetzestext auf legilux habe ich **nicht** selbst gelesen (https://legilux.public.lu/eli/etat/leg/rgd/1971/07/24/n1/jo). Vor dem Bau gegenlesen.
+- Berechnet aus dieser Tabelle:
+
+| Preis | Honorar ohne TVA | mit 17 % TVA |
+| --- | --- | --- |
+| 400 000 € | ≈ 1 550 € | ≈ 1 810 € |
+| 600 000 € | ≈ 1 750 € | ≈ 2 050 € |
+| 700 000 € | ≈ 1 850 € | ≈ 2 165 € |
+| 1 000 000 € | ≈ 2 150 € | ≈ 2 515 € |
+
+- Dazu kommen Kopien, Auslagen und Auszüge. Die Beträge sind nicht festgelegt, ich habe sie nicht beziffert.
+
+**Darlehensakt (Hypothek)**
+- **[geprüft, offiziell]** Eintragung der Hypothek: **0,05 %**. Quelle: pfi.public.lu/fr/citoyen/hypotheques.html, abgerufen 18.11.2026. Es gibt Befreiungen, die ich nicht im Detail geprüft habe.
+- **[Sekundärquelle]** Registrierungsgebühr auf den Darlehensakt: **0,24 %** des Darlehens. Dazu Notarhonorar nach Barème 5 + TVA. Quelle: tevaxia.lu und konstrulux.lu.
+  - Barème 5 habe ich **nicht** gefunden.
+- Beispiel Darlehen 600 000 €: 1 440 € (0,24 %) + rund 300 € (0,05 %, falls die Hypothek auf den Darlehensbetrag eingetragen wird) + Honorar nach Barème 5 + TVA.
+
+**Folge für das Tool**
+- Nebenkosten neben den 7 % als Spanne zeigen, z. B. bei 600 000 € Kauf und 600 000 € Darlehen: « environ 4 000 à 6 000 € (notaire, acte de prêt, inscription), à confirmer par votre notaire ».
+- Die obere Grenze ist eine **Annahme** für Barème 5 und die Auslagen. Sobald Barème 5 im Gesetzestext gelesen ist, rechnet das Tool genau statt mit Annahme.
+
+### 10.1 An den Notar (nur noch optional, zur Bestätigung)
 
 **Warum:** Das Tool soll die Kaufnebenkosten als **Spanne** zeigen. Ich habe dafür keine geprüften Zahlen, und eine falsche Zahl in einem öffentlichen Tool wäre schlimmer als keine.
 
