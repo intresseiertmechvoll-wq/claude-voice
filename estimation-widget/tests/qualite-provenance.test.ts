@@ -13,7 +13,7 @@ import { COMMUNES } from '../src/shared/communes';
 import { leadEmail, qualityLine, sourceSummary } from '../src/shared/email';
 import { estimate } from '../src/shared/engine';
 import { resetMemoryLimiter } from '../src/shared/ratelimit';
-import { checkFields, isDisposableEmail, normalizePhone, sanitizeSource, validateSubmission } from '../src/shared/validation';
+import { checkFields, isDisposableEmail, isSequencePhone, normalizePhone, sanitizeSource, validateSubmission } from '../src/shared/validation';
 import { landingQuery, readLanding } from '../src/ui/landing';
 import { errorKey } from '../src/ui/steps';
 import { body, DATA, PARAMS } from './helpers';
@@ -26,14 +26,10 @@ describe('Téléphone : numéros manifestement inventés', () => {
     ['+352', '621 111 111'],
     ['+352', '621 123 456'],
     ['+352', '661 123 456'],
-    ['+352', '621 654 321'],
-    ['+352', '621 234 567'],
     ['+352', '666 666 666'],
     ['+352', '222 222'],
     ['+33', '06 12 34 56 78'],
     ['+33', '6 00 00 00 00'],
-    ['+33', '6 98 76 54 32'],
-    ['+49', '151 1234567'],
   ])('Refusé : %s %s', (indicatif, numero) => {
     expect(phone(indicatif, numero).errors).toEqual({ numero: 'phone_fake' });
   });
@@ -51,6 +47,22 @@ describe('Téléphone : numéros manifestement inventés', () => {
     const r = phone(indicatif, numero);
     expect(r.errors).toEqual({});
     expect(r.values.numero).toBe(e164);
+  });
+
+  it.each([
+    ['+352', '621 654 321', '+352621654321'],
+    ['+352', '691 234 567', '+352691234567'],
+    ['+33', '6 98 76 54 32', '+33698765432'],
+    ['+49', '151 1234567', '+491511234567'],
+  ])('Suite de chiffres : acceptée mais signalée : %s %s', (indicatif, numero, e164) => {
+    const r = phone(indicatif, numero);
+    expect(r.errors).toEqual({});
+    expect(r.values.numero).toBe(e164);
+    expect(isSequencePhone(e164)).toBe(true);
+  });
+
+  it('Numéros ordinaires : pas signalés', () => {
+    for (const n of ['+352621483920', '+352691120457', '+33612478539']) expect(isSequencePhone(n)).toBe(false);
   });
 
   it('Les règles de format restent celles de normalizePhone (erreur « phone », pas « phone_fake »)', () => {
@@ -280,6 +292,14 @@ describe('API : contrôles du contact et provenance', () => {
     expect(resend).not.toHaveBeenCalled();
   });
 
+  it('Suite de chiffres : le lead part, signalé « à vérifier » dans l’e-mail', async () => {
+    const { resend, env, deps, sentText } = setup(dns({ MX }));
+    const res = await handleEstimate(req(body({ contact: { numero: '691 234 567' } })), env, deps);
+    expect(res.status).toBe(200);
+    expect(resend).toHaveBeenCalledTimes(1);
+    expect(sentText()).toContain('Qualité du contact : Téléphone : suite de chiffres, à vérifier');
+  });
+
   it('DNS en panne ou trop lent : le lead part quand même (« non vérifiable »)', async () => {
     const { resend, env, deps, sentText } = setup(dns({ MX: 'error', A: 'error' }));
     const res = await handleEstimate(req(body()), env, deps);
@@ -328,5 +348,6 @@ describe('API : contrôles du contact et provenance', () => {
     expect(qualityLine({ emailDomain: 'verified' })).toBe('Téléphone plausible ✓ · domaine de l’e-mail vérifié ✓');
     expect(qualityLine({ emailDomain: 'unknown' })).toContain('non vérifiable');
     expect(qualityLine(undefined)).toBe('Téléphone plausible ✓ · domaine de l’e-mail —');
+    expect(qualityLine({ emailDomain: 'verified', phoneSequence: true })).toBe('Téléphone : suite de chiffres, à vérifier · domaine de l’e-mail vérifié ✓');
   });
 });

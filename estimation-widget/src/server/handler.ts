@@ -12,7 +12,7 @@ import { GEO_TIMEOUT_MS, lookupAddress, validLabel } from './adresse';
 import { checkEmailDomain } from './dns';
 import { allowSubmission, refundSubmission, type KVLike } from '../shared/ratelimit';
 import type { Dataset } from '../shared/types';
-import { validateSubmission } from '../shared/validation';
+import { isSequencePhone, validateSubmission } from '../shared/validation';
 import { signTicket, ticketSecret, TICKET_TTL_S } from './token';
 
 export interface Env {
@@ -153,7 +153,7 @@ export async function handleEstimate(request: Request, env: Env, deps: Partial<D
     await refundSubmission(ip, env.RATE_LIMIT, salt);
     return json({ ok: false, error: 'validation', errors: { email: 'email_domain' } }, 400);
   }
-  const mail = leadEmail(v.value, est, d.now(), geo, { emailDomain });
+  const mail = leadEmail(v.value, est, d.now(), geo, { emailDomain, phoneSequence: isSequencePhone(v.value.contact.telephone) });
   const err = await sendMail(env, d, { ...mail, replyTo: v.value.contact.email });
   if (err) {
     // Rien n'est parti : l'essai ne compte pas dans la limite, le visiteur peut réessayer

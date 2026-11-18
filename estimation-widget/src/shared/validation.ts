@@ -159,12 +159,11 @@ export function normalizePhone(code: unknown, number: unknown): string | ErrorCo
 
 /**
  * Numéro manifestement inventé (le format, lui, est déjà vérifié par normalizePhone).
- * Volontairement prudent : en cas de doute, le numéro est accepté.
+ * Volontairement prudent : en cas de doute, le numéro est accepté. Refusés seulement :
  * - tous les chiffres après les 3 premiers identiques (621 000 000, 621 111 111), ou tout le numéro identique ;
- * - suite qui monte ou descend d'un en un (123456, 654321) occupant tous les chiffres après les 3 premiers,
- *   seulement pour les numéros nationaux de 9 ou 10 chiffres : au-delà (mobiles allemands, préfixe de 4 chiffres),
- *   « les 3 premiers chiffres » ne correspondent plus au préfixe et on ne juge pas ;
- * - quelques numéros d'exemple bien connus.
+ * - quelques numéros d'exemple bien connus (621 123 456, 06 12 34 56 78…).
+ * Les suites (691 234 567) ne sont PAS refusées : de vrais numéros en sont une ; elles sont seulement
+ * signalées à Jason dans l'e-mail (isSequencePhone).
  * Aucune liste de préfixes d'opérateurs.
  */
 const EXAMPLE_PHONES = new Set(['+352621123456', '+352661123456', '+352691123456', '+33612345678', '+33123456789']);
@@ -181,10 +180,14 @@ function isRun(d: string): boolean {
 export function isFakePhone(code: string, e164: string): boolean {
   if (EXAMPLE_PHONES.has(e164)) return true;
   const nsn = e164.slice(code.trim().length);
-  const sub = nsn.slice(3);
   const same = (d: string) => d.length >= 6 && /^(\d)\1+$/.test(d);
-  if (same(nsn) || same(sub)) return true;
-  return (nsn.length === 9 || nsn.length === 10) && isRun(sub);
+  return same(nsn) || same(nsn.slice(3));
+}
+
+/** Les 6 derniers chiffres forment une suite (234567, 987654) : accepté, mais « à vérifier » dans l'e-mail */
+export function isSequencePhone(e164: string): boolean {
+  const digits = e164.replace(/\D/g, '');
+  return digits.length >= 8 && isRun(digits.slice(-6));
 }
 
 /** Domaines d'adresses e-mail jetables (liste courte, les plus connus) */

@@ -76,6 +76,8 @@ type Section = { title: string; rows: [string, string][] };
 export interface LeadChecks {
   /** vérification DNS du domaine de l'e-mail */
   emailDomain?: 'verified' | 'no_mail' | 'nxdomain' | 'unknown';
+  /** le numéro se termine par une suite de chiffres (234567) : accepté, à vérifier */
+  phoneSequence?: boolean;
 }
 
 const CLICK_PLATFORMS = { gclid: 'Google Ads', fbclid: 'Facebook / Instagram', msclkid: 'Microsoft Ads (Bing)' } as const;
@@ -120,7 +122,8 @@ export function qualityLine(checks: LeadChecks | undefined): string {
         : d === 'unknown'
           ? 'domaine de l’e-mail non vérifiable (délai dépassé ou DNS injoignable)'
           : 'domaine de l’e-mail —';
-  return `Téléphone plausible ✓ · ${mail}`;
+  const tel = checks?.phoneSequence ? 'Téléphone : suite de chiffres, à vérifier' : 'Téléphone plausible ✓';
+  return `${tel} · ${mail}`;
 }
 
 const m2 = (v: number) => `${new Intl.NumberFormat('fr-LU', { maximumFractionDigits: 2 }).format(v).replace(/[\u00a0\u202f]/g, ' ')} m²`;

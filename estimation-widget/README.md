@@ -266,7 +266,7 @@ Puis une section « Provenance » avec chaque paramètre. Sans paramètre : « D
 
 **Contrôle des contacts** (pour moins de faux leads, sans bloquer les vrais) :
 
-- **Téléphone** : en plus du format, refus des numéros manifestement inventés : tous les chiffres après les 3 premiers identiques (621 000 000, 621 111 111), suite 123456 / 654321 qui occupe tout le numéro après les 3 premiers chiffres (numéros nationaux de 9 ou 10 chiffres seulement), quelques numéros d'exemple connus. Message : « Ce numéro semble incomplet ou fictif. Jason vous rappellera à ce numéro. » Pas de liste de préfixes d'opérateurs.
+- **Téléphone** : en plus du format, refus des numéros manifestement inventés : tous les chiffres après les 3 premiers identiques (621 000 000, 621 111 111) et quelques numéros d'exemple connus (621 123 456…). Une suite de chiffres en fin de numéro (691 234 567) n'est **pas** refusée, car de vrais numéros en sont une : l'e-mail de Jason indique alors « Téléphone : suite de chiffres, à vérifier ». Message : « Ce numéro semble incomplet ou fictif. Jason vous rappellera à ce numéro. » Pas de liste de préfixes d'opérateurs.
 - **E-mail** : refus d'une courte liste de domaines jetables (yopmail, mailinator… dans `src/shared/validation.ts`) ; puis le serveur demande à Cloudflare DNS si le domaine a un serveur de messagerie (MX, sinon A). Refus seulement si le DNS répond clairement « ce domaine n'existe pas » ; panne ou plus de 2 secondes : accepté, et l'e-mail du lead indique « non vérifiable ». Un envoi refusé ne compte pas dans la limite de 20 par heure.
 
 **Limites (choix voulu).** Il n'y a ni pixel Meta, ni balise Google, ni suivi de conversion : Google Ads et Meta ne savent pas qu'une annonce a produit un lead, et leurs algorithmes ne peuvent pas s'optimiser là-dessus. Tu compares toi-même, à partir des e-mails, le nombre de leads par campagne et ce que chaque campagne coûte. C'est un choix de confidentialité (pas de bandeau cookies, rien chez les régies). Un envoi des conversions côté serveur (import de conversions hors ligne Google Ads, API Conversions de Meta) serait une décision à part : il faudrait garder la valeur du `gclid` / `fbclid`, l'annoncer dans la politique de confidentialité et revoir la base légale. Autre limite : Safari en navigation privée et certaines applications retirent `gclid` / `fbclid` des liens ; les `utm_*` restent, mets-les donc toujours.
@@ -419,7 +419,7 @@ Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'a
 
 ## Tests
 
-`npm test` lance 153 tests, dont ceux demandés :
+`npm test` lance 155 tests, dont ceux demandés :
 
 | Test | Fichier |
 | --- | --- |
