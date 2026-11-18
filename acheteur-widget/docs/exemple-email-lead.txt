@@ -1,7 +1,7 @@
 Objet : [Acheteur · CHAUD] Marie Muller – Dudelange/Kayl/Bettembourg – Appartement – 600.000 €
 
 == En un coup d’œil ==
-Priorité : 🔥 Chaud – dès que possible + doit d’abord vendre au Luxembourg, veut être accompagné(e), veut le courtier partenaire, apport suffisant pour ce prix
+Priorité : 🔥 Chaud – dès que possible + doit d’abord vendre au Luxembourg, veut être accompagné(e), veut le courtier partenaire
 Rappeler : Marie Muller – +352 621 123 456
 E-mail : marie.muller@example.lu
 Langue : Français
@@ -43,14 +43,15 @@ Mise en relation courtier partenaire : OUI → atHome Finance
 
 == Calcul affiché au visiteur ==
 Droits d’enregistrement et de transcription (7 %) : 42.000 €
-Bëllegen Akt déduit : − 42.000 € (plafond 80.000 €)
+Bëllegen Akt déduit : − 41.900 € (plafond 80.000 €)
 Notaire, acte de vente (TVA comprise) : 2.000 €
-Frais du prêt (estimation) : 2.700 € à 4.200 €
-Besoin total : 604.800 € à 606.300 €
+Acte de prêt (0,24 % + 0,05 % + notaire barème 5, TVA) : 2.900 €
+Copies, extraits, débours (hypothèse) : 300 € à 1.000 €
+Besoin total : 605.400 € à 606.100 €
 Règle CSSF : 100 % (premier achat)
 Prêt retenu : 600.000 €
-Apport nécessaire : 4.800 € à 6.300 €
-Écart avec l’apport déclaré : suffisant (+53.700 € au moins)
+Apport nécessaire : 5.400 € à 6.100 €
+Écart avec l’apport déclaré : suffisant (+53.900 € au moins)
 
 == Ce que 600.000 € représente (1er juillet 2025 – 30 juin 2026) ==
 Dudelange – appartement : ≈ 92 m² (6.512 €/m², ventes notariées, 130 ventes)

@@ -228,17 +228,17 @@
     "bellegen": "Bëllegen Akt (Steuergutschrift)",
     "bellegenNone": "Kein Bëllegen Akt bei einer Kapitalanlage.",
     "bellegenUsed": "Schon genutzt: Vielleicht bleibt ein Rest. Mit Ihrem Notar klären.",
-    "bellegenNsp": "Gerechnet, als hätten Sie ihn noch nicht genutzt. Bitte prüfen.",
+    "bellegenNsp": "Gerechnet, als hätten Sie ihn noch nicht genutzt. Bitte prüfen. Die Verwaltung erhebt immer mindestens 100 €.",
     "bellegenAnnonce": "{montant} pro Person sind für Akten ab dem 16.07.2026 angekündigt, das Gesetz ist aber noch nicht verabschiedet (Stand {date}). Die Rechnung nutzt den aktuellen Betrag.",
     "notaire": "Notar, Kaufakt (inkl. MwSt.)",
-    "fraisPret": "Kreditnebenkosten (Akt, Eintragung, Auslagen)",
+    "fraisPret": "Kreditakt (Gebühren, Eintragung, Notar)",
     "fraisPretNote": "Schätzung: von Ihrem Notar bestätigen lassen.",
     "total": "Gesamtbedarf",
     "pret": "Höchster Kredit nach CSSF-Regel",
     "pretCapacite": "Angesetzter Kredit (Ihr angegebener Betrag)",
     "ltv": {
       "premier": "Erster Kauf zum Selbstbewohnen: bis zu 100 % des Preises.",
-      "residence": "Hauptwohnsitz: bis zu 90 % des Preises.",
+      "residence": "Hauptwohnsitz: in der Regel bis zu 90 % des Preises (Banken dürfen bei einem begrenzten Teil ihrer Kredite darüber gehen).",
       "incertain": "Erstkäufer-Status unbekannt: vorsichtige Rechnung mit 90 %. 100 %, wenn Sie Erstkäufer sind.",
       "investissement": "Kapitalanlage: bis zu 80 % des Preises."
     },
@@ -251,7 +251,8 @@
     "prixMax": "Mit Ihrem Eigenkapital und {pret} Kredit liegt Ihr Höchstpreis bei etwa {prix}.",
     "disclaimer": "Dieses Tool ist weder eine Kreditberatung noch ein Kreditangebot. Nur Ihre Bank entscheidet.",
     "next": "Was Ihr Budget in Ihren Gemeinden bedeutet und ein Anruf von Jason: noch 2 Schritte.",
-    "edit": "Budget ändern"
+    "edit": "Budget ändern",
+    "divers": "Kopien, Auszüge und Auslagen"
   },
   "result": {
     "title": "Danke {prenom}, Ihre Analyse ist fertig",

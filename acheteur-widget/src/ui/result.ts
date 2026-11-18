@@ -65,7 +65,8 @@ export function renderBudget(b: Budget, t: T, lang: Lang, o: BudgetOptions): str
       ${row(t('budget.droits'), `${b.droitsMaximum ? '≤\u00a0' : ''}${eur(b.droits)}`, '', b.droitsMaximum ? t('budget.droitsMax') : '')}
       ${row(t('budget.bellegen'), b.bellegen ? `−\u00a0${eur(b.bellegen)}` : eur(0), 'minus', bellegenNote)}
       ${row(t('budget.notaire'), eur(b.notaireVente))}
-      ${b.pret > 0 ? row(t('budget.fraisPret'), esc(range(b.fraisPretMin, b.fraisPretMax, lang)), '', t('budget.fraisPretNote')) : ''}
+      ${b.pret > 0 ? row(t('budget.fraisPret'), eur(b.fraisPret)) : ''}
+      ${row(t('budget.divers'), rangeHtml(b.fraisDiversMin, b.fraisDiversMax, lang), '', t('budget.fraisPretNote'))}
       ${row(t('budget.total'), `<strong>${rangeHtml(b.totalMin, b.totalMax, lang)}</strong>`, 'total')}
       ${row(b.pretLimiteParCapacite ? t('budget.pretCapacite') : t('budget.pret'), `−\u00a0${eur(b.pret)}`, 'minus', `${t(`budget.ltv.${b.ltvRule}`)} ${t('budget.ltvNote')}`)}
       ${row(t('budget.apportNecessaire'), `<strong>${rangeHtml(b.apportNecessaireMin, b.apportNecessaireMax, lang)}</strong>`, 'total')}

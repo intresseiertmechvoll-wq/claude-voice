@@ -26,15 +26,16 @@ describe('Budget complet', () => {
   it('Couple, premier achat, 600 000 € : calcul à la main', () => {
     const b = computeBudget(couple(), PARAMS);
     expect(b.droits).toBe(42000); // 7 %
-    expect(b.bellegen).toBe(42000); // plafond 80 000 €, limité aux droits
-    expect(b.droitsNets).toBe(0);
+    expect(b.bellegen).toBe(41900); // plafond 80 000 €, mais l'AED perçoit toujours au moins 100 €
+    expect(b.droitsNets).toBe(100);
     expect(b.notaireVente).toBe(2000); // 1 750,23 × 1,17 = 2 047,77 → arrondi à 100 €
     expect(b.pret).toBe(600000); // 100 %
-    expect(b.fraisPretMin).toBe(2700); // 600 000 × 0,29 % = 1 740 + 1 000
-    expect(b.fraisPretMax).toBe(4200); // 1 740 + 2 500
-    expect(b.apportNecessaireMin).toBe(4800); // 2 047,77 + 2 740
-    expect(b.apportNecessaireMax).toBe(6300); // 2 047,77 + 4 240
-    expect(b.margeMin).toBe(53700);
+    // acte de prêt : 600 000 × 0,29 % = 1 740 + barème 5 (1 028,18 × 1,17 = 1 202,97) = 2 942,97
+    expect(b.fraisPret).toBe(2900);
+    expect([b.fraisDiversMin, b.fraisDiversMax]).toEqual([300, 1000]);
+    expect(b.apportNecessaireMin).toBe(5400); // 100 + 2 047,77 + 2 942,97 + 300 = 5 390,74
+    expect(b.apportNecessaireMax).toBe(6100); // … + 1 000 = 6 090,74
+    expect(b.margeMin).toBe(53900);
     expect(b.prixMax).toBeNull(); // pas de montant d'emprunt connu : pas de prix maximal
   });
 
@@ -43,9 +44,9 @@ describe('Budget complet', () => {
     expect(b.bellegen).toBe(0);
     expect(b.droitsNets).toBe(28000);
     expect(b.pret).toBe(320000);
-    // 80 000 + 28 000 + 1 813,77 + 928 + 1 000 = 111 741,77
-    expect(b.apportNecessaireMin).toBe(111700);
-    expect(b.apportNecessaireMax).toBe(113200);
+    // 80 000 + 28 000 + 1 813,77 + acte de prêt (928 + 888,18 × 1,17 = 1 967,17) + 300 = 112 080,94
+    expect(b.apportNecessaireMin).toBe(112100);
+    expect(b.apportNecessaireMax).toBe(112800);
     expect(b.margeMin).toBeLessThan(0);
   });
 
@@ -58,6 +59,11 @@ describe('Budget complet', () => {
     expect(b.droits).toBe(56000);
     expect(b.bellegen).toBe(40000);
     expect(b.droitsNets).toBe(16000);
+  });
+
+  it('Barème 5 (acte de prêt) : 600 000 € = 1 028,18 € HT (vérifié par la recherche)', async () => {
+    const { notairePretHT } = await import('../src/shared/budget');
+    expect(notairePretHT(600000, PARAMS)).toBeCloseTo(1028.18, 1);
   });
 
   it('Bien neuf : les 7 % sont présentés comme un maximum', () => {

@@ -9,16 +9,26 @@ export type Params = typeof import('../../params.json');
 
 const roundTo = (v: number, step: number) => Math.round(v / step) * step;
 
-/** Honoraires du notaire pour un acte de vente (barème par tranches), hors TVA */
-export function notaireHT(prix: number, p: Params): number {
+/** Honoraires du notaire par tranches (mêmes tranches pour les barèmes 7 et 5), hors TVA */
+function bareme(montant: number, p: Params, taux: number[]): number {
   let total = 0;
   let bas = 0;
-  for (const t of p.notaire.tranches) {
+  p.notaire.tranches.forEach((t, i) => {
     const haut = t.jusqua ?? Infinity;
-    if (prix > bas) total += (Math.min(prix, haut) - bas) * t.taux;
+    if (montant > bas) total += (Math.min(montant, haut) - bas) * taux[i];
     bas = haut;
-  }
+  });
   return Math.max(total, p.notaire.minimum);
+}
+
+/** Acte de vente : barème 7, hors TVA */
+export function notaireHT(prix: number, p: Params): number {
+  return bareme(prix, p, p.notaire.tranches.map((t) => t.taux));
+}
+
+/** Acte de prêt : barème 5, hors TVA */
+export function notairePretHT(pret: number, p: Params): number {
+  return bareme(pret, p, p.pret.bareme5);
 }
 
 /** Quotité maximale de prêt selon le règlement CSSF 20-08 */
@@ -39,16 +49,15 @@ export function bellegenPlafond(i: Pick<BudgetInput, 'usage' | 'achat' | 'belleg
 function raw(i: BudgetInput, prix: number, p: Params) {
   const droits = prix * p.droits.taux;
   const plafond = bellegenPlafond(i, p);
-  const bellegen = Math.min(droits, plafond);
+  // L'AED perçoit toujours au moins 100 € : le crédit ne peut pas effacer tous les droits
+  const bellegen = Math.max(0, Math.min(plafond, droits - p.bellegen.perception_minimale));
   const notaireVente = notaireHT(prix, p) * (1 + p.notaire.tva);
   const { ltv, rule } = ltvFor(i, p);
   const pretMaxCssf = prix * ltv;
   const pret = i.capaciteMontant !== null ? Math.min(pretMaxCssf, i.capaciteMontant) : pretMaxCssf;
-  const fraisFixes = pret * (p.pret.droit_acte_pret + p.pret.inscription);
-  const fraisPretMin = pret > 0 ? fraisFixes + p.pret.divers_min : 0;
-  const fraisPretMax = pret > 0 ? fraisFixes + p.pret.divers_max : 0;
-  const base = prix + droits - bellegen + notaireVente;
-  return { droits, plafond, bellegen, notaireVente, ltv, rule, pretMaxCssf, pret, fraisPretMin, fraisPretMax, totalMin: base + fraisPretMin, totalMax: base + fraisPretMax };
+  const fraisPret = pret > 0 ? pret * (p.pret.droit_acte_pret + p.pret.inscription) + notairePretHT(pret, p) * (1 + p.notaire.tva) : 0;
+  const base = prix + droits - bellegen + notaireVente + fraisPret;
+  return { droits, plafond, bellegen, notaireVente, ltv, rule, pretMaxCssf, pret, fraisPret, totalMin: base + p.divers.min, totalMax: base + p.divers.max };
 }
 
 /**
@@ -92,8 +101,9 @@ export function computeBudget(i: BudgetInput, p: Params): Budget {
     pretMaxCssf: rd(r.pretMaxCssf),
     pret: rd(r.pret),
     pretLimiteParCapacite: i.capaciteMontant !== null && i.capaciteMontant < r.pretMaxCssf,
-    fraisPretMin: rd(r.fraisPretMin),
-    fraisPretMax: rd(r.fraisPretMax),
+    fraisPret: rd(r.fraisPret),
+    fraisDiversMin: p.divers.min,
+    fraisDiversMax: p.divers.max,
     totalMin: rd(r.totalMin),
     totalMax: rd(r.totalMax),
     apportNecessaireMin: rd(apportNecessaireMin),

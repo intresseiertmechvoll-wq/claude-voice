@@ -604,7 +604,9 @@ Gebaut in `acheteur-widget/`, nach Jasons Startsignal vom 18.11.2026. Bei der Pr
 | --- | --- | --- | --- |
 | Neubau (VEFA) | 7 % auf den ganzen Preis | 7 % als **Höchstwert** angezeigt, mit Hinweis | Bei Neubau fallen die Gebühren oft nur auf Grundstück und bereits gebauten Teil an. Mit vollen 7 % wäre der Bedarf überschätzt und als genau dargestellt worden. |
 | Kaufpreis | freiwillig, sonst Höchstpreis aus Eigenkapital | **Pflicht** | Bei Erstkäufern (100 % Kredit) begrenzt nur das Einkommen den Preis. Da das Tool absichtlich nicht mit dem Einkommen rechnet, wäre ein „Höchstpreis“ nur aus dem Eigenkapital sinnlos hoch. Höchstpreis nur, wenn der Käufer seinen möglichen Kreditbetrag kennt. |
-| Nebenkosten des Kredits | Spanne 4 000–6 000 € | 0,24 % + 0,05 % des Kredits + **1 000–2 500 € (Annahme)** | So wird die Spanne mit dem Kreditbetrag größer oder kleiner. Die 1 000–2 500 € sind eine Annahme und stehen so in `params.json`. |
+| Nebenkosten des Kredits | Spanne 4 000–6 000 € | 0,24 % + 0,05 % + Notarhonorar nach Barème 5 + MwSt. (geprüft am 18.11.2026), dazu Kopien/Auslagen **300–1 000 € (Annahme)** | Nach dem Faktencheck: Barème 5 gefunden, die Annahme ist nur noch der kleine Rest. |
+| Bëllegen Akt | bis zur Höhe der Gebühren | mindestens 100 € Gebühr bleiben immer | AED erhebt laut guichet.lu immer mindestens 100 €. |
+| Zuschlag Stadt Luxemburg / Mamer | nicht bedacht | nicht nötig | Gilt nur für gewerblich oder gemischt genutzte Gebäude (pfi.public.lu). |
 | 45 000 € Bëllegen Akt | Hinweis | Hinweis, **verschwindet automatisch**, sobald `par_personne` auf 45 000 gesetzt wird | Weniger Pflege. |
 | Name des Courtiers | im Kästchen | **nicht im Kästchen und nicht im Code des Browsers** (`server.json`) | Jasons Wunsch. Der Name stand anfangs noch im Browser-Code, das habe ich beim Prüfen korrigiert. Schalter `courtierNomPublic` in `config.json`, falls er ihn doch zeigen will (Datenschutz-Hinweis in `PRIVACY.md`). |
 | Käufermandat | Zeile im Ergebnis | Frage in Schritt 4 (freiwillig) **und** Karte im Ergebnis | Damit die Antwort in der Lead-E-Mail steht. |

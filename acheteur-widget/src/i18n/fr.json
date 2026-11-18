@@ -228,17 +228,17 @@
     "bellegen": "Bëllegen Akt (crédit d’impôt)",
     "bellegenNone": "Pas de Bëllegen Akt pour un investissement locatif.",
     "bellegenUsed": "Déjà utilisé : il vous reste peut-être un solde. À vérifier avec votre notaire.",
-    "bellegenNsp": "Calculé comme si vous ne l’aviez pas encore utilisé. À vérifier.",
+    "bellegenNsp": "Calculé comme si vous ne l’aviez pas encore utilisé. À vérifier. L’administration perçoit toujours au moins 100 €.",
     "bellegenAnnonce": "{montant} par personne sont annoncés pour les actes depuis le 16/07/2026, mais la loi n’est pas encore votée (état au {date}). Le calcul utilise le montant actuel.",
     "notaire": "Notaire, acte de vente (TVA comprise)",
-    "fraisPret": "Frais du prêt (acte, inscription, débours)",
+    "fraisPret": "Acte de prêt (droits, inscription, notaire)",
     "fraisPretNote": "Estimation : à confirmer par votre notaire.",
     "total": "Besoin total",
     "pret": "Prêt maximal selon la règle CSSF",
     "pretCapacite": "Prêt retenu (montant que vous m’avez indiqué)",
     "ltv": {
       "premier": "Premier achat pour y habiter : jusqu’à 100 % du prix.",
-      "residence": "Résidence principale : jusqu’à 90 % du prix.",
+      "residence": "Résidence principale : en règle générale jusqu’à 90 % du prix (les banques peuvent dépasser dans une partie limitée de leurs prêts).",
       "incertain": "Statut de premier acquéreur inconnu : calcul prudent à 90 %. À 100 % si vous êtes premier acquéreur.",
       "investissement": "Investissement : jusqu’à 80 % du prix."
     },
@@ -251,7 +251,8 @@
     "prixMax": "Avec votre apport et {pret} d’emprunt, votre prix maximal est d’environ {prix}.",
     "disclaimer": "Cet outil ne constitue ni un conseil en crédit ni une offre de prêt. Seule votre banque décide.",
     "next": "Ce que votre budget représente dans vos communes et un appel de Jason : encore 2 étapes.",
-    "edit": "Modifier mon budget"
+    "edit": "Modifier mon budget",
+    "divers": "Copies, extraits et débours"
   },
   "result": {
     "title": "Merci {prenom}, votre analyse est prête",

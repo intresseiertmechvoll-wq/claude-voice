@@ -136,9 +136,11 @@ export interface Budget {
   /** prêt retenu : règle CSSF, ou montant connu du visiteur s'il est plus bas */
   pret: number;
   pretLimiteParCapacite: boolean;
-  /** frais liés au prêt : droits sur l'acte de prêt + inscription hypothécaire + estimation des honoraires et débours */
-  fraisPretMin: number;
-  fraisPretMax: number;
+  /** acte de prêt : droit de 0,24 % + inscription 0,05 % + honoraires du notaire (barème 5, TVA comprise) */
+  fraisPret: number;
+  /** copies, extraits, débours (vente et prêt) : estimation */
+  fraisDiversMin: number;
+  fraisDiversMax: number;
   totalMin: number;
   totalMax: number;
   /** apport nécessaire au minimum (fourchette, à cause des frais estimés) */

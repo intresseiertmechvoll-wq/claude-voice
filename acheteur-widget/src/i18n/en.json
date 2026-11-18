@@ -228,17 +228,17 @@
     "bellegen": "Bëllegen Akt (tax credit)",
     "bellegenNone": "No Bëllegen Akt for a buy-to-let.",
     "bellegenUsed": "Already used: you may have some left. Check with your notary.",
-    "bellegenNsp": "Calculated as if you had not used it yet. Please check.",
+    "bellegenNsp": "Calculated as if you had not used it yet. Please check. The administration always collects at least €100.",
     "bellegenAnnonce": "{montant} per person has been announced for deeds since 16/07/2026, but the law has not been passed yet (as of {date}). The calculation uses the current amount.",
     "notaire": "Notary, deed of sale (VAT included)",
-    "fraisPret": "Loan costs (deed, registration, expenses)",
+    "fraisPret": "Loan deed (duties, registration, notary)",
     "fraisPretNote": "Estimate: to be confirmed by your notary.",
     "total": "Total needed",
     "pret": "Maximum loan under the CSSF rule",
     "pretCapacite": "Loan used (the amount you gave me)",
     "ltv": {
       "premier": "First purchase to live in: up to 100% of the price.",
-      "residence": "Main residence: up to 90% of the price.",
+      "residence": "Main residence: as a rule up to 90% of the price (banks may exceed this for a limited share of their loans).",
       "incertain": "First-time buyer status unknown: cautious calculation at 90%. 100% if you are a first-time buyer.",
       "investissement": "Buy-to-let: up to 80% of the price."
     },
@@ -251,7 +251,8 @@
     "prixMax": "With your deposit and a {pret} loan, your maximum price is about {prix}.",
     "disclaimer": "This tool is neither credit advice nor a loan offer. Only your bank decides.",
     "next": "What your budget means in your municipalities and a call from Jason: 2 more steps.",
-    "edit": "Change my budget"
+    "edit": "Change my budget",
+    "divers": "Copies, extracts and expenses"
   },
   "result": {
     "title": "Thank you {prenom}, your analysis is ready",

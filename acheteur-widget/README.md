@@ -32,11 +32,13 @@ Comme l’outil d’estimation : pas de base de données, pas de cookie, pas de 
 | --- | --- | --- | --- |
 | Droits | 7 % du prix (6 % + 1 %) | guichet.public.lu, page du 07/07/2025 | officiel |
 | Bien neuf | 7 % affiché comme **maximum** (souvent seulement sur le terrain et la partie construite) | | prudent |
-| Bëllegen Akt | 40 000 € par personne, plafonné aux droits ; 0 si investissement ou déjà utilisé | guichet.public.lu | officiel |
+| Bëllegen Akt | 40 000 € par personne, plafonné aux droits ; l’AED perçoit toujours au moins 100 € ; 0 si investissement ou déjà utilisé | guichet.public.lu, pfi.public.lu | officiel |
+| Ville de Luxembourg, Mamer | surtaxe communale (+50 % du droit d’enregistrement) **seulement** pour les immeubles à usage mixte ou commercial : 0 pour un logement, donc pas dans l’outil | pfi.public.lu (surtaxe), guichet.public.lu | vérifié le 18/11/2026 |
 | 45 000 € annoncés | **affichés comme information, pas utilisés** (projet de loi 8806 pas voté au 18/11/2026) | gouvernement.lu, chd.lu | à mettre à jour quand la loi passe : `bellegen.par_personne` |
 | Prêt maximal | 100 % premier achat pour y habiter ; 90 % autre résidence principale ; 90 % si « je ne sais pas » ; 80 % investissement | Règlement CSSF 20-08, FAQ du 09/03/2026 | officiel |
-| Notaire, vente | barème 7 par tranches + TVA 17 % (600 000 € → 2 048 €) | repris de tevaxia.lu | **texte légal à relire** sur legilux |
-| Frais du prêt | 0,24 % + 0,05 % du prêt + **1 000 à 2 500 €** (honoraires de l’acte de prêt, débours) | 0,05 % : pfi.public.lu ; 0,24 % : sites privés | **hypothèse à valider** (`pret.divers_min/max`) |
+| Notaire, vente | barème 7 par tranches + TVA 17 % (600 000 € → 2 048 €) | notariat.lu, texte coordonné du Conseil d’État (doc. 51.123) | vérifié |
+| Acte de prêt | 0,24 % + 0,05 % du prêt + honoraires barème 5 + TVA (600 000 € → 2 943 €) | pfi.public.lu (tarif, hypothèques), barème 5 | vérifié ; des exemptions existent : calcul prudent |
+| Copies, extraits, débours | **300 à 1 000 €** | | **hypothèse à valider** (`divers`) |
 | Prix maximal | seulement si le visiteur connaît son montant d’emprunt (sinon, avec 100 % de prêt, seul le revenu limiterait, et l’outil ne calcule pas de prêt) | | |
 | m² par commune | appartement : ventes notariées (≥ 10), neuf : ventes VEFA (≥ 10), sinon médiane du canton ; maison : **prix annoncés** (≥ 30), sinon médiane du canton | Observatoire de l’Habitat | « prix demandés » écrit en clair pour les maisons |
 
@@ -58,7 +60,7 @@ Même procédure que l’outil d’estimation (voir son README, parties 1 à 3),
 cd acheteur-widget
 npm install
 cp .dev.vars.example .dev.vars   # EMAIL_MODE=log : aucun e-mail ne part en local
-npm test                          # 52 tests
+npm test                          # 56 tests
 npm run dev                       # http://localhost:8788/ et /demo.html
 ```
 
@@ -87,11 +89,11 @@ cd acheteur-widget && npm run sync-data && npm test && npm run deploy
 ## À faire par toi avant la mise en ligne
 
 1. `config.json` : vérifier `contactUrl`, `privacyUrl` (vraies adresses), `quickCommunes` (raccourcis de l’étape 2, actuellement Luxembourg, Esch, Dudelange, Bettembourg, Differdange, Mersch).
-2. `params.json` : valider l’hypothèse des frais du prêt (1 000 à 2 500 €) et relire le barème du notaire sur legilux.
+2. `params.json` : valider l’hypothèse « copies, extraits, débours » (300 à 1 000 €) avec un notaire.
 3. Politique de confidentialité : ajouter les nouvelles données (budget, revenu en tranche) et **nommer atHome Finance comme destinataire possible** (voir `PRIVACY.md`).
 4. Quand le projet de loi 8806 est voté : `params.json` → `bellegen.par_personne` = 45000 (et mettre à jour `_source`). L’annonce « pas encore votée » disparaît alors toute seule.
 
-## Tests (52)
+## Tests (56)
 
 | Sujet | Fichier |
 | --- | --- |
