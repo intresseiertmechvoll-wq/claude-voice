@@ -741,12 +741,16 @@ const EMAIL_TYPOS: Record<string, string> = {
   'yahooo.com': 'yahoo.com', 'yaho.com': 'yahoo.com', 'outlok.com': 'outlook.com', 'outloo.com': 'outlook.com', 'pt.l': 'pt.lu', 'pt.lux': 'pt.lu',
 };
 function emailSuggest(value: string) {
-  app.querySelector('#email-suggest')?.remove();
   const at = value.lastIndexOf('@');
   const fix = at > 0 ? EMAIL_TYPOS[value.slice(at + 1).toLowerCase()] : undefined;
+  const suggestion = fix ? value.slice(0, at + 1) + fix : '';
+  const current = app.querySelector<HTMLElement>('#email-suggest');
+  // Même proposition déjà affichée : on ne la recrée pas. Sinon, un clic sur la proposition alors que le champ
+  // a encore le focus la remplace pendant le clic (focusout) et le clic est perdu.
+  if (current && current.querySelector<HTMLElement>('[data-value]')?.dataset.value === suggestion) return;
+  current?.remove();
   if (!fix) return;
-  const suggestion = value.slice(0, at + 1) + fix;
-  app.querySelector('[data-field="email"]')?.insertAdjacentHTML('beforeend', `<p class="suggest" id="email-suggest">${esc(t('fields.emailTypo'))} <button type="button" class="link-btn" data-action="fix-email" data-value="${esc(suggestion)}">${esc(suggestion)}</button> ?</p>`);
+  app.querySelector('[data-field="email"]')?.insertAdjacentHTML('beforeend', `<p class="suggest" id="email-suggest">${esc(t('fields.emailTypo'))} <button type="button" class="link-btn" data-action="fix-email" data-value="${esc(suggestion)}">${esc(suggestion)}</button>${lang === 'fr' ? ' ?' : '?'}</p>`);
   sendHeight();
 }
 function aresHint() {

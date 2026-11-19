@@ -71,6 +71,7 @@ Captures d'écran mobiles de chaque étape et audit d'accessibilité (serveur lo
 
 ```bash
 npm run screenshots   # → dossier screenshots/
+npm run check-email   # clic sur la correction « …@gmial.com » → « …@gmail.com », champ e-mail actif (fr, de, en)
 ```
 
 ## 3. Mettre en ligne sur Cloudflare

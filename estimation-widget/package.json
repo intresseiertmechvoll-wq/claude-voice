@@ -12,7 +12,8 @@
     "update-data": "tsx scripts/update-data.ts",
     "screenshots": "node scripts/screenshots.mjs",
     "deploy": "npm run build && wrangler pages deploy dist --project-name estimation-widget --branch main",
-    "funnel": "node scripts/funnel.mjs"
+    "funnel": "node scripts/funnel.mjs",
+    "check-email": "node scripts/check-email-suggest.mjs"
   },
   "license": "UNLICENSED",
   "devDependencies": {
