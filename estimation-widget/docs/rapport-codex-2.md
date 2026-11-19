@@ -157,7 +157,7 @@ Eine Hauspreis-Eichung bleibt ein **separates größeres Vorhaben**; bis dahin s
 | „Kopie verschickt“ in der Lead-Mail zu stark | **behoben**: „prévue juste après cet e-mail ; un échec n'est pas signalé ici“ | `src/shared/email.ts` |
 | Doppelte Mails nach verlorener Resend-Antwort | **behoben**: `Idempotency-Key` aus der Eingabe; 409 „idempotent“ = schon verschickt | `src/server/handler.ts`, `tests/fiabilite-envoi.test.ts` |
 | KV-Fehler → 500 | **behoben**: Limit lässt bei KV-Ausfall durch | `src/shared/ratelimit.ts` |
-| Limit nicht atomar bei parallelen Anfragen | **offen**: Cloudflare-Regel zur Ratenbegrenzung vorgeschlagen, Entscheidung bei Jason | README, Sicherheit |
+| Limit nicht atomar bei parallelen Anfragen | **behoben**: Cloudflare-Regel, 5 Anfragen / 10 s je IP auf `/api/estimate`, `/api/simulation-summary`, `/api/adresse/details`; live geprüft (6. Anfrage → 429) | README, Sicherheit |
 | `/robots.txt` liefert HTML | **behoben**: echte Datei, Crawling erlaubt (sonst sehen Robots das `noindex` nicht) | `public/robots.txt` |
 | Screenshot-Skript unter Windows | **behoben**: `fileURLToPath`, Browser über `CHROMIUM_PATH` | `scripts/screenshots.mjs` |
 | Datenschutzerklärung auf immobuild.lu veraltet | **offen, bei Jason**: Text liegt in `docs/texte-politique-confidentialite.md` | – |
@@ -165,3 +165,14 @@ Eine Hauspreis-Eichung bleibt ein **separates größeres Vorhaben**; bis dahin s
 | Hauspreise unkalibriert | **offen**: braucht echte Verkäufe (siehe `docs/precision-maisons.md`) | – |
 | `xlsx` (dev, 1 high) | **offen**: nur Wartungsskript, nicht im Browser | – |
 | Keine Conversion-Übermittlung | **seitdem gebaut**, nur mit Einwilligung (Google: Import-Zeile, Meta: API Conversions) | `f360e1a`, `PRIVACY.md` 3 sexies |
+
+### Eigene Prüfung danach (Code-Review, 19.11.2026)
+
+| Befund | Stand |
+|---|---|
+| Wert von gclid/fbclid gelangte über `embed.js` und die Sprachlinks ohne Einwilligung an den Server | behoben: Wert nur noch nach „#“, im Adressteil nur „1“ |
+| Resend-409 „concurrent_idempotent_requests“ als „schon verschickt“ gewertet | behoben: nur „invalid_idempotent_request“ zählt als verschickt |
+| Doppelte Zählung eines Leads bei wiederholter Anfrage | behoben: keine Zählung bei „schon verschickt“ |
+| KV-Ausfall hob die Anti-Rejeu-Grenze des Simulators auf | behoben: dort Ablehnung bei KV-Ausfall |
+| Fehler beim Laden der Sprache → 500 ohne Lead | behoben: Rückfall auf Französisch |
+| Adress-Endpunkte nur mit Speicher-Limit je Server | teilweise: `/api/adresse/details` durch die Cloudflare-Regel abgedeckt; `/api/adresse/suggest` (bei jeder Eingabe) bleibt beim Speicher-Limit |

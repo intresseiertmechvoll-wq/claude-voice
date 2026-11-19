@@ -7,7 +7,8 @@
  * Options sur le <script> :
  *   data-manual            ne crée pas de conteneur tout seul (sites Next.js / SPA : appeler ImmoBuildEstimation.mount())
  *   data-src="https://…"   adresse de l'outil, si une extension WordPress recopie ce script sur le site
- * Campagnes : les paramètres utm_* de la page du site et gclid / fbclid / msclkid (la valeur de gclid / fbclid ne quitte l'outil qu'avec le consentement du visiteur)
+ * Campagnes : les paramètres utm_* de la page du site et la présence de gclid / fbclid / msclkid ; la valeur de gclid / fbclid
+ * passe après « # » (jamais envoyée au serveur de l'outil) et ne quitte la page qu'avec le consentement du visiteur
  * sont transmis à l'outil, ainsi que ?commune=…&type=appartement|maison (préremplissage). Aucun cookie.
  */
 (function () {
@@ -60,7 +61,7 @@
     if (f.getAttribute('data-ok') === '1') return;
     if (window.console) console.warn('[ImmoBuild] L’outil d’estimation ne s’affiche pas ici. Vérifiez que l’adresse de ce site est autorisée (frame-ancestors dans _headers).');
     var a = document.createElement('a');
-    a.href = base + '/?lang=' + lang + campaignQuery();
+    a.href = base + '/?lang=' + lang + campaignQuery() + clickHash();
     a.target = '_blank';
     a.rel = 'noopener';
     a.textContent = FALLBACK[lang];
@@ -82,11 +83,9 @@
       var v = (q.get(k) || '').replace(/[^A-Za-z0-9 _.-]/g, '').trim().slice(0, 60).trim();
       if (v) out += '&' + k + '=' + encodeURIComponent(v);
     });
-    // gclid / fbclid : valeur transmise à l'outil, qui ne l'envoie à son serveur qu'avec le consentement du visiteur
+    // Identifiants de clic : seulement « présent » dans l'adresse de l'outil (la valeur passe par « # », voir clickHash)
     ['gclid', 'fbclid', 'msclkid'].forEach(function (k) {
-      if (!q.has(k)) return;
-      var v = q.get(k) || '';
-      out += '&' + k + '=' + (k !== 'msclkid' && /^[A-Za-z0-9._-]{8,500}$/.test(v) ? encodeURIComponent(v) : '1');
+      if (q.has(k)) out += '&' + k + '=1';
     });
     var type = q.get('type');
     if (type === 'appartement' || type === 'maison') out += '&type=' + type;
@@ -96,13 +95,30 @@
     return out;
   }
 
+  // Valeur de gclid / fbclid après « # » : le navigateur ne l'envoie pas au serveur de l'outil ;
+  // l'outil ne la transmet qu'avec le consentement du visiteur (case « mesure des annonces »)
+  function clickHash() {
+    var q;
+    try {
+      q = new URLSearchParams(location.search);
+    } catch (e) {
+      return '';
+    }
+    var parts = [];
+    ['gclid', 'fbclid'].forEach(function (k) {
+      var v = q.get(k) || '';
+      if (/^[A-Za-z0-9._-]{8,500}$/.test(v)) parts.push(k + '=' + encodeURIComponent(v));
+    });
+    return parts.length ? '#' + parts.join('&') : '';
+  }
+
   function mount(el) {
     // Déjà monté et toujours là : rien à faire (si le framework a vidé le conteneur, on remonte)
     if (el.getAttribute('data-mounted') === '1' && el.querySelector('iframe[data-immobuild-frame]')) return;
     el.setAttribute('data-mounted', '1');
     var lang = langOf(el);
     var f = document.createElement('iframe');
-    f.src = base + '/?lang=' + lang + '&src=' + encodeURIComponent(location.origin + location.pathname) + campaignQuery();
+    f.src = base + '/?lang=' + lang + '&src=' + encodeURIComponent(location.origin + location.pathname) + campaignQuery() + clickHash();
     f.title = LANGS[lang];
     f.setAttribute('data-immobuild-frame', '');
     f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');

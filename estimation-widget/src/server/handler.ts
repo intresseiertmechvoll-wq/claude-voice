@@ -80,7 +80,8 @@ export interface Mail {
 }
 
 /** Envoi par Resend (ou affichage dans la console avec EMAIL_MODE=log). Renvoie une erreur ou null. */
-export async function sendMail(env: Env, d: Deps, mail: Mail): Promise<'config' | 'send' | null> {
+/** null = envoyé ; 'duplicate' = déjà envoyé lors d'un essai précédent (même clé d'idempotence) ; sinon une erreur */
+export async function sendMail(env: Env, d: Deps, mail: Mail): Promise<'config' | 'send' | 'duplicate' | null> {
   const to = mail.to || env.LEAD_EMAIL || config.defaultLeadEmail;
   const from = env.FROM_EMAIL || config.defaultFromEmail;
   if (env.EMAIL_MODE === 'log') {
@@ -109,11 +110,12 @@ export async function sendMail(env: Env, d: Deps, mail: Mail): Promise<'config' 
     return 'send';
   }
   if (res.status === 409 && mail.idempotencyKey) {
-    // Même clé déjà utilisée (contenu un peu différent : heure, contrôle DNS…) : cet e-mail est déjà parti lors d'un essai précédent
+    // invalid_idempotent_request : clé déjà utilisée avec un contenu un peu différent (heure, contrôle DNS…), l'e-mail est déjà parti.
+    // concurrent_idempotent_requests : le premier essai est encore en cours et peut échouer → erreur, le visiteur réessaie.
     const detail = await res.text().catch(() => '');
-    if (detail.includes('idempotent')) {
+    if (detail.includes('invalid_idempotent_request')) {
       d.log('Resend : e-mail déjà envoyé lors d’un essai précédent (clé d’idempotence), pas de doublon');
-      return null;
+      return 'duplicate';
     }
     d.log('Resend a refusé l’envoi :', res.status, detail);
     return 'send';
@@ -186,10 +188,13 @@ export async function handleEstimate(request: Request, env: Env, deps: Partial<D
   const clientCopy = config.customerEmail !== false;
   // Même saisie = même demande : un nouvel essai (réponse de Resend perdue) ne crée pas de deuxième e-mail
   const requestKey = await digest(JSON.stringify([v.value.lang, v.value.answers, v.value.contact]));
-  await loadLang(v.value.lang); // texte du consentement « mesure des annonces » dans la langue du visiteur (preuve)
+  // Texte du consentement « mesure des annonces » dans la langue du visiteur (preuve) ; en cas d'échec, repli sur le français
+  await loadLang(v.value.lang).catch((e) => d.log('Langue non chargée :', (e as Error).message));
   const mail = leadEmail(v.value, est, d.now(), geo, { emailDomain, phoneSequence: isSequencePhone(v.value.contact.telephone), clientCopy,
     metaConfigured: metaConfigured(env), googleConversionName: config.adsMeasure.googleConversionName });
-  const err = await sendMail(env, d, { ...mail, replyTo: v.value.contact.email, idempotencyKey: `lead-${requestKey}` });
+  const sent = await sendMail(env, d, { ...mail, replyTo: v.value.contact.email, idempotencyKey: `lead-${requestKey}` });
+  const duplicate = sent === 'duplicate';
+  const err = duplicate ? null : sent;
   if (err) {
     // Pas de confirmation de Resend : l'essai ne compte pas dans la limite, le visiteur peut réessayer (sans doublon grâce à la clé)
     await refundSubmission(ip, env.RATE_LIMIT, salt);
@@ -218,8 +223,9 @@ export async function handleEstimate(request: Request, env: Env, deps: Partial<D
     else await lead;
   }
 
-  // Compteur anonyme : une demande envoyée (type de bien et commune, ni adresse ni coordonnées)
-  writeFunnel(env.FUNNEL, est.result.status === 'ok' ? 'lead' : 'lead-nodata', {
+  // Compteur anonyme : une demande envoyée (type de bien et commune, ni adresse ni coordonnées).
+  // Pas pour une demande déjà envoyée (même saisie) : elle a peut-être déjà été comptée.
+  if (!duplicate) writeFunnel(env.FUNNEL, est.result.status === 'ok' ? 'lead' : 'lead-nodata', {
     lang: v.value.lang,
     source: v.value.source,
     embedded: v.value.page !== '',
@@ -252,7 +258,7 @@ async function sendClientCopy(env: Env, d: Deps, s: import('../shared/types').Su
       date: d.now(),
     });
     const err = await sendMail(env, d, { ...m, to: s.contact.email, replyTo: env.LEAD_EMAIL || config.defaultLeadEmail, idempotencyKey });
-    if (err) d.log('E-mail au visiteur non envoyé :', err);
+    if (err && err !== 'duplicate') d.log('E-mail au visiteur non envoyé :', err);
   } catch (e) {
     d.log('E-mail au visiteur impossible :', (e as Error).message);
   }

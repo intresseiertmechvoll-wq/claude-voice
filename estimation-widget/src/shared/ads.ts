@@ -1,6 +1,7 @@
 /**
  * Mesure des annonces AVEC consentement (case facultative à l'étape 6).
- * Sans case cochée : rien ne part chez Google ou Meta, et la valeur des identifiants de clic n'est jamais envoyée à notre serveur.
+ * Sans case cochée : rien ne part chez Google ou Meta, et la page n'envoie pas la valeur des identifiants de clic à notre serveur
+ * (embed.js et les liens de langue la passent après « # », jamais envoyé ; seule exception : une annonce qui mène directement à l'outil).
  * Avec la case : notre serveur transmet l'identifiant du clic (et, pour Meta, l'e-mail et le téléphone hachés en SHA-256
  * plus le type de navigateur) ; aucun script de Google ou Meta n'est chargé dans la page.
  */

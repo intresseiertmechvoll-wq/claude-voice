@@ -24,7 +24,8 @@ async function sha256(text: string): Promise<string> {
 }
 
 /** Renvoie true si l'envoi est autorisé (et le compte), false si la limite est atteinte */
-export async function allowSubmission(ip: string, limit: number, kv?: KVLike, salt = 'immobuild-estimation', now = Date.now()): Promise<boolean> {
+/** failOpen : si KV est en panne, true = laisser passer (leads), false = refuser (limites anti-rejeu) */
+export async function allowSubmission(ip: string, limit: number, kv?: KVLike, salt = 'immobuild-estimation', now = Date.now(), failOpen = true): Promise<boolean> {
   const key = 'rl:' + (await sha256(salt + '|' + ip));
   const nowS = Math.floor(now / 1000);
 
@@ -34,7 +35,7 @@ export async function allowSubmission(ip: string, limit: number, kv?: KVLike, sa
       const raw = await kv.get(key);
       entry = raw ? (JSON.parse(raw) as { count: number; start: number }) : null;
     } catch {
-      return true; // KV en panne : un lead ne doit pas être perdu (la règle de limitation Cloudflare reste en place)
+      return failOpen; // KV en panne : un lead ne doit pas être perdu (la règle de limitation Cloudflare reste en place)
     }
   } else {
     entry = memory.get(key) ?? null;
@@ -46,7 +47,11 @@ export async function allowSubmission(ip: string, limit: number, kv?: KVLike, sa
   entry.count += 1;
   if (kv) {
     const ttl = Math.max(60, WINDOW_S - (nowS - entry.start));
-    await kv.put(key, JSON.stringify(entry), { expirationTtl: ttl }).catch(() => {}); // ex. plus d'une écriture par seconde
+    try {
+      await kv.put(key, JSON.stringify(entry), { expirationTtl: ttl });
+    } catch {
+      return failOpen; // ex. plus d'une écriture par seconde pour la même clé
+    }
   } else {
     memory.set(key, entry);
   }

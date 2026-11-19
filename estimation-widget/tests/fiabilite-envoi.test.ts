@@ -43,6 +43,24 @@ describe('Clé d’idempotence Resend', () => {
     expect(keyOf(f.mock.calls[1])).toBe(keyOf(f.mock.calls[0]));
   });
 
+  it('409 « premier essai encore en cours » : erreur (il peut encore échouer), le visiteur réessaie', async () => {
+    const f = vi.fn(async () => new Response('{"name":"concurrent_idempotent_requests","message":"Same idempotency key used while original request is still in progress."}', { status: 409 }));
+    expect((await handleEstimate(req(body()), env, deps(f))).status).toBe(502);
+  });
+
+  it('Demande déjà envoyée : pas recomptée dans les statistiques, copie au visiteur tentée avec sa propre clé', async () => {
+    const FUNNEL = { writeDataPoint: vi.fn() };
+    const f = vi.fn(async (_u: string, init: RequestInit) =>
+      ((init.headers as Record<string, string>)['Idempotency-Key'] ?? '').startsWith('lead-')
+        ? new Response('{"name":"invalid_idempotent_request"}', { status: 409 })
+        : new Response('{"id":"x"}', { status: 200 }),
+    );
+    const res = await handleEstimate(req(body()), { ...env, FUNNEL }, deps(f));
+    expect(res.status).toBe(200);
+    expect(FUNNEL.writeDataPoint).not.toHaveBeenCalled();
+    expect(keyOf(f.mock.calls[1])).toMatch(/^copie-/);
+  });
+
   it('Un autre 409 (sans rapport avec l’idempotence) reste une erreur', async () => {
     const f = vi.fn(async () => new Response('{"name":"conflict"}', { status: 409 }));
     expect((await handleEstimate(req(body()), env, deps(f))).status).toBe(502);
@@ -58,6 +76,13 @@ describe('Limite par IP et panne de KV', () => {
     const kv = { get: vi.fn(async () => null), put: vi.fn(async () => { throw new Error('429 Too Many Requests'); }) };
     expect(await allowSubmission('203.0.113.1', 20, kv)).toBe(true);
   });
+  it('Limite anti-rejeu (failOpen = false) : KV en panne → refus', async () => {
+    const kv = { get: vi.fn(async () => { throw new Error('KV down'); }), put: vi.fn() };
+    expect(await allowSubmission('ticket', 3, kv, 'summary-ticket', Date.now(), false)).toBe(false);
+    const kv2 = { get: vi.fn(async () => null), put: vi.fn(async () => { throw new Error('429'); }) };
+    expect(await allowSubmission('ticket', 3, kv2, 'summary-ticket', Date.now(), false)).toBe(false);
+  });
+
   it('Par la route complète : KV en panne → résultat et lead quand même', async () => {
     const f = vi.fn(async () => new Response('{"id":"x"}', { status: 200 }));
     const kv = { get: vi.fn(async () => { throw new Error('KV down'); }), put: vi.fn() };

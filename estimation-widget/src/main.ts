@@ -10,7 +10,7 @@ import { setupAddressCombobox } from './ui/address';
 import { resolveCommune, setupCombobox } from './ui/combobox';
 import { esc } from './ui/html';
 import { icon } from './ui/icons';
-import { landingQuery, landingTitle, readLanding } from './ui/landing';
+import { landingHash, landingQuery, landingTitle, readLanding } from './ui/landing';
 import { platformsOf } from './shared/ads';
 import { certifBadge } from './ui/certif';
 import { renderFact } from './ui/facts';
@@ -36,7 +36,7 @@ const page = (() => {
   return /^https?:\/\/[^\s<>"]{1,490}$/.test(src) ? src : '';
 })();
 /** Lien d'arrivée (annonces) : provenance (utm_*, présence d'un identifiant de clic) et préremplissage de l'étape 1, en mémoire seulement */
-const landing = readLanding(params, COMMUNES.map((c) => c.name));
+const landing = readLanding(params, COMMUNES.map((c) => c.name), new URLSearchParams(location.hash.slice(1)));
 /** Arrivée sur la page : date du clic publicitaire pour Meta (envoyée seulement avec le consentement) */
 const arrivedAt = Date.now();
 const adPlatforms = platformsOf(landing.clicks);
@@ -172,7 +172,8 @@ function languageLinks(): string {
     const query = new URLSearchParams({ lang: code });
     if (page) query.set('src', page);
     landingQuery(landing, query);
-    return `<a href="?${esc(query.toString())}" hreflang="${code}" lang="${code}"${lang === code ? ' aria-current="true"' : ''}>${names[code]}</a>`;
+    const hash = landingHash(landing);
+    return `<a href="?${esc(query.toString())}${hash ? `#${esc(hash)}` : ''}" hreflang="${code}" lang="${code}"${lang === code ? ' aria-current="true"' : ''}>${names[code]}</a>`;
   }).join('')}</nav>`;
 }
 

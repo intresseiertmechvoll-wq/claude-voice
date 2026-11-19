@@ -208,6 +208,10 @@ if ((await page.locator('#commune').inputValue()) !== 'Dudelange') problems.push
 if (!(await page.locator('input[name="type"][value="maison"]').isChecked())) problems.push('Préremplissage : type non repris du lien');
 const deLink = await page.locator('.language-links a[hreflang="de"]').getAttribute('href');
 if (!deLink.includes('utm_campaign=dudelange-maisons') || !deLink.includes('gclid=1') || deLink.includes('TEST')) problems.push(`Lien de langue : provenance mal transmise (${deLink})`);
+// Arrivée avec une vraie valeur : le lien de langue garde « gclid=1 » dans l'adresse, la valeur seulement après « # »
+await page.goto(`${BASE}/?lang=fr&gclid=EAIaIQ-lang_test`);
+const deLink2 = await page.locator('.language-links a[hreflang="de"]').getAttribute('href');
+if (!deLink2.split('#')[0].includes('gclid=1') || deLink2.split('#')[0].includes('EAIaIQ') || !(deLink2.split('#')[1] ?? '').includes('gclid=EAIaIQ-lang_test')) problems.push(`Lien de langue : valeur de gclid hors de « # » (${deLink2})`);
 await shot('1f-lien-annonce-prerempli');
 
 // ---------- Arrivée par une annonce Meta + Google : case facultative « mesure des annonces » ----------
@@ -251,9 +255,11 @@ if (payload.ads?.consent !== true || payload.ads.fbclid !== 'IwAR3x-capture_test
 await page.locator('#result-title').waitFor({ timeout: 15000 });
 
 // ---------- Intégration dans une page (embed.js) ----------
-await page.goto(`${BASE}/demo.html?utm_source=newsletter&utm_campaign=demo-embed&fbclid=SECRET`);
+await page.goto(`${BASE}/demo.html?utm_source=newsletter&utm_campaign=demo-embed&fbclid=IwAR3x-demo_embed`);
 const frameSrc = await page.locator('iframe[data-immobuild-frame]').getAttribute('src');
-if (!frameSrc.includes('utm_campaign=demo-embed') || !frameSrc.includes('fbclid=1') || frameSrc.includes('SECRET')) problems.push(`embed.js : provenance mal transmise (${frameSrc})`);
+// Valeur de fbclid seulement après « # » (jamais envoyée au serveur), « fbclid=1 » dans l'adresse
+const [frameAddr, frameHash = ''] = frameSrc.split('#');
+if (!frameAddr.includes('utm_campaign=demo-embed') || !frameAddr.includes('fbclid=1') || frameAddr.includes('IwAR3x') || !frameHash.includes('fbclid=IwAR3x-demo_embed')) problems.push(`embed.js : provenance mal transmise (${frameSrc})`);
 console.log('Adresse de l’iframe :', frameSrc);
 const frame = page.frameLocator('iframe[data-immobuild-frame]');
 await frame.locator('#step-title').waitFor();

@@ -14,7 +14,7 @@ import { leadEmail, qualityLine, sourceSummary } from '../src/shared/email';
 import { estimate } from '../src/shared/engine';
 import { resetMemoryLimiter } from '../src/shared/ratelimit';
 import { checkFields, isDisposableEmail, isSequencePhone, normalizePhone, sanitizeSource, validateSubmission } from '../src/shared/validation';
-import { landingQuery, landingTitle, readLanding } from '../src/ui/landing';
+import { landingHash, landingQuery, landingTitle, readLanding } from '../src/ui/landing';
 import { errorKey } from '../src/ui/steps';
 import { body, DATA, PARAMS } from './helpers';
 
@@ -187,10 +187,13 @@ describe('Provenance : paramètres de campagne, sans cookie', () => {
     expect(readLanding(new URLSearchParams('commune=Paris&type=villa'), names).prefill).toEqual({});
     expect(readLanding(new URLSearchParams(''), names)).toEqual({ source: {}, prefill: {}, clicks: {} });
     expect(l.clicks).toEqual({ gclid: 'Cj0KCQ-secret' });
-    // Changement de langue : on garde tout, y compris la valeur de gclid (elle ne part qu'avec le consentement)
+    // Changement de langue : on garde tout ; la valeur de gclid passe après « # » (jamais envoyée au serveur)
     const q = new URLSearchParams({ lang: 'de' });
     landingQuery(l, q);
-    expect(q.toString()).toBe('lang=de&utm_source=google&utm_campaign=dudelange+maisons&gclid=Cj0KCQ-secret&commune=Dudelange&type=maison');
+    expect(q.toString()).toBe('lang=de&utm_source=google&utm_campaign=dudelange+maisons&gclid=1&commune=Dudelange&type=maison');
+    expect(landingHash(l)).toBe('gclid=Cj0KCQ-secret');
+    // Valeur reçue après « # » (embed.js) : prioritaire, et l'adresse n'a que « 1 »
+    expect(readLanding(new URLSearchParams('gclid=1'), names, new URLSearchParams('gclid=EAIa-from-hash')).clicks).toEqual({ gclid: 'EAIa-from-hash' });
   });
 
   it('Titre repris de l’annonce (FR, DE, EN), titre habituel sans préremplissage', async () => {
@@ -228,7 +231,7 @@ function runEmbed(search: string) {
 }
 
 describe('embed.js : provenance de la page du site transmise à l’outil', () => {
-  it('utm_* nettoyés, gclid / fbclid transmis à l’outil (qui ne les envoie qu’avec consentement), commune et type ; src inchangé', () => {
+  it('utm_* nettoyés, présence de gclid / fbclid dans l’adresse et valeur seulement après « # » (jamais envoyée au serveur), commune et type ; src inchangé', () => {
     const u = runEmbed('?utm_source=google&utm_medium=cpc&utm_campaign=dudelange-maisons%3Cb%3E&gclid=Cj0KCQ-secret&fbclid=IwAR-secret&commune=Dudelange&type=maison&other=1');
     expect(u.origin).toBe('https://estimation.example.pages.dev');
     expect(u.searchParams.get('lang')).toBe('fr');
@@ -236,14 +239,19 @@ describe('embed.js : provenance de la page du site transmise à l’outil', () =
     expect(u.searchParams.get('utm_source')).toBe('google');
     expect(u.searchParams.get('utm_medium')).toBe('cpc');
     expect(u.searchParams.get('utm_campaign')).toBe('dudelange-maisonsb');
-    expect(u.searchParams.get('gclid')).toBe('Cj0KCQ-secret');
-    expect(u.searchParams.get('fbclid')).toBe('IwAR-secret');
+    expect(u.searchParams.get('gclid')).toBe('1');
+    expect(u.searchParams.get('fbclid')).toBe('1');
+    expect(u.search).not.toContain('secret');
+    expect(new URLSearchParams(u.hash.slice(1)).get('gclid')).toBe('Cj0KCQ-secret');
+    expect(new URLSearchParams(u.hash.slice(1)).get('fbclid')).toBe('IwAR-secret');
     expect(u.searchParams.has('msclkid')).toBe(false);
     expect(u.searchParams.get('commune')).toBe('Dudelange');
     expect(u.searchParams.get('type')).toBe('maison');
     expect(u.searchParams.has('other')).toBe(false);
-    // Identifiant de clic invalide (caractères interdits) : seulement « présent »
-    expect(runEmbed('?gclid=%3Cscript%3E').searchParams.get('gclid')).toBe('1');
+    // Identifiant de clic invalide (caractères interdits) : seulement « présent », rien après « # »
+    const bad = runEmbed('?gclid=%3Cscript%3E');
+    expect(bad.searchParams.get('gclid')).toBe('1');
+    expect(bad.hash).toBe('');
   });
   it('Sans paramètres : comme avant (lang et src seulement)', () => {
     const u = runEmbed('');

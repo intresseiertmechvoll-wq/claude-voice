@@ -123,7 +123,8 @@ export async function handleSimulationSummary(request: Request, env: Env, deps: 
   if (!(await allowSubmission(ip, SUMMARY_PER_HOUR, undefined, 'simulation-summary'))) return json({ ok: false, error: 'rate_limit' }, 429);
   // Un même ticket ne peut pas déclencher plus de quelques e-mails (rejeu impossible au-delà)
   const tokenId = String((r.body as { token: string }).token).split('.')[1] ?? '';
-  if (!(await allowSubmission(tokenId, SUMMARY_PER_TICKET, env.RATE_LIMIT, 'summary-ticket'))) return json({ ok: false, error: 'rate_limit' }, 429);
+  // KV en panne : refus (pas d'envoi illimité avec un même ticket) ; ici rien n'est perdu, le lead est déjà parti
+  if (!(await allowSubmission(tokenId, SUMMARY_PER_TICKET, env.RATE_LIMIT, 'summary-ticket', Date.now(), false))) return json({ ok: false, error: 'rate_limit' }, 429);
 
   // Les valeurs sont recalculées ici : on ne fait jamais confiance aux chiffres envoyés par le navigateur
   const a = ticket.a;
@@ -154,6 +155,6 @@ export async function handleSimulationSummary(request: Request, env: Env, deps: 
 <p style="font-size:13px;color:#46566C;margin-top:16px">À creuser : des travaux sont-ils prévus avant la vente ou la location ? Les montants ne tiennent pas compte du coût des travaux.</p>
 </div></body></html>`;
   const err = await sendMail(env, d, { subject, html, text, replyTo: c.email });
-  if (err) return json({ ok: false, error: err }, err === 'config' ? 500 : 502);
+  if (err && err !== 'duplicate') return json({ ok: false, error: err }, err === 'config' ? 500 : 502);
   return json({ ok: true });
 }
