@@ -652,6 +652,8 @@ html.is-embedded #app { padding: 4px 2px 24px; }
 .courtier-box > .small:first-child { display: flex; gap: 8px; align-items: flex-start; margin: 0 0 10px; }
 .courtier-box .field { margin: 0; }
 .who { margin: 8px 0 0 36px; font-size: 0.875rem; }
+.courtier-info { margin: 6px 0 0 36px !important; }
+.courtier-info a { color: var(--navy); font-weight: 600; }
 .who summary { cursor: pointer; color: var(--navy); font-weight: 600; }
 
 .budget-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.9375rem; }

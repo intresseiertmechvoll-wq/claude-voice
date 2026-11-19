@@ -83,6 +83,12 @@ describe('Case courtier', () => {
     expect(html).not.toContain('atHome');
     expect(html).not.toMatch(/name="courtier"[^>]*checked/);
   });
+  it('Lien « En savoir plus » vers la section courtier de la politique de confidentialité, sans nommer le courtier', () => {
+    const html = renderStep(3, { ...ctx(false), courtierInfoUrl: 'https://immobuild.lu/politique-de-confidentialite-cookies/#courtier-partenaire' });
+    expect(html).toContain('href="https://immobuild.lu/politique-de-confidentialite-cookies/#courtier-partenaire"');
+    expect(strip(html)).toContain('En savoir plus');
+    expect(html).not.toContain('atHome');
+  });
   it('Avec courtierNomPublic : le nom apparaît dans « Qui est notre courtier partenaire ? »', () => {
     expect(renderStep(3, ctx(true))).toContain('atHome Finance');
   });

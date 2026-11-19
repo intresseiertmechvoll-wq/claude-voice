@@ -35,6 +35,8 @@ export interface Ctx {
   quickCommunes: string[];
   /** nom du courtier montré à côté de la case ; vide = pas de nom */
   courtierNomPublic: string;
+  /** lien « en savoir plus » à côté de la case courtier (section courtier de la politique de confidentialité) */
+  courtierInfoUrl?: string;
 }
 
 export const STEP_ICONS = ['cle', 'epingle', 'donnees', 'calendrier', 'personne'];
@@ -258,6 +260,9 @@ function step3(ctx: Ctx): string {
   const who = ctx.courtierNomPublic
     ? `<details class="who"><summary>${esc(t('fields.courtierWho'))}</summary><p class="small">${esc(t('fields.courtierName', { nom: ctx.courtierNomPublic }))}</p></details>`
     : '';
+  const info = ctx.courtierInfoUrl
+    ? `<p class="small courtier-info"><a href="${esc(ctx.courtierInfoUrl)}" target="_blank" rel="noopener" aria-label="${esc(t('fields.courtierInfoLabel'))}">${esc(t('fields.courtierInfo'))}</a></p>`
+    : '';
   return `${money(ctx, 'apport', t('fields.apport'), t('fields.apportHelp'))}
 ${money(ctx, 'prix', t('fields.prix'), t('fields.prixHelp'))}
 <div class="vente-box" id="vente-box"${String(v.vendre ?? '').startsWith('oui') ? '' : ' hidden'}>
@@ -272,7 +277,7 @@ ${choices(ctx, 'capacite', t('fields.capacite'), opts(t, 'fields.capaciteOptions
 ${choices(ctx, 'revenu', t('fields.revenu'), opts(t, 'fields.revenuOptions', REVENUS), 'chips', { help: t('fields.revenuHelp'), optional: true })}
 <div class="courtier-box">
   <p class="small">${icon('info', 'ico ico-xs')} ${esc(t('fields.courtierHint'))}</p>
-  ${checkbox(ctx, 'courtier', t('fields.courtier'), who)}
+  ${checkbox(ctx, 'courtier', t('fields.courtier'), who + info)}
 </div>`;
 }
 

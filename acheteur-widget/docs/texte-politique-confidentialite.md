@@ -3,6 +3,7 @@
 Deux textes prêts à coller. Ils décrivent ce que fait réellement l’outil (vérifié dans le code le 19/11/2026). **Ce n’est pas un avis juridique** : fais-les relire si tu as un doute. Les passages entre crochets sont **à compléter par Jason** avant publication.
 
 - **Partie A** : nouvelle section de la politique de confidentialité (https://immobuild.lu/politique-de-confidentialite-cookies/). C’est la page vers laquelle renvoie la case à cocher de l’outil.
+  - **Important :** le lien « En savoir plus » à côté de la case courtier pointe vers `…/politique-de-confidentialite-cookies/#courtier-partenaire`. Dans Elementor, donne au titre « Mise en relation avec notre courtier partenaire » l’**ID CSS `courtier-partenaire`** (onglet Avancé → ID CSS). Sans cet ID, le lien ouvre quand même la page, mais en haut.
 - **Partie B** : conditions d’utilisation de l’outil, avec la mention de ta rémunération par le courtier (ta décision du 19/11/2026 : dans les textes juridiques seulement). À mettre sur la page des mentions légales ou sur une page « Conditions d’utilisation des outils en ligne », et à relier depuis la politique de confidentialité.
 
 ---
@@ -35,7 +36,7 @@ Nous ne demandons ni pièce d’identité, ni coordonnées bancaires, ni employe
 
 Base légale pour 1 à 5 : votre consentement, donné en cochant les cases prévues (article 6, paragraphe 1, point a du RGPD), une case distincte pour le courtier et pour les alertes. Vous pouvez retirer chaque consentement à tout moment, sans effet sur ce qui a été fait avant. La limitation des abus (voir plus bas) repose sur notre intérêt légitime à protéger l’outil (article 6, paragraphe 1, point f).
 
-**Mise en relation avec notre courtier partenaire.** Notre courtier partenaire est **atHome Finance** [adresse et forme juridique exactes à compléter, d’après le contrat]. Il ne reçoit vos données que si vous avez coché la case « Je souhaite être mis(e) en relation, sans engagement, avec notre courtier partenaire ». Dans ce cas, ImmoBuild Kohn lui transmet vos coordonnées et les éléments de votre projet utiles au financement (projet, budget, calendrier). atHome Finance traite ensuite ces données sous sa propre responsabilité, selon sa propre politique de confidentialité. ImmoBuild Kohn peut être rémunéré par ce courtier pour la mise en relation (voir les conditions d’utilisation de l’outil).
+**Mise en relation avec notre courtier partenaire** *(titre avec l’ID CSS `courtier-partenaire`)*. Notre courtier partenaire est **atHome Finance** [adresse et forme juridique exactes à compléter, d’après le contrat]. Il ne reçoit vos données que si vous avez coché la case « Je souhaite être mis(e) en relation, sans engagement, avec notre courtier partenaire ». Dans ce cas, ImmoBuild Kohn lui transmet vos coordonnées et les éléments de votre projet utiles au financement (projet, budget, calendrier). atHome Finance traite ensuite ces données sous sa propre responsabilité, selon sa propre politique de confidentialité. ImmoBuild Kohn peut être rémunéré par ce courtier pour la mise en relation (voir les conditions d’utilisation de l’outil).
 
 **Destinataires et prestataires.**
 - **Cloudflare, Inc.** héberge l’outil et effectue le calcul. Vos réponses sont traitées en mémoire puis oubliées ; elles ne sont pas enregistrées dans une base de données.

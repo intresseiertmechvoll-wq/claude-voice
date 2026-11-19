@@ -206,7 +206,9 @@
     "venteHelp": "Facultatif : avec ces deux montants, le produit de la vente compte dans votre apport. Pas encore d’estimation ?",
     "valeurVente": "Valeur estimée de votre bien",
     "restePret": "Reste à rembourser sur votre prêt actuel",
-    "restePretHelp": "Obligatoire si vous indiquez une valeur ; 0 si vous n’avez plus de prêt."
+    "restePretHelp": "Obligatoire si vous indiquez une valeur ; 0 si vous n’avez plus de prêt.",
+    "courtierInfo": "En savoir plus",
+    "courtierInfoLabel": "En savoir plus sur notre courtier partenaire et l’utilisation de vos données (nouvel onglet)"
   },
   "errors": {
     "required": "Ce champ est obligatoire.",

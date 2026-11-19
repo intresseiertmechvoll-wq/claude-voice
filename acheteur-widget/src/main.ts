@@ -71,6 +71,7 @@ function ctx(): Ctx {
     estimationUrl: config.estimationUrl[lang],
     quickCommunes: config.quickCommunes,
     courtierNomPublic: config.courtierNomPublic,
+    courtierInfoUrl: config.courtierInfoUrl?.[lang],
   };
 }
 

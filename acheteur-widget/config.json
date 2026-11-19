@@ -29,5 +29,10 @@
     "Mersch"
   ],
   "publicEmail": "contact@immobuild.lu",
-  "courtierNomPublic": ""
+  "courtierNomPublic": "",
+  "courtierInfoUrl": {
+    "fr": "https://immobuild.lu/politique-de-confidentialite-cookies/#courtier-partenaire",
+    "de": "https://immobuild.lu/politique-de-confidentialite-cookies/#courtier-partenaire",
+    "en": "https://immobuild.lu/politique-de-confidentialite-cookies/#courtier-partenaire"
+  }
 }

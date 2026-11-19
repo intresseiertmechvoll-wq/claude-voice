@@ -206,7 +206,9 @@
     "venteHelp": "Freiwillig: Mit diesen beiden Beträgen zählt der Verkaufserlös zu Ihrem Eigenkapital. Noch keine Bewertung?",
     "valeurVente": "Geschätzter Wert Ihrer Immobilie",
     "restePret": "Restschuld Ihres aktuellen Kredits",
-    "restePretHelp": "Pflicht, wenn Sie einen Wert angeben; 0, wenn Sie keinen Kredit mehr haben."
+    "restePretHelp": "Pflicht, wenn Sie einen Wert angeben; 0, wenn Sie keinen Kredit mehr haben.",
+    "courtierInfo": "Mehr erfahren",
+    "courtierInfoLabel": "Mehr über unseren Partner-Kreditvermittler und die Verwendung Ihrer Daten (neuer Tab)"
   },
   "errors": {
     "required": "Dieses Feld ist erforderlich.",

@@ -206,7 +206,9 @@
     "venteHelp": "Optional: with these two amounts, the sale proceeds count towards your deposit. No valuation yet?",
     "valeurVente": "Estimated value of your property",
     "restePret": "Remaining balance on your current loan",
-    "restePretHelp": "Required if you enter a value; 0 if you no longer have a loan."
+    "restePretHelp": "Required if you enter a value; 0 if you no longer have a loan.",
+    "courtierInfo": "Learn more",
+    "courtierInfoLabel": "Learn more about our partner broker and how your data is used (new tab)"
   },
   "errors": {
     "required": "This field is required.",
