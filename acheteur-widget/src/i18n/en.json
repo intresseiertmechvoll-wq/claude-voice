@@ -222,7 +222,8 @@
     "summary": "Please correct the highlighted fields.",
     "rate_limit": "Too many submissions from this connection. Try again in an hour, or email me at {contact}.",
     "network": "Sending failed. Check your connection and try again.",
-    "server": "Sending failed. Try again in a few minutes, or email me at {contact}."
+    "server": "Sending failed. Try again in a few minutes, or email me at {contact}.",
+    "emailTypo": "This address probably contains a typo: see the suggested correction."
   },
   "budget": {
     "title": "Your budget for {prix}",
@@ -309,7 +310,8 @@
     "print": "Print or save as PDF",
     "restart": "Start again",
     "ancienPourNeuf": "Existing-home prices (too few new-build sales here): new builds usually cost more, so fewer m².",
-    "budgetAgain": "See your budget details for {prix}"
+    "budgetAgain": "See your budget details for {prix}",
+    "copie": "A summary has just been sent to {email}."
   },
   "recap": {
     "title": "Your search at a glance",

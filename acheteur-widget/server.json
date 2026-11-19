@@ -1,7 +1,9 @@
 {
-  "_note": "Réglages lus uniquement par le serveur (jamais envoyés au navigateur). courtierNom : nom du courtier partenaire dans l'e-mail du lead.",
+  "_note": "Réglages lus uniquement par le serveur (jamais envoyés au navigateur). courtierNom : nom du courtier partenaire dans l'e-mail du lead. copieClient : envoyer au visiteur un e-mail récapitulatif (réponses à cet e-mail : chez toi). copieClientParHeure : au plus N e-mails par adresse et par heure (anti-abus).",
   "defaultLeadEmail": "contact@immobuild.lu",
   "defaultFromEmail": "ImmoBuild Acheteurs <acheteurs@immobuild.lu>",
   "rateLimitPerHour": 20,
-  "courtierNom": "atHome Finance"
+  "courtierNom": "atHome Finance",
+  "copieClient": true,
+  "copieClientParHeure": 3
 }

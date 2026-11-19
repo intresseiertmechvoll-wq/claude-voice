@@ -54,3 +54,10 @@ describe('Prêt restant obligatoire avec une valeur de vente', () => {
     expect(checkFields({ vendre: 'oui_lu', valeurVente: '', restePret: '' }, ['restePret']).values.restePret).toBeNull();
   });
 });
+
+describe('Adresse e-mail avec une faute de frappe connue', () => {
+  it('gmial.com refusé (le récapitulatif n’arriverait jamais), gmail.com accepté', () => {
+    expect(checkFields({ email: 'marie@gmial.com' }, ['email']).errors.email).toBe('emailTypo');
+    expect(checkFields({ email: 'Marie@Gmail.com' }, ['email']).values.email).toBe('marie@gmail.com');
+  });
+});

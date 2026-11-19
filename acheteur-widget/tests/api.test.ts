@@ -34,7 +34,8 @@ describe('API /api/budget', () => {
     expect(json.result.budget.prix).toBe(600000);
     expect(json.result.communes.map((c: any) => c.commune)).toEqual(['Dudelange', 'Kayl', 'Bettembourg']);
     expect(json.result.communes[0].m2).toBe(92);
-    expect(fetchMock.mock.calls.filter((c) => String(c[0]).includes('resend'))).toHaveLength(1);
+    // lead à Jason + récapitulatif au visiteur
+    expect(fetchMock.mock.calls.filter((c) => String(c[0]).includes('resend'))).toHaveLength(2);
     const sent = JSON.parse((fetchMock.mock.calls.find((c) => String(c[0]).includes('resend')) as unknown as [string, RequestInit])[1].body as string);
     expect(sent.to).toEqual(['contact@immobuild.lu']);
     expect(sent.reply_to).toBe('marie.muller@example.lu');
@@ -141,5 +142,60 @@ describe('Vente et simulateur dans l’e-mail', () => {
     expect(sent.text).toContain('au départ 600.000 €, modifié dans le simulateur');
     expect(sent.text).toContain('A testé d’autres montants dans le simulateur');
     expect(sent.text).not.toContain('au départ 20.000 €'); // épargne inchangée : pas de mention
+  });
+});
+
+describe('Récapitulatif envoyé au visiteur', () => {
+  const resendCalls = (m: any) => m.mock.calls.filter((c: any) => String(c[0]).includes('resend')).map((c: any) => JSON.parse(c[1].body));
+
+  it('Deuxième e-mail : au visiteur, dans sa langue, réponses chez Jason, sans le nom du courtier', async () => {
+    resetMemoryLimiter();
+    const { env, deps, fetchMock } = setup();
+    const res = await handleBudget(req(body()), env, deps);
+    expect(((await res.json()) as any).result.copie).toBe(true);
+    const [lead, copie] = resendCalls(fetchMock);
+    expect(lead.to).toEqual(['contact@immobuild.lu']);
+    expect(copie.to).toEqual(['marie.muller@example.lu']);
+    expect(copie.reply_to).toBe('contact@immobuild.lu');
+    expect(copie.subject).toBe('Votre budget d’achat – ImmoBuild Kohn');
+    expect(copie.text).toContain('Bonjour Marie,');
+    expect(copie.text).toContain('ni un conseil en crédit ni une offre de prêt');
+    expect(copie.text).toContain('Dudelange (appartement) : environ 92 m²');
+    expect(copie.text).not.toContain('atHome');
+  });
+
+  it('En allemand pour un visiteur allemand', async () => {
+    resetMemoryLimiter();
+    const { env, deps, fetchMock } = setup();
+    await handleBudget(req({ ...body(), lang: 'de' }), env, deps);
+    const copie = resendCalls(fetchMock)[1];
+    expect(copie.subject).toBe('Ihr Kaufbudget – ImmoBuild Kohn');
+    expect(copie.text).toContain('Guten Tag Marie,');
+  });
+
+  it('Si le récapitulatif échoue : le lead est parti, le visiteur a son résultat', async () => {
+    resetMemoryLimiter();
+    let n = 0;
+    const fetchMock = vi.fn(async (url: string) => {
+      if (String(url).includes('ecb.europa.eu')) return new Response(BCE_CSV);
+      n += 1;
+      return new Response('{}', { status: n === 1 ? 200 : 500 });
+    });
+    const { env, deps } = setup();
+    const res = await handleBudget(req(body()), env, { ...deps, fetch: fetchMock as unknown as typeof fetch });
+    expect(res.status).toBe(200);
+    expect(((await res.json()) as any).result.copie).toBe(false);
+  });
+
+  it('Au plus 3 récapitulatifs par adresse et par heure (anti-abus) ; le lead part toujours', async () => {
+    resetMemoryLimiter();
+    const { env, deps, fetchMock } = setup();
+    const copies: boolean[] = [];
+    for (let i = 0; i < 4; i++) {
+      const r = await handleBudget(req(body(), `198.51.100.${10 + i}`), env, deps);
+      copies.push(((await r.json()) as any).result.copie);
+    }
+    expect(copies).toEqual([true, true, true, false]);
+    expect(resendCalls(fetchMock).filter((m: any) => m.to[0] === 'contact@immobuild.lu')).toHaveLength(4);
   });
 });

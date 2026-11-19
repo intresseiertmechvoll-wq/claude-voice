@@ -222,7 +222,8 @@
     "summary": "Merci de corriger les champs signalés.",
     "rate_limit": "Trop d’envois depuis cette connexion. Réessayez dans une heure, ou écrivez-moi à {contact}.",
     "network": "L’envoi n’a pas abouti. Vérifiez votre connexion et réessayez.",
-    "server": "L’envoi n’a pas abouti. Réessayez dans quelques minutes, ou écrivez-moi à {contact}."
+    "server": "L’envoi n’a pas abouti. Réessayez dans quelques minutes, ou écrivez-moi à {contact}.",
+    "emailTypo": "Cette adresse contient probablement une faute de frappe : voyez la correction proposée."
   },
   "budget": {
     "title": "Votre budget pour {prix}",
@@ -309,7 +310,8 @@
     "print": "Imprimer ou enregistrer en PDF",
     "restart": "Recommencer",
     "ancienPourNeuf": "Prix de l’ancien (trop peu de ventes de neuf ici) : le neuf coûte en général plus cher, donc moins de m².",
-    "budgetAgain": "Revoir le détail de votre budget pour {prix}"
+    "budgetAgain": "Revoir le détail de votre budget pour {prix}",
+    "copie": "Un récapitulatif vient de vous être envoyé à {email}."
   },
   "recap": {
     "title": "Votre recherche en bref",

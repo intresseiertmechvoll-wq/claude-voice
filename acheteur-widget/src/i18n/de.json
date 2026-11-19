@@ -222,7 +222,8 @@
     "summary": "Bitte korrigieren Sie die markierten Felder.",
     "rate_limit": "Zu viele Anfragen von dieser Verbindung. Versuchen Sie es in einer Stunde erneut oder schreiben Sie mir an {contact}.",
     "network": "Das Senden ist fehlgeschlagen. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
-    "server": "Das Senden ist fehlgeschlagen. Versuchen Sie es in einigen Minuten erneut oder schreiben Sie mir an {contact}."
+    "server": "Das Senden ist fehlgeschlagen. Versuchen Sie es in einigen Minuten erneut oder schreiben Sie mir an {contact}.",
+    "emailTypo": "Diese Adresse enthält wahrscheinlich einen Tippfehler: siehe den Korrekturvorschlag."
   },
   "budget": {
     "title": "Ihr Budget für {prix}",
@@ -309,7 +310,8 @@
     "print": "Drucken oder als PDF speichern",
     "restart": "Neu beginnen",
     "ancienPourNeuf": "Preis von Bestandsimmobilien (zu wenige Neubau-Verkäufe hier): Neubau kostet meist mehr, also weniger m².",
-    "budgetAgain": "Details Ihres Budgets für {prix} ansehen"
+    "budgetAgain": "Details Ihres Budgets für {prix} ansehen",
+    "copie": "Eine Zusammenfassung wurde an {email} geschickt."
   },
   "recap": {
     "title": "Ihre Suche im Überblick",

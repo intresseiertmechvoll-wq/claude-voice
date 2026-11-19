@@ -45,6 +45,15 @@ Base légale proposée : **consentement** pour 1 à 4 (cases à cocher, non coch
 - **À compléter dans ta politique de confidentialité** : nommer atHome Finance comme destinataire possible, avec la finalité (contact au sujet du financement) et la condition (seulement si la case est cochée).
 - **Risque à connaître (je suppose, pas vérifié par un juriste)** : pour qu’un consentement à une transmission vers un autre responsable soit valable, les lignes directrices 05/2020 du CEPD/EDPB demandent que ce responsable soit **nommé** au moment du choix. Le nommer seulement dans la politique de confidentialité est plus faible que de le nommer à côté de la case. Option prête : `config.json` → `courtierNomPublic` = « atHome Finance » affiche un petit lien « Qui est notre courtier partenaire ? » à côté de la case, sans changer le texte de la case.
 
+## 3 ter. E-mail récapitulatif au visiteur
+
+- Après l’envoi de la demande, le visiteur reçoit un **récapitulatif par e-mail**, dans sa langue (chiffres affichés, prochaines étapes, contact). Expéditeur : l’adresse `FROM_EMAIL` (domaine immobuild.lu, via Resend). Les réponses arrivent chez Jason.
+- Il part **après** le lead : s’il échoue, la demande est quand même transmise.
+- **Anti-abus** : au plus 3 récapitulatifs par adresse e-mail et par heure (empreinte de l’adresse, avec clé secrète, comme pour l’IP ; effacée après 1 heure ; fiable seulement avec KV).
+- Pas de nom du courtier, pas de message libre dans cet e-mail.
+- **À ajouter à ta politique de confidentialité** : « un récapitulatif vous est envoyé à l’adresse indiquée ».
+- Désactivable : `server.json` → `copieClient: false`.
+
 ## 3 bis. Taux du mois
 
 Le serveur lit les taux moyens publiés par la BCE (BCL). Cette requête ne contient **aucune donnée du visiteur**.

@@ -61,6 +61,14 @@ Comme l’outil d’estimation : pas de base de données, pas de cookie, pas de 
 - Mettre à jour la valeur de secours (par ex. tous les 3 mois) : `npm run update-taux` puis `npm run deploy`. Le script s’arrête sans rien changer si les taux sont illisibles, non plausibles, trop anciens ou ont bougé de plus d’un point.
 - Non testé : la lecture en direct **depuis Cloudflare** (en local, le serveur de test n’a pas pu joindre la BCE et a pris la valeur de secours ; depuis cette machine, la BCE répond).
 
+### E-mail récapitulatif au visiteur (ajouté le 19/11/2026)
+
+- Après chaque demande, le visiteur reçoit un récapitulatif dans sa langue : budget, apport, prêt nécessaire, mensualité d’exemple, m² par commune, mêmes avertissements qu’à l’écran, prochaines étapes, ton téléphone. **Répondre à cet e-mail = t’écrire.** Exemple : `docs/exemple-email-client.txt` et `.png`.
+- Il part après le lead : si l’envoi échoue, le lead est quand même chez toi et le visiteur voit son résultat (sans la phrase « Un récapitulatif vient de vous être envoyé »).
+- Anti-abus : 3 par adresse et par heure. Les fautes de frappe connues (gmial.com, hotmial.com…) sont refusées, avec la correction proposée.
+- **Quota Resend** : 2 e-mails par demande (lead + récapitulatif). L’offre gratuite (100 par jour, 3 000 par mois, partagée avec l’outil d’estimation) suffit pour environ 50 demandes par jour.
+- Désactiver : `server.json` → `copieClient: false`.
+
 Ce que l’outil **ne fait pas**, exprès : pas de capacité d’emprunt calculée à partir du revenu, pas de taux personnel, pas de nom de banque. La mensualité est un exemple au taux moyen, écrit comme tel. Phrase affichée sous chaque budget : « Cet outil ne constitue ni un conseil en crédit ni une offre de prêt. Seule votre banque décide. »
 
 ## Priorité du lead (e-mail)
@@ -79,7 +87,7 @@ Même procédure que l’outil d’estimation (voir son README, parties 1 à 3),
 cd acheteur-widget
 npm install
 cp .dev.vars.example .dev.vars   # EMAIL_MODE=log : aucun e-mail ne part en local
-npm test                          # 80 tests
+npm test                          # 85 tests
 npm run dev                       # http://localhost:8788/ et /demo.html
 ```
 
@@ -112,7 +120,7 @@ cd acheteur-widget && npm run sync-data && npm test && npm run deploy
 3. Politique de confidentialité : ajouter les nouvelles données (budget, revenu en tranche) et **nommer atHome Finance comme destinataire possible** (voir `PRIVACY.md`).
 4. Quand le projet de loi 8806 est voté : `params.json` → `bellegen.par_personne` = 45000 (et mettre à jour `_source`). L’annonce « pas encore votée » disparaît alors toute seule.
 
-## Tests (80)
+## Tests (85)
 
 | Sujet | Fichier |
 | --- | --- |

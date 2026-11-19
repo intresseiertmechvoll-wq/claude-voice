@@ -733,3 +733,5 @@ html.is-embedded #app { padding: 4px 2px 24px; }
 .sim .link-btn { color: var(--white); }
 .sim-depart[hidden] { display: none; }
 @media print { .sim { display: none; } }
+
+.hero-mail { margin-top: 6px; font-weight: 600; }

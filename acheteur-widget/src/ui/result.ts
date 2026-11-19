@@ -205,7 +205,7 @@ function agentCard(o: ResultOptions): string {
   return `<div class="agent">${avatar}<div><p class="agent-name">${esc(o.agent.name)}</p><p class="agent-role">${esc(o.agent.role)}</p></div></div>`;
 }
 
-export function renderResult(r: PublicResult, a: Pick<Answers, 'prix' | 'premier' | 'usage' | 'bellegen' | 'vendre' | 'renover' | 'mandat' | 'courtier' | 'revenu'>, prenom: string, t: T, lang: Lang, o: ResultOptions & BudgetOptions): string {
+export function renderResult(r: PublicResult, a: Pick<Answers, 'prix' | 'premier' | 'usage' | 'bellegen' | 'vendre' | 'renover' | 'mandat' | 'courtier' | 'revenu'>, prenom: string, t: T, lang: Lang, o: ResultOptions & BudgetOptions, email = ''): string {
   const cards: string[] = [];
   const card = (ico: string, title: string, text: string, link = '') =>
     `<div class="next-card">${icon(ico, 'ico ico-sm')}<div><p class="next-title">${esc(title)}</p><p class="small">${esc(text)}</p>${link}</div></div>`;
@@ -230,6 +230,7 @@ export function renderResult(r: PublicResult, a: Pick<Answers, 'prix' | 'premier
     <span class="hero-badge">${icon('check')}</span>
     <h2 id="result-title" class="step-title" tabindex="-1">${esc(t('result.title', { prenom }))}</h2>
     <p class="hero-sub">${esc(t('result.sub'))}</p>
+    ${r.copie && email ? `<p class="hero-sub hero-mail">${esc(t('result.copie', { email }))}</p>` : ''}
   </div>
   ${communesHtml(r.communes, a.prix, r, t, lang)}
   ${o.mensualite ? renderMensualite(r.budget.pretNecessaire, r.taux, a.revenu, t, lang, o.mensualite.repere, o.mensualite.durees) : ''}

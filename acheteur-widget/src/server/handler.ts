@@ -8,6 +8,7 @@ import params from '../../params.json';
 import { computeBudget, type Params } from '../shared/budget';
 import { communesM2 } from '../shared/communes-m2';
 import { leadEmail } from '../shared/email';
+import { clientEmail } from '../shared/email-client';
 import { allowSubmission, refundSubmission, type KVLike } from '../shared/ratelimit';
 import type { Dataset, PublicResult } from '../shared/types';
 import { validateSubmission } from '../shared/validation';
@@ -52,11 +53,13 @@ export interface Mail {
   html: string;
   text: string;
   replyTo: string;
+  /** destinataire ; par défaut l'adresse des leads */
+  to?: string;
 }
 
 /** Envoi par Resend (ou affichage dans la console avec EMAIL_MODE=log). Renvoie une erreur ou null. */
 export async function sendMail(env: Env, d: Deps, mail: Mail): Promise<'config' | 'send' | null> {
-  const to = env.LEAD_EMAIL || server.defaultLeadEmail;
+  const to = mail.to || env.LEAD_EMAIL || server.defaultLeadEmail;
   const from = env.FROM_EMAIL || server.defaultFromEmail;
   if (env.EMAIL_MODE === 'log') {
     d.log(`\n=== E-MAIL (mode log, non envoyé) ===\nÀ : ${to}\nDe : ${from}\nRépondre à : ${mail.replyTo}\nObjet : ${mail.subject}\n\n${mail.text}\n=== FIN ===\n`);
@@ -133,6 +136,20 @@ export async function handleBudget(request: Request, env: Env, deps: Partial<Dep
     return json({ ok: false, error: err }, err === 'config' ? 500 : 502);
   }
 
-  const result: PublicResult = { budget, communes, periodeDebut: d.data.periode_debut, periodeFin: d.data.periode_fin, taux };
+  // Récapitulatif au visiteur, APRÈS le lead : s'il échoue, le lead est déjà chez Jason et le visiteur voit quand même son résultat.
+  // Au plus N par adresse et par heure, pour que l'outil ne serve pas à inonder la boîte de quelqu'un d'autre.
+  let copie = false;
+  if (server.copieClient) {
+    const addr = v.value.contact.email.toLowerCase();
+    if (await allowSubmission(`mail:${addr}`, server.copieClientParHeure, env.RATE_LIMIT, salt)) {
+      const m = clientEmail(v.value, budget, communes, taux);
+      const replyTo = env.LEAD_EMAIL || server.defaultLeadEmail;
+      const e2 = await sendMail(env, d, { ...m, to: v.value.contact.email, replyTo });
+      copie = e2 === null;
+      if (e2) d.log('Récapitulatif au visiteur non envoyé (le lead, lui, est parti)');
+    }
+  }
+
+  const result: PublicResult = { budget, communes, periodeDebut: d.data.periode_debut, periodeFin: d.data.periode_fin, taux, copie };
   return json({ ok: true, result });
 }

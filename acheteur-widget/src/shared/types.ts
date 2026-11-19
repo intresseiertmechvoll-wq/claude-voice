@@ -188,6 +188,8 @@ export interface PublicResult {
   budget: Budget;
   /** taux du mois utilisés pour la mensualité d'exemple (null : pas de mensualité affichée) */
   taux: import('./taux').Taux | null;
+  /** un récapitulatif a été envoyé par e-mail au visiteur */
+  copie?: boolean;
   communes: CommuneM2[];
   periodeDebut: string;
   periodeFin: string;

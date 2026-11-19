@@ -8,7 +8,7 @@ import { computeBudget, type Params } from './shared/budget';
 import { COMMUNES } from './shared/communes';
 import type { Budget, PublicResult } from './shared/types';
 import { checkTaux, type Taux } from './shared/taux';
-import { budgetInput, checkFields, parseMoney, LIMITS, stepFields, TOTAL_STEPS, type Errors } from './shared/validation';
+import { budgetInput, checkFields, EMAIL_TYPOS, parseMoney, LIMITS, stepFields, TOTAL_STEPS, type Errors } from './shared/validation';
 import { setupCombobox } from './ui/combobox';
 import { esc } from './ui/html';
 import { icon } from './ui/icons';
@@ -186,7 +186,7 @@ function render(focus = true) {
       agent: config.agent,
       phone: config.phone,
       ...budgetOptions(),
-    })}</div>`;
+    }, String(a.email ?? ''))}</div>`;
     return after(focus);
   }
 
@@ -542,18 +542,18 @@ app.addEventListener('click', (e) => {
   }
 });
 
-const EMAIL_TYPOS: Record<string, string> = {
-  'gmial.com': 'gmail.com', 'gmal.com': 'gmail.com', 'gnail.com': 'gmail.com', 'gmail.co': 'gmail.com', 'gmail.fr': 'gmail.com', 'gamil.com': 'gmail.com', 'gmaill.com': 'gmail.com',
-  'hotmal.com': 'hotmail.com', 'hotmial.com': 'hotmail.com', 'hotmail.co': 'hotmail.com', 'hotmai.com': 'hotmail.com',
-  'yahooo.com': 'yahoo.com', 'yaho.com': 'yahoo.com', 'outlok.com': 'outlook.com', 'outloo.com': 'outlook.com', 'pt.l': 'pt.lu', 'pt.lux': 'pt.lu',
-};
+
 function emailSuggest(value: string) {
-  app.querySelector('#email-suggest')?.remove();
   const at = value.lastIndexOf('@');
   const fix = at > 0 ? EMAIL_TYPOS[value.slice(at + 1).toLowerCase()] : undefined;
+  const suggestion = fix ? value.slice(0, at + 1) + fix : '';
+  const current = app.querySelector<HTMLElement>('#email-suggest');
+  // Même proposition déjà affichée : on ne la recrée pas. Sinon, un clic sur la proposition alors que le champ
+  // a encore le focus la remplace pendant le clic (focusout) et le clic est perdu.
+  if (current && current.querySelector<HTMLElement>('[data-value]')?.dataset.value === suggestion) return;
+  current?.remove();
   if (!fix) return;
-  const suggestion = value.slice(0, at + 1) + fix;
-  app.querySelector('[data-field="email"]')?.insertAdjacentHTML('beforeend', `<p class="suggest" id="email-suggest">${esc(t('fields.emailTypo'))} <button type="button" class="link-btn" data-action="fix-email" data-value="${esc(suggestion)}">${esc(suggestion)}</button> ?</p>`);
+  app.querySelector('[data-field="email"]')?.insertAdjacentHTML('beforeend', `<p class="suggest" id="email-suggest">${esc(t('fields.emailTypo'))} <button type="button" class="link-btn" data-action="fix-email" data-value="${esc(suggestion)}">${esc(suggestion)}</button>${lang === 'fr' ? '\u00a0?' : '?'}</p>`);
   sendHeight();
 }
 
@@ -570,7 +570,12 @@ app.addEventListener('submit', (e) => {
   state.serverError = null;
   const { errors } = checkFields(state.values, stepFields(state.step, state.values));
   state.errors = errors;
-  if (Object.keys(errors).length) return render();
+  if (Object.keys(errors).length) {
+    render();
+    // Faute de frappe dans l'adresse : la correction proposée s'affiche sous le champ
+    if (errors.email === 'emailTypo') emailSuggest(String(state.values.email ?? '').trim());
+    return;
+  }
   if (state.step === 3) {
     // Aperçu du budget, sans coordonnées : calcul dans le navigateur, rien n'est envoyé
     const input = budgetInput(state.values);

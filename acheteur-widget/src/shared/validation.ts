@@ -25,7 +25,7 @@ import {
   type Submission,
 } from './types';
 
-export type ErrorCode = 'required' | 'invalid' | 'range' | 'email' | 'phone' | 'rgpd' | 'communes_max';
+export type ErrorCode = 'required' | 'invalid' | 'range' | 'email' | 'emailTypo' | 'phone' | 'rgpd' | 'communes_max';
 export type Errors = Record<string, ErrorCode>;
 
 /** Données brutes telles qu'envoyées par le formulaire */
@@ -130,6 +130,13 @@ function optText(v: unknown, max: number, multiline = false): string | ErrorCode
   return s.length > max ? 'range' : s;
 }
 
+/** Fautes de frappe fréquentes dans les adresses : refusées (le récapitulatif n'arriverait jamais), avec la correction proposée */
+export const EMAIL_TYPOS: Record<string, string> = {
+  'gmial.com': 'gmail.com', 'gmal.com': 'gmail.com', 'gnail.com': 'gmail.com', 'gmail.co': 'gmail.com', 'gmail.fr': 'gmail.com', 'gamil.com': 'gmail.com', 'gmaill.com': 'gmail.com',
+  'hotmal.com': 'hotmail.com', 'hotmial.com': 'hotmail.com', 'hotmail.co': 'hotmail.com', 'hotmai.com': 'hotmail.com',
+  'yahooo.com': 'yahoo.com', 'yaho.com': 'yahoo.com', 'outlok.com': 'outlook.com', 'outloo.com': 'outlook.com', 'pt.l': 'pt.lu', 'pt.lux': 'pt.lu',
+};
+
 const NAME_RE = /^[\p{L}][\p{L}\p{M}'’ʼ .-]*$/u;
 const EMAIL_RE = /^[^\s@<>()[\]\\,;:"]+@[^\s@<>()[\]\\,;:"]+\.[A-Za-z]{2,}$/;
 
@@ -222,7 +229,8 @@ const CHECKS: Record<string, FieldCheck> = {
   email: (r) => {
     const s = str(r.email);
     if (s === '') return 'required';
-    return s.length <= TEXT_MAX.email && EMAIL_RE.test(s) ? s.toLowerCase() : 'email';
+    if (s.length > TEXT_MAX.email || !EMAIL_RE.test(s)) return 'email';
+    return EMAIL_TYPOS[s.slice(s.lastIndexOf('@') + 1).toLowerCase()] ? 'emailTypo' : s.toLowerCase();
   },
   indicatif: (r) => (/^\+[1-9]\d{0,3}$/.test(str(r.indicatif)) ? str(r.indicatif) : 'phone'),
   numero: (r) => normalizePhone(r.indicatif, r.numero),
@@ -231,7 +239,7 @@ const CHECKS: Record<string, FieldCheck> = {
   rgpd: (r) => (r.rgpd === true || r.rgpd === 'on' ? true : 'rgpd'),
 };
 
-const ERROR_CODES = new Set<unknown>(['required', 'invalid', 'range', 'email', 'phone', 'rgpd', 'communes_max']);
+const ERROR_CODES = new Set<unknown>(['required', 'invalid', 'range', 'email', 'emailTypo', 'phone', 'rgpd', 'communes_max']);
 const isError = (v: unknown): v is ErrorCode => typeof v === 'string' && ERROR_CODES.has(v);
 
 /** Vérifie une liste de champs. Renvoie les valeurs propres et les erreurs. */
