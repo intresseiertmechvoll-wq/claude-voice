@@ -1,5 +1,7 @@
 # Données personnelles – outil « Mon budget d’achat »
 
+**Texte prêt à coller pour immobuild.lu : [`docs/texte-politique-confidentialite.md`](docs/texte-politique-confidentialite.md)** (partie A : politique de confidentialité ; partie B : conditions d’utilisation avec la mention de la rémunération du courtier).
+
 Ce document décrit ce que fait l’outil, pour t’aider à compléter ta politique de confidentialité. **Ce n’est pas un avis juridique.** Les points marqués **à compléter** ou **à valider** dépendent de toi.
 
 ## En bref

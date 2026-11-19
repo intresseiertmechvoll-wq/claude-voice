@@ -655,7 +655,7 @@ Unabhängige Code-Prüfung plus Randfälle im Browser. Korrigiert:
   - „chaud“ nur mit bekanntem Kreditbetrag.
   - KV-Abschnitt und Next.js-Komponente.
 - **Kunden-E-Mail** (Zusammenfassung, Antworten an Jason) mit **kleinem Ratgeber** (vor der Unterschrift, realistischen Preis erkennen), Fakten mit Quellen geprüft.
-- **Offen, Entscheidung Jason:** Name des Courtiers am Kästchen, Hinweis auf die Vergütung, Datenschutzerklärung.
+- **Entscheidung Jason (19.11.2026):** Name atHome Finance **nur** in den rechtlichen Texten (nicht am Kästchen), Hinweis auf die Vergütung **nur** in den Nutzungsbedingungen. Texte vorbereitet: `docs/texte-politique-confidentialite.md` (Teil A Datenschutz, Teil B Nutzungsbedingungen).
 
 ## Anhang: Quellen
 
