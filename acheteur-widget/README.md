@@ -67,6 +67,7 @@ Comme l’outil d’estimation : pas de base de données, pas de cookie, pas de 
 - Il part après le lead : si l’envoi échoue, le lead est quand même chez toi et le visiteur voit son résultat (sans la phrase « Un récapitulatif vient de vous être envoyé »).
 - Anti-abus : 3 par adresse et par heure. Les fautes de frappe connues (gmial.com, hotmial.com…) sont refusées, avec la correction proposée.
 - **Quota Resend** : 2 e-mails par demande (lead + récapitulatif). L’offre gratuite (100 par jour, 3 000 par mois, partagée avec l’outil d’estimation) suffit pour environ 50 demandes par jour.
+- **Petit guide de l’acheteur** dans le même e-mail (adapté : copropriété seulement pour un appartement, garantie d’achèvement seulement pour du neuf, Bëllegen Akt seulement pour y habiter) : compromis = vente et condition suspensive de prêt, certificat de performance énergétique, procès-verbaux de copropriété, garantie d’achèvement en VEFA, état et travaux, conditions du Bëllegen Akt ; et « reconnaître un prix réaliste » avec l’écart médian annonce → vente **calculé sur les données** (9 % aujourd’hui). Faits vérifiés le 19/11/2026 (sources dans `src/shared/email-client.ts`). **Textes à relire par toi** ; ils sont dans ce même fichier.
 - Désactiver : `server.json` → `copieClient: false`.
 
 Ce que l’outil **ne fait pas**, exprès : pas de capacité d’emprunt calculée à partir du revenu, pas de taux personnel, pas de nom de banque. La mensualité est un exemple au taux moyen, écrit comme tel. Phrase affichée sous chaque budget : « Cet outil ne constitue ni un conseil en crédit ni une offre de prêt. Seule votre banque décide. »
@@ -87,7 +88,7 @@ Même procédure que l’outil d’estimation (voir son README, parties 1 à 3),
 cd acheteur-widget
 npm install
 cp .dev.vars.example .dev.vars   # EMAIL_MODE=log : aucun e-mail ne part en local
-npm test                          # 85 tests
+npm test                          # 91 tests
 npm run dev                       # http://localhost:8788/ et /demo.html
 ```
 
@@ -105,6 +106,31 @@ Widget **HTML**, une ligne (remplace l’adresse par celle de l’outil) :
 
 `data-lang="de"` ou `"en"` pour les autres langues. Mêmes options que l’outil d’estimation (`data-offset`, `data-src`). L’outil n’accepte d’être affiché que sur `immobuild.lu` et ses sous-domaines (`public/_headers`).
 
+### Next.js (dépôt immobuild-website)
+
+Composant prêt à copier : `integration/AcheteurWidget.tsx` (même principe que pour l’outil d’estimation). Dans `.env` : `NEXT_PUBLIC_ACHETEUR_URL=<adresse de l’outil>`. Les deux outils peuvent être sur la même page. Si le site tourne sur une autre adresse que `immobuild.lu` (par ex. `…vercel.app`), l’ajouter à `frame-ancestors` dans `public/_headers`.
+
+### Limite d’envois fiable : Cloudflare KV (à faire avant le lancement)
+
+Sans KV, la limite (20 demandes par heure et par IP, 3 récapitulatifs par adresse e-mail et par heure) est comptée **séparément sur chaque serveur Cloudflare** : un robot peut la contourner, remplir ta boîte et épuiser le quota Resend (partagé avec l’outil d’estimation). Gratuit, 5 minutes :
+
+```bash
+npx wrangler kv namespace create RATE_LIMIT_ACHETEUR
+```
+
+Puis dans le tableau de bord : Workers & Pages → acheteur-widget → Settings → Bindings → Add → KV namespace → nom de la variable **`RATE_LIMIT`**, espace `RATE_LIMIT_ACHETEUR`. Ajoute aussi le secret `RATE_LIMIT_SALT` (une longue phrase au hasard) : `npx wrangler pages secret put RATE_LIMIT_SALT --project-name acheteur-widget`. Puis `npm run deploy`.
+
+Ce qui est stocké : une empreinte (SHA-256 avec la clé secrète) de l’IP ou de l’adresse e-mail et un compteur, effacés après 1 heure.
+
+### Réglages (`config.json`, lisible par tout visiteur)
+
+- `contactUrl`, `privacyUrl`, `estimationUrl` : liens par langue (**à vérifier**).
+- `agent`, `phone`, `publicEmail` : ce qui s’affiche (bulle de Jason, bouton « Appeler », adresse en cas d’erreur).
+- `quickCommunes` : raccourcis de l’étape 2.
+- `courtierNomPublic` : vide = la case dit seulement « notre courtier partenaire » (ton choix du 18/11/2026) ; avec un nom = un petit lien « Qui est notre courtier partenaire ? » le montre à côté de la case.
+
+Les réglages du serveur (adresses e-mail, nom du courtier dans l’e-mail du lead, récapitulatif au visiteur) sont dans `server.json`, jamais envoyé au navigateur.
+
 ### Données (chaque trimestre)
 
 Les données viennent de l’outil d’estimation. Après `npm run update-data` dans `estimation-widget/` :
@@ -120,7 +146,7 @@ cd acheteur-widget && npm run sync-data && npm test && npm run deploy
 3. Politique de confidentialité : ajouter les nouvelles données (budget, revenu en tranche) et **nommer atHome Finance comme destinataire possible** (voir `PRIVACY.md`).
 4. Quand le projet de loi 8806 est voté : `params.json` → `bellegen.par_personne` = 45000 (et mettre à jour `_source`). L’annonce « pas encore votée » disparaît alors toute seule.
 
-## Tests (85)
+## Tests (91)
 
 | Sujet | Fichier |
 | --- | --- |

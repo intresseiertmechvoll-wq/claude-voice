@@ -640,6 +640,23 @@ Unabhängige Code-Prüfung plus Randfälle im Browser. Korrigiert:
 - Texte: Weitergabe an den Courtier erfolgt durch Jason (nicht automatisch), Versanddienst erwähnt.
 - `frame-ancestors`: localhost aus der Produktivkonfiguration entfernt.
 
+## 15. Prüfbericht umgesetzt, Kunden-E-Mail mit Ratgeber (19.11.2026)
+
+- **Code-Punkte aus `rapport-revue.md` behoben:**
+  - Negativer Verkaufserlös wird angezeigt und vom Eigenkapital abgezogen (statt still 0).
+  - Telefonnummern +351 werden richtig gruppiert.
+  - Median des Kantons nur mit mindestens 3 Gemeinden.
+  - Unsichtbare Zeichen werden entfernt.
+  - CSSF-Text ohne „plafond légal“.
+  - „Écart avec l’apport total“.
+  - `_note` nicht mehr im Browser-Code.
+  - `xlsx` entfernt (`npm audit`: 0).
+  - Größenprüfung vor dem Lesen der Anfrage.
+  - „chaud“ nur mit bekanntem Kreditbetrag.
+  - KV-Abschnitt und Next.js-Komponente.
+- **Kunden-E-Mail** (Zusammenfassung, Antworten an Jason) mit **kleinem Ratgeber** (vor der Unterschrift, realistischen Preis erkennen), Fakten mit Quellen geprüft.
+- **Offen, Entscheidung Jason:** Name des Courtiers am Kästchen, Hinweis auf die Vergütung, Datenschutzerklärung.
+
 ## Anhang: Quellen
 
 | Quelle | URL | Stand |

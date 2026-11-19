@@ -661,6 +661,8 @@ html.is-embedded #app { padding: 4px 2px 24px; }
 .budget-table td { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
 .budget-table .nw { white-space: nowrap; }
 .budget-table tr.minus td { color: var(--up); }
+.budget-table tr.deficit td { color: var(--down); }
+.budget-table tr.note-row.deficit td { color: var(--down); font-weight: 600; }
 .budget-table tr.total th, .budget-table tr.total td { border-bottom: 2px solid var(--navy); font-weight: 700; }
 .budget-table tr.has-note th, .budget-table tr.has-note td { border-bottom: 0; padding-bottom: 2px; }
 .budget-table tr.note-row td { text-align: left; font-size: 0.8125rem; color: var(--muted); font-weight: 400; padding-top: 0; }

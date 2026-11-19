@@ -103,10 +103,19 @@ describe('Surfaces par commune', () => {
     expect(communesM2(600000, ['Dudelange', 'Kayl'], 'les_deux', 'ancien', DATA, PARAMS)).toHaveLength(4);
   });
   it('Commune avec moins de 10 ventes : médiane du canton', () => {
-    const few = DATA.communes.find((c) => c.notarie_existant_m2 === null && DATA.communes.some((x) => x.canton === c.canton && x.notarie_existant_m2 !== null))!;
+    const avec = (canton: string) => DATA.communes.filter((x) => x.canton === canton && x.notarie_existant_m2 !== null && (x.notarie_existant_ventes ?? 0) >= 10).length;
+    const few = DATA.communes.find((c) => c.notarie_existant_m2 === null && avec(c.canton) >= 3)!;
     const [d] = communesM2(600000, [few.commune], 'appartement', 'ancien', DATA, PARAMS);
     expect(d.source).toBe('canton');
+    expect(d.nombre!).toBeGreaterThanOrEqual(3);
     expect(d.m2).toBeGreaterThan(0);
+  });
+  it('Canton avec moins de 3 communes ayant des ventes : pas de médiane (pas assez de données)', () => {
+    const avec = (canton: string) => DATA.communes.filter((x) => x.canton === canton && x.notarie_existant_m2 !== null && (x.notarie_existant_ventes ?? 0) >= 10).length;
+    const c = DATA.communes.find((x) => x.notarie_existant_m2 === null && avec(x.canton) > 0 && avec(x.canton) < 3);
+    if (!c) return; // aucun cas dans ces données
+    const [d] = communesM2(600000, [c.commune], 'appartement', 'ancien', DATA, PARAMS);
+    expect(d.source).toBeNull();
   });
 });
 
@@ -137,8 +146,10 @@ describe('Vendre d’abord : le produit de la vente compte dans l’apport', () 
     expect(b.apportTotal).toBe(202500);
     expect(b.margeMin).toBe(196400); // 202 450 − 6 090,74
   });
-  it('Prêt restant plus haut que la valeur : produit 0, jamais négatif', () => {
-    expect(computeBudget(couple({ valeurVente: 300000, restePret: 350000 }), PARAMS).produitVente).toBe(0);
+  it('Prêt restant plus haut que la valeur : produit NÉGATIF, déduit de l’apport (300 000 − 350 000 − 10 530 = −60 530)', () => {
+    const b = computeBudget(couple({ apport: 100000, valeurVente: 300000, restePret: 350000 }), PARAMS);
+    expect(b.produitVente).toBe(-60500);
+    expect(b.apportTotal).toBe(39500); // 100 000 − 60 530 = 39 470
   });
   it('Sans valeur renseignée : rien ne change', () => {
     const b = computeBudget(couple(), PARAMS);
@@ -181,5 +192,14 @@ describe('Corrections après la revue du code', () => {
   it('Écart affiché = apport total − apport nécessaire affichés', () => {
     const b = computeBudget(couple({ apport: 12345 }), PARAMS);
     expect(b.margeMin).toBe(b.apportTotal - b.apportNecessaireMax);
+  });
+});
+
+describe('Téléphone dans l’e-mail', () => {
+  it('Indicatifs à 3 chiffres (+351 Portugal) et Luxembourg', async () => {
+    const { formatPhone } = await import('../src/shared/email');
+    expect(formatPhone('+351912345678')).toBe('+351 912 345 678');
+    expect(formatPhone('+352621123456')).toBe('+352 621 123 456');
+    expect(formatPhone('+33612345678')).toBe('+33 612 345 678');
   });
 });

@@ -248,7 +248,7 @@
       "incertain": "Erstkäufer-Status unbekannt: vorsichtige Rechnung mit 90 %. 100 %, wenn Sie Erstkäufer sind.",
       "investissement": "Kapitalanlage: bis zu 80 % des Preises."
     },
-    "ltvNote": "Das ist eine gesetzliche Obergrenze. Ihre Bank entscheidet und kann mehr Eigenkapital verlangen.",
+    "ltvNote": "Ihre Bank entscheidet und kann mehr Eigenkapital verlangen.",
     "apportNecessaire": "Nötiges Eigenkapital mindestens",
     "apportDeclare": "Ihr Eigenkapital",
     "ok": "Nach der CSSF-Regel deckt Ihr Eigenkapital das Minimum für diesen Preis, sofern Ihre Bank Ihnen diesen Betrag leiht. Ihr Einkommen zählt auch.",
@@ -267,7 +267,8 @@
     "pretNecessaire": "Nötiger Kredit mit Ihrem Eigenkapital",
     "pretNecessaireNote": "Wenn Sie Ihr ganzes Eigenkapital einsetzen. Die Monatsrate unten wird mit diesem Betrag gerechnet.",
     "surtaxe": "{communes}: Für bestimmte Gebäude, vor allem gemischt oder gewerblich genutzte, kann ein Gemeindezuschlag (bis +3 % des Preises) dazukommen. Er ist hier nicht eingerechnet: Fragen Sie Ihren Notar, ob er gilt.",
-    "fraisPretMax": "Auf den Höchstkredit gerechnet: höchstens. Beim nötigen Kredit etwas weniger."
+    "fraisPretMax": "Auf den Höchstkredit gerechnet: höchstens. Beim nötigen Kredit etwas weniger.",
+    "venteDeficit": "Die Restschuld ist höher als der Wert Ihrer Immobilie nach geschätzten Maklerkosten ({frais}): Sie müssen die Differenz zurückzahlen. Mit Ihrer Bank klären."
   },
   "result": {
     "title": "Danke {prenom}, Ihre Analyse ist fertig",

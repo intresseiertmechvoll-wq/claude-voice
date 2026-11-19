@@ -199,3 +199,31 @@ describe('Récapitulatif envoyé au visiteur', () => {
     expect(resendCalls(fetchMock).filter((m: any) => m.to[0] === 'contact@immobuild.lu')).toHaveLength(4);
   });
 });
+
+describe('Petit guide dans le récapitulatif', () => {
+  const copieDe = async (over: Parameters<typeof body>[0] = {}, lang = 'fr') => {
+    resetMemoryLimiter();
+    const { env, deps, fetchMock } = setup();
+    await handleBudget(req({ ...body(over), lang }), env, deps);
+    return fetchMock.mock.calls.filter((c: any) => String(c[0]).includes('resend')).map((c: any) => JSON.parse(c[1].body))[1].text as string;
+  };
+  it('Points vérifiés, écart annonce → vente calculé sur les données (9 %)', async () => {
+    const txt = await copieDe();
+    expect(txt).toContain('« compromis de vente vaut vente »');
+    expect(txt).toContain('certificat de performance énergétique (obligatoire à la vente)');
+    expect(txt).toContain('environ 9 % plus bas que les prix annoncés');
+    expect(txt).toContain('procès-verbaux'); // appartement
+    expect(txt).not.toContain('garantie d’achèvement'); // ancien
+    expect(txt).toContain('Bëllegen Akt : il faut habiter');
+    expect(txt).toContain('pas un avis juridique');
+  });
+  it('Maison neuve en investissement : pas de copropriété ni de Bëllegen, garantie d’achèvement', async () => {
+    const txt = await copieDe({ answers: { type: 'maison', neuf: 'neuf', usage: 'investir', premier: undefined, bellegen: undefined } });
+    expect(txt).not.toContain('procès-verbaux');
+    expect(txt).not.toContain('Bëllegen Akt : il faut');
+    expect(txt).toContain('garantie d’achèvement');
+  });
+  it('En allemand', async () => {
+    expect(await copieDe({}, 'de')).toContain('Kleiner Ratgeber für Käufer');
+  });
+});

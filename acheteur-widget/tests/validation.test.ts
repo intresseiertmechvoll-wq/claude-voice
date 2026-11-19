@@ -61,3 +61,10 @@ describe('Adresse e-mail avec une faute de frappe connue', () => {
     expect(checkFields({ email: 'Marie@Gmail.com' }, ['email']).values.email).toBe('marie@gmail.com');
   });
 });
+
+describe('Caractères invisibles', () => {
+  it('Zero-width, BOM et contrôles bidi retirés du message et des noms', () => {
+    expect(checkFields({ message: 'Bon\u200bjour\ufeff' }, ['message']).values.message).toBe('Bonjour');
+    expect(checkFields({ prenom: 'Ma\u200drie' }, ['prenom']).values.prenom).toBe('Marie');
+  });
+});

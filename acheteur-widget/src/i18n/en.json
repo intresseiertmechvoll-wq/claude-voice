@@ -248,7 +248,7 @@
       "incertain": "First-time buyer status unknown: cautious calculation at 90%. 100% if you are a first-time buyer.",
       "investissement": "Buy-to-let: up to 80% of the price."
     },
-    "ltvNote": "This is a legal ceiling. Your bank decides and may ask for a larger deposit.",
+    "ltvNote": "Your bank decides and may ask for a larger deposit.",
     "apportNecessaire": "Minimum deposit needed",
     "apportDeclare": "Your deposit",
     "ok": "Under the CSSF rule, your deposit covers the minimum for this price, if your bank lends you this amount. Your income counts too.",
@@ -267,7 +267,8 @@
     "pretNecessaire": "Loan needed with your deposit",
     "pretNecessaireNote": "If you use your whole deposit. The monthly payment below is based on this amount.",
     "surtaxe": "{communes}: a municipal surcharge (up to +3% of the price) may apply to some buildings, especially mixed-use or commercial ones. It is not included here: ask your notary whether it applies.",
-    "fraisPretMax": "Calculated on the maximum loan: an upper figure. Slightly less on the loan actually needed."
+    "fraisPretMax": "Calculated on the maximum loan: an upper figure. Slightly less on the loan actually needed.",
+    "venteDeficit": "Your remaining loan exceeds the value of your property after estimated agency fees ({frais}): you will have to repay the difference. Talk to your bank."
   },
   "result": {
     "title": "Thank you {prenom}, your analysis is ready",

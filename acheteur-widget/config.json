@@ -1,5 +1,4 @@
 {
-  "_note": "Liens et réglages affichés dans l'outil (ce fichier est lisible par tout visiteur). À VÉRIFIER PAR JASON : contactUrl, privacyUrl, estimationUrl. courtierNomPublic : vide = la case dit seulement « notre courtier partenaire » (ton choix du 18/11/2026) ; avec un nom = un petit lien « Qui est notre courtier partenaire ? » le montre à côté de la case. Les réglages du serveur (adresses e-mail, nom du courtier dans l'e-mail) sont dans server.json.",
   "contactUrl": {
     "fr": "https://immobuild.lu/contact/",
     "de": "https://immobuild.lu/contact/",

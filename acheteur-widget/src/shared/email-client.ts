@@ -137,12 +137,86 @@ const T: Record<Lang, Txt> = {
   },
 };
 
+
+/** Petit guide envoyé avec le récapitulatif. Faits vérifiés le 19/11/2026 :
+ *  « compromis de vente vaut vente » et condition suspensive de prêt (guichet.public.lu, compromis de vente) ;
+ *  certificat de performance énergétique obligatoire à la vente (guichet.public.lu) ;
+ *  garantie d'achèvement en VEFA (Code civil, art. 1601-5, loi du 28/12/1976) ;
+ *  Bëllegen Akt : habiter dans les 2 ans (4 ans en construction / terrain), au moins 2 ans (guichet.public.lu, 07/07/2025).
+ *  L'écart annonce → vente est calculé sur les données de l'outil (médiane des communes). À relire par Jason. */
+type Guide = {
+  title: string; avant: string; compromis: string; cpe: string; copro: string; vefa: string; etat: string; bellegen: string;
+  prixTitle: string; ecart: (p: string, debut: string, fin: string) => string; serieuse: string; enLigne: string; travaux: string; note: string;
+};
+const GUIDE: Record<Lang, Guide> = {
+  fr: {
+    title: 'Petit guide de l’acheteur',
+    avant: 'Avant de signer',
+    compromis: 'Le compromis vous engage : au Luxembourg, « compromis de vente vaut vente ». Faites-y inscrire une condition suspensive d’obtention du prêt, avec un délai assez long pour la réponse de votre banque.',
+    cpe: 'Demandez le certificat de performance énergétique (obligatoire à la vente) : la classe énergétique pèse sur le chauffage et les travaux à venir.',
+    copro: 'Appartement : demandez les derniers procès-verbaux d’assemblée générale, le montant des charges et les travaux votés ou prévus.',
+    vefa: 'Neuf sur plan : la loi impose au promoteur une garantie d’achèvement. Demandez-la et vérifiez ce qu’elle couvre ; vous payez au fur et à mesure de l’avancement des travaux.',
+    etat: 'État du bien : toiture, châssis, chauffage, électricité, humidité. Faites chiffrer les travaux avant de faire une offre (je peux vous y aider avec ImmoBuild).',
+    bellegen: 'Bëllegen Akt : il faut habiter le logement dans les 2 ans (4 ans pour un bien en construction) et y rester au moins 2 ans, sinon le crédit d’impôt est à rembourser.',
+    prixTitle: 'Reconnaître un prix réaliste',
+    ecart: (p: string, debut: string, fin: string) => `Comparez aux ventes réelles, pas seulement aux annonces : pour les appartements, les prix de vente au m² sont en médiane environ ${p} % plus bas que les prix annoncés (Observatoire de l’Habitat, ${debut} – ${fin}).`,
+    serieuse: 'Une estimation sérieuse se fait sur place : elle tient compte de l’état, de la classe énergétique, de l’étage et des annexes, et explique sa méthode et ses sources par écrit.',
+    enLigne: 'Un chiffre sans visite ni explication, y compris celui d’un outil en ligne comme celui-ci, ne donne qu’un ordre de grandeur.',
+    travaux: 'Un prix bas peut cacher un gros budget de travaux : comparez toujours « prix + travaux ».',
+    note: 'Conseils généraux, pas un avis juridique : votre notaire reste votre interlocuteur pour l’acte.',
+  },
+  de: {
+    title: 'Kleiner Ratgeber für Käufer',
+    avant: 'Vor der Unterschrift',
+    compromis: 'Der Vorvertrag bindet Sie: In Luxemburg gilt « compromis de vente vaut vente ». Lassen Sie eine aufschiebende Bedingung für die Kreditzusage eintragen, mit genug Zeit für die Antwort Ihrer Bank.',
+    cpe: 'Verlangen Sie den Energiepass (beim Verkauf Pflicht): Die Energieklasse bestimmt Heizkosten und künftige Arbeiten mit.',
+    copro: 'Wohnung: Verlangen Sie die letzten Protokolle der Eigentümerversammlung, die Höhe der Nebenkosten und beschlossene oder geplante Arbeiten.',
+    vefa: 'Neubau auf Plan: Das Gesetz verpflichtet den Bauträger zu einer Fertigstellungsgarantie. Verlangen Sie sie und prüfen Sie, was sie abdeckt; Sie zahlen nach Baufortschritt.',
+    etat: 'Zustand: Dach, Fenster, Heizung, Elektrik, Feuchtigkeit. Lassen Sie die Arbeiten vor dem Angebot beziffern (mit ImmoBuild helfe ich Ihnen dabei).',
+    bellegen: 'Bëllegen Akt: Sie müssen innerhalb von 2 Jahren (4 Jahre bei einem Bau in Arbeit) einziehen und mindestens 2 Jahre dort wohnen, sonst ist die Steuergutschrift zurückzuzahlen.',
+    prixTitle: 'Einen realistischen Preis erkennen',
+    ecart: (p: string, debut: string, fin: string) => `Vergleichen Sie mit echten Verkäufen, nicht nur mit Inseraten: Bei Wohnungen liegen die Verkaufspreise pro m² im Median etwa ${p} % unter den Angebotspreisen (Observatoire de l’Habitat, ${debut} – ${fin}).`,
+    serieuse: 'Eine seriöse Bewertung erfolgt vor Ort: Sie berücksichtigt Zustand, Energieklasse, Stockwerk und Nebenräume und erklärt Methode und Quellen schriftlich.',
+    enLigne: 'Eine Zahl ohne Besichtigung und Erklärung, auch aus einem Online-Tool wie diesem, ist nur eine Größenordnung.',
+    travaux: 'Ein niedriger Preis kann hohe Renovierungskosten verbergen: Vergleichen Sie immer „Preis + Arbeiten“.',
+    note: 'Allgemeine Hinweise, keine Rechtsberatung: Für die Urkunde ist Ihr Notar Ihr Ansprechpartner.',
+  },
+  en: {
+    title: 'A short buyer’s guide',
+    avant: 'Before you sign',
+    compromis: 'The preliminary contract binds you: in Luxembourg, “compromis de vente vaut vente”. Have a condition precedent for obtaining the loan written into it, with enough time for your bank’s answer.',
+    cpe: 'Ask for the energy performance certificate (mandatory for a sale): the energy class weighs on heating costs and future works.',
+    copro: 'Apartment: ask for the latest minutes of the owners’ general meeting, the service charges and any works voted or planned.',
+    vefa: 'New build off-plan: the law requires the developer to provide a completion guarantee. Ask for it and check what it covers; you pay as the works progress.',
+    etat: 'Condition: roof, windows, heating, electrics, damp. Get the works costed before making an offer (I can help you with ImmoBuild).',
+    bellegen: 'Bëllegen Akt: you must move in within 2 years (4 years for a property under construction) and live there for at least 2 years, otherwise the tax credit must be repaid.',
+    prixTitle: 'Recognising a realistic price',
+    ecart: (p: string, debut: string, fin: string) => `Compare with actual sales, not just listings: for apartments, sale prices per m² are about ${p}% lower than asking prices in median (Observatoire de l’Habitat, ${debut} – ${fin}).`,
+    serieuse: 'A serious valuation is done on site: it takes account of condition, energy class, floor and extras, and explains its method and sources in writing.',
+    enLigne: 'A figure without a visit or explanation, including from an online tool like this one, is only a rough guide.',
+    travaux: 'A low price can hide a big renovation bill: always compare “price + works”.',
+    note: 'General advice, not legal advice: your notary remains your contact for the deed.',
+  },
+};
+
 function moisTexte(mois: string, lang: Lang): string {
   const [y, m] = mois.split('-').map(Number);
   return new Intl.DateTimeFormat(LOCALES[lang], { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(Date.UTC(y, m - 1, 15)));
 }
 
-export function clientEmail(s: Submission, b: Budget, communes: CommuneM2[], taux: Taux | null): { subject: string; html: string; text: string } {
+/** Contexte de données pour le guide : écart médian annonce → vente (appartements) et période */
+export interface GuideData {
+  ecart: number | null;
+  debut: string;
+  fin: string;
+}
+
+function dateCourte(iso: string, lang: Lang): string {
+  const d = new Date(iso + 'T12:00:00Z');
+  return Number.isNaN(d.getTime()) ? iso : new Intl.DateTimeFormat(LOCALES[lang], { month: 'short', year: 'numeric', timeZone: 'UTC' }).format(d);
+}
+
+export function clientEmail(s: Submission, b: Budget, communes: CommuneM2[], taux: Taux | null, data?: GuideData): { subject: string; html: string; text: string } {
   const lang = s.lang;
   const t = T[lang];
   const a = s.answers;
@@ -165,6 +239,21 @@ export function clientEmail(s: Submission, b: Budget, communes: CommuneM2[], tau
   });
   const next = [t.call, ...(a.courtier ? [t.courtier] : [])];
   const estimation = a.vendre === 'oui_lu' ? config.estimationUrl[lang] : '';
+  const g = GUIDE[lang];
+  const avant = [
+    g.compromis,
+    g.cpe,
+    ...(a.type !== 'maison' ? [g.copro] : []),
+    ...(a.neuf !== 'ancien' ? [g.vefa] : []),
+    g.etat,
+    ...(a.usage === 'habiter' ? [g.bellegen] : []),
+  ];
+  const prixPts = [
+    ...(data?.ecart ? [g.ecart(new Intl.NumberFormat(LOCALES[lang], { maximumFractionDigits: 0 }).format(data.ecart * 100), dateCourte(data.debut, lang), dateCourte(data.fin, lang))] : []),
+    g.serieuse,
+    g.enLigne,
+    g.travaux,
+  ];
   const privacy = config.privacyUrl[lang];
 
   const text = [
@@ -182,6 +271,15 @@ export function clientEmail(s: Submission, b: Budget, communes: CommuneM2[], tau
     ...m2,
     '',
     t.caveat,
+    '',
+    `== ${g.title} ==`,
+    `${g.avant} :`.replace(' :', lang === 'fr' ? ' :' : ':'),
+    ...avant.map((x) => `- ${x}`),
+    '',
+    `${g.prixTitle}${lang === 'fr' ? ' :' : ':'}`,
+    ...prixPts.map((x) => `- ${x}`),
+    '',
+    g.note,
     '',
     `== ${t.nextTitle} ==`,
     ...next,
@@ -210,6 +308,12 @@ ${mens ? p(mens) : ''}
 ${h(t.m2Title(eur(b.prix, lang)))}
 <ul style="margin:0 0 12px;padding-left:20px">${m2.map((x) => `<li>${escapeHtml(x)}</li>`).join('')}</ul>
 <p style="margin:0 0 12px;font-size:13px;color:#46566c;font-style:italic">${escapeHtml(t.caveat)}</p>
+${h(g.title)}
+<p style="margin:0 0 6px;font-weight:bold">${escapeHtml(g.avant)}</p>
+<ul style="margin:0 0 12px;padding-left:20px">${avant.map((x) => `<li style="margin-bottom:6px">${escapeHtml(x)}</li>`).join('')}</ul>
+<p style="margin:0 0 6px;font-weight:bold">${escapeHtml(g.prixTitle)}</p>
+<ul style="margin:0 0 12px;padding-left:20px">${prixPts.map((x) => `<li style="margin-bottom:6px">${escapeHtml(x)}</li>`).join('')}</ul>
+<p style="margin:0 0 12px;font-size:13px;color:#46566c;font-style:italic">${escapeHtml(g.note)}</p>
 ${h(t.nextTitle)}
 ${next.map(p).join('')}
 ${estimation ? `<p style="margin:0 0 12px">${escapeHtml(t.vendre)} <a href="${escapeHtml(estimation)}" style="color:#0A2342;font-weight:bold">${escapeHtml(estimation.replace(/^https:\/\//, '').replace(/\/?\?.*$/, ''))}</a></p>` : ''}

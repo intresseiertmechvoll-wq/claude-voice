@@ -8,7 +8,7 @@ import params from '../../params.json';
 import { computeBudget, type Params } from '../shared/budget';
 import { communesM2 } from '../shared/communes-m2';
 import { leadEmail } from '../shared/email';
-import { clientEmail } from '../shared/email-client';
+import { clientEmail, type GuideData } from '../shared/email-client';
 import { allowSubmission, refundSubmission, type KVLike } from '../shared/ratelimit';
 import type { Dataset, PublicResult } from '../shared/types';
 import { validateSubmission } from '../shared/validation';
@@ -39,6 +39,17 @@ export const defaultDeps = (): Deps => ({
   data: data as unknown as Dataset,
   params: params as Params,
 });
+
+/** Écart médian entre prix annoncés et prix de vente au m² des appartements (communes ayant les deux), pour le guide */
+export function guideData(data: Dataset): GuideData {
+  const ecarts = data.communes
+    .filter((c) => c.notarie_existant_m2 && c.annonce_appartement_m2)
+    .map((c) => 1 - c.notarie_existant_m2! / c.annonce_appartement_m2!)
+    .sort((a, b) => a - b);
+  const n = ecarts.length;
+  const ecart = n < 10 ? null : n % 2 ? ecarts[(n - 1) / 2] : (ecarts[n / 2 - 1] + ecarts[n / 2]) / 2;
+  return { ecart: ecart !== null && ecart > 0 && ecart < 0.3 ? ecart : null, debut: data.periode_debut, fin: data.periode_fin };
+}
 
 export const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), {
@@ -96,6 +107,8 @@ export async function readJson(request: Request, maxBody = MAX_BODY): Promise<{ 
   if (!origin || origin !== new URL(request.url).origin) return { error: json({ ok: false, error: 'origin' }, 403) };
   const mediaType = (request.headers.get('content-type') ?? '').split(';')[0].trim().toLowerCase();
   if (mediaType !== 'application/json') return { error: json({ ok: false, error: 'content-type' }, 415) };
+  const announced = Number(request.headers.get('content-length') ?? 0);
+  if (announced > maxBody * 4) return { error: json({ ok: false, error: 'too_large' }, 413) };
   const text = await request.text();
   if (text.length > maxBody) return { error: json({ ok: false, error: 'too_large' }, 413) };
   try {
@@ -142,7 +155,7 @@ export async function handleBudget(request: Request, env: Env, deps: Partial<Dep
   if (server.copieClient) {
     const addr = v.value.contact.email.toLowerCase();
     if (await allowSubmission(`mail:${addr}`, server.copieClientParHeure, env.RATE_LIMIT, salt)) {
-      const m = clientEmail(v.value, budget, communes, taux);
+      const m = clientEmail(v.value, budget, communes, taux, guideData(d.data));
       const replyTo = env.LEAD_EMAIL || server.defaultLeadEmail;
       const e2 = await sendMail(env, d, { ...m, to: v.value.contact.email, replyTo });
       copie = e2 === null;

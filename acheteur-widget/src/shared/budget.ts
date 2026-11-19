@@ -74,7 +74,8 @@ export function vente(i: Pick<BudgetInput, 'valeurVente' | 'restePret'>, p: Para
   // Seulement avec les deux montants : un prêt restant non renseigné n'est jamais compté comme 0
   if (i.valeurVente === null || i.valeurVente <= 0 || i.restePret === null) return null;
   const frais = i.valeurVente * p.vente.frais_taux;
-  return { frais, produit: Math.max(0, i.valeurVente - (i.restePret ?? 0) - frais) };
+  // Peut être négatif : si le prêt restant dépasse la valeur nette, l'acheteur doit rembourser la différence de sa poche
+  return { frais, produit: i.valeurVente - (i.restePret ?? 0) - frais };
 }
 
 /** Apport utilisé : épargne + produit net de la vente */

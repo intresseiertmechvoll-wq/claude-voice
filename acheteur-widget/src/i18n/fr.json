@@ -248,7 +248,7 @@
       "incertain": "Statut de premier acquéreur inconnu : calcul prudent à 90 %. À 100 % si vous êtes premier acquéreur.",
       "investissement": "Investissement : jusqu’à 80 % du prix."
     },
-    "ltvNote": "C’est un plafond légal. Votre banque décide et peut demander plus d’apport.",
+    "ltvNote": "Votre banque décide et peut demander plus d’apport.",
     "apportNecessaire": "Apport nécessaire au minimum",
     "apportDeclare": "Votre apport",
     "ok": "Selon la règle CSSF, votre apport couvre le minimum pour ce prix, si votre banque vous prête ce montant. Vos revenus comptent aussi.",
@@ -267,7 +267,8 @@
     "pretNecessaire": "Prêt nécessaire avec votre apport",
     "pretNecessaireNote": "Si vous utilisez tout votre apport. La mensualité ci-dessous est calculée sur ce montant.",
     "surtaxe": "{communes} : une surtaxe communale (jusqu’à +3 % du prix) peut s’ajouter pour certains immeubles, notamment à usage mixte ou commercial. Elle n’est pas comptée ici : demandez à votre notaire si elle s’applique.",
-    "fraisPretMax": "Calculé sur le prêt maximal : au plus. Sur le prêt nécessaire, c’est un peu moins."
+    "fraisPretMax": "Calculé sur le prêt maximal : au plus. Sur le prêt nécessaire, c’est un peu moins.",
+    "venteDeficit": "Le prêt restant dépasse la valeur de votre bien après frais d’agence estimés ({frais}) : vous devrez rembourser la différence. À voir avec votre banque."
   },
   "result": {
     "title": "Merci {prenom}, votre analyse est prête",

@@ -110,7 +110,11 @@ export function renderBudget(b: Budget, t: T, lang: Lang, o: BudgetOptions): str
       ${
         b.produitVente !== null
           ? `${row(t('budget.epargne'), eur(b.apport))}
-      ${row(t('budget.produitVente'), `+\u00a0${eur(b.produitVente)}`, 'minus', t('budget.produitVenteNote', { frais: formatEuro(b.fraisVente ?? 0, lang) }))}
+      ${
+        b.produitVente >= 0
+          ? row(t('budget.produitVente'), `+\u00a0${eur(b.produitVente)}`, 'minus', t('budget.produitVenteNote', { frais: formatEuro(b.fraisVente ?? 0, lang) }))
+          : row(t('budget.produitVente'), `−\u00a0${eur(-b.produitVente)}`, 'deficit', t('budget.venteDeficit', { frais: formatEuro(b.fraisVente ?? 0, lang) }))
+      }
       ${row(t('budget.apportTotal'), `<strong>${eur(b.apportTotal)}</strong>`, 'total')}`
           : row(t('budget.apportDeclare'), eur(b.apport))
       }
@@ -118,7 +122,7 @@ export function renderBudget(b: Budget, t: T, lang: Lang, o: BudgetOptions): str
     </tbody>
   </table>
   ${verdict}
-  ${b.produitVente ? `<p class="small relais">${icon('info', 'ico ico-xs')} ${esc(t('budget.relais'))}</p>` : ''}
+  ${b.produitVente && b.produitVente > 0 ? `<p class="small relais">${icon('info', 'ico ico-xs')} ${esc(t('budget.relais'))}</p>` : ''}
   ${b.prixMax !== null ? `<p class="prixmax">${icon('cle', 'ico ico-sm')}<span>${esc(t('budget.prixMax', { pret: formatEuro(b.pretAuPrixMax ?? 0, lang), prix: formatEuro(b.prixMax, lang) }))}</span></p>` : ''}
   ${annonce}
   ${o.surtaxe?.length ? `<p class="small surtaxe">${icon('info', 'ico ico-xs')} ${esc(t('budget.surtaxe', { communes: o.surtaxe.join(', ') }))}</p>` : ''}

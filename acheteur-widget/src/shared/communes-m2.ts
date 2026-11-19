@@ -21,7 +21,7 @@ function apartment(c: CommuneData, data: Dataset, neuf: Neuf, p: Params): Pick<C
     return { source: 'notarie', prixM2: c.notarie_existant_m2, nombre: c.notarie_existant_ventes };
   }
   const canton = data.communes.filter((x) => x.canton === c.canton && x.notarie_existant_m2 !== null && (x.notarie_existant_ventes ?? 0) >= min);
-  const m = median(canton.map((x) => x.notarie_existant_m2!));
+  const m = canton.length >= p.communes.canton_min ? median(canton.map((x) => x.notarie_existant_m2!)) : null;
   return m === null ? { source: null, prixM2: null, nombre: null } : { source: 'canton', prixM2: m, nombre: canton.length };
 }
 
@@ -31,7 +31,7 @@ function house(c: CommuneData, data: Dataset, p: Params): Pick<CommuneM2, 'sourc
     return { source: 'annonce', prixM2: c.annonce_maison_m2, nombre: c.annonce_maison_offres };
   }
   const canton = data.communes.filter((x) => x.canton === c.canton && x.annonce_maison_m2 !== null && (x.annonce_maison_offres ?? 0) >= min);
-  const m = median(canton.map((x) => x.annonce_maison_m2!));
+  const m = canton.length >= p.communes.canton_min ? median(canton.map((x) => x.annonce_maison_m2!)) : null;
   return m === null ? { source: null, prixM2: null, nombre: null } : { source: 'canton_annonce', prixM2: m, nombre: canton.length };
 }
 

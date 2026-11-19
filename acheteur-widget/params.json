@@ -80,7 +80,9 @@
   },
   "communes": {
     "ventes_min": 10,
-    "offres_min": 30
+    "offres_min": 30,
+    "canton_min": 3,
+    "_note": "canton_min : nombre minimal de communes avec données pour utiliser la médiane du canton (sinon « pas assez de données »)."
   },
   "divers": {
     "_hypothese": "HYPOTHÈSE à valider avec un notaire : copies, extraits, débours (vente et prêt ensemble). Ordre de grandeur « quelques centaines d'euros ».",

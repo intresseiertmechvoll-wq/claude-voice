@@ -119,7 +119,8 @@ function flag(v: unknown): boolean | ErrorCode {
   return 'invalid';
 }
 
-const BIDI_CTRL = /[‎‏‪-‮⁦-⁩]/g;
+// Contrôles bidi + caractères invisibles (zero-width, joiners, BOM) : jamais utiles, parfois utilisés pour tromper
+const BIDI_CTRL = /[\u200b-\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff]/g;
 
 function optText(v: unknown, max: number, multiline = false): string | ErrorCode {
   if (v !== undefined && v !== null && typeof v !== 'string') return 'invalid';
@@ -141,7 +142,7 @@ const NAME_RE = /^[\p{L}][\p{L}\p{M}'’ʼ .-]*$/u;
 const EMAIL_RE = /^[^\s@<>()[\]\\,;:"]+@[^\s@<>()[\]\\,;:"]+\.[A-Za-z]{2,}$/;
 
 function nameField(v: unknown, max: number): string | ErrorCode {
-  const s = str(v);
+  const s = str(v).replace(BIDI_CTRL, '');
   if (s === '') return 'required';
   if (s.length > max || !NAME_RE.test(s)) return 'invalid';
   return s;

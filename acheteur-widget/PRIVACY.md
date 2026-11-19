@@ -50,7 +50,7 @@ Base légale proposée : **consentement** pour 1 à 4 (cases à cocher, non coch
 - Après l’envoi de la demande, le visiteur reçoit un **récapitulatif par e-mail**, dans sa langue (chiffres affichés, prochaines étapes, contact). Expéditeur : l’adresse `FROM_EMAIL` (domaine immobuild.lu, via Resend). Les réponses arrivent chez Jason.
 - Il part **après** le lead : s’il échoue, la demande est quand même transmise.
 - **Anti-abus** : au plus 3 récapitulatifs par adresse e-mail et par heure (empreinte de l’adresse, avec clé secrète, comme pour l’IP ; effacée après 1 heure ; fiable seulement avec KV).
-- Pas de nom du courtier, pas de message libre dans cet e-mail.
+- Pas de nom du courtier, pas de message libre dans cet e-mail. Il contient aussi un petit guide général (aucune donnée en plus).
 - **À ajouter à ta politique de confidentialité** : « un récapitulatif vous est envoyé à l’adresse indiquée ».
 - Désactivable : `server.json` → `copieClient: false`.
 

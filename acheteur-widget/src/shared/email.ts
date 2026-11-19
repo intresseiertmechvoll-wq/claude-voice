@@ -2,6 +2,7 @@
 import params from '../../params.json';
 import server from '../../server.json';
 import { mensualite, partRevenu, type Taux } from './taux';
+import { PHONE_CODES } from './validation';
 import type { Budget, CommuneM2, Submission } from './types';
 
 const L = {
@@ -44,9 +45,10 @@ const yn = (v: boolean) => (v ? 'Oui' : 'Non');
 
 /** « +352621123456 » → « +352 621 123 456 » */
 export function formatPhone(p: string): string {
-  const m = p.match(/^(\+352|\+\d{2})(\d+)$/);
-  if (!m) return p;
-  return `${m[1]} ${m[2].replace(/(\d{3})(?=\d{2,})/g, '$1 ')}`;
+  // Indicatif connu le plus long d'abord (+351 avant +35…), sinon 2 chiffres
+  const code = [...PHONE_CODES].sort((a, b) => b.length - a.length).find((c) => p.startsWith(c)) ?? p.match(/^\+\d{2}/)?.[0];
+  if (!code || !/^\d+$/.test(p.slice(code.length))) return p;
+  return `${code} ${p.slice(code.length).replace(/(\d{3})(?=\d{2,})/g, '$1 ')}`;
 }
 
 export function escapeHtml(s: string): string {
@@ -61,7 +63,7 @@ export function leadPriority(s: Submission, b: Budget): { level: 'chaud' | 'tiè
   if (a.vendre === 'oui_lu') reasons.push('doit d’abord vendre au Luxembourg');
   if (a.mandat === 'oui') reasons.push('veut être accompagné(e)');
   if (a.courtier) reasons.push('veut le courtier partenaire');
-  if (a.capacite === 'oui') reasons.push('connaît son montant d’emprunt');
+  if (a.capacite === 'oui' && a.capaciteMontant) reasons.push(`connaît son montant d’emprunt (${eur(a.capaciteMontant)})`);
   // Avec 100 % de prêt possible (premier achat), un apport « suffisant » ne dit presque rien : compté seulement avec la règle à 90 % ou 80 %
   if (b.margeMin >= 0 && b.ltvRule !== 'premier') reasons.push('apport suffisant pour ce prix');
   if (soon && reasons.length) return { level: 'chaud', why: `${L.delai[a.delai].toLowerCase()} + ${reasons.join(', ')}` };
@@ -76,6 +78,7 @@ export function talkingPoints(s: Submission, b: Budget): string[] {
   if (a.vendre === 'oui_lu') out.push(`Doit d’abord vendre son bien au Luxembourg${a.valeurVente ? ` (valeur estimée par le visiteur : ${eur(a.valeurVente)})` : ''} → proposer l’estimation (estimatioun.lu ou visite).`);
   const surtaxe = a.communes.filter((c) => params.surtaxe.communes.includes(c));
   if (surtaxe.length) out.push(`${surtaxe.join(', ')} : surtaxe communale possible (+3 % du prix) selon le type d’immeuble, non comptée dans le calcul. Le visiteur a vu un avertissement.`);
+  if (b.produitVente !== null && b.produitVente < 0) out.push(`Vente : le prêt restant dépasse la valeur nette d’environ ${eur(-b.produitVente)} → il devra rembourser la différence ; à vérifier (valeur réaliste ? refinancement ?).`);
   if (a.prixDepart || a.apportDepart !== null) out.push('A testé d’autres montants dans le simulateur : voir « Budget ».');
   if (a.vendre === 'oui_etranger') out.push('Doit d’abord vendre un bien à l’étranger → timing et financement relais à aborder.');
   if (a.courtier) out.push(`Souhaite être mis(e) en relation avec le courtier partenaire → transmettre à ${server.courtierNom}.`);
@@ -182,11 +185,11 @@ export function leadSections(s: Submission, b: Budget, communes: CommuneM2[], da
         ['Apport nécessaire', range(b.apportNecessaireMin, b.apportNecessaireMax)],
         ...(b.produitVente !== null
           ? ([
-              ['Produit net de la vente', `${eur(b.produitVente)} (frais d’agence estimés ${eur(b.fraisVente)})`],
+              ['Produit net de la vente', `${b.produitVente < 0 ? '− ' + eur(-b.produitVente) + ' (PRÊT RESTANT SUPÉRIEUR À LA VALEUR NETTE)' : eur(b.produitVente)} (frais d’agence estimés ${eur(b.fraisVente)})`],
               ['Apport total retenu', eur(b.apportTotal)],
             ] as [string, string][])
           : []),
-        ['Écart avec l’apport déclaré', b.margeMin >= 0 ? `suffisant (+${eur(b.margeMin)} au moins)` : `manque ${range(Math.max(0, -b.margeMax), -b.margeMin)}`],
+        ['Écart avec l’apport total', b.margeMin >= 0 ? `suffisant (+${eur(b.margeMin)} au moins)` : `manque ${range(Math.max(0, -b.margeMax), -b.margeMin)}`],
         ...(b.prixMax !== null ? ([['Prix maximal avec ce montant d’emprunt', eur(b.prixMax)]] as [string, string][]) : []),
       ],
     },
