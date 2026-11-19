@@ -135,8 +135,18 @@ function coefficients(a: Answers, params: Params): { key: string; value: number;
 /** Écart de prix au m² selon la taille de l'appartement (données notariées par classe de surface) */
 export function tailleAppartement(a: Answers, params: Params): number {
   if (a.type !== 'appartement') return 0;
-  const cl = params.taille_appartement.classes.find((c) => c.moins_de_m2 === null || a.surface < c.moins_de_m2);
-  return cl ? cl.ajustement : 0;
+  // Sans palier : interpolation linéaire entre les centres des classes (sinon 49 m² vaudrait plus que 50 m²)
+  const pts = params.taille_appartement.classes.map((c) => ({ x: c.centre_m2, y: c.ajustement }));
+  if (!pts.length) return 0;
+  const s = a.surface;
+  if (s <= pts[0].x) return pts[0].y;
+  for (let i = 1; i < pts.length; i++) {
+    if (s <= pts[i].x) {
+      const k = (s - pts[i - 1].x) / (pts[i].x - pts[i - 1].x);
+      return Math.round((pts[i - 1].y + k * (pts[i].y - pts[i - 1].y)) * 10_000) / 10_000;
+    }
+  }
+  return pts[pts.length - 1].y;
 }
 
 export type AnnexKey = 'garage' | 'parking' | 'cave' | 'terrasse';

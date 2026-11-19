@@ -32,18 +32,41 @@ describe('Calcul', () => {
     expect(e.result.indicative).toBe(false);
   });
 
-  it('Taille de l’appartement : prix notariés par classe de surface (petits plus chers au m², grands moins chers)', () => {
+  it('Taille de l’appartement : prix notariés par classe de surface, sans palier (interpolation entre les centres des classes)', () => {
     const m2 = (surface: number) => estimate(apartment({ surface }), DATA, PARAMS).detail!;
-    expect(m2(44).taille).toBe(0.228); // moins de 50 m²
-    expect(m2(60).taille).toBe(0.05);
+    expect(m2(35).taille).toBe(0.228); // sous le centre de la 1re classe (40 m²) : valeur de la classe
+    expect(m2(40).taille).toBe(0.228);
+    expect(m2(60).taille).toBe(0.05); // centres : valeurs exactes des classes
     expect(m2(80).taille).toBe(-0.025);
-    expect(m2(150).taille).toBe(-0.167); // 130 m² et plus
+    expect(m2(150).taille).toBe(-0.167);
+    expect(m2(200).taille).toBe(-0.167);
+    // Entre deux centres : 44 m² = 0,228 + 4/20 × (0,05 − 0,228) = 0,1924
+    expect(m2(44).taille).toBe(0.1924);
+    expect(m2(49).taille).toBeCloseTo(0.1479, 4);
+    expect(m2(50).taille).toBe(0.139);
     const petit = estimate(apartment({ surface: 44 }), DATA, PARAMS).result;
-    expect(petit.factors![0]).toEqual({ key: 'taille', kind: 'pct', value: 0.228, qty: 44 });
+    expect(petit.factors![0]).toEqual({ key: 'taille', kind: 'pct', value: 0.1924, qty: 44 });
     // Le facteur taille n'est pas soumis au plafond des coefficients (+20 %)
-    expect(estimate(apartment({ surface: 44 }), DATA, PARAMS).detail!.buildingValue).toBeCloseTo(m2(44).baseM2 * 1.228 * 44, 4);
+    expect(estimate(apartment({ surface: 44 }), DATA, PARAMS).detail!.buildingValue).toBeCloseTo(m2(44).baseM2 * 1.1924 * 44, 4);
     // Les maisons ne sont pas concernées
     expect(estimate(house({ surface: 44 }), DATA, PARAMS).detail!.taille).toBe(0);
+  });
+
+  it('Plus de surface ne fait jamais baisser le prix (appartements et maisons, 20 à 300 m², plusieurs communes)', () => {
+    for (const commune of ['Dudelange', 'Luxembourg', 'Esch-sur-Alzette', 'Mersch', 'Wiltz']) {
+      for (const make of [apartment, house]) {
+        let prevRaw = -1;
+        let prevMarket = -1;
+        for (let surface = 20; surface <= 300; surface++) {
+          const e = estimate(make({ commune, surface }), DATA, PARAMS);
+          if (e.result.status !== 'ok') break;
+          expect(e.detail!.rawMarket, `${commune} ${surface} m²`).toBeGreaterThanOrEqual(prevRaw);
+          expect(e.result.market!, `${commune} ${surface} m²`).toBeGreaterThanOrEqual(prevMarket);
+          prevRaw = e.detail!.rawMarket;
+          prevMarket = e.result.market!;
+        }
+      }
+    }
   });
 
   it('Maison à Dudelange : fourchette de ±12 % et mention « indicative »', () => {

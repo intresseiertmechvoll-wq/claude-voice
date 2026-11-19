@@ -382,7 +382,7 @@ Valeurs de départ simples et prudentes, choisies pour cet outil. Aucune grille 
 | Réglage | Valeur | Pourquoi |
 | --- | --- | --- |
 | Poids appartement | 50 / 30 / 20 | Ta décision du 23/10/2026. |
-| Taille de l'appartement | moins de 50 m² +22,8 %, 50–70 m² +5 %, 70–90 m² −2,5 %, 90–110 m² −7 %, 110–130 m² −11,2 %, 130 m² et plus −16,7 % ; appliqué au prix de base, hors plafond des coefficients | **Données, pas un choix** : prix notariés des appartements existants par classe de surface (Observatoire de l'Habitat, T3 2025 – T2 2026), écart au prix moyen national. Sans ce facteur, les petits appartements étaient sous-estimés d'environ 20 % (test du 18/11/2026 sur les biens d'ImmoBuild). À mettre à jour avec les données (fichier « par classe de surface » sur data.public.lu). |
+| Taille de l'appartement | moyennes des classes : moins de 50 m² +22,8 %, 50–70 m² +5 %, 70–90 m² −2,5 %, 90–110 m² −7 %, 110–130 m² −11,2 %, 130 m² et plus −16,7 %. **Sans palier** : valeur exacte au centre de chaque classe (40, 60, 80, 100, 120, 150 m² ; 40 et 150 sont des hypothèses), entre deux centres une transition linéaire (ex. 49 m² +14,8 %, 50 m² +13,9 %), sinon 49 m² valait plus que 50 m² (rapport Codex 2). Appliqué au prix de base, hors plafond des coefficients | **Données, pas un choix** : prix notariés des appartements existants par classe de surface (Observatoire de l'Habitat, T3 2025 – T2 2026), écart au prix moyen national. Sans ce facteur, les petits appartements étaient sous-estimés d'environ 20 % (test du 18/11/2026 sur les biens d'ImmoBuild). À mettre à jour avec les données (fichier « par classe de surface » sur data.public.lu). |
 | Écart de la fourchette | ±6 % appartement, ±12 % maison | Ta consigne. |
 | Garde-fou | 20 % | Moteur V1. |
 | Ventes minimum par commune | 10 | Seuil de publication de l'Observatoire. |
@@ -464,12 +464,12 @@ Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'a
 
 ## Tests
 
-`npm test` lance 184 tests, dont ceux demandés :
+`npm test` lance 185 tests, dont ceux demandés :
 
 | Test | Fichier |
 | --- | --- |
 | Appartement 80 m² à Dudelange = calcul à la main (525 000 €, taille 70–90 m² : −2,5 %) | `tests/engine.test.ts` |
-| Taille de l'appartement (classes de surface notariées), hors plafond, sans effet sur les maisons | `tests/engine.test.ts` |
+| Taille de l'appartement (classes de surface notariées, sans palier), hors plafond, sans effet sur les maisons ; plus de surface ne baisse jamais le prix (20 à 300 m², 5 communes) | `tests/engine.test.ts` |
 | Maison à Dudelange : ±12 % et mention « indicative » | `tests/engine.test.ts`, `tests/result-view.test.ts` |
 | Commune avec moins de 10 ventes → médiane du canton (Leudelange) | `tests/engine.test.ts` |
 | Changer seulement la classe énergétique change le prix | `tests/engine.test.ts` |
