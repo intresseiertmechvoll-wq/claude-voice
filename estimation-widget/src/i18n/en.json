@@ -210,7 +210,7 @@
     "emailTypo": "Did you mean",
     "terrainAres": "In ares? {a} a = {m2} m². Please enter the area in m².",
     "objectifHelp": "The result estimates a sale price, even if you are thinking of renting the property out.",
-    "rueHelp": "With your address, the estimate is more precise.",
+    "rueHelp": "I find the plot and the building on the official maps, to check the estimate before I call you back.",
     "ruePlaceholder": "e.g. 12, rue de la Gare",
     "rueSuggestions": "Suggested addresses: {n}",
     "rueFound": "Address found on the official map.",

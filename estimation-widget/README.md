@@ -451,10 +451,11 @@ Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'a
 - Vérification de tous les champs sur le serveur (le navigateur ne fait qu'aider à la saisie).
 - Champ caché anti-robot (honeypot) : s'il est rempli, rien n'est calculé ni envoyé.
 - Numéros fictifs, e-mails jetables et domaines inexistants refusés, en acceptant en cas de doute (voir « Campagnes publicitaires » → Contrôle des contacts).
+- **Limite connue** : le compteur KV n'est pas atomique ; des envois **simultanés** depuis une même IP peuvent dépasser la limite (rapport Codex 2). Recommandé : une règle de limitation Cloudflare (Sécurité → WAF → Règles de limitation de débit) sur `/api/estimate`, par IP, quelques requêtes par 10 secondes. Si KV tombe en panne, l'envoi est accepté plutôt que perdu.
 - Au plus 20 envois par heure pour une même IP (3.4, réglable dans `config.json` → `rateLimitPerHour`). Pourquoi 20 et pas moins : sur les réseaux mobiles, beaucoup de clients peuvent partager la même adresse IP ; mieux vaut quelques e-mails de robot en plus qu'un vrai lead bloqué. La vraie protection contre les robots, ce sont le champ caché et le contrôle d'origine.
 - Le formulaire n'est accepté que depuis la page de l'outil elle-même : l'en-tête `Origin` est obligatoire et doit être celui de l'outil (une requête sans `Origin` est refusée). Limite honnête : un robot peut imiter cet en-tête ; le contrôle bloque surtout les envois depuis d'autres sites et les scripts simples.
 - HTTPS imposé au navigateur (en-tête `Strict-Transport-Security`, 1 an) ; `www.estimatioun.lu` redirige vers `estimatioun.lu`.
-- Le résultat n'est renvoyé qu'après des coordonnées valides **et** l'envoi réussi de l'e-mail. Si Resend échoue ou ne répond pas en 10 secondes, le visiteur voit un message d'erreur avec ton adresse e-mail et peut réessayer (l'essai raté ne compte pas dans la limite) : le lead n'est jamais perdu en silence.
+- Le résultat n'est renvoyé qu'après des coordonnées valides **et** l'envoi réussi de l'e-mail. Si Resend échoue ou ne répond pas en 10 secondes, le visiteur voit un message d'erreur avec ton adresse e-mail et peut réessayer (l'essai raté ne compte pas dans la limite) : le lead n'est jamais perdu en silence. Chaque e-mail porte une **clé d'idempotence** tirée de la saisie : si Resend a accepté l'e-mail mais que sa réponse s'est perdue, le nouvel essai ne crée pas de doublon (Resend garde la clé 24 h).
 - L'adresse, le nom et les autres champs d'une ligne ne peuvent pas contenir de retour à la ligne ni de caractères invisibles : impossible d'imiter une rubrique de l'e-mail. Le message libre est mis en retrait.
 - Le géoportail ne reçoit que l'adresse, envoyée par le serveur (jamais l'IP ni les coordonnées du visiteur) ; ses réponses sont nettoyées (une ligne, sans caractère de contrôle) avant d'entrer dans l'e-mail.
 - La provenance (`utm_*`, présence d'un identifiant de clic) est nettoyée sur le serveur (clés connues seulement, `A-Z a-z 0-9 espace _ . -`, 60 caractères) avant d'entrer dans l'e-mail.
@@ -464,7 +465,7 @@ Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'a
 
 ## Tests
 
-`npm test` lance 185 tests, dont ceux demandés :
+`npm test` lance 191 tests, dont ceux demandés :
 
 | Test | Fichier |
 | --- | --- |

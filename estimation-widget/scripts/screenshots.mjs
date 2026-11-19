@@ -6,15 +6,17 @@
  */
 import { mkdirSync, readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
 
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
 const AXE = require.resolve('axe-core/axe.min.js');
 const BASE = process.env.BASE_URL ?? 'http://localhost:8788';
-const OUT = new URL('../screenshots/', import.meta.url).pathname;
+const OUT = fileURLToPath(new URL('../screenshots/', import.meta.url)).replace(/[\\/]?$/, '/'); // fonctionne aussi sous Windows
 mkdirSync(OUT, { recursive: true });
 
-const browser = await chromium.launch();
+// CHROMIUM_PATH : navigateur à utiliser si Playwright n'a pas installé le sien (ex. Chrome sous Windows)
+const browser = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
 const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, locale: 'fr-LU', bypassCSP: true });
 const page = await ctx.newPage();
 const problems = [];

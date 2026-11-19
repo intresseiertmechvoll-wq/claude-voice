@@ -72,6 +72,11 @@ export interface Mail {
   replyTo: string;
   /** destinataire ; par défaut l'adresse des leads (LEAD_EMAIL) */
   to?: string;
+  /**
+   * Clé d'idempotence Resend (en-tête Idempotency-Key, gardée 24 h par Resend) : si la réponse de Resend s'est perdue
+   * et que le visiteur réessaie, l'e-mail ne part pas une deuxième fois (resend.com/docs, consulté le 19/11/2026).
+   */
+  idempotencyKey?: string;
 }
 
 /** Envoi par Resend (ou affichage dans la console avec EMAIL_MODE=log). Renvoie une erreur ou null. */
@@ -90,12 +95,27 @@ export async function sendMail(env: Env, d: Deps, mail: Mail): Promise<'config' 
   try {
     res = await d.fetch('https://api.resend.com/emails', {
       method: 'POST',
-      headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+      headers: {
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+        ...(mail.idempotencyKey ? { 'Idempotency-Key': mail.idempotencyKey } : {}),
+      },
       body: JSON.stringify({ from, to: [to], reply_to: mail.replyTo, subject: mail.subject, html: mail.html, text: mail.text }),
       signal: AbortSignal.timeout(10_000),
     });
   } catch (err) {
-    d.log('Resend injoignable :', (err as Error).message);
+    // Sans réponse, on ne sait pas si Resend a accepté l'e-mail : la clé d'idempotence évite un doublon au nouvel essai
+    d.log('Resend injoignable ou trop lent :', (err as Error).message);
+    return 'send';
+  }
+  if (res.status === 409 && mail.idempotencyKey) {
+    // Même clé déjà utilisée (contenu un peu différent : heure, contrôle DNS…) : cet e-mail est déjà parti lors d'un essai précédent
+    const detail = await res.text().catch(() => '');
+    if (detail.includes('idempotent')) {
+      d.log('Resend : e-mail déjà envoyé lors d’un essai précédent (clé d’idempotence), pas de doublon');
+      return null;
+    }
+    d.log('Resend a refusé l’envoi :', res.status, detail);
     return 'send';
   }
   if (!res.ok) {
@@ -164,19 +184,21 @@ export async function handleEstimate(request: Request, env: Env, deps: Partial<D
     return json({ ok: false, error: 'validation', errors: { email: 'email_domain' } }, 400);
   }
   const clientCopy = config.customerEmail !== false;
+  // Même saisie = même demande : un nouvel essai (réponse de Resend perdue) ne crée pas de deuxième e-mail
+  const requestKey = await digest(JSON.stringify([v.value.lang, v.value.answers, v.value.contact]));
   await loadLang(v.value.lang); // texte du consentement « mesure des annonces » dans la langue du visiteur (preuve)
   const mail = leadEmail(v.value, est, d.now(), geo, { emailDomain, phoneSequence: isSequencePhone(v.value.contact.telephone), clientCopy,
     metaConfigured: metaConfigured(env), googleConversionName: config.adsMeasure.googleConversionName });
-  const err = await sendMail(env, d, { ...mail, replyTo: v.value.contact.email });
+  const err = await sendMail(env, d, { ...mail, replyTo: v.value.contact.email, idempotencyKey: `lead-${requestKey}` });
   if (err) {
-    // Rien n'est parti : l'essai ne compte pas dans la limite, le visiteur peut réessayer
+    // Pas de confirmation de Resend : l'essai ne compte pas dans la limite, le visiteur peut réessayer (sans doublon grâce à la clé)
     await refundSubmission(ip, env.RATE_LIMIT, salt);
     return json({ ok: false, error: err }, err === 'config' ? 500 : 502);
   }
 
   // Copie au visiteur, dans sa langue ; un échec ne change rien au résultat (Jason a déjà le lead)
   if (clientCopy) {
-    const copy = sendClientCopy(env, d, v.value, est);
+    const copy = sendClientCopy(env, d, v.value, est, `copie-${requestKey}`);
     if (d.waitUntil) d.waitUntil(copy);
     else await copy;
   }
@@ -190,7 +212,7 @@ export async function handleEstimate(request: Request, env: Env, deps: Partial<D
       userAgent: request.headers.get('user-agent') ?? '',
       pageUrl: `${new URL(request.url).origin}/`,
       nowMs: d.now().getTime(),
-      eventId: crypto.randomUUID(),
+      eventId: `lead-${requestKey}`, // même demande renvoyée = même événement : Meta le dédoublonne
     }, d.fetch, d.log);
     if (d.waitUntil) d.waitUntil(lead);
     else await lead;
@@ -219,7 +241,7 @@ export async function handleEstimate(request: Request, env: Env, deps: Partial<D
 }
 
 /** E-mail au visiteur : la même estimation que l'écran ; réponse → Jason. Ne lève jamais d'erreur. */
-async function sendClientCopy(env: Env, d: Deps, s: import('../shared/types').Submission, est: ReturnType<typeof estimate>): Promise<void> {
+async function sendClientCopy(env: Env, d: Deps, s: import('../shared/types').Submission, est: ReturnType<typeof estimate>, idempotencyKey: string): Promise<void> {
   try {
     await loadLang(s.lang);
     const m = clientEmail(s, est, {
@@ -229,9 +251,15 @@ async function sendClientCopy(env: Env, d: Deps, s: import('../shared/types').Su
       privacyUrl: config.privacyUrl[s.lang],
       date: d.now(),
     });
-    const err = await sendMail(env, d, { ...m, to: s.contact.email, replyTo: env.LEAD_EMAIL || config.defaultLeadEmail });
+    const err = await sendMail(env, d, { ...m, to: s.contact.email, replyTo: env.LEAD_EMAIL || config.defaultLeadEmail, idempotencyKey });
     if (err) d.log('E-mail au visiteur non envoyé :', err);
   } catch (e) {
     d.log('E-mail au visiteur impossible :', (e as Error).message);
   }
+}
+
+/** Empreinte SHA-256 (hex, 32 premiers caractères) */
+async function digest(text: string): Promise<string> {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+  return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('').slice(0, 32);
 }

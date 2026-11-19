@@ -180,7 +180,7 @@ export function leadSections(s: Submission, e: Estimate, date: Date, geo?: Addre
         ...(r.status !== 'ok' ? ([['À faire', 'estimation personnalisée promise au visiteur']] as [string, string][]) : []),
         ['Rappeler', `${c.prenom} ${c.nom} – ${formatPhone(c.telephone)}`],
         ['E-mail', c.email],
-        ...(checks?.clientCopy ? ([['Copie au visiteur', 'son estimation lui est envoyée par e-mail (même contenu que l’écran) ; s’il répond, la réponse arrive chez toi']] as [string, string][]) : []),
+        ...(checks?.clientCopy ? ([['Copie au visiteur', 'prévue juste après cet e-mail (même contenu que l’écran) ; un échec n’est pas signalé ici, voir le journal Resend ; s’il répond, la réponse arrive chez toi']] as [string, string][]) : []),
         ['Qualité du contact', qualityLine(checks)],
         ['Provenance', sourceSummary(s.source)],
         ['Langue', L.lang[s.lang]],

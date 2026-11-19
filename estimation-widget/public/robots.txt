@@ -1,0 +1,4 @@
+# L'outil n'est pas destiné aux moteurs de recherche : la page porte la balise « noindex ».
+# L'exploration reste permise pour que les robots voient cette balise.
+User-agent: *
+Allow: /

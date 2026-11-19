@@ -210,7 +210,7 @@
     "emailTypo": "Meinten Sie",
     "terrainAres": "In Ar? {a} a = {m2} m². Bitte die Fläche in m² angeben.",
     "objectifHelp": "Sie erhalten eine Schätzung des Verkaufspreises, auch wenn Sie vermieten möchten.",
-    "rueHelp": "Mit Ihrer Adresse wird die Schätzung genauer.",
+    "rueHelp": "Damit finde ich Parzelle und Gebäude auf den amtlichen Karten und prüfe die Schätzung, bevor ich Sie anrufe.",
     "ruePlaceholder": "z. B. 12, rue de la Gare",
     "rueSuggestions": "Vorgeschlagene Adressen: {n}",
     "rueFound": "Adresse auf der amtlichen Karte gefunden.",

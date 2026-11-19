@@ -20,7 +20,8 @@ describe('Étape 1 : adresse facultative avec propositions', () => {
   it('Champ « Adresse (facultatif) » en combobox accessible, avec l’aide', () => {
     const html = renderStep(1, ctx({ type: 'maison' }));
     expect(html).toContain('Adresse <span class="optional">(facultatif)</span>');
-    expect(html).toContain('Avec votre adresse, l’estimation est plus précise.');
+    expect(html).toContain('Je retrouve la parcelle et le bâtiment sur les cartes officielles, pour vérifier l’estimation avant de vous rappeler.');
+    expect(html).not.toContain('plus précise'); // l'adresse n'entre pas dans le calcul automatique (rapport Codex 2)
     expect(html).toMatch(/id="rue"[^>]*role="combobox"[^>]*aria-autocomplete="list"[^>]*aria-expanded="false"[^>]*aria-controls="rue-list"/);
     expect(html).toContain('aria-describedby="rue-help"');
     expect(html).toContain('<ul id="rue-list" class="combo-inline" role="listbox" aria-labelledby="rue-label" hidden>');

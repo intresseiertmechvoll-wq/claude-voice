@@ -210,7 +210,7 @@
     "emailTypo": "Vouliez-vous dire",
     "terrainAres": "En ares ? {a} a = {m2} m². Indiquez la surface en m².",
     "objectifHelp": "Le résultat estime un prix de vente, même si votre projet est de louer.",
-    "rueHelp": "Avec votre adresse, l’estimation est plus précise.",
+    "rueHelp": "Je retrouve la parcelle et le bâtiment sur les cartes officielles, pour vérifier l’estimation avant de vous rappeler.",
     "ruePlaceholder": "ex. 12, rue de la Gare",
     "rueSuggestions": "Adresses proposées : {n}",
     "rueFound": "Adresse trouvée sur la carte officielle.",
