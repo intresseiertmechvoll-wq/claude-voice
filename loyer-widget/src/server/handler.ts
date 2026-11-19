@@ -9,6 +9,7 @@ import params from '../../params.json';
 import { estimate, type Params } from '../shared/engine';
 import { leadEmail } from '../shared/email';
 import { emailVisiteur } from '../shared/email-visiteur';
+import { envoyerEnAttente, mettreEnAttente, type KVAttente } from './attente';
 import { allowSubmission, refundSubmission, type KVLike } from '../shared/ratelimit';
 import type { Dataset, References } from '../shared/types';
 import { validateSubmission } from '../shared/validation';
@@ -25,6 +26,10 @@ export interface Env {
   RESEND_WEBHOOK_SECRET?: string;
   /** clé secrète Cloudflare Turnstile ; absente = pas de contrôle anti-robots */
   TURNSTILE_SECRET_KEY?: string;
+  /** leads en attente si Resend est en panne (Cloudflare KV) ; voir src/server/attente.ts */
+  LEADS_EN_ATTENTE?: KVAttente;
+  /** secret de chiffrement des leads en attente (longue phrase au hasard) */
+  LEAD_BACKUP_KEY?: string;
 }
 
 export interface Deps {
@@ -36,6 +41,8 @@ export interface Deps {
   params: Params;
   /** copie du résultat au visiteur (config.json → copieVisiteur) */
   copieVisiteur: boolean;
+  /** Cloudflare : continuer un travail après la réponse (envoi des leads en attente) */
+  waitUntil?: (p: Promise<unknown>) => void;
 }
 
 export const defaultDeps = (): Deps => ({
@@ -163,10 +170,19 @@ export async function handleEstimate(request: Request, env: Env, deps: Partial<D
   const mail = leadEmail(v.value, est, d.now());
   const err = await sendMail(env, d, { ...mail, replyTo: v.value.contact.email });
   if (err) {
-    // Rien n'est parti : l'essai ne compte pas dans la limite, le visiteur peut réessayer
+    // Lead gardé (chiffré) pour un envoi plus tard : le visiteur voit son résultat comme d'habitude
+    if (await mettreEnAttente(env, d, { ...mail, replyTo: v.value.contact.email })) {
+      return json({ ok: true, result: est.result, copie: false });
+    }
+    // Rien n'est parti ni gardé : l'essai ne compte pas dans la limite, le visiteur peut réessayer
     await refundSubmission(ip, env.RATE_LIMIT, env.RATE_LIMIT_SALT ?? 'immobuild-loyer');
     return json({ ok: false, error: err }, err === 'config' ? 500 : 502);
   }
+
+  // L'envoi marche : on en profite pour envoyer les leads restés en attente (après la réponse si possible)
+  const attente = envoyerEnAttente(env, d, (m) => sendMail(env, d, m));
+  if (d.waitUntil) d.waitUntil(attente);
+  else await attente;
 
   // Copie au visiteur : seulement si Jason l'a activée. Un échec ne bloque pas le résultat
   // (le lead est déjà parti) : l'écran dit simplement qu'aucune copie n'a été envoyée.

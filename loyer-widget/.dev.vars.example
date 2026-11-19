@@ -7,3 +7,5 @@ LEAD_EMAIL=contact@immobuild.lu
 # FROM_EMAIL=ImmoBuild Loyer <loyer@immobuild.lu>
 # Avis de Resend (copie au visiteur non livrée), seulement pour tester le webhook en local :
 # RESEND_WEBHOOK_SECRET=whsec_...
+# Leads en attente (panne de Resend), pour tester en local : lancer wrangler avec --kv LEADS_EN_ATTENTE
+# LEAD_BACKUP_KEY=une-longue-phrase-au-hasard

@@ -5,7 +5,7 @@ Ce document décrit ce que fait l'outil, pour t'aider à mettre à jour ta polit
 ## En bref
 
 - Pas de cookie, pas de traceur, pas de statistiques de visite, pas de police chargée depuis Google. Exception possible : si Cloudflare Turnstile (anti-robots) est activé, voir « Turnstile » ci-dessous.
-- Pas de base de données : les réponses partent par e-mail, puis l'outil ne garde rien.
+- Pas de base de données : les réponses partent par e-mail, puis l'outil ne garde rien. Exception (option « leads en attente ») : si l'envoi de l'e-mail échoue, l'e-mail du lead est gardé **chiffré** au plus 7 jours, puis envoyé et effacé (voir ci-dessous).
 - Deux prestataires : **Cloudflare** (hébergement de l'outil et calcul) et **Resend** (envoi de l'e-mail).
 
 ## 1. Données collectées
@@ -63,6 +63,16 @@ Si `turnstileSiteKey` est rempli dans `config.json` :
 - cookies : Cloudflare indique que Turnstile n'en dépose pas (option « pre-clearance » à laisser désactivée) ; à vérifier dans le navigateur après la mise en ligne (voir README 3.7) ;
 - texte proposé pour ta politique de confidentialité (point 7) : « Pour protéger le formulaire contre les robots, nous utilisons Cloudflare Turnstile, qui analyse des informations techniques de votre navigateur (dont votre adresse IP). Voir la notice de Cloudflare : cloudflare.com/turnstile-privacy-policy. »
 
+### Leads en attente (option, conseillée)
+
+Si le stockage `LEADS_EN_ATTENTE` (Cloudflare KV) et le secret `LEAD_BACKUP_KEY` existent :
+
+- uniquement quand Resend n'arrive pas à envoyer l'e-mail du lead (panne, quota épuisé), l'e-mail déjà rédigé (coordonnées, réponses, estimation) est enregistré dans Cloudflare KV ;
+- **chiffré** (AES-GCM 256 bits) avec `LEAD_BACKUP_KEY` : sans ce secret, le contenu est illisible, y compris pour quelqu'un qui aurait accès au compte Cloudflare ;
+- envoyé dès qu'un envoi suivant réussit, puis **effacé** ; dans tous les cas effacé automatiquement après **7 jours** (si Resend reste en panne 7 jours, le lead est perdu) ;
+- Cloudflare stocke ces données ; leur emplacement exact n'est pas garanti en Europe (KV est réparti sur le réseau mondial de Cloudflare) : à mentionner dans ta politique de confidentialité ;
+- texte proposé (point 7) : « Si l'envoi de votre demande échoue pour une raison technique, elle est conservée chiffrée chez notre hébergeur Cloudflare pendant 7 jours au plus, le temps de nous la transmettre, puis effacée. »
+
 ## 4. Adresse IP et limite d'envois
 
 - Pour bloquer les abus, l'outil compte les envois par adresse IP : au plus 20 par heure.
@@ -73,7 +83,7 @@ Si `turnstileSiteKey` est rempli dans `config.json` :
 
 ## 5. Durée de conservation
 
-- Dans l'outil : aucune (sauf l'empreinte d'IP, 1 heure au plus).
+- Dans l'outil : aucune (sauf l'empreinte d'IP, 1 heure au plus). Si l'option « leads en attente » est activée et que l'envoi échoue : l'e-mail du lead, chiffré, jusqu'à son envoi, au plus 7 jours.
 - Dans ta boîte e-mail : **à compléter**. Fixe une durée, par exemple : suppression des demandes sans suite après X mois.
 - Chez Resend : **à vérifier** (journaux d'envoi).
 

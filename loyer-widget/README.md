@@ -8,7 +8,7 @@ Outil « Quel loyer pour votre bien ? » pour gagner des clients en **gestion lo
 > 3. Politique de confidentialité sur immobuild.lu : ajouter le texte de `PRIVACY.md` (point 7) et fixer la durée de conservation des leads.
 > 4. **Faire relire par un juriste la case à cocher de l'étape 4** : aujourd'hui, le résultat ne s'affiche que si le visiteur accepte d'être recontacté. Une revue indépendante (18/11/2026) signale un risque de « consentement lié » (art. 7, paragraphe 4, RGPD). Piste : base légale « demande du visiteur » et case formulée comme une prise de connaissance.
 > 5. Cloudflare : créer le stockage KV `RATE_LIMIT` et le secret `RATE_LIMIT_SALT` (partie 3.4), sinon la limite de 20 envois par heure ne tient pas.
-> 6. Cloudflare Turnstile (anti-robots, partie 3.7) : clé de site dans `config.json`, clé secrète `TURNSTILE_SECRET_KEY`.
+> 6. Cloudflare Turnstile (anti-robots, partie 3.7) : clé de site dans `config.json`, clé secrète `TURNSTILE_SECRET_KEY`. Et les leads en attente (partie 3.8) : stockage `LEADS_EN_ATTENTE` et secret `LEAD_BACKUP_KEY`.
 > 7. Revérifier la loi sur legilux (partie « Plafond légal ») : une réforme est en discussion.
 > 8. Mettre en ligne, puis envoyer 3 ou 4 estimations de test depuis de vrais téléphones (iPhone et Android) et vérifier les e-mails reçus.
 
@@ -126,6 +126,7 @@ npx wrangler pages secret put FROM_EMAIL --project-name loyer-widget
 | `RESEND_API_KEY` | ta clé Resend (`re_…`), la même que pour l'outil d'estimation ou une nouvelle | oui |
 | `LEAD_EMAIL` | l'adresse qui reçoit les leads, par défaut `contact@immobuild.lu` | non |
 | `FROM_EMAIL` | l'expéditeur, sur ton domaine validé chez Resend, par ex. `ImmoBuild Loyer <loyer@immobuild.lu>` | oui, sauf si c'est exactement cette adresse |
+| `LEAD_BACKUP_KEY` | secret de chiffrement des leads en attente (longue phrase au hasard, ne plus la changer), voir 3.8 | non, conseillé |
 | `TURNSTILE_SECRET_KEY` | clé secrète Cloudflare Turnstile (anti-robots), voir 3.7 | non, conseillé |
 | `RESEND_WEBHOOK_SECRET` | secret de signature des avis de Resend (`whsec_…`), voir « Adresse e-mail fausse » ci-dessous | seulement si la copie au visiteur est activée |
 | `RATE_LIMIT_SALT` | une longue phrase au hasard, gardée secrète (empêche de retrouver une IP à partir de son empreinte) | non, conseillé |
@@ -170,6 +171,23 @@ Sans protection, un robot peut remplir le formulaire des centaines de fois : ta 
 Comportement : le script de Cloudflare n'est chargé qu'à l'étape 3, donc seulement par les visiteurs qui vont au bout. Si le contrôle échoue (robot, bloqueur de publicité qui bloque Cloudflare), le visiteur voit un message et rien n'est envoyé. Si les serveurs de Cloudflare ne répondent pas, l'envoi est accepté quand même (pas de lead perdu à cause d'une panne ; la limite par IP et le champ piège restent actifs). Sans les deux clés, l'outil marche comme avant, sans Turnstile.
 
 Données : Turnstile analyse des signaux techniques du navigateur (adresse IP, empreinte TLS, User-Agent) ; voir `PRIVACY.md`. Cloudflare indique que Turnstile ne dépose pas de cookie (sans « pre-clearance »), mais des utilisateurs signalent parfois un cookie technique `_cfuvid` : **après la mise en ligne, vérifier dans le navigateur** (outils de développement → Application → Cookies). S'il y en a un, retirer « sans cookies » des textes de l'outil (`trust.line` dans `src/i18n/*.json`) et de la politique de confidentialité.
+
+### 3.8 Ne perdre aucun lead si Resend tombe en panne (conseillé)
+
+Sans réglage : si Resend ne peut pas envoyer l'e-mail (panne, quota de 100 e-mails par jour épuisé…), le visiteur voit un message d'erreur et le lead est perdu s'il ne réessaie pas. Avec ce réglage, le visiteur voit son résultat normalement, l'e-mail du lead est gardé **chiffré** dans Cloudflare, puis il t'arrive automatiquement avec l'objet « [Envoi différé – demande reçue le 19/11 à 14:02] … » dès qu'un envoi suivant réussit.
+
+```bash
+npx wrangler kv namespace create LEADS_EN_ATTENTE
+npx wrangler pages secret put LEAD_BACKUP_KEY --project-name loyer-widget
+```
+
+Puis : Workers & Pages → loyer-widget → Settings → Bindings → Add → KV namespace → variable `LEADS_EN_ATTENTE`. Pour `LEAD_BACKUP_KEY` : une longue phrase au hasard, **à ne jamais changer** tant que des leads sont en attente (sinon ils deviennent illisibles). Relance `npm run deploy`.
+
+À savoir :
+- les leads en attente partent lors de l'envoi réussi **suivant** : s'il n'y a pas de nouveau visiteur, ils attendent (au plus 7 jours, ensuite ils sont effacés) ;
+- au plus 5 leads en attente partent à chaque passage ;
+- rarement, un lead en attente peut arriver deux fois (deux visiteurs au même moment) ;
+- testé en local avec le stockage KV de Wrangler (panne simulée, puis envoi différé) ; pas encore testé en ligne.
 
 ## 4. Mettre à jour les données
 
@@ -297,7 +315,7 @@ Vérifié sur legilux le 17/11/2026 (`docs/cadre-legal.md`) : loi du 21 septembr
 
 ## Tests
 
-`npm test` lance 107 tests (19/11/2026), dont :
+`npm test` lance 115 tests (19/11/2026), dont :
 
 | Test | Fichier |
 | --- | --- |
