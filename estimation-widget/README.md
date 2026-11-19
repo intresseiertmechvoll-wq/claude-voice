@@ -269,7 +269,21 @@ Puis une section « Provenance » avec chaque paramètre. Sans paramètre : « D
 - **Téléphone** : en plus du format, refus des numéros manifestement inventés : tous les chiffres après les 3 premiers identiques (621 000 000, 621 111 111) et quelques numéros d'exemple connus (621 123 456…). Une suite de chiffres en fin de numéro (691 234 567) n'est **pas** refusée, car de vrais numéros en sont une : l'e-mail de Jason indique alors « Téléphone : suite de chiffres, à vérifier ». Message : « Ce numéro semble incomplet ou fictif. Jason vous rappellera à ce numéro. » Pas de liste de préfixes d'opérateurs.
 - **E-mail** : refus d'une courte liste de domaines jetables (yopmail, mailinator… dans `src/shared/validation.ts`) ; puis le serveur demande à Cloudflare DNS si le domaine a un serveur de messagerie (MX, sinon A). Refus seulement si le DNS répond clairement « ce domaine n'existe pas » ; panne ou plus de 2 secondes : accepté, et l'e-mail du lead indique « non vérifiable ». Un envoi refusé ne compte pas dans la limite de 20 par heure.
 
-**Limites (choix voulu).** Il n'y a ni pixel Meta, ni balise Google, ni suivi de conversion : Google Ads et Meta ne savent pas qu'une annonce a produit un lead, et leurs algorithmes ne peuvent pas s'optimiser là-dessus. Tu compares toi-même, à partir des e-mails, le nombre de leads par campagne et ce que chaque campagne coûte. C'est un choix de confidentialité (pas de bandeau cookies, rien chez les régies). Un envoi des conversions côté serveur (import de conversions hors ligne Google Ads, API Conversions de Meta) serait une décision à part : il faudrait garder la valeur du `gclid` / `fbclid`, l'annoncer dans la politique de confidentialité et revoir la base légale. Autre limite : Safari en navigation privée et certaines applications retirent `gclid` / `fbclid` des liens ; les `utm_*` restent, mets-les donc toujours.
+**Mesure des annonces avec consentement (Google Ads et Meta).** Si le visiteur arrive par une annonce (`gclid` ou `fbclid` dans le lien, ajoutés automatiquement par Google et Meta), l'étape 6 propose une case **facultative, non cochée** : « J'accepte qu'ImmoBuild Kohn indique à Google / Meta que ma demande fait suite à leur publicité… ». Seulement si elle est cochée :
+
+- **Meta** : l'outil envoie lui-même un événement « Lead » à l'API Conversions (identifiant du clic, e-mail et téléphone hachés, type de navigateur). **À faire une fois** : Gestionnaire d'événements Meta → créer un jeu de données (pixel) → Paramètres → API Conversions → « Générer un jeton d'accès ». Puis dans Cloudflare (Workers & Pages → `estimation-widget` → Paramètres → Variables et secrets, Production) : `META_PIXEL_ID` = l'identifiant du jeu de données (texte), `META_CAPI_TOKEN` = le jeton (**secret**). Pour tester : `META_TEST_EVENT_CODE` = le code de « Tester les événements », une demande, puis retirer cette variable. Redéployer après chaque changement.
+- **Google Ads** : rien ne part automatiquement. L'e-mail du lead contient une ligne prête, par ex. `EAIaIQ…,Lead estimation,2026-11-19 10:15:00+0100,,,Granted`. **À faire une fois** : Google Ads → Objectifs → Conversions → Nouvelle action → Importer → « Conversions à partir de clics », nommée exactement comme `adsMeasure.googleConversionName` dans `config.json` (« Lead estimation »). Puis chaque semaine : un fichier CSV avec cette première ligne, suivie des lignes copiées des e-mails, à importer dans Objectifs → Conversions → Importer :
+
+```text
+Google Click ID,Conversion Name,Conversion Time,Conversion Value,Conversion Currency,Ad User Data
+```
+
+- L'e-mail du lead garde la **preuve du consentement** (date, version du texte, texte exact). Sans case cochée : « Consentement : non : rien n'a été transmis ».
+- Aucun script de Google ou Meta dans la page, aucun cookie. Détails, sources et points juridiques encore ouverts : `PRIVACY.md`, section 3 sexies. **À faire valider par un juriste avant de grosses campagnes.**
+
+Sources du format : aide Google Ads « Importer des conversions à partir de clics » (support.google.com/google-ads/answer/7014069) ; Meta, API Conversions, paramètres client (developers.facebook.com), version de l'API Graph v27.0 du 04/11/2026 ; consultés le 19/11/2026.
+
+**Limites (choix voulu).** Sans la case cochée, il n'y a ni pixel Meta, ni balise Google, ni suivi de conversion : Google Ads et Meta ne voient que les leads des visiteurs qui ont accepté, et leurs algorithmes ne s'optimisent que sur ceux-là. Tu compares toi-même, à partir des e-mails, le nombre de leads par campagne et ce que chaque campagne coûte. C'est un choix de confidentialité (pas de bandeau cookies, rien chez les régies). Un envoi des conversions côté serveur (import de conversions hors ligne Google Ads, API Conversions de Meta) serait une décision à part : il faudrait garder la valeur du `gclid` / `fbclid`, l'annoncer dans la politique de confidentialité et revoir la base légale. Autre limite : Safari en navigation privée et certaines applications retirent `gclid` / `fbclid` des liens ; les `utm_*` restent, mets-les donc toujours.
 
 ### Où les visiteurs s'arrêtent (compteurs anonymes)
 
@@ -450,7 +464,7 @@ Ta demande du 09/11/2026 remplace la règle de départ « pas de faux écran d'a
 
 ## Tests
 
-`npm test` lance 172 tests, dont ceux demandés :
+`npm test` lance 184 tests, dont ceux demandés :
 
 | Test | Fichier |
 | --- | --- |

@@ -1,4 +1,6 @@
 /** E-mail du lead envoyé à ImmoBuild Kohn (toujours en français) */
+import { translator } from '../i18n';
+import { CONSENT_VERSION, consentTexts, platformsOf } from './ads';
 import type { Estimate } from './engine';
 import type { AddressDetails, Source, Submission } from './types';
 import { POSTES_APPARTEMENT, POSTES_MAISON } from './types';
@@ -80,6 +82,10 @@ export interface LeadChecks {
   phoneSequence?: boolean;
   /** le visiteur reçoit aussi son estimation par e-mail (config.customerEmail) */
   clientCopy?: boolean;
+  /** API Conversions de Meta configurée (META_PIXEL_ID + META_CAPI_TOKEN) */
+  metaConfigured?: boolean;
+  /** nom de l'action de conversion « importée » dans Google Ads (config.adsMeasure.googleConversionName) */
+  googleConversionName?: string;
 }
 
 const CLICK_PLATFORMS = { gclid: 'Google Ads', fbclid: 'Facebook / Instagram', msclkid: 'Microsoft Ads (Bing)' } as const;
@@ -275,6 +281,8 @@ export function leadSections(s: Submission, e: Estimate, date: Date, geo?: Addre
   }
 
   sections.push(sourceSection(s.source));
+  const ads = adsSection(s, date, checks);
+  if (ads) sections.push(ads);
   sections.push({
     title: 'Contexte',
     rows: [
@@ -307,4 +315,35 @@ ${sections
 <p style="font-size:12px;color:#4a5a70;margin-top:24px">Si vous répondez à cet e-mail, la réponse part directement chez le visiteur. L’outil ne garde aucune copie (Resend conserve un journal d’envoi).</p>
 </div></body></html>`;
   return { subject: leadSubject(s), html, text };
+}
+
+/** « 2026-11-19 10:15:00+0100 » : heure de Luxembourg, format accepté par l'import de conversions Google Ads */
+export function googleConversionTime(d: Date): string {
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Luxembourg', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23', timeZoneName: 'longOffset' })
+      .formatToParts(d)
+      .map((p) => [p.type, p.value]),
+  );
+  const off = (parts.timeZoneName as string).replace('GMT', '') || '+00:00';
+  return `${parts.year}-${parts.month}-${parts.day} ${parts.hour}:${parts.minute}:${parts.second}${off.replace(':', '')}`;
+}
+
+/**
+ * Mesure des annonces : preuve du consentement (date, version et texte exact affiché) et ce qu'il faut en faire.
+ * Sans consentement mais arrivé par une annonce : une ligne pour le dire. Sinon : pas de section.
+ */
+export function adsSection(s: Submission, date: Date, checks?: LeadChecks): Section | null {
+  const a = s.ads;
+  const fromAd = Boolean(s.source?.gclid || s.source?.fbclid);
+  if (!a) return fromAd ? { title: 'Mesure des annonces', rows: [['Consentement', 'non : rien n’a été transmis à Google ni à Meta']] } : null;
+  const platforms = platformsOf(a);
+  const { label } = consentTexts(translator(s.lang), platforms);
+  const rows: [string, string][] = [['Consentement', `oui, le ${date.toISOString()} (texte ${CONSENT_VERSION}, ${s.lang.toUpperCase()}) : « ${label} »`]];
+  if (a.gclid) {
+    const name = checks?.googleConversionName || 'Lead estimation';
+    rows.push(['Google Ads', 'à importer (Objectifs → Conversions → Importer), ligne prête ci-dessous']);
+    rows.push(['Ligne CSV', `${a.gclid},${name},${googleConversionTime(date)},,,Granted`]);
+  }
+  if (a.fbclid) rows.push(['Meta', checks?.metaConfigured ? 'transmis automatiquement (API Conversions)' : 'API Conversions non configurée : rien n’a été transmis']);
+  return { title: 'Mesure des annonces', rows };
 }

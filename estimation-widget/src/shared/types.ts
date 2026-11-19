@@ -73,6 +73,8 @@ export interface Submission {
   page: string;
   /** absente = provenance inconnue */
   source?: Source;
+  /** identifiants de clic Google / Meta, présents seulement avec le consentement « mesure des annonces » */
+  ads?: import('./ads').AdClicks | null;
 }
 
 export interface CommuneData {

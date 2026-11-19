@@ -11,6 +11,7 @@ import { resolveCommune, setupCombobox } from './ui/combobox';
 import { esc } from './ui/html';
 import { icon } from './ui/icons';
 import { landingQuery, landingTitle, readLanding } from './ui/landing';
+import { platformsOf } from './shared/ads';
 import { certifBadge } from './ui/certif';
 import { renderFact } from './ui/facts';
 import { formatEuro } from './ui/format';
@@ -36,6 +37,9 @@ const page = (() => {
 })();
 /** Lien d'arrivée (annonces) : provenance (utm_*, présence d'un identifiant de clic) et préremplissage de l'étape 1, en mémoire seulement */
 const landing = readLanding(params, COMMUNES.map((c) => c.name));
+/** Arrivée sur la page : date du clic publicitaire pour Meta (envoyée seulement avec le consentement) */
+const arrivedAt = Date.now();
+const adPlatforms = platformsOf(landing.clicks);
 /**
  * Compteur anonyme du parcours : « étape 3 atteinte », « bouton appeler »… une fois par chargement de page.
  * Envoyé : l'événement, la langue, la provenance de l'annonce (utm, présence d'un identifiant de clic), intégré ou non.
@@ -59,7 +63,7 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matc
 document.documentElement.lang = lang;
 document.title = t('meta.title');
 
-const DEFAULTS: Values = { garages: '0', parkings: '0', terrasse: '0', cave: false, jardin: false, indicatif: '+352', rgpd: false };
+const DEFAULTS: Values = { garages: '0', parkings: '0', terrasse: '0', cave: false, jardin: false, indicatif: '+352', rgpd: false, pub: false };
 const CONTACT_KEYS = ['prenom', 'nom', 'email', 'indicatif', 'numero'];
 
 const state: {
@@ -149,6 +153,7 @@ function readContactFields() {
     state.values[key] = String(fields.get(key) ?? '');
   }
   state.values.rgpd = fields.has('rgpd');
+  state.values.pub = fields.has('pub');
 }
 
 /** Titre d'arrivée ; un nom court (« Esch-sur-Alzette ») ne se coupe pas au trait d'union, un nom long peut (320 px) */
@@ -297,7 +302,7 @@ function render(focus = true) {
       </div>
       ${coachHtml()}
       ${summary}
-      ${renderStep(s, { t, lang, v: state.values, e: state.errors, privacyUrl, quickCommunes: config.quickCommunes, geo: geoNotes() })}
+      ${renderStep(s, { t, lang, v: state.values, e: state.errors, privacyUrl, quickCommunes: config.quickCommunes, geo: geoNotes(), adPlatforms })}
     </div>
     <div class="actions">
       ${
@@ -823,7 +828,7 @@ async function send() {
   const answers: Values = {};
   const contact: Values = {};
   for (const [k, v] of Object.entries(state.values)) {
-    if (k !== 'website') (contactFields.includes(k) ? contact : answers)[k] = v;
+    if (k !== 'website' && k !== 'pub') (contactFields.includes(k) ? contact : answers)[k] = v;
   }
   // Champ anti-robot : invisible, vide pour un humain
   const website = String(state.values.website ?? '');
@@ -833,7 +838,11 @@ async function send() {
   const request: Promise<Outcome> = fetch('/api/estimate', {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ lang, page, website, answers, contact, source: landing.source }),
+    // Identifiants de clic : seulement si la case « mesure des annonces » est cochée
+    body: JSON.stringify({
+      lang, page, website, answers, contact, source: landing.source,
+      ...(state.values.pub === true && adPlatforms.length ? { ads: { consent: true, ...landing.clicks, clickAt: arrivedAt } } : {}),
+    }),
     signal: timeoutSignal(20_000),
   })
     .then(async (res) => ({ res, json: (await res.json().catch(() => ({}))) as ApiJson }))

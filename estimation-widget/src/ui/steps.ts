@@ -6,6 +6,7 @@ import { DELAIS, ENERGIES, ETATS, MAISON_TYPES, OBJECTIFS, POSTES_APPARTEMENT, P
 import { LIMITS, PHONE_CODES, type Errors } from '../shared/validation';
 import sansDonnees from '../../data/sans-donnees.json';
 import { renderFact } from './facts';
+import { consentTexts, type Platform } from '../shared/ads';
 import { esc } from './html';
 import { icon } from './icons';
 
@@ -20,6 +21,8 @@ export interface Ctx {
   quickCommunes: string[];
   /** notes tirées des cartes officielles (adresse choisie dans la liste), déjà traduites */
   geo?: { found?: string; terrain?: string; maisonType?: string };
+  /** arrivée par une annonce Google / Meta : case facultative « mesure des annonces » à l'étape 6 */
+  adPlatforms?: Platform[];
 }
 
 export const STEP_ICONS = ['epingle', 'regle', 'outils', 'garage', 'drapeau', 'personne'];
@@ -402,7 +405,21 @@ ${input(ctx, 'email', t('fields.email'), { type: 'email', autocomplete: 'email',
   </label>
   ${errorMessage(ctx, 'rgpd')}
 </div>
+${adsConsent(ctx)}
 <p class="trust">${icon('bouclier', 'ico ico-sm')}<span>${esc(t('trust.line'))}</span></p>`;
+}
+
+/** Case facultative, jamais cochée d'avance, seulement si le visiteur vient d'une annonce Google ou Meta */
+function adsConsent(ctx: Ctx): string {
+  if (!ctx.adPlatforms?.length) return '';
+  const { label, details } = consentTexts(ctx.t, ctx.adPlatforms);
+  return `<div class="field checkbox checkbox-optional" data-field="pub">
+  <label class="check">
+    <input type="checkbox" id="pub" name="pub"${ctx.v.pub === true ? ' checked' : ''} aria-describedby="pub-details">
+    <span>${esc(label)}</span>
+  </label>
+  <p class="help check-help" id="pub-details">${esc(details)}</p>
+</div>`;
 }
 
 const STEPS = [step1, step2, step3, step4, step5, step6];

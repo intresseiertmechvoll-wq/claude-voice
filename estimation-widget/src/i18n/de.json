@@ -485,5 +485,15 @@
     "phone": "Telefon",
     "footer": "Sie erhalten diese E-Mail, weil mit dieser Adresse eine Bewertung im Online-Tool von ImmoBuild Kohn angefragt wurde. Falls Sie das nicht waren, ignorieren Sie diese Nachricht einfach.",
     "privacy": "Datenschutz"
+  },
+  "ads": {
+    "label": "Ich bin einverstanden, dass ImmoBuild Kohn {platforms} mitteilt, dass meine Anfrage auf ihre Werbung zurückgeht, um die Anzeigen zu messen (freiwillig).",
+    "detailsGoogle": "Übermittelt wird nur die Kennung des Werbeklicks. Kein Einfluss auf Ihre Bewertung. Widerruf jederzeit: contact@immobuild.lu.",
+    "detailsMeta": "Übermittelt werden: die Kennung des Werbeklicks, der Browsertyp und, an Meta, Ihre E-Mail-Adresse und Telefonnummer in gehashter Form (nicht lesbar, nur abgleichbar). Kein Einfluss auf Ihre Bewertung. Widerruf jederzeit: contact@immobuild.lu.",
+    "platforms": {
+      "google": "Google",
+      "meta": "Meta (Facebook, Instagram)",
+      "both": "Google und Meta (Facebook, Instagram)"
+    }
   }
 }

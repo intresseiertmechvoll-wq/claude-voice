@@ -485,5 +485,15 @@
     "phone": "Phone",
     "footer": "You are receiving this email because a valuation was requested with this address on ImmoBuild Kohn’s online valuation tool. If this was not you, simply ignore this message.",
     "privacy": "Privacy"
+  },
+  "ads": {
+    "label": "I agree that ImmoBuild Kohn may tell {platforms} that my request came from their advertising, to measure its ads (optional).",
+    "detailsGoogle": "Only the ad click identifier is shared. No effect on your estimate. Withdraw at any time: contact@immobuild.lu.",
+    "detailsMeta": "Shared: the ad click identifier, the browser type and, with Meta, your email and phone number in hashed form (unreadable, only matchable). No effect on your estimate. Withdraw at any time: contact@immobuild.lu.",
+    "platforms": {
+      "google": "Google",
+      "meta": "Meta (Facebook, Instagram)",
+      "both": "Google and Meta (Facebook, Instagram)"
+    }
   }
 }

@@ -208,6 +208,46 @@ const deLink = await page.locator('.language-links a[hreflang="de"]').getAttribu
 if (!deLink.includes('utm_campaign=dudelange-maisons') || !deLink.includes('gclid=1') || deLink.includes('TEST')) problems.push(`Lien de langue : provenance mal transmise (${deLink})`);
 await shot('1f-lien-annonce-prerempli');
 
+// ---------- Arrivée par une annonce Meta + Google : case facultative « mesure des annonces » ----------
+await page.goto(`${BASE}/?lang=fr&commune=Dudelange&type=appartement&utm_source=facebook&fbclid=IwAR3x-capture_test&gclid=EAIaIQ-capture_test`);
+await page.locator('#commune-canton').getByText('canton').waitFor();
+await next();
+await page.locator('#surface').fill('80');
+await plus('chambres', 2);
+await plus('sdb', 1);
+await page.locator('#annee').fill('1995');
+await pick('etat', 'Bon état');
+await page.locator('#energie .e-D').click();
+await pick('etage', '2e');
+await pick('ascenseur', 'Oui');
+await next();
+await page.locator('[data-fill-all="bon"]').click();
+await next();
+await next();
+await pick('proprietaire', 'Oui');
+await pick('objectif', 'Vendre');
+await pick('delai', 'Dans les 3 mois');
+await next();
+await page.locator('#prenom').fill('Lea');
+await page.locator('#nom').fill('Schmit');
+await page.locator('#email').fill('lea.schmit@example.lu');
+await page.locator('#numero').fill('691 527 038');
+await page.locator('label.check', { hasText: 'J’accepte qu’ImmoBuild Kohn utilise' }).click();
+if (await page.locator('#pub').isChecked()) problems.push('Mesure des annonces : case cochée d’avance');
+await page.locator('label.check', { hasText: 'Google et Meta' }).click();
+await page.locator('#pub').focus();
+await shot('6d-mesure-annonces');
+await page.setViewportSize({ width: 320, height: 720 });
+await page.waitForTimeout(200);
+await noOverflow('6d-mesure-annonces (320 px)');
+await page.locator('[data-field="pub"]').screenshot({ path: `${OUT}6e-mesure-annonces-320.png` });
+await page.setViewportSize({ width: 390, height: 844 });
+const sent = page.waitForRequest((r) => r.url().endsWith('/api/estimate'));
+await page.getByRole('button', { name: 'Voir mon estimation' }).click();
+const payload = JSON.parse((await sent).postData());
+if (payload.ads?.consent !== true || payload.ads.fbclid !== 'IwAR3x-capture_test' || payload.ads.gclid !== 'EAIaIQ-capture_test') problems.push(`Mesure des annonces : identifiants non envoyés malgré la case (${JSON.stringify(payload.ads)})`);
+await page.locator('#result-title').waitFor({ timeout: 15000 });
+
 // ---------- Intégration dans une page (embed.js) ----------
 await page.goto(`${BASE}/demo.html?utm_source=newsletter&utm_campaign=demo-embed&fbclid=SECRET`);
 const frameSrc = await page.locator('iframe[data-immobuild-frame]').getAttribute('src');

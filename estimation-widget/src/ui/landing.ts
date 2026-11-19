@@ -2,6 +2,7 @@
  * Lien d'arrivée (annonces) : provenance et préremplissage, lus une fois dans l'adresse de la page.
  * Gardés en mémoire seulement : aucun cookie, aucun stockage dans le navigateur.
  */
+import { cleanClickId } from '../shared/ads';
 import { CLICK_IDS, sanitizeSource, SOURCE_KEYS } from '../shared/validation';
 import type { T } from '../i18n';
 import type { Source } from '../shared/types';
@@ -12,6 +13,11 @@ export interface Landing {
   source: Source;
   /** ?type=appartement|maison et ?commune=… (nom officiel ou autre nom connu) ; valeur inconnue : ignorée */
   prefill: { type?: 'appartement' | 'maison'; commune?: string };
+  /**
+   * Valeurs des identifiants de clic Google / Meta, gardées en mémoire dans la page.
+   * Envoyées à notre serveur SEULEMENT si le visiteur coche la case « mesure des annonces » (src/shared/ads.ts).
+   */
+  clicks: { gclid?: string; fbclid?: string };
 }
 
 export function readLanding(params: URLSearchParams, communes: string[]): Landing {
@@ -24,13 +30,19 @@ export function readLanding(params: URLSearchParams, communes: string[]): Landin
   if (type === 'appartement' || type === 'maison') prefill.type = type;
   const commune = resolveCommune((params.get('commune') ?? '').slice(0, 80), communes);
   if (commune) prefill.commune = commune;
-  return { source, prefill };
+  const clicks: Landing['clicks'] = {};
+  const g = cleanClickId(params.get('gclid'));
+  const f = cleanClickId(params.get('fbclid'));
+  if (g) clicks.gclid = g;
+  if (f) clicks.fbclid = f;
+  return { source, prefill, clicks };
 }
 
 /** Paramètres à garder dans les liens de changement de langue */
 export function landingQuery(l: Landing, query: URLSearchParams): void {
   for (const k of SOURCE_KEYS) if (l.source[k]) query.set(k, l.source[k]!);
-  for (const k of CLICK_IDS) if (l.source[k]) query.set(k, '1');
+  // Valeur gardée pour Google et Meta (utile seulement avec le consentement), simple présence pour Microsoft
+  for (const k of CLICK_IDS) if (l.source[k]) query.set(k, (k === 'gclid' || k === 'fbclid' ? l.clicks[k] : undefined) ?? '1');
   if (l.prefill.commune) query.set('commune', l.prefill.commune);
   if (l.prefill.type) query.set('type', l.prefill.type);
 }

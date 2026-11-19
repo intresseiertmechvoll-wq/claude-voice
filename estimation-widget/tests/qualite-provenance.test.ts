@@ -185,11 +185,12 @@ describe('Provenance : paramètres de campagne, sans cookie', () => {
     expect(l.prefill).toEqual({ commune: 'Dudelange', type: 'maison' });
     expect(readLanding(new URLSearchParams('commune=dudelange&type=appartement'), names).prefill).toEqual({ commune: 'Dudelange', type: 'appartement' });
     expect(readLanding(new URLSearchParams('commune=Paris&type=villa'), names).prefill).toEqual({});
-    expect(readLanding(new URLSearchParams(''), names)).toEqual({ source: {}, prefill: {} });
-    // Changement de langue : on garde tout, sauf la valeur de l'identifiant de clic
+    expect(readLanding(new URLSearchParams(''), names)).toEqual({ source: {}, prefill: {}, clicks: {} });
+    expect(l.clicks).toEqual({ gclid: 'Cj0KCQ-secret' });
+    // Changement de langue : on garde tout, y compris la valeur de gclid (elle ne part qu'avec le consentement)
     const q = new URLSearchParams({ lang: 'de' });
     landingQuery(l, q);
-    expect(q.toString()).toBe('lang=de&utm_source=google&utm_campaign=dudelange+maisons&gclid=1&commune=Dudelange&type=maison');
+    expect(q.toString()).toBe('lang=de&utm_source=google&utm_campaign=dudelange+maisons&gclid=Cj0KCQ-secret&commune=Dudelange&type=maison');
   });
 
   it('Titre repris de l’annonce (FR, DE, EN), titre habituel sans préremplissage', async () => {
@@ -227,7 +228,7 @@ function runEmbed(search: string) {
 }
 
 describe('embed.js : provenance de la page du site transmise à l’outil', () => {
-  it('utm_* nettoyés, présence des identifiants de clic (jamais leur valeur), commune et type ; src inchangé', () => {
+  it('utm_* nettoyés, gclid / fbclid transmis à l’outil (qui ne les envoie qu’avec consentement), commune et type ; src inchangé', () => {
     const u = runEmbed('?utm_source=google&utm_medium=cpc&utm_campaign=dudelange-maisons%3Cb%3E&gclid=Cj0KCQ-secret&fbclid=IwAR-secret&commune=Dudelange&type=maison&other=1');
     expect(u.origin).toBe('https://estimation.example.pages.dev');
     expect(u.searchParams.get('lang')).toBe('fr');
@@ -235,13 +236,14 @@ describe('embed.js : provenance de la page du site transmise à l’outil', () =
     expect(u.searchParams.get('utm_source')).toBe('google');
     expect(u.searchParams.get('utm_medium')).toBe('cpc');
     expect(u.searchParams.get('utm_campaign')).toBe('dudelange-maisonsb');
-    expect(u.searchParams.get('gclid')).toBe('1');
-    expect(u.searchParams.get('fbclid')).toBe('1');
+    expect(u.searchParams.get('gclid')).toBe('Cj0KCQ-secret');
+    expect(u.searchParams.get('fbclid')).toBe('IwAR-secret');
     expect(u.searchParams.has('msclkid')).toBe(false);
     expect(u.searchParams.get('commune')).toBe('Dudelange');
     expect(u.searchParams.get('type')).toBe('maison');
-    expect(u.search).not.toContain('secret');
     expect(u.searchParams.has('other')).toBe(false);
+    // Identifiant de clic invalide (caractères interdits) : seulement « présent »
+    expect(runEmbed('?gclid=%3Cscript%3E').searchParams.get('gclid')).toBe('1');
   });
   it('Sans paramètres : comme avant (lang et src seulement)', () => {
     const u = runEmbed('');

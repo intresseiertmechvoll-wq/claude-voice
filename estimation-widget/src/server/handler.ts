@@ -12,13 +12,14 @@ import { loadLang } from '../i18n';
 import type { AddressDetails } from '../shared/types';
 import { GEO_TIMEOUT_MS, lookupAddress, validLabel } from './adresse';
 import { checkEmailDomain } from './dns';
+import { metaConfigured, sendMetaLead, type MetaEnv } from './meta';
 import { writeFunnel, type FunnelDataset } from '../shared/funnel';
 import { allowSubmission, refundSubmission, type KVLike } from '../shared/ratelimit';
 import type { Dataset } from '../shared/types';
 import { isSequencePhone, validateSubmission } from '../shared/validation';
 import { signTicket, ticketSecret, TICKET_TTL_S } from './token';
 
-export interface Env {
+export interface Env extends MetaEnv {
   RESEND_API_KEY?: string;
   LEAD_EMAIL?: string;
   FROM_EMAIL?: string;
@@ -129,7 +130,7 @@ export async function handleEstimate(request: Request, env: Env, deps: Partial<D
   if ('error' in r) return r.error;
   const body = r.body;
 
-  const v = validateSubmission(body);
+  const v = validateSubmission(body, d.now().getTime());
   if (!v.ok) {
     // Robot (honeypot rempli) : rien n'est calculé ni envoyé
     if (v.bot) return json({ ok: false, error: 'rejected' }, 400);
@@ -163,7 +164,9 @@ export async function handleEstimate(request: Request, env: Env, deps: Partial<D
     return json({ ok: false, error: 'validation', errors: { email: 'email_domain' } }, 400);
   }
   const clientCopy = config.customerEmail !== false;
-  const mail = leadEmail(v.value, est, d.now(), geo, { emailDomain, phoneSequence: isSequencePhone(v.value.contact.telephone), clientCopy });
+  await loadLang(v.value.lang); // texte du consentement « mesure des annonces » dans la langue du visiteur (preuve)
+  const mail = leadEmail(v.value, est, d.now(), geo, { emailDomain, phoneSequence: isSequencePhone(v.value.contact.telephone), clientCopy,
+    metaConfigured: metaConfigured(env), googleConversionName: config.adsMeasure.googleConversionName });
   const err = await sendMail(env, d, { ...mail, replyTo: v.value.contact.email });
   if (err) {
     // Rien n'est parti : l'essai ne compte pas dans la limite, le visiteur peut réessayer
@@ -176,6 +179,21 @@ export async function handleEstimate(request: Request, env: Env, deps: Partial<D
     const copy = sendClientCopy(env, d, v.value, est);
     if (d.waitUntil) d.waitUntil(copy);
     else await copy;
+  }
+
+  // Mesure des annonces Meta, seulement avec le consentement (fbclid présent) ; ne retarde pas la réponse
+  if (v.value.ads?.fbclid && metaConfigured(env)) {
+    const lead = sendMetaLead(env, config.adsMeasure.metaApiVersion, {
+      ads: v.value.ads,
+      email: v.value.contact.email,
+      telephone: v.value.contact.telephone,
+      userAgent: request.headers.get('user-agent') ?? '',
+      pageUrl: `${new URL(request.url).origin}/`,
+      nowMs: d.now().getTime(),
+      eventId: crypto.randomUUID(),
+    }, d.fetch, d.log);
+    if (d.waitUntil) d.waitUntil(lead);
+    else await lead;
   }
 
   // Compteur anonyme : une demande envoyée (type de bien et commune, ni adresse ni coordonnées)

@@ -485,5 +485,15 @@
     "phone": "Téléphone",
     "footer": "Vous recevez cet e-mail parce qu’une estimation a été demandée avec cette adresse sur l’outil d’estimation d’ImmoBuild Kohn. Si ce n’est pas vous, ignorez simplement ce message.",
     "privacy": "Protection des données"
+  },
+  "ads": {
+    "label": "J’accepte qu’ImmoBuild Kohn indique à {platforms} que ma demande fait suite à leur publicité, pour mesurer ses annonces (facultatif).",
+    "detailsGoogle": "Seul l’identifiant du clic publicitaire est transmis. Sans effet sur votre estimation. Retrait à tout moment : contact@immobuild.lu.",
+    "detailsMeta": "Sont transmis : l’identifiant du clic publicitaire, le type de navigateur et, pour Meta, votre e-mail et votre téléphone sous forme hachée (illisible, seulement comparable). Sans effet sur votre estimation. Retrait à tout moment : contact@immobuild.lu.",
+    "platforms": {
+      "google": "Google",
+      "meta": "Meta (Facebook, Instagram)",
+      "both": "Google et Meta (Facebook, Instagram)"
+    }
   }
 }

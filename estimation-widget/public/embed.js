@@ -7,7 +7,7 @@
  * Options sur le <script> :
  *   data-manual            ne crée pas de conteneur tout seul (sites Next.js / SPA : appeler ImmoBuildEstimation.mount())
  *   data-src="https://…"   adresse de l'outil, si une extension WordPress recopie ce script sur le site
- * Campagnes : les paramètres utm_* de la page du site et la présence (jamais la valeur) de gclid / fbclid / msclkid
+ * Campagnes : les paramètres utm_* de la page du site et gclid / fbclid / msclkid (la valeur de gclid / fbclid ne quitte l'outil qu'avec le consentement du visiteur)
  * sont transmis à l'outil, ainsi que ?commune=…&type=appartement|maison (préremplissage). Aucun cookie.
  */
 (function () {
@@ -82,8 +82,11 @@
       var v = (q.get(k) || '').replace(/[^A-Za-z0-9 _.-]/g, '').trim().slice(0, 60).trim();
       if (v) out += '&' + k + '=' + encodeURIComponent(v);
     });
+    // gclid / fbclid : valeur transmise à l'outil, qui ne l'envoie à son serveur qu'avec le consentement du visiteur
     ['gclid', 'fbclid', 'msclkid'].forEach(function (k) {
-      if (q.has(k)) out += '&' + k + '=1';
+      if (!q.has(k)) return;
+      var v = q.get(k) || '';
+      out += '&' + k + '=' + (k !== 'msclkid' && /^[A-Za-z0-9._-]{8,500}$/.test(v) ? encodeURIComponent(v) : '1');
     });
     var type = q.get('type');
     if (type === 'appartement' || type === 'maison') out += '&type=' + type;

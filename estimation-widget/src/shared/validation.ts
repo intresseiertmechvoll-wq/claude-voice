@@ -2,6 +2,7 @@
  * Vérification des réponses. Le même code tourne dans le navigateur (aide à la
  * saisie) et sur le serveur (seule vérification qui compte).
  */
+import { sanitizeAds } from './ads';
 import { COMMUNE_NAMES } from './communes';
 import {
   DELAIS,
@@ -292,7 +293,8 @@ export type ValidationResult =
   | { ok: false; errors: Errors; bot?: boolean };
 
 /** Vérification complète d'un envoi (côté serveur) */
-export function validateSubmission(body: unknown): ValidationResult {
+/** nowMs : horloge du serveur (bornes de la date de clic publicitaire) */
+export function validateSubmission(body: unknown, nowMs = Date.now()): ValidationResult {
   if (!body || typeof body !== 'object' || Array.isArray(body)) return { ok: false, errors: { form: 'invalid' } };
   const b = body as Raw;
   // Honeypot : champ invisible pour un humain. S'il est rempli, c'est un robot.
@@ -320,6 +322,7 @@ export function validateSubmission(body: unknown): ValidationResult {
       lang,
       page: safePage,
       source: sanitizeSource(b.source),
+      ads: sanitizeAds(b.ads, nowMs),
       answers: {
         type: v.type as Answers['type'],
         commune: v.commune as string,
