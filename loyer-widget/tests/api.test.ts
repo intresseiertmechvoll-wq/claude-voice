@@ -284,3 +284,82 @@ describe('Vérification des réponses', () => {
     if (v.ok) expect(Object.keys(v.value.answers)).not.toContain('prix');
   });
 });
+
+describe('Lead : doublons et adresse mal tapée', () => {
+  const sent = (fetchMock: ReturnType<typeof setup>['fetchMock'], i = 0) => JSON.parse((fetchMock.mock.calls[i] as unknown as [string, RequestInit])[1].body as string);
+
+  it('2e envoi du même visiteur : signalé dans l’objet et en tête de l’e-mail', async () => {
+    const { fetchMock, env, deps } = setup();
+    await handleEstimate(req({ ...body(), essai: 2 }), env, deps);
+    const m = sent(fetchMock);
+    expect(m.subject).toBe('🔥 Lead loyer – Dudelange – Appartement – gestion : oui – 2e estimation');
+    expect(m.text).toContain('⚠️ Doublon : 2e estimation');
+  });
+
+  it('premier envoi, ou valeur farfelue : pas de mention de doublon', async () => {
+    for (const essai of [1, undefined, 'x', 0, 999, 2.5]) {
+      resetMemoryLimiter();
+      const { fetchMock, env, deps } = setup();
+      await handleEstimate(req({ ...body(), essai }), env, deps);
+      expect(sent(fetchMock).subject.endsWith('gestion : oui')).toBe(true);
+      expect(sent(fetchMock).text).not.toContain('Doublon');
+    }
+  });
+
+  it('adresse probablement mal tapée : Jason est prévenu dans l’e-mail', async () => {
+    const { fetchMock, env, deps } = setup();
+    await handleEstimate(req(body({ contact: { email: 'marie.muller@gmial.com' } })), env, deps);
+    expect(sent(fetchMock).text).toContain('⚠️ E-mail : peut-être mal tapé : marie.muller@gmail.com ?');
+    resetMemoryLimiter();
+    const s2 = setup();
+    await handleEstimate(req(body()), s2.env, s2.deps);
+    expect(sent(s2.fetchMock).text).not.toContain('mal tapé');
+  });
+});
+
+describe('Cloudflare Turnstile (anti-robots)', () => {
+  const siteverify = (success: boolean | 'panne') =>
+    vi.fn(async (url: string) => {
+      if (String(url).includes('turnstile')) {
+        if (success === 'panne') throw new Error('timeout');
+        return new Response(JSON.stringify({ success, 'error-codes': success ? [] : ['invalid-input-response'] }), { status: 200 });
+      }
+      return new Response(JSON.stringify({ id: 'x' }), { status: 200 });
+    });
+  const env = { RESEND_API_KEY: 're_test', LEAD_EMAIL: 'contact@immobuild.lu', TURNSTILE_SECRET_KEY: '1x0000000000000000000000000000000AA' };
+  const deps = (f: ReturnType<typeof siteverify>) => ({ fetch: f as unknown as typeof fetch, data: DATA, refs: REFS, params: PARAMS, log: () => {}, now: () => new Date('2026-11-19T10:00:00Z') });
+
+  it('jeton accepté : le lead part ; le jeton et l’IP sont transmis à Cloudflare', async () => {
+    const f = siteverify(true);
+    const res = await handleEstimate(req({ ...body(), turnstile: 'XXXX.DUMMY.TOKEN.XXXX' }), env, deps(f));
+    expect(res.status).toBe(200);
+    const [url, init] = f.mock.calls[0] as unknown as [string, RequestInit];
+    expect(url).toBe('https://challenges.cloudflare.com/turnstile/v0/siteverify');
+    expect(JSON.parse(init.body as string)).toEqual({ secret: env.TURNSTILE_SECRET_KEY, response: 'XXXX.DUMMY.TOKEN.XXXX', remoteip: '203.0.113.7' });
+    expect(f).toHaveBeenCalledTimes(2); // vérification + e-mail du lead
+  });
+
+  it('jeton refusé ou absent : 403, aucun e-mail', async () => {
+    for (const [ok, tok] of [[false, 'XXXX.DUMMY.TOKEN.XXXX'], [true, undefined], [true, ''], [true, 'x'.repeat(2049)]] as const) {
+      resetMemoryLimiter();
+      const f = siteverify(ok);
+      const res = await handleEstimate(req({ ...body(), turnstile: tok }), env, deps(f));
+      expect(res.status).toBe(403);
+      expect(((await res.json()) as any).error).toBe('turnstile');
+      expect(f.mock.calls.some((c) => String(c[0]).includes('resend'))).toBe(false);
+    }
+  });
+
+  it('Cloudflare injoignable : le lead part quand même (pas de lead perdu à cause d’une panne)', async () => {
+    const f = siteverify('panne');
+    const res = await handleEstimate(req({ ...body(), turnstile: 'XXXX.DUMMY.TOKEN.XXXX' }), env, deps(f));
+    expect(res.status).toBe(200);
+  });
+
+  it('sans clé secrète : pas de contrôle (comme avant)', async () => {
+    const f = siteverify(false);
+    const res = await handleEstimate(req(body()), { ...env, TURNSTILE_SECRET_KEY: undefined }, deps(f));
+    expect(res.status).toBe(200);
+    expect(f.mock.calls.some((c) => String(c[0]).includes('turnstile'))).toBe(false);
+  });
+});

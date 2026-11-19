@@ -72,7 +72,8 @@ export function extraireAthome(html: string): PagePortail {
       chambres: entier(c.bedrooms),
       type: String(l.typeKey ?? l.type ?? ''),
       localite: String(l.address?.city ?? ''),
-      pays: PAYS[pays] ?? (pays ? pays.slice(0, 2).toUpperCase() : 'LU'),
+      // Pays absent : inconnu (« ?? »), donc exclu des statistiques du Luxembourg
+      pays: PAYS[pays] ?? (pays ? pays.slice(0, 2).toUpperCase() : '??'),
       url: `https://www.athome.lu${lien}`,
       publiee_le: cree ? `${cree[1]}-${cree[2]}-${cree[3]}` : null,
     });

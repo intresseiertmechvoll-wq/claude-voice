@@ -643,3 +643,6 @@ html.is-embedded #app { padding: 4px 2px 24px; }
   .result-actions > * { justify-content: center; white-space: normal; }
 }
 .nowrap { white-space: nowrap; }
+.disclaimer .ecart { font-weight: 400; }
+.turnstile { margin: 12px 0 0; display: flex; justify-content: center; }
+.turnstile:empty { display: none; }

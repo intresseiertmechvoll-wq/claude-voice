@@ -14,5 +14,9 @@ export function normalize(s: string): string {
     .normalize('NFD')
     .replace(/[̀-ͯ]/g, '')
     .toLowerCase()
+    // « Duedelange », « Koerich » : ue / oe / ae comme ü / ö / ä (des deux côtés, donc sans risque)
+    .replace(/ae/g, 'a')
+    .replace(/oe/g, 'o')
+    .replace(/ue/g, 'u')
     .trim();
 }

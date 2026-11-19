@@ -4,7 +4,7 @@ Ce document décrit ce que fait l'outil, pour t'aider à mettre à jour ta polit
 
 ## En bref
 
-- Pas de cookie, pas de traceur, pas de statistiques de visite, pas de police chargée depuis Google.
+- Pas de cookie, pas de traceur, pas de statistiques de visite, pas de police chargée depuis Google. Exception possible : si Cloudflare Turnstile (anti-robots) est activé, voir « Turnstile » ci-dessous.
 - Pas de base de données : les réponses partent par e-mail, puis l'outil ne garde rien.
 - Deux prestataires : **Cloudflare** (hébergement de l'outil et calcul) et **Resend** (envoi de l'e-mail).
 
@@ -52,6 +52,16 @@ Si tu actives `copieVisiteur` dans `config.json` :
 - base légale à mon avis : exécution de la demande du visiteur (il a demandé une estimation). **À valider** ;
 - pour l'avis « adresse fausse », la copie part avec deux étiquettes Resend : `categorie = copie_visiteur` et le numéro de téléphone du visiteur en chiffres (déjà présent dans l'e-mail du lead chez Resend). Si la copie est refusée, Resend renvoie l'adresse, l'objet et ces étiquettes à l'outil, qui t'envoie l'avis puis n'enregistre rien ;
 - **avant d'activer** : ajouter la phrase proposée au point 7 dans ta politique de confidentialité.
+
+### Turnstile (anti-robots, option conseillée)
+
+Si `turnstileSiteKey` est rempli dans `config.json` :
+
+- à l'étape 3, le navigateur charge un script de Cloudflare (`challenges.cloudflare.com`) qui analyse des signaux techniques : adresse IP, empreinte TLS, User-Agent, adresse du site. Source : [Turnstile Privacy Addendum](https://www.cloudflare.com/turnstile-privacy-policy/) ;
+- Cloudflare est **sous-traitant** pour la protection du formulaire, et **responsable de traitement** pour l'amélioration de sa détection des robots (intérêt légitime, selon Cloudflare). À mentionner dans ta politique de confidentialité ;
+- l'outil envoie à Cloudflare, depuis le serveur, le jeton du navigateur et l'adresse IP du visiteur pour vérification ; rien n'est enregistré par l'outil ;
+- cookies : Cloudflare indique que Turnstile n'en dépose pas (option « pre-clearance » à laisser désactivée) ; à vérifier dans le navigateur après la mise en ligne (voir README 3.7) ;
+- texte proposé pour ta politique de confidentialité (point 7) : « Pour protéger le formulaire contre les robots, nous utilisons Cloudflare Turnstile, qui analyse des informations techniques de votre navigateur (dont votre adresse IP). Voir la notice de Cloudflare : cloudflare.com/turnstile-privacy-policy. »
 
 ## 4. Adresse IP et limite d'envois
 

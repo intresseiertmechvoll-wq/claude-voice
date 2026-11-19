@@ -19,6 +19,8 @@ export interface Ctx {
   quickCommunes: string[];
   /** une copie du résultat est envoyée au visiteur (config.json → copieVisiteur) */
   copieVisiteur?: boolean;
+  /** Cloudflare Turnstile actif (config.json → turnstileSiteKey) */
+  turnstile?: boolean;
 }
 
 export const STEP_ICONS = ['epingle', 'outils', 'drapeau', 'personne'];
@@ -30,8 +32,10 @@ const GESTION_ICONS: Record<string, string> = { oui: 'gestion', peut_etre: 'peut
 /* ---------- Briques ---------- */
 
 /** Message d'erreur adapté au champ */
-export function errorKey(name: string, code: string): string {
+export function errorKey(name: string, code: string, indicatif?: unknown): string {
   if (code === 'required') return 'errors.required';
+  // L'exemple « 621 123 456 » ne vaut que pour le Luxembourg
+  if (name === 'numero' && code === 'phone' && indicatif !== undefined && indicatif !== '+352') return 'errors.phoneAutre';
   if (name === 'commune') return 'errors.commune';
   if (name === 'annee') return 'errors.annee';
   return `errors.${code}`;
@@ -49,7 +53,7 @@ export function noDataNote(t: T, type: unknown, commune: unknown): string {
 function errorMessage(ctx: Ctx, name: string): string {
   const code = ctx.e[name];
   if (!code) return `<p class="field-error" id="${name}-error" hidden></p>`;
-  const key = errorKey(name, code);
+  const key = errorKey(name, code, ctx.v.indicatif);
   return `<p class="field-error" id="${name}-error">${icon('info', 'ico ico-xs')}<span>${esc(ctx.t(key))}</span></p>`;
 }
 
@@ -209,7 +213,7 @@ function step1(ctx: Ctx): string {
   <label for="commune" id="commune-label"><span>${esc(t('fields.commune'))}</span></label>
   <div class="combo">
     <input type="text" id="commune" name="commune" value="${esc(v.commune ?? '')}" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="commune-list" autocomplete="off" spellcheck="false" placeholder="${esc(t('fields.communePlaceholder'))}" aria-required="true"${invalid(ctx, 'commune')}${describedBy(ctx, 'commune', false)}>
-    <ul id="commune-list" role="listbox" aria-labelledby="commune-label" hidden></ul>
+    <ul id="commune-list" role="listbox" aria-labelledby="commune-label" tabindex="-1" hidden></ul>
   </div>
   ${errorMessage(ctx, 'commune')}
   <p class="commune-canton" id="commune-canton" aria-live="polite">${canton ? `${icon('check', 'ico ico-xs')}${esc(t('fields.communeSelected', { deCanton: deCanton(canton, ctx.lang) }))}` : ''}</p>
@@ -330,6 +334,7 @@ ${input(ctx, 'email', t('fields.email'), { type: 'email', autocomplete: 'email',
   </label>
   ${errorMessage(ctx, 'rgpd')}
 </div>
+${ctx.turnstile ? '<div id="ts-widget" class="turnstile"></div>' : ''}
 <p class="trust">${icon('bouclier', 'ico ico-sm')}<span>${esc(t('trust.line'))}<br>${esc(t(ctx.copieVisiteur ? 'trust.whereCopie' : 'trust.where'))}</span></p>`;
 }
 

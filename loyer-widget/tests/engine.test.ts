@@ -200,3 +200,12 @@ describe('Ajustements', () => {
     expect(facteurIndice(DATA)).toBeCloseTo(1.04396, 4);
   });
 });
+
+describe('Fiabilité et communes avec peu de données', () => {
+  it('commune avec peu d’annonces (Rumelange) : au plus « moyenne », comme annoncé à l’étape 1', () => {
+    expect(peuDeDonnees.appartement).toContain('Rumelange');
+    expect(estimate(apartment({ commune: 'Rumelange' }), DATA, REFS, PARAMS).result.reliability).toBe('medium');
+    expect(estimate(apartment({ commune: 'Dudelange' }), DATA, REFS, PARAMS).result.reliability).toBe('high');
+  });
+});
+

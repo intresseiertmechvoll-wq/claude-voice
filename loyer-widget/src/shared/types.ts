@@ -49,6 +49,8 @@ export interface Submission {
   contact: Contact;
   lang: Lang;
   page: string;
+  /** 1 = première estimation de ce visiteur sur la page ; 2, 3… = nouvel envoi (variante, retour) */
+  essai: number;
 }
 
 export interface CommuneData {

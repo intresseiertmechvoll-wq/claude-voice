@@ -1,4 +1,5 @@
 /** E-mail du lead envoyé à ImmoBuild Kohn (toujours en français) */
+import { suggestionEmail } from './email-typos';
 import type { Estimate } from './engine';
 import type { Submission } from './types';
 
@@ -58,7 +59,8 @@ export function leadSubject(s: Submission): string {
   const a = s.answers;
   const prio = leadPriority(s);
   // Retour à la ligne interdit dans un objet d'e-mail (commune et libellés viennent de listes fermées)
-  return `${prio.level === 'chaud' ? '🔥 ' : ''}Lead loyer – ${a.commune} – ${L.type[a.type]} – gestion : ${L.gestion[a.gestion].toLowerCase()}`.replace(/[\r\n\u2028\u2029]+/g, ' ');
+  const essai = s.essai > 1 ? ` – ${s.essai}e estimation` : '';
+  return `${prio.level === 'chaud' ? '🔥 ' : ''}Lead loyer – ${a.commune} – ${L.type[a.type]} – gestion : ${L.gestion[a.gestion].toLowerCase()}${essai}`.replace(/[\r\n\u2028\u2029]+/g, ' ');
 }
 
 type Section = { title: string; rows: [string, string][] };
@@ -79,6 +81,11 @@ export function leadSections(s: Submission, e: Estimate, date: Date): Section[] 
         ['Loyer affiché', `${eur(r.low)} – ${eur(r.high)} par mois (milieu ${eur(r.mid)}), hors charges${a.meuble ? ', hors supplément mobilier' : ''}`],
         ['Rappeler', `${c.prenom} ${c.nom} – ${formatPhone(c.telephone)}`],
         ['E-mail', c.email],
+        ...((): [string, string][] => {
+          const fix = suggestionEmail(c.email);
+          return fix ? [['⚠️ E-mail', `peut-être mal tapé : ${fix} ? (vérifiez au téléphone)`]] : [];
+        })(),
+        ...(s.essai > 1 ? ([['⚠️ Doublon', `${s.essai}e estimation envoyée par ce visiteur depuis la même page (variante ou retour en arrière) : un seul rappel suffit`]] as [string, string][]) : []),
         ['Langue', L.lang[s.lang]],
         ...(c.message ? ([['Message', c.message]] as [string, string][]) : []),
       ],

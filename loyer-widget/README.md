@@ -2,6 +2,16 @@
 
 Outil « Quel loyer pour votre bien ? » pour gagner des clients en **gestion locative** :
 
+> **Avant la mise en ligne : 8 points à cocher**
+> 1. `config.json` : `gestionUrl` (aujourd'hui la page contact, pas une page « gestion locative »), `contactUrl`, `privacyUrl`, `phone` (vide = pas de numéro affiché).
+> 2. `params.json` : valider les coefficients et la règle de priorité des leads (partie « Paramètres à valider »).
+> 3. Politique de confidentialité sur immobuild.lu : ajouter le texte de `PRIVACY.md` (point 7) et fixer la durée de conservation des leads.
+> 4. **Faire relire par un juriste la case à cocher de l'étape 4** : aujourd'hui, le résultat ne s'affiche que si le visiteur accepte d'être recontacté. Une revue indépendante (18/11/2026) signale un risque de « consentement lié » (art. 7, paragraphe 4, RGPD). Piste : base légale « demande du visiteur » et case formulée comme une prise de connaissance.
+> 5. Cloudflare : créer le stockage KV `RATE_LIMIT` et le secret `RATE_LIMIT_SALT` (partie 3.4), sinon la limite de 20 envois par heure ne tient pas.
+> 6. Cloudflare Turnstile (anti-robots, partie 3.7) : clé de site dans `config.json`, clé secrète `TURNSTILE_SECRET_KEY`.
+> 7. Revérifier la loi sur legilux (partie « Plafond légal ») : une réforme est en discussion.
+> 8. Mettre en ligne, puis envoyer 3 ou 4 estimations de test depuis de vrais téléphones (iPhone et Android) et vérifier les e-mails reçus.
+
 1. le propriétaire décrit son appartement ou sa maison en 3 étapes courtes ;
 2. il donne ses coordonnées ;
 3. il voit une fourchette de loyer mensuel (prudent / conseillé / en annonce), et tu reçois le lead par e-mail, avec sa priorité. En tête de l'e-mail : boutons **Appeler**, **WhatsApp** (si c'est un mobile) et **Répondre** (réponse déjà rédigée dans la langue du visiteur, à relire avant d'envoyer).
@@ -43,7 +53,7 @@ Pas de base de données, pas de cookie, pas de traceur. Les polices sont incluse
 - **Jason présent** : ta photo et une bulle qui réagit à certaines réponses. Les phrases sont dans `src/i18n/fr.json` → `coach`.
 - **Trois langues** : `?lang=fr`, `?lang=de`, `?lang=en`.
 
-Contrôlé le 17/11/2026 (en local) : 0 erreur axe-core (WCAG 2.1 AA), rien ne dépasse et aucun texte coupé à 320, 390, 768 et 1280 px en FR, DE et EN ; Lighthouse mobile : performance 100, accessibilité 100, bonnes pratiques 100, 85 Ko au total.
+Contrôlé le 19/11/2026 (en local, pas encore en ligne) : 0 erreur axe-core (WCAG 2.1 AA), rien ne dépasse et aucun texte coupé à 320, 390, 768 et 1280 px en FR, DE et EN ; Lighthouse 12.2.1 mobile : performance 100, accessibilité 100, bonnes pratiques 100, LCP 1,4 s, 87 Ko au total. En ligne, les chiffres peuvent être un peu différents.
 
 ---
 
@@ -116,6 +126,7 @@ npx wrangler pages secret put FROM_EMAIL --project-name loyer-widget
 | `RESEND_API_KEY` | ta clé Resend (`re_…`), la même que pour l'outil d'estimation ou une nouvelle | oui |
 | `LEAD_EMAIL` | l'adresse qui reçoit les leads, par défaut `contact@immobuild.lu` | non |
 | `FROM_EMAIL` | l'expéditeur, sur ton domaine validé chez Resend, par ex. `ImmoBuild Loyer <loyer@immobuild.lu>` | oui, sauf si c'est exactement cette adresse |
+| `TURNSTILE_SECRET_KEY` | clé secrète Cloudflare Turnstile (anti-robots), voir 3.7 | non, conseillé |
 | `RESEND_WEBHOOK_SECRET` | secret de signature des avis de Resend (`whsec_…`), voir « Adresse e-mail fausse » ci-dessous | seulement si la copie au visiteur est activée |
 | `RATE_LIMIT_SALT` | une longue phrase au hasard, gardée secrète (empêche de retrouver une IP à partir de son empreinte) | non, conseillé |
 
@@ -146,6 +157,19 @@ Puis : Workers & Pages → loyer-widget → Settings → Bindings → Add → KV
 - `config.json` : `gestionUrl` (page « gestion locative » de ton site), `contactUrl`, `privacyUrl`, `phone`.
 - `params.json` : valider les coefficients (partie « Paramètres à valider »).
 - Revérifier la loi sur legilux (partie « Plafond légal ») : une réforme est en discussion.
+
+### 3.7 Anti-robots : Cloudflare Turnstile (conseillé)
+
+Sans protection, un robot peut remplir le formulaire des centaines de fois : ta boîte se remplit et le quota Resend (100 e-mails par jour, partagé avec l'outil d'estimation) s'épuise ; ensuite, plus aucun vrai lead ne passe. Turnstile (gratuit, de Cloudflare) vérifie en arrière-plan que le visiteur est un humain ; dans la plupart des cas, il ne voit rien.
+
+1. Cloudflare → *Turnstile* → *Add widget* ; nom « verlounen » ; domaines : `verlounen.lu`, `immobuild.lu` (et l'adresse `*.pages.dev` du projet si tu testes dessus) ; mode **Managed** ; **ne pas activer** « pre-clearance » (sinon un cookie est déposé).
+2. Copier la **clé de site** dans `config.json` → `"turnstileSiteKey": "0x…"`.
+3. Copier la **clé secrète** : `npx wrangler pages secret put TURNSTILE_SECRET_KEY --project-name loyer-widget`, puis `npm run deploy`.
+4. Tester une estimation depuis ton téléphone. Pour tester sans vraie clé : clé de site `1x00000000000000000000BB` et clé secrète `1x0000000000000000000000000000000AA` (clés de test officielles de Cloudflare, toujours acceptées).
+
+Comportement : le script de Cloudflare n'est chargé qu'à l'étape 3, donc seulement par les visiteurs qui vont au bout. Si le contrôle échoue (robot, bloqueur de publicité qui bloque Cloudflare), le visiteur voit un message et rien n'est envoyé. Si les serveurs de Cloudflare ne répondent pas, l'envoi est accepté quand même (pas de lead perdu à cause d'une panne ; la limite par IP et le champ piège restent actifs). Sans les deux clés, l'outil marche comme avant, sans Turnstile.
+
+Données : Turnstile analyse des signaux techniques du navigateur (adresse IP, empreinte TLS, User-Agent) ; voir `PRIVACY.md`. Cloudflare indique que Turnstile ne dépose pas de cookie (sans « pre-clearance »), mais des utilisateurs signalent parfois un cookie technique `_cfuvid` : **après la mise en ligne, vérifier dans le navigateur** (outils de développement → Application → Cookies). S'il y en a un, retirer « sans cookies » des textes de l'outil (`trust.line` dans `src/i18n/*.json`) et de la politique de confidentialité.
 
 ## 4. Mettre à jour les données
 
@@ -265,7 +289,7 @@ Vérifié sur legilux le 17/11/2026 (`docs/cadre-legal.md`) : loi du 21 septembr
 - Vérification de tous les champs sur le serveur ; le navigateur ne fait qu'aider.
 - Champ caché anti-robot (honeypot) : rien n'est calculé ni envoyé s'il est rempli.
 - Au plus **20 envois par heure** et par IP (`config.json` → `rateLimitPerHour`), comme l'outil d'estimation (réseaux mobiles partagés).
-- Formulaire accepté seulement depuis la page de l'outil (contrôle `Origin`) et seulement en `application/json`.
+- Contrôle `Origin` : un navigateur ne peut pas envoyer le formulaire depuis une autre page. Ce contrôle n'arrête pas un robot (qui n'envoie pas d'`Origin`) : contre les robots, le champ piège, la limite par IP et Cloudflare Turnstile. Seulement `application/json`.
 - Le résultat n'est renvoyé **qu'après** des coordonnées valides **et** l'envoi réussi de l'e-mail. Si Resend échoue ou ne répond pas en 10 secondes, message d'erreur avec ton adresse ; l'essai raté ne compte pas dans la limite.
 - Champs d'une ligne : ni retour à la ligne, ni caractères invisibles (largeur nulle, sens d'écriture, séparateurs de ligne Unicode).
 - Politique de sécurité du contenu (CSP) sans styles ni scripts en ligne ; affichage en iframe seulement sur `immobuild.lu` et ses sous-domaines.
@@ -273,7 +297,7 @@ Vérifié sur legilux le 17/11/2026 (`docs/cadre-legal.md`) : loi du 21 septembr
 
 ## Tests
 
-`npm test` lance 56 tests, dont :
+`npm test` lance 107 tests (19/11/2026), dont :
 
 | Test | Fichier |
 | --- | --- |

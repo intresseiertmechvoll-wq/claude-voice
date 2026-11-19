@@ -180,7 +180,9 @@
     "network": "L’envoi n’a pas abouti. Vérifiez votre connexion et réessayez.",
     "server": "L’envoi n’a pas abouti. Réessayez dans quelques minutes, ou écrivez-moi à {contact}.",
     "reload": "L’outil vient d’être mis à jour. Rechargez la page pour continuer.",
-    "phone_pays": "Ce numéro ressemble à un numéro français, belge ou allemand : choisissez l’indicatif à gauche (par exemple +33 pour la France)."
+    "phone_pays": "Ce numéro ressemble à un numéro français, belge ou allemand : choisissez l’indicatif à gauche (par exemple +33 pour la France).",
+    "phoneAutre": "Ce numéro ne semble pas valide. Vérifiez le numéro et l’indicatif choisi à gauche.",
+    "turnstile": "La vérification anti-robots n’a pas abouti. Réessayez dans un instant ; si cela continue, désactivez un éventuel bloqueur de publicité ou écrivez-moi à {contact}."
   },
   "recap": {
     "title": "Votre bien en résumé",
@@ -268,7 +270,10 @@
     "restart": "Faire une autre estimation",
     "factorsMaisonInclus": "Pour une maison, le jardin, le garage et le nombre de chambres sont déjà compris dans la valeur de comparaison.",
     "factorsNoneMaison": "L’état et la classe énergétique correspondent à la moyenne : pas d’ajustement.",
-    "copie": "Une copie de votre résultat a été envoyée à {email}. Rien reçu ? Regardez dans les courriers indésirables."
+    "copie": "Une copie de votre résultat a été envoyée à {email}. Rien reçu ? Regardez dans les courriers indésirables.",
+    "lowTextMaison": "Estimation des baux signés (hypothèse : environ 15 % sous les annonces)",
+    "howRangeMaison": "Pour les maisons, le haut de la fourchette vient des annonces de maisons ; le bas est une estimation (hypothèse : les baux se signent environ 15 % sous les prix annoncés, comme pour les appartements). Les chambres meublées et les colocations ne sont pas comptées.",
+    "ecart": "Selon l’état réel, l’emplacement exact et les prestations, le loyer obtenu peut s’écarter de 15 à 20 %."
   },
   "factors": {
     "etat_neuf": "Bien neuf",

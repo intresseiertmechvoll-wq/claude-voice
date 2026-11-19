@@ -23,6 +23,8 @@ export interface Env {
   RATE_LIMIT_SALT?: string;
   /** secret de signature des avis de Resend (webhook), commence par « whsec_ » */
   RESEND_WEBHOOK_SECRET?: string;
+  /** clé secrète Cloudflare Turnstile ; absente = pas de contrôle anti-robots */
+  TURNSTILE_SECRET_KEY?: string;
 }
 
 export interface Deps {
@@ -96,6 +98,29 @@ export async function sendMail(env: Env, d: Deps, mail: Mail): Promise<'config' 
   return null;
 }
 
+/**
+ * Cloudflare Turnstile : vérifie le jeton du navigateur (developers.cloudflare.com/turnstile,
+ * « Validate the token »). Jeton absent ou refusé → false. Cloudflare injoignable → true (on ne perd
+ * pas un vrai lead à cause d'une panne ; la limite par IP et le champ piège restent actifs).
+ */
+export async function verifierTurnstile(secret: string, token: unknown, ip: string, d: Deps): Promise<boolean> {
+  if (typeof token !== 'string' || token === '' || token.length > 2048) return false;
+  try {
+    const res = await d.fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ secret, response: token, ...(ip !== 'unknown' ? { remoteip: ip } : {}) }),
+      signal: AbortSignal.timeout(5_000),
+    });
+    const r = (await res.json()) as { success?: boolean; 'error-codes'?: string[] };
+    if (r.success !== true) d.log('Turnstile refusé :', (r['error-codes'] ?? []).join(', '));
+    return r.success === true;
+  } catch (err) {
+    d.log('Turnstile injoignable, envoi accepté :', (err as Error).message);
+    return true;
+  }
+}
+
 /** Contrôles communs : POST, même origine, JSON, taille. Renvoie le corps ou une réponse d'erreur. */
 export async function readJson(request: Request, maxBody = MAX_BODY): Promise<{ body: unknown } | { error: Response }> {
   if (request.method !== 'POST') return { error: json({ ok: false, error: 'method' }, 405) };
@@ -128,6 +153,9 @@ export async function handleEstimate(request: Request, env: Env, deps: Partial<D
   }
 
   const ip = request.headers.get('cf-connecting-ip') ?? 'unknown';
+  if (env.TURNSTILE_SECRET_KEY && !(await verifierTurnstile(env.TURNSTILE_SECRET_KEY, (body as { turnstile?: unknown }).turnstile, ip, d))) {
+    return json({ ok: false, error: 'turnstile' }, 403);
+  }
   const allowed = await allowSubmission(ip, config.rateLimitPerHour, env.RATE_LIMIT, env.RATE_LIMIT_SALT ?? 'immobuild-loyer');
   if (!allowed) return json({ ok: false, error: 'rate_limit' }, 429);
 

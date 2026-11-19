@@ -16,6 +16,7 @@
  *   milieu = (bas + haut) / 2 ; arrondis à 50 €.
  */
 import type { Answers, CommuneData, Dataset, PublicFactor, PublicResult, References, Reliability, Zone } from './types';
+import peuDeDonnees from '../../data/peu-de-donnees.json';
 
 export type Params = typeof import('../../params.json');
 
@@ -116,6 +117,8 @@ function stationnement(a: Answers, zone: Zone, refs: References, params: Params)
  *   « moyenne » sinon ;
  * - maison : « moyenne » si la zone compte au moins 13 annonces dans le relevé et 100 à 300 m², « limitée » sinon.
  */
+const PEU_APPARTEMENTS = new Set<string>((peuDeDonnees as { appartement?: string[] }).appartement ?? []);
+
 export function reliability(a: Answers, c: CommuneData, refs: References, params: Params): Reliability {
   const f = params.fiabilite;
   if (a.type === 'maison') {
@@ -126,7 +129,8 @@ export function reliability(a: Answers, c: CommuneData, refs: References, params
   const [lmin, lmax] = f.appartement_surface_limite;
   if (f.cantons_limites.includes(c.canton) || a.chambres === 0 || a.surface < lmin || a.surface > lmax) return 'low';
   const [bmin, bmax] = f.appartement_surface_bonne;
-  if (f.zones_bonnes_appartement.includes(c.zone) && a.surface >= bmin && a.surface <= bmax) return 'high';
+  // Commune avec peu d'annonces (calcul sur le canton) : jamais « bonne », comme l'annonce l'étape 1
+  if (f.zones_bonnes_appartement.includes(c.zone) && a.surface >= bmin && a.surface <= bmax && !PEU_APPARTEMENTS.has(c.commune)) return 'high';
   return 'medium';
 }
 

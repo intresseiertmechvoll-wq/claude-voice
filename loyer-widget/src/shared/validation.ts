@@ -243,12 +243,14 @@ export function validateSubmission(body: unknown): ValidationResult {
   const lang: Lang = b.lang === 'de' || b.lang === 'en' ? b.lang : 'fr';
   const page = str(b.page);
   const safePage = page.length <= TEXT_MAX.page && /^https?:\/\/[^\s<>"]+$/.test(page) ? page : '';
+  const essai = typeof b.essai === 'number' && Number.isInteger(b.essai) && b.essai >= 1 && b.essai <= 50 ? b.essai : 1;
 
   return {
     ok: true,
     value: {
       lang,
       page: safePage,
+      essai,
       answers: {
         type: v.type as Answers['type'],
         commune: v.commune as string,

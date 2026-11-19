@@ -59,6 +59,11 @@ describe('atHome : lecture des données de la page', () => {
     ]);
   });
 
+  it('pays absent : inconnu, donc pas compté au Luxembourg', () => {
+    const p = extraireAthome(athome([listing({ address: { city: 'Quelque part' } })]));
+    expect(p.annonces[0].pays).toBe('??');
+  });
+
   it('page sans données : erreur claire (format changé)', () => {
     expect(() => extraireAthome('<html>athome.lu</html>')).toThrow(/introuvables/);
   });

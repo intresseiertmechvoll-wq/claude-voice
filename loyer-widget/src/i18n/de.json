@@ -180,7 +180,9 @@
     "network": "Das Senden hat nicht geklappt. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
     "server": "Das Senden hat nicht geklappt. Versuchen Sie es in ein paar Minuten erneut oder schreiben Sie mir an {contact}.",
     "reload": "Das Tool wurde gerade aktualisiert. Laden Sie die Seite neu, um fortzufahren.",
-    "phone_pays": "Diese Nummer sieht nach einer Nummer aus Frankreich, Belgien oder Deutschland aus: Bitte wählen Sie links die passende Vorwahl (z. B. +33 für Frankreich)."
+    "phone_pays": "Diese Nummer sieht nach einer Nummer aus Frankreich, Belgien oder Deutschland aus: Bitte wählen Sie links die passende Vorwahl (z. B. +33 für Frankreich).",
+    "phoneAutre": "Diese Nummer scheint ungültig. Bitte prüfen Sie die Nummer und die links gewählte Vorwahl.",
+    "turnstile": "Die Prüfung gegen Roboter hat nicht geklappt. Versuchen Sie es gleich noch einmal; falls es weiter nicht geht, schalten Sie einen Werbeblocker aus oder schreiben Sie mir an {contact}."
   },
   "recap": {
     "title": "Ihre Immobilie im Überblick",
@@ -268,7 +270,10 @@
     "restart": "Neue Schätzung",
     "factorsMaisonInclus": "Bei Häusern sind Garten, Garage und Zimmerzahl im Vergleichswert bereits enthalten.",
     "factorsNoneMaison": "Zustand und Energieklasse entsprechen dem Durchschnitt: keine Anpassung.",
-    "copie": "Eine Kopie Ihres Ergebnisses wurde an {email} geschickt. Nichts erhalten? Schauen Sie im Spam-Ordner nach."
+    "copie": "Eine Kopie Ihres Ergebnisses wurde an {email} geschickt. Nichts erhalten? Schauen Sie im Spam-Ordner nach.",
+    "lowTextMaison": "Geschätztes Niveau abgeschlossener Verträge (Annahme: etwa 15 % unter den Inseraten)",
+    "howRangeMaison": "Bei Häusern stammt das obere Ende aus Hausinseraten; das untere ist eine Schätzung (Annahme: Verträge werden etwa 15 % unter den Inseratspreisen abgeschlossen, wie bei Wohnungen). Möblierte Zimmer und Wohngemeinschaften zählen nicht mit.",
+    "ecart": "Je nach tatsächlichem Zustand, genauer Lage und Ausstattung kann die erzielte Miete um 15 bis 20 % abweichen."
   },
   "factors": {
     "etat_neuf": "Neubau",
@@ -299,7 +304,7 @@
     "energieMid": "Klasse {c}, notiert.",
     "meuble": "Möbliert: Den Möbelzuschlag erkläre ich im Ergebnis.",
     "vide": "Leer vermietet, notiert.",
-    "garage": "Stellplätze zählen bei der Miete.",
+    "garage": "Stellplätze erhöhen die Miete.",
     "gestion_oui": "Gern, das ist mein Beruf.",
     "gestion_peut_etre": "Wir sprechen unverbindlich darüber.",
     "gestion_non": "Kein Problem, die Schätzung bleibt kostenlos.",

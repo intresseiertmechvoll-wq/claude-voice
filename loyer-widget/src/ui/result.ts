@@ -122,7 +122,7 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, o: ResultOptions
   const how = `<details class="how">
     <summary>${icon('info', 'ico ico-sm')}<span>${esc(t('result.howTitle'))}</span></summary>
     <p>${esc(t(r.type === 'maison' ? 'result.howMaison' : 'result.howAppartement', { deCanton: deCanton(r.canton, lang), zone: zoneName }))}</p>
-    <p>${esc(t('result.howRange'))}</p>
+    <p>${esc(t(r.type === 'maison' ? 'result.howRangeMaison' : 'result.howRange'))}</p>
   </details>`;
 
   const source = t(r.type === 'maison' ? 'result.sourceMaison' : 'result.sourceAppartement', { date: formatDate(r.releveDate, lang), trimestre: r.indiceTrimestre.replace('T', ' T') });
@@ -140,13 +140,13 @@ export function renderResult(r: PublicResult, t: T, lang: Lang, o: ResultOptions
     <h3 id="range-title" class="sr-only">${esc(t('result.rangeTitle'))}</h3>
     <div class="range-viz" aria-hidden="true"><span class="rv-low"></span><span class="rv-mid"></span><span class="rv-high"></span></div>
     <div class="values">
-      <div class="value-card value-low"><p class="value-label">${esc(t('result.low'))}</p><p class="value-amount">${eur(r.low)}</p><p class="value-text">${esc(t('result.lowText'))}</p></div>
+      <div class="value-card value-low"><p class="value-label">${esc(t('result.low'))}</p><p class="value-amount">${eur(r.low)}</p><p class="value-text">${esc(t(r.type === 'maison' ? 'result.lowTextMaison' : 'result.lowText'))}</p></div>
       <div class="value-card value-high"><p class="value-label">${esc(t('result.high'))}</p><p class="value-amount">${eur(r.high)}</p><p class="value-text">${esc(t('result.highText'))}</p></div>
     </div>
   </section>
   ${reliability}
   ${o.copieA ? `<p class="copie" data-testid="copie">${icon('info', 'ico ico-sm')}<span>${esc(t('result.copie', { email: o.copieA }))}</span></p>` : ''}
-  <p class="disclaimer" data-testid="disclaimer">${esc(t('result.disclaimer'))}</p>
+  <p class="disclaimer" data-testid="disclaimer">${esc(t('result.disclaimer'))} <span class="ecart">${esc(t('result.ecart'))}</span></p>
   ${ctaGestion}${ctaRdv}${call}
   ${legal}
   ${stats}

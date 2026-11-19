@@ -180,7 +180,9 @@
     "network": "Sending failed. Check your connection and try again.",
     "server": "Sending failed. Try again in a few minutes, or email me at {contact}.",
     "reload": "The tool has just been updated. Reload the page to continue.",
-    "phone_pays": "This looks like a French, Belgian or German number: please choose the country code on the left (e.g. +33 for France)."
+    "phone_pays": "This looks like a French, Belgian or German number: please choose the country code on the left (e.g. +33 for France).",
+    "phoneAutre": "This number does not look valid. Please check the number and the country code chosen on the left.",
+    "turnstile": "The anti-bot check did not succeed. Please try again in a moment; if it keeps failing, turn off any ad blocker or write to me at {contact}."
   },
   "recap": {
     "title": "Your property at a glance",
@@ -268,7 +270,10 @@
     "restart": "New estimate",
     "factorsMaisonInclus": "For a house, the garden, garage and number of bedrooms are already included in the comparison value.",
     "factorsNoneMaison": "Condition and energy class match the average: no adjustment.",
-    "copie": "A copy of your result has been sent to {email}. Nothing received? Check your spam folder."
+    "copie": "A copy of your result has been sent to {email}. Nothing received? Check your spam folder.",
+    "lowTextMaison": "Estimated level of signed leases (assumption: about 15% below listings)",
+    "howRangeMaison": "For houses, the top of the range comes from house listings; the bottom is an estimate (assumption: leases are signed about 15% below asking rents, as for apartments). Furnished rooms and flat-shares are not counted.",
+    "ecart": "Depending on the actual condition, exact location and features, the rent achieved may differ by 15 to 20%."
   },
   "factors": {
     "etat_neuf": "New property",

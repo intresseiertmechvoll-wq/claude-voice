@@ -11,6 +11,8 @@ import { esc } from './ui/html';
 import { icon } from './ui/icons';
 import { formatEuro } from './ui/format';
 import { errorKey, noDataNote, recapItems, renderStep, STEP_ICONS, type Values } from './ui/steps';
+import { suggestionEmail } from './shared/email-typos';
+import { jeton, monter, precharger } from './ui/turnstile';
 
 const TOTAL = TOTAL_STEPS;
 const params = new URLSearchParams(location.search);
@@ -25,6 +27,8 @@ const page = (() => {
 const contactUrl = config.contactUrl[lang];
 const gestionUrl = config.gestionUrl[lang];
 const privacyUrl = config.privacyUrl[lang];
+/** Clé de site Cloudflare Turnstile ; vide = anti-robots désactivé */
+const TURNSTILE = String((config as { turnstileSiteKey?: string }).turnstileSiteKey ?? '').trim();
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 document.documentElement.lang = lang;
@@ -42,10 +46,12 @@ const state: {
   result: PublicResult | null;
   /** une copie du résultat a été envoyée au visiteur */
   copie: boolean;
+  /** estimations déjà envoyées depuis l'ouverture de la page (pour signaler les doublons à Jason) */
+  envois: number;
   direction: 'next' | 'back';
   /** après « Modifier » depuis le résumé : bouton pour y revenir directement */
   returnTo: number | null;
-} = { step: 1, values: { ...DEFAULTS }, errors: {}, sending: false, serverError: null, result: null, copie: false, direction: 'next', returnTo: null };
+} = { step: 1, values: { ...DEFAULTS }, errors: {}, sending: false, serverError: null, result: null, copie: false, envois: 0, direction: 'next', returnTo: null };
 
 const app = document.getElementById('app')!;
 
@@ -167,7 +173,7 @@ function render(focus = true) {
       </div>
       ${coachHtml()}
       ${summary}
-      ${renderStep(s, { t, lang, v: state.values, e: state.errors, privacyUrl, quickCommunes: config.quickCommunes, copieVisiteur: config.copieVisiteur === true })}
+      ${renderStep(s, { t, lang, v: state.values, e: state.errors, privacyUrl, quickCommunes: config.quickCommunes, copieVisiteur: config.copieVisiteur === true, turnstile: TURNSTILE !== '' })}
     </div>
     <div class="actions">
       ${
@@ -182,6 +188,11 @@ function render(focus = true) {
   </div>
 </div>`;
 
+  if (TURNSTILE && s === TOTAL - 1) precharger();
+  if (TURNSTILE && s === TOTAL && !state.sending) {
+    const slot = app.querySelector<HTMLElement>('#ts-widget');
+    if (slot) void monter(slot, TURNSTILE, lang);
+  }
   if (s === 1) {
     setupCombobox(
       app.querySelector<HTMLInputElement>('#commune')!,
@@ -279,7 +290,7 @@ function setFieldError(name: string, code: string | undefined) {
   if (code) {
     state.errors[name] = code as Errors[string];
     wrap.classList.add('has-error');
-    const key = errorKey(name, code);
+    const key = errorKey(name, code, state.values.indicatif);
     msg.innerHTML = `${icon('info', 'ico ico-xs')}<span>${esc(t(key))}</span>`;
     msg.hidden = false;
     inputs.forEach((i) => i.setAttribute('aria-invalid', 'true'));
@@ -465,20 +476,10 @@ app.addEventListener('click', (e) => {
   }
 });
 
-const EMAIL_TYPOS: Record<string, string> = {
-  'gmial.com': 'gmail.com', 'gmal.com': 'gmail.com', 'gnail.com': 'gmail.com', 'gmail.co': 'gmail.com', 'gmail.fr': 'gmail.com', 'gamil.com': 'gmail.com', 'gmaill.com': 'gmail.com',
-  'hotmal.com': 'hotmail.com', 'hotmial.com': 'hotmail.com', 'hotmail.co': 'hotmail.com', 'hotmai.com': 'hotmail.com',
-  'yahooo.com': 'yahoo.com', 'yaho.com': 'yahoo.com', 'outlok.com': 'outlook.com', 'outloo.com': 'outlook.com', 'pt.l': 'pt.lu', 'pt.lux': 'pt.lu',
-};
 function emailSuggest(value: string) {
   app.querySelector('#email-suggest')?.remove();
-  const at = value.lastIndexOf('@');
-  const domaine = at > 0 ? value.slice(at + 1).toLowerCase() : '';
-  // Fautes de frappe courantes sur la fin de l'adresse : « .con », « .cmo », « .comm », « .lux »
-  const fin = domaine.replace(/\.(con|cmo|ocm|comm|vom|xom)$/, '.com').replace(/\.(lux|lu\.)$/, '.lu');
-  const fix = at > 0 ? EMAIL_TYPOS[fin] ?? (fin !== domaine ? fin : undefined) : undefined;
-  if (!fix) return;
-  const suggestion = value.slice(0, at + 1) + fix;
+  const suggestion = suggestionEmail(value);
+  if (!suggestion) return;
   app.querySelector('[data-field="email"]')?.insertAdjacentHTML('beforeend', `<p class="suggest" id="email-suggest">${esc(t('fields.emailTypo'))} <button type="button" class="link-btn" data-action="fix-email" data-value="${esc(suggestion)}">${esc(suggestion)}</button> ?</p>`);
   sendHeight();
 }
@@ -534,6 +535,14 @@ app.addEventListener('submit', (e) => {
 /* ---------- Envoi : le résultat s'affiche dès que le serveur a répondu (pas d'attente artificielle) ---------- */
 type ApiJson = { ok?: boolean; result?: PublicResult; copie?: boolean; error?: string; errors?: Errors };
 
+/** AbortSignal.timeout n'existe pas avant Safari 16 : repli avec AbortController */
+function delai(ms: number): AbortSignal {
+  if (typeof AbortSignal.timeout === 'function') return AbortSignal.timeout(ms);
+  const c = new AbortController();
+  setTimeout(() => c.abort(), ms);
+  return c.signal;
+}
+
 async function send() {
   state.sending = true;
   state.serverError = null;
@@ -555,6 +564,16 @@ async function send() {
   }
   // Champ anti-robot : invisible, vide pour un humain
   const website = String(state.values.website ?? '');
+  // Cloudflare Turnstile : jeton obtenu en arrière-plan à l'étape 4
+  let turnstile: string | undefined;
+  if (TURNSTILE) {
+    turnstile = (await jeton()) ?? undefined;
+    if (!turnstile) {
+      state.sending = false;
+      state.serverError = t('errors.turnstile', { contact: config.publicEmail });
+      return render();
+    }
+  }
 
   let res: Response;
   let json: ApiJson = {};
@@ -562,8 +581,8 @@ async function send() {
     res = await fetch('/api/estimate', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ lang, page, website, answers, contact }),
-      signal: AbortSignal.timeout(20_000),
+      body: JSON.stringify({ lang, page, website, essai: state.envois + 1, turnstile, answers, contact }),
+      signal: delai(30_000),
     });
     json = (await res.json().catch(() => ({}))) as ApiJson;
   } catch {
@@ -575,6 +594,7 @@ async function send() {
   if (res.ok && json.ok && json.result) {
     state.result = json.result;
     state.copie = json.copie === true;
+    state.envois += 1;
     pushStep();
     return render();
   }
@@ -587,7 +607,7 @@ async function send() {
       }
     }
   } else {
-    state.serverError = t(res.status === 429 ? 'errors.rate_limit' : 'errors.server', { contact: config.publicEmail });
+    state.serverError = t(res.status === 429 ? 'errors.rate_limit' : json.error === 'turnstile' ? 'errors.turnstile' : 'errors.server', { contact: config.publicEmail });
   }
   render();
 }

@@ -1,0 +1,4 @@
+/* Styles de la page de démonstration (fichier séparé : la CSP de l'outil interdit les styles en ligne) */
+body { margin: 0; font-family: system-ui, sans-serif; background: #ffffff; color: #0a2342; }
+header, footer { padding: 24px 16px; background: #f2efea; }
+main { max-width: 760px; margin: 0 auto; padding: 24px 0; }
