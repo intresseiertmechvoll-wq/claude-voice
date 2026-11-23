@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Welche Miete für Ihre Immobilie? – ImmoBuild Kohn"
+    "title": "Wie viel Miete ist für Ihre Immobilie realistisch? – ImmoBuild Kohn"
   },
   "intro": {
     "kicker": "Mietschätzung · ImmoBuild Kohn",
-    "title": "Welche Miete für Ihre Immobilie?",
-    "text": "Vier kurze Schritte, dann eine realistische Mietspanne, berechnet aus öffentlichen Daten. Kostenlos und unverbindlich: Für das Ergebnis hinterlassen Sie am Ende Ihre Kontaktdaten.",
+    "title": "Wie viel Miete ist für Ihre Immobilie realistisch?",
+    "text": "Vier kurze Schritte, dann eine realistische Mietspanne auf Basis öffentlicher Daten. Kostenlos und unverbindlich. Das Ergebnis sehen Sie, nachdem Sie im letzten Schritt Ihre Kontaktdaten angegeben haben.",
     "badges": {
       "free": "Kostenlos",
       "commitment": "Unverbindlich",
@@ -35,7 +35,7 @@
       "title": "Ihr Vorhaben"
     },
     "4": {
-      "title": "Fast geschafft!"
+      "title": "Wie erreiche ich Sie?"
     }
   },
   "stepsShort": {
@@ -77,8 +77,8 @@
       "neuf": "Neu",
       "renove": "Kürzlich renoviert",
       "bon": "Guter Zustand",
-      "rafraichir": "Aufzufrischen",
-      "renover": "Zu renovieren"
+      "rafraichir": "Leichter Renovierungsbedarf",
+      "renover": "Renovierungsbedürftig"
     },
     "etatHints": {
       "neuf": "Nie bewohnt oder jünger als 5 Jahre",
@@ -135,7 +135,7 @@
       "oui": "Ja, sie ist vermietet",
       "non": "Nein, sie ist frei"
     },
-    "gestion": "Möchten Sie die Mietverwaltung abgeben?",
+    "gestion": "Möchten Sie die Vermietung verwalten lassen?",
     "gestionOptions": {
       "oui": "Ja",
       "peut_etre": "Vielleicht",
@@ -161,7 +161,7 @@
     "indicatif": "Vorwahl",
     "numero": "Nummer",
     "numeroPlaceholder": "621 123 456",
-    "numeroWhy": "Nur, um Sie wegen Ihrer Immobilie zu kontaktieren.",
+    "numeroWhy": "Damit ich Sie zurückrufen kann.",
     "message": "Nachricht",
     "rgpd": "Ich bin einverstanden, dass ImmoBuild Kohn diese Angaben nutzt, um mich wegen meiner Immobilie zu kontaktieren, wie in der {link} beschrieben.",
     "rgpdLink": "Datenschutzerklärung",
@@ -172,7 +172,7 @@
     "invalid": "Dieser Wert ist ungültig.",
     "range": "Dieser Wert liegt außerhalb der Grenzen.",
     "email": "Diese E-Mail-Adresse ist ungültig.",
-    "phone": "Diese Nummer scheint ungültig. Bitte geben Sie eine echte Nummer an, zum Beispiel 621 123 456.",
+    "phone": "Diese Nummer scheint ungültig zu sein. Beispiel: 621 123 456.",
     "rgpd": "Bitte setzen Sie dieses Häkchen, um Ihre Miete zu sehen.",
     "commune": "Wählen Sie eine Gemeinde aus der Liste.",
     "summary": "Bitte korrigieren Sie die markierten Felder.",
@@ -181,8 +181,8 @@
     "server": "Das Senden hat nicht geklappt. Versuchen Sie es in ein paar Minuten erneut oder schreiben Sie mir an {contact}.",
     "reload": "Das Tool wurde gerade aktualisiert. Laden Sie die Seite neu, um fortzufahren.",
     "phone_pays": "Diese Nummer sieht nach einer Nummer aus Frankreich, Belgien oder Deutschland aus: Bitte wählen Sie links die passende Vorwahl (z. B. +33 für Frankreich).",
-    "phoneAutre": "Diese Nummer scheint ungültig. Bitte prüfen Sie die Nummer und die links gewählte Vorwahl.",
-    "turnstile": "Die Prüfung gegen Roboter hat nicht geklappt. Versuchen Sie es gleich noch einmal; falls es weiter nicht geht, schalten Sie einen Werbeblocker aus oder schreiben Sie mir an {contact}.",
+    "phoneAutre": "Diese Nummer scheint ungültig zu sein. Bitte prüfen Sie Nummer und Vorwahl.",
+    "turnstile": "Die Sicherheitsprüfung hat nicht funktioniert. Versuchen Sie es gleich noch einmal. Falls es weiter nicht geht, schalten Sie einen Werbeblocker aus oder schreiben Sie mir an {contact}.",
     "taille": "Für eine Immobilie dieser Größe ist eine automatische Schätzung nicht verlässlich: Geben Sie {min} bis {max} m² an oder kontaktieren Sie mich direkt.",
     "trop_chambres": "Zu viele Schlafzimmer für diese Fläche (rechnen Sie mit mindestens 9 m² pro Zimmer)."
   },
@@ -200,7 +200,7 @@
     "parkings": "{n} Stellplatz/-plätze"
   },
   "trust": {
-    "line": "Kostenlos · unverbindlich · ohne Cookies",
+    "line": "Kostenlos · ohne Cookies",
     "where": "Ihre Antworten gehen nur per E-Mail an ImmoBuild Kohn.",
     "whereCopie": "Ihre Antworten gehen nur per E-Mail an ImmoBuild Kohn. Sie erhalten zusätzlich eine Kopie Ihres Ergebnisses."
   },
@@ -212,11 +212,11 @@
     "midText": "Pro Monat, ohne Nebenkosten",
     "perMonth": "pro Monat",
     "perMonthShort": "Monat",
-    "perM2": "also {value}",
+    "perM2": "entspricht {value}",
     "rangeTitle": "Ihre Mietspanne",
-    "low": "Vorsichtige Miete",
+    "low": "Vertrags­miete",
     "lowText": "Niveau kürzlich abgeschlossener Verträge",
-    "high": "Miete im Inserat",
+    "high": "Angebots­miete",
     "highText": "Niveau der aktuellen Inserate",
     "reliabilityTitle": "Datenlage",
     "reliability": {
@@ -227,7 +227,7 @@
     "reliabilityText": {
       "appartement": {
         "high": "Viele bekannte Mieten für diese Art von Wohnung in Ihrer Region.",
-        "medium": "Solide Daten, hier aber weniger zahlreich.",
+        "medium": "Verlässliche Daten, aber in Ihrem Kanton weniger davon.",
         "low": "Wenige Daten für diese Immobilie: mit Vorsicht zu betrachten."
       },
       "maison": {
@@ -237,17 +237,17 @@
       }
     },
     "disclaimer": "Unverbindliche Schätzung auf Basis öffentlicher Statistiken. Sie ersetzt keine Besichtigung.",
-    "ctaGestion": "Die Verwaltung ImmoBuild Kohn anvertrauen",
+    "ctaGestion": "Verwaltung an ImmoBuild Kohn übergeben",
     "ctaRdv": "Termin vereinbaren",
     "legalTitle": "Gesetzliche Obergrenze",
     "legalText": "Die Miete darf eine gesetzliche Obergrenze nicht überschreiten: 5 % pro Jahr des investierten Kapitals. Ich prüfe das mit Ihnen.",
     "legalLink": "Gesetz ansehen",
-    "legalMeuble": "Möbliert: Die Möbel werden getrennt bezahlt, höchstens 1,5 % pro Monat des Möbelwerts (Rechnungen jünger als 10 Jahre). Sie sind in dieser Miete nicht enthalten.",
+    "legalMeuble": "Möbliert: Für die Möbel kommt ein Zuschlag hinzu, höchstens 1,5 % ihres Werts pro Monat (Rechnungen jünger als 10 Jahre). Er ist in dieser Miete nicht enthalten.",
     "compareTitle": "Zum Vergleich",
     "statOffres": "Wohnungen zur Miete in {commune}",
     "statOffresMaison": "Häuser zur Miete in {commune}",
     "statOffresSub": "Inserate vom {debut} bis {fin}",
-    "statBaux": "Verträge 2024-2025",
+    "statBaux": "Verträge 2024–2025",
     "statBauxSub": "Durchschnittsmiete pro m², {zone}",
     "statReleve": "Verglichene Häuser",
     "statReleveSub": "Hausinserate, {zone}, Erhebung {date}",
@@ -257,9 +257,9 @@
     "compareNoteMaison": "Die Berechnung geht von Hausinseraten Ihrer Region aus und passt sie an Ihre Wohnfläche an.",
     "factorsTitle": "Was Ihre Miete beeinflusst",
     "factorsNone": "Ihre Immobilie entspricht dem Durchschnitt: keine Anpassung.",
-    "factorsCapped": "Um vorsichtig zu bleiben, ist die Summe der Anpassungen begrenzt.",
+    "factorsCapped": "Aus Vorsicht ist die Summe der Anpassungen begrenzt.",
     "howTitle": "So wird die Miete berechnet",
-    "howAppartement": "Ausgangspunkt sind die tatsächlich gezahlten Mieten im Kanton {deCanton} laut Erhebung des Observatoire de l’Habitat, für eine Wohnung Ihrer Größe. Sie werden mit der offiziellen Mietentwicklung fortgeschrieben und an Zustand, Energieklasse, Etage, Außenbereich und Stellplätze angepasst.",
+    "howAppartement": "Die Berechnung geht von den tatsächlich gezahlten Mieten im Kanton {deCanton} aus (Erhebung des Observatoire de l’Habitat), für eine Wohnung Ihrer Größe. Sie werden mit der offiziellen Mietentwicklung fortgeschrieben und an Zustand, Energieklasse, Etage, Außenbereich und Stellplätze angepasst.",
     "howMaison": "Für Häuser gibt es keine detaillierten öffentlichen Mieten. Die Berechnung geht von Hausinseraten in Ihrer Region aus ({zone}), für ein Haus Ihrer Größe, und passt sie an Zustand und Energieklasse an.",
     "howRange": "Das untere Ende entspricht kürzlich abgeschlossenen Verträgen, das obere den heute in Inseraten verlangten Mieten. Möblierte Zimmer und Wohngemeinschaften zählen nicht mit.",
     "sourceAppartement": "Quellen: Observatoire de l’Habitat, Erhebung „cadastre des loyers“ (2025) und Index der Angebotsmieten ({trimestre}); Inseratserhebung vom {date}.",
@@ -267,7 +267,7 @@
     "sourceLink": "Daten ansehen",
     "nextTitle": "Wie geht es weiter?",
     "next1": "Ich erhalte Ihre Anfrage und melde mich bei Ihnen.",
-    "next2": "Gemeinsam prüfen wir vor Ort die Miete, die gesetzliche Obergrenze und was ich für Sie übernehmen kann.",
+    "next2": "Wir prüfen gemeinsam vor Ort die Miete und die gesetzliche Obergrenze, und ich sage Ihnen, was ich für Sie übernehmen kann.",
     "print": "Drucken oder als PDF speichern",
     "restart": "Neue Schätzung",
     "factorsMaisonInclus": "Bei Häusern sind Garten, Garage und Zimmerzahl im Vergleichswert bereits enthalten.",
@@ -280,8 +280,8 @@
   "factors": {
     "etat_neuf": "Neubau",
     "etat_renove": "Kürzlich renoviert",
-    "etat_rafraichir": "Aufzufrischen",
-    "etat_renover": "Zu renovieren",
+    "etat_rafraichir": "Leichter Renovierungsbedarf",
+    "etat_renover": "Renovierungsbedürftig",
     "energie": "Energieklasse {c}",
     "exterieur_balcon": "Balkon",
     "exterieur_terrasse": "Terrasse",
@@ -292,25 +292,25 @@
     "parking": "Außenstellplatz × {n}"
   },
   "coach": {
-    "start": "Hallo! Ich bin Jason. Vier Schritte, und Sie erhalten eine Mietspanne.",
-    "step2": "Diese Details beeinflussen die Miete.",
+    "start": "Guten Tag, ich bin Jason von ImmoBuild Kohn. In vier Schritten berechne ich eine Mietspanne für Ihre Immobilie.",
+    "step2": "Diese Angaben beeinflussen die Miete.",
     "step3": "So kann ich zum richtigen Zeitpunkt antworten.",
-    "step4": "Unverbindlich: Ihre Angaben verpflichten Sie zu nichts. Ich melde mich nur wegen Ihrer Immobilie.",
-    "appartement": "Eine Wohnung, sehr gut!",
-    "maison": "Ein Haus, sehr gut!",
-    "commune": "{commune}, notiert!",
-    "studio": "Ein Studio, notiert.",
-    "energieGood": "Bravo, sehr gute Energieklasse!",
-    "energieBad": "Kein Problem, ich berücksichtige das.",
-    "energieUnknown": "Kein Problem, es geht auch so.",
-    "energieMid": "Klasse {c}, notiert.",
+    "step4": "Ich nutze Ihre Angaben nur, um mich bei Ihnen zu melden. Sie gehen damit keine Verpflichtung ein.",
+    "appartement": "Eine Wohnung, in Ordnung.",
+    "maison": "Ein Haus, in Ordnung.",
+    "commune": "Ich suche die Daten für {commune}.",
+    "studio": "Ein Studio, in Ordnung.",
+    "energieGood": "Gute Energieklasse: Das wirkt sich positiv auf die Miete aus.",
+    "energieBad": "Ich berücksichtige das in der Berechnung.",
+    "energieUnknown": "Kein Problem, ich rechne ohne.",
+    "energieMid": "Klasse {c}, in Ordnung.",
     "meuble": "Möbliert: Den Möbelzuschlag erkläre ich im Ergebnis.",
-    "vide": "Leer vermietet, notiert.",
+    "vide": "Leer vermietet, in Ordnung.",
     "garage": "Stellplätze erhöhen die Miete.",
-    "gestion_oui": "Gern, das ist mein Beruf.",
-    "gestion_peut_etre": "Wir sprechen unverbindlich darüber.",
-    "gestion_non": "Kein Problem, die Schätzung bleibt kostenlos.",
-    "nonProprio": "Kein Problem, die Schätzung ist trotzdem möglich.",
+    "gestion_oui": "Gern, genau das mache ich.",
+    "gestion_peut_etre": "Darüber können wir gern sprechen.",
+    "gestion_non": "In Ordnung, die Schätzung bleibt kostenlos.",
+    "nonProprio": "In Ordnung, die Schätzung ist trotzdem möglich.",
     "garageMaison": "Notiert. Bei Häusern ist die Garage im Vergleich schon enthalten."
   }
 }

@@ -37,8 +37,8 @@ describe('Écran de résultat', () => {
   });
 
   it('meublé : explique le supplément mobilier ; vide : pas de mention', async () => {
-    expect(await html('fr', apartment({ meuble: true }))).toMatch(/le mobilier se paie à part, au plus 1,5\s%/);
-    expect(await html('fr')).not.toContain('mobilier se paie');
+    expect(await html('fr', apartment({ meuble: true }))).toMatch(/un supplément pour le mobilier s’ajoute à ce loyer, au plus 1,5\s%/);
+    expect(await html('fr')).not.toContain('supplément pour le mobilier');
   });
 
   it('maison : comparaison avec le relevé de maisons', async () => {

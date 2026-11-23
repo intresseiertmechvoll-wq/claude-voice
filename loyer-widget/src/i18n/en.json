@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "What rent for your property? – ImmoBuild Kohn"
+    "title": "How much rent can you charge? – ImmoBuild Kohn"
   },
   "intro": {
     "kicker": "Rent estimate · ImmoBuild Kohn",
-    "title": "What rent for your property?",
-    "text": "Four short steps, then a realistic rent range based on public data. Free and without obligation: to see the result, you leave your contact details at the end.",
+    "title": "How much rent can you charge?",
+    "text": "Four short steps, then a realistic rent range based on public data. It’s free and there’s no obligation. You’ll see the result once you’ve left your contact details in the last step.",
     "badges": {
       "free": "Free",
       "commitment": "No obligation",
@@ -35,7 +35,7 @@
       "title": "Your plans"
     },
     "4": {
-      "title": "Almost done!"
+      "title": "How can I reach you?"
     }
   },
   "stepsShort": {
@@ -46,7 +46,7 @@
   },
   "zones": {
     "LV": "Luxembourg City",
-    "LC": "communes around Luxembourg City",
+    "LC": "municipalities around Luxembourg City",
     "Peri": "Capellen and Mersch cantons",
     "Sud": "Esch-sur-Alzette canton",
     "Est": "east of the country",
@@ -172,7 +172,7 @@
     "invalid": "This value is not valid.",
     "range": "This value is out of range.",
     "email": "This email address is not valid.",
-    "phone": "This number does not look valid. Please enter a real number, for example 621 123 456.",
+    "phone": "This number does not look valid. Example: 621 123 456.",
     "rgpd": "Please tick this box to see your rent.",
     "commune": "Choose a municipality from the list.",
     "summary": "Please correct the highlighted fields.",
@@ -200,7 +200,7 @@
     "parkings": "{n} parking space(s)"
   },
   "trust": {
-    "line": "Free · no obligation · no cookies",
+    "line": "Free · no cookies",
     "where": "Your answers are sent only to ImmoBuild Kohn, by email.",
     "whereCopie": "Your answers are sent only to ImmoBuild Kohn, by email. You also receive a copy of your result."
   },
@@ -212,11 +212,11 @@
     "midText": "Per month, excluding service charges",
     "perMonth": "per month",
     "perMonthShort": "month",
-    "perM2": "or {value}",
+    "perM2": "that’s {value}",
     "rangeTitle": "Your rent range",
-    "low": "Cautious rent",
+    "low": "Conservative rent",
     "lowText": "Level of recently signed leases",
-    "high": "Advertised rent",
+    "high": "Asking rent",
     "highText": "Level of current listings",
     "reliabilityTitle": "Data reliability",
     "reliability": {
@@ -227,7 +227,7 @@
     "reliabilityText": {
       "appartement": {
         "high": "Many known rents for this type of home in your area.",
-        "medium": "Solid data, but less of it here.",
+        "medium": "Reliable data, but less of it for your canton.",
         "low": "Little data for this property: treat with caution."
       },
       "maison": {
@@ -242,12 +242,12 @@
     "legalTitle": "Legal cap",
     "legalText": "Rent may not exceed a legal cap linked to the capital invested: 5% per year. I will check this with you.",
     "legalLink": "Read the law",
-    "legalMeuble": "Furnished: furniture is charged separately, at most 1.5% per month of the furniture’s value (invoices under 10 years old). It is not included in this rent.",
+    "legalMeuble": "Furnished: a furniture supplement is added on top of this rent, at most 1.5% of the furniture’s value per month (invoices under 10 years old).",
     "compareTitle": "For comparison",
     "statOffres": "Apartments for rent in {commune}",
     "statOffresMaison": "Houses for rent in {commune}",
     "statOffresSub": "listings from {debut} to {fin}",
-    "statBaux": "Leases signed in 2024-2025",
+    "statBaux": "Leases signed in 2024–2025",
     "statBauxSub": "average rent per m², {zone}",
     "statReleve": "Houses compared",
     "statReleveSub": "house listings, {zone}, collected {date}",
@@ -257,17 +257,17 @@
     "compareNoteMaison": "The calculation starts from house listings in your area, then adapts to your living area.",
     "factorsTitle": "What affects your rent",
     "factorsNone": "Your property matches the average: no adjustment.",
-    "factorsCapped": "To stay cautious, the total adjustment is capped.",
+    "factorsCapped": "As a precaution, the total adjustment is capped.",
     "howTitle": "How this rent is calculated",
-    "howAppartement": "Starting point: rents actually paid in the canton of {deCanton}, from the Observatoire de l’Habitat survey, for a home of your size. They are updated with the official rent trend, then adjusted for condition, energy class, floor, outdoor space and parking.",
+    "howAppartement": "The calculation starts from rents actually paid in the canton of {deCanton} (Observatoire de l’Habitat survey), for a home of your size. They are updated with the official rent trend, then adjusted for condition, energy class, floor, outdoor space and parking.",
     "howMaison": "There are no detailed public rents for houses. The calculation starts from house listings collected in your area ({zone}), for a house of your size, then adjusts for condition and energy class.",
     "howRange": "The bottom of the range matches recently signed leases, the top matches rents asked in today’s listings. Furnished rooms and flat-shares are not counted.",
     "sourceAppartement": "Sources: Observatoire de l’Habitat, “cadastre des loyers” survey (2025) and advertised rent index ({trimestre}); listings collected on {date}.",
     "sourceMaison": "Sources: house listings collected on {date}; Observatoire de l’Habitat, advertised rent index ({trimestre}).",
     "sourceLink": "See the data",
     "nextTitle": "What happens next?",
-    "next1": "I receive your request and get back to you.",
-    "next2": "Together we check the rent on site, the legal cap and what I can take care of for you.",
+    "next1": "I’ll receive your request and get back to you.",
+    "next2": "We check the rent and the legal cap together on site, and I tell you what I can take care of.",
     "print": "Print or save as PDF",
     "restart": "New estimate",
     "factorsMaisonInclus": "For a house, the garden, garage and number of bedrooms are already included in the comparison value.",
@@ -292,25 +292,25 @@
     "parking": "Outdoor parking × {n}"
   },
   "coach": {
-    "start": "Hello! I’m Jason. Four steps and you’ll get a rent range.",
-    "step2": "These details move the rent.",
+    "start": "Hello, I’m Jason from ImmoBuild Kohn. In four steps I’ll work out a rent range for your property.",
+    "step2": "These details affect the rent.",
     "step3": "This helps me get back to you at the right time.",
-    "step4": "No obligation: your details commit you to nothing. I will only contact you about your property.",
-    "appartement": "An apartment, great!",
-    "maison": "A house, great!",
-    "commune": "{commune}, noted!",
-    "studio": "A studio, noted.",
-    "energieGood": "Well done, a very good energy class!",
-    "energieBad": "No problem, I’ll take it into account.",
-    "energieUnknown": "No problem, we’ll manage without.",
-    "energieMid": "Class {c}, noted.",
-    "meuble": "Furnished: I explain the furniture supplement in the result.",
-    "vide": "Unfurnished, noted.",
-    "garage": "Parking counts in the rent.",
-    "gestion_oui": "With pleasure, it’s my job.",
-    "gestion_peut_etre": "Let’s talk about it, no obligation.",
-    "gestion_non": "No problem, the estimate stays free.",
-    "nonProprio": "No problem, you can still get an estimate.",
+    "step4": "I only use these to get back to you. They don’t commit you to anything.",
+    "appartement": "An apartment, got it.",
+    "maison": "A house, got it.",
+    "commune": "Looking up the data for {commune}.",
+    "studio": "A studio, got it.",
+    "energieGood": "A good energy class helps the rent.",
+    "energieBad": "I’ll factor that into the calculation.",
+    "energieUnknown": "That’s fine, I’ll calculate without it.",
+    "energieMid": "Class {c}, got it.",
+    "meuble": "Furnished: I’ll explain the furniture supplement in your result.",
+    "vide": "Unfurnished, got it.",
+    "garage": "Parking adds to the rent.",
+    "gestion_oui": "Happy to, that’s what I do.",
+    "gestion_peut_etre": "We can talk about it.",
+    "gestion_non": "That’s fine, the estimate stays free.",
+    "nonProprio": "That’s fine, you can still get an estimate.",
     "garageMaison": "Noted. For a house, the garage is already included in the comparison."
   }
 }

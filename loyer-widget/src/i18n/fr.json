@@ -5,7 +5,7 @@
   "intro": {
     "kicker": "Estimation de loyer · ImmoBuild Kohn",
     "title": "Quel loyer pour votre bien ?",
-    "text": "Quatre étapes courtes, puis une fourchette de loyer réaliste, calculée sur des données publiques. Gratuit et sans engagement : pour voir le résultat, vous laissez vos coordonnées à la fin.",
+    "text": "Quatre étapes courtes, puis une fourchette de loyer réaliste, calculée sur des données publiques. C’est gratuit et sans engagement. Le résultat s’affiche une fois vos coordonnées laissées à la dernière étape.",
     "badges": {
       "free": "Gratuit",
       "commitment": "Sans engagement",
@@ -35,7 +35,7 @@
       "title": "Votre projet"
     },
     "4": {
-      "title": "Presque fini !"
+      "title": "Comment vous joindre ?"
     }
   },
   "stepsShort": {
@@ -135,7 +135,7 @@
       "oui": "Oui, il est loué",
       "non": "Non, il est libre"
     },
-    "gestion": "Souhaitez-vous confier la gestion locative ?",
+    "gestion": "Souhaitez-vous confier la gestion locative à un professionnel ?",
     "gestionOptions": {
       "oui": "Oui",
       "peut_etre": "Peut-être",
@@ -161,7 +161,7 @@
     "indicatif": "Indicatif",
     "numero": "Numéro",
     "numeroPlaceholder": "621 123 456",
-    "numeroWhy": "Uniquement pour vous recontacter au sujet de votre bien.",
+    "numeroWhy": "Pour pouvoir vous rappeler.",
     "message": "Message",
     "rgpd": "J’accepte qu’ImmoBuild Kohn utilise ces informations pour me recontacter au sujet de mon bien, comme expliqué dans la {link}.",
     "rgpdLink": "politique de confidentialité",
@@ -172,7 +172,7 @@
     "invalid": "Cette valeur n’est pas valide.",
     "range": "Cette valeur est hors limites.",
     "email": "Cette adresse e-mail n’est pas valide.",
-    "phone": "Ce numéro ne semble pas valide. Indiquez un vrai numéro, par exemple 621 123 456.",
+    "phone": "Ce numéro ne semble pas valide. Exemple : 621 123 456.",
     "rgpd": "Merci de cocher cette case pour voir votre loyer.",
     "commune": "Choisissez une commune dans la liste.",
     "summary": "Merci de corriger les champs signalés.",
@@ -180,10 +180,10 @@
     "network": "L’envoi n’a pas abouti. Vérifiez votre connexion et réessayez.",
     "server": "L’envoi n’a pas abouti. Réessayez dans quelques minutes, ou écrivez-moi à {contact}.",
     "reload": "L’outil vient d’être mis à jour. Rechargez la page pour continuer.",
-    "phone_pays": "Ce numéro ressemble à un numéro français, belge ou allemand : choisissez l’indicatif à gauche (par exemple +33 pour la France).",
+    "phone_pays": "Ce numéro ressemble à un numéro français, belge ou allemand : choisissez l’indicatif à gauche (par exemple +33 pour la France).",
     "phoneAutre": "Ce numéro ne semble pas valide. Vérifiez le numéro et l’indicatif choisi à gauche.",
-    "turnstile": "La vérification anti-robots n’a pas abouti. Réessayez dans un instant ; si cela continue, désactivez un éventuel bloqueur de publicité ou écrivez-moi à {contact}.",
-    "taille": "Pour un bien de cette taille, une estimation automatique n’est pas fiable : indiquez entre {min} et {max} m², ou contactez-moi directement.",
+    "turnstile": "La vérification anti-robots n’a pas abouti. Réessayez dans un instant ; si cela continue, désactivez un éventuel bloqueur de publicité ou écrivez-moi à {contact}.",
+    "taille": "Pour un bien de cette taille, une estimation automatique n’est pas fiable : indiquez entre {min} et {max} m², ou contactez-moi directement.",
     "trop_chambres": "Trop de chambres pour cette surface (comptez au moins 9 m² par chambre)."
   },
   "recap": {
@@ -200,7 +200,7 @@
     "parkings": "{n} parking(s)"
   },
   "trust": {
-    "line": "Gratuit · sans engagement · sans cookie",
+    "line": "Gratuit · sans cookie",
     "where": "Vos réponses sont envoyées uniquement à ImmoBuild Kohn, par e-mail.",
     "whereCopie": "Vos réponses sont envoyées uniquement à ImmoBuild Kohn, par e-mail. Vous recevez aussi une copie de votre résultat."
   },
@@ -216,7 +216,7 @@
     "rangeTitle": "Votre fourchette de loyer",
     "low": "Loyer prudent",
     "lowText": "Niveau des baux signés récemment",
-    "high": "Loyer en annonce",
+    "high": "Loyer d’annonce",
     "highText": "Niveau des annonces actuelles",
     "reliabilityTitle": "Fiabilité des données",
     "reliability": {
@@ -227,7 +227,7 @@
     "reliabilityText": {
       "appartement": {
         "high": "Beaucoup de loyers connus pour ce type de bien dans votre région.",
-        "medium": "Des données solides, mais moins nombreuses ici.",
+        "medium": "Des données fiables, mais moins nombreuses dans votre canton.",
         "low": "Peu de données pour ce bien : à prendre avec prudence."
       },
       "maison": {
@@ -242,12 +242,12 @@
     "legalTitle": "Plafond légal",
     "legalText": "Le loyer ne peut pas dépasser un plafond légal lié au capital investi : 5 % par an. Je vérifie ce point avec vous.",
     "legalLink": "Voir la loi",
-    "legalMeuble": "Meublé : le mobilier se paie à part, au plus 1,5 % par mois de la valeur des meubles (factures de moins de 10 ans). Il n’est pas compris dans ce loyer.",
+    "legalMeuble": "Meublé : un supplément pour le mobilier s’ajoute à ce loyer, au plus 1,5 % par mois de la valeur des meubles (factures de moins de 10 ans).",
     "compareTitle": "Pour comparer",
     "statOffres": "Appartements à louer à {commune}",
     "statOffresMaison": "Maisons à louer à {commune}",
     "statOffresSub": "annonces du {debut} au {fin}",
-    "statBaux": "Baux signés en 2024-2025",
+    "statBaux": "Baux signés en 2024–2025",
     "statBauxSub": "loyer moyen au m², {zone}",
     "statReleve": "Maisons comparées",
     "statReleveSub": "annonces de maisons, {zone}, relevé de {date}",
@@ -257,25 +257,25 @@
     "compareNoteMaison": "Le calcul part des annonces de maisons de votre région, puis s’adapte à votre surface.",
     "factorsTitle": "Ce qui joue sur votre loyer",
     "factorsNone": "Votre bien correspond à la moyenne : pas d’ajustement.",
-    "factorsCapped": "Pour rester prudent, le total des ajustements est plafonné.",
+    "factorsCapped": "Par prudence, le total des ajustements est plafonné.",
     "howTitle": "Comment ce loyer est calculé",
-    "howAppartement": "Point de départ : les loyers réellement payés dans le canton {deCanton}, selon l’enquête de l’Observatoire de l’Habitat, pour un logement de votre taille. Ils sont mis à jour avec l’évolution officielle des loyers, puis ajustés à l’état, à l’énergie, à l’étage, à l’extérieur et au stationnement.",
-    "howMaison": "Il n’existe pas de loyers publics détaillés pour les maisons. Le calcul part des annonces de maisons à louer relevées dans votre région ({zone}), pour une maison de votre taille, puis s’ajuste à l’état et à l’énergie.",
+    "howAppartement": "Le calcul part des loyers réellement payés dans le canton {deCanton} (enquête de l’Observatoire de l’Habitat) pour un logement de votre taille. Ils sont actualisés avec l’évolution officielle des loyers, puis ajustés selon l’état, la classe énergétique, l’étage, l’extérieur et le stationnement.",
+    "howMaison": "Il n’existe pas de loyers publics détaillés pour les maisons. Le calcul part des annonces de maisons à louer relevées dans votre région ({zone}), pour une maison de votre taille, puis est ajusté selon l’état et la classe énergétique.",
     "howRange": "Le bas de la fourchette correspond aux baux signés récemment, le haut aux loyers demandés aujourd’hui dans les annonces. Les chambres meublées et les colocations ne sont pas comptées.",
-    "sourceAppartement": "Sources : Observatoire de l’Habitat, enquête « cadastre des loyers » (2025) et indice des loyers annoncés ({trimestre}) ; relevé d’annonces du {date}.",
-    "sourceMaison": "Sources : relevé d’annonces de maisons du {date} ; Observatoire de l’Habitat, indice des loyers annoncés ({trimestre}).",
+    "sourceAppartement": "Sources : Observatoire de l’Habitat, enquête « cadastre des loyers » (2025) et indice des loyers annoncés ({trimestre}) ; relevé d’annonces du {date}.",
+    "sourceMaison": "Sources : relevé d’annonces de maisons du {date} ; Observatoire de l’Habitat, indice des loyers annoncés ({trimestre}).",
     "sourceLink": "Voir les données",
     "nextTitle": "Et maintenant ?",
     "next1": "Je reçois votre demande et je vous recontacte.",
-    "next2": "Ensemble, on vérifie le loyer sur place, le plafond légal et ce que je peux prendre en charge pour vous.",
+    "next2": "Nous vérifions ensemble le loyer sur place et le plafond légal, et je vous dis ce que je peux prendre en charge.",
     "print": "Imprimer ou enregistrer en PDF",
     "restart": "Faire une autre estimation",
     "factorsMaisonInclus": "Pour une maison, le jardin, le garage et le nombre de chambres sont déjà compris dans la valeur de comparaison.",
-    "factorsNoneMaison": "L’état et la classe énergétique correspondent à la moyenne : pas d’ajustement.",
-    "copie": "Une copie de votre résultat a été envoyée à {email}. Rien reçu ? Regardez dans les courriers indésirables.",
-    "lowTextMaison": "Estimation des baux signés (hypothèse : environ 15 % sous les annonces)",
-    "howRangeMaison": "Pour les maisons, le haut de la fourchette vient des annonces de maisons ; le bas est une estimation (hypothèse : les baux se signent environ 15 % sous les prix annoncés, comme pour les appartements). Les chambres meublées et les colocations ne sont pas comptées.",
-    "ecart": "Selon l’état réel, l’emplacement exact et les prestations, le loyer obtenu peut s’écarter de 15 à 20 %."
+    "factorsNoneMaison": "L’état et la classe énergétique correspondent à la moyenne : pas d’ajustement.",
+    "copie": "Une copie de votre résultat a été envoyée à {email}. Rien reçu ? Regardez dans les courriers indésirables.",
+    "lowTextMaison": "Estimation des baux signés (hypothèse : environ 15 % sous les annonces)",
+    "howRangeMaison": "Pour les maisons, le haut de la fourchette vient des annonces de maisons ; le bas est une estimation (hypothèse : les baux se signent environ 15 % sous les prix annoncés, comme pour les appartements). Les chambres meublées et les colocations ne sont pas comptées.",
+    "ecart": "Selon l’état réel, l’emplacement exact et les prestations, le loyer obtenu peut s’écarter de 15 à 20 %."
   },
   "factors": {
     "etat_neuf": "Bien neuf",
@@ -292,25 +292,25 @@
     "parking": "Parking extérieur × {n}"
   },
   "coach": {
-    "start": "Bonjour ! Je suis Jason. Quatre étapes et je vous donne une fourchette de loyer.",
-    "step2": "Ces détails font bouger le loyer.",
+    "start": "Bonjour, je suis Jason, d’ImmoBuild Kohn. En quatre étapes, je calcule une fourchette de loyer pour votre bien.",
+    "step2": "Ces détails comptent pour le loyer.",
     "step3": "Ça m’aide à vous répondre au bon moment.",
-    "step4": "Sans engagement : vos coordonnées ne vous obligent à rien. Je vous contacte uniquement au sujet de votre bien.",
-    "appartement": "Un appartement, très bien !",
-    "maison": "Une maison, très bien !",
-    "commune": "{commune}, c’est noté !",
-    "studio": "Un studio, c’est noté.",
-    "energieGood": "Bravo, très bonne classe énergétique !",
-    "energieBad": "Pas de souci, j’en tiens compte.",
-    "energieUnknown": "Pas grave, on fait sans.",
-    "energieMid": "Classe {c}, c’est noté.",
-    "meuble": "Meublé : je vous explique le supplément mobilier dans le résultat.",
-    "vide": "Loué vide, c’est noté.",
-    "garage": "Le stationnement compte dans le loyer.",
+    "step4": "Je m’en sers seulement pour vous recontacter. Vos coordonnées ne vous engagent à rien.",
+    "appartement": "Un appartement, d’accord.",
+    "maison": "Une maison, d’accord.",
+    "commune": "Je cherche les données pour {commune}.",
+    "studio": "Un studio, d’accord.",
+    "energieGood": "Bonne classe énergétique : c’est un plus pour le loyer.",
+    "energieBad": "J’en tiens compte dans le calcul.",
+    "energieUnknown": "Ce n’est pas grave, je calcule sans.",
+    "energieMid": "Classe {c}, je note.",
+    "meuble": "Meublé : j’explique le supplément mobilier dans le résultat.",
+    "vide": "Loué vide, d’accord.",
+    "garage": "Un garage ou une place de parking augmente le loyer.",
     "gestion_oui": "Avec plaisir, c’est mon métier.",
-    "gestion_peut_etre": "On en parle sans engagement.",
-    "gestion_non": "Pas de souci, l’estimation reste gratuite.",
-    "nonProprio": "Pas de souci, l’estimation reste possible.",
+    "gestion_peut_etre": "Nous pourrons en parler.",
+    "gestion_non": "D’accord, l’estimation reste gratuite.",
+    "nonProprio": "D’accord, l’estimation reste possible.",
     "garageMaison": "Noté. Pour une maison, le garage est déjà compris dans la comparaison."
   }
 }
