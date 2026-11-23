@@ -79,7 +79,7 @@ describe('Leads en attente (Resend en panne)', () => {
     expect(r.partis[0].reply_to).toBe('paul.weber@example.lu'); // le nouveau lead d'abord
     expect(r.partis[1].subject).toBe('[Envoi différé – demande reçue le 19/11 à 14:02] 🔥 Lead loyer – Dudelange – Appartement – gestion : oui');
     expect(r.partis[1].reply_to).toBe('marie.muller@example.lu');
-    expect(r.partis[1].text).toContain('n\'a pas pu partir au moment de la demande');
+    expect(r.partis[1].text).toContain('n’a pas pu partir au moment de la demande');
     expect(store.data.size).toBe(0);
   });
 

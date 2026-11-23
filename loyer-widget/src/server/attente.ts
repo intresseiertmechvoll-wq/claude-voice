@@ -107,8 +107,8 @@ export async function envoyerEnAttente(env: Env, d: Deps, envoyer: (m: Mail) => 
       const mail: Mail = {
         ...g.mail,
         subject: prefixe + g.mail.subject,
-        text: `${prefixe}\nCet e-mail n'a pas pu partir au moment de la demande (panne ou quota de l'envoi d'e-mails).\n\n${g.mail.text}`,
-        html: g.mail.html.replace(/(<div[^>]*>)/, `$1<p style="margin:0 0 16px;padding:8px 12px;background:#F2EFEA;font-size:14px">${prefixe.trim().replace(/[<>&]/g, '')} Cet e-mail n'a pas pu partir au moment de la demande.</p>`),
+        text: `${prefixe}\nCet e-mail n’a pas pu partir au moment de la demande (panne ou quota de l’envoi d’e-mails).\n\n${g.mail.text}`,
+        html: g.mail.html.replace(/(<div[^>]*>)/, `$1<p style="margin:0 0 16px;padding:8px 12px;background:#F2EFEA;font-size:14px">${prefixe.trim().replace(/[<>&]/g, '')} Cet e-mail n’a pas pu partir au moment de la demande.</p>`),
       };
       if ((await envoyer(mail)) !== null) break; // toujours en panne : on réessaiera au prochain envoi
       await env.LEADS_EN_ATTENTE.delete(name);

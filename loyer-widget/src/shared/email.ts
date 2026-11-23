@@ -197,12 +197,12 @@ export function reponsePreparee(s: Submission): { subject: string; body: string 
   if (s.lang === 'de')
     return {
       subject: `Ihre Mietschätzung in ${commune}`,
-      body: `Guten Tag ${prenom} ${nom},\n\nvielen Dank für Ihre Anfrage zur Miete für ${bien} in ${commune}. Gerne bespreche ich das Ergebnis kurz mit Ihnen am Telefon: Wann sind Sie gut erreichbar?\n\nFreundliche Grüße\nJason\nImmoBuild Kohn`,
+      body: `Guten Tag ${prenom} ${nom},\n\nvielen Dank für Ihre Anfrage zur Miete für ${bien} in ${commune}. Gerne bespreche ich das Ergebnis kurz am Telefon mit Ihnen. Wann sind Sie gut erreichbar?\n\nFreundliche Grüße\nJason\nImmoBuild Kohn`,
     };
   if (s.lang === 'en')
     return {
       subject: `Your rent estimate in ${commune}`,
-      body: `Dear ${prenom} ${nom},\n\nThank you for your rent estimate request for ${bien} in ${commune}. I would be happy to go through the result with you by phone: when is a good time to call you?\n\nKind regards,\nJason\nImmoBuild Kohn`,
+      body: `Dear ${prenom} ${nom},\n\nThank you for your rent estimate request for ${bien} in ${commune}. I would be happy to go through the result with you by phone. When is a good time to call you?\n\nKind regards,\nJason\nImmoBuild Kohn`,
     };
   return {
     subject: `Votre estimation de loyer à ${commune}`,
@@ -241,7 +241,7 @@ ${sections
       .join('')}</table>`,
   )
   .join('\n')}
-<p style="font-size:12px;color:#4a5a70;margin-top:24px">Si vous répondez à cet e-mail, la réponse part directement chez le visiteur. L’outil ne garde aucune copie (Resend conserve un journal d’envoi).</p>
+<p style="font-size:12px;color:#4a5a70;margin-top:24px">Une réponse à cet e-mail part directement chez le visiteur. L’outil ne garde pas de copie (sauf, en cas de panne d’envoi, une copie chiffrée 7 jours au plus) ; Resend garde un journal d’envoi.</p>
 </div></body></html>`;
   return { subject: leadSubject(s), html, text };
 }
