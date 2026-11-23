@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { handleBudget } from '../src/server/handler';
 import { resetMemoryLimiter } from '../src/shared/ratelimit';
+import { resetTauxCache } from '../src/server/taux';
 import { readFileSync } from 'node:fs';
 import { body, DATA, PARAMS } from './helpers';
 
@@ -22,7 +23,10 @@ function setup(status = 200) {
   return { fetchMock, env, deps };
 }
 
-beforeEach(() => resetMemoryLimiter());
+beforeEach(() => {
+  resetMemoryLimiter();
+  resetTauxCache();
+});
 
 describe('API /api/budget', () => {
   it('Un envoi complet renvoie le résultat et envoie l’e-mail du lead', async () => {
@@ -197,6 +201,38 @@ describe('Récapitulatif envoyé au visiteur', () => {
     }
     expect(copies).toEqual([true, true, true, false]);
     expect(resendCalls(fetchMock).filter((m: any) => m.to[0] === 'contact@immobuild.lu')).toHaveLength(4);
+  });
+
+  it('Revue 19/11 : panne du compteur (KV) APRÈS le lead → résultat quand même, un seul lead', async () => {
+    const { env, deps, fetchMock } = setup();
+    let gets = 0;
+    const kv = {
+      get: async () => {
+        gets += 1;
+        if (gets > 1) throw new Error('KV en panne'); // 1er appel = limite par IP (avant le lead), ensuite panne
+        return null;
+      },
+      put: async () => {},
+    };
+    const res = await handleBudget(req(body()), { ...env, RATE_LIMIT: kv }, deps);
+    expect(res.status).toBe(200);
+    const json = (await res.json()) as any;
+    expect(json.ok).toBe(true);
+    expect(json.result.copie).toBe(false);
+    expect(resendCalls(fetchMock)).toHaveLength(1); // le lead seulement
+  });
+
+  it('Revue 19/11 : un récapitulatif raté ne compte pas dans la limite par adresse', async () => {
+    const { env, deps } = setup();
+    const fail = vi.fn(async (url: string, init?: RequestInit) => {
+      if (String(url).includes('ecb.europa.eu')) return new Response(BCE_CSV);
+      const b = JSON.parse(String(init?.body ?? '{}'));
+      return new Response('{}', { status: b.to?.[0] === 'contact@immobuild.lu' ? 200 : 500 });
+    });
+    for (let i = 0; i < 4; i++) await handleBudget(req(body(), `198.51.100.${30 + i}`), env, { ...deps, fetch: fail as unknown as typeof fetch });
+    // 4 échecs : aucune place consommée, le récapitulatif suivant part
+    const ok = await handleBudget(req(body(), '198.51.100.40'), env, deps);
+    expect(((await ok.json()) as any).result.copie).toBe(true);
   });
 });
 

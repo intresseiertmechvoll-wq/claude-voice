@@ -629,7 +629,8 @@ async function send() {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ lang, page, website, answers, contact }),
-      signal: timeoutSignal(20_000),
+      // Pire cas côté serveur : BCE 3 s + deux envois Resend de 10 s = 23 s ; marge au-delà
+      signal: timeoutSignal(35_000),
     });
     json = (await res.json().catch(() => ({}))) as ApiJson;
   } catch {

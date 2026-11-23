@@ -151,15 +151,25 @@ export async function handleBudget(request: Request, env: Env, deps: Partial<Dep
 
   // Récapitulatif au visiteur, APRÈS le lead : s'il échoue, le lead est déjà chez Jason et le visiteur voit quand même son résultat.
   // Au plus N par adresse et par heure, pour que l'outil ne serve pas à inonder la boîte de quelqu'un d'autre.
+  // Le lead est parti : plus aucune erreur ne doit atteindre le visiteur, sinon il renverrait sa demande (lead en double).
   let copie = false;
   if (server.copieClient) {
-    const addr = v.value.contact.email.toLowerCase();
-    if (await allowSubmission(`mail:${addr}`, server.copieClientParHeure, env.RATE_LIMIT, salt)) {
-      const m = clientEmail(v.value, budget, communes, taux, guideData(d.data));
-      const replyTo = env.LEAD_EMAIL || server.defaultLeadEmail;
-      const e2 = await sendMail(env, d, { ...m, to: v.value.contact.email, replyTo });
-      copie = e2 === null;
-      if (e2) d.log('Récapitulatif au visiteur non envoyé (le lead, lui, est parti)');
+    const cle = `mail:${v.value.contact.email.toLowerCase()}`;
+    try {
+      if (await allowSubmission(cle, server.copieClientParHeure, env.RATE_LIMIT, salt)) {
+        const m = clientEmail(v.value, budget, communes, taux, guideData(d.data));
+        const replyTo = env.LEAD_EMAIL || server.defaultLeadEmail;
+        const e2 = await sendMail(env, d, { ...m, to: v.value.contact.email, replyTo });
+        copie = e2 === null;
+        if (e2) {
+          d.log('Récapitulatif au visiteur non envoyé (le lead, lui, est parti)');
+          // Envoi raté : il ne compte pas dans la limite par adresse
+          await refundSubmission(cle, env.RATE_LIMIT, salt);
+        }
+      }
+    } catch (err) {
+      copie = false;
+      d.log('Récapitulatif au visiteur : erreur (le lead, lui, est parti) :', (err as Error)?.message ?? err);
     }
   }
 

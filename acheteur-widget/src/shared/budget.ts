@@ -65,11 +65,7 @@ function raw(i: BudgetInput, prix: number, p: Params) {
   return { droits, plafond, bellegen, notaireVente, ltv, rule, pretMaxCssf, pret, fraisPret, totalMin: base + p.divers.min, totalMax: base + p.divers.max };
 }
 
-/**
- * Prix maximal pour un apport et un montant d'emprunt connus.
- * Sans montant connu, il n'y en a pas : avec 100 % de prêt possible (premier achat), seul le revenu limite, et l'outil ne le calcule pas.
- */
-/** Vente du bien actuel : produit net = valeur − prêt restant − frais d'agence estimés (jamais négatif) */
+/** Vente du bien actuel : produit net = valeur − prêt restant − frais d'agence estimés (peut être négatif) */
 export function vente(i: Pick<BudgetInput, 'valeurVente' | 'restePret'>, p: Params): { frais: number; produit: number } | null {
   // Seulement avec les deux montants : un prêt restant non renseigné n'est jamais compté comme 0
   if (i.valeurVente === null || i.valeurVente <= 0 || i.restePret === null) return null;
@@ -83,6 +79,14 @@ export function apportTotal(i: BudgetInput, p: Params): number {
   return i.apport + (vente(i, p)?.produit ?? 0);
 }
 
+/** En dessous, un « prix maximal » n'a pas de sens au Luxembourg (même plancher que le prix saisi) : on ne l'affiche pas */
+export const PRIX_MAX_PLANCHER = 50_000;
+
+/**
+ * Prix maximal pour un apport et un montant d'emprunt connus.
+ * Sans montant connu, il n'y en a pas : avec 100 % de prêt possible (premier achat), seul le revenu limite, et l'outil ne le calcule pas.
+ * Null aussi si l'apport ne couvre même pas les frais (apport nul, vente déficitaire) : le manque d'apport est alors expliqué ailleurs.
+ */
 export function prixMaximal(i: BudgetInput, p: Params): number | null {
   if (i.capaciteMontant === null) return null;
   const dispo = apportTotal(i, p);
@@ -90,16 +94,17 @@ export function prixMaximal(i: BudgetInput, p: Params): number | null {
     const r = raw(i, prix, p);
     return r.totalMax - r.pret <= dispo;
   };
-  let lo = 0;
+  let lo = PRIX_MAX_PLANCHER;
   let hi = 20_000_000;
-  if (!ok(1000)) return 0;
+  if (!ok(PRIX_MAX_PLANCHER)) return null;
   for (let k = 0; k < 60 && hi - lo > 100; k++) {
     const mid = (lo + hi) / 2;
     if (ok(mid)) lo = mid;
     else hi = mid;
   }
   // arrondi vers le bas à 5 000 € : un prix maximal ne doit jamais être surestimé
-  return Math.floor(lo / 5000) * 5000;
+  const max = Math.floor(lo / 5000) * 5000;
+  return max >= PRIX_MAX_PLANCHER ? max : null;
 }
 
 export function computeBudget(i: BudgetInput, p: Params): Budget {

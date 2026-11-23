@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it, vi } from 'vitest';
-import { getTaux } from '../src/server/taux';
+import { getTaux, resetTauxCache } from '../src/server/taux';
 import { checkTaux, mensualite, parseEcbCsv, partRevenu } from '../src/shared/taux';
 import { translator } from '../src/i18n';
 import { renderMensualite } from '../src/ui/result';
@@ -34,6 +34,30 @@ describe('Taux BCE / BCL', () => {
     }) as unknown as typeof fetch;
     expect((await getTaux({ fetch: down, now: () => NOV, log: () => {}, params: PARAMS }, false))?.origine).toBe('secours');
     expect(await getTaux({ fetch: down, now: () => new Date('2027-03-01'), log: () => {}, params: PARAMS }, false)).toBeNull();
+  });
+  it('Revue 19/11 : après une panne, la BCE n’est pas redemandée pendant 1 heure (pas d’attente à chaque envoi)', async () => {
+    resetTauxCache();
+    const down = vi.fn(async () => {
+      throw new Error('panne');
+    }) as unknown as typeof fetch;
+    let now = NOV;
+    const d = { fetch: down, now: () => now, log: () => {}, params: PARAMS };
+    expect((await getTaux(d))?.origine).toBe('secours');
+    expect((await getTaux(d))?.origine).toBe('secours');
+    expect(down).toHaveBeenCalledTimes(1);
+    now = new Date(NOV.getTime() + 61 * 60_000); // 1 h plus tard : nouvel essai
+    await getTaux(d);
+    expect(down).toHaveBeenCalledTimes(2);
+    resetTauxCache();
+  });
+  it('Revue 19/11 : taux lus gardés en mémoire (même si le cache Cloudflare ne garde rien)', async () => {
+    resetTauxCache();
+    const live = vi.fn(async () => new Response(CSV)) as unknown as typeof fetch;
+    const d = { fetch: live, now: () => NOV, log: () => {}, params: PARAMS };
+    expect((await getTaux(d))?.origine).toBe('bce');
+    expect((await getTaux(d))?.origine).toBe('bce');
+    expect(live).toHaveBeenCalledTimes(1);
+    resetTauxCache();
   });
   it('Serveur : réponse absurde de la BCE (ex. 40 %) → valeur de secours, jamais affichée', async () => {
     const bad = vi.fn(async () => new Response(CSV.replace(',4.03,', ',40.3,'))) as unknown as typeof fetch;

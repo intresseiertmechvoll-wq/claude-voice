@@ -193,6 +193,18 @@ describe('Corrections après la revue du code', () => {
     const b = computeBudget(couple({ apport: 12345 }), PARAMS);
     expect(b.margeMin).toBe(b.apportTotal - b.apportNecessaireMax);
   });
+  it('Revue 19/11 : apport nul ou vente déficitaire → pas de « prix maximal 0 € »', () => {
+    // premier achat, 100 % de prêt possible, mais l'apport ne couvre pas les frais
+    const zero = computeBudget(couple({ premier: 'oui', apport: 0, prix: 500000, capaciteMontant: 450000 }), PARAMS);
+    expect(zero.prixMax).toBeNull();
+    expect(zero.pretAuPrixMax).toBeNull();
+    expect(zero.margeMin).toBeLessThan(0); // le manque d'apport reste affiché
+    const deficit = computeBudget(couple({ apport: 20000, prix: 500000, capaciteMontant: 450000, valeurVente: 300000, restePret: 380000 }), PARAMS);
+    expect(deficit.apportTotal).toBeLessThan(0);
+    expect(deficit.prixMax).toBeNull();
+    // petit apport : un prix maximal plausible reste affiché
+    expect(prixMaximal(couple({ apport: 20000, capaciteMontant: 500000 }), PARAMS)!).toBeGreaterThanOrEqual(50000);
+  });
 });
 
 describe('Téléphone dans l’e-mail', () => {
