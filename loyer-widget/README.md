@@ -12,6 +12,8 @@ Outil « Quel loyer pour votre bien ? » pour gagner des clients en **gestion lo
 > 7. Revérifier la loi sur legilux (partie « Plafond légal ») : une réforme est en discussion.
 > 8. Mettre en ligne, puis envoyer 3 ou 4 estimations de test depuis de vrais téléphones (iPhone et Android) et vérifier les e-mails reçus.
 >
+> Pour faire venir des propriétaires : textes prêts (Google Ads, réseaux sociaux, fiche Google) dans `docs/lancement.md`.
+>
 > Pour savoir si l'outil marche (partie 3.9) : activer Cloudflare Web Analytics (1 clic) et le comptage des étapes (binding `ETAPES`). Pour être trouvé sur Google : déclarer `https://verlounen.lu/sitemap.xml` dans Google Search Console.
 
 1. le propriétaire décrit son appartement ou sa maison en 3 étapes courtes ;
@@ -333,7 +335,7 @@ Vérifié sur legilux le 17/11/2026 (`docs/cadre-legal.md`) : loi du 21 septembr
 
 ## Tests
 
-`npm test` lance 126 tests (23/11/2026), dont :
+`npm test` lance 128 tests (23/11/2026), dont :
 
 | Test | Fichier |
 | --- | --- |

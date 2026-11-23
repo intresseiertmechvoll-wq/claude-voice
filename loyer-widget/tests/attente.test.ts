@@ -61,7 +61,10 @@ describe('Leads en attente (Resend en panne)', () => {
     expect(cle.startsWith('lead:2026-11-19T13:02:00.000Z-')).toBe(true);
     expect(store.ttl.get(cle)).toBe(7 * 24 * 3600);
     // chiffré : ni l'e-mail, ni le nom, ni le téléphone ne sont lisibles
-    for (const clair of ['marie.muller@example.lu', 'Muller', '621', 'Dudelange']) expect(valeur).not.toContain(clair);
+    // (on regarde les octets bruts : une suite de chiffres comme « 621 » peut apparaître par hasard dans du base64)
+    expect(valeur).toMatch(/^[A-Za-z0-9+/]+=*$/);
+    const octets = Buffer.from(valeur, 'base64').toString('latin1');
+    for (const clair of ['marie.muller@example.lu', 'Muller', '+352', 'Dudelange', 'Lead loyer']) expect(octets).not.toContain(clair);
     expect(JSON.parse(await dechiffrer(SECRET, valeur)).mail.subject).toContain('Lead loyer – Dudelange');
   });
 

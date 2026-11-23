@@ -147,6 +147,9 @@ export function leadSections(s: Submission, e: Estimate, date: Date): Section[] 
     calc.push(
       ['Médiane du canton (baux en cours 2025)', `${dec(d.medianeCanton!, 2)} €/m²`],
       ['Facteur surface', `${dec(d.facteurSurface!)} (${dec(d.surfaceM2Zone!, 2)} €/m² pour ${a.surface} m² dans la zone)`],
+      ...(d.plateauSurface
+        ? ([['Règle de surface', 'appliquée : les données publiques donnent un loyer au m² plus bas pour cette surface (classe de surface suivante) ; l’outil garde le loyer total d’un bien un peu plus petit. À vérifier sur place.']] as [string, string][])
+        : []),
       ['Facteur baux récents (2024-2025)', dec(d.facteurBauxRecents!)],
       ['Mise à jour par l’indice', `${dec(d.facteurIndice, 4)} (${r.indiceTrimestre})`],
       ['Loyer de référence « bail »', `${eur(d.bail)} (${dec(d.bail / a.surface, 2)} €/m²)`],

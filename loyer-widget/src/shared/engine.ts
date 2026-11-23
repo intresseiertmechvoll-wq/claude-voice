@@ -27,6 +27,8 @@ export interface Detail {
   medianeCanton: number | null;
   facteurSurface: number | null;
   surfaceM2Zone: number | null;
+  /** règle « plus grand, jamais moins cher » appliquée : loyer au m² relevé par rapport à la donnée brute */
+  plateauSurface: boolean;
   facteurBauxRecents: number | null;
   facteurIndice: number;
   /** loyer mensuel de référence avant coefficients */
@@ -148,11 +150,13 @@ export function estimate(a: Answers, data: Dataset, refs: References, params: Pa
   let facteurSurface: number | null = null;
   let surfZone: number | null = null;
   let facteurBaux: number | null = null;
+  let plateau = false;
 
   if (a.type === 'appartement') {
     const cad = refs.cadastre;
     medianeCanton = c.zone === 'LV' ? cad.medianeCanton.LuxembourgVille : (cad.medianeCanton as unknown as Record<string, number>)[c.canton];
     surfZone = surfaceM2Monotone(refs, zone, a.surface, params.surface.plancher_extrapolation_m2);
+    plateau = surfZone > surfaceM2(refs, zone, a.surface, params.surface.plancher_extrapolation_m2) + 1e-9;
     facteurSurface = surfZone / cad.medianeZone[zone];
     facteurBaux = cad.bauxRecents[zone].recents / cad.bauxRecents[zone].tous;
     const m2 = medianeCanton * facteurSurface * facteurBaux * indice;
@@ -221,6 +225,7 @@ export function estimate(a: Answers, data: Dataset, refs: References, params: Pa
       medianeCanton,
       facteurSurface,
       surfaceM2Zone: surfZone,
+      plateauSurface: plateau,
       facteurBauxRecents: facteurBaux,
       facteurIndice: indice,
       bail,

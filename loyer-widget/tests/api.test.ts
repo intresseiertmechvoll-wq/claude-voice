@@ -382,3 +382,15 @@ describe('Surfaces et chambres plausibles', () => {
     expect(err({ surface: '27', chambres: '3' })).toBeNull();
   });
 });
+
+describe('E-mail : règle de surface', () => {
+  it('la ligne « Règle de surface » apparaît seulement quand elle a servi', async () => {
+    const s1 = setup();
+    await handleEstimate(req(body({ answers: { surface: '140', chambres: '3' } })), s1.env, s1.deps);
+    expect(JSON.parse((s1.fetchMock.mock.calls[0] as unknown as [string, RequestInit])[1].body as string).text).toContain('Règle de surface : appliquée');
+    resetMemoryLimiter();
+    const s2 = setup();
+    await handleEstimate(req(body()), s2.env, s2.deps);
+    expect(JSON.parse((s2.fetchMock.mock.calls[0] as unknown as [string, RequestInit])[1].body as string).text).not.toContain('Règle de surface');
+  });
+});

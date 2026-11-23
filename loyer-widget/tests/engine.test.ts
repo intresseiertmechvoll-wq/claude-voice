@@ -209,3 +209,11 @@ describe('Fiabilité et communes avec peu de données', () => {
   });
 });
 
+
+describe('Règle « plus grand, jamais moins cher » signalée à Jason', () => {
+  it('140 m² dans le Sud : règle appliquée ; 80 m² : non', () => {
+    expect(estimate(apartment({ surface: 140, chambres: 3 }), DATA, REFS, PARAMS).detail.plateauSurface).toBe(true);
+    expect(estimate(apartment({ surface: 80 }), DATA, REFS, PARAMS).detail.plateauSurface).toBe(false);
+    expect(estimate(house(), DATA, REFS, PARAMS).detail.plateauSurface).toBe(false);
+  });
+});
