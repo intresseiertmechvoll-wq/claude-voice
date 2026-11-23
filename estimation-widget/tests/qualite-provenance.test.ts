@@ -339,7 +339,7 @@ describe('API : contrôles du contact et provenance', () => {
     expect(text).toContain('Provenance : Google Ads (gclid présent) · source : google / cpc · campagne : dudelange-maisons');
     expect(text).toContain('== Provenance ==');
     expect(text).toContain('Mot-clé (utm_term) : estimation maison');
-    expect(text).toContain('Identifiant de clic publicitaire : gclid présent (valeur non transmise)');
+    expect(text).toContain('Identifiant de clic publicitaire : gclid présent (valeur seulement avec consentement : voir « Mesure des annonces »)');
     expect(text).not.toContain('fbclid');
   });
 

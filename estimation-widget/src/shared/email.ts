@@ -114,7 +114,7 @@ export function sourceSection(src: Source | undefined): Section {
   ];
   for (const [k, label] of labels) if (typeof s[k] === 'string') rows.push([label, s[k] as string]);
   const clicks = (Object.keys(CLICK_PLATFORMS) as (keyof typeof CLICK_PLATFORMS)[]).filter((k) => s[k]);
-  if (clicks.length) rows.push(['Identifiant de clic publicitaire', `${clicks.join(', ')} présent (valeur non transmise)`]);
+  if (clicks.length) rows.push(['Identifiant de clic publicitaire', `${clicks.join(', ')} présent (valeur seulement avec consentement : voir « Mesure des annonces »)`]);
   rows.push(['Comment', 'paramètres du lien sur lequel le visiteur a cliqué ; aucun cookie, rien d’autre n’est gardé']);
   return { title: 'Provenance', rows };
 }
