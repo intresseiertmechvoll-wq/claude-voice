@@ -24,6 +24,18 @@
     "athome : pas relevé cette fois ; disparitions non comptées pour cette source",
     "wortimmo : pas relevé cette fois ; disparitions non comptées pour cette source"
    ]
+  },
+  {
+   "date": "2026-11-23",
+   "lues": {
+    "athome": 488,
+    "immotop": 88,
+    "wortimmo": 54
+   },
+   "luxembourg": 224,
+   "nouvelles": 36,
+   "disparues": 26,
+   "avertissements": []
   }
  ],
  "fiches": {
@@ -44,8 +56,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -70,8 +82,8 @@
    "premier_vu": "2026-11-17",
    "dernier_vu": "2026-11-17",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": "surface ≥ 400 m² (terrain compté ?)"
   },
@@ -92,8 +104,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -118,8 +130,8 @@
    "premier_vu": "2026-11-17",
    "dernier_vu": "2026-11-17",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -140,8 +152,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -164,8 +176,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -188,8 +200,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -212,8 +224,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -236,8 +248,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -260,8 +272,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -284,8 +296,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -310,8 +322,8 @@
    "premier_vu": "2026-11-17",
    "dernier_vu": "2026-11-17",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -332,8 +344,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -356,8 +368,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -380,8 +392,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -404,8 +416,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -428,8 +440,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -452,8 +464,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -478,8 +490,8 @@
    "premier_vu": "2026-11-17",
    "dernier_vu": "2026-11-17",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -500,8 +512,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -524,8 +536,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -548,8 +560,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -572,8 +584,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -598,8 +610,8 @@
    "premier_vu": "2026-11-17",
    "dernier_vu": "2026-11-17",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -620,8 +632,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -641,11 +653,15 @@
     {
      "date": "2026-11-17",
      "loyer": 3950
+    },
+    {
+     "date": "2026-11-23",
+     "loyer": 3750
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -668,8 +684,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -692,8 +708,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -716,8 +732,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -740,8 +756,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -764,8 +780,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -788,8 +804,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -812,8 +828,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -836,8 +852,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -860,8 +876,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -884,8 +900,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -908,8 +924,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -932,8 +948,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -956,8 +972,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -982,8 +998,8 @@
    "premier_vu": "2026-11-17",
    "dernier_vu": "2026-11-17",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -1004,8 +1020,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1028,8 +1044,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1052,8 +1068,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1076,8 +1092,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1100,8 +1116,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1124,8 +1140,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1148,8 +1164,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1172,8 +1188,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1196,8 +1212,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1217,11 +1233,15 @@
     {
      "date": "2026-11-17",
      "loyer": 5500
+    },
+    {
+     "date": "2026-11-23",
+     "loyer": 5000
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1244,8 +1264,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1268,8 +1288,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1292,8 +1312,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1316,8 +1336,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1340,8 +1360,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1364,8 +1384,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1388,8 +1408,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1412,8 +1432,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1436,8 +1456,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1460,8 +1480,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1484,8 +1504,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1508,8 +1528,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1532,8 +1552,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1556,8 +1576,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1580,8 +1600,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1604,8 +1624,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1628,8 +1648,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1654,8 +1674,8 @@
    "premier_vu": "2026-11-17",
    "dernier_vu": "2026-11-17",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -1676,8 +1696,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1700,8 +1720,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1724,8 +1744,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1748,8 +1768,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1772,8 +1792,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1796,8 +1816,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1820,8 +1840,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1844,8 +1864,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1868,8 +1888,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1892,8 +1912,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1916,8 +1936,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1942,8 +1962,8 @@
    "premier_vu": "2026-11-17",
    "dernier_vu": "2026-11-17",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -1964,8 +1984,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -1990,8 +2010,8 @@
    "premier_vu": "2026-11-17",
    "dernier_vu": "2026-11-17",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -2014,8 +2034,8 @@
    "premier_vu": "2026-11-17",
    "dernier_vu": "2026-11-17",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -2036,8 +2056,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2049,7 +2069,7 @@
    "id": "9388211",
    "url": "https://www.athome.lu/location/maison/koedange/id-9388211.html",
    "localite": "Koedange",
-   "commune": null,
+   "commune": "Fischbach",
    "type": "Maison",
    "surface": 259,
    "chambres": 5,
@@ -2060,8 +2080,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2084,8 +2104,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2108,8 +2128,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2132,8 +2152,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2158,8 +2178,8 @@
    "premier_vu": "2026-11-17",
    "dernier_vu": "2026-11-17",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -2182,8 +2202,8 @@
    "premier_vu": "2026-11-17",
    "dernier_vu": "2026-11-17",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -2206,8 +2226,8 @@
    "premier_vu": "2026-11-17",
    "dernier_vu": "2026-11-17",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -2228,8 +2248,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2252,8 +2272,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2276,8 +2296,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2300,8 +2320,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2326,8 +2346,8 @@
    "premier_vu": "2026-11-17",
    "dernier_vu": "2026-11-17",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -2348,8 +2368,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2372,8 +2392,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2398,8 +2418,8 @@
    "premier_vu": "2026-11-17",
    "dernier_vu": "2026-11-17",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -2420,8 +2440,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2444,8 +2464,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2468,8 +2488,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2492,8 +2512,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2516,8 +2536,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2540,8 +2560,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2564,8 +2584,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2588,8 +2608,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2612,8 +2632,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2636,8 +2656,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2660,8 +2680,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2684,8 +2704,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2708,8 +2728,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2732,8 +2752,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2756,8 +2776,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2777,11 +2797,15 @@
     {
      "date": "2026-11-17",
      "loyer": 3950
+    },
+    {
+     "date": "2026-11-23",
+     "loyer": 3750
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2804,8 +2828,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2828,8 +2852,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2849,11 +2873,15 @@
     {
      "date": "2026-11-17",
      "loyer": 5500
+    },
+    {
+     "date": "2026-11-23",
+     "loyer": 5000
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2876,8 +2904,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2900,8 +2928,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2924,8 +2952,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2948,8 +2976,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2972,8 +3000,8 @@
     }
    ],
    "premier_vu": "2026-11-17",
-   "dernier_vu": "2026-11-17",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -2996,8 +3024,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3020,8 +3048,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3044,8 +3072,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3068,8 +3096,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3092,8 +3120,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3118,8 +3146,8 @@
    "premier_vu": "2026-11-18",
    "dernier_vu": "2026-11-18",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -3140,8 +3168,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3164,8 +3192,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3188,8 +3216,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3212,8 +3240,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3236,8 +3264,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3260,8 +3288,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3284,8 +3312,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3310,8 +3338,8 @@
    "premier_vu": "2026-11-18",
    "dernier_vu": "2026-11-18",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -3332,8 +3360,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3356,8 +3384,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3380,8 +3408,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3404,8 +3432,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3425,11 +3453,15 @@
     {
      "date": "2026-11-18",
      "loyer": 5500
+    },
+    {
+     "date": "2026-11-23",
+     "loyer": 5000
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3452,8 +3484,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3476,8 +3508,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3500,8 +3532,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3524,8 +3556,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3548,8 +3580,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3572,8 +3604,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3596,8 +3628,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3620,8 +3652,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3644,8 +3676,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3668,8 +3700,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3692,8 +3724,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3716,8 +3748,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3740,8 +3772,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3764,8 +3796,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3788,8 +3820,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3812,8 +3844,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3836,8 +3868,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3860,8 +3892,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3884,8 +3916,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3908,8 +3940,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3932,8 +3964,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3956,8 +3988,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -3980,8 +4012,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4004,8 +4036,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4028,8 +4060,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4052,8 +4084,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4078,8 +4110,8 @@
    "premier_vu": "2026-11-18",
    "dernier_vu": "2026-11-18",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -4100,8 +4132,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4126,8 +4158,8 @@
    "premier_vu": "2026-11-18",
    "dernier_vu": "2026-11-18",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -4148,8 +4180,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4172,8 +4204,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4196,8 +4228,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4220,8 +4252,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4244,8 +4276,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4268,8 +4300,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4292,8 +4324,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4316,8 +4348,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4340,8 +4372,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4364,8 +4396,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4388,8 +4420,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4403,7 +4435,7 @@
    "localite": "Kopstal",
    "commune": "Kopstal",
    "type": "Maison jumelée / mitoyenne",
-   "surface": 180,
+   "surface": 185,
    "chambres": 5,
    "prix": [
     {
@@ -4412,8 +4444,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4436,8 +4468,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4462,8 +4494,8 @@
    "premier_vu": "2026-11-18",
    "dernier_vu": "2026-11-18",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": "surface ≥ 400 m² (terrain compté ?)"
   },
@@ -4484,8 +4516,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4508,8 +4540,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4532,8 +4564,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4556,8 +4588,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4580,8 +4612,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4604,8 +4636,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4630,8 +4662,8 @@
    "premier_vu": "2026-11-18",
    "dernier_vu": "2026-11-18",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -4654,8 +4686,8 @@
    "premier_vu": "2026-11-18",
    "dernier_vu": "2026-11-18",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -4676,8 +4708,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4700,8 +4732,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4724,8 +4756,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4750,8 +4782,8 @@
    "premier_vu": "2026-11-18",
    "dernier_vu": "2026-11-18",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -4772,8 +4804,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4798,8 +4830,8 @@
    "premier_vu": "2026-11-18",
    "dernier_vu": "2026-11-18",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -4822,8 +4854,8 @@
    "premier_vu": "2026-11-18",
    "dernier_vu": "2026-11-18",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -4844,8 +4876,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4870,8 +4902,8 @@
    "premier_vu": "2026-11-18",
    "dernier_vu": "2026-11-18",
    "nb_releves": 1,
-   "statut": "active",
-   "disparue_le": null,
+   "statut": "disparue",
+   "disparue_le": "2026-11-23",
    "reapparue": false,
    "exclusion": null
   },
@@ -4892,8 +4924,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4916,8 +4948,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4940,8 +4972,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4964,8 +4996,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -4988,8 +5020,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -5012,8 +5044,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -5036,8 +5068,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -5060,8 +5092,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -5084,8 +5116,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -5108,8 +5140,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -5132,8 +5164,8 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
-   "nb_releves": 1,
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
    "statut": "active",
    "disparue_le": null,
    "reapparue": false,
@@ -5156,7 +5188,871 @@
     }
    ],
    "premier_vu": "2026-11-18",
-   "dernier_vu": "2026-11-18",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 2,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9453183": {
+   "cle": "athome:9453183",
+   "source": "athome",
+   "id": "9453183",
+   "url": "https://www.athome.lu/location/maison/mersch/id-9453183.html",
+   "localite": "Mersch",
+   "commune": "Mersch",
+   "type": "house",
+   "surface": 161,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 4800
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9453118": {
+   "cle": "athome:9453118",
+   "source": "athome",
+   "id": "9453118",
+   "url": "https://www.athome.lu/location/maison/dudelange/id-9453118.html",
+   "localite": "Dudelange",
+   "commune": "Dudelange",
+   "type": "semi-detached-house",
+   "surface": 141,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 2500
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9443403": {
+   "cle": "athome:9443403",
+   "source": "athome",
+   "id": "9443403",
+   "url": "https://www.athome.lu/location/maison/schieren/id-9443403.html",
+   "localite": "Schieren",
+   "commune": "Schieren",
+   "type": "detached-house",
+   "surface": 210,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 3600
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9445888": {
+   "cle": "athome:9445888",
+   "source": "athome",
+   "id": "9445888",
+   "url": "https://www.athome.lu/location/maison/bettange-sur-mess/id-9445888.html",
+   "localite": "Bettange-Sur-Mess",
+   "commune": "Dippach",
+   "type": "detached-house",
+   "surface": 157,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 3250
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:8494889": {
+   "cle": "athome:8494889",
+   "source": "athome",
+   "id": "8494889",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-8494889.html",
+   "localite": "Luxembourg-Beggen",
+   "commune": "Luxembourg",
+   "type": "terraced",
+   "surface": 165,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 3500
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9449047": {
+   "cle": "athome:9449047",
+   "source": "athome",
+   "id": "9449047",
+   "url": "https://www.athome.lu/location/maison/wincrange/id-9449047.html",
+   "localite": "Wincrange",
+   "commune": "Wincrange",
+   "type": "castle",
+   "surface": 500,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 9500
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": "surface ≥ 400 m² (terrain compté ?)"
+  },
+  "athome:9453046": {
+   "cle": "athome:9453046",
+   "source": "athome",
+   "id": "9453046",
+   "url": "https://www.athome.lu/location/maison/strassen/id-9453046.html",
+   "localite": "Strassen",
+   "commune": "Strassen",
+   "type": "terraced",
+   "surface": 120,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 3200
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9447044": {
+   "cle": "athome:9447044",
+   "source": "athome",
+   "id": "9447044",
+   "url": "https://www.athome.lu/location/maison/hoesdorf/id-9447044.html",
+   "localite": "Hoesdorf",
+   "commune": "Reisdorf",
+   "type": "detached-house",
+   "surface": 150,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 1800
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9446101": {
+   "cle": "athome:9446101",
+   "source": "athome",
+   "id": "9446101",
+   "url": "https://www.athome.lu/location/maison/luxembourg/id-9446101.html",
+   "localite": "Luxembourg-Belair",
+   "commune": "Luxembourg",
+   "type": "detached-house",
+   "surface": 320,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 7000
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9446012": {
+   "cle": "athome:9446012",
+   "source": "athome",
+   "id": "9446012",
+   "url": "https://www.athome.lu/location/maison/helmsange/id-9446012.html",
+   "localite": "Helmsange",
+   "commune": "Walferdange",
+   "type": "detached-house",
+   "surface": 180,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 3400
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9444941": {
+   "cle": "athome:9444941",
+   "source": "athome",
+   "id": "9444941",
+   "url": "https://www.athome.lu/location/maison/syren/id-9444941.html",
+   "localite": "Syren",
+   "commune": "Weiler-la-Tour",
+   "type": "house",
+   "surface": 185,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 2900
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9445119": {
+   "cle": "athome:9445119",
+   "source": "athome",
+   "id": "9445119",
+   "url": "https://www.athome.lu/location/maison/wallendorf-pont/id-9445119.html",
+   "localite": "Wallendorf-Pont",
+   "commune": "Reisdorf",
+   "type": "detached-house",
+   "surface": 146,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 2500
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9443373": {
+   "cle": "athome:9443373",
+   "source": "athome",
+   "id": "9443373",
+   "url": "https://www.athome.lu/location/maison/oberanven/id-9443373.html",
+   "localite": "Oberanven",
+   "commune": "Niederanven",
+   "type": "detached-house",
+   "surface": 212,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 6750
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9313771": {
+   "cle": "athome:9313771",
+   "source": "athome",
+   "id": "9313771",
+   "url": "https://www.athome.lu/location/maison/strassen/id-9313771.html",
+   "localite": "Strassen",
+   "commune": "Strassen",
+   "type": "detached-house",
+   "surface": 235,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 4400
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "athome:9313695": {
+   "cle": "athome:9313695",
+   "source": "athome",
+   "id": "9313695",
+   "url": "https://www.athome.lu/location/maison/leudelange/id-9313695.html",
+   "localite": "Leudelange",
+   "commune": "Leudelange",
+   "type": "house",
+   "surface": 200,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 3250
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2123753": {
+   "cle": "immotop:2123753",
+   "source": "immotop",
+   "id": "2123753",
+   "url": "https://www.immotop.lu/annonces/2123753/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison jumelée / mitoyenne",
+   "surface": 180,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 6900
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2125415": {
+   "cle": "immotop:2125415",
+   "source": "immotop",
+   "id": "2125415",
+   "url": "https://www.immotop.lu/annonces/2125415/",
+   "localite": "Mersch",
+   "commune": "Mersch",
+   "type": "Maison individuelle",
+   "surface": 161,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 4800
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2123755": {
+   "cle": "immotop:2123755",
+   "source": "immotop",
+   "id": "2123755",
+   "url": "https://www.immotop.lu/annonces/2123755/",
+   "localite": "Dudelange",
+   "commune": "Dudelange",
+   "type": "Maison individuelle",
+   "surface": 198,
+   "chambres": null,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 2550
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2123565": {
+   "cle": "immotop:2123565",
+   "source": "immotop",
+   "id": "2123565",
+   "url": "https://www.immotop.lu/annonces/2123565/",
+   "localite": "Reisdorf",
+   "commune": "Reisdorf",
+   "type": "Maison individuelle",
+   "surface": 150,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 1800
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2110187": {
+   "cle": "immotop:2110187",
+   "source": "immotop",
+   "id": "2110187",
+   "url": "https://www.immotop.lu/annonces/2110187/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 196,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 3750
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2123171": {
+   "cle": "immotop:2123171",
+   "source": "immotop",
+   "id": "2123171",
+   "url": "https://www.immotop.lu/annonces/2123171/",
+   "localite": "Walferdange",
+   "commune": "Walferdange",
+   "type": "Maison individuelle",
+   "surface": 180,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 3400
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2123237": {
+   "cle": "immotop:2123237",
+   "source": "immotop",
+   "id": "2123237",
+   "url": "https://www.immotop.lu/annonces/2123237/",
+   "localite": "Luxembourg",
+   "commune": "Luxembourg",
+   "type": "Maison individuelle",
+   "surface": 300,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 7000
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "immotop:2123083": {
+   "cle": "immotop:2123083",
+   "source": "immotop",
+   "id": "2123083",
+   "url": "https://www.immotop.lu/annonces/2123083/",
+   "localite": "Dippach",
+   "commune": "Dippach",
+   "type": "Maison individuelle",
+   "surface": 157,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 3250
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:594076": {
+   "cle": "wortimmo:594076",
+   "source": "wortimmo",
+   "id": "594076",
+   "url": "https://www.wortimmo.lu/fr/location-maison-centre-mersch-id_594076",
+   "localite": "Mersch",
+   "commune": "Mersch",
+   "type": "Maison",
+   "surface": 161,
+   "chambres": 5,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 4800
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:594032": {
+   "cle": "wortimmo:594032",
+   "source": "wortimmo",
+   "id": "594032",
+   "url": "https://www.wortimmo.lu/fr/location-maison-sud-dudelange-id_594032",
+   "localite": "Dudelange",
+   "commune": "Dudelange",
+   "type": "Maison",
+   "surface": 141,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 2500
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:593367": {
+   "cle": "wortimmo:593367",
+   "source": "wortimmo",
+   "id": "593367",
+   "url": "https://www.wortimmo.lu/fr/location-maison-sud-differdange-id_593367",
+   "localite": "Differdange",
+   "commune": "Differdange",
+   "type": "Maison",
+   "surface": 230,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 3650
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:592885": {
+   "cle": "wortimmo:592885",
+   "source": "wortimmo",
+   "id": "592885",
+   "url": "https://www.wortimmo.lu/fr/location-maison-nord-hoesdorf-id_592885",
+   "localite": "Hoesdorf",
+   "commune": "Reisdorf",
+   "type": "Maison",
+   "surface": 150,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 1800
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:592524": {
+   "cle": "wortimmo:592524",
+   "source": "wortimmo",
+   "id": "592524",
+   "url": "https://www.wortimmo.lu/fr/location-maison-centre-helmsange-id_592524",
+   "localite": "Helmsange",
+   "commune": "Walferdange",
+   "type": "Maison",
+   "surface": 180,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 3400
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:592481": {
+   "cle": "wortimmo:592481",
+   "source": "wortimmo",
+   "id": "592481",
+   "url": "https://www.wortimmo.lu/fr/location-maison-ouest-bettange-sur-mess-id_592481",
+   "localite": "Bettange-sur-Mess",
+   "commune": "Dippach",
+   "type": "Maison",
+   "surface": 157,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 3250
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:592449": {
+   "cle": "wortimmo:592449",
+   "source": "wortimmo",
+   "id": "592449",
+   "url": "https://www.wortimmo.lu/fr/location-maison-de-maitre-est-schengen-id_592449",
+   "localite": "Schengen",
+   "commune": "Schengen",
+   "type": "Maison de maître",
+   "surface": 200,
+   "chambres": null,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 2500
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:592236": {
+   "cle": "wortimmo:592236",
+   "source": "wortimmo",
+   "id": "592236",
+   "url": "https://www.wortimmo.lu/fr/location-maison-nord-wallendorf-pont-id_592236",
+   "localite": "Wallendorf-Pont",
+   "commune": "Reisdorf",
+   "type": "Maison",
+   "surface": 146,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 2500
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:592095": {
+   "cle": "wortimmo:592095",
+   "source": "wortimmo",
+   "id": "592095",
+   "url": "https://www.wortimmo.lu/fr/location-maison-centre-syren-id_592095",
+   "localite": "Syren",
+   "commune": "Weiler-la-Tour",
+   "type": "Maison",
+   "surface": 185,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 2900
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:591918": {
+   "cle": "wortimmo:591918",
+   "source": "wortimmo",
+   "id": "591918",
+   "url": "https://www.wortimmo.lu/fr/location-maison-ouest-bettange-sur-mess-id_591918",
+   "localite": "Bettange-sur-Mess",
+   "commune": "Dippach",
+   "type": "Maison",
+   "surface": 260,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 3500
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:564442": {
+   "cle": "wortimmo:564442",
+   "source": "wortimmo",
+   "id": "564442",
+   "url": "https://www.wortimmo.lu/fr/location-maison-centre-strassen-id_564442",
+   "localite": "Strassen",
+   "commune": "Strassen",
+   "type": "Maison",
+   "surface": 235,
+   "chambres": 3,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 4400
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:591531": {
+   "cle": "wortimmo:591531",
+   "source": "wortimmo",
+   "id": "591531",
+   "url": "https://www.wortimmo.lu/fr/location-maison-nord-schieren-id_591531",
+   "localite": "Schieren",
+   "commune": "Schieren",
+   "type": "Maison",
+   "surface": 210,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 3600
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
+   "nb_releves": 1,
+   "statut": "active",
+   "disparue_le": null,
+   "reapparue": false,
+   "exclusion": null
+  },
+  "wortimmo:591521": {
+   "cle": "wortimmo:591521",
+   "source": "wortimmo",
+   "id": "591521",
+   "url": "https://www.wortimmo.lu/fr/location-maison-centre-oberanven-id_591521",
+   "localite": "Oberanven",
+   "commune": "Niederanven",
+   "type": "Maison",
+   "surface": 212,
+   "chambres": 4,
+   "prix": [
+    {
+     "date": "2026-11-23",
+     "loyer": 6750
+    }
+   ],
+   "premier_vu": "2026-11-23",
+   "dernier_vu": "2026-11-23",
    "nb_releves": 1,
    "statut": "active",
    "disparue_le": null,

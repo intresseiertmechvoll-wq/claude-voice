@@ -45,6 +45,8 @@ export const ALIASES: Record<string, string> = {
   Bourglinster: 'Junglinster', Altlinster: 'Junglinster', 'Roodt-sur-Syre': 'Betzdorf', Rippig: 'Bech',
   Herborn: 'Rosport-Mompach', 'Bollendorf-Pont': 'Berdorf', 'Bech-Kleinmacher': 'Schengen',
   Belval: 'Esch-sur-Alzette', Bergem: 'Mondercange',
+  'Bettange-sur-Mess': 'Dippach', Oberanven: 'Niederanven', Syren: 'Weiler-la-Tour', Koedange: 'Fischbach',
+  Hoesdorf: 'Reisdorf', 'Wallendorf-Pont': 'Reisdorf',
   // Est et nord
   'Bad Mondorf': 'Mondorf-les-Bains', Mondorf: 'Mondorf-les-Bains', Munneref: 'Mondorf-les-Bains', Remerschen: 'Schengen',
   Réimech: 'Remich', Gréiwemaacher: 'Grevenmacher', Iechternach: 'Echternach',
