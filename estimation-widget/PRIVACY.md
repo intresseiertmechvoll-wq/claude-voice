@@ -44,9 +44,9 @@ Base légale proposée : le **consentement** (case à cocher obligatoire, non co
 | Affichage et calcul | Cloudflare, Inc. (Cloudflare Pages Functions) | Le formulaire est envoyé au serveur de l'outil, vérifié et calculé en mémoire, puis oublié. | réseau mondial de Cloudflare, au plus près du visiteur |
 | Envoi de l'e-mail | Resend (Plus Five Five, Inc.) | Resend transmet l'e-mail à `LEAD_EMAIL`, et la copie de l'estimation au visiteur. | États-Unis (voir ci-dessous) |
 | Compteurs anonymes du parcours | Cloudflare (Workers Analytics Engine) | Compteurs sans IP ni identifiant, effacés après 3 mois. | voir Cloudflare ci-dessus |
-| Réception | ta boîte e-mail (`contact@immobuild.lu`) | L'e-mail reste dans ta boîte. | **à compléter** (ton fournisseur de messagerie, par ex. Microsoft 365) |
+| Réception | ta boîte e-mail (`contact@immobuild.lu`) | L'e-mail reste dans ta boîte. | Microsoft 365 / Exchange Online (MX `immobuild-lu.mail.protection.outlook.com`, vérifié le 23/11/2026) ; région du locataire Microsoft à voir dans ton centre d'administration |
 
-**Resend** : d'après sa documentation, les données du compte et des e-mails sont stockées aux États-Unis. Le choix d'une région d'envoi en Europe (Irlande, offres payantes) change seulement l'endroit d'où partent les e-mails, pas l'endroit où les données sont stockées. Les transferts hors de l'UE sont couverts par son accord de traitement des données (DPA), qui contient les clauses contractuelles types de l'UE, et Resend indique être certifié au EU-US Data Privacy Framework. Sources : [resend.com/security/gdpr](https://resend.com/security/gdpr), [resend.com/legal/dpa](https://resend.com/legal/dpa), [resend.com/docs/dashboard/domains/regions](https://resend.com/docs/dashboard/domains/regions). Resend garde aussi une trace des e-mails envoyés dans ton tableau de bord : **à vérifier** dans ton compte (durée de conservation des journaux).
+**Resend** : d'après sa documentation, les données du compte et des e-mails sont stockées aux États-Unis. Le choix d'une région d'envoi en Europe (Irlande, offres payantes) change seulement l'endroit d'où partent les e-mails, pas l'endroit où les données sont stockées. Les transferts hors de l'UE sont couverts par son accord de traitement des données (DPA), qui contient les clauses contractuelles types de l'UE, et Resend indique être certifié au EU-US Data Privacy Framework. Sources : [resend.com/security/gdpr](https://resend.com/security/gdpr), [resend.com/legal/dpa](https://resend.com/legal/dpa), [resend.com/docs/dashboard/domains/regions](https://resend.com/docs/dashboard/domains/regions). Resend garde les e-mails envoyés et leur journal 30 jours, toutes offres (resend.com/security/gdpr, consulté le 23/11/2026).
 
 **Cloudflare** : traite les requêtes (dont l'adresse IP) pour faire fonctionner et protéger le service. Cloudflare propose aussi un DPA, accepté avec ses conditions d'utilisation. **À vérifier** dans ton compte Cloudflare.
 
@@ -102,8 +102,8 @@ Base légale proposée : le **consentement** (case à cocher obligatoire, non co
 ## 5. Durée de conservation
 
 - Dans l'outil : aucune (sauf l'empreinte d'IP, 1 heure au plus).
-- Dans ta boîte e-mail : **à compléter**. Fixe une durée, par exemple : suppression des demandes sans suite après X mois.
-- Chez Resend : **à vérifier** (journaux d'envoi).
+- Dans ta boîte e-mail : 12 mois après le dernier échange sans suite (comme ta politique publiée du 11/06/2026). À appliquer réellement : supprimer les demandes plus anciennes.
+- Chez Resend : 30 jours, toutes offres (resend.com/security/gdpr, consulté le 23/11/2026).
 
 ## 6. Droits des personnes
 
@@ -111,6 +111,6 @@ Accès, rectification, effacement, opposition, retrait du consentement : par e-m
 
 ## 7. Texte pour ta politique de confidentialité
 
-Version complète, prête à coller (avec responsable, base légale, destinataires et droits) : [`docs/texte-politique-confidentialite.md`](docs/texte-politique-confidentialite.md). Deux passages sont à compléter : la durée de conservation de tes demandes et celle des journaux Resend.
+Version complète, prête à coller (avec responsable, base légale, destinataires et droits) : [`docs/texte-politique-confidentialite.md`](docs/texte-politique-confidentialite.md). Les durées sont remplies (12 mois, 30 jours) : à relire avant publication.
 
 **Important :** la phrase « ni cookie, ni traceur, ni outil de statistiques qui suivrait un visiteur » n'est vraie que si *Web Analytics* de Cloudflare est désactivé pour `estimatioun.lu` (Cloudflare l'a ajouté automatiquement ; la règle de sécurité CSP de l'outil le bloque, mais il faut le couper dans le tableau de bord).

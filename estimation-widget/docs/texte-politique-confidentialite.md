@@ -1,12 +1,12 @@
 # Texte à ajouter à la politique de confidentialité (immobuild.lu)
 
-À coller dans la page https://immobuild.lu/politique-de-confidentialite-cookies/, comme nouvelle section. Ce texte décrit ce que fait l'outil ; ce n'est pas un avis juridique. La partie « Mesure des annonces » est à faire valider (voir PRIVACY.md, section 3 sexies). Les deux passages entre crochets sont **à compléter par Jason** avant publication.
+À coller dans la page https://immobuild.lu/politique-de-confidentialite-cookies/, comme nouvelle section. Ce texte décrit ce que fait l'outil ; ce n'est pas un avis juridique. La partie « Mesure des annonces » est à faire valider (voir PRIVACY.md, section 3 sexies). Durées de conservation reprises de la politique publiée (12 mois, version du 11/06/2026) et de Resend (30 jours : resend.com/security/gdpr, consulté le 23/11/2026). **À relire par Jason** avant publication.
 
 ---
 
 ## Outil « Estimation gratuite » (estimatioun.lu)
 
-**Responsable du traitement.** ImmoBuild Kohn, 206, route de Burange, L-3429 Dudelange, contact@immobuild.lu, +352 621 830 272.
+**Responsable du traitement.** ImmoBuild Kohn S.à r.l., 206, route de Burange, L-3429 Dudelange, contact@immobuild.lu, +352 621 830 272.
 
 **Données collectées.** Quand vous utilisez notre outil d'estimation en ligne (sur estimatioun.lu ou intégré à notre site), nous recueillons :
 - la description de votre bien (type, commune, adresse si vous l'indiquez, surface, pièces, année, état, classe énergétique, équipements et annexes) ;
@@ -40,6 +40,6 @@ Sans la case cochée, l'outil n'enregistre pas ces identifiants et ne les transm
 
 **Cookies.** L'outil d'estimation n'utilise ni cookie, ni traceur, ni outil de statistiques qui suivrait un visiteur ; la seule transmission à une régie publicitaire est celle décrite sous « Mesure des annonces », et seulement avec votre consentement. Les paramètres de campagne décrits plus haut sont lus dans l'adresse de la page au moment de votre visite, gardés seulement dans la page ouverte et joints à votre demande ; rien n'est déposé sur votre appareil.
 
-**Durée de conservation.** Nous conservons votre demande pendant [durée à compléter, par exemple : 12 mois après notre dernier échange, sauf si une relation commerciale s'ensuit]. Resend conserve un journal technique des e-mails envoyés pendant [durée à vérifier dans le compte Resend].
+**Durée de conservation.** Nous conservons votre demande pendant 12 mois après notre dernier échange sans suite (comme les autres demandes d'estimation et de contact). Resend conserve les e-mails envoyés et leur journal technique pendant 30 jours. Les statistiques anonymes du parcours sont effacées après trois mois.
 
 **Vos droits.** Vous pouvez demander l'accès à vos données, leur rectification, leur effacement, la limitation du traitement ou leur portabilité, vous opposer au traitement et retirer votre consentement, en écrivant à contact@immobuild.lu. Vous pouvez aussi introduire une réclamation auprès de la Commission nationale pour la protection des données (CNPD), www.cnpd.lu.
