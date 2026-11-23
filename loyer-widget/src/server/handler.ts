@@ -10,6 +10,7 @@ import { estimate, type Params } from '../shared/engine';
 import { leadEmail } from '../shared/email';
 import { emailVisiteur } from '../shared/email-visiteur';
 import { envoyerEnAttente, mettreEnAttente, type KVAttente } from './attente';
+import type { AnalyticsEngine } from './etapes';
 import { allowSubmission, refundSubmission, type KVLike } from '../shared/ratelimit';
 import type { Dataset, References } from '../shared/types';
 import { validateSubmission } from '../shared/validation';
@@ -30,6 +31,8 @@ export interface Env {
   LEADS_EN_ATTENTE?: KVAttente;
   /** secret de chiffrement des leads en attente (longue phrase au hasard) */
   LEAD_BACKUP_KEY?: string;
+  /** comptage anonyme des étapes (Workers Analytics Engine) ; voir src/server/etapes.ts */
+  ETAPES?: AnalyticsEngine;
 }
 
 export interface Deps {

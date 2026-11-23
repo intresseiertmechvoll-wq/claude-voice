@@ -14,7 +14,7 @@ import {
   type Submission,
 } from './types';
 
-export type ErrorCode = 'required' | 'invalid' | 'range' | 'email' | 'phone' | 'phone_pays' | 'rgpd';
+export type ErrorCode = 'required' | 'invalid' | 'range' | 'email' | 'phone' | 'phone_pays' | 'rgpd' | 'taille' | 'trop_chambres';
 export type Errors = Record<string, ErrorCode>;
 
 /** Données brutes telles qu'envoyées par le formulaire */
@@ -22,6 +22,11 @@ export type Raw = Record<string, unknown>;
 
 export const LIMITS = {
   surface: { min: 10, max: 1000 },
+  /** au-delà, une estimation automatique n'a plus de sens : le visiteur est invité à contacter Jason */
+  surfaceAppartement: { min: 12, max: 400 },
+  surfaceMaison: { min: 40, max: 600 },
+  /** au moins 9 m² par chambre */
+  m2ParChambre: 9,
   chambres: { min: 0, max: 20 },
   garages: { min: 0, max: 10 },
   parkings: { min: 0, max: 10 },
@@ -176,8 +181,19 @@ const CHECKS: Record<string, FieldCheck> = {
     if (s === '') return 'required';
     return COMMUNE_NAMES.has(s) ? s : 'invalid';
   },
-  surface: (r) => numIn(r.surface, LIMITS.surface),
-  chambres: (r) => intIn(r.chambres, LIMITS.chambres),
+  surface: (r) => {
+    const n = numIn(r.surface, LIMITS.surface);
+    if (typeof n !== 'number') return n === 'range' ? 'taille' : n;
+    const lim = r.type === 'maison' ? LIMITS.surfaceMaison : LIMITS.surfaceAppartement;
+    return n < lim.min || n > lim.max ? 'taille' : n;
+  },
+  chambres: (r) => {
+    const n = intIn(r.chambres, LIMITS.chambres);
+    if (typeof n !== 'number') return n;
+    // Plausibilité : 20 chambres sur 30 m², non
+    const s = Number(str(r.surface).replace(/\s*m(?:2|²)$/i, '').replace(/[\s\u00a0\u202f]/g, '').replace(',', '.'));
+    return Number.isFinite(s) && s > 0 && n > 0 && n * LIMITS.m2ParChambre > s ? 'trop_chambres' : n;
+  },
   etat: (r) => oneOf(r.etat, ETATS),
   energie: (r) => oneOf(r.energie, ENERGIES),
   meuble: (r) => yesNo(r.meuble),
@@ -203,7 +219,7 @@ const CHECKS: Record<string, FieldCheck> = {
   rgpd: (r) => (r.rgpd === true || r.rgpd === 'on' ? true : 'rgpd'),
 };
 
-const ERROR_CODES = new Set<unknown>(['required', 'invalid', 'range', 'email', 'phone', 'phone_pays', 'rgpd']);
+const ERROR_CODES = new Set<unknown>(['required', 'invalid', 'range', 'email', 'phone', 'phone_pays', 'rgpd', 'taille', 'trop_chambres']);
 const isError = (v: unknown): v is ErrorCode => typeof v === 'string' && ERROR_CODES.has(v);
 
 /** Vérifie une liste de champs. Renvoie les valeurs propres et les erreurs. */

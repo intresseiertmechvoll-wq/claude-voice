@@ -50,11 +50,18 @@ export function noDataNote(t: T, type: unknown, commune: unknown): string {
   return `${icon('info', 'ico ico-xs')}<span>${esc(t(key, { commune: String(commune), canton }))}</span>`;
 }
 
+/** Valeurs à insérer dans le message d'erreur (limites de surface selon le type de bien) */
+export function errorVars(code: string, type: unknown): Record<string, string> {
+  if (code !== 'taille') return {};
+  const l = type === 'maison' ? LIMITS.surfaceMaison : LIMITS.surfaceAppartement;
+  return { min: String(l.min), max: String(l.max) };
+}
+
 function errorMessage(ctx: Ctx, name: string): string {
   const code = ctx.e[name];
   if (!code) return `<p class="field-error" id="${name}-error" hidden></p>`;
   const key = errorKey(name, code, ctx.v.indicatif);
-  return `<p class="field-error" id="${name}-error">${icon('info', 'ico ico-xs')}<span>${esc(ctx.t(key))}</span></p>`;
+  return `<p class="field-error" id="${name}-error">${icon('info', 'ico ico-xs')}<span>${esc(ctx.t(key, errorVars(code, ctx.v.type)))}</span></p>`;
 }
 
 function describedBy(ctx: Ctx, name: string, help: boolean): string {

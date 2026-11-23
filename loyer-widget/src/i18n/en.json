@@ -182,7 +182,9 @@
     "reload": "The tool has just been updated. Reload the page to continue.",
     "phone_pays": "This looks like a French, Belgian or German number: please choose the country code on the left (e.g. +33 for France).",
     "phoneAutre": "This number does not look valid. Please check the number and the country code chosen on the left.",
-    "turnstile": "The anti-bot check did not succeed. Please try again in a moment; if it keeps failing, turn off any ad blocker or write to me at {contact}."
+    "turnstile": "The anti-bot check did not succeed. Please try again in a moment; if it keeps failing, turn off any ad blocker or write to me at {contact}.",
+    "taille": "For a property of this size an automatic estimate is not reliable: enter {min} to {max} m², or contact me directly.",
+    "trop_chambres": "Too many bedrooms for this area (allow at least 9 m² per bedroom)."
   },
   "recap": {
     "title": "Your property at a glance",

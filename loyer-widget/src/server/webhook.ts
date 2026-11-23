@@ -94,6 +94,10 @@ export async function handleResendWebhook(request: Request, env: Env, deps: Part
   } catch {
     return json({ ok: false, error: 'json' }, 400);
   }
+  // Même avis reçu deux fois (Resend réessaie) : on ne prévient Jason qu'une fois, si un stockage KV existe
+  const kv = env.RATE_LIMIT ?? env.LEADS_EN_ATTENTE;
+  const vu = `wh:${h('svix-id').slice(0, 100)}`;
+  if (kv && (await kv.get(vu).catch(() => null))) return json({ ok: true, doublon: true });
   const tags = evt.data?.tags ?? {};
   // Seulement les copies au visiteur, et seulement les échecs : tout le reste est ignoré (réponse 200)
   if (!EVENEMENTS_ECHEC.includes(String(evt.type)) || tags.categorie !== TAG_COPIE) return json({ ok: true, ignore: true });
@@ -106,5 +110,6 @@ export async function handleResendWebhook(request: Request, env: Env, deps: Part
   const err = await sendMail(env, d, { ...avis, to: lead, replyTo: lead });
   // En cas d'échec, Resend renverra l'avis plus tard (il réessaie tant que la réponse n'est pas 2xx)
   if (err) return json({ ok: false, error: err }, 502);
+  if (kv) await kv.put(vu, '1', { expirationTtl: 24 * 3600 }).catch(() => {});
   return json({ ok: true, avis: true });
 }

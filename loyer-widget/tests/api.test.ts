@@ -363,3 +363,22 @@ describe('Cloudflare Turnstile (anti-robots)', () => {
     expect(f.mock.calls.some((c) => String(c[0]).includes('turnstile'))).toBe(false);
   });
 });
+
+describe('Surfaces et chambres plausibles', () => {
+  const err = (answers: Record<string, unknown>) => {
+    const v = validateSubmission(body({ answers }));
+    return v.ok ? null : v.errors;
+  };
+  it('maison 10 m², appartement 450 m² : « taille » (contacter Jason) ; limites acceptées', () => {
+    expect(err({ type: 'maison', surface: '10', chambres: '1', etage: '', ascenseur: '' })).toMatchObject({ surface: 'taille' });
+    expect(err({ surface: '450' })).toMatchObject({ surface: 'taille' });
+    expect(err({ surface: '1200' })).toMatchObject({ surface: 'taille' });
+    expect(err({ surface: '12', chambres: '0' })).toBeNull();
+    expect(err({ type: 'maison', surface: '600', chambres: '8', etage: '', ascenseur: '' })).toBeNull();
+  });
+  it('20 chambres sur 30 m² : refusé ; studio 0 chambre accepté ; 3 chambres sur 27 m² accepté', () => {
+    expect(err({ surface: '30', chambres: '20' })).toMatchObject({ chambres: 'trop_chambres' });
+    expect(err({ surface: '15', chambres: '0' })).toBeNull();
+    expect(err({ surface: '27', chambres: '3' })).toBeNull();
+  });
+});

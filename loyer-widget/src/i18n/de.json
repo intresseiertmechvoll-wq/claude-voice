@@ -182,7 +182,9 @@
     "reload": "Das Tool wurde gerade aktualisiert. Laden Sie die Seite neu, um fortzufahren.",
     "phone_pays": "Diese Nummer sieht nach einer Nummer aus Frankreich, Belgien oder Deutschland aus: Bitte wählen Sie links die passende Vorwahl (z. B. +33 für Frankreich).",
     "phoneAutre": "Diese Nummer scheint ungültig. Bitte prüfen Sie die Nummer und die links gewählte Vorwahl.",
-    "turnstile": "Die Prüfung gegen Roboter hat nicht geklappt. Versuchen Sie es gleich noch einmal; falls es weiter nicht geht, schalten Sie einen Werbeblocker aus oder schreiben Sie mir an {contact}."
+    "turnstile": "Die Prüfung gegen Roboter hat nicht geklappt. Versuchen Sie es gleich noch einmal; falls es weiter nicht geht, schalten Sie einen Werbeblocker aus oder schreiben Sie mir an {contact}.",
+    "taille": "Für eine Immobilie dieser Größe ist eine automatische Schätzung nicht verlässlich: Geben Sie {min} bis {max} m² an oder kontaktieren Sie mich direkt.",
+    "trop_chambres": "Zu viele Schlafzimmer für diese Fläche (rechnen Sie mit mindestens 9 m² pro Zimmer)."
   },
   "recap": {
     "title": "Ihre Immobilie im Überblick",

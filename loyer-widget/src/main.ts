@@ -10,7 +10,7 @@ import { resolveCommune, setupCombobox } from './ui/combobox';
 import { esc } from './ui/html';
 import { icon } from './ui/icons';
 import { formatEuro } from './ui/format';
-import { errorKey, noDataNote, recapItems, renderStep, STEP_ICONS, type Values } from './ui/steps';
+import { errorKey, errorVars, noDataNote, recapItems, renderStep, STEP_ICONS, type Values } from './ui/steps';
 import { suggestionEmail } from './shared/email-typos';
 import { jeton, monter, precharger } from './ui/turnstile';
 
@@ -54,6 +54,23 @@ const state: {
 } = { step: 1, values: { ...DEFAULTS }, errors: {}, sending: false, serverError: null, result: null, copie: false, envois: 0, direction: 'next', returnTo: null };
 
 const app = document.getElementById('app')!;
+
+/* ---------- Comptage anonyme des étapes (aucun cookie, aucun identifiant) : voir src/server/etapes.ts ---------- */
+const comptees = new Set<string>();
+function compter(etape: 'ouvert' | 'e2' | 'e3' | 'e4' | 'resultat') {
+  if (comptees.has(etape)) return;
+  comptees.add(etape);
+  try {
+    void fetch('/api/etape', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ etape, type: state.values.type ?? '', lang, integre: window.parent !== window }),
+      keepalive: true,
+    }).catch(() => {});
+  } catch {
+    /* rien */
+  }
+}
 
 /* ---------- Code de fin de parcours, chargé en arrière-plan ---------- */
 type Late = typeof import('./ui/late');
@@ -128,6 +145,7 @@ function recapBar(): string {
 }
 
 function render(focus = true) {
+  compter(state.result ? 'resultat' : state.step === 1 ? 'ouvert' : (`e${state.step}` as 'e2' | 'e3' | 'e4'));
   if (state.result) {
     app.innerHTML = `<div class="card card-result anim-in">${late!.renderResult(state.result, t, lang, { contactUrl, gestionUrl, legalUrl: config.legalUrl, agent: config.agent, phone: config.phone, copieA: state.copie ? String(state.values.email ?? '') : null })}</div>`;
     hydrate();
@@ -291,7 +309,7 @@ function setFieldError(name: string, code: string | undefined) {
     state.errors[name] = code as Errors[string];
     wrap.classList.add('has-error');
     const key = errorKey(name, code, state.values.indicatif);
-    msg.innerHTML = `${icon('info', 'ico ico-xs')}<span>${esc(t(key))}</span>`;
+    msg.innerHTML = `${icon('info', 'ico ico-xs')}<span>${esc(t(key, errorVars(code, state.values.type)))}</span>`;
     msg.hidden = false;
     inputs.forEach((i) => i.setAttribute('aria-invalid', 'true'));
   } else {

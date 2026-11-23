@@ -119,3 +119,17 @@ describe('Avis de Resend : copie au visiteur non livrée → e-mail « adresse f
     expect(lead.tags).toBeUndefined();
   });
 });
+
+describe('Avis de Resend : doublons', () => {
+  it('même avis reçu deux fois (même svix-id) : Jason n’est prévenu qu’une fois si un KV existe', async () => {
+    const store = new Map<string, string>();
+    const kv = { get: async (k: string) => store.get(k) ?? null, put: async (k: string, v: string) => void store.set(k, v) };
+    const { fetchMock, env, deps } = setup();
+    const p = avis('email.bounced', { categorie: 'copie_visiteur', tel: '352691482731' });
+    const e = { ...env, RATE_LIMIT: kv };
+    expect((await handleResendWebhook(req(p, signe(p, 'msg_42')), e, deps)).status).toBe(200);
+    const r2 = await handleResendWebhook(req(p, signe(p, 'msg_42')), e, deps);
+    expect(((await r2.json()) as any).doublon).toBe(true);
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+});

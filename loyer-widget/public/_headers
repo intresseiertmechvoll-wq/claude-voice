@@ -1,12 +1,15 @@
 # En-têtes de sécurité (Cloudflare Pages)
 # frame-ancestors : les sites autorisés à afficher l'outil dans une iframe. Ajouter ici l'adresse d'un autre site si besoin.
+# static.cloudflareinsights.com / cloudflareinsights.com : Cloudflare Web Analytics (sans cookie), seulement si activé dans le tableau de bord Pages.
+# Strict-Transport-Security : HTTPS obligatoire pendant 1 an (sans includeSubDomains : n'impose rien aux autres sous-domaines).
 # challenges.cloudflare.com : Cloudflare Turnstile (anti-robots), seulement si config.json → turnstileSiteKey est rempli.
 # Pour tester l'intégration depuis un site local (http://localhost:3000), ajouter temporairement http://localhost:* ; ne pas le laisser en ligne.
 /*
+  Strict-Transport-Security: max-age=31536000
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'self'; object-src 'none'; frame-ancestors 'self' https://immobuild.lu https://*.immobuild.lu
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://challenges.cloudflare.com https://static.cloudflareinsights.com; frame-src https://challenges.cloudflare.com; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com; base-uri 'none'; form-action 'self'; object-src 'none'; frame-ancestors 'self' https://immobuild.lu https://*.immobuild.lu
 
 /embed.js
   Access-Control-Allow-Origin: *

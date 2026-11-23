@@ -182,7 +182,9 @@
     "reload": "L’outil vient d’être mis à jour. Rechargez la page pour continuer.",
     "phone_pays": "Ce numéro ressemble à un numéro français, belge ou allemand : choisissez l’indicatif à gauche (par exemple +33 pour la France).",
     "phoneAutre": "Ce numéro ne semble pas valide. Vérifiez le numéro et l’indicatif choisi à gauche.",
-    "turnstile": "La vérification anti-robots n’a pas abouti. Réessayez dans un instant ; si cela continue, désactivez un éventuel bloqueur de publicité ou écrivez-moi à {contact}."
+    "turnstile": "La vérification anti-robots n’a pas abouti. Réessayez dans un instant ; si cela continue, désactivez un éventuel bloqueur de publicité ou écrivez-moi à {contact}.",
+    "taille": "Pour un bien de cette taille, une estimation automatique n’est pas fiable : indiquez entre {min} et {max} m², ou contactez-moi directement.",
+    "trop_chambres": "Trop de chambres pour cette surface (comptez au moins 9 m² par chambre)."
   },
   "recap": {
     "title": "Votre bien en résumé",
