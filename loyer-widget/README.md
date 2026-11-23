@@ -11,6 +11,8 @@ Outil « Quel loyer pour votre bien ? » pour gagner des clients en **gestion lo
 > 6. Cloudflare Turnstile (anti-robots, partie 3.7) : clé de site dans `config.json`, clé secrète `TURNSTILE_SECRET_KEY`. Et les leads en attente (partie 3.8) : stockage `LEADS_EN_ATTENTE` et secret `LEAD_BACKUP_KEY`.
 > 7. Revérifier la loi sur legilux (partie « Plafond légal ») : une réforme est en discussion.
 > 8. Mettre en ligne, puis envoyer 3 ou 4 estimations de test depuis de vrais téléphones (iPhone et Android) et vérifier les e-mails reçus.
+>
+> Pour savoir si l'outil marche (partie 3.9) : activer Cloudflare Web Analytics (1 clic) et le comptage des étapes (binding `ETAPES`). Pour être trouvé sur Google : déclarer `https://verlounen.lu/sitemap.xml` dans Google Search Console.
 
 1. le propriétaire décrit son appartement ou sa maison en 3 étapes courtes ;
 2. il donne ses coordonnées ;
@@ -189,13 +191,29 @@ Puis : Workers & Pages → loyer-widget → Settings → Bindings → Add → KV
 - rarement, un lead en attente peut arriver deux fois (deux visiteurs au même moment) ;
 - testé en local avec le stockage KV de Wrangler (panne simulée, puis envoi différé) ; pas encore testé en ligne.
 
+### 3.9 Pages pour Google et mesure du parcours
+
+**Pages de présentation** `/fr/`, `/de/`, `/en/` (générées par `npm run pages`, fichiers `fr/index.html`…) : titre et description pour Google, l'outil intégré, la méthode de calcul, des **exemples de loyers par région calculés par l'outil** (appartement 80 m², maison 150 m² ; jamais saisis à la main), le plafond légal, Jason, une FAQ. Avec `sitemap.xml` et `robots.txt`. L'adresse publique vient de `config.json` → `siteUrl` (aujourd'hui `https://verlounen.lu`). Ce sont ces adresses à utiliser dans la publicité et sur les réseaux. Contrôlé en local : 0 erreur axe-core à 320, 390 et 1280 px, l'outil intégré se charge avec les vrais en-têtes de sécurité.
+
+À faire après la mise en ligne : Google Search Console → ajouter `verlounen.lu` → déclarer `https://verlounen.lu/sitemap.xml`. Être bien placé sur Google prend des semaines et n'est pas garanti ; la publicité et les liens depuis immobuild.lu restent nécessaires au début.
+
+**Mesure, sans cookie :**
+1. **Visites** : Cloudflare → Workers & Pages → loyer-widget → *Metrics* → *Web Analytics* → *Enable* (1 clic ; Cloudflare ajoute son script au prochain déploiement ; les en-têtes de sécurité l'autorisent déjà).
+2. **Parcours étape par étape** (combien ouvrent l'outil, arrivent à l'étape 4, voient le résultat) : Settings → Bindings → Add → *Analytics Engine* → variable `ETAPES`, jeu de données `loyer_etapes`, puis `npm run deploy`. Lecture :
+   ```bash
+   CLOUDFLARE_ACCOUNT_ID=… CLOUDFLARE_API_TOKEN=… npm run stats
+   ```
+   (jeton : My Profile → API Tokens → permission « Account Analytics : Read »). Exemple de lecture : « 300 ouvertures, 90 à l'étape 4, 60 résultats » = 1 visiteur sur 5 devient un lead, et un tiers abandonne à l'étape 4 (coordonnées). Rien d'autre n'est compté : ni cookie, ni identifiant, ni adresse IP. Pas encore testé avec un vrai compte Cloudflare.
+
 ## 4. Mettre à jour les données
 
 ### Chaque trimestre (5 minutes)
 
 ```bash
-npm run update-data && npm test && npm run deploy
+npm run update-data && npm run pages && npm test && npm run deploy
 ```
+
+`npm run pages` recalcule les exemples de loyers des pages /fr/, /de/, /en/ avec les nouvelles données (un test échoue si on l'oublie).
 
 `update-data` télécharge sur data.public.lu le nombre d'annonces de location par commune et l'indice des loyers annoncés, puis réécrit `data/loyers.json` et `data/peu-de-donnees.json`. Si un fichier change de format, le script **s'arrête sans rien modifier** et dit pourquoi. Derrière un proxy : `NODE_USE_ENV_PROXY=1 npm run update-data`.
 
@@ -315,7 +333,7 @@ Vérifié sur legilux le 17/11/2026 (`docs/cadre-legal.md`) : loi du 21 septembr
 
 ## Tests
 
-`npm test` lance 115 tests (19/11/2026), dont :
+`npm test` lance 126 tests (23/11/2026), dont :
 
 | Test | Fichier |
 | --- | --- |
@@ -334,4 +352,4 @@ Vérifié sur legilux le 17/11/2026 (`docs/cadre-legal.md`) : loi du 21 septembr
 1. Valider ou corriger les coefficients (tableau ci-dessus) et la règle de priorité.
 2. Adresses `gestionUrl`, `contactUrl`, `privacyUrl`, numéro de téléphone (`config.json`).
 3. Titre luxembourgeois : le faire relire, puis décider.
-4. Indexation Google de verlounen.lu : aujourd'hui `noindex` (comme l'outil d'estimation). Si verlounen.lu doit être trouvé sur Google comme page autonome, retirer `noindex` dans `index.html`.
+4. Google : l'outil seul (`/`) reste en `noindex` (c'est la page affichée dans les iframes). Les pages **/fr/, /de/, /en/** sont faites pour Google (partie 3.9). À décider : la page d'accueil de verlounen.lu doit-elle renvoyer vers /fr/ ? (redirection à ajouter dans `public/_redirects`, pas fait).

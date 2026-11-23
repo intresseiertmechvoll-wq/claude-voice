@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://verlounen.lu/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://verlounen.lu/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://verlounen.lu/de/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://verlounen.lu/en/" />
+  </url>
+  <url>
+    <loc>https://verlounen.lu/de/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://verlounen.lu/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://verlounen.lu/de/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://verlounen.lu/en/" />
+  </url>
+  <url>
+    <loc>https://verlounen.lu/en/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://verlounen.lu/fr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://verlounen.lu/de/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://verlounen.lu/en/" />
+  </url>
+</urlset>

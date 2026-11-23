@@ -1,5 +1,5 @@
 {
-  "_note": "Liens et réglages affichés dans l'outil. À VÉRIFIER PAR JASON : contactUrl (prise de rendez-vous), gestionUrl (page « gestion locative » de ton site), privacyUrl, agent.photo, phone (vide = pas de numéro affiché), quickCommunes (raccourcis de l'étape 1), publicEmail (adresse affichée dans les messages d'erreur), copieVisiteur (copie du résultat envoyée au visiteur : à activer seulement après mise à jour de la politique de confidentialité, voir PRIVACY.md), turnstileSiteKey (clé de site Cloudflare Turnstile, vide = anti-robots désactivé ; la clé secrète va dans TURNSTILE_SECRET_KEY, voir README 3.7).",
+  "_note": "Liens et réglages affichés dans l'outil. À VÉRIFIER PAR JASON : contactUrl (prise de rendez-vous), gestionUrl (page « gestion locative » de ton site), privacyUrl, agent.photo, phone (vide = pas de numéro affiché), quickCommunes (raccourcis de l'étape 1), publicEmail (adresse affichée dans les messages d'erreur), copieVisiteur (copie du résultat envoyée au visiteur : à activer seulement après mise à jour de la politique de confidentialité, voir PRIVACY.md), turnstileSiteKey (clé de site Cloudflare Turnstile, vide = anti-robots désactivé ; la clé secrète va dans TURNSTILE_SECRET_KEY, voir README 3.7), siteUrl (adresse publique de l'outil, utilisée par les pages /fr/ /de/ /en/ et le sitemap ; relancer npm run pages après un changement).",
   "contactUrl": {
     "fr": "https://immobuild.lu/contact/",
     "de": "https://immobuild.lu/contact/",
@@ -35,5 +35,6 @@
   ],
   "publicEmail": "contact@immobuild.lu",
   "copieVisiteur": false,
-  "turnstileSiteKey": ""
+  "turnstileSiteKey": "",
+  "siteUrl": "https://verlounen.lu"
 }

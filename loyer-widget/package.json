@@ -13,7 +13,8 @@
     "screenshots": "node scripts/screenshots.mjs",
     "deploy": "npm run build && wrangler pages deploy dist --project-name loyer-widget --branch main",
     "marche": "tsx scripts/marche-maisons.ts",
-    "stats": "tsx scripts/stats.ts"
+    "stats": "tsx scripts/stats.ts",
+    "pages": "tsx scripts/pages.ts"
   },
   "license": "UNLICENSED",
   "devDependencies": {

@@ -73,6 +73,11 @@ Si le stockage `LEADS_EN_ATTENTE` (Cloudflare KV) et le secret `LEAD_BACKUP_KEY`
 - Cloudflare stocke ces données ; leur emplacement exact n'est pas garanti en Europe (KV est réparti sur le réseau mondial de Cloudflare) : à mentionner dans ta politique de confidentialité ;
 - texte proposé (point 7) : « Si l'envoi de votre demande échoue pour une raison technique, elle est conservée chiffrée chez notre hébergeur Cloudflare pendant 7 jours au plus, le temps de nous la transmettre, puis effacée. »
 
+### Mesure de fréquentation (sans cookie)
+
+- **Comptage des étapes** (`/api/etape`, binding `ETAPES`) : à chaque étape atteinte, le navigateur envoie seulement l'étape, le type de bien, la langue et « intégré dans un site ou non ». Ni cookie, ni identifiant, ni adresse IP enregistrée ; impossible de relier un comptage à un lead. Stocké dans Cloudflare Workers Analytics Engine.
+- **Cloudflare Web Analytics** (si activé) : Cloudflare compte les pages vues sans cookie, d'après sa documentation (« privacy-first », pas de traçage entre sites). À mentionner dans ta politique de confidentialité : « Nous mesurons la fréquentation de manière anonyme, sans cookie, avec Cloudflare Web Analytics. »
+
 ## 4. Adresse IP et limite d'envois
 
 - Pour bloquer les abus, l'outil compte les envois par adresse IP : au plus 20 par heure.

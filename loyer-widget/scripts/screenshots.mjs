@@ -157,7 +157,8 @@ await run('fr', 390, true);
 for (const lang of LANGS) for (const width of WIDTHS) await run(lang, width, false);
 
 // ---------- Intégration dans une page (embed.js) ----------
-const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, bypassCSP: true });
+// Sans bypassCSP : l'intégration doit marcher avec les vrais en-têtes de sécurité (frame-src, script-src)
+const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
 const page = await ctx.newPage();
 await page.goto(`${BASE}/demo.html`);
 const frame = page.frameLocator('iframe[data-immobuild-frame]');
