@@ -94,6 +94,21 @@ describe('Case courtier', () => {
   });
 });
 
+describe('Reste à rembourser (revue 19/11)', () => {
+  const ctx = (v: Record<string, string>): Ctx => ({ t, lang: 'fr', v: { vendre: 'oui_lu', ...v }, e: {}, privacyUrl: '', estimationUrl: '', quickCommunes: [], courtierNomPublic: '' });
+  const champ = (html: string) => html.slice(html.indexOf('data-field="restePret"'), html.indexOf('data-field="restePret"') + 1200);
+  it('Sans valeur de vente : facultatif, pas requis', () => {
+    const f = champ(renderStep(3, ctx({})));
+    expect(f).toContain('<span class="optional">(facultatif)</span>');
+    expect(f).not.toContain('aria-required');
+  });
+  it('Avec une valeur de vente : plus de « (facultatif) » visible, annoncé comme requis', () => {
+    const f = champ(renderStep(3, ctx({ valeurVente: '450 000' })));
+    expect(f).toContain('<span class="optional" hidden>');
+    expect(f).toMatch(/id="restePret"[^>]*aria-required="true"/);
+  });
+});
+
 describe('Textes essentiels dans les 3 langues', () => {
   it('Avertissement « ni conseil en crédit ni offre de prêt » en allemand et en anglais', () => {
     expect(de.budget.disclaimer).toContain('weder eine Kreditberatung noch ein Kreditangebot');

@@ -66,15 +66,18 @@ function describedBy(ctx: Ctx, name: string, help: boolean): string {
 const invalid = (ctx: Ctx, name: string) => (ctx.e[name] ? ' aria-invalid="true"' : '');
 const hasErr = (ctx: Ctx, name: string) => (ctx.e[name] ? ' has-error' : '');
 
-function labelText(ctx: Ctx, label: string, optional?: boolean) {
-  return `${esc(label)}${optional ? ` <span class="optional">(${esc(ctx.t('optional'))})</span>` : ''}`;
+function labelText(ctx: Ctx, label: string, optional?: boolean, requis = false) {
+  return `${esc(label)}${optional ? ` <span class="optional"${requis ? ' hidden' : ''}>(${esc(ctx.t('optional'))})</span>` : ''}`;
 }
+
+/** « Reste à rembourser » devient obligatoire dès qu'une valeur de vente est donnée (même règle que validation.ts) */
+export const restePretRequis = (v: Values) => String(v.valeurVente ?? '').trim() !== '';
 
 function input(
   ctx: Ctx,
   name: string,
   label: string,
-  o: { type?: string; help?: string; optional?: boolean; inputmode?: string; autocomplete?: string; placeholder?: string; suffix?: string; maxlength?: number } = {},
+  o: { type?: string; help?: string; optional?: boolean; requis?: boolean; inputmode?: string; autocomplete?: string; placeholder?: string; suffix?: string; maxlength?: number } = {},
 ): string {
   const attrs = [
     `type="${o.type ?? 'text'}"`,
@@ -85,12 +88,12 @@ function input(
     `autocomplete="${o.autocomplete ?? 'off'}"`,
     o.placeholder ? `placeholder="${esc(o.placeholder)}"` : '',
     o.maxlength ? `maxlength="${o.maxlength}"` : '',
-    o.optional ? '' : 'aria-required="true"',
+    o.optional && !o.requis ? '' : 'aria-required="true"',
   ]
     .filter(Boolean)
     .join(' ');
   return `<div class="field${hasErr(ctx, name)}" data-field="${name}">
-  <label for="${name}">${labelText(ctx, label, o.optional)}</label>
+  <label for="${name}">${labelText(ctx, label, o.optional, o.requis)}</label>
   ${o.help ? `<p class="help" id="${name}-help">${esc(o.help)}</p>` : ''}
   <div class="input-wrap${o.suffix ? ' has-suffix' : ''}"><input ${attrs}${invalid(ctx, name)}${describedBy(ctx, name, !!o.help)}>${o.suffix ? `<span class="suffix" aria-hidden="true">${esc(o.suffix)}</span>` : ''}</div>
   ${errorMessage(ctx, name)}
@@ -98,8 +101,8 @@ function input(
 }
 
 /** Montant en euros */
-const money = (ctx: Ctx, name: string, label: string, help?: string, optional?: boolean) =>
-  input(ctx, name, label, { inputmode: 'decimal', suffix: '€', help, optional, maxlength: 16, placeholder: name === 'apport' ? '60 000' : name === 'prix' ? '600 000' : '' });
+const money = (ctx: Ctx, name: string, label: string, help?: string, optional?: boolean, requis = false) =>
+  input(ctx, name, label, { inputmode: 'decimal', suffix: '€', help, optional, requis, maxlength: 16, placeholder: name === 'apport' ? '60 000' : name === 'prix' ? '600 000' : '' });
 
 type Opt = { value: string; label: string; icon?: string; hint?: string };
 
@@ -269,7 +272,7 @@ ${money(ctx, 'prix', t('fields.prix'), t('fields.prixHelp'))}
   <p class="vente-title">${icon('vendre', 'ico ico-sm')}<span>${esc(t('fields.venteTitle'))}</span></p>
   <p class="small">${esc(t('fields.venteHelp'))} <a href="${esc(ctx.estimationUrl)}" target="_blank" rel="noopener">${esc(t('fields.vendreLink'))}</a></p>
   ${money(ctx, 'valeurVente', t('fields.valeurVente'), undefined, true)}
-  ${money(ctx, 'restePret', t('fields.restePret'), t('fields.restePretHelp'), true)}
+  ${money(ctx, 'restePret', t('fields.restePret'), t('fields.restePretHelp'), true, restePretRequis(v))}
 </div>
 ${choices(ctx, 'banque', t('fields.banque'), opts(t, 'fields.banqueOptions', BANQUE), 'chips')}
 ${choices(ctx, 'capacite', t('fields.capacite'), opts(t, 'fields.capaciteOptions', CAPACITE), 'chips')}

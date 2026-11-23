@@ -14,7 +14,7 @@ import { esc } from './ui/html';
 import { icon } from './ui/icons';
 import { renderBudgetLive, renderBudgetPreview, renderResult, type BudgetOptions, type SimOptions } from './ui/result';
 import { formatEuro } from './ui/format';
-import { communeChips, errorKey, renderStep, STEP_ICONS, vendreNote, type Ctx, type Values } from './ui/steps';
+import { communeChips, errorKey, renderStep, restePretRequis, STEP_ICONS, vendreNote, type Ctx, type Values } from './ui/steps';
 
 /** Délai maximal d'une requête. AbortSignal.timeout n'existe qu'à partir de Safari 16 : repli pour les iPhone plus anciens. */
 function timeoutSignal(ms: number): AbortSignal {
@@ -427,6 +427,17 @@ function onInput(e: Event) {
     if (box) box.hidden = state.values.capacite !== 'oui';
     if (state.values.capacite !== 'oui') clearError('capaciteMontant');
     sendHeight();
+  }
+  if (el.name === 'valeurVente') {
+    // « Reste à rembourser » : obligatoire dès qu'une valeur est donnée → plus de « (facultatif) », annoncé comme requis
+    const requis = restePretRequis(state.values);
+    const opt = app.querySelector<HTMLElement>('label[for="restePret"] .optional');
+    if (opt) opt.hidden = requis;
+    const reste = app.querySelector('#restePret');
+    if (requis) reste?.setAttribute('aria-required', 'true');
+    else reste?.removeAttribute('aria-required');
+    // Valeur effacée : une erreur « obligatoire » sur le prêt restant n'a plus lieu d'être
+    if (state.errors.restePret) checkOne('restePret', false);
   }
   if (el.name === 'indicatif') return checkOne('numero', false);
   // Choix (radio, case) : vérification immédiate ; texte : à la sortie du champ
